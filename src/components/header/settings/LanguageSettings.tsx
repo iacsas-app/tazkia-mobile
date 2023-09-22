@@ -15,6 +15,8 @@ export default function LanguageSettings({ locale, onLocaleChange }: LanguageSet
       case 'fr':
         return 'en';
       case 'en':
+        return 'hi';
+      case 'hi':
         return 'ar';
     }
   }
