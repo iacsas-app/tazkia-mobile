@@ -1,5 +1,4 @@
-import { Avatar, HStack, Pressable, Switch, Text, VStack } from '@react-native-material/core';
-import { useEffect, useState } from 'react';
+import { Avatar, HStack, Pressable, Text, VStack } from '@react-native-material/core';
 import { ImageSourcePropType } from 'react-native';
 import { useApplication } from '../../../../hooks/use-application';
 import { useMessage } from '../../../../hooks/use-message';
@@ -14,22 +13,13 @@ interface LanguageOptionProps {
 export default function LanguageOption({ value, icon, onChange }: LanguageOptionProps) {
   const { formatMessage } = useMessage();
   const { locale, arabicOrientation } = useApplication();
-  const isCurrent = locale === value;
-  const [checked, setChecked] = useState(isCurrent);
   const language = localesTranslation[value];
 
   function handleChange() {
     if (locale !== value) {
-      setChecked(!checked);
       onChange(value);
     }
   }
-
-  useEffect(() => {
-    if (locale !== value && checked) {
-      setChecked(false);
-    }
-  }, [locale]);
 
   return (
     <Pressable onPress={handleChange}>
@@ -43,7 +33,6 @@ export default function LanguageOption({ value, icon, onChange }: LanguageOption
             <Text variant="body2">{formatMessage(`language.${language.key}`)}</Text>
           </VStack>
         </HStack>
-        <Switch value={checked} onValueChange={handleChange} />
       </HStack>
     </Pressable>
   );
