@@ -2,20 +2,13 @@ import { Action, Thunk, action, persist, thunk } from 'easy-peasy';
 import { Injections } from '../injections';
 import { storageEngine } from '../storage-engine';
 
-export interface Page {
-  title: string;
-  subTitle: string;
-}
-
 export interface GlobalModel {
-  hasProgress: boolean;
+  userHasProgress: boolean;
   arabicOrientation: boolean;
-  page: Page;
 
   // Actions
   setProgress: Action<GlobalModel, boolean>;
   setArabicOrientation: Action<GlobalModel, boolean>;
-  setPage: Action<GlobalModel, Page>;
 
   // Thunk
   findProgress: Thunk<GlobalModel, void, Injections>;
@@ -23,19 +16,15 @@ export interface GlobalModel {
 }
 
 const globalModel: GlobalModel = {
-  hasProgress: false,
+  userHasProgress: false,
   arabicOrientation: false,
-  page: { title: 'Main title', subTitle: 'Sub title' },
 
   // Actions
   setProgress: action((state, payload: boolean) => {
-    state.hasProgress = payload;
+    state.userHasProgress = payload;
   }),
   setArabicOrientation: action((state, payload: boolean) => {
     state.arabicOrientation = payload;
-  }),
-  setPage: action((state, payload: Page) => {
-    state.page = payload;
   }),
 
   // Thunks
@@ -53,5 +42,5 @@ const globalModel: GlobalModel = {
 
 export default persist(globalModel, {
   storage: storageEngine,
-  allow: ['hasProgress', 'arabicOrientation'],
+  allow: ['userHasProgress', 'arabicOrientation'],
 });

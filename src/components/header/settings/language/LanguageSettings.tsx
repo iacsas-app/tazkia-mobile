@@ -20,7 +20,7 @@ export default function LanguageSettings() {
 
   return (
     <Surface elevation={1} style={{ padding: 10, minWidth: 250 }} category="large">
-      <VStack spacing={2}>
+      <VStack spacing={25}>
         <Pressable onPress={handlePress}>
           <HStack spacing={17} mt={15} reverse={arabicOrientation}>
             <Icon name="language" size={30} color="green" style={{ marginTop: 8 }} />
