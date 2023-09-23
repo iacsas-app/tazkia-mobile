@@ -6,7 +6,7 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 type SectionProps = PropsWithChildren<{
   title: string;
 }>;
-export default function Section({ children, title }: SectionProps): JSX.Element {
+export default function TextSection({ children, title }: SectionProps): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
   return (

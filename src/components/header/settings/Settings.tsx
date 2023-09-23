@@ -1,7 +1,5 @@
-import LanguageSettings, { LanguageSettingsProps } from './LanguageSettings';
+import LanguageSettings from './language/LanguageSettings';
 
-interface SettingsProps extends LanguageSettingsProps {}
-
-export default function Settings(props: SettingsProps) {
-  return <LanguageSettings locale={props.locale} onLocaleChange={props.onLocaleChange} />;
+export default function Settings() {
+  return <LanguageSettings />;
 }

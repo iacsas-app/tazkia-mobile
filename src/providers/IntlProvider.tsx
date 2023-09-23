@@ -1,8 +1,8 @@
+import { useStoreRehydrated } from 'easy-peasy';
 import { PropsWithChildren, useEffect } from 'react';
 import { RawIntlProvider, createIntl, createIntlCache } from 'react-intl';
-import { useStoreActions, useStoreState } from '../stores/hooks';
 import { defaultLanguage } from '../locales';
-import { useStoreRehydrated } from 'easy-peasy';
+import { useStoreActions, useStoreState } from '../stores/hooks';
 
 function WaitForStateRehydration({ children }: PropsWithChildren<unknown>) {
   const isRehydrated = useStoreRehydrated();
