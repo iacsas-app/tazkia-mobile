@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import { ScrollView } from 'react-native';
-import { useStoreState } from '../../stores/hooks';
+import { useApplication } from '../../hooks/use-application';
 import { commonStyles } from '../../styles/CommonStyles';
 import MyProgress from './MyProgress';
 import Welcome from './Welcome';
@@ -10,9 +10,11 @@ import Welcome from './Welcome';
  * @returns {ReactElement}
  */
 export default function HomeScreen(): ReactElement {
-  const hasProgress = useStoreState((state) => state.global.hasProgress);
+  const { userHasProgress } = useApplication();
 
   return (
-    <ScrollView contentContainerStyle={commonStyles.container}>{hasProgress ? <MyProgress /> : <Welcome />}</ScrollView>
+    <ScrollView contentContainerStyle={commonStyles.container}>
+      {userHasProgress ? <MyProgress /> : <Welcome />}
+    </ScrollView>
   );
 }
