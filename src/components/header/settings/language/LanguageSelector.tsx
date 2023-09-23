@@ -6,23 +6,23 @@ import { localesTranslation } from '../../../../locales';
 import { SupportedLocale } from '../../../../locales/types';
 import LanguageOption from './LanguageOption';
 
-export default function LanguageSelector() {
-  const { setLocale } = useApplication();
+interface LanguageSelectorProps {
+  flags: Map<SupportedLocale, ImageSourcePropType>;
+}
+
+export default function LanguageSelector({ flags }: LanguageSelectorProps) {
+  const { locale, arabicOrientation, setLocale } = useApplication();
   const languageKeys = useMemo(() => Object.keys(localesTranslation) as SupportedLocale[], []);
-  const languageFlags: Map<SupportedLocale, ImageSourcePropType> = useMemo(() => {
-    return new Map([
-      ['ar', require('./../../../../../assets/img/arabic-flag.png')],
-      ['fr', require('./../../../../../assets/img/french-flag.png')],
-      ['en', require('./../../../../../assets/img/english-flag.png')],
-      ['hi', require('./../../../../../assets/img/hinduism-flag.png')],
-    ]);
-  }, []);
+  const m = 40;
+
   return (
-    <Box mt={20}>
-      <VStack divider={<Divider />}>
-        {languageKeys.map((key) => (
-          <LanguageOption key={key} icon={languageFlags.get(key)} value={key} onChange={setLocale} />
-        ))}
+    <Box mt={40} ml={arabicOrientation ? 0 : m} mr={arabicOrientation ? m : 0}>
+      <VStack divider={<Divider leadingInset={20} trailingInset={20} />}>
+        {languageKeys
+          .filter((item) => locale !== item)
+          .map((key) => (
+            <LanguageOption key={key} icon={flags.get(key)} value={key} onChange={setLocale} />
+          ))}
       </VStack>
     </Box>
   );
