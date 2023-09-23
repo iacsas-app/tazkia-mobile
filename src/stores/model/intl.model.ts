@@ -1,6 +1,6 @@
 import { Action, action, persist } from 'easy-peasy';
-import { MessageKeyValue, SupportedLocale } from '../../locales/types';
 import { defaultLanguage, locales } from '../../locales';
+import { MessageKeyValue, SupportedLocale } from '../../locales/types';
 import { storageEngine } from '../storage-engine';
 
 export interface IntlModel {
@@ -23,5 +23,5 @@ const intlModel: IntlModel = {
 
 export default persist(intlModel, {
   storage: storageEngine,
-  allow: ['locale'],
+  allow: [],
 });

@@ -15,7 +15,6 @@ export default function MoreMenu(props: MoreMenuProps) {
   const { formatMessage } = useMessage();
   const [visible, setVisible] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
-  const prop: any = {};
 
   const hideMenu = () => setVisible(false);
   const showMenu = () => setVisible(true);
