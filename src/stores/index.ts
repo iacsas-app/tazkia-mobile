@@ -4,7 +4,7 @@ import model from './model';
 
 const injections = {
   globalService: Configuration.globalGateway,
-  tazkiaService: Configuration.tazkiaGateway,
+  purificationService: Configuration.purificationGateway,
 };
 
 const store = createStore(model, { injections });

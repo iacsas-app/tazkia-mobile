@@ -1,25 +1,25 @@
 import { Action, Thunk, action, thunk } from 'easy-peasy';
-import Tazkia from '../../domains/tazkia/Tazkia';
+import Purification from '../../domains/purification/Purification';
 import { Injections } from '../injections';
 
-export interface TazkiaModel {
+export interface PurificationModel {
   isLoaded: boolean;
-  item: Tazkia;
+  item: Purification;
 
   // Actions
-  load: Action<TazkiaModel, Tazkia>;
+  load: Action<PurificationModel, Purification>;
 
   // Thunk
-  find: Thunk<TazkiaModel, void, Injections>;
-  createOrUpdate: Thunk<TazkiaModel, Tazkia, Injections>;
+  find: Thunk<PurificationModel, void, Injections>;
+  createOrUpdate: Thunk<PurificationModel, Purification, Injections>;
 }
 
-export const tazkiaModel: TazkiaModel = {
+export const purificationModel: PurificationModel = {
   isLoaded: false,
   item: { id: 0, step1: [], step2: [], step3: [] },
 
   // Actions
-  load: action((state, payload: Tazkia) => {
+  load: action((state, payload: Purification) => {
     state.item = payload;
     state.isLoaded = true;
   }),
@@ -30,7 +30,7 @@ export const tazkiaModel: TazkiaModel = {
     const item = await tazkiaService.find();
     actions.load(item);
   }),
-  createOrUpdate: thunk(async (actions, payload: Tazkia, { injections }) => {
+  createOrUpdate: thunk(async (actions, payload: Purification, { injections }) => {
     const { tazkiaService } = injections;
     const item = await tazkiaService.createOrUpdate(payload);
     actions.load(item);

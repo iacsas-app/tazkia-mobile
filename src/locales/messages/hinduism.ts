@@ -1,20 +1,30 @@
 import { TKeys, Translations } from '../constants';
 
 export const hinduism: Translations = {
+  [TKeys.APPLICATION_TITLE_PRIMARY]: 'भविष्यसूचक दृष्टिकोण',
+  [TKeys.APPLICATION_TITLE_SECONDARY]: 'सफलता का उपाय',
+
   // PRESENTATION
   [TKeys.PRESENTATION_CENTER]: 'सूफी और सौंदर्य अध्ययन के लिए अंतर्राष्ट्रीय शैक्षणिक केंद्र',
 
-  // TAZKIA
-  [TKeys.TAZKIA_BODYPART_TITLE]: 'अंगों को शुद्ध करना',
-  [TKeys.TAZKIA_MIND_TITLE]: 'मन को शुद्ध करना',
-  [TKeys.TAZKIA_SOUL_TITLE]: 'स्वयं की शुद्धि',
+  // PURIFICATION
+  [TKeys.PURIFICATION_BODYPART_TITLE]: 'अंगों को शुद्ध करना',
+  [TKeys.PURIFICATION_MIND_TITLE]: 'मन को शुद्ध करना',
+  [TKeys.PURIFICATION_SOUL_TITLE]: 'स्वयं की शुद्धि',
+  [TKeys.PURIFICATION_BODY_PARTS_EYES]: 'निजी अंग',
+  [TKeys.PURIFICATION_BODY_PARTS_HANDS]: 'हाथ',
+  [TKeys.PURIFICATION_BODY_PARTS_TONGUE]: 'जीभ',
+  [TKeys.PURIFICATION_BODY_PARTS_EAR]: 'कान',
+  [TKeys.PURIFICATION_BODY_PARTS_BELLY]: 'पेट',
+  [TKeys.PURIFICATION_BODY_PARTS_FEET]: 'पैर',
+  [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS]: 'निजी अंग',
 
   // MENUS
   [TKeys.MENU_SETTINGS]: 'समायोजन',
   [TKeys.MENU_HOME]: 'घर',
-  [TKeys.MENU_TAZKIA]: 'शुद्धिकरण',
-  [TKeys.MENU_SUNAN]: 'सुनान',
-  [TKeys.MENU_DIKR]: 'धिक्र',
+  [TKeys.MENU_PURIFICATION]: 'शुद्धिकरण',
+  [TKeys.MENU_SUNNAHS]: 'सुनान',
+  [TKeys.MENU_INVOCATIONS]: 'धिक्र',
   [TKeys.SETTINGS_LANGUAGE]: 'अनुप्रयोग भाषा',
 
   // BUTTONS

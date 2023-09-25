@@ -1,21 +1,21 @@
 {
-    "workbench.startupEditor": "newUntitledFile",
-    "[typescriptreact]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "explorer.confirmDelete": false,
-    "[typescript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "git.autofetch": true,
-    "explorer.confirmDragAndDrop": false,
-    "typescript.updateImportsOnFileMove.enabled": "always",
-    "javascript.updateImportsOnFileMove.enabled": "always",
-    "editor.formatOnSave": true,
-    "files.autoSave": "onWindowChange",
-    "window.zoomLevel": 2,
-    "diffEditor.hideUnchangedRegions.enabled": true,
-    "editor.codeActionsOnSave": {
-        "source.organizeImports": true
-    },
+  "workbench.startupEditor": "newUntitledFile",
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "explorer.confirmDelete": false,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "git.autofetch": true,
+  "explorer.confirmDragAndDrop": false,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "editor.formatOnSave": true,
+  "files.autoSave": "onWindowChange",
+  "window.zoomLevel": 1,
+  "diffEditor.hideUnchangedRegions.enabled": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  }
 }
