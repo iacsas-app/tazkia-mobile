@@ -5,30 +5,30 @@ import PressablePart, { Part } from './PressablePart';
 
 const parts: Part[] = [
   {
-    route: 'Part1',
+    route: 'BodyPartsStep',
     name: TKeys.STEP_1,
-    description: TKeys.TAZKIA_BODYPART_TITLE,
-    imageSource: require('./../../../assets/img/tazkia_part1.jpg'),
+    description: TKeys.PURIFICATION_BODYPART_TITLE,
+    imageSource: require('./../../../assets/img/purification/step1.jpg'),
   },
   {
-    route: 'Part2',
+    route: 'MindStep',
     name: TKeys.STEP_2,
-    description: TKeys.TAZKIA_MIND_TITLE,
-    imageSource: require('./../../../assets/img/tazkia_part2.jpg'),
+    description: TKeys.PURIFICATION_MIND_TITLE,
+    imageSource: require('./../../../assets/img/purification/step2.jpg'),
   },
   {
-    route: 'Part3',
+    route: 'SoulStep',
     name: TKeys.STEP_3,
-    description: TKeys.TAZKIA_SOUL_TITLE,
-    imageSource: require('./../../../assets/img/tazkia_part3.jpg'),
+    description: TKeys.PURIFICATION_SOUL_TITLE,
+    imageSource: require('./../../../assets/img/purification/step3.jpg'),
   },
 ];
 
-export default function TazkiaHomeScreen() {
+export default function PurificationHomeScreen() {
   return (
     <Stack style={commonStyles.container} items="center" spacing={15}>
       {parts.map((item: Part, index: number) => (
-        <Surface key={index} elevation={7} category="large" style={{ width: 300 }}>
+        <Surface key={index} elevation={7} category="large" style={{ width: 320 }}>
           <PressablePart item={item} />
         </Surface>
       ))}

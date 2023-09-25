@@ -1,7 +1,7 @@
 import { GlobalGateway } from '../services/global/globalGateway';
-import { TazkiaGateway } from '../services/tazkia/tazkiaGateway';
+import { PurificationGateway } from '../services/purification/purificationGateway';
 
 export interface Injections {
   globalService: GlobalGateway;
-  tazkiaService: TazkiaGateway;
+  tazkiaService: PurificationGateway;
 }

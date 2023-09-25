@@ -4,19 +4,19 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 export type TabParamList = {
   Home: undefined;
-  Tazkia: undefined;
-  Sunan: undefined;
-  Dikr: undefined;
+  Purification: undefined;
+  Sunnahs: undefined;
+  Invocations: undefined;
 };
 
-export type TazkiaParamList = {
-  TazkiaHome: undefined;
-  Part1: undefined;
-  Part2: undefined;
-  Part3: undefined;
+export type PurificationParamList = {
+  PurificationHome: undefined;
+  BodyPartsStep: undefined;
+  MindStep: undefined;
+  SoulStep: undefined;
 };
 
 export type TazkiaStackNavigationProp = CompositeNavigationProp<
-  NativeStackNavigationProp<TazkiaParamList, 'TazkiaHome'>,
+  NativeStackNavigationProp<PurificationParamList, 'PurificationHome'>,
   BottomTabNavigationProp<TabParamList>
 >;

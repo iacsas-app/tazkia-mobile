@@ -2,11 +2,11 @@ import { Avatar, Pressable, Stack, Text } from '@react-native-material/core';
 import { useNavigation } from '@react-navigation/native';
 import { ImageSourcePropType, StyleSheet } from 'react-native';
 import { useMessage } from '../../hooks/use-message';
-import { TazkiaParamList, TazkiaStackNavigationProp } from '../../navigation/types';
+import { PurificationParamList, TazkiaStackNavigationProp } from '../../navigation/types';
 
 export interface Part {
   name: string;
-  route: keyof TazkiaParamList;
+  route: keyof PurificationParamList;
   description: string;
   imageSource: ImageSourcePropType;
 }
@@ -29,7 +29,7 @@ export default function PressablePart({ item }: Props) {
         <Text variant="h6" style={{ fontWeight: 'bold' }}>
           {formatMessage(item.name)}
         </Text>
-        <Text>{formatMessage(item.description)}</Text>
+        <Text variant="body1">{formatMessage(item.description)}</Text>
       </Stack>
     </Pressable>
   );
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 10,
-    paddingHorizontal: 70,
+    paddingHorizontal: 10,
     backgroundColor: '#e7fbe8',
   },
   img: {

@@ -1,17 +1,17 @@
 import globalModel, { GlobalModel } from './global.model';
 import intlModel, { IntlModel } from './intl.model';
-import { TazkiaModel, tazkiaModel } from './tazkia.model';
+import { PurificationModel, purificationModel } from './purification.model';
 
 export interface AppStoreModel {
   global: GlobalModel;
   intl: IntlModel;
-  tazkia: TazkiaModel;
+  purification: PurificationModel;
 }
 
 const model: AppStoreModel = {
   global: globalModel,
   intl: intlModel,
-  tazkia: tazkiaModel,
+  purification: purificationModel,
 };
 
 // export the typed hooks

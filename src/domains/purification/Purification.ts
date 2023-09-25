@@ -2,7 +2,7 @@ import BodyPart from './BodyPart';
 import Mind from './Mind';
 import Soul from './Soul';
 
-export default interface Tazkia {
+export default interface Purification {
   id: number;
   // Body parts step
   step1: BodyPart[];
