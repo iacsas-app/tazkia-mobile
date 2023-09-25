@@ -17,7 +17,11 @@ const BottomTabs = () => {
   return (
     <Tab.Navigator initialRouteName="Home">
       <Tab.Screen name="Home" component={HomeScreen} options={{ title: formatMessage(TKeys.MENU_HOME) }} />
-      <Tab.Screen name="Tazkia" component={TazkiaStack} options={{ title: formatMessage(TKeys.MENU_TAZKIA) }} />
+      <Tab.Screen
+        name="Tazkia"
+        component={TazkiaStack}
+        options={{ title: formatMessage(TKeys.MENU_TAZKIA), headerShown: false }}
+      />
       <Tab.Screen name="Sunan" component={SunanScreen} options={{ title: formatMessage(TKeys.MENU_SUNAN) }} />
       <Tab.Screen name="Dikr" component={DikrScreen} options={{ title: formatMessage(TKeys.MENU_DIKR) }} />
     </Tab.Navigator>
