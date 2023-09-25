@@ -1,23 +1,23 @@
 import { GlobalAdapter } from './services/global/globalAdapter';
 import { GlobalGateway } from './services/global/globalGateway';
-import { TazkiaAdapter } from './services/tazkia/tazkiaAdapter';
-import { TazkiaGateway } from './services/tazkia/tazkiaGateway';
+import { PurificationAdapter } from './services/purification/purificationAdapter';
+import { PurificationGateway } from './services/purification/purificationGateway';
 
 class ManualDependenciesConfiguration {
   private readonly _globalGateway: GlobalGateway;
-  private readonly _tazkiaGateway: TazkiaGateway;
+  private readonly _purificationGateway: PurificationGateway;
 
   constructor() {
     this._globalGateway = new GlobalAdapter();
-    this._tazkiaGateway = new TazkiaAdapter();
+    this._purificationGateway = new PurificationAdapter();
   }
 
   get globalGateway(): GlobalGateway {
     return this._globalGateway;
   }
 
-  get tazkiaGateway(): TazkiaGateway {
-    return this._tazkiaGateway;
+  get purificationGateway(): PurificationGateway {
+    return this._purificationGateway;
   }
 }
 

@@ -1,1 +1,1 @@
-export type PathType = 'global' | 'tazkia' | 'sunan';
+export type PathType = 'global' | 'purification' | 'sunnahs';

@@ -1,20 +1,30 @@
 import { TKeys, Translations } from '../constants';
 
 export const english: Translations = {
+  [TKeys.APPLICATION_TITLE_PRIMARY]: 'Prophetic approach',
+  [TKeys.APPLICATION_TITLE_SECONDARY]: 'Method of success',
+
   // PRESENTATION
   [TKeys.PRESENTATION_CENTER]: 'International Academic Center for Sufi and Aesthetic Studies',
 
-  // TAZKIA
-  [TKeys.TAZKIA_BODYPART_TITLE]: 'Body parts purifying',
-  [TKeys.TAZKIA_MIND_TITLE]: 'Mind purifying',
-  [TKeys.TAZKIA_SOUL_TITLE]: 'Soul purifying',
+  // PURIFICATION
+  [TKeys.PURIFICATION_BODYPART_TITLE]: 'Body parts purifying',
+  [TKeys.PURIFICATION_MIND_TITLE]: 'Mind purifying',
+  [TKeys.PURIFICATION_SOUL_TITLE]: 'Soul purifying',
+  [TKeys.PURIFICATION_BODY_PARTS_EYES]: 'Eyes',
+  [TKeys.PURIFICATION_BODY_PARTS_HANDS]: 'Hands',
+  [TKeys.PURIFICATION_BODY_PARTS_TONGUE]: 'Tongue',
+  [TKeys.PURIFICATION_BODY_PARTS_EAR]: 'Ear',
+  [TKeys.PURIFICATION_BODY_PARTS_BELLY]: 'Belly',
+  [TKeys.PURIFICATION_BODY_PARTS_FEET]: 'Feet',
+  [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS]: 'Private parts',
 
   // MENUS
   [TKeys.MENU_SETTINGS]: 'Settings',
   [TKeys.MENU_HOME]: 'Home',
-  [TKeys.MENU_TAZKIA]: 'Purifying',
-  [TKeys.MENU_SUNAN]: 'Sunan',
-  [TKeys.MENU_DIKR]: 'Dhikr',
+  [TKeys.MENU_PURIFICATION]: 'Purification',
+  [TKeys.MENU_SUNNAHS]: 'Prophetic tradition',
+  [TKeys.MENU_INVOCATIONS]: 'Dhikr',
   [TKeys.SETTINGS_LANGUAGE]: 'Application language',
 
   // BUTTONS
@@ -27,7 +37,7 @@ export const english: Translations = {
   [TKeys.LANGUAGE_HINDUISM]: 'Hinduism',
 
   // COMMON
-  [TKeys.STEP_1]: 'The 1st step',
-  [TKeys.STEP_2]: 'The 2nd step',
-  [TKeys.STEP_3]: 'The 3rd step',
+  [TKeys.STEP_1]: '1st step',
+  [TKeys.STEP_2]: '2nd step',
+  [TKeys.STEP_3]: '3rd step',
 };
