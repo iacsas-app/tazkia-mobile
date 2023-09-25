@@ -1,44 +1,22 @@
-import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
-import type { CompositeNavigationProp, RouteProp } from '@react-navigation/native';
-import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { Rule } from '../domains/Rule';
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
+import { CompositeNavigationProp } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-export type HomeStackNavigatorParamList = {
+export type TabParamList = {
   Home: undefined;
-  Detail: Rule;
-  Sunan: undefined;
-};
-
-export type BottomTabNavigatorParamList = {
-  HomeStack: HomeStackNavigatorParamList;
   Tazkia: undefined;
-  Zikr: undefined;
   Sunan: undefined;
+  Dikr: undefined;
+};
+
+export type TazkiaParamList = {
+  TazkiaHome: undefined;
   Part1: undefined;
   Part2: undefined;
   Part3: undefined;
 };
 
-export type TazkiaStackNavigatorParamList = {
-  Part1: undefined;
-  Part2: undefined;
-  Part3: undefined;
-};
-
-export type TazkiaNavigatorParamList = {
-  Part1: undefined;
-  Part2: undefined;
-  Part3: undefined;
-};
-
-export type TazkiaScreenNavigationProp = CompositeNavigationProp<
-  NativeStackNavigationProp<TazkiaNavigatorParamList, 'Part1'>,
-  BottomTabNavigationProp<BottomTabNavigatorParamList, 'Tazkia'>
+export type TazkiaStackNavigationProp = CompositeNavigationProp<
+  NativeStackNavigationProp<TazkiaParamList, 'TazkiaHome'>,
+  BottomTabNavigationProp<TabParamList>
 >;
-
-export type HomeScreenNavigationProp = CompositeNavigationProp<
-  NativeStackNavigationProp<HomeStackNavigatorParamList, 'Detail'>,
-  BottomTabNavigationProp<BottomTabNavigatorParamList, 'Tazkia'>
->;
-
-export type DetailScreenRouteProp = RouteProp<HomeStackNavigatorParamList, 'Detail'>;

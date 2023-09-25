@@ -29,7 +29,11 @@ export default function LanguageSettings() {
   }
 
   return (
-    <Surface elevation={1} style={{ padding: 10, minWidth: 250 }} category="large">
+    <Surface
+      elevation={1}
+      style={{ padding: 10, minWidth: 250, marginLeft: -10, backgroundColor: '#fffff0' }}
+      category="large"
+    >
       <VStack spacing={10}>
         <Pressable onPress={handlePress}>
           <HStack spacing={17} mt={15} reverse={arabicOrientation}>

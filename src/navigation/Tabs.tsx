@@ -1,21 +1,25 @@
-import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import * as React from 'react';
 
-import { BottomTabNavigatorParamList } from './types';
-import HomeStackNavigator from './HomeStack';
-import TazkiaScreen from '../screens/tazkia';
-import ZikrScreen from '../screens/zikr';
+import { useMessage } from '../hooks/use-message';
+import { TKeys } from '../locales/constants';
+import DikrScreen from '../screens/dikr';
+import HomeScreen from '../screens/home';
 import SunanScreen from '../screens/sunan';
+import TazkiaStack from '../screens/tazkia';
+import { TabParamList } from './types';
 
-const Tab = createBottomTabNavigator<BottomTabNavigatorParamList>();
+const Tab = createBottomTabNavigator<TabParamList>();
 
 const BottomTabs = () => {
+  const { formatMessage } = useMessage();
+
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="HomeStack" component={HomeStackNavigator} options={{ headerShown: false }} />
-      <Tab.Screen name="Tazkia" component={TazkiaScreen} />
-      <Tab.Screen name="Sunan" component={SunanScreen} />
-      <Tab.Screen name="Zikr" component={ZikrScreen} />
+    <Tab.Navigator initialRouteName="Home">
+      <Tab.Screen name="Home" component={HomeScreen} options={{ title: formatMessage(TKeys.MENU_HOME) }} />
+      <Tab.Screen name="Tazkia" component={TazkiaStack} options={{ title: formatMessage(TKeys.MENU_TAZKIA) }} />
+      <Tab.Screen name="Sunan" component={SunanScreen} options={{ title: formatMessage(TKeys.MENU_SUNAN) }} />
+      <Tab.Screen name="Dikr" component={DikrScreen} options={{ title: formatMessage(TKeys.MENU_DIKR) }} />
     </Tab.Navigator>
   );
 };
