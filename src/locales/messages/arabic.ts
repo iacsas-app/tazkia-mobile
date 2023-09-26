@@ -7,6 +7,7 @@ export const arabic: Translations = {
   [TKeys.PRESENTATION_CENTER]: 'المركز الأكاديمي الدولي للدراسات الصوفية والجمالية',
   // PURIFICATION
   [TKeys.PURIFICATION_BODYPART_TITLE]: 'تزكية الجوارح',
+  [TKeys.PURIFICATION_BODYPART_DESCRIPTION]: 'تزكية القلب من خلال تطهير وتنوير الجوارح السبعة',
   [TKeys.PURIFICATION_MIND_TITLE]: 'تزكية العقل',
   [TKeys.PURIFICATION_SOUL_TITLE]: 'تزكية النفس',
   [TKeys.PURIFICATION_BODY_PARTS_EYES]: 'العين',
@@ -27,6 +28,8 @@ export const arabic: Translations = {
 
   // BUTTONS
   [TKeys.BUTTON_CLOSE]: 'غلق',
+  [TKeys.BUTTON_PURIFICATION]: 'تطهير',
+  [TKeys.BUTTON_ILLUMINATION]: 'تنوير',
 
   // LANGUAGES
   [TKeys.LANGUAGE_ARABIC]: 'العربية',

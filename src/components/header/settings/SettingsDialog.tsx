@@ -11,7 +11,6 @@ import {
 } from '@react-native-material/core';
 import { useMessage } from '../../../hooks/use-message';
 import { TKeys } from '../../../locales/constants';
-import { useStoreActions } from '../../../stores/hooks';
 import Settings from './Settings';
 
 interface Props {
@@ -21,7 +20,6 @@ interface Props {
 
 export default function SettingsDialog({ open, onClose }: Props) {
   const { formatMessage } = useMessage();
-  const updateLocale = useStoreActions((actions) => actions.intl.update);
   const props: any = {};
 
   return (

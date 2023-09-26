@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: 10,
     paddingHorizontal: 10,
-    backgroundColor: '#e7fbe8',
+    backgroundColor: '#f5fffa',
   },
   img: {
     width: 120,
