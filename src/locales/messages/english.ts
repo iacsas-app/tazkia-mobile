@@ -9,6 +9,8 @@ export const english: Translations = {
 
   // PURIFICATION
   [TKeys.PURIFICATION_BODYPART_TITLE]: 'Body parts purifying',
+  [TKeys.PURIFICATION_BODYPART_DESCRIPTION]:
+    'Purifying the heart through purifying and enlightening the seven body parts',
   [TKeys.PURIFICATION_MIND_TITLE]: 'Mind purifying',
   [TKeys.PURIFICATION_SOUL_TITLE]: 'Soul purifying',
   [TKeys.PURIFICATION_BODY_PARTS_EYES]: 'Eyes',
@@ -29,6 +31,8 @@ export const english: Translations = {
 
   // BUTTONS
   [TKeys.BUTTON_CLOSE]: 'Close',
+  [TKeys.BUTTON_PURIFICATION]: 'Purification',
+  [TKeys.BUTTON_ILLUMINATION]: 'Illumination',
 
   // LANGUAGES
   [TKeys.LANGUAGE_ARABIC]: 'Arabic',

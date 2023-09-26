@@ -9,6 +9,7 @@ export const hinduism: Translations = {
 
   // PURIFICATION
   [TKeys.PURIFICATION_BODYPART_TITLE]: 'अंगों को शुद्ध करना',
+  [TKeys.PURIFICATION_BODYPART_DESCRIPTION]: 'शरीर के सात अंगों को शुद्ध और प्रकाशित करके हृदय को शुद्ध करना',
   [TKeys.PURIFICATION_MIND_TITLE]: 'मन को शुद्ध करना',
   [TKeys.PURIFICATION_SOUL_TITLE]: 'स्वयं की शुद्धि',
   [TKeys.PURIFICATION_BODY_PARTS_EYES]: 'निजी अंग',
@@ -29,6 +30,8 @@ export const hinduism: Translations = {
 
   // BUTTONS
   [TKeys.BUTTON_CLOSE]: 'बंद करना',
+  [TKeys.BUTTON_PURIFICATION]: 'शुद्धिकरण',
+  [TKeys.BUTTON_ILLUMINATION]: 'रोशनी',
 
   // LANGUAGES
   [TKeys.LANGUAGE_ARABIC]: 'अरबी',
