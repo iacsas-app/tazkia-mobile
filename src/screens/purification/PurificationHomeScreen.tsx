@@ -8,7 +8,7 @@ const parts: Part[] = [
     route: 'BodyPartsStep',
     name: TKeys.STEP_1,
     description: TKeys.PURIFICATION_BODYPART_TITLE,
-    imageSource: require('./../../../assets/img/purification/step1.jpg'),
+    imageSource: require('./../../../assets/img/purification/step1.png'),
   },
   {
     route: 'MindStep',

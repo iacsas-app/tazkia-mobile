@@ -1,40 +1,55 @@
 import { Avatar, Box, HStack, Pressable, Surface, Text } from '@react-native-material/core';
-import { useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { ImageSourcePropType, StyleSheet } from 'react-native';
+import { PurificationMode } from '..';
+import { useMessage } from '../../../../hooks/use-message';
+import { TKeys } from '../../../../locales/constants';
 
 interface BodyPartItemProps {
-  name: string;
+  partId: number;
+  nameKey: string;
+  imageSource: ImageSourcePropType;
+  onDetailsOpen: (partId: number, mode: PurificationMode) => void;
 }
-export default function BodyPartItem({ name }: BodyPartItemProps) {
-  const [showActions, setShowActions] = useState<boolean>(false);
+export default function BodyPartItem({
+  partId,
+  nameKey,
+  imageSource,
+  onDetailsOpen: onOpenDetails,
+}: BodyPartItemProps) {
+  const { formatMessage } = useMessage();
 
-  function handlePointerEnter() {
-    console.log('pointerEnter');
-    setShowActions(true);
+  function handlePress(mode: PurificationMode) {
+    onOpenDetails(partId, mode);
   }
 
   return (
     <Surface elevation={6} category="medium" style={styles.container}>
-      <Box h={80} w={170} style={{ backgroundColor: '#e0ffff', justifyContent: 'center', alignItems: 'center' }}>
+      <Box h={90} w={170} style={{ backgroundColor: '#e0ffff', justifyContent: 'center', alignItems: 'center' }}>
+        <Avatar size={50} style={{ marginTop: -18 }} image={imageSource} />
         <Avatar
-          size={50}
-          style={{ marginTop: -18 }}
-          image={require('./../../../../../assets/img/body-parts/private-parts.png')}
+          size={20}
+          style={{ marginTop: -8 }}
+          color="white"
+          label={
+            <Text variant="caption" color="#008080">
+              {partId}
+            </Text>
+          }
         />
-        <Text variant="h6" style={{ fontWeight: 'bold', marginTop: 5 }}>
-          {name}
+        <Text variant="h6" style={{ fontWeight: 'bold', marginTop: 3 }}>
+          {formatMessage(nameKey)}
         </Text>
       </Box>
-      <Box h={50} w={170} style={{ backgroundColor: '#fffafa', justifyContent: 'center', alignItems: 'center' }}>
+      <Box h={40} w={170} style={{ backgroundColor: '#fffafa', justifyContent: 'center', alignItems: 'center' }}>
         <HStack spacing={5}>
           <Surface elevation={2} category="small" style={{ backgroundColor: '#f5fffa' }}>
-            <Pressable style={{ padding: 5 }}>
-              <Text variant="caption">Illumination</Text>
+            <Pressable style={{ padding: 5 }} onPress={() => handlePress('illumination')}>
+              <Text variant="caption">{formatMessage(TKeys.BUTTON_ILLUMINATION)}</Text>
             </Pressable>
           </Surface>
           <Surface elevation={2} category="small" style={{ backgroundColor: '#f5fffa' }}>
-            <Pressable style={{ padding: 5 }}>
-              <Text variant="caption">Purification</Text>
+            <Pressable style={{ padding: 5 }} onPress={() => handlePress('purification')}>
+              <Text variant="caption">{formatMessage(TKeys.BUTTON_PURIFICATION)}</Text>
             </Pressable>
           </Surface>
         </HStack>
