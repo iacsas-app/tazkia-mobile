@@ -16,6 +16,17 @@ export type PurificationParamList = {
   SoulStep: undefined;
 };
 
+export type PresentationParamList = {
+  Center: undefined;
+  Cheikh: undefined;
+  Manhaj: { name: string };
+};
+
+export type PresentationStackNavigationProp = CompositeNavigationProp<
+  NativeStackNavigationProp<PresentationParamList, 'Center'>,
+  BottomTabNavigationProp<TabParamList>
+>;
+
 export type TazkiaStackNavigationProp = CompositeNavigationProp<
   NativeStackNavigationProp<PurificationParamList, 'PurificationHome'>,
   BottomTabNavigationProp<TabParamList>

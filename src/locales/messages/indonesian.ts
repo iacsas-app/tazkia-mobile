@@ -1,6 +1,6 @@
 import { TKeys, Translations } from '../constants';
 
-export const hinduism: Translations = {
+export const indonesian: Translations = {
   [TKeys.APPLICATION_TITLE_PRIMARY]: 'भविष्यसूचक दृष्टिकोण',
   [TKeys.APPLICATION_TITLE_SECONDARY]: 'सफलता का उपाय',
 
@@ -37,7 +37,7 @@ export const hinduism: Translations = {
   [TKeys.LANGUAGE_ARABIC]: 'अरबी',
   [TKeys.LANGUAGE_FRENCH]: 'फ़्रेंच',
   [TKeys.LANGUAGE_ENGLISH]: 'अंग्रेज़ी',
-  [TKeys.LANGUAGE_HINDUISM]: 'हिन्दू धर्म',
+  [TKeys.LANGUAGE_INDONESIAN]: 'हिन्दू धर्म',
 
   // COMMON
   [TKeys.STEP_1]: 'प्रथम स्थान',

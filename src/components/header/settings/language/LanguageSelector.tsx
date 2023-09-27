@@ -7,7 +7,7 @@ import { SupportedLocale } from '../../../../locales/types';
 import LanguageOption from './LanguageOption';
 
 interface LanguageSelectorProps {
-  flags: Map<SupportedLocale, ImageSourcePropType>;
+  flags: Map<string, ImageSourcePropType>;
 }
 
 export default function LanguageSelector({ flags }: LanguageSelectorProps) {

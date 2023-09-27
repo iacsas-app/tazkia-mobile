@@ -15,10 +15,10 @@ export default function LanguageSettings() {
 
   const languageFlags: Map<SupportedLocale, ImageSourcePropType> = useMemo(() => {
     return new Map([
-      ['ar', require('./../../../../../assets/img/arabic-flag.png')],
-      ['fr', require('./../../../../../assets/img/french-flag.png')],
-      ['en', require('./../../../../../assets/img/english-flag.png')],
-      ['hi', require('./../../../../../assets/img/hinduism-flag.png')],
+      ['ar', require('./../../../../../assets/img/flags/arabic-flag.png')],
+      ['fr', require('./../../../../../assets/img/flags/french-flag.png')],
+      ['en', require('./../../../../../assets/img/flags/english-flag.png')],
+      ['in', require('./../../../../../assets/img/flags/indonesian-flag.png')],
     ]);
   }, []);
 

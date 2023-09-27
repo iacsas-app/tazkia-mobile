@@ -1,12 +1,12 @@
-import { arabic as ar } from './messages/arabic';
-import { english as en } from './messages/english';
-import { french as fr } from './messages/french';
-import { hinduism as hi } from './messages/hinduism';
+import { arabic } from './messages/arabic';
+import { english } from './messages/english';
+import { french } from './messages/french';
+import { indonesian } from './messages/indonesian';
 import { MessageKeyValue, SupportedLocale } from './types';
 
 export const defaultLanguage: SupportedLocale = 'ar';
 
-export const locales: MessageKeyValue = { ar, fr, en, hi };
+export const locales: MessageKeyValue = { ar: arabic, en: english, fr: french, in: indonesian };
 
 interface LanguageKey {
   key: string;
@@ -17,5 +17,5 @@ export const localesTranslation: Record<SupportedLocale, LanguageKey> = {
   ar: { key: 'arabic', name: 'العربية' },
   fr: { key: 'french', name: 'Français' },
   en: { key: 'english', name: 'English' },
-  hi: { key: 'hinduism', name: 'हिन्दू धर्म' },
+  in: { key: 'indonesian', name: 'Bahasa Indonesia' },
 };
