@@ -1,34 +1,41 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
 
+import { useApplication } from '../hooks/use-application';
 import { useMessage } from '../hooks/use-message';
 import { TKeys } from '../locales/constants';
 import InvocationsScreen from '../screens/invocations';
-import PresentationScreen from '../screens/presentation';
-import PurificationScreen from '../screens/purification';
-import SunnahsScreen from '../screens/sunnahs';
+import ProgressScreen from '../screens/progress';
+import PresentationStack from './PresentationStack';
+import PurificationStack from './PurificationStack';
+import SunnahsStack from './SunnahsStack';
 import { TabParamList } from './types';
 
 const Tab = createBottomTabNavigator<TabParamList>();
 
 const BottomTabs = () => {
   const { formatMessage } = useMessage();
+  const { userHasProgress } = useApplication();
 
   return (
-    <Tab.Navigator initialRouteName="Home">
+    <Tab.Navigator initialRouteName="HomeTab">
       <Tab.Screen
-        name="Home"
-        component={PresentationScreen}
+        name="HomeTab"
+        component={userHasProgress ? ProgressScreen : PresentationStack}
         options={{ title: formatMessage(TKeys.MENU_HOME), headerShown: false }}
       />
       <Tab.Screen
-        name="Purification"
-        component={PurificationScreen}
+        name="PurificationTab"
+        component={PurificationStack}
         options={{ title: formatMessage(TKeys.MENU_PURIFICATION), headerShown: false }}
       />
-      <Tab.Screen name="Sunnahs" component={SunnahsScreen} options={{ title: formatMessage(TKeys.MENU_SUNNAHS) }} />
       <Tab.Screen
-        name="Invocations"
+        name="SunnahsTab"
+        component={SunnahsStack}
+        options={{ title: formatMessage(TKeys.MENU_SUNNAHS), headerShown: false }}
+      />
+      <Tab.Screen
+        name="InvocationsTab"
         component={InvocationsScreen}
         options={{ title: formatMessage(TKeys.MENU_INVOCATIONS) }}
       />

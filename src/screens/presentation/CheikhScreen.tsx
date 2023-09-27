@@ -1,21 +1,18 @@
-import { Button } from '@react-native-material/core';
-import { useNavigation } from '@react-navigation/native';
-import { Text, View } from 'react-native';
-import { PresentationStackNavigationProp } from '../../navigation/types';
+import { Text, VStack } from '@react-native-material/core';
+import { View } from 'react-native';
 import { commonStyles } from '../../styles/CommonStyles';
 
 export default function CheikhScreen() {
-  const navigation = useNavigation<PresentationStackNavigationProp>();
-
-  function handlePress() {
-    navigation.navigate('Manhaj', { name: 'Khalid' });
-  }
-
   return (
     <View style={commonStyles.container}>
-      <Text>Cheikh presentation screen</Text>
-
-      <Button title="Go Manhaj" onPress={handlePress} />
+      <VStack spacing={25} style={{ padding: 20 }}>
+        <Text variant="h4">Cheikh presentation</Text>
+        <Text>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam laborum odit assumenda libero tempore
+          veritatis iste, asperiores cum ex ad voluptatem esse error cupiditate eligendi ducimus dolores necessitatibus
+          dicta commodi?
+        </Text>
+      </VStack>
     </View>
   );
 }

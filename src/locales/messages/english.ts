@@ -26,7 +26,7 @@ export const english: Translations = {
   [TKeys.MENU_HOME]: 'Home',
   [TKeys.MENU_PURIFICATION]: 'Purification',
   [TKeys.MENU_SUNNAHS]: 'Prophetic tradition',
-  [TKeys.MENU_INVOCATIONS]: 'Dhikr',
+  [TKeys.MENU_INVOCATIONS]: 'Invocations',
   [TKeys.SETTINGS_LANGUAGE]: 'Application language',
 
   // BUTTONS

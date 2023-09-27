@@ -10,8 +10,8 @@ import {
   Text,
 } from '@react-native-material/core';
 import { PurificationMode } from '..';
-import { useMessage } from '../../../../hooks/use-message';
-import { TKeys } from '../../../../locales/constants';
+import { useMessage } from '../../../../../hooks/use-message';
+import { TKeys } from '../../../../../locales/constants';
 
 interface Props {
   open: boolean;

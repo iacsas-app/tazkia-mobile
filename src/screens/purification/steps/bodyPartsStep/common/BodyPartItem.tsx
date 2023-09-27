@@ -1,8 +1,8 @@
 import { Avatar, Box, HStack, Pressable, Surface, Text } from '@react-native-material/core';
 import { ImageSourcePropType, StyleSheet } from 'react-native';
 import { PurificationMode } from '..';
-import { useMessage } from '../../../../hooks/use-message';
-import { TKeys } from '../../../../locales/constants';
+import { useMessage } from '../../../../../hooks/use-message';
+import { TKeys } from '../../../../../locales/constants';
 
 interface BodyPartItemProps {
   partId: number;
