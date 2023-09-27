@@ -13,13 +13,13 @@ export default function LanguageSettings() {
   const [show, setShow] = useState(false);
   const { locale, arabicOrientation } = useApplication();
 
-  const languageFlags: Map<SupportedLocale, ImageSourcePropType> = useMemo(() => {
-    return new Map([
-      ['ar', require('./../../../../../assets/img/flags/arabic-flag.png')],
-      ['fr', require('./../../../../../assets/img/flags/french-flag.png')],
-      ['en', require('./../../../../../assets/img/flags/english-flag.png')],
-      ['in', require('./../../../../../assets/img/flags/indonesian-flag.png')],
-    ]);
+  const languageFlags: Record<SupportedLocale, ImageSourcePropType> = useMemo(() => {
+    return {
+      ar: require('./../../../../../assets/img/flags/arabic-flag.png'),
+      fr: require('./../../../../../assets/img/flags/french-flag.png'),
+      en: require('./../../../../../assets/img/flags/english-flag.png'),
+      in: require('./../../../../../assets/img/flags/indonesian-flag.png'),
+    };
   }, []);
 
   const languageKey = localesTranslation[locale];
@@ -37,7 +37,7 @@ export default function LanguageSettings() {
       <VStack spacing={10}>
         <Pressable onPress={handlePress}>
           <HStack spacing={17} mt={15} reverse={arabicOrientation}>
-            <Avatar image={languageFlags.get(locale)} size={40} />
+            <Avatar image={languageFlags[locale]} size={40} />
             <VStack>
               <Text variant="subtitle1" style={{ fontWeight: 'bold' }}>
                 {formatMessage(TKeys.SETTINGS_LANGUAGE)}
