@@ -38,7 +38,7 @@ export const english: Translations = {
   [TKeys.LANGUAGE_ARABIC]: 'Arabic',
   [TKeys.LANGUAGE_FRENCH]: 'French',
   [TKeys.LANGUAGE_ENGLISH]: 'English',
-  [TKeys.LANGUAGE_HINDUISM]: 'Hinduism',
+  [TKeys.LANGUAGE_INDONESIAN]: 'Indonesian',
 
   // COMMON
   [TKeys.STEP_1]: '1st step',

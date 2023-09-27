@@ -22,7 +22,7 @@ export enum TKeys {
   LANGUAGE_ARABIC = 'language.arabic',
   LANGUAGE_FRENCH = 'language.french',
   LANGUAGE_ENGLISH = 'language.english',
-  LANGUAGE_HINDUISM = 'language.hinduism',
+  LANGUAGE_INDONESIAN = 'language.indonesian',
   BUTTON_CLOSE = 'button.close',
   BUTTON_ILLUMINATION = 'button.illumination',
   BUTTON_PURIFICATION = 'button.purification',

@@ -35,7 +35,7 @@ export const arabic: Translations = {
   [TKeys.LANGUAGE_ARABIC]: 'العربية',
   [TKeys.LANGUAGE_FRENCH]: 'الفرنسية',
   [TKeys.LANGUAGE_ENGLISH]: 'الإنجليزية',
-  [TKeys.LANGUAGE_HINDUISM]: 'الهندوسية',
+  [TKeys.LANGUAGE_INDONESIAN]: 'الاندونيسية',
 
   // COMMON
   [TKeys.STEP_1]: 'المرحلة الأولى',

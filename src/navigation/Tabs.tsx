@@ -3,8 +3,8 @@ import * as React from 'react';
 
 import { useMessage } from '../hooks/use-message';
 import { TKeys } from '../locales/constants';
-import HomeScreen from '../screens/home';
 import InvocationsScreen from '../screens/invocations';
+import PresentationScreen from '../screens/presentation';
 import PurificationScreen from '../screens/purification';
 import SunnahsScreen from '../screens/sunnahs';
 import { TabParamList } from './types';
@@ -16,7 +16,11 @@ const BottomTabs = () => {
 
   return (
     <Tab.Navigator initialRouteName="Home">
-      <Tab.Screen name="Home" component={HomeScreen} options={{ title: formatMessage(TKeys.MENU_HOME) }} />
+      <Tab.Screen
+        name="Home"
+        component={PresentationScreen}
+        options={{ title: formatMessage(TKeys.MENU_HOME), headerShown: false }}
+      />
       <Tab.Screen
         name="Purification"
         component={PurificationScreen}
