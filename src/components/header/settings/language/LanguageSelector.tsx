@@ -7,7 +7,7 @@ import { SupportedLocale } from '../../../../locales/types';
 import LanguageOption from './LanguageOption';
 
 interface LanguageSelectorProps {
-  flags: Map<string, ImageSourcePropType>;
+  flags: Record<SupportedLocale, ImageSourcePropType>;
 }
 
 export default function LanguageSelector({ flags }: LanguageSelectorProps) {
@@ -21,7 +21,7 @@ export default function LanguageSelector({ flags }: LanguageSelectorProps) {
         {languageKeys
           .filter((item) => locale !== item)
           .map((key) => (
-            <LanguageOption key={key} icon={flags.get(key)} value={key} onChange={setLocale} />
+            <LanguageOption key={key} icon={flags[key]} value={key} onChange={setLocale} />
           ))}
       </VStack>
     </Box>
