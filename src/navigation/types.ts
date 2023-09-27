@@ -3,31 +3,44 @@ import { CompositeNavigationProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 export type TabParamList = {
-  Home: undefined;
-  Purification: undefined;
-  Sunnahs: undefined;
-  Invocations: undefined;
-};
-
-export type PurificationParamList = {
-  PurificationHome: undefined;
-  BodyPartsStep: undefined;
-  MindStep: undefined;
-  SoulStep: undefined;
+  HomeTab: undefined;
+  PurificationTab: undefined;
+  SunnahsTab: undefined;
+  InvocationsTab: undefined;
 };
 
 export type PresentationParamList = {
+  Presentation: undefined;
   Center: undefined;
   Cheikh: undefined;
-  Manhaj: { name: string };
+  Approach: undefined;
+};
+
+export type PurificationParamList = {
+  Purification: undefined;
+  BodyParts: undefined;
+  Mind: undefined;
+  Soul: undefined;
+};
+
+export type SunnahsParamList = {
+  Sunnahs: undefined;
+  Habits: undefined;
+  Practice: undefined;
+  SpiritTravels: undefined;
 };
 
 export type PresentationStackNavigationProp = CompositeNavigationProp<
-  NativeStackNavigationProp<PresentationParamList, 'Center'>,
+  NativeStackNavigationProp<PresentationParamList, 'Presentation'>,
   BottomTabNavigationProp<TabParamList>
 >;
 
-export type TazkiaStackNavigationProp = CompositeNavigationProp<
-  NativeStackNavigationProp<PurificationParamList, 'PurificationHome'>,
+export type PurificationStackNavigationProp = CompositeNavigationProp<
+  NativeStackNavigationProp<PurificationParamList, 'Purification'>,
+  BottomTabNavigationProp<TabParamList>
+>;
+
+export type SunnahsStackNavigationProp = CompositeNavigationProp<
+  NativeStackNavigationProp<SunnahsParamList, 'Sunnahs'>,
   BottomTabNavigationProp<TabParamList>
 >;

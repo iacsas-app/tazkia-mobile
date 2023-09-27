@@ -1,34 +1,40 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useMessage } from '../../hooks/use-message';
+import { Stack, Surface } from '@react-native-material/core';
+import { useMemo } from 'react';
 import { TKeys } from '../../locales/constants';
-import { PurificationParamList } from '../../navigation/types';
-import PurificationHomeScreen from './PurificationHomeScreen';
-import BodyPartsStepScreen from './bodyPartsStep';
-import MindStepScreen from './mindStep';
-import SoulStepScreen from './soulStep';
+import { commonStyles } from '../../styles/CommonStyles';
+import PressablePart, { Part } from './common/PressablePart';
+
+const parts: Part[] = [
+  {
+    route: 'BodyParts',
+    name: TKeys.STEP_1,
+    description: TKeys.PURIFICATION_BODYPART_TITLE,
+    imageSource: require('./../../../assets/img/purification/step1.png'),
+  },
+  {
+    route: 'Mind',
+    name: TKeys.STEP_2,
+    description: TKeys.PURIFICATION_MIND_TITLE,
+    imageSource: require('./../../../assets/img/purification/step2.jpg'),
+  },
+  {
+    route: 'Soul',
+    name: TKeys.STEP_3,
+    description: TKeys.PURIFICATION_SOUL_TITLE,
+    imageSource: require('./../../../assets/img/purification/step3.jpg'),
+  },
+];
 
 export default function PurificationScreen() {
-  const { formatMessage } = useMessage();
-  const Stack = createNativeStackNavigator<PurificationParamList>();
+  const steps = useMemo(() => parts, []);
 
   return (
-    <Stack.Navigator initialRouteName="PurificationHome">
-      <Stack.Screen name="PurificationHome" component={PurificationHomeScreen} options={{ headerShown: false }} />
-      <Stack.Screen
-        name="BodyPartsStep"
-        component={BodyPartsStepScreen}
-        options={{ title: formatMessage(TKeys.PURIFICATION_BODYPART_TITLE) }}
-      />
-      <Stack.Screen
-        name="MindStep"
-        component={MindStepScreen}
-        options={{ title: formatMessage(TKeys.PURIFICATION_MIND_TITLE) }}
-      />
-      <Stack.Screen
-        name="SoulStep"
-        component={SoulStepScreen}
-        options={{ title: formatMessage(TKeys.PURIFICATION_SOUL_TITLE) }}
-      />
-    </Stack.Navigator>
+    <Stack style={commonStyles.container} items="center" spacing={15}>
+      {steps.map((item: Part, index: number) => (
+        <Surface key={index} elevation={7} category="large" style={{ width: 320 }}>
+          <PressablePart item={item} />
+        </Surface>
+      ))}
+    </Stack>
   );
 }

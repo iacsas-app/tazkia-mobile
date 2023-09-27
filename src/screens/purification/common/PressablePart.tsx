@@ -1,8 +1,8 @@
 import { Avatar, Pressable, Stack, Text } from '@react-native-material/core';
 import { useNavigation } from '@react-navigation/native';
 import { ImageSourcePropType, StyleSheet } from 'react-native';
-import { useMessage } from '../../hooks/use-message';
-import { PurificationParamList, TazkiaStackNavigationProp } from '../../navigation/types';
+import { useMessage } from '../../../hooks/use-message';
+import { PurificationParamList, PurificationStackNavigationProp } from '../../../navigation/types';
 
 export interface Part {
   name: string;
@@ -16,7 +16,7 @@ interface Props {
 }
 export default function PressablePart({ item }: Props) {
   const { formatMessage } = useMessage();
-  const navigation = useNavigation<TazkiaStackNavigationProp>();
+  const navigation = useNavigation<PurificationStackNavigationProp>();
 
   function handlePress() {
     navigation.navigate(item.route);

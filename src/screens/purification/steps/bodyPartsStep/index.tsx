@@ -1,10 +1,10 @@
 import { HStack, Text, VStack } from '@react-native-material/core';
 import { useMemo, useState } from 'react';
 import { ImageSourcePropType, View } from 'react-native';
-import { useApplication } from '../../../hooks/use-application';
-import { useMessage } from '../../../hooks/use-message';
-import { TKeys } from '../../../locales/constants';
-import { groupBy } from '../../../services/Helpers';
+import { useApplication } from '../../../../hooks/use-application';
+import { useMessage } from '../../../../hooks/use-message';
+import { TKeys } from '../../../../locales/constants';
+import { groupBy } from '../../../../services/Helpers';
 import BodyPartItem from './common/BodyPartItem';
 import BodyPartsDialog from './common/BodyPartsDialog';
 
@@ -20,43 +20,43 @@ const parts: PartItem[] = [
     partId: 1,
     line: 1,
     nameKey: TKeys.PURIFICATION_BODY_PARTS_EYES,
-    imageSource: require('./../../../../assets/img/body-parts/eyes.jpg'),
+    imageSource: require('./../../../../../assets/img/purification/body-parts/eyes.jpg'),
   },
   {
     partId: 2,
     line: 1,
     nameKey: TKeys.PURIFICATION_BODY_PARTS_HANDS,
-    imageSource: require('./../../../../assets/img/body-parts/hands.jpg'),
+    imageSource: require('./../../../../../assets/img/purification/body-parts/hands.jpg'),
   },
   {
     partId: 3,
     line: 2,
     nameKey: TKeys.PURIFICATION_BODY_PARTS_TONGUE,
-    imageSource: require('./../../../../assets/img/body-parts/tongue.jpg'),
+    imageSource: require('./../../../../../assets/img/purification/body-parts/tongue.jpg'),
   },
   {
     partId: 4,
     line: 2,
     nameKey: TKeys.PURIFICATION_BODY_PARTS_EAR,
-    imageSource: require('./../../../../assets/img/body-parts/ears.jpg'),
+    imageSource: require('./../../../../../assets/img/purification/body-parts/ears.jpg'),
   },
   {
     partId: 5,
     line: 3,
     nameKey: TKeys.PURIFICATION_BODY_PARTS_BELLY,
-    imageSource: require('./../../../../assets/img/body-parts/belly.png'),
+    imageSource: require('./../../../../../assets/img/purification/body-parts/belly.png'),
   },
   {
     partId: 6,
     line: 3,
     nameKey: TKeys.PURIFICATION_BODY_PARTS_FEET,
-    imageSource: require('./../../../../assets/img/body-parts/feet.jpg'),
+    imageSource: require('./../../../../../assets/img/purification/body-parts/feet.jpg'),
   },
   {
     partId: 7,
     line: 4,
     nameKey: TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS,
-    imageSource: require('./../../../../assets/img/body-parts/private-parts.png'),
+    imageSource: require('./../../../../../assets/img/purification/body-parts/private-parts.png'),
   },
 ];
 
@@ -68,7 +68,7 @@ interface State {
   mode: PurificationMode;
 }
 
-export default function BodyPartsStepScreen() {
+export default function BodyPartsPurificationScreen() {
   const { arabicOrientation } = useApplication();
   const { formatMessage } = useMessage();
 

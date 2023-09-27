@@ -1,19 +1,25 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useMessage } from '../../hooks/use-message';
-import { PresentationParamList } from '../../navigation/types';
-import CenterScreen from './CenterScreen';
-import CheikhScreen from './CheikhScreen';
-import ManhajScreen from './ManhajScreen';
+import { Button, VStack } from '@react-native-material/core';
+import { useNavigation } from '@react-navigation/native';
+import { useMemo } from 'react';
+import { View } from 'react-native';
+import { PresentationParamList, PresentationStackNavigationProp } from '../../navigation/types';
+import { commonStyles } from '../../styles/CommonStyles';
 
 export default function PresentationScreen() {
-  const { formatMessage } = useMessage();
-  const Stack = createNativeStackNavigator<PresentationParamList>();
+  const navigation = useNavigation<PresentationStackNavigationProp>();
+  const parts = useMemo(() => ['Center', 'Cheikh', 'Approach'], []);
+
+  function handlePress(route: keyof PresentationParamList) {
+    navigation.navigate(route);
+  }
 
   return (
-    <Stack.Navigator initialRouteName="Cheikh">
-      <Stack.Screen name="Center" component={CenterScreen} options={{ headerShown: false }} />
-      <Stack.Screen name="Cheikh" component={CheikhScreen} options={{ title: 'Cheikh' }} />
-      <Stack.Screen name="Manhaj" component={ManhajScreen} options={{ title: 'Manhaj' }} />
-    </Stack.Navigator>
+    <View style={commonStyles.container}>
+      <VStack spacing={20}>
+        {parts.map((route, index) => (
+          <Button key={index} title={`Go to ${route}`} uppercase={false} onPress={() => handlePress(route as any)} />
+        ))}
+      </VStack>
+    </View>
   );
 }
