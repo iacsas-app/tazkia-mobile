@@ -1,8 +1,24 @@
 import { Stack, Surface } from '@react-native-material/core';
-import { useMemo } from 'react';
+import { StyleSheet } from 'react-native';
 import { TKeys } from '../../locales/constants';
-import { commonStyles } from '../../styles/CommonStyles';
-import PressablePart, { Part } from './common/PressablePart';
+import GlobalStyles from '../../styles/GlobalStyles';
+import PressableStep, { Part } from './common/PressableStep';
+
+export default function PurificationScreen() {
+  return (
+    <Stack style={GlobalStyles.container} items="center" spacing={15}>
+      {parts.map((item: Part, index: number) => (
+        <Surface key={index} elevation={6} category="medium" style={styles.part}>
+          <PressableStep item={item} />
+        </Surface>
+      ))}
+    </Stack>
+  );
+}
+
+const styles = StyleSheet.create({
+  part: { width: 250, borderCurve: 'circular' },
+});
 
 const parts: Part[] = [
   {
@@ -24,17 +40,3 @@ const parts: Part[] = [
     imageSource: require('./../../../assets/img/purification/step3.jpg'),
   },
 ];
-
-export default function PurificationScreen() {
-  const steps = useMemo(() => parts, []);
-
-  return (
-    <Stack style={commonStyles.container} items="center" spacing={15}>
-      {steps.map((item: Part, index: number) => (
-        <Surface key={index} elevation={7} category="large" style={{ width: 320 }}>
-          <PressablePart item={item} />
-        </Surface>
-      ))}
-    </Stack>
-  );
-}

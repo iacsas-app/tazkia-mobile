@@ -1,6 +1,8 @@
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
-import { CompositeNavigationProp } from '@react-navigation/native';
+import { CompositeNavigationProp, RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { BodyPartType } from '../domains/purification/BodyPart';
+import { PurificationType } from '../screens/purification/steps/bodyPartsStep/BodyPartsScreen';
 
 export type TabParamList = {
   HomeTab: undefined;
@@ -19,6 +21,7 @@ export type PresentationParamList = {
 export type PurificationParamList = {
   Purification: undefined;
   BodyParts: undefined;
+  BodyPartsRules: { type: BodyPartType; mode: PurificationType };
   Mind: undefined;
   Soul: undefined;
 };
@@ -30,6 +33,7 @@ export type SunnahsParamList = {
   SpiritTravels: undefined;
 };
 
+// Navigation props
 export type PresentationStackNavigationProp = CompositeNavigationProp<
   NativeStackNavigationProp<PresentationParamList, 'Presentation'>,
   BottomTabNavigationProp<TabParamList>
@@ -40,7 +44,15 @@ export type PurificationStackNavigationProp = CompositeNavigationProp<
   BottomTabNavigationProp<TabParamList>
 >;
 
+export type BodyPartsRulesStackNavigationProp = CompositeNavigationProp<
+  NativeStackNavigationProp<PurificationParamList, 'BodyPartsRules'>,
+  BottomTabNavigationProp<TabParamList>
+>;
+
 export type SunnahsStackNavigationProp = CompositeNavigationProp<
   NativeStackNavigationProp<SunnahsParamList, 'Sunnahs'>,
   BottomTabNavigationProp<TabParamList>
 >;
+
+// Route props
+export type BodyPartsRulesScreenRouteProp = RouteProp<PurificationParamList, 'BodyPartsRules'>;

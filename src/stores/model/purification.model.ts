@@ -1,10 +1,11 @@
-import { Action, Thunk, action, thunk } from 'easy-peasy';
+import { Action, Thunk, action, persist, thunk } from 'easy-peasy';
 import Purification from '../../domains/purification/Purification';
 import { Injections } from '../injections';
+import { storageEngine } from '../storage-engine';
 
 export interface PurificationModel {
   isLoaded: boolean;
-  item: Purification;
+  item: Purification | undefined;
 
   // Actions
   load: Action<PurificationModel, Purification>;
@@ -14,9 +15,9 @@ export interface PurificationModel {
   createOrUpdate: Thunk<PurificationModel, Purification, Injections>;
 }
 
-export const purificationModel: PurificationModel = {
+const purificationModel: PurificationModel = {
   isLoaded: false,
-  item: { id: 0, step1: [], step2: [], step3: [] },
+  item: undefined,
 
   // Actions
   load: action((state, payload: Purification) => {
@@ -36,3 +37,8 @@ export const purificationModel: PurificationModel = {
     actions.load(item);
   }),
 };
+
+export default persist(purificationModel, {
+  storage: storageEngine,
+  allow: ['item'],
+});

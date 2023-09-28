@@ -1,10 +1,10 @@
 import { Text, VStack } from '@react-native-material/core';
 import { View } from 'react-native';
-import { commonStyles } from '../../styles/CommonStyles';
+import GlobalStyles from '../../styles/GlobalStyles';
 
 export default function PracticeScreen() {
   return (
-    <View style={commonStyles.container}>
+    <View style={GlobalStyles.container}>
       <VStack spacing={25} style={{ padding: 20 }}>
         <Text variant="h4">Practice Sunnahs</Text>
         <Text>

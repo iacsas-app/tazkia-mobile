@@ -14,7 +14,7 @@ export interface Part {
 interface Props {
   item: Part;
 }
-export default function PressablePart({ item }: Props) {
+export default function PressableStep({ item }: Props) {
   const { formatMessage } = useMessage();
   const navigation = useNavigation<PurificationStackNavigationProp>();
 
