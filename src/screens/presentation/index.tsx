@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useMemo } from 'react';
 import { View } from 'react-native';
 import { PresentationParamList, PresentationStackNavigationProp } from '../../navigation/types';
-import { commonStyles } from '../../styles/CommonStyles';
+import GlobalStyles from '../../styles/GlobalStyles';
 
 export default function PresentationScreen() {
   const navigation = useNavigation<PresentationStackNavigationProp>();
@@ -14,7 +14,7 @@ export default function PresentationScreen() {
   }
 
   return (
-    <View style={commonStyles.container}>
+    <View style={GlobalStyles.container}>
       <VStack spacing={20}>
         {parts.map((route, index) => (
           <Button key={index} title={`Go to ${route}`} uppercase={false} onPress={() => handlePress(route as any)} />

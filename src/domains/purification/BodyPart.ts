@@ -1,9 +1,9 @@
 import ProgressLine from '../common/ProgressLine';
 
-export type Part = 'eyes' | 'hands' | 'tongue' | 'ear' | 'belly' | 'feet' | 'privateParts';
+export type BodyPartType = 'eye' | 'hands' | 'tongue' | 'ear' | 'belly' | 'feet' | 'private-parts';
 
 export default interface BodyPart {
-  name: Part;
-  purificationProgress: ProgressLine[];
-  illuminationProgress: ProgressLine[];
+  name: BodyPartType;
+  purification: ProgressLine[];
+  illumination: ProgressLine[];
 }

@@ -13,7 +13,7 @@ export const english: Translations = {
     'Purifying the heart through purifying and enlightening the seven body parts',
   [TKeys.PURIFICATION_MIND_TITLE]: 'Mind purifying',
   [TKeys.PURIFICATION_SOUL_TITLE]: 'Soul purifying',
-  [TKeys.PURIFICATION_BODY_PARTS_EYES]: 'Eyes',
+  [TKeys.PURIFICATION_BODY_PARTS_EYES]: 'Eye',
   [TKeys.PURIFICATION_BODY_PARTS_HANDS]: 'Hands',
   [TKeys.PURIFICATION_BODY_PARTS_TONGUE]: 'Tongue',
   [TKeys.PURIFICATION_BODY_PARTS_EAR]: 'Ear',

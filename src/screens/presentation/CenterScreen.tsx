@@ -2,13 +2,13 @@ import { Text, VStack } from '@react-native-material/core';
 import { View } from 'react-native';
 import { useMessage } from '../../hooks/use-message';
 import { TKeys } from '../../locales/constants';
-import { commonStyles } from '../../styles/CommonStyles';
+import GlobalStyles from '../../styles/GlobalStyles';
 
 export default function CenterScreen() {
   const { formatMessage } = useMessage();
 
   return (
-    <View style={commonStyles.container}>
+    <View style={GlobalStyles.container}>
       <VStack spacing={25} style={{ padding: 20 }}>
         <Text variant="h5" style={{ fontWeight: 'bold' }}>
           {formatMessage(TKeys.PRESENTATION_CENTER)}

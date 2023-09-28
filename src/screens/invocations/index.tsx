@@ -1,9 +1,9 @@
 import { Text, View } from 'react-native';
-import { commonStyles } from '../../styles/CommonStyles';
+import GlobalStyles from '../../styles/GlobalStyles';
 
 export default function DikrScreen() {
   return (
-    <View style={commonStyles.container}>
+    <View style={GlobalStyles.container}>
       <Text>Dikr screen</Text>
     </View>
   );
