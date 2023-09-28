@@ -1,6 +1,6 @@
 import { Text, VStack } from '@react-native-material/core';
 import { View } from 'react-native';
-import { commonStyles } from '../../styles/CommonStyles';
+import GlobalStyles from '../../styles/GlobalStyles';
 
 /**
  * Manhaj
@@ -8,7 +8,7 @@ import { commonStyles } from '../../styles/CommonStyles';
  */
 export default function HabitsScreen() {
   return (
-    <View style={commonStyles.container}>
+    <View style={GlobalStyles.container}>
       <VStack spacing={25} style={{ padding: 20 }}>
         <Text variant="h4">Habits Sunnahs</Text>
         <Text>

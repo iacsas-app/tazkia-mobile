@@ -1,57 +1,58 @@
 import { Avatar, Box, HStack, Pressable, Surface, Text } from '@react-native-material/core';
 import { ImageSourcePropType, StyleSheet } from 'react-native';
-import { PurificationMode } from '..';
+import { BodyPartType } from '../../../../../domains/purification/BodyPart';
 import { useMessage } from '../../../../../hooks/use-message';
-import { TKeys } from '../../../../../locales/constants';
+import GlobalStyles from '../../../../../styles/GlobalStyles';
+import { PurificationType } from '../BodyPartsScreen';
 
 interface BodyPartItemProps {
-  partId: number;
+  id: number;
+  type: BodyPartType;
   nameKey: string;
   imageSource: ImageSourcePropType;
-  onDetailsOpen: (partId: number, mode: PurificationMode) => void;
+  onDetailsOpen: (type: BodyPartType, mode: PurificationType) => void;
 }
 export default function BodyPartItem({
-  partId,
+  id,
+  type,
   nameKey,
   imageSource,
   onDetailsOpen: onOpenDetails,
 }: BodyPartItemProps) {
   const { formatMessage } = useMessage();
+  const width = 185;
 
-  function handlePress(mode: PurificationMode) {
-    onOpenDetails(partId, mode);
+  function handlePress(mode: PurificationType) {
+    onOpenDetails(type, mode);
   }
 
   return (
     <Surface elevation={6} category="medium" style={styles.container}>
-      <Box h={90} w={170} style={{ backgroundColor: '#e0ffff', justifyContent: 'center', alignItems: 'center' }}>
-        <Avatar size={50} style={{ marginTop: -18 }} image={imageSource} />
+      <Box h={90} w={width} style={styles.topBox}>
+        <Avatar size={50} style={styles.typeAvatar} image={imageSource} />
         <Avatar
           size={20}
-          style={{ marginTop: -8 }}
+          style={styles.idAvatar}
           color="white"
           label={
-            <Text variant="caption" color="#008080">
-              {partId}
+            <Text variant="caption" color="#008080" style={styles.id}>
+              {id}
             </Text>
           }
         />
-        <Text variant="h6" style={{ fontWeight: 'bold', marginTop: 3 }}>
+        <Text variant="h6" style={styles.partName}>
           {formatMessage(nameKey)}
         </Text>
       </Box>
-      <Box h={40} w={170} style={{ backgroundColor: '#fffafa', justifyContent: 'center', alignItems: 'center' }}>
+      <Box h={40} w={width} style={styles.bottomBox}>
         <HStack spacing={5}>
-          <Surface elevation={2} category="small" style={{ backgroundColor: '#f5fffa' }}>
-            <Pressable style={{ padding: 5 }} onPress={() => handlePress('illumination')}>
-              <Text variant="caption">{formatMessage(TKeys.BUTTON_ILLUMINATION)}</Text>
-            </Pressable>
-          </Surface>
-          <Surface elevation={2} category="small" style={{ backgroundColor: '#f5fffa' }}>
-            <Pressable style={{ padding: 5 }} onPress={() => handlePress('purification')}>
-              <Text variant="caption">{formatMessage(TKeys.BUTTON_PURIFICATION)}</Text>
-            </Pressable>
-          </Surface>
+          {['illumination', 'purification'].map((action) => (
+            <Surface key={action} elevation={2} category="small" style={styles.action}>
+              <Pressable style={{ padding: 5 }} onPress={() => handlePress(action as PurificationType)}>
+                <Text variant="caption">{formatMessage(`button.${action}`)}</Text>
+              </Pressable>
+            </Surface>
+          ))}
         </HStack>
       </Box>
     </Surface>
@@ -59,5 +60,12 @@ export default function BodyPartItem({
 }
 
 const styles = StyleSheet.create({
-  container: { width: 170, height: 130, justifyContent: 'center', alignItems: 'center' },
+  container: { width: 185, height: 130, ...GlobalStyles.center },
+  id: { fontWeight: 'bold' },
+  topBox: { backgroundColor: '#e0ffff', ...GlobalStyles.center },
+  bottomBox: { backgroundColor: '#fffafa', ...GlobalStyles.center },
+  partName: { fontWeight: 'bold', marginTop: 3 },
+  action: { backgroundColor: '#f5fffa' },
+  typeAvatar: { marginTop: -18 },
+  idAvatar: { marginTop: -8 },
 });

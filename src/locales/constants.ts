@@ -12,7 +12,7 @@ export enum TKeys {
   PURIFICATION_BODYPART_DESCRIPTION = 'purification.bodypart.description',
   PURIFICATION_MIND_TITLE = 'purification.mind.title',
   PURIFICATION_SOUL_TITLE = 'purification.soul.title',
-  PURIFICATION_BODY_PARTS_EYES = 'purification.body-parts.eyes',
+  PURIFICATION_BODY_PARTS_EYES = 'purification.body-parts.eye',
   PURIFICATION_BODY_PARTS_HANDS = 'purification.body-parts.hands',
   PURIFICATION_BODY_PARTS_TONGUE = 'purification.body-parts.tongue',
   PURIFICATION_BODY_PARTS_EAR = 'purification.body-parts.ear',
