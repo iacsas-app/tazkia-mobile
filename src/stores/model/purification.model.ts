@@ -9,6 +9,7 @@ export interface PurificationModel {
 
   // Actions
   load: Action<PurificationModel, Purification>;
+  reset: Action<PurificationModel>;
 
   // Thunk
   find: Thunk<PurificationModel, void, Injections>;
@@ -24,6 +25,10 @@ const purificationModel: PurificationModel = {
     state.item = payload;
     state.isLoaded = true;
   }),
+  reset: action((state) => {
+    state.item = undefined;
+    state.isLoaded = false;
+  }),
 
   // Thunks
   find: thunk(async (actions, _void, { injections }) => {
@@ -32,9 +37,9 @@ const purificationModel: PurificationModel = {
     actions.load(item);
   }),
   createOrUpdate: thunk(async (actions, payload: Purification, { injections }) => {
-    const { tazkiaService } = injections;
-    const item = await tazkiaService.createOrUpdate(payload);
-    actions.load(item);
+    //const { tazkiaService } = injections;
+    //const item = await tazkiaService.createOrUpdate(payload);
+    actions.load(payload);
   }),
 };
 

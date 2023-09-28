@@ -3,6 +3,7 @@ import { useStoreActions, useStoreState } from '../../../../../stores/hooks';
 import { PurificationType } from '../BodyPartsScreen';
 
 import { Box, Button, Text, VStack } from '@react-native-material/core';
+import { useNavigation } from '@react-navigation/native';
 import { useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import SimpleRule from '../../../../../components/rules/SimpleRule';
@@ -10,6 +11,7 @@ import ProgressLine from '../../../../../domains/common/ProgressLine';
 import Purification from '../../../../../domains/purification/Purification';
 import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';
+import { PurificationStackNavigationProp } from '../../../../../navigation/types';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
 import BodyPartProgress from './BodyPartProgress';
 import { findBodyPartProgress, rules } from './Helper';
@@ -21,18 +23,30 @@ interface BodyPartsRulesProps {
 export default function BodyPartsRules({ part, mode }: BodyPartsRulesProps) {
   const { formatMessage } = useMessage();
   const { arabicOrientation } = useApplication();
+  const navigation = useNavigation<PurificationStackNavigationProp>();
   let purification: Purification | undefined = useStoreState((state) => state.purification.item);
-  const createOrUpdate = useStoreActions((state) => state.purification.load);
+  const createOrUpdate = useStoreActions((actions) => actions.purification.createOrUpdate);
+
   const items: string[] = useMemo(() => rules[part][mode], []);
   const progress: ProgressLine[] | undefined = useMemo(() => findBodyPartProgress(purification, part, mode), []);
 
   function handleStartPress() {
+    const newLine: ProgressLine = { startDate: new Date(), day: 1, errors: [] };
+    const newPart = { name: part, [mode]: [newLine] };
+
     if (!purification) {
-      purification = { id: 1, bodyParts: [], mind: [], soul: [] };
+      purification = { id: 0, bodyParts: [newPart], mind: [], soul: [] };
+    } else {
+      if (!purification.bodyParts.find((item) => item.name === part)) {
+        purification.bodyParts.push(newPart);
+      } else {
+        purification.bodyParts = purification.bodyParts.map((item) =>
+          item.name === part ? { ...item, [mode]: [newLine] } : item,
+        );
+      }
     }
-    //const bodyPart: BodyPart = { name: part, [mode]: [] };
-    //purification.bodyParts = [...purification.bodyParts, bodyPart];
     createOrUpdate(purification);
+    navigation.push('Purification');
   }
 
   return (
