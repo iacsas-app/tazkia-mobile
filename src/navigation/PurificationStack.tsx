@@ -1,6 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useMessage } from '../hooks/use-message';
 import { TKeys } from '../locales/constants';
+import PurificationProgressScreen from '../screens/purification/PurificationProgressScreen';
 import PurificationScreen from '../screens/purification/PurificationScreen';
 import BodyPartsRulesScreen from '../screens/purification/steps/bodyPartsStep/BodyPartsRulesScreen';
 import BodyPartsScreen from '../screens/purification/steps/bodyPartsStep/BodyPartsScreen';
@@ -21,6 +22,11 @@ export default function PurificationStack() {
         options={{ title: formatMessage(TKeys.PURIFICATION_BODYPART_TITLE) }}
       />
       <Stack.Screen name="BodyPartsRules" component={BodyPartsRulesScreen} />
+      <Stack.Screen
+        name="PurificationProgress"
+        component={PurificationProgressScreen}
+        options={{ title: 'My progress' }}
+      />
       <Stack.Screen
         name="Mind"
         component={MindScreen}

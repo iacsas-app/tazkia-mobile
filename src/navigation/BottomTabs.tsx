@@ -6,8 +6,6 @@ import { useMessage } from '../hooks/use-message';
 import { TKeys } from '../locales/constants';
 import InvocationsScreen from '../screens/invocations';
 import ProgressScreen from '../screens/progress';
-import PurificationProgressScreen from '../screens/purification/PurificationProgressScreen';
-import SunnahsProgressScreen from '../screens/sunnahs/SunnahsProgressScreen';
 import PresentationStack from './PresentationStack';
 import PurificationStack from './PurificationStack';
 import SunnahsStack from './SunnahsStack';
@@ -17,7 +15,7 @@ const Tab = createBottomTabNavigator<TabParamList>();
 
 const BottomTabs = () => {
   const { formatMessage } = useMessage();
-  const { hasProgress, hasPurificationProgress, hasSunnahsProgress } = useApplication();
+  const { hasProgress } = useApplication();
 
   return (
     <Tab.Navigator initialRouteName="HomeTab">
@@ -28,12 +26,12 @@ const BottomTabs = () => {
       />
       <Tab.Screen
         name="PurificationTab"
-        component={hasPurificationProgress ? PurificationProgressScreen : PurificationStack}
+        component={PurificationStack}
         options={{ title: formatMessage(TKeys.MENU_PURIFICATION), headerShown: false }}
       />
       <Tab.Screen
         name="SunnahsTab"
-        component={hasSunnahsProgress ? SunnahsProgressScreen : SunnahsStack}
+        component={SunnahsStack}
         options={{ title: formatMessage(TKeys.MENU_SUNNAHS), headerShown: false }}
       />
       <Tab.Screen
