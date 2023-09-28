@@ -22,6 +22,7 @@ export type PurificationParamList = {
   Purification: undefined;
   BodyParts: undefined;
   BodyPartsRules: { type: BodyPartType; mode: PurificationType };
+  PurificationProgress: undefined;
   Mind: undefined;
   Soul: undefined;
 };

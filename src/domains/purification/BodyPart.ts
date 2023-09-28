@@ -4,6 +4,6 @@ export type BodyPartType = 'eye' | 'hands' | 'tongue' | 'ear' | 'belly' | 'feet'
 
 export default interface BodyPart {
   name: BodyPartType;
-  purification: ProgressLine[];
-  illumination: ProgressLine[];
+  purification?: ProgressLine[];
+  illumination?: ProgressLine[];
 }

@@ -1,10 +1,18 @@
 import { Stack, Surface } from '@react-native-material/core';
 import { StyleSheet } from 'react-native';
+import { useApplication } from '../../hooks/use-application';
 import { TKeys } from '../../locales/constants';
 import GlobalStyles from '../../styles/GlobalStyles';
+import PurificationProgressScreen from './PurificationProgressScreen';
 import PressableStep, { Part } from './common/PressableStep';
 
 export default function PurificationScreen() {
+  const { hasPurificationProgress } = useApplication();
+
+  if (hasPurificationProgress) {
+    return <PurificationProgressScreen />;
+  }
+
   return (
     <Stack style={GlobalStyles.container} items="center" spacing={15}>
       {parts.map((item: Part, index: number) => (
