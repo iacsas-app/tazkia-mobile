@@ -1,8 +1,9 @@
+import OctIcon from '@expo/vector-icons/Octicons';
 import { BodyPartType } from '../../../../../domains/purification/BodyPart';
 import { useStoreActions, useStoreState } from '../../../../../stores/hooks';
 import { PurificationType } from '../BodyPartsScreen';
 
-import { Box, Button, Text, VStack } from '@react-native-material/core';
+import { Box, Button, HStack, Text, VStack } from '@react-native-material/core';
 import { useNavigation } from '@react-navigation/native';
 import { useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
@@ -14,7 +15,7 @@ import { useMessage } from '../../../../../hooks/use-message';
 import { PurificationStackNavigationProp } from '../../../../../navigation/types';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
 import BodyPartProgress from './BodyPartProgress';
-import { findBodyPartProgress, rules } from './Helper';
+import { findBodyPartProgress, orderBodyParts, rules } from './Helper';
 
 interface BodyPartsRulesProps {
   part: BodyPartType;
@@ -44,16 +45,27 @@ export default function BodyPartsRules({ part, mode }: BodyPartsRulesProps) {
           item.name === part ? { ...item, [mode]: [newLine] } : item,
         );
       }
+      purification.bodyParts = orderBodyParts(purification.bodyParts);
     }
     createOrUpdate(purification);
     navigation.push('Purification');
   }
 
+  function title(part: BodyPartType, mode: PurificationType) {
+    const name = formatMessage(`purification.body-parts.${part}_${mode === 'purification' ? 1 : 2}`);
+    console.log(name);
+    const subject = formatMessage(`${mode}.bodypart.code-of-conduct`, { name });
+    return subject;
+  }
+
   return (
     <View style={styles.container}>
-      <Text variant="h5" style={styles.title}>
-        {title(formatMessage, part, mode)}
-      </Text>
+      <HStack spacing={8} style={{ padding: 22 }} reverse={arabicOrientation}>
+        <OctIcon name="checklist" size={40} />
+        <Text variant="h6" style={styles.title}>
+          {title(part, mode)}
+        </Text>
+      </HStack>
       <VStack spacing={8}>
         {items.map((item: string, index: number) => (
           <Box key={index} style={styles.line}>
@@ -70,19 +82,13 @@ export default function BodyPartsRules({ part, mode }: BodyPartsRulesProps) {
   );
 }
 
-function title(format: (id: string) => string, part: BodyPartType, mode: PurificationType) {
-  const partName = format(`purification.body-parts.${part}`);
-  const subject: string = mode === 'purification' ? 'Système éducatif concernant' : 'Règles de bon usage concernant';
-  return `${subject} ${partName.toLocaleLowerCase()}`;
-}
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginHorizontal: 10,
     ...GlobalStyles.center,
   },
   title: {
-    paddingHorizontal: 15,
     marginBottom: 35,
     textAlign: 'center',
   },

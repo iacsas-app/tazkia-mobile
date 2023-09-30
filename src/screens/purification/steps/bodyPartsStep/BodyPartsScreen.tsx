@@ -2,7 +2,7 @@ import { HStack, Text, VStack } from '@react-native-material/core';
 import { useNavigation } from '@react-navigation/native';
 import { useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { BodyPartType } from '../../../../domains/purification/BodyPart';
+import { BodyPartType, BodyPartsOrder } from '../../../../domains/purification/BodyPart';
 import { useApplication } from '../../../../hooks/use-application';
 import { useMessage } from '../../../../hooks/use-message';
 import { TKeys } from '../../../../locales/constants';
@@ -34,7 +34,7 @@ export default function BodyPartsScreen() {
           <HStack key={key} spacing={18} reverse={arabicOrientation}>
             {partsByLine[key].map(({ line, ...props }: PartItem, index: number) => (
               <View key={`${key}_${index}_${line}`}>
-                <BodyPartItem {...props} onDetailsOpen={handleDetailsOpen} />
+                <BodyPartItem id={BodyPartsOrder[props.type]} {...props} onDetailsOpen={handleDetailsOpen} />
               </View>
             ))}
           </HStack>

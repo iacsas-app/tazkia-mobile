@@ -19,6 +19,8 @@ export const indonesian: Translations = {
   [TKeys.PURIFICATION_BODY_PARTS_BELLY]: 'पेट',
   [TKeys.PURIFICATION_BODY_PARTS_FEET]: 'पैर',
   [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS]: 'निजी अंग',
+  [TKeys.PURIFICATION_BODYPART_CODE_OF_CONDUCT]: 'Codes of conduct regarding {name} (To translate)',
+  [TKeys.PURIFICATION_BODYPART_BEST_PRACTICES]: 'Rules of positive use regarding {name} (To translate)',
 
   // MENUS
   [TKeys.MENU_SETTINGS]: 'समायोजन',
@@ -43,4 +45,18 @@ export const indonesian: Translations = {
   [TKeys.STEP_1]: 'प्रथम स्थान',
   [TKeys.STEP_2]: 'अगली बार',
   [TKeys.STEP_3]: 'अगले 3 दिन',
+  [TKeys.PURIFICATION_BODY_PARTS_EYES_1]: '',
+  [TKeys.PURIFICATION_BODY_PARTS_EYES_2]: '',
+  [TKeys.PURIFICATION_BODY_PARTS_HANDS_1]: '',
+  [TKeys.PURIFICATION_BODY_PARTS_HANDS_2]: '',
+  [TKeys.PURIFICATION_BODY_PARTS_TONGUE_1]: '',
+  [TKeys.PURIFICATION_BODY_PARTS_TONGUE_2]: '',
+  [TKeys.PURIFICATION_BODY_PARTS_EAR_1]: '',
+  [TKeys.PURIFICATION_BODY_PARTS_EAR_2]: '',
+  [TKeys.PURIFICATION_BODY_PARTS_BELLY_1]: '',
+  [TKeys.PURIFICATION_BODY_PARTS_BELLY_2]: '',
+  [TKeys.PURIFICATION_BODY_PARTS_FEET_1]: '',
+  [TKeys.PURIFICATION_BODY_PARTS_FEET_2]: '',
+  [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS_1]: '',
+  [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS_2]: '',
 };

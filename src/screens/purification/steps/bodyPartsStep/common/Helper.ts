@@ -1,6 +1,6 @@
 import { ImageSourcePropType } from 'react-native';
 import ProgressLine from '../../../../../domains/common/ProgressLine';
-import { BodyPartType } from '../../../../../domains/purification/BodyPart';
+import BodyPart, { BodyPartType, BodyPartsOrder } from '../../../../../domains/purification/BodyPart';
 import Purification from '../../../../../domains/purification/Purification';
 import { TKeys } from '../../../../../locales/constants';
 import { PurificationType } from '../BodyPartsScreen';
@@ -27,8 +27,32 @@ export function findPartProps(type: BodyPartType): ImageSourcePropType | null {
   return result ? result.imageSource : null;
 }
 
+export function mapByIndex<T>(items: T[]): Map<number, T[]> {
+  const result = new Map<number, T[]>();
+  items.forEach((part: T, index: number) => {
+    const key = index % 2;
+    let entry = result.get(key + 1);
+    if (!entry) {
+      entry = [];
+    }
+    entry.push(part);
+    result.set(key + 1, entry);
+  });
+  return result;
+}
+
+export function orderBodyParts(items: BodyPart[]) {
+  return items.sort((a: BodyPart, b: BodyPart) => {
+    if (BodyPartsOrder[a.name] < BodyPartsOrder[b.name]) {
+      return -1;
+    } else if (BodyPartsOrder[a.name] > BodyPartsOrder[b.name]) {
+      return 1;
+    }
+    return 0;
+  });
+}
+
 export type PartItem = {
-  id: number;
   type: BodyPartType;
   line: number;
   nameKey: string;
@@ -37,49 +61,42 @@ export type PartItem = {
 
 export const bodyParts: PartItem[] = [
   {
-    id: 1,
     type: 'eye',
     line: 1,
     nameKey: TKeys.PURIFICATION_BODY_PARTS_EYES,
     imageSource: require('./../../../../../../assets/img/purification/body-parts/eye.jpg'),
   },
   {
-    id: 2,
     type: 'hands',
     line: 1,
     nameKey: TKeys.PURIFICATION_BODY_PARTS_HANDS,
     imageSource: require('./../../../../../../assets/img/purification/body-parts/hands.jpg'),
   },
   {
-    id: 3,
     type: 'tongue',
     line: 2,
     nameKey: TKeys.PURIFICATION_BODY_PARTS_TONGUE,
     imageSource: require('./../../../../../../assets/img/purification/body-parts/tongue.jpg'),
   },
   {
-    id: 4,
     type: 'ear',
     line: 2,
     nameKey: TKeys.PURIFICATION_BODY_PARTS_EAR,
     imageSource: require('./../../../../../../assets/img/purification/body-parts/ear.jpg'),
   },
   {
-    id: 5,
     type: 'belly',
     line: 3,
     nameKey: TKeys.PURIFICATION_BODY_PARTS_BELLY,
     imageSource: require('./../../../../../../assets/img/purification/body-parts/belly.png'),
   },
   {
-    id: 6,
     type: 'feet',
     line: 3,
     nameKey: TKeys.PURIFICATION_BODY_PARTS_FEET,
     imageSource: require('./../../../../../../assets/img/purification/body-parts/feet.jpg'),
   },
   {
-    id: 7,
     type: 'private-parts',
     line: 4,
     nameKey: TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS,
