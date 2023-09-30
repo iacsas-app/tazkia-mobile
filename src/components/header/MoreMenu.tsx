@@ -1,4 +1,5 @@
-import Icon from '@expo/vector-icons/MaterialIcons';
+import Icon from '@expo/vector-icons/SimpleLineIcons';
+
 import { HStack, IconButton, Text } from '@react-native-material/core';
 import { useState } from 'react';
 import { Menu, MenuItem } from 'react-native-material-menu';
@@ -32,12 +33,13 @@ export default function MoreMenu(props: MoreMenuProps) {
     <>
       <Menu
         visible={visible}
-        style={{ marginTop: 35 }}
-        anchor={<IconButton icon={(props) => <Icon name="more-vert" {...props} onPress={showMenu} />} {...props} />}
+        anchor={
+          <IconButton icon={(props) => <Icon name="options-vertical" {...props} onPress={showMenu} />} {...props} />
+        }
         onRequestClose={hideMenu}
       >
         <MenuItem onPress={handleSettingPress}>
-          <HStack spacing={6} justify="center">
+          <HStack spacing={8}>
             <Icon name="settings" size={20} />
             <Text>{formatMessage(TKeys.MENU_SETTINGS)}</Text>
           </HStack>

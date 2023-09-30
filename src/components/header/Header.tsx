@@ -1,20 +1,20 @@
-import Icon from '@expo/vector-icons/MaterialCommunityIcons';
-import { AppBar, IconButton } from '@react-native-material/core';
+import { Text, VStack } from '@react-native-material/core';
+import { StyleSheet } from 'react-native';
 import { useMessage } from '../../hooks/use-message';
 import { TKeys } from '../../locales/constants';
-import MoreMenu from './MoreMenu';
 
 export default function Header() {
   const { formatMessage } = useMessage();
   return (
-    <AppBar
-      enableColorOnDark
-      color="secondary"
-      centerTitle={true}
-      title={formatMessage(TKeys.APPLICATION_TITLE_PRIMARY)}
-      subtitle={formatMessage(TKeys.APPLICATION_TITLE_SECONDARY)}
-      leading={(props) => <IconButton icon={(props) => <Icon name="menu" {...props} />} {...props} />}
-      trailing={(props) => <MoreMenu {...props} />}
-    />
+    <VStack>
+      <Text variant="body1" style={styles.title}>
+        {formatMessage(TKeys.APPLICATION_TITLE_PRIMARY)}
+      </Text>
+      <Text variant="caption">{formatMessage(TKeys.APPLICATION_TITLE_SECONDARY)}</Text>
+    </VStack>
   );
 }
+
+const styles = StyleSheet.create({
+  title: { fontWeight: 'bold' },
+});

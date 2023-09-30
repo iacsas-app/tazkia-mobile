@@ -10,7 +10,11 @@ const GlobalStyles = StyleSheet.create({
     borderRadius: 10,
   },
   circle: { borderRadius: 100 },
-  center: { justifyContent: 'center', alignItems: 'center' },
+  center: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+  },
 });
 
 export default GlobalStyles;

@@ -1,6 +1,6 @@
 import { Avatar, HStack, Pressable, Surface, Text, VStack } from '@react-native-material/core';
 import { useMemo, useState } from 'react';
-import { ImageSourcePropType } from 'react-native';
+import { ImageSourcePropType, StyleSheet } from 'react-native';
 import { useApplication } from '../../../../hooks/use-application';
 import { useMessage } from '../../../../hooks/use-message';
 import { localesTranslation } from '../../../../locales';
@@ -29,11 +29,7 @@ export default function LanguageSettings() {
   }
 
   return (
-    <Surface
-      elevation={1}
-      style={{ padding: 10, minWidth: 250, marginLeft: -10, backgroundColor: '#fffff0' }}
-      category="large"
-    >
+    <Surface elevation={1} style={styles.container} category="large">
       <VStack spacing={10}>
         <Pressable onPress={handlePress}>
           <HStack spacing={17} mt={15} reverse={arabicOrientation}>
@@ -51,3 +47,7 @@ export default function LanguageSettings() {
     </Surface>
   );
 }
+
+const styles = StyleSheet.create({
+  container: { padding: 10, minWidth: 250, marginLeft: -10 },
+});
