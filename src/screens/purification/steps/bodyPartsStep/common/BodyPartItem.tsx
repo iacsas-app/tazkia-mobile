@@ -1,6 +1,7 @@
 import { Avatar, Box, HStack, Pressable, Surface, Text } from '@react-native-material/core';
 import { ImageSourcePropType, StyleSheet } from 'react-native';
 import { BodyPartType } from '../../../../../domains/purification/BodyPart';
+import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
 import { PurificationType } from '../BodyPartsScreen';
@@ -12,18 +13,13 @@ interface BodyPartItemProps {
   imageSource: ImageSourcePropType;
   onDetailsOpen: (type: BodyPartType, mode: PurificationType) => void;
 }
-export default function BodyPartItem({
-  id,
-  type,
-  nameKey,
-  imageSource,
-  onDetailsOpen: onOpenDetails,
-}: BodyPartItemProps) {
+export default function BodyPartItem({ id, type, nameKey, imageSource, onDetailsOpen }: BodyPartItemProps) {
   const { formatMessage } = useMessage();
+  const { arabicOrientation } = useApplication();
   const width = 185;
 
   function handlePress(mode: PurificationType) {
-    onOpenDetails(type, mode);
+    onDetailsOpen(type, mode);
   }
 
   return (
@@ -45,8 +41,8 @@ export default function BodyPartItem({
         </Text>
       </Box>
       <Box h={40} w={width} style={styles.bottomBox}>
-        <HStack spacing={5}>
-          {['illumination', 'purification'].map((action) => (
+        <HStack spacing={5} reverse={arabicOrientation}>
+          {['purification', 'illumination'].map((action) => (
             <Surface key={action} elevation={2} category="small" style={styles.action}>
               <Pressable style={{ padding: 5 }} onPress={() => handlePress(action as PurificationType)}>
                 <Text variant="caption">{formatMessage(`button.${action}`)}</Text>
@@ -62,10 +58,10 @@ export default function BodyPartItem({
 const styles = StyleSheet.create({
   container: { width: 185, height: 130, ...GlobalStyles.center },
   id: { fontWeight: 'bold' },
-  topBox: { backgroundColor: '#e0ffff', ...GlobalStyles.center },
+  topBox: { backgroundColor: '#fdf5e6', ...GlobalStyles.center },
   bottomBox: { backgroundColor: '#fffafa', ...GlobalStyles.center },
   partName: { fontWeight: 'bold', marginTop: 3 },
-  action: { backgroundColor: '#f5fffa' },
+  action: {},
   typeAvatar: { marginTop: -18 },
   idAvatar: { marginTop: -8 },
 });
