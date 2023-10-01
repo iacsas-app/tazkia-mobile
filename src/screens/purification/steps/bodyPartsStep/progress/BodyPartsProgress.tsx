@@ -1,12 +1,13 @@
 import { HStack, Stack } from '@react-native-material/core';
 import { useMemo } from 'react';
-import ProgressContainer from '../../../../../../components/progress/ProgressContainer';
-import BodyPart from '../../../../../../domains/purification/BodyPart';
-import { useApplication } from '../../../../../../hooks/use-application';
-import { useMessage } from '../../../../../../hooks/use-message';
-import { TKeys } from '../../../../../../locales/constants';
-import { PurificationParamList } from '../../../../../../navigation/types';
-import { mapByIndex } from '../../common/Helper';
+
+import ProgressContainer from '../../../../../components/progress/ProgressContainer';
+import BodyPart from '../../../../../domains/purification/BodyPart';
+import { useApplication } from '../../../../../hooks/use-application';
+import { useMessage } from '../../../../../hooks/use-message';
+import { TKeys } from '../../../../../locales/constants';
+import { PurificationParamList } from '../../../../../navigation/types';
+import { mapByIndex } from '../common/Helper';
 import BodyPartProgressItem from './BodyPartProgressItem';
 
 interface BodyPartsProgressProps {

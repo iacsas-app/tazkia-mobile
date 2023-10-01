@@ -19,8 +19,8 @@ export const indonesian: Translations = {
   [TKeys.PURIFICATION_BODY_PARTS_BELLY]: 'पेट',
   [TKeys.PURIFICATION_BODY_PARTS_FEET]: 'पैर',
   [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS]: 'निजी अंग',
-  [TKeys.PURIFICATION_BODYPART_CODE_OF_CONDUCT]: 'Codes of conduct regarding {name} (To translate)',
-  [TKeys.PURIFICATION_BODYPART_BEST_PRACTICES]: 'Rules of positive use regarding {name} (To translate)',
+  [TKeys.PURIFICATION_BODYPART_CODE_OF_CONDUCT]: 'Sistem disiplin tentang {name}',
+  [TKeys.PURIFICATION_BODYPART_BEST_PRACTICES]: 'Aturan penggunaan positif mengenai {name} (To translate)',
 
   // MENUS
   [TKeys.MENU_SETTINGS]: 'समायोजन',
@@ -29,6 +29,7 @@ export const indonesian: Translations = {
   [TKeys.MENU_SUNNAHS]: 'सुनान',
   [TKeys.MENU_INVOCATIONS]: 'धिक्र',
   [TKeys.SETTINGS_LANGUAGE]: 'अनुप्रयोग भाषा',
+  [TKeys.SETTINGS_RESET]: 'Setel ulang kemajuan',
 
   // BUTTONS
   [TKeys.BUTTON_CLOSE]: 'बंद करना',
@@ -42,6 +43,7 @@ export const indonesian: Translations = {
   [TKeys.LANGUAGE_INDONESIAN]: 'हिन्दू धर्म',
 
   // COMMON
+  [TKeys.STEP]: 'panggung',
   [TKeys.STEP_1]: 'प्रथम स्थान',
   [TKeys.STEP_2]: 'अगली बार',
   [TKeys.STEP_3]: 'अगले 3 दिन',

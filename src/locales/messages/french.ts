@@ -34,20 +34,21 @@ export const french: Translations = {
   [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS]: 'Les parties intimes',
   [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS_1]: 'les parties intimes',
   [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS_2]: 'des parties intimes',
-  [TKeys.PURIFICATION_BODYPART_CODE_OF_CONDUCT]: 'Codes de bonnes conduites concernant {name}',
+  [TKeys.PURIFICATION_BODYPART_CODE_OF_CONDUCT]: 'Système disciplinaire concernant {name}',
   [TKeys.PURIFICATION_BODYPART_BEST_PRACTICES]: "Règles d'utilisation positive {name}",
 
   // MENUS
   [TKeys.MENU_SETTINGS]: 'Paramétrages',
   [TKeys.MENU_HOME]: 'Accueil',
   [TKeys.MENU_PURIFICATION]: 'Purification',
-  [TKeys.MENU_SUNNAHS]: 'Tradition prophétique',
+  [TKeys.MENU_SUNNAHS]: 'Traditions prophétiques',
   [TKeys.MENU_INVOCATIONS]: 'Invocations',
   [TKeys.SETTINGS_LANGUAGE]: "Langue de l'application",
+  [TKeys.SETTINGS_RESET]: 'Réinitialiser la progression',
 
   // BUTTONS
   [TKeys.BUTTON_CLOSE]: 'Fermer',
-  [TKeys.BUTTON_PURIFICATION]: 'Purification',
+  [TKeys.BUTTON_PURIFICATION]: 'Nettoyage',
   [TKeys.BUTTON_ILLUMINATION]: 'Illumination',
 
   // LANGUAGES
@@ -57,6 +58,7 @@ export const french: Translations = {
   [TKeys.LANGUAGE_INDONESIAN]: 'Indonésien',
 
   // COMMON
+  [TKeys.STEP]: 'Étape de {name}',
   [TKeys.STEP_1]: '1ère étape',
   [TKeys.STEP_2]: '2ème étape',
   [TKeys.STEP_3]: '3ème étape',

@@ -9,6 +9,7 @@ import {
   Stack,
   Text,
 } from '@react-native-material/core';
+import { useApplication } from '../../../hooks/use-application';
 import { useMessage } from '../../../hooks/use-message';
 import { TKeys } from '../../../locales/constants';
 import Settings from './Settings';
@@ -20,13 +21,14 @@ interface Props {
 
 export default function SettingsDialog({ open, onClose }: Props) {
   const { formatMessage } = useMessage();
+  const { arabicOrientation } = useApplication();
   const props: any = {};
 
   return (
     <Dialog visible={open} onDismiss={onClose} {...props}>
       <DialogHeader
         title={
-          <HStack spacing={8}>
+          <HStack spacing={10} reverse={arabicOrientation}>
             <Icon name="settings" size={28} color="black" />
             <Text variant="h5" style={{ fontWeight: 'bold' }}>
               {formatMessage(TKeys.MENU_SETTINGS)}

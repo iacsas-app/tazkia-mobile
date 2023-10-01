@@ -16,7 +16,7 @@ export default function LanguageSelector({ flags }: LanguageSelectorProps) {
   const m = 40;
 
   return (
-    <Box mt={40} ml={arabicOrientation ? 0 : m} mr={arabicOrientation ? m : 0}>
+    <Box mt={40} mb={20} ml={arabicOrientation ? 0 : m} mr={arabicOrientation ? m : 0}>
       <VStack divider={<Divider leadingInset={20} trailingInset={20} />}>
         {languageKeys
           .filter((item) => locale !== item)
