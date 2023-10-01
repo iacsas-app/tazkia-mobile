@@ -34,21 +34,22 @@ export const english: Translations = {
   [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS]: 'Private parts',
   [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS_1]: 'the private parts',
   [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS_2]: 'the private parts',
-  [TKeys.PURIFICATION_BODYPART_CODE_OF_CONDUCT]: 'Codes of good conduct regarding {name}',
+  [TKeys.PURIFICATION_BODYPART_CODE_OF_CONDUCT]: 'Disciplinary system regarding {name}',
   [TKeys.PURIFICATION_BODYPART_BEST_PRACTICES]: 'Rules of positive use regarding {name}',
 
   // MENUS
   [TKeys.MENU_SETTINGS]: 'Settings',
   [TKeys.MENU_HOME]: 'Home',
   [TKeys.MENU_PURIFICATION]: 'Purification',
-  [TKeys.MENU_SUNNAHS]: 'Prophetic tradition',
+  [TKeys.MENU_SUNNAHS]: 'Prophetic traditions',
   [TKeys.MENU_INVOCATIONS]: 'Invocations',
   [TKeys.SETTINGS_LANGUAGE]: 'Application language',
+  [TKeys.SETTINGS_RESET]: 'Reset progress',
 
   // BUTTONS
   [TKeys.BUTTON_CLOSE]: 'Close',
-  [TKeys.BUTTON_PURIFICATION]: 'Purification',
-  [TKeys.BUTTON_ILLUMINATION]: 'Illumination',
+  [TKeys.BUTTON_PURIFICATION]: 'Cleaning',
+  [TKeys.BUTTON_ILLUMINATION]: 'Enlightenment',
 
   // LANGUAGES
   [TKeys.LANGUAGE_ARABIC]: 'Arabic',
@@ -57,6 +58,7 @@ export const english: Translations = {
   [TKeys.LANGUAGE_INDONESIAN]: 'Indonesian',
 
   // COMMON
+  [TKeys.STEP]: '{name} step',
   [TKeys.STEP_1]: '1st step',
   [TKeys.STEP_2]: '2nd step',
   [TKeys.STEP_3]: '3rd step',

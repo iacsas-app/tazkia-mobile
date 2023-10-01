@@ -5,6 +5,7 @@ export enum TKeys {
   APPLICATION_TITLE_PRIMARY = 'application.title.primary',
   APPLICATION_TITLE_SECONDARY = 'application.title.secondary',
   PRESENTATION_CENTER = 'home.presentation.center',
+  STEP = 'step',
   STEP_1 = 'step1',
   STEP_2 = 'step2',
   STEP_3 = 'step3',
@@ -48,4 +49,5 @@ export enum TKeys {
   MENU_INVOCATIONS = 'menu.invocations',
   MENU_SETTINGS = 'menu.settings',
   SETTINGS_LANGUAGE = 'settings.app-language',
+  SETTINGS_RESET = 'settings.reset',
 }

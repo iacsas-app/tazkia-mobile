@@ -18,7 +18,7 @@ export default function CheckableRule({ id, item, reverse }: RuleProps) {
       <HStack spacing={10} style={RuleStyles.container} reverse={reverse}>
         <Avatar
           label={checked ? undefined : <Text variant="subtitle2">{id}</Text>}
-          size={32}
+          size={25}
           color={checked ? 'error' : 'secondary'}
           tintColor="white"
           icon={(props) => <Icon name="check-bold" {...props} />}

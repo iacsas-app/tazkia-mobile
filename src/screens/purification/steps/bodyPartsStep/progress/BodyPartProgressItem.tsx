@@ -1,11 +1,13 @@
 import { Avatar, HStack, Text, VStack } from '@react-native-material/core';
+import { useNavigation } from '@react-navigation/native';
 import { Pressable, StyleSheet } from 'react-native';
-import BodyPart, { BodyPartsOrder } from '../../../../../../domains/purification/BodyPart';
-import { useApplication } from '../../../../../../hooks/use-application';
-import { useMessage } from '../../../../../../hooks/use-message';
-import { TKeys } from '../../../../../../locales/constants';
-import GlobalStyles from '../../../../../../styles/GlobalStyles';
-import { findPartProps } from '../../common/Helper';
+import BodyPart, { BodyPartsOrder } from '../../../../../domains/purification/BodyPart';
+import { useApplication } from '../../../../../hooks/use-application';
+import { useMessage } from '../../../../../hooks/use-message';
+import { TKeys } from '../../../../../locales/constants';
+import { PurificationStackNavigationProp } from '../../../../../navigation/types';
+import GlobalStyles from '../../../../../styles/GlobalStyles';
+import { findPartProps } from '../common/Helper';
 import ProgressStatus from './ProgressStatus';
 
 interface ProgressItemProps {
@@ -14,9 +16,14 @@ interface ProgressItemProps {
 export default function BodyPartProgressItem({ value }: ProgressItemProps) {
   const { formatMessage } = useMessage();
   const { arabicOrientation } = useApplication();
+  const navigation = useNavigation<PurificationStackNavigationProp>();
+
+  function handlePress() {
+    navigation.navigate('BodyPartProgress', { value });
+  }
 
   return (
-    <Pressable>
+    <Pressable onPress={handlePress}>
       <HStack spacing={10} style={styles.chip} reverse={arabicOrientation}>
         <VStack style={GlobalStyles.center}>
           <Avatar size={30} image={findPartProps(value.name)} />
@@ -32,12 +39,12 @@ export default function BodyPartProgressItem({ value }: ProgressItemProps) {
           />
         </VStack>
         <VStack spacing={5} style={{ alignItems: `flex-${arabicOrientation ? 'end' : 'start'}` }}>
-          <Text variant="body1" style={{ ...styles.partName, fontSize: arabicOrientation ? 20 : 16 }}>
+          <Text variant="body1" style={{ ...styles.partName, fontSize: arabicOrientation ? 18 : 12 }}>
             {formatMessage(`purification.body-parts.${value.name}`)}
           </Text>
           <VStack style={{ alignItems: 'flex-start' }}>
-            <ProgressStatus item={value.purification} title={formatMessage(TKeys.BUTTON_PURIFICATION)} />
-            <ProgressStatus item={value.illumination} title={formatMessage(TKeys.BUTTON_ILLUMINATION)} />
+            <ProgressStatus items={value.purification} title={formatMessage(TKeys.BUTTON_PURIFICATION)} />
+            <ProgressStatus items={value.illumination} title={formatMessage(TKeys.BUTTON_ILLUMINATION)} />
           </VStack>
         </VStack>
       </HStack>
@@ -63,7 +70,6 @@ const styles = StyleSheet.create({
   },
   partName: {
     fontWeight: 'bold',
-    fontSize: 16,
   },
   numberAvatar: { marginTop: -6, opacity: 0.8, fontSize: 18 },
   numberText: { fontWeight: '900' },

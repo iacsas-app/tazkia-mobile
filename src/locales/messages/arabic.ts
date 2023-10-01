@@ -41,6 +41,7 @@ export const arabic: Translations = {
   [TKeys.MENU_SUNNAHS]: 'سنن نبوية',
   [TKeys.MENU_INVOCATIONS]: 'أذكار',
   [TKeys.SETTINGS_LANGUAGE]: 'لغة التطبيق',
+  [TKeys.SETTINGS_RESET]: 'إعادة ضبط التقدم',
 
   // BUTTONS
   [TKeys.BUTTON_CLOSE]: 'غلق',
@@ -54,6 +55,7 @@ export const arabic: Translations = {
   [TKeys.LANGUAGE_INDONESIAN]: 'الاندونيسية',
 
   // COMMON
+  [TKeys.STEP]: 'مرحلة ال{name}',
   [TKeys.STEP_1]: 'المرحلة الأولى',
   [TKeys.STEP_2]: 'المرحلة الثانية',
   [TKeys.STEP_3]: 'المرحلة الثالثة',

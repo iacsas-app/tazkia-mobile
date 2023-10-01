@@ -1,6 +1,6 @@
 import Icon from '@expo/vector-icons/SimpleLineIcons';
 
-import { HStack, IconButton, Text } from '@react-native-material/core';
+import { Box, HStack, IconButton, Text } from '@react-native-material/core';
 import { useState } from 'react';
 import { Menu, MenuItem } from 'react-native-material-menu';
 import { useMessage } from '../../hooks/use-message';
@@ -30,7 +30,7 @@ export default function MoreMenu(props: MoreMenuProps) {
   }
 
   return (
-    <>
+    <Box style={{ marginRight: 8 }}>
       <Menu
         visible={visible}
         anchor={
@@ -46,6 +46,6 @@ export default function MoreMenu(props: MoreMenuProps) {
         </MenuItem>
       </Menu>
       <SettingsDialog open={showSettings} onClose={handleSettingDialogClose} />
-    </>
+    </Box>
   );
 }

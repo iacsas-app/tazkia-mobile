@@ -1,7 +1,7 @@
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { CompositeNavigationProp, RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { BodyPartType } from '../domains/purification/BodyPart';
+import BodyPart, { BodyPartType } from '../domains/purification/BodyPart';
 import { PurificationType } from '../screens/purification/steps/bodyPartsStep/BodyPartsScreen';
 
 export type TabParamList = {
@@ -22,6 +22,8 @@ export type PurificationParamList = {
   Purification: undefined;
   BodyParts: undefined;
   BodyPartsRules: { type: BodyPartType; mode: PurificationType };
+  BodyPartProgress: { value: BodyPart };
+  BodyPartEvaluation: { partType: BodyPartType; mode: PurificationType };
   PurificationProgress: undefined;
   Mind: undefined;
   Soul: undefined;
@@ -45,8 +47,18 @@ export type PurificationStackNavigationProp = CompositeNavigationProp<
   BottomTabNavigationProp<TabParamList>
 >;
 
-export type BodyPartsRulesStackNavigationProp = CompositeNavigationProp<
+export type BodyPartsRulesNavigationProp = CompositeNavigationProp<
   NativeStackNavigationProp<PurificationParamList, 'BodyPartsRules'>,
+  BottomTabNavigationProp<TabParamList>
+>;
+
+export type BodyPartProgressNavigationProp = CompositeNavigationProp<
+  NativeStackNavigationProp<PurificationParamList, 'BodyPartProgress'>,
+  BottomTabNavigationProp<TabParamList>
+>;
+
+export type BodyPartEvaluationNavigationProp = CompositeNavigationProp<
+  NativeStackNavigationProp<PurificationParamList, 'BodyPartEvaluation'>,
   BottomTabNavigationProp<TabParamList>
 >;
 
@@ -57,3 +69,5 @@ export type SunnahsStackNavigationProp = CompositeNavigationProp<
 
 // Route props
 export type BodyPartsRulesScreenRouteProp = RouteProp<PurificationParamList, 'BodyPartsRules'>;
+export type BodyPartProgressScreenRouteProp = RouteProp<PurificationParamList, 'BodyPartProgress'>;
+export type BodyPartEvaluationScreenRouteProp = RouteProp<PurificationParamList, 'BodyPartEvaluation'>;

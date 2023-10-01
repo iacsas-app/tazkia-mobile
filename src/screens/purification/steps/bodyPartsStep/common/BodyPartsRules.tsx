@@ -1,5 +1,5 @@
 import OctIcon from '@expo/vector-icons/Octicons';
-import { BodyPartType } from '../../../../../domains/purification/BodyPart';
+import BodyPart, { BodyPartType } from '../../../../../domains/purification/BodyPart';
 import { useStoreActions, useStoreState } from '../../../../../stores/hooks';
 import { PurificationType } from '../BodyPartsScreen';
 
@@ -14,7 +14,6 @@ import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';
 import { PurificationStackNavigationProp } from '../../../../../navigation/types';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
-import BodyPartProgress from './BodyPartProgress';
 import { findBodyPartProgress, orderBodyParts, rules } from './Helper';
 
 interface BodyPartsRulesProps {
@@ -22,7 +21,7 @@ interface BodyPartsRulesProps {
   mode: PurificationType;
 }
 export default function BodyPartsRules({ part, mode }: BodyPartsRulesProps) {
-  const { formatMessage } = useMessage();
+  const { formatMessage, intl } = useMessage();
   const { arabicOrientation } = useApplication();
   const navigation = useNavigation<PurificationStackNavigationProp>();
   let purification: Purification | undefined = useStoreState((state) => state.purification.item);
@@ -32,8 +31,8 @@ export default function BodyPartsRules({ part, mode }: BodyPartsRulesProps) {
   const progress: ProgressLine[] | undefined = useMemo(() => findBodyPartProgress(purification, part, mode), []);
 
   function handleStartPress() {
-    const newLine: ProgressLine = { startDate: new Date(), day: 1, errors: [] };
-    const newPart = { name: part, [mode]: [newLine] };
+    const newLine: ProgressLine = { startDate: intl.formatDate(Date()), day: 5, errors: [] };
+    const newPart: BodyPart = { name: part, [mode]: [newLine, newLine, newLine] };
 
     if (!purification) {
       purification = { id: 0, bodyParts: [newPart], mind: [], soul: [] };
@@ -53,7 +52,6 @@ export default function BodyPartsRules({ part, mode }: BodyPartsRulesProps) {
 
   function title(part: BodyPartType, mode: PurificationType) {
     const name = formatMessage(`purification.body-parts.${part}_${mode === 'purification' ? 1 : 2}`);
-    console.log(name);
     const subject = formatMessage(`${mode}.bodypart.code-of-conduct`, { name });
     return subject;
   }
@@ -74,7 +72,7 @@ export default function BodyPartsRules({ part, mode }: BodyPartsRulesProps) {
         ))}
       </VStack>
       {progress ? (
-        <BodyPartProgress lines={progress} />
+        <Text>Already started</Text>
       ) : (
         <Button title="start" style={styles.button} onPress={handleStartPress} />
       )}

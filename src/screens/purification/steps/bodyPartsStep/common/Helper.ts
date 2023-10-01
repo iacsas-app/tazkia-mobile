@@ -112,10 +112,10 @@ export const rules: Record<BodyPartType, Record<PurificationType, string[]>> = {
       'Lorem ipsum dolor sit amet consectetur adipisicing elit',
       'Dolor sit amet consectetur adipisicing elit',
     ],
-    illumination: ['test illumination'],
+    illumination: ['test illumination', '2'],
   },
   hands: {
-    purification: [],
+    purification: ['2'],
     illumination: [],
   },
   tongue: {
@@ -124,7 +124,7 @@ export const rules: Record<BodyPartType, Record<PurificationType, string[]>> = {
   },
   ear: {
     purification: ['test purification'],
-    illumination: ['test illumination'],
+    illumination: ['test illumination', '2', '3', '4', '5', '2', '2', '2', '2', '2', '2', '2'],
   },
   belly: {
     purification: [],

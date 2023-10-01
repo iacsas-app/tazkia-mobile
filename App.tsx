@@ -9,7 +9,7 @@ export default function App() {
     <Providers>
       <Provider {...props}>
         <RootNavigator />
-        <StatusBar />
+        <StatusBar animated={true} backgroundColor="white" showHideTransition={'fade'} hidden={false} />
       </Provider>
     </Providers>
   );

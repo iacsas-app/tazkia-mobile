@@ -6,7 +6,7 @@ import { BodyPartType, BodyPartsOrder } from '../../../../domains/purification/B
 import { useApplication } from '../../../../hooks/use-application';
 import { useMessage } from '../../../../hooks/use-message';
 import { TKeys } from '../../../../locales/constants';
-import { BodyPartsRulesStackNavigationProp } from '../../../../navigation/types';
+import { BodyPartsRulesNavigationProp } from '../../../../navigation/types';
 import { groupBy } from '../../../../services/Helpers';
 import GlobalStyles from '../../../../styles/GlobalStyles';
 import BodyPartItem from './common/BodyPartItem';
@@ -17,7 +17,7 @@ export type PurificationType = 'purification' | 'illumination';
 export default function BodyPartsScreen() {
   const { arabicOrientation } = useApplication();
   const { formatMessage } = useMessage();
-  const navigation = useNavigation<BodyPartsRulesStackNavigationProp>();
+  const navigation = useNavigation<BodyPartsRulesNavigationProp>();
   const partsByLine = useMemo(() => groupBy(bodyParts, 'line'), []);
 
   function handleDetailsOpen(type: BodyPartType, mode: PurificationType) {
