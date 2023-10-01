@@ -15,6 +15,7 @@ const GlobalStyles = StyleSheet.create({
     alignItems: 'center',
     textAlign: 'center',
   },
+  centerAlign: { alignItems: 'center' },
 });
 
 export default GlobalStyles;

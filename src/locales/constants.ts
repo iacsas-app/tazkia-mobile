@@ -50,4 +50,10 @@ export enum TKeys {
   MENU_SETTINGS = 'menu.settings',
   SETTINGS_LANGUAGE = 'settings.app-language',
   SETTINGS_RESET = 'settings.reset',
+  PROGRESS_TITLE = 'progress.title',
+  PROGRESS_START_DATE = 'progress.start-date',
+  PROGRESS_SUCCESSFUL_DAYS = 'progress.successful-days',
+  PROGRESS_FAILED_ATTEMPTS = 'progress.failed-attempts',
+  PROGRESS_FAILED_ATTEMPTS_RULE = 'progress.failed-attempts.rule',
+  PROGRESS_START_DAILY_EVALUATION = 'progress.start-daily-evaluation',
 }
