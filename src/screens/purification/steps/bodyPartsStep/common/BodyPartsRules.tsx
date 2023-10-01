@@ -24,15 +24,33 @@ export default function BodyPartsRules({ part, mode }: BodyPartsRulesProps) {
   const { formatMessage, intl } = useMessage();
   const { arabicOrientation } = useApplication();
   const navigation = useNavigation<PurificationStackNavigationProp>();
-  let purification: Purification | undefined = useStoreState((state) => state.purification.item);
   const createOrUpdate = useStoreActions((actions) => actions.purification.createOrUpdate);
+  let purification: Purification | undefined = useStoreState((state) => state.purification.item);
 
   const items: string[] = useMemo(() => rules[part][mode], []);
   const progress: ProgressLine[] | undefined = useMemo(() => findBodyPartProgress(purification, part, mode), []);
 
+  function randomData() {
+    const attemps = Math.random() * 102;
+
+    const data: ProgressLine[] = [];
+    for (let index = 0; index < attemps; index++) {
+      const line: ProgressLine = {
+        startDate: intl.formatDate(Date.now() + Math.round(Math.random() * 9999999999999)),
+        day: Math.floor(Math.random() * 30),
+        errors: [],
+      };
+      data.push(line);
+    }
+    return data;
+  }
+
   function handleStartPress() {
-    const newLine: ProgressLine = { startDate: intl.formatDate(Date()), day: 5, errors: [] };
-    const newPart: BodyPart = { name: part, [mode]: [newLine, newLine, newLine] };
+    //const newLine: ProgressLine = { startDate: intl.formatDate(Date.now()), day: 1, errors: [] };
+    //const newPart: BodyPart = { name: part, [mode]: [newLine] };
+
+    const data = randomData();
+    const newPart: BodyPart = { name: part, [mode]: data };
 
     if (!purification) {
       purification = { id: 0, bodyParts: [newPart], mind: [], soul: [] };
@@ -41,7 +59,7 @@ export default function BodyPartsRules({ part, mode }: BodyPartsRulesProps) {
         purification.bodyParts.push(newPart);
       } else {
         purification.bodyParts = purification.bodyParts.map((item) =>
-          item.name === part ? { ...item, [mode]: [newLine] } : item,
+          item.name === part ? { ...item, [mode]: data } : item,
         );
       }
       purification.bodyParts = orderBodyParts(purification.bodyParts);

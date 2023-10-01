@@ -53,13 +53,19 @@ export const french: Translations = {
 
   // LANGUAGES
   [TKeys.LANGUAGE_ARABIC]: 'Arabe',
-  [TKeys.LANGUAGE_FRENCH]: 'Francais',
+  [TKeys.LANGUAGE_FRENCH]: 'Français',
   [TKeys.LANGUAGE_ENGLISH]: 'Anglais',
   [TKeys.LANGUAGE_INDONESIAN]: 'Indonésien',
 
   // COMMON
   [TKeys.STEP]: 'Étape de {name}',
-  [TKeys.STEP_1]: '1ère étape',
-  [TKeys.STEP_2]: '2ème étape',
-  [TKeys.STEP_3]: '3ème étape',
+  [TKeys.STEP_1]: '1ʳᵉ étape',
+  [TKeys.STEP_2]: '2ᵉ étape',
+  [TKeys.STEP_3]: '3ᵉ étape',
+  [TKeys.PROGRESS_TITLE]: 'Progrès',
+  [TKeys.PROGRESS_START_DATE]: 'Date de démarrage',
+  [TKeys.PROGRESS_SUCCESSFUL_DAYS]: 'Jours réussis',
+  [TKeys.PROGRESS_FAILED_ATTEMPTS]: 'Tentatives échouées',
+  [TKeys.PROGRESS_FAILED_ATTEMPTS_RULE]: 'Violation des règles {rules} le jour {day}',
+  [TKeys.PROGRESS_START_DAILY_EVALUATION]: 'Évaluer ma journée',
 };
