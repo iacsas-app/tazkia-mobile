@@ -1,52 +1,26 @@
 import { TKeys, Translations } from '../constants';
 
 export const indonesian: Translations = {
-  [TKeys.APPLICATION_TITLE_PRIMARY]: 'भविष्यसूचक दृष्टिकोण',
-  [TKeys.APPLICATION_TITLE_SECONDARY]: 'सफलता का उपाय',
+  [TKeys.APPLICATION_TITLE_PRIMARY]: 'Pendekatan profetik',
+  [TKeys.APPLICATION_TITLE_SECONDARY]: 'Metode kesuksesan',
 
   // PRESENTATION
-  [TKeys.PRESENTATION_CENTER]: 'सूफी और सौंदर्य अध्ययन के लिए अंतर्राष्ट्रीय शैक्षणिक केंद्र',
+  [TKeys.PRESENTATION_CENTER]: 'Pusat Akademik Internasional untuk Studi Sufi dan Estetika',
 
   // PURIFICATION
-  [TKeys.PURIFICATION_BODYPART_TITLE]: 'अंगों को शुद्ध करना',
-  [TKeys.PURIFICATION_BODYPART_DESCRIPTION]: 'शरीर के सात अंगों को शुद्ध और प्रकाशित करके हृदय को शुद्ध करना',
-  [TKeys.PURIFICATION_MIND_TITLE]: 'मन को शुद्ध करना',
-  [TKeys.PURIFICATION_SOUL_TITLE]: 'स्वयं की शुद्धि',
-  [TKeys.PURIFICATION_BODY_PARTS_EYES]: 'निजी अंग',
-  [TKeys.PURIFICATION_BODY_PARTS_HANDS]: 'हाथ',
-  [TKeys.PURIFICATION_BODY_PARTS_TONGUE]: 'जीभ',
-  [TKeys.PURIFICATION_BODY_PARTS_EAR]: 'कान',
-  [TKeys.PURIFICATION_BODY_PARTS_BELLY]: 'पेट',
-  [TKeys.PURIFICATION_BODY_PARTS_FEET]: 'पैर',
-  [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS]: 'निजी अंग',
+  [TKeys.PURIFICATION_BODYPART_TITLE]: 'Pemurnian bagian tubuh',
+  [TKeys.PURIFICATION_BODYPART_DESCRIPTION]: 'Mensucikan hati melalui menyucikan dan mencerahkan tujuh bagian tubuh',
+  [TKeys.PURIFICATION_MIND_TITLE]: 'Pemurnian pikiran',
+  [TKeys.PURIFICATION_SOUL_TITLE]: 'Pemurnian jiwa',
+  [TKeys.PURIFICATION_BODY_PARTS_EYES]: 'Mata',
+  [TKeys.PURIFICATION_BODY_PARTS_HANDS]: 'Tangan',
+  [TKeys.PURIFICATION_BODY_PARTS_TONGUE]: 'Lidah',
+  [TKeys.PURIFICATION_BODY_PARTS_EAR]: 'telinga',
+  [TKeys.PURIFICATION_BODY_PARTS_BELLY]: 'perut',
+  [TKeys.PURIFICATION_BODY_PARTS_FEET]: 'kaki',
+  [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS]: 'bagian privat',
   [TKeys.PURIFICATION_BODYPART_CODE_OF_CONDUCT]: 'Sistem disiplin tentang {name}',
   [TKeys.PURIFICATION_BODYPART_BEST_PRACTICES]: 'Aturan penggunaan positif mengenai {name} (To translate)',
-
-  // MENUS
-  [TKeys.MENU_SETTINGS]: 'समायोजन',
-  [TKeys.MENU_HOME]: 'घर',
-  [TKeys.MENU_PURIFICATION]: 'शुद्धिकरण',
-  [TKeys.MENU_SUNNAHS]: 'सुनान',
-  [TKeys.MENU_INVOCATIONS]: 'धिक्र',
-  [TKeys.SETTINGS_LANGUAGE]: 'अनुप्रयोग भाषा',
-  [TKeys.SETTINGS_RESET]: 'Setel ulang kemajuan',
-
-  // BUTTONS
-  [TKeys.BUTTON_CLOSE]: 'बंद करना',
-  [TKeys.BUTTON_PURIFICATION]: 'शुद्धिकरण',
-  [TKeys.BUTTON_ILLUMINATION]: 'रोशनी',
-
-  // LANGUAGES
-  [TKeys.LANGUAGE_ARABIC]: 'अरबी',
-  [TKeys.LANGUAGE_FRENCH]: 'फ़्रेंच',
-  [TKeys.LANGUAGE_ENGLISH]: 'अंग्रेज़ी',
-  [TKeys.LANGUAGE_INDONESIAN]: 'हिन्दू धर्म',
-
-  // COMMON
-  [TKeys.STEP]: 'panggung',
-  [TKeys.STEP_1]: 'प्रथम स्थान',
-  [TKeys.STEP_2]: 'अगली बार',
-  [TKeys.STEP_3]: 'अगले 3 दिन',
   [TKeys.PURIFICATION_BODY_PARTS_EYES_1]: '',
   [TKeys.PURIFICATION_BODY_PARTS_EYES_2]: '',
   [TKeys.PURIFICATION_BODY_PARTS_HANDS_1]: '',
@@ -61,4 +35,36 @@ export const indonesian: Translations = {
   [TKeys.PURIFICATION_BODY_PARTS_FEET_2]: '',
   [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS_1]: '',
   [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS_2]: '',
+
+  // MENUS
+  [TKeys.MENU_SETTINGS]: 'pengaturan',
+  [TKeys.MENU_HOME]: 'Rumah',
+  [TKeys.MENU_PURIFICATION]: 'Pemurnian',
+  [TKeys.MENU_SUNNAHS]: 'tradisi kenabian',
+  [TKeys.MENU_INVOCATIONS]: 'Doa',
+  [TKeys.SETTINGS_LANGUAGE]: 'Bahasa aplikasi',
+  [TKeys.SETTINGS_RESET]: 'Setel ulang kemajuan',
+
+  // BUTTONS
+  [TKeys.BUTTON_CLOSE]: 'Menutup',
+  [TKeys.BUTTON_PURIFICATION]: 'Pembersihan',
+  [TKeys.BUTTON_ILLUMINATION]: 'Pencerahan',
+
+  // LANGUAGES
+  [TKeys.LANGUAGE_ARABIC]: 'Arab',
+  [TKeys.LANGUAGE_FRENCH]: 'Perancis',
+  [TKeys.LANGUAGE_ENGLISH]: 'Inggris',
+  [TKeys.LANGUAGE_INDONESIAN]: 'bahasa Indonesia',
+
+  // COMMON
+  [TKeys.STEP]: 'panggung',
+  [TKeys.STEP_1]: '1ᵉ langkah',
+  [TKeys.STEP_2]: '2ᵉ langkah',
+  [TKeys.STEP_3]: '3ᵉ langkah',
+  [TKeys.PROGRESS_TITLE]: 'Kemajuan',
+  [TKeys.PROGRESS_START_DATE]: 'Mulai tanggal',
+  [TKeys.PROGRESS_SUCCESSFUL_DAYS]: 'Hari-hari sukses',
+  [TKeys.PROGRESS_FAILED_ATTEMPTS]: 'Upaya yang gagal',
+  [TKeys.PROGRESS_FAILED_ATTEMPTS_RULE]: 'Pelanggaran aturan {rules} pada hari {day}',
+  [TKeys.PROGRESS_START_DAILY_EVALUATION]: 'Evaluasi hari saya',
 };
