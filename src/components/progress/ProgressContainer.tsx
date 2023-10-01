@@ -72,11 +72,10 @@ const styles = StyleSheet.create({
   titleBox: {
     paddingHorizontal: 15,
     paddingVertical: 4,
-    borderBottomWidth: 6,
+    borderBottomWidth: 1,
   },
   title: {
     fontWeight: 'bold',
-    color: 'white',
     fontSize: 18,
   },
   subtitle: {
@@ -85,15 +84,15 @@ const styles = StyleSheet.create({
   plusButton: { marginTop: -6, marginHorizontal: -10 },
   content: { ...GlobalStyles.center, paddingVertical: 10 },
   orange: {
-    backgroundColor: '#f4a460',
-    borderBottomColor: '#ffe4e1',
+    backgroundColor: '#ffe4e1',
+    borderBottomColor: '#f4a460',
   },
   blue: {
-    backgroundColor: '#4682b4',
-    borderBottomColor: '#87ceeb',
+    backgroundColor: '#87ceeb',
+    borderBottomColor: '#4682b4',
   },
   green: {
-    backgroundColor: '#3cb371',
-    borderBottomColor: '#98fb98',
+    backgroundColor: '#98fb98',
+    borderBottomColor: '#3cb371',
   },
 });

@@ -19,7 +19,7 @@ export default function PressableStep({ item }: Props) {
   const navigation = useNavigation<PurificationStackNavigationProp>();
 
   function handlePress() {
-    navigation.navigate(item.route);
+    navigation.navigate(item.route as any);
   }
 
   return (

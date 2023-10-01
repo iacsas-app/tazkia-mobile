@@ -2,11 +2,11 @@ import { Button, VStack } from '@react-native-material/core';
 import { useNavigation } from '@react-navigation/native';
 import { useMemo } from 'react';
 import { View } from 'react-native';
-import { SunnahsParamList, SunnahsStackNavigationProp } from '../../navigation/types';
+import { SunnahsNavigationProp, SunnahsParamList } from '../../navigation/types';
 import GlobalStyles from '../../styles/GlobalStyles';
 
 export default function SunnahsScreen() {
-  const navigation = useNavigation<SunnahsStackNavigationProp>();
+  const navigation = useNavigation<SunnahsNavigationProp>();
   const parts = useMemo(() => ['Habits', 'Practice', 'SpiritTravels'], []);
 
   function handlePress(route: keyof SunnahsParamList) {
