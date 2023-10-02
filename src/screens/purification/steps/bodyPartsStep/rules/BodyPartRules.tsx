@@ -3,10 +3,10 @@ import { BodyPartType } from '../../../../../domains/purification/BodyPart';
 import { useStoreActions, useStoreState } from '../../../../../stores/hooks';
 import { PurificationStep } from '../BodyPartsScreen';
 
-import { Avatar, Box, Button, HStack, Text, VStack } from '@react-native-material/core';
+import { Avatar, Button, HStack, Text, VStack } from '@react-native-material/core';
 import { useNavigation } from '@react-navigation/native';
 import { useMemo } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { SafeAreaView, ScrollView, StatusBar, StyleSheet } from 'react-native';
 import SimpleRule from '../../../../../components/rules/SimpleRule';
 import ProgressLine from '../../../../../domains/common/ProgressLine';
 import Purification from '../../../../../domains/purification/Purification';
@@ -31,6 +31,7 @@ export default function BodyPartsRules({ part, step }: BodyPartsRulesProps) {
 
   const items: string[] = useMemo(() => rules[part][step], []);
   const progress: ProgressLine[] | undefined = findBodyPart(part, step);
+  const isCleaning = step === 'cleaning';
 
   function handlePress() {
     purification = buildBodyParts(part, step, purification, intl.formatDate);
@@ -48,23 +49,33 @@ export default function BodyPartsRules({ part, step }: BodyPartsRulesProps) {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView
+      style={{
+        ...styles.container,
+        paddingTop: StatusBar.currentHeight,
+      }}
+    >
       <Avatar image={findPartProps(part)} size={120} />
-      <HStack spacing={8} style={styles.system} reverse={arabicOrientation}>
-        <Icon name="account-tie-hat" size={40} color="red" />
+      <HStack spacing={15} style={styles.system} reverse={arabicOrientation}>
+        <Icon
+          name={isCleaning ? 'account-tie-hat' : 'lightbulb-on'}
+          color={isCleaning ? 'blue' : '#5f9ea0'}
+          size={40}
+        />
         <Text variant="body1" style={styles.title}>
           {title(part, step)}
         </Text>
       </HStack>
-      <VStack spacing={2}>
-        {items.map((rule: string, index: number) => (
-          <Box key={index} style={styles.line}>
-            <SimpleRule id={index + 1} item={formatMessage(rule)} reverse={arabicOrientation} />
-          </Box>
-        ))}
-      </VStack>
-      {!progress && <Button title={formatMessage(TKeys.BUTTON_ADD)} style={styles.action} onPress={handlePress} />}
-    </View>
+
+      <ScrollView>
+        <VStack mv={15}>
+          {items.map((rule: string, index: number) => (
+            <SimpleRule key={index} id={index + 1} item={formatMessage(rule)} reverse={arabicOrientation} />
+          ))}
+        </VStack>
+        {!progress && <Button title={formatMessage(TKeys.BUTTON_ADD)} style={styles.action} onPress={handlePress} />}
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
@@ -80,12 +91,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '600',
   },
-  system: { alignItems: 'baseline', paddingHorizontal: 17, marginBottom: 8 },
-  line: {
-    marginHorizontal: 20,
-  },
+  system: { alignItems: 'flex-start', paddingHorizontal: 15, marginVertical: 15 },
   image: { borderRadius: 80 },
   action: {
-    marginTop: 5,
+    marginVertical: 25,
+    marginHorizontal: 55,
   },
 });

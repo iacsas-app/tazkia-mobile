@@ -86,6 +86,7 @@ export const english: Translations = {
   // BUTTONS
   [TKeys.BUTTON_CLOSE]: 'Close',
   [TKeys.BUTTON_ADD]: 'Add',
+  [TKeys.BUTTON_SAVE]: 'Save',
   [TKeys.BUTTON_CLEANING]: 'Cleaning',
   [TKeys.BUTTON_ENLIGHTENMENT]: 'Enlightenment',
 
@@ -106,4 +107,5 @@ export const english: Translations = {
   [TKeys.PROGRESS_FAILED_ATTEMPTS]: 'Failed attempts',
   [TKeys.PROGRESS_FAILED_ATTEMPTS_RULE]: 'Violation of rules {rules} on day {day}',
   [TKeys.PROGRESS_START_DAILY_EVALUATION]: 'Evaluate my day',
+  [TKeys.PROGRESS_EVALUATION_MESSAGE]: 'Select the rules that were violated',
 };

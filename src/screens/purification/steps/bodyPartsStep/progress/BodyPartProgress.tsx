@@ -16,7 +16,7 @@ export default function BodyPartProgress({ part, step, lines }: BodyPartProgress
   const { formatMessage } = useMessage();
   const navigation = useNavigation<BodyPartEvaluationNavigationProp>();
   const last = lines.at(lines.length - 1);
-  const isPurification = step === 'cleaning';
+  const isCleaning = step === 'cleaning';
 
   if (!last) {
     return <></>;
@@ -36,9 +36,9 @@ export default function BodyPartProgress({ part, step, lines }: BodyPartProgress
       title={title}
       lines={lines}
       maxDays={30}
-      iconName={isPurification ? 'account-tie-hat' : 'lightbulb-on'}
-      iconColor={isPurification ? 'blue' : '#5f9ea0'}
-      backgroundColor={isPurification ? '#add8e6' : '#f5fffa'}
+      iconName={isCleaning ? 'account-tie-hat' : 'lightbulb-on'}
+      iconColor={isCleaning ? 'blue' : '#5f9ea0'}
+      backgroundColor={isCleaning ? '#add8e6' : '#f5fffa'}
       attemptFormatter={formatAttempt}
       onEvaluate={handleEvaluate}
     />

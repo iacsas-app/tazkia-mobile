@@ -86,6 +86,7 @@ export const indonesian: Translations = {
   // BUTTONS
   [TKeys.BUTTON_CLOSE]: 'Menutup',
   [TKeys.BUTTON_ADD]: 'Menambahkan',
+  [TKeys.BUTTON_SAVE]: 'Menyimpan',
   [TKeys.BUTTON_CLEANING]: 'Pembersihan',
   [TKeys.BUTTON_ENLIGHTENMENT]: 'Pencerahan',
 
@@ -93,10 +94,10 @@ export const indonesian: Translations = {
   [TKeys.LANGUAGE_ARABIC]: 'Arab',
   [TKeys.LANGUAGE_FRENCH]: 'Perancis',
   [TKeys.LANGUAGE_ENGLISH]: 'Inggris',
-  [TKeys.LANGUAGE_INDONESIAN]: 'bahasa Indonesia',
+  [TKeys.LANGUAGE_INDONESIAN]: 'Bahasa Indonesia',
 
   // COMMON
-  [TKeys.STEP]: 'panggung',
+  [TKeys.STEP]: 'Panggung',
   [TKeys.STEP_1]: '1ᵉ langkah',
   [TKeys.STEP_2]: '2ᵉ langkah',
   [TKeys.STEP_3]: '3ᵉ langkah',
@@ -106,4 +107,5 @@ export const indonesian: Translations = {
   [TKeys.PROGRESS_FAILED_ATTEMPTS]: 'Upaya yang gagal',
   [TKeys.PROGRESS_FAILED_ATTEMPTS_RULE]: 'Pelanggaran aturan {rules} pada hari {day}',
   [TKeys.PROGRESS_START_DAILY_EVALUATION]: 'Evaluasi hari saya',
+  [TKeys.PROGRESS_EVALUATION_MESSAGE]: 'Pilih aturan yang dilanggar',
 };
