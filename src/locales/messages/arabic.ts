@@ -10,9 +10,9 @@ export const arabic: Translations = {
   [TKeys.PURIFICATION_BODYPART_DESCRIPTION]: 'تزكية القلب من خلال تطهير وتنوير الجوارح السبعة',
   [TKeys.PURIFICATION_MIND_TITLE]: 'تزكية العقل',
   [TKeys.PURIFICATION_SOUL_TITLE]: 'تزكية النفس',
-  [TKeys.PURIFICATION_BODY_PARTS_EYES]: 'العين',
-  [TKeys.PURIFICATION_BODY_PARTS_EYES_1]: 'بالعين',
-  [TKeys.PURIFICATION_BODY_PARTS_EYES_2]: 'للعين',
+  [TKeys.PURIFICATION_BODY_PARTS_EYE]: 'العين',
+  [TKeys.PURIFICATION_BODY_PARTS_EYE_1]: 'بالعين',
+  [TKeys.PURIFICATION_BODY_PARTS_EYE_2]: 'للعين',
   [TKeys.PURIFICATION_BODY_PARTS_HANDS]: 'اليدين',
   [TKeys.PURIFICATION_BODY_PARTS_HANDS_1]: 'باليدين',
   [TKeys.PURIFICATION_BODY_PARTS_HANDS_2]: 'لليدين',
@@ -33,6 +33,27 @@ export const arabic: Translations = {
   [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS_2]: 'للفرج',
   [TKeys.PURIFICATION_BODYPART_DISCIPLINARY_SYSTEM]: 'النظام التأديــبي فيما يتعلق {name}',
   [TKeys.PURIFICATION_BODYPART_POSITIVE_USAGE]: 'قواعد الاستخدام الإيجابي {name}',
+  [TKeys.PURIFICATION_BODY_PARTS_EYE_CLEANING_RULE_1]: 'حفظهم من النظر بشهوة للجنس الآخر',
+  [TKeys.PURIFICATION_BODY_PARTS_EYE_CLEANING_RULE_2]:
+    'حفظهم من النظر للصور المحرمة في المجلات أو الفيديوهات على شبكة الإنترنيت أو التلفاز',
+  [TKeys.PURIFICATION_BODY_PARTS_EYE_CLEANING_RULE_3]: 'النظر بحسد أو كره أو بطريقة محقرة',
+  [TKeys.PURIFICATION_BODY_PARTS_EYE_CLEANING_RULE_4]: 'حفظهم من النظر إلى الأشياء الدنيوية التي تأخذك عن ذكر الله',
+  [TKeys.PURIFICATION_BODY_PARTS_EYE_CLEANING_RULE_5]: 'التأمل المفرط في الدنيا وتمني امتلاكها بشدة',
+  [TKeys.PURIFICATION_BODY_PARTS_EYE_ENLIGHTENMENT_RULE_1]: 'غض البصر حتى عن الأشياء المباحة',
+  [TKeys.PURIFICATION_BODY_PARTS_EYE_ENLIGHTENMENT_RULE_2]: 'عود عينيك طاعتك ولا تجعلهما تلتفت إلى اتجاهات مختلفة',
+  [TKeys.PURIFICATION_BODY_PARTS_EYE_ENLIGHTENMENT_RULE_3]: 'حاول ألا تطلق عينيك في النظر إلى ما حرم الله',
+  [TKeys.PURIFICATION_BODY_PARTS_EYE_ENLIGHTENMENT_RULE_4]:
+    'متى نظرت إلى العالم فاجعل هذا في التفكر في الله والآخرة واجعلها فرصة لتذكر نعم الله وتذكر يوم القيامة',
+  [TKeys.PURIFICATION_BODY_PARTS_EYE_ENLIGHTENMENT_RULE_5]:
+    'انظر بعين الرحمة وكن متسامحا وتذكر أن لكل منا قصوره (تجاوز النظر للعيوب وانظر إلى النور والخير بداخل الآخر)',
+  [TKeys.PURIFICATION_BODY_PARTS_EYE_ENLIGHTENMENT_RULE_6]:
+    'عندما تفتح أو تغلق عينيك تأمل واستشعر صفات الله وأسمائه. وحاول أن تعيش ما عاش ورأى وشعر به الرسول الكريم ﷺ واجعل كل طرفة عين بداية جديدة في حياة التوبة',
+  [TKeys.PURIFICATION_BODY_PARTS_HANDS_CLEANING_RULE_1]: 'عدم ملامسة الجنس الآخر بشهوة',
+  [TKeys.PURIFICATION_BODY_PARTS_HANDS_CLEANING_RULE_2]: 'عدم ملامسة الأعضاء التناسلية بدون حاجة',
+  [TKeys.PURIFICATION_BODY_PARTS_HANDS_CLEANING_RULE_3]: 'لا تستعمل يديك في السرقة أو في الاحتيال',
+  [TKeys.PURIFICATION_BODY_PARTS_HANDS_CLEANING_RULE_4]: 'لا تؤذ بيديك أحدا كيفما كان',
+  [TKeys.PURIFICATION_BODY_PARTS_HANDS_CLEANING_RULE_5]: 'لا تستعملهما في الإشارات السيئة',
+  [TKeys.PURIFICATION_BODY_PARTS_HANDS_CLEANING_RULE_6]: 'لا تكتب بها الإساءات ولا الافتراءات',
 
   // MENUS
   [TKeys.MENU_SETTINGS]: 'إعدادات',
@@ -53,7 +74,7 @@ export const arabic: Translations = {
   [TKeys.LANGUAGE_ARABIC]: 'العربية',
   [TKeys.LANGUAGE_FRENCH]: 'الفرنسية',
   [TKeys.LANGUAGE_ENGLISH]: 'الإنجليزية',
-  [TKeys.LANGUAGE_INDONESIAN]: 'الاندونيسية',
+  [TKeys.LANGUAGE_INDONESIAN]: 'الإندونيسية',
 
   // COMMON
   [TKeys.STEP]: 'مرحلة ال{name}',
