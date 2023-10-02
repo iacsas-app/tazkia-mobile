@@ -35,7 +35,7 @@ export function buildBodyParts(
   purification: Purification | undefined,
   formatDate: (date: number) => string,
 ) {
-  const newLine: ProgressLine = { startDate: formatDate(Date.now()), day: 30, errors: [] };
+  const newLine: ProgressLine = { startDate: formatDate(Date.now()), day: 1, errors: [] };
   const newPart: BodyPart = { name: part, [mode]: [newLine] };
 
   if (!purification) {
@@ -75,7 +75,7 @@ export const bodyParts: PartItem[] = [
   {
     type: 'eye',
     line: 1,
-    nameKey: TKeys.PURIFICATION_BODY_PARTS_EYES,
+    nameKey: TKeys.PURIFICATION_BODY_PARTS_EYE,
     imageSource: require('./../../../../../../assets/img/purification/body-parts/eye.jpg'),
   },
   {
@@ -119,15 +119,30 @@ export const bodyParts: PartItem[] = [
 export const rules: Record<BodyPartType, Record<PurificationStep, string[]>> = {
   eye: {
     cleaning: [
-      'Aliquid tempora, possimus totam maxime Aliquid tempora',
-      'Cumque repellat optio aliquid tempora',
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit',
-      'Dolor sit amet consectetur adipisicing elit',
+      TKeys.PURIFICATION_BODY_PARTS_EYE_CLEANING_RULE_1,
+      TKeys.PURIFICATION_BODY_PARTS_EYE_CLEANING_RULE_2,
+      TKeys.PURIFICATION_BODY_PARTS_EYE_CLEANING_RULE_3,
+      TKeys.PURIFICATION_BODY_PARTS_EYE_CLEANING_RULE_4,
+      TKeys.PURIFICATION_BODY_PARTS_EYE_CLEANING_RULE_5,
     ],
-    enlightenment: ['test enlightenment', '2'],
+    enlightenment: [
+      TKeys.PURIFICATION_BODY_PARTS_EYE_ENLIGHTENMENT_RULE_1,
+      TKeys.PURIFICATION_BODY_PARTS_EYE_ENLIGHTENMENT_RULE_2,
+      TKeys.PURIFICATION_BODY_PARTS_EYE_ENLIGHTENMENT_RULE_3,
+      TKeys.PURIFICATION_BODY_PARTS_EYE_ENLIGHTENMENT_RULE_4,
+      TKeys.PURIFICATION_BODY_PARTS_EYE_ENLIGHTENMENT_RULE_5,
+      TKeys.PURIFICATION_BODY_PARTS_EYE_ENLIGHTENMENT_RULE_6,
+    ],
   },
   hands: {
-    cleaning: ['2'],
+    cleaning: [
+      TKeys.PURIFICATION_BODY_PARTS_HANDS_CLEANING_RULE_1,
+      TKeys.PURIFICATION_BODY_PARTS_HANDS_CLEANING_RULE_2,
+      TKeys.PURIFICATION_BODY_PARTS_HANDS_CLEANING_RULE_3,
+      TKeys.PURIFICATION_BODY_PARTS_HANDS_CLEANING_RULE_4,
+      TKeys.PURIFICATION_BODY_PARTS_HANDS_CLEANING_RULE_5,
+      TKeys.PURIFICATION_BODY_PARTS_HANDS_CLEANING_RULE_6,
+    ],
     enlightenment: [],
   },
   tongue: {
