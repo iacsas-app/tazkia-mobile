@@ -34,8 +34,8 @@ export const english: Translations = {
   [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS]: 'Private parts',
   [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS_1]: 'the private parts',
   [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS_2]: 'the private parts',
-  [TKeys.PURIFICATION_BODYPART_CODE_OF_CONDUCT]: 'Disciplinary system regarding {name}',
-  [TKeys.PURIFICATION_BODYPART_BEST_PRACTICES]: 'Rules of positive use regarding {name}',
+  [TKeys.PURIFICATION_BODYPART_DISCIPLINARY_SYSTEM]: 'Disciplinary system regarding {name}',
+  [TKeys.PURIFICATION_BODYPART_POSITIVE_USAGE]: 'Rules of positive use regarding {name}',
 
   // MENUS
   [TKeys.MENU_SETTINGS]: 'Settings',
@@ -48,8 +48,9 @@ export const english: Translations = {
 
   // BUTTONS
   [TKeys.BUTTON_CLOSE]: 'Close',
-  [TKeys.BUTTON_PURIFICATION]: 'Cleaning',
-  [TKeys.BUTTON_ILLUMINATION]: 'Enlightenment',
+  [TKeys.BUTTON_ADD]: 'Add',
+  [TKeys.BUTTON_CLEANING]: 'Cleaning',
+  [TKeys.BUTTON_ENLIGHTENMENT]: 'Enlightenment',
 
   // LANGUAGES
   [TKeys.LANGUAGE_ARABIC]: 'Arabic',

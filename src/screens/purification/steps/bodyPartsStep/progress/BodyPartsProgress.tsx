@@ -18,8 +18,9 @@ export default function BodyPartsProgress({ items, onAdd }: BodyPartsProgressPro
   const { arabicOrientation } = useApplication();
   const { formatMessage } = useMessage();
   const map = useMemo(() => mapByIndex(items), []);
+
   const allInProgress = useMemo(
-    () => items.length === 7 && items.every((item: BodyPart) => item.purification && item.illumination),
+    () => items.length === 7 && items.every((item: BodyPart) => item.cleaning && item.enlightenment),
     [items],
   );
 

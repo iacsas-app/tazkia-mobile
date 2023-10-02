@@ -14,19 +14,18 @@ import ProgressStatusInfo from './ProgressStatusInfo';
 
 interface Props extends FailedAttemptsBase {
   title: string;
-  backgroundColor: string;
-  iconName: string;
-  iconColor: string;
   lines: ProgressLine[];
   maxDays: number;
+  iconName: string;
+  iconColor: string;
+  backgroundColor: string;
+  onEvaluate: () => void;
 }
 export default function ProgressStatusContainer(props: Props) {
   const { title, iconName, iconColor, backgroundColor, lines, maxDays } = props;
   const { formatMessage } = useMessage();
   const { arabicOrientation } = useApplication();
   const last = lines.at(lines.length - 1);
-
-  function handlePress() {}
 
   if (!last) {
     return <></>;
@@ -67,7 +66,11 @@ export default function ProgressStatusContainer(props: Props) {
           />
           <FailedAttempts attempts={lines.slice(0, -1)} attemptFormatter={props.attemptFormatter} />
         </Box>
-        <Button title={formatMessage(TKeys.PROGRESS_START_DAILY_EVALUATION)} onPress={handlePress} style={styles.btn} />
+        <Button
+          style={styles.btn}
+          title={formatMessage(TKeys.PROGRESS_START_DAILY_EVALUATION)}
+          onPress={props.onEvaluate}
+        />
       </VStack>
     </Box>
   );

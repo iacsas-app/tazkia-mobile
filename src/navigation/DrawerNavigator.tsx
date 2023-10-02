@@ -6,7 +6,6 @@ import { Box } from '@react-native-material/core';
 import { Image } from 'react-native';
 import Header from '../components/header/Header';
 import MoreMenu from '../components/header/MoreMenu';
-import { useMessage } from '../hooks/use-message';
 import ApproachScreen from '../screens/presentation/ApproachScreen';
 import CenterScreen from '../screens/presentation/CenterScreen';
 import CheikhScreen from '../screens/presentation/CheikhScreen';
@@ -26,8 +25,6 @@ function CustomDrawerContent(props: any) {
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = () => {
-  const { formatMessage } = useMessage();
-
   return (
     <Drawer.Navigator drawerContent={(props) => <CustomDrawerContent {...props} />}>
       <Drawer.Screen
