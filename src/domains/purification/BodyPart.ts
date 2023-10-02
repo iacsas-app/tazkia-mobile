@@ -13,6 +13,6 @@ export enum BodyPartsOrder {
 
 export default interface BodyPart {
   name: BodyPartType;
-  purification?: ProgressLine[];
-  illumination?: ProgressLine[];
+  cleaning?: ProgressLine[];
+  enlightenment?: ProgressLine[];
 }

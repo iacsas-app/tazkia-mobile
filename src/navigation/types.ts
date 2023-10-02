@@ -2,7 +2,7 @@ import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { CompositeNavigationProp, RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import BodyPart, { BodyPartType } from '../domains/purification/BodyPart';
-import { PurificationType } from '../screens/purification/steps/bodyPartsStep/BodyPartsScreen';
+import { PurificationStep } from '../screens/purification/steps/bodyPartsStep/BodyPartsScreen';
 
 export type TabParamList = {
   HomeTab: undefined;
@@ -21,9 +21,9 @@ export type PresentationParamList = {
 export type PurificationParamList = {
   Purification: undefined;
   BodyParts: undefined;
-  BodyPartsRules: { type: BodyPartType; mode: PurificationType };
+  BodyPartsRules: { part: BodyPartType; step: PurificationStep };
   BodyPartProgress: { value: BodyPart };
-  BodyPartEvaluation: { partType: BodyPartType; mode: PurificationType };
+  BodyPartEvaluation: { part: BodyPartType; step: PurificationStep };
   PurificationProgress: undefined;
   Mind: undefined;
   Soul: undefined;

@@ -19,8 +19,8 @@ export const indonesian: Translations = {
   [TKeys.PURIFICATION_BODY_PARTS_BELLY]: 'perut',
   [TKeys.PURIFICATION_BODY_PARTS_FEET]: 'kaki',
   [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS]: 'bagian privat',
-  [TKeys.PURIFICATION_BODYPART_CODE_OF_CONDUCT]: 'Sistem disiplin tentang {name}',
-  [TKeys.PURIFICATION_BODYPART_BEST_PRACTICES]: 'Aturan penggunaan positif mengenai {name} (To translate)',
+  [TKeys.PURIFICATION_BODYPART_DISCIPLINARY_SYSTEM]: 'Sistem disiplin tentang {name}',
+  [TKeys.PURIFICATION_BODYPART_POSITIVE_USAGE]: 'Aturan penggunaan positif mengenai {name} (To translate)',
   [TKeys.PURIFICATION_BODY_PARTS_EYES_1]: '',
   [TKeys.PURIFICATION_BODY_PARTS_EYES_2]: '',
   [TKeys.PURIFICATION_BODY_PARTS_HANDS_1]: '',
@@ -47,8 +47,9 @@ export const indonesian: Translations = {
 
   // BUTTONS
   [TKeys.BUTTON_CLOSE]: 'Menutup',
-  [TKeys.BUTTON_PURIFICATION]: 'Pembersihan',
-  [TKeys.BUTTON_ILLUMINATION]: 'Pencerahan',
+  [TKeys.BUTTON_ADD]: 'Menambahkan',
+  [TKeys.BUTTON_CLEANING]: 'Pembersihan',
+  [TKeys.BUTTON_ENLIGHTENMENT]: 'Pencerahan',
 
   // LANGUAGES
   [TKeys.LANGUAGE_ARABIC]: 'Arab',

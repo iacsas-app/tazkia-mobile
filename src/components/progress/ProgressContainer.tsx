@@ -39,7 +39,7 @@ export default function ProgressContainer({ title, subtitle, variant, children, 
               {subtitle}
             </Text>
           </Box>
-          <HStack>
+          <HStack reverse={arabicOrientation}>
             {!disabled && (
               <IconButton
                 style={styles.plusButton}

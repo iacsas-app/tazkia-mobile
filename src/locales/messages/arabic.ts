@@ -31,8 +31,8 @@ export const arabic: Translations = {
   [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS]: 'الفرج',
   [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS_1]: 'بالفرج',
   [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS_2]: 'للفرج',
-  [TKeys.PURIFICATION_BODYPART_CODE_OF_CONDUCT]: 'النظام التأديــبي فيما يتعلق {name}',
-  [TKeys.PURIFICATION_BODYPART_BEST_PRACTICES]: 'قواعد الاستخدام الإيجابي {name}',
+  [TKeys.PURIFICATION_BODYPART_DISCIPLINARY_SYSTEM]: 'النظام التأديــبي فيما يتعلق {name}',
+  [TKeys.PURIFICATION_BODYPART_POSITIVE_USAGE]: 'قواعد الاستخدام الإيجابي {name}',
 
   // MENUS
   [TKeys.MENU_SETTINGS]: 'إعدادات',
@@ -45,8 +45,9 @@ export const arabic: Translations = {
 
   // BUTTONS
   [TKeys.BUTTON_CLOSE]: 'غلق',
-  [TKeys.BUTTON_PURIFICATION]: 'تطهير',
-  [TKeys.BUTTON_ILLUMINATION]: 'تنوير',
+  [TKeys.BUTTON_ADD]: 'إضافة',
+  [TKeys.BUTTON_CLEANING]: 'تطهير',
+  [TKeys.BUTTON_ENLIGHTENMENT]: 'تنوير',
 
   // LANGUAGES
   [TKeys.LANGUAGE_ARABIC]: 'العربية',

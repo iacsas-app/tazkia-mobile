@@ -21,7 +21,7 @@ export default function ProgressStatus({ items, title }: Props) {
   if (!last) {
     return <></>;
   }
-  const isCompleted = last?.day === maxDays && last.errors.length === 0;
+  const isCompleted = last.day === maxDays && last.errors.length === 0;
 
   return (
     <HStack style={GlobalStyles.center} reverse={arabicOrientation}>
