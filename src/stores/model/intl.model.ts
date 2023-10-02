@@ -23,5 +23,5 @@ const intlModel: IntlModel = {
 
 export default persist(intlModel, {
   storage: storageEngine,
-  allow: [],
+  allow: ['locale'],
 });

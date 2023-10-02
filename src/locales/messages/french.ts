@@ -9,8 +9,7 @@ export const french: Translations = {
 
   // PURIFICATION
   [TKeys.PURIFICATION_BODYPART_TITLE]: 'Purification des sens',
-  [TKeys.PURIFICATION_BODYPART_DESCRIPTION]:
-    "Purifier le cœur à travers la purification et l'illuminantion des sept sens",
+  [TKeys.PURIFICATION_BODYPART_DESCRIPTION]: "Purifier le cœur à travers le nettoyage et l'illuminantion des sept sens",
   [TKeys.PURIFICATION_MIND_TITLE]: 'Purification de la raison',
   [TKeys.PURIFICATION_SOUL_TITLE]: "Purification de l'âme",
   [TKeys.PURIFICATION_BODY_PARTS_EYES]: "L'oeil",
@@ -34,8 +33,8 @@ export const french: Translations = {
   [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS]: 'Les parties intimes',
   [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS_1]: 'les parties intimes',
   [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS_2]: 'des parties intimes',
-  [TKeys.PURIFICATION_BODYPART_CODE_OF_CONDUCT]: 'Système disciplinaire concernant {name}',
-  [TKeys.PURIFICATION_BODYPART_BEST_PRACTICES]: "Règles d'utilisation positive {name}",
+  [TKeys.PURIFICATION_BODYPART_DISCIPLINARY_SYSTEM]: 'Système disciplinaire concernant {name}',
+  [TKeys.PURIFICATION_BODYPART_POSITIVE_USAGE]: "Règles d'utilisation positive {name}",
 
   // MENUS
   [TKeys.MENU_SETTINGS]: 'Paramétrages',
@@ -48,8 +47,9 @@ export const french: Translations = {
 
   // BUTTONS
   [TKeys.BUTTON_CLOSE]: 'Fermer',
-  [TKeys.BUTTON_PURIFICATION]: 'Nettoyage',
-  [TKeys.BUTTON_ILLUMINATION]: 'Illumination',
+  [TKeys.BUTTON_ADD]: 'Ajouter',
+  [TKeys.BUTTON_CLEANING]: 'Nettoyage',
+  [TKeys.BUTTON_ENLIGHTENMENT]: 'Illumination',
 
   // LANGUAGES
   [TKeys.LANGUAGE_ARABIC]: 'Arabe',

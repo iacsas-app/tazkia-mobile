@@ -9,10 +9,10 @@ import { TKeys } from '../../../../locales/constants';
 import { BodyPartsRulesNavigationProp } from '../../../../navigation/types';
 import { groupBy } from '../../../../services/Helpers';
 import GlobalStyles from '../../../../styles/GlobalStyles';
-import BodyPartItem from './common/BodyPartItem';
+import BodyPartItem from './BodyPartItem';
 import { PartItem, bodyParts } from './common/Helper';
 
-export type PurificationType = 'purification' | 'illumination';
+export type PurificationStep = 'cleaning' | 'enlightenment';
 
 export default function BodyPartsScreen() {
   const { arabicOrientation } = useApplication();
@@ -20,13 +20,13 @@ export default function BodyPartsScreen() {
   const navigation = useNavigation<BodyPartsRulesNavigationProp>();
   const partsByLine = useMemo(() => groupBy(bodyParts, 'line'), []);
 
-  function handleDetailsOpen(type: BodyPartType, mode: PurificationType) {
-    navigation.navigate('BodyPartsRules', { type, mode });
+  function handleOpenRules(part: BodyPartType, step: PurificationStep) {
+    navigation.navigate('BodyPartsRules', { part, step });
   }
 
   return (
     <View style={GlobalStyles.center}>
-      <Text variant="body2" style={styles.description}>
+      <Text variant="body1" style={styles.description}>
         {formatMessage(TKeys.PURIFICATION_BODYPART_DESCRIPTION)}
       </Text>
       <VStack spacing={20} style={GlobalStyles.center}>
@@ -34,7 +34,7 @@ export default function BodyPartsScreen() {
           <HStack key={key} spacing={18} reverse={arabicOrientation}>
             {partsByLine[key].map(({ line, ...props }: PartItem, index: number) => (
               <View key={`${key}_${index}_${line}`}>
-                <BodyPartItem id={BodyPartsOrder[props.type]} {...props} onDetailsOpen={handleDetailsOpen} />
+                <BodyPartItem id={BodyPartsOrder[props.type]} {...props} onOpenRules={handleOpenRules} />
               </View>
             ))}
           </HStack>

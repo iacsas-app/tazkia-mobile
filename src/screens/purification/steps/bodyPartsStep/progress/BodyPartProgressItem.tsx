@@ -43,8 +43,8 @@ export default function BodyPartProgressItem({ value }: ProgressItemProps) {
             {formatMessage(`purification.body-parts.${value.name}`)}
           </Text>
           <VStack style={{ alignItems: 'flex-start' }}>
-            <ProgressStatus items={value.purification} title={formatMessage(TKeys.BUTTON_PURIFICATION)} />
-            <ProgressStatus items={value.illumination} title={formatMessage(TKeys.BUTTON_ILLUMINATION)} />
+            <ProgressStatus items={value.cleaning} title={formatMessage(TKeys.BUTTON_CLEANING)} />
+            <ProgressStatus items={value.enlightenment} title={formatMessage(TKeys.BUTTON_ENLIGHTENMENT)} />
           </VStack>
         </VStack>
       </HStack>

@@ -3,23 +3,11 @@ import ProgressLine from '../../../../../domains/common/ProgressLine';
 import BodyPart, { BodyPartType, BodyPartsOrder } from '../../../../../domains/purification/BodyPart';
 import Purification from '../../../../../domains/purification/Purification';
 import { TKeys } from '../../../../../locales/constants';
-import { PurificationType } from '../BodyPartsScreen';
+import { PURIFICATION_MAX_DAYS, isCompleted } from '../../../../../services/Helpers';
+import { PurificationStep } from '../BodyPartsScreen';
 
-export function hasBodyPartProgress(
-  purification: Purification | undefined,
-  part: BodyPartType,
-  mode: PurificationType,
-): boolean {
-  return findBodyPartProgress(purification, part, mode) !== undefined;
-}
-
-export function findBodyPartProgress(
-  purification: Purification | undefined,
-  part: BodyPartType,
-  mode: PurificationType,
-): ProgressLine[] | undefined {
-  const result = purification?.bodyParts.find((item) => item.name === part && item[mode]?.length !== 0);
-  return result ? result[mode] : undefined;
+export function isFullyCompleted(part: BodyPart) {
+  return isCompleted(part.cleaning, PURIFICATION_MAX_DAYS) && isCompleted(part.enlightenment, PURIFICATION_MAX_DAYS);
 }
 
 export function findPartProps(type: BodyPartType): ImageSourcePropType | null {
@@ -41,7 +29,31 @@ export function mapByIndex<T>(items: T[]): Map<number, T[]> {
   return result;
 }
 
-export function orderBodyParts(items: BodyPart[]) {
+export function buildBodyParts(
+  part: BodyPartType,
+  mode: PurificationStep,
+  purification: Purification | undefined,
+  formatDate: (date: number) => string,
+) {
+  const newLine: ProgressLine = { startDate: formatDate(Date.now()), day: 30, errors: [] };
+  const newPart: BodyPart = { name: part, [mode]: [newLine] };
+
+  if (!purification) {
+    purification = { id: 0, bodyParts: [newPart], mind: [], soul: [] };
+  } else {
+    if (!purification.bodyParts.find((item) => item.name === part)) {
+      purification.bodyParts.push(newPart);
+    } else {
+      purification.bodyParts = purification.bodyParts.map((item) =>
+        item.name === part ? { ...item, [mode]: [newLine] } : item,
+      );
+    }
+    purification.bodyParts = orderBodyParts(purification.bodyParts);
+  }
+  return purification;
+}
+
+function orderBodyParts(items: BodyPart[]) {
   return items.sort((a: BodyPart, b: BodyPart) => {
     if (BodyPartsOrder[a.name] < BodyPartsOrder[b.name]) {
       return -1;
@@ -104,38 +116,38 @@ export const bodyParts: PartItem[] = [
   },
 ];
 
-export const rules: Record<BodyPartType, Record<PurificationType, string[]>> = {
+export const rules: Record<BodyPartType, Record<PurificationStep, string[]>> = {
   eye: {
-    purification: [
+    cleaning: [
       'Aliquid tempora, possimus totam maxime Aliquid tempora',
       'Cumque repellat optio aliquid tempora',
       'Lorem ipsum dolor sit amet consectetur adipisicing elit',
       'Dolor sit amet consectetur adipisicing elit',
     ],
-    illumination: ['test illumination', '2'],
+    enlightenment: ['test enlightenment', '2'],
   },
   hands: {
-    purification: ['2'],
-    illumination: [],
+    cleaning: ['2'],
+    enlightenment: [],
   },
   tongue: {
-    purification: [],
-    illumination: [],
+    cleaning: [],
+    enlightenment: [],
   },
   ear: {
-    purification: ['test purification'],
-    illumination: ['test illumination', '2', '3', '4', '5', '2', '2', '2', '2', '2', '2', '2'],
+    cleaning: ['test purification'],
+    enlightenment: ['test enlightenment', '2', '3', '4', '5', '2', '2', '2', '2', '2', '2', '2'],
   },
   belly: {
-    purification: [],
-    illumination: [],
+    cleaning: [],
+    enlightenment: [],
   },
   feet: {
-    purification: [],
-    illumination: [],
+    cleaning: [],
+    enlightenment: [],
   },
   'private-parts': {
-    purification: [],
-    illumination: [],
+    cleaning: [],
+    enlightenment: [],
   },
 };
