@@ -49,17 +49,17 @@ export default function BodyPartsRules({ part, step }: BodyPartsRulesProps) {
 
   return (
     <View style={styles.container}>
-      <Avatar image={findPartProps(part)} size={150} />
+      <Avatar image={findPartProps(part)} size={120} />
       <HStack spacing={8} style={styles.system} reverse={arabicOrientation}>
         <Icon name="account-tie-hat" size={40} color="red" />
         <Text variant="body1" style={styles.title}>
           {title(part, step)}
         </Text>
       </HStack>
-      <VStack spacing={8}>
-        {items.map((item: string, index: number) => (
+      <VStack spacing={2}>
+        {items.map((rule: string, index: number) => (
           <Box key={index} style={styles.line}>
-            <SimpleRule id={index + 1} item={item} reverse={arabicOrientation} />
+            <SimpleRule id={index + 1} item={formatMessage(rule)} reverse={arabicOrientation} />
           </Box>
         ))}
       </VStack>
@@ -75,17 +75,17 @@ const styles = StyleSheet.create({
     ...GlobalStyles.center,
   },
   title: {
-    marginBottom: 35,
+    marginBottom: 15,
     textAlign: 'center',
-    fontSize: 17,
+    fontSize: 20,
     fontWeight: '600',
   },
-  system: { alignItems: 'baseline', padding: 17 },
+  system: { alignItems: 'baseline', paddingHorizontal: 17, marginBottom: 8 },
   line: {
     marginHorizontal: 20,
   },
   image: { borderRadius: 80 },
   action: {
-    marginTop: 30,
+    marginTop: 5,
   },
 });
