@@ -85,6 +85,7 @@ export const french: Translations = {
   // BUTTONS
   [TKeys.BUTTON_CLOSE]: 'Fermer',
   [TKeys.BUTTON_ADD]: 'Ajouter',
+  [TKeys.BUTTON_SAVE]: 'Enregistrer',
   [TKeys.BUTTON_CLEANING]: 'Nettoyage',
   [TKeys.BUTTON_ENLIGHTENMENT]: 'Illumination',
 
@@ -105,4 +106,5 @@ export const french: Translations = {
   [TKeys.PROGRESS_FAILED_ATTEMPTS]: 'Tentatives échouées',
   [TKeys.PROGRESS_FAILED_ATTEMPTS_RULE]: 'Violation des règles {rules} le jour {day}',
   [TKeys.PROGRESS_START_DAILY_EVALUATION]: 'Évaluer ma journée',
+  [TKeys.PROGRESS_EVALUATION_MESSAGE]: 'Sélectionnez les règles qui ont été enfreintes',
 };

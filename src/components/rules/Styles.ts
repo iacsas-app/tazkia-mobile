@@ -1,10 +1,16 @@
 import { StyleSheet } from 'react-native';
 
 export const RuleStyles = StyleSheet.create({
-  container: {
+  stack: {
     alignItems: 'flex-start',
     textAlign: 'justify',
-    padding: 6,
+    paddingVertical: 5,
+    marginHorizontal: 20,
+  },
+  box: { marginHorizontal: 10 },
+  pressable: {
+    paddingHorizontal: 8,
+    marginBottom: 1,
   },
   text: {
     marginTop: 2,

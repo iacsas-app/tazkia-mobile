@@ -86,6 +86,7 @@ export enum TKeys {
   LANGUAGE_INDONESIAN = 'language.indonesian',
   BUTTON_CLOSE = 'button.close',
   BUTTON_ADD = 'button.add',
+  BUTTON_SAVE = 'button.save',
   BUTTON_CLEANING = 'button.cleaning',
   BUTTON_ENLIGHTENMENT = 'button.enlightenment',
   MENU_HOME = 'menu.home',
@@ -101,4 +102,5 @@ export enum TKeys {
   PROGRESS_FAILED_ATTEMPTS = 'progress.failed-attempts',
   PROGRESS_FAILED_ATTEMPTS_RULE = 'progress.failed-attempts.rule',
   PROGRESS_START_DAILY_EVALUATION = 'progress.start-daily-evaluation',
+  PROGRESS_EVALUATION_MESSAGE = 'progress.daily-evaluation.message',
 }
