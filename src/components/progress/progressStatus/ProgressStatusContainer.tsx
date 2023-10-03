@@ -7,7 +7,7 @@ import ProgressLine from '../../../domains/common/ProgressLine';
 import { useApplication } from '../../../hooks/use-application';
 import { useMessage } from '../../../hooks/use-message';
 import { TKeys } from '../../../locales/constants';
-import { progressPercentage } from '../../../services/Helpers';
+import { capitalize, progressPercentage } from '../../../services/Helpers';
 import GlobalStyles from '../../../styles/GlobalStyles';
 import { FailedAttemptsBase } from '../BaseProps';
 import FailedAttempts from '../failedAttempts/FailedAttempts';
@@ -41,7 +41,7 @@ export default function ProgressStatusContainer(props: Props) {
           <HStack spacing={15} style={styles.center} reverse={arabicOrientation}>
             <Icon name={iconName as any} size={35} color={iconColor} />
             <Text variant="h5" style={{ fontWeight: '700' }}>
-              {title}
+              {capitalize(title)}
             </Text>
           </HStack>
         </Box>
@@ -84,7 +84,7 @@ export default function ProgressStatusContainer(props: Props) {
         </Box>
         {endDate ? (
           <Box style={GlobalStyles.center}>
-            <Icon name="check" size={40} color="green" />
+            <Icon name="check-decagram" size={50} color="green" />
           </Box>
         ) : (
           <Button
