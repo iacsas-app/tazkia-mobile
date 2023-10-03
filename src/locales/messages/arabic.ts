@@ -108,6 +108,7 @@ export const arabic: Translations = {
   [TKeys.STEP_3]: 'المرحلة الثالثة',
   [TKeys.PROGRESS_TITLE]: 'التقدم',
   [TKeys.PROGRESS_START_DATE]: 'تاريخ البدء',
+  [TKeys.PROGRESS_END_DATE]: 'تاريخ الانتهاء',
   [TKeys.PROGRESS_SUCCESSFUL_DAYS]: 'الأيام الناجحة',
   [TKeys.PROGRESS_FAILED_ATTEMPTS]: 'المحاولات الفاشلة',
   [TKeys.PROGRESS_FAILED_ATTEMPTS_RULE]: 'خرق القاعدة {rules} في اليوم {day}',

@@ -103,6 +103,7 @@ export const english: Translations = {
   [TKeys.STEP_3]: '3rd step',
   [TKeys.PROGRESS_TITLE]: 'Progress',
   [TKeys.PROGRESS_START_DATE]: 'Start date',
+  [TKeys.PROGRESS_END_DATE]: 'End date',
   [TKeys.PROGRESS_SUCCESSFUL_DAYS]: 'Successful days',
   [TKeys.PROGRESS_FAILED_ATTEMPTS]: 'Failed attempts',
   [TKeys.PROGRESS_FAILED_ATTEMPTS_RULE]: 'Violation of rules {rules} on day {day}',

@@ -13,11 +13,13 @@ export interface PurificationModel {
 
   // Actions
   load: Action<PurificationModel, Purification>;
+  bodyPartEvaluation: Action<PurificationModel, [BodyPartType, PurificationStep, number[]]>;
   reset: Action<PurificationModel>;
 
   // Thunk
   find: Thunk<PurificationModel, void, Injections>;
   createOrUpdate: Thunk<PurificationModel, Purification, Injections>;
+  evaluateBodyPart: Thunk<PurificationModel, [BodyPartType, PurificationStep, number[]], Injections>;
 
   // Computed
   findByPart: Computed<PurificationModel, (part: BodyPartType) => BodyPart | undefined>;
@@ -42,6 +44,18 @@ const purificationModel: PurificationModel = {
     state.item = undefined;
     state.isLoaded = false;
   }),
+  bodyPartEvaluation: action((state, payload: [BodyPartType, PurificationStep, number[]]) => {
+    const [type, step, errors] = payload;
+    if (!state.item) {
+      return;
+    }
+    state.item.bodyParts.forEach((part) => {
+      if (part.name === type) {
+        part[step] = updateProgress(part[step], errors);
+        return;
+      }
+    });
+  }),
 
   // Thunks
   find: thunk(async (actions, _void, { injections }) => {
@@ -53,6 +67,9 @@ const purificationModel: PurificationModel = {
     //const { tazkiaService } = injections;
     //const item = await tazkiaService.createOrUpdate(payload);
     actions.load(payload);
+  }),
+  evaluateBodyPart: thunk(async (actions, payload: [BodyPartType, PurificationStep, number[]], { injections }) => {
+    actions.bodyPartEvaluation(payload);
   }),
 
   // Computed
@@ -73,6 +90,24 @@ const purificationModel: PurificationModel = {
     return state.findByPartAndStep(part, mode) !== undefined;
   }),
 };
+
+function updateProgress(progress: ProgressLine[] | undefined, errors: number[]): ProgressLine[] {
+  if (!progress || progress.length === 0) {
+    return [];
+  }
+  const lastIndex = progress.length - 1;
+  let last = progress.at(lastIndex);
+  if (last) {
+    const newValue = { ...last, evaluated: true, day: last.day < 30 ? last.day + 1 : last.day };
+    if (errors.length === 0) {
+      progress[lastIndex] = newValue;
+    } else {
+      progress[lastIndex] = { ...newValue, errors };
+      progress.push({ startDate: Date.now(), day: 0, errors: [], evaluated: false });
+    }
+  }
+  return progress;
+}
 
 export default persist(purificationModel, {
   storage: storageEngine,

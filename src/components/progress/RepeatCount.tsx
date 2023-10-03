@@ -9,10 +9,10 @@ interface Props {
 export default function RepeatCount({ count, color }: Props) {
   return (
     <Box style={styles.container}>
-      <Text variant="caption" style={{ ...styles.text, marginLeft: count < 10 ? 11 : 7 }}>
+      <Text variant="body2" style={{ ...styles.text, marginLeft: count < 10 ? 8 : 5 }}>
         {count}
       </Text>
-      <Icon name="reload" size={30} color={color} style={styles.icon} />
+      <Icon name="reload" size={25} color={color} style={styles.icon} />
     </Box>
   );
 }
@@ -23,6 +23,6 @@ RepeatCount.defaultProps = {
 
 const styles = StyleSheet.create({
   container: { marginBottom: -7 },
-  text: { marginBottom: -15, fontSize: 10, fontWeight: '600' },
+  text: { marginBottom: -12, fontSize: 9, fontWeight: '600' },
   icon: { marginTop: -7 },
 });

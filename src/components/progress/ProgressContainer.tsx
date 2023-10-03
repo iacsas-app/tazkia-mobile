@@ -1,7 +1,7 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import OctIcon from '@expo/vector-icons/Octicons';
 
-import { Box, HStack, IconButton, Surface, Text } from '@react-native-material/core';
+import { Box, HStack, IconButton, Text } from '@react-native-material/core';
 import { ReactNode, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { useApplication } from '../../hooks/use-application';
@@ -22,13 +22,15 @@ export default function ProgressContainer({ title, subtitle, variant, children, 
   const { arabicOrientation } = useApplication();
   const [collapse, setCollapse] = useState(props.collapse);
   const color = variant === 'orange' ? styles.orange : variant === 'blue' ? styles.blue : styles.green;
+  const bgColor =
+    variant === 'orange' ? styles.orange_content : variant === 'blue' ? styles.blue_content : styles.green_content;
 
   function handleCollapse() {
     setCollapse(!collapse);
   }
 
   return (
-    <Surface elevation={4} style={styles.container}>
+    <Box style={styles.container}>
       <Box h={50} style={{ ...styles.titleBox, ...color }}>
         <HStack justify="between" reverse={arabicOrientation}>
           <Box>
@@ -55,8 +57,8 @@ export default function ProgressContainer({ title, subtitle, variant, children, 
           </HStack>
         </HStack>
       </Box>
-      {!collapse && <Box style={styles.content}>{children}</Box>}
-    </Surface>
+      {!collapse && <Box style={{ ...styles.content, ...bgColor }}>{children}</Box>}
+    </Box>
   );
 }
 
@@ -73,6 +75,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 4,
     borderBottomWidth: 1,
+    elevation: 5,
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
   },
   title: {
     fontWeight: 'bold',
@@ -82,17 +87,33 @@ const styles = StyleSheet.create({
     marginTop: -3,
   },
   plusButton: { marginTop: -6, marginHorizontal: -10 },
-  content: { ...GlobalStyles.center, paddingVertical: 10 },
+  content: {
+    ...GlobalStyles.center,
+    paddingVertical: 10,
+    elevation: 1,
+    borderBottomEndRadius: 15,
+    borderBottomStartRadius: 15,
+    borderBottomWidth: 0.1,
+  },
   orange: {
     backgroundColor: '#ffe4e1',
     borderBottomColor: '#f4a460',
+  },
+  orange_content: {
+    backgroundColor: '#fdf6e778',
   },
   blue: {
     backgroundColor: '#87ceeb',
     borderBottomColor: '#4682b4',
   },
+  blue_content: {
+    backgroundColor: '#d5ecf37a',
+  },
   green: {
     backgroundColor: '#98fb98',
     borderBottomColor: '#3cb371',
+  },
+  green_content: {
+    backgroundColor: '#d5f3e378',
   },
 });

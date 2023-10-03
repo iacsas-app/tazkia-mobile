@@ -102,6 +102,7 @@ export const french: Translations = {
   [TKeys.STEP_3]: '3ᵉ étape',
   [TKeys.PROGRESS_TITLE]: 'Progrès',
   [TKeys.PROGRESS_START_DATE]: 'Date de démarrage',
+  [TKeys.PROGRESS_END_DATE]: 'Date de fin',
   [TKeys.PROGRESS_SUCCESSFUL_DAYS]: 'Jours réussis',
   [TKeys.PROGRESS_FAILED_ATTEMPTS]: 'Tentatives échouées',
   [TKeys.PROGRESS_FAILED_ATTEMPTS_RULE]: 'Violation des règles {rules} le jour {day}',
