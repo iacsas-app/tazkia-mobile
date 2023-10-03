@@ -7,6 +7,9 @@ interface Props {
   color?: string;
 }
 export default function RepeatCount({ count, color }: Props) {
+  if (count === 0) {
+    return <></>;
+  }
   return (
     <Box style={styles.container}>
       <Text variant="body2" style={{ ...styles.text, marginLeft: count < 10 ? 8 : 5 }}>
