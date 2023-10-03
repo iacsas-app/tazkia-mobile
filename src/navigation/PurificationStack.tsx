@@ -1,6 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import BodyPart, { BodyPartType } from '../domains/purification/BodyPart';
-import { useApplication } from '../hooks/use-application';
+import BodyPart from '../domains/purification/BodyPart';
 import { useMessage } from '../hooks/use-message';
 import { TKeys } from '../locales/constants';
 import PurificationProgressScreen from '../screens/purification/PurificationProgressScreen';
@@ -15,20 +14,21 @@ import { capitalize } from '../services/Helpers';
 import { PurificationParamList } from './types';
 
 export default function PurificationStack() {
-  const { locale } = useApplication();
   const { formatMessage } = useMessage();
   const Stack = createNativeStackNavigator<PurificationParamList>();
 
-  function rulesBarTitle(part: BodyPartType, step: PurificationStep) {
-    const name = formatMessage(`purification.body-parts.${part}_2`);
-    const type = formatMessage(`button.${step}`);
-    return locale === 'en' ? `${capitalize(name)} ${type.toLowerCase()}` : `${type} ${name}`;
+  function rulesBarTitle(step: PurificationStep) {
+    const key =
+      step === 'cleaning'
+        ? TKeys.PURIFICATION_BODYPART_ADD_CLEANING_PHASE
+        : TKeys.PURIFICATION_BODYPART_ADD_ENLIGHTENMENT_PHASE;
+    return formatMessage(key);
   }
 
   function bodyPartProgressBarTitle(part: BodyPart) {
     const name = formatMessage(`purification.body-parts.${part.name}`);
     const purif = formatMessage('menu.purification');
-    return locale === 'en' ? `${capitalize(name)} ${purif.toLowerCase()}` : `${purif} ${name}`;
+    return capitalize(`${name} ${purif.toLowerCase()}`);
   }
 
   return (
@@ -42,7 +42,7 @@ export default function PurificationStack() {
       <Stack.Screen
         name="BodyPartsRules"
         component={BodyPartsRulesScreen}
-        options={({ route }) => ({ title: rulesBarTitle(route.params.part, route.params.step) })}
+        options={({ route }) => ({ title: rulesBarTitle(route.params.step) })}
       />
       <Stack.Screen
         name="BodyPartProgress"
@@ -52,7 +52,7 @@ export default function PurificationStack() {
       <Stack.Screen
         name="BodyPartEvaluation"
         component={BodyPartEvaluationScreen}
-        options={({ route }) => ({ title: rulesBarTitle(route.params.part, route.params.step) })}
+        options={({ route }) => ({ title: rulesBarTitle(route.params.step) })}
       />
       <Stack.Screen name="PurificationProgress" component={PurificationProgressScreen} />
       <Stack.Screen

@@ -42,7 +42,13 @@ export default function BodyPartProgressItem({ value }: ProgressItemProps) {
     <Pressable onPress={handlePress}>
       <HStack
         spacing={10}
-        style={{ ...styles.chip, paddingHorizontal: arabicOrientation ? 17 : 7 }}
+        style={{
+          ...styles.chip,
+          paddingHorizontal: arabicOrientation ? 17 : 7,
+          borderRightWidth: fullyCompleted && arabicOrientation ? 10 : 0,
+          borderLeftWidth: fullyCompleted && !arabicOrientation ? 10 : 0,
+          borderColor: 'green',
+        }}
         reverse={arabicOrientation}
       >
         <VStack style={GlobalStyles.center}>
@@ -64,22 +70,32 @@ export default function BodyPartProgressItem({ value }: ProgressItemProps) {
               {formatMessage(`purification.body-parts.${value.name}`)}
             </Text>
           </Box>
-          <VStack style={{ alignItems: 'flex-start' }}>
-            <ProgressStatus
-              title={formatMessage(TKeys.BUTTON_CLEANING)}
-              last={lastCleaning}
-              count={cleaningCount}
-              completed={cleaningCompleted}
-            />
-            <ProgressStatus
-              title={formatMessage(TKeys.BUTTON_ENLIGHTENMENT)}
-              last={lastEnlightenment}
-              count={enlightenmentCount}
-              completed={enlightenmentCompleted}
-            />
-          </VStack>
+          <HStack spacing={8} reverse={arabicOrientation}>
+            <VStack spacing={1} style={{ alignItems: 'flex-start' }}>
+              <Box>
+                <ProgressStatus
+                  title={formatMessage(TKeys.BUTTON_CLEANING)}
+                  last={lastCleaning}
+                  count={cleaningCount}
+                  completed={cleaningCompleted}
+                />
+              </Box>
+              <Box>
+                <ProgressStatus
+                  title={formatMessage(TKeys.BUTTON_ENLIGHTENMENT)}
+                  last={lastEnlightenment}
+                  count={enlightenmentCount}
+                  completed={enlightenmentCompleted}
+                />
+              </Box>
+            </VStack>
+            {fullyCompleted && (
+              <Box mt={8}>
+                <Icon name="hand-clap" size={25} color="green" style={{ opacity: 0.7 }} />
+              </Box>
+            )}
+          </HStack>
         </VStack>
-        <Box>{fullyCompleted && <Icon name="hand-clap" size={25} color="#4682b4" style={{ opacity: 0.9 }} />}</Box>
       </HStack>
     </Pressable>
   );
