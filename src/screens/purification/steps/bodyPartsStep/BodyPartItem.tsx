@@ -32,6 +32,9 @@ export default function BodyPartItem({ id, type, nameKey, imageSource, onOpenRul
   const isCleaningInProgress = isBodyPartStepInProgress(progress, 'cleaning');
   const isEnlightenmentInProgress = isBodyPartStepInProgress(progress, 'enlightenment');
 
+  if (isCompleted || (isCleaningInProgress && isEnlightenmentInProgress)) {
+    return <></>;
+  }
   const backgroundColor = isCompleted ? '#2e8b57' : inProgress ? '#66cdaa' : '#87ceeb';
 
   function handlePress(step: PurificationStep) {

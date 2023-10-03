@@ -19,8 +19,8 @@ export default function PurificationProgressScreen() {
     return <></>;
   }
 
-  purification.mind = [{ level: 1, progress: [] }];
-  purification.soul = [{ part: 1, partProgress: [] }];
+  purification.mind = [];
+  purification.soul = [];
 
   return (
     <Flex fill style={styles.container}>

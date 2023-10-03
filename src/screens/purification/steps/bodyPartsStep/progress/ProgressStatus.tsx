@@ -4,40 +4,38 @@ import { StyleSheet } from 'react-native';
 import RepeatCount from '../../../../../components/progress/RepeatCount';
 import ProgressLine from '../../../../../domains/common/ProgressLine';
 import { useApplication } from '../../../../../hooks/use-application';
-import { progressPercentage } from '../../../../../services/Helpers';
+import { PURIFICATION_MAX_DAYS, progressPercentage } from '../../../../../services/Helpers';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
 
 interface Props {
-  items: ProgressLine[] | undefined;
+  last: ProgressLine | undefined;
   title: string;
+  count: number;
+  completed: boolean;
 }
-export default function ProgressStatus({ items, title }: Props) {
+export default function ProgressStatus({ last, count, title, completed }: Props) {
   const { arabicOrientation } = useApplication();
-  const maxDays = 30;
 
-  if (!items) {
-    return <></>;
-  }
-  const last = items.at(items.length - 1);
   if (!last) {
     return <></>;
   }
-  const isCompleted = last.day === maxDays && last.errors.length === 0;
 
   return (
     <HStack spacing={5} style={GlobalStyles.center} reverse={arabicOrientation}>
       <Text style={{ fontSize: arabicOrientation ? 14 : 10 }} color="grey">
         {title}
       </Text>
+      {!completed && (
+        <Box>
+          <RepeatCount count={count} />
+        </Box>
+      )}
       <Box>
-        <RepeatCount count={5} />
-      </Box>
-      <Box>
-        {isCompleted ? (
+        {completed ? (
           <Icon name="check" size={15} color="green" />
         ) : (
           <Text variant="caption" style={styles.symbol}>
-            {progressPercentage(last.day, maxDays)}
+            {progressPercentage(last.day, PURIFICATION_MAX_DAYS)}
           </Text>
         )}
       </Box>
