@@ -10,7 +10,8 @@ import { TKeys } from '../../../../../locales/constants';
 import { BodyPartEvaluationNavigationProp, BodyPartEvaluationScreenRouteProp } from '../../../../../navigation/types';
 import { useStoreActions } from '../../../../../stores/hooks';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
-import { findPartProps, rules } from '../common/Helper';
+import { findPartProps } from '../common/Helper';
+import { rules } from '../common/data';
 
 export default function BodyPartEvaluationScreen() {
   const { formatMessage } = useMessage();

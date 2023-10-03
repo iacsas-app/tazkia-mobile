@@ -45,5 +45,5 @@ export default function BodyPartsScreen() {
 }
 
 const styles = StyleSheet.create({
-  description: { marginTop: 15, marginBottom: 25, paddingHorizontal: 18 },
+  description: { marginTop: 15, marginBottom: 25, paddingHorizontal: 18, fontSize: 18 },
 });
