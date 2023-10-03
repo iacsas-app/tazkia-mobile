@@ -14,8 +14,10 @@ import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';
 import { TKeys } from '../../../../../locales/constants';
 import { PurificationStackNavigationProp } from '../../../../../navigation/types';
+import { capitalize } from '../../../../../services/Helpers';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
-import { buildBodyParts, findPartProps, rules } from '../common/Helper';
+import { buildBodyParts, findPartProps } from '../common/Helper';
+import { rules } from '../common/data';
 
 interface BodyPartsRulesProps {
   part: BodyPartType;
@@ -28,8 +30,8 @@ export default function BodyPartsRules({ part, step }: BodyPartsRulesProps) {
   const createOrUpdate = useStoreActions((actions) => actions.purification.createOrUpdate);
   const findBodyPart = useStoreState((state) => state.purification.findByPartAndStep);
   let purification: Purification | undefined = useStoreState((state) => state.purification.item);
-
   const items: string[] = useMemo(() => rules[part][step], []);
+
   const progress: ProgressLine[] | undefined = findBodyPart(part, step);
   const isCleaning = step === 'cleaning';
 
@@ -42,10 +44,9 @@ export default function BodyPartsRules({ part, step }: BodyPartsRulesProps) {
     }
   }
 
-  function title(part: BodyPartType, step: PurificationStep) {
-    const name = formatMessage(`purification.body-parts.${part}_${step === 'cleaning' ? 1 : 2}`);
-    const subject = formatMessage(`${step}.bodypart.disciplinary-system`, { name });
-    return subject;
+  function stepTitle() {
+    const partName = formatMessage(`purification.body-parts.${part}`).toLowerCase();
+    return capitalize(formatMessage(`purification.bodypart.${step}.step`, { part: partName }));
   }
 
   return (
@@ -56,19 +57,21 @@ export default function BodyPartsRules({ part, step }: BodyPartsRulesProps) {
       }}
     >
       <Avatar image={findPartProps(part)} size={120} />
-      <HStack spacing={15} style={styles.system} reverse={arabicOrientation}>
-        <Icon
-          name={isCleaning ? 'account-tie-hat' : 'lightbulb-on'}
-          color={isCleaning ? 'blue' : '#5f9ea0'}
-          size={40}
-        />
-        <Text variant="body1" style={styles.title}>
-          {title(part, step)}
+      <Text
+        variant="body1"
+        style={{ fontWeight: '600', marginVertical: 15, marginHorizontal: 0, fontSize: arabicOrientation ? 30 : 18 }}
+        color="blue"
+      >
+        {stepTitle()}
+      </Text>
+      <HStack spacing={12} style={styles.system} reverse={arabicOrientation}>
+        <Icon name={isCleaning ? 'account-tie-hat' : 'lightbulb-on'} color={isCleaning ? 'red' : 'green'} size={28} />
+        <Text variant="body1" style={{ ...styles.title, fontSize: arabicOrientation ? 25 : 18 }}>
+          {formatMessage(`${step}.bodypart.disciplinary-system`)}
         </Text>
       </HStack>
-
       <ScrollView>
-        <VStack mv={15}>
+        <VStack mv={17}>
           {items.map((rule: string, index: number) => (
             <SimpleRule key={index} id={index + 1} item={formatMessage(rule)} reverse={arabicOrientation} />
           ))}
@@ -88,13 +91,13 @@ const styles = StyleSheet.create({
   title: {
     marginBottom: 15,
     textAlign: 'center',
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: '600',
   },
-  system: { alignItems: 'flex-start', paddingHorizontal: 15, marginVertical: 15 },
+  system: { alignItems: 'flex-start', paddingHorizontal: 16.5, marginVertical: 5 },
   image: { borderRadius: 80 },
   action: {
-    marginVertical: 25,
+    marginVertical: 15,
     marginHorizontal: 55,
   },
 });

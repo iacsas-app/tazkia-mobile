@@ -3,8 +3,8 @@ import { StyleSheet } from 'react-native';
 import { useApplication } from '../../hooks/use-application';
 import { TKeys } from '../../locales/constants';
 import GlobalStyles from '../../styles/GlobalStyles';
+import PressableStep, { Part } from './PressableStep';
 import PurificationProgressScreen from './PurificationProgressScreen';
-import PressableStep, { Part } from './common/PressableStep';
 
 export default function PurificationScreen() {
   const { hasPurificationProgress } = useApplication();
