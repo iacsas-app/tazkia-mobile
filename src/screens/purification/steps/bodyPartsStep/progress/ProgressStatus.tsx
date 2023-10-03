@@ -1,6 +1,7 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import { Box, HStack, Text } from '@react-native-material/core';
 import { StyleSheet } from 'react-native';
+import RepeatCount from '../../../../../components/progress/RepeatCount';
 import ProgressLine from '../../../../../domains/common/ProgressLine';
 import { useApplication } from '../../../../../hooks/use-application';
 import { progressPercentage } from '../../../../../services/Helpers';
@@ -24,11 +25,16 @@ export default function ProgressStatus({ items, title }: Props) {
   const isCompleted = last.day === maxDays && last.errors.length === 0;
 
   return (
-    <HStack style={GlobalStyles.center} reverse={arabicOrientation}>
-      <Text variant="caption">{title} : </Text>
+    <HStack spacing={5} style={GlobalStyles.center} reverse={arabicOrientation}>
+      <Text style={{ fontSize: arabicOrientation ? 14 : 10 }} color="grey">
+        {title}
+      </Text>
+      <Box>
+        <RepeatCount count={5} />
+      </Box>
       <Box>
         {isCompleted ? (
-          <Icon name="progress-check" size={26} color="green" />
+          <Icon name="check" size={15} color="green" />
         ) : (
           <Text variant="caption" style={styles.symbol}>
             {progressPercentage(last.day, maxDays)}
@@ -40,5 +46,5 @@ export default function ProgressStatus({ items, title }: Props) {
 }
 
 const styles = StyleSheet.create({
-  symbol: { fontSize: 12, color: 'blue', fontWeight: '600' },
+  symbol: { fontSize: 11, color: '#4682b4', fontWeight: '900' },
 });

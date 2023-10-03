@@ -24,9 +24,13 @@ export default function BodyPartProgressItem({ value }: ProgressItemProps) {
 
   return (
     <Pressable onPress={handlePress}>
-      <HStack spacing={10} style={styles.chip} reverse={arabicOrientation}>
+      <HStack
+        spacing={10}
+        style={{ ...styles.chip, paddingHorizontal: arabicOrientation ? 17 : 7 }}
+        reverse={arabicOrientation}
+      >
         <VStack style={GlobalStyles.center}>
-          <Avatar size={30} image={findPartProps(value.name)} />
+          <Avatar size={25} image={findPartProps(value.name)} />
           <Avatar
             label={
               <Text variant="caption" style={styles.numberText}>
@@ -38,8 +42,8 @@ export default function BodyPartProgressItem({ value }: ProgressItemProps) {
             style={styles.numberAvatar}
           />
         </VStack>
-        <VStack spacing={5} style={{ alignItems: `flex-${arabicOrientation ? 'end' : 'start'}` }}>
-          <Text variant="body1" style={{ ...styles.partName, fontSize: arabicOrientation ? 18 : 12 }}>
+        <VStack spacing={5} style={{ alignItems: 'baseline' }}>
+          <Text variant="body1" style={{ ...styles.partName, fontSize: arabicOrientation ? 17 : 14 }}>
             {formatMessage(`purification.body-parts.${value.name}`)}
           </Text>
           <VStack style={{ alignItems: 'flex-start' }}>
@@ -54,23 +58,17 @@ export default function BodyPartProgressItem({ value }: ProgressItemProps) {
 
 const styles = StyleSheet.create({
   chip: {
-    height: 75,
-    backgroundColor: '#fffafa',
+    height: 78,
+    backgroundColor: '#fff',
     marginBottom: 7,
-    paddingLeft: 5,
-    paddingTop: 1,
-    paddingRight: 5,
-    paddingBottom: 18,
-    borderRadius: 20,
-    borderLeftWidth: 2,
-    borderRightWidth: 2,
-    borderBottomWidth: 0.3,
-    borderTopWidth: 0.3,
-    borderColor: '#87ceeb',
+    paddingTop: 4,
+    paddingBottom: 30,
+    borderRadius: 15,
+    elevation: 5,
   },
   partName: {
     fontWeight: 'bold',
   },
   numberAvatar: { marginTop: -6, opacity: 0.8, fontSize: 18 },
-  numberText: { fontWeight: '900' },
+  numberText: { fontWeight: '600' },
 });

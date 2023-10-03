@@ -103,6 +103,7 @@ export const indonesian: Translations = {
   [TKeys.STEP_3]: '3ᵉ langkah',
   [TKeys.PROGRESS_TITLE]: 'Kemajuan',
   [TKeys.PROGRESS_START_DATE]: 'Mulai tanggal',
+  [TKeys.PROGRESS_END_DATE]: 'Tanggal akhir',
   [TKeys.PROGRESS_SUCCESSFUL_DAYS]: 'Hari-hari sukses',
   [TKeys.PROGRESS_FAILED_ATTEMPTS]: 'Upaya yang gagal',
   [TKeys.PROGRESS_FAILED_ATTEMPTS_RULE]: 'Pelanggaran aturan {rules} pada hari {day}',

@@ -1,31 +1,34 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import { Avatar, Button, HStack, Text, VStack } from '@react-native-material/core';
-import { useRoute } from '@react-navigation/native';
-import { useMemo } from 'react';
-import { Alert, SafeAreaView, ScrollView, StatusBar, StyleSheet } from 'react-native';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { useMemo, useState } from 'react';
+import { SafeAreaView, ScrollView, StatusBar, StyleSheet } from 'react-native';
 import CheckableRule from '../../../../../components/rules/CheckableRule';
 import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';
 import { TKeys } from '../../../../../locales/constants';
-import { BodyPartEvaluationScreenRouteProp } from '../../../../../navigation/types';
+import { BodyPartEvaluationNavigationProp, BodyPartEvaluationScreenRouteProp } from '../../../../../navigation/types';
+import { useStoreActions } from '../../../../../stores/hooks';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
 import { findPartProps, rules } from '../common/Helper';
 
 export default function BodyPartEvaluationScreen() {
   const { formatMessage } = useMessage();
+  const [selected, setSelected] = useState<number[]>([]);
   const { arabicOrientation } = useApplication();
   const { part, step } = useRoute<BodyPartEvaluationScreenRouteProp>().params;
+  const navigation = useNavigation<BodyPartEvaluationNavigationProp>();
+  const evaluate = useStoreActions((actions) => actions.purification.evaluateBodyPart);
   const items = useMemo(() => rules[part][step], []);
-  const isCleaning = step === 'cleaning';
 
-  function handlePress() {
-    Alert.alert('In progress');
+  function handleSelect(id: number) {
+    setSelected([...selected, id]);
   }
-
-  function title() {
-    const name = formatMessage(`purification.body-parts.${part}_${step === 'cleaning' ? 1 : 2}`);
-    const subject = formatMessage(`${step}.bodypart.disciplinary-system`, { name });
-    return subject;
+  function handleUnselect(id: number) {
+    setSelected(selected.filter((item) => item !== id));
+  }
+  function handleSave() {
+    evaluate([part, step, selected.sort()]).then(() => navigation.push('PurificationProgress'));
   }
 
   return (
@@ -45,10 +48,17 @@ export default function BodyPartEvaluationScreen() {
       <ScrollView>
         <VStack mv={15}>
           {items.map((rule: string, index: number) => (
-            <CheckableRule key={index} id={index + 1} item={formatMessage(rule)} reverse={arabicOrientation} />
+            <CheckableRule
+              key={index}
+              id={index + 1}
+              item={formatMessage(rule)}
+              reverse={arabicOrientation}
+              onSelect={handleSelect}
+              onUnselect={handleUnselect}
+            />
           ))}
         </VStack>
-        <Button title={formatMessage(TKeys.BUTTON_SAVE)} style={styles.action} onPress={handlePress} />
+        <Button title={formatMessage(TKeys.BUTTON_SAVE)} style={styles.action} onPress={handleSave} />
       </ScrollView>
     </SafeAreaView>
   );
