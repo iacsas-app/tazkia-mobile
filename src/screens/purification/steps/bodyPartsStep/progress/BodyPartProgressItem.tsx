@@ -20,14 +20,14 @@ export default function BodyPartProgressItem({ value }: ProgressItemProps) {
   const { arabicOrientation } = useApplication();
   const navigation = useNavigation<PurificationStackNavigationProp>();
 
-  const cleaningCount = value.cleaning ? value.cleaning.length : 0;
-  const lastCleaning = value.cleaning?.at(cleaningCount - 1);
+  const cleaningCount = value.cleaning ? value.cleaning.length - 1 : 0;
+  const lastCleaning = value.cleaning?.at(cleaningCount);
   const cleaningCompleted = lastCleaning
     ? lastCleaning.day === PURIFICATION_MAX_DAYS && lastCleaning.errors.length === 0
     : false;
 
-  const enlightenmentCount = value.enlightenment ? value.enlightenment.length : 0;
-  const lastEnlightenment = value.enlightenment?.at(enlightenmentCount - 1);
+  const enlightenmentCount = value.enlightenment ? value.enlightenment.length - 1 : 0;
+  const lastEnlightenment = value.enlightenment?.at(enlightenmentCount);
   const enlightenmentCompleted = lastEnlightenment
     ? lastEnlightenment.day === PURIFICATION_MAX_DAYS && lastEnlightenment.errors.length === 0
     : false;
