@@ -4,12 +4,16 @@ import { useState } from 'react';
 import { RuleStyles } from './Styles';
 import { RuleBaseProps } from './types';
 
-interface RuleProps extends RuleBaseProps {}
+interface RuleProps extends RuleBaseProps {
+  onSelect: (id: number) => void;
+  onUnselect: (id: number) => void;
+}
 
-export default function CheckableRule({ id, item, reverse }: RuleProps) {
+export default function CheckableRule({ id, item, reverse, ...props }: RuleProps) {
   const [checked, setChecked] = useState(false);
 
   function handlePress() {
+    checked ? props.onUnselect(id) : props.onSelect(id);
     setChecked(!checked);
   }
 

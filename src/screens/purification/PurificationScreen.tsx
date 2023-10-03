@@ -1,4 +1,4 @@
-import { Stack, Surface } from '@react-native-material/core';
+import { Box, Stack } from '@react-native-material/core';
 import { StyleSheet } from 'react-native';
 import { useApplication } from '../../hooks/use-application';
 import { TKeys } from '../../locales/constants';
@@ -16,16 +16,22 @@ export default function PurificationScreen() {
   return (
     <Stack style={GlobalStyles.container} items="center" spacing={15}>
       {parts.map((item: Part, index: number) => (
-        <Surface key={index} elevation={6} category="medium" style={styles.part}>
+        <Box key={index} style={styles.part}>
           <PressableStep item={item} />
-        </Surface>
+        </Box>
       ))}
     </Stack>
   );
 }
 
 const styles = StyleSheet.create({
-  part: { width: 250, borderCurve: 'circular' },
+  part: {
+    width: 250,
+    paddingVertical: 10,
+    backgroundColor: '#f5fffa',
+    borderRadius: 20,
+    elevation: 6,
+  },
 });
 
 const parts: Part[] = [

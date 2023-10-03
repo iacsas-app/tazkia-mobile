@@ -29,13 +29,8 @@ export function mapByIndex<T>(items: T[]): Map<number, T[]> {
   return result;
 }
 
-export function buildBodyParts(
-  part: BodyPartType,
-  mode: PurificationStep,
-  purification: Purification | undefined,
-  formatDate: (date: number) => string,
-) {
-  const newLine: ProgressLine = { startDate: formatDate(Date.now()), day: 1, errors: [] };
+export function buildBodyParts(part: BodyPartType, mode: PurificationStep, purification: Purification | undefined) {
+  const newLine: ProgressLine = { startDate: Date.now(), day: 0, errors: [], evaluated: false };
   const newPart: BodyPart = { name: part, [mode]: [newLine] };
 
   if (!purification) {

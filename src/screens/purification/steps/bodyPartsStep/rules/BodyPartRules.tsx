@@ -22,7 +22,7 @@ interface BodyPartsRulesProps {
   step: PurificationStep;
 }
 export default function BodyPartsRules({ part, step }: BodyPartsRulesProps) {
-  const { formatMessage, intl } = useMessage();
+  const { formatMessage } = useMessage();
   const { arabicOrientation } = useApplication();
   const navigation = useNavigation<PurificationStackNavigationProp>();
   const createOrUpdate = useStoreActions((actions) => actions.purification.createOrUpdate);
@@ -34,7 +34,7 @@ export default function BodyPartsRules({ part, step }: BodyPartsRulesProps) {
   const isCleaning = step === 'cleaning';
 
   function handlePress() {
-    purification = buildBodyParts(part, step, purification, intl.formatDate);
+    purification = buildBodyParts(part, step, purification);
 
     if (purification) {
       createOrUpdate(purification);

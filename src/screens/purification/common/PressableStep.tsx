@@ -39,9 +39,7 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 10,
-    paddingHorizontal: 10,
-    backgroundColor: '#f5fffa',
+    marginTop: -15,
   },
   img: {
     width: 120,

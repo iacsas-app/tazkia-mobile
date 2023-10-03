@@ -4,10 +4,10 @@ import Soul from './Soul';
 
 export default interface Purification {
   id: number;
-  // The 7 Body parts
+  // The 7 body parts
   bodyParts: BodyPart[];
-  // The 9 Mind levels
+  // The 9 mind levels
   mind: Mind[];
-  // The 7 Soul levels
+  // The 7 soul levels
   soul: Soul[];
 }

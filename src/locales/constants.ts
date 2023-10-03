@@ -98,6 +98,7 @@ export enum TKeys {
   SETTINGS_RESET = 'settings.reset',
   PROGRESS_TITLE = 'progress.title',
   PROGRESS_START_DATE = 'progress.start-date',
+  PROGRESS_END_DATE = 'progress.end-date',
   PROGRESS_SUCCESSFUL_DAYS = 'progress.successful-days',
   PROGRESS_FAILED_ATTEMPTS = 'progress.failed-attempts',
   PROGRESS_FAILED_ATTEMPTS_RULE = 'progress.failed-attempts.rule',
