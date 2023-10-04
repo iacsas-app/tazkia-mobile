@@ -21,8 +21,9 @@ export const english: Translations = {
   [TKeys.PURIFICATION_BODY_PARTS_FEET]: 'Feet',
   [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS]: 'Private parts',
 
-  [TKeys.PURIFICATION_BODYPART_ADD_CLEANING_PHASE]: 'Adding the cleansing stage',
-  [TKeys.PURIFICATION_BODYPART_ADD_ENLIGHTENMENT_PHASE]: 'Adding the enlightening stage',
+  [TKeys.PURIFICATION_BODYPART_CLEANING]: 'Cleansing stage',
+  [TKeys.PURIFICATION_BODYPART_ENLIGHTENMENT]: 'Enlightening stage',
+  [TKeys.PURIFICATION_BODYPART_ADD_PHASE]: 'Adding the {phase}',
   [TKeys.PURIFICATION_BODYPART_CLEANING_PHASE]: '{part} cleansing stage',
   [TKeys.PURIFICATION_BODYPART_ENLIGHTENMENT_PHASE]: '{part} enlightening stage',
   [TKeys.PURIFICATION_BODYPART_DISCIPLINARY_SYSTEM]: 'Disciplinary system',
@@ -148,9 +149,9 @@ export const english: Translations = {
   [TKeys.LANGUAGE_INDONESIAN]: 'Indonesian',
 
   // COMMON
-  [TKeys.STEP_1]: '1st stage',
-  [TKeys.STEP_2]: '2nd stage',
-  [TKeys.STEP_3]: '3rd stage',
+  [TKeys.PHASE_1]: '1st stage',
+  [TKeys.PHASE_2]: '2nd stage',
+  [TKeys.PHASE_3]: '3rd stage',
   [TKeys.PROGRESS_TITLE]: 'Progress',
   [TKeys.PROGRESS_START_DATE]: 'Start date',
   [TKeys.PROGRESS_END_DATE]: 'End date',

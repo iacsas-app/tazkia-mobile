@@ -19,8 +19,9 @@ export const arabic: Translations = {
   [TKeys.PURIFICATION_BODY_PARTS_FEET]: 'القدمين',
   [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS]: 'الفرج',
 
-  [TKeys.PURIFICATION_BODYPART_ADD_CLEANING_PHASE]: 'إضافة مرحلة التطهير',
-  [TKeys.PURIFICATION_BODYPART_ADD_ENLIGHTENMENT_PHASE]: 'إضافة مرحلة التنوير',
+  [TKeys.PURIFICATION_BODYPART_CLEANING]: 'مرحلة التطهير',
+  [TKeys.PURIFICATION_BODYPART_ENLIGHTENMENT]: 'مرحلة التنوير',
+  [TKeys.PURIFICATION_BODYPART_ADD_PHASE]: 'إضافة {phase}',
   [TKeys.PURIFICATION_BODYPART_CLEANING_PHASE]: 'مرحلة تطهير {part}',
   [TKeys.PURIFICATION_BODYPART_ENLIGHTENMENT_PHASE]: 'مرحلة تنوير {part}',
   [TKeys.PURIFICATION_BODYPART_DISCIPLINARY_SYSTEM]: 'النظام التأديـبي',
@@ -156,9 +157,9 @@ export const arabic: Translations = {
   [TKeys.LANGUAGE_INDONESIAN]: 'الإندونيسية',
 
   // COMMON
-  [TKeys.STEP_1]: 'المرحلة الأولى',
-  [TKeys.STEP_2]: 'المرحلة الثانية',
-  [TKeys.STEP_3]: 'المرحلة الثالثة',
+  [TKeys.PHASE_1]: 'المرحلة الأولى',
+  [TKeys.PHASE_2]: 'المرحلة الثانية',
+  [TKeys.PHASE_3]: 'المرحلة الثالثة',
   [TKeys.PROGRESS_TITLE]: 'التقدم',
   [TKeys.PROGRESS_START_DATE]: 'تاريخ البدء',
   [TKeys.PROGRESS_END_DATE]: 'تاريخ الانتهاء',

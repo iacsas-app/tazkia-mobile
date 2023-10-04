@@ -25,7 +25,7 @@ export default function MindProgress({ items, onAdd }: MindProgressProps) {
   return (
     <ProgressContainer
       title={formatMessage(TKeys.PURIFICATION_MIND_TITLE)}
-      subtitle={formatMessage(TKeys.STEP_2)}
+      subtitle={formatMessage(TKeys.PHASE_2)}
       variant="green"
       onAdd={handleAddAction}
     >

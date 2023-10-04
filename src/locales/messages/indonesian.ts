@@ -20,8 +20,9 @@ export const indonesian: Translations = {
   [TKeys.PURIFICATION_BODY_PARTS_FEET]: 'Kaki',
   [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS]: 'Bagian privat',
 
-  [TKeys.PURIFICATION_BODYPART_ADD_CLEANING_PHASE]: 'Menambahkan tahap pembersihan',
-  [TKeys.PURIFICATION_BODYPART_ADD_ENLIGHTENMENT_PHASE]: 'Menambahkan tahap pencerahan',
+  [TKeys.PURIFICATION_BODYPART_CLEANING]: 'Tahap pembersihan',
+  [TKeys.PURIFICATION_BODYPART_ENLIGHTENMENT]: 'Tahap pencerahan',
+  [TKeys.PURIFICATION_BODYPART_ADD_PHASE]: 'Menambahkan {phase}',
   [TKeys.PURIFICATION_BODYPART_CLEANING_PHASE]: 'Kursus pembersihan {part}',
   [TKeys.PURIFICATION_BODYPART_ENLIGHTENMENT_PHASE]: 'Kursus mencerahkan {part}',
   [TKeys.PURIFICATION_BODYPART_DISCIPLINARY_SYSTEM]: 'Sistem disiplin',
@@ -147,9 +148,9 @@ export const indonesian: Translations = {
   [TKeys.LANGUAGE_INDONESIAN]: 'Bahasa Indonesia',
 
   // COMMON
-  [TKeys.STEP_1]: 'Tahap pertama',
-  [TKeys.STEP_2]: 'Tahap ke-2',
-  [TKeys.STEP_3]: 'Tahap ke-3',
+  [TKeys.PHASE_1]: 'Tahap pertama',
+  [TKeys.PHASE_2]: 'Tahap ke-2',
+  [TKeys.PHASE_3]: 'Tahap ke-3',
   [TKeys.PROGRESS_TITLE]: 'Kemajuan',
   [TKeys.PROGRESS_START_DATE]: 'Mulai tanggal',
   [TKeys.PROGRESS_END_DATE]: 'Tanggal akhir',
