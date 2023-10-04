@@ -14,15 +14,15 @@ interface Props {
   completed: boolean;
 }
 export default function ProgressStatus({ last, count, title, completed }: Props) {
-  const { arabicOrientation } = useApplication();
+  const { arabic } = useApplication();
 
   if (!last) {
     return <></>;
   }
 
   return (
-    <HStack spacing={5} style={GlobalStyles.center} reverse={arabicOrientation}>
-      <Text style={{ fontSize: arabicOrientation ? 14 : 10 }} color="grey">
+    <HStack spacing={5} style={GlobalStyles.center} reverse={arabic}>
+      <Text style={{ fontSize: arabic ? 14 : 10 }} color="grey">
         {title}
       </Text>
       {!completed && (

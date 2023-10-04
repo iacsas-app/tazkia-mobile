@@ -8,6 +8,8 @@ export const english: Translations = {
   [TKeys.PRESENTATION_CENTER]: 'International Academic Center for Sufi and Aesthetic Studies',
 
   // PURIFICATION
+  [TKeys.PURIFICATION_INTRODUCTION]:
+    'In this first stage, God Almighty willing, we will discuss the purification of the seven body parts that are accompanied by the Muhammadian invocations, called the invocations of repentance, and spiritual observations that advance the aspirant in the purification stages, and increase the purity of his sight and insight, his ear and his clairvoyance, his body parts and his inner being, and they come in the following order:',
   [TKeys.PURIFICATION_BODYPART_TITLE]: 'Body parts purifying',
   [TKeys.PURIFICATION_BODYPART_DESCRIPTION]:
     'Purifying the heart through purifying and enlightening the seven body parts',
@@ -160,4 +162,6 @@ export const english: Translations = {
   [TKeys.PROGRESS_FAILED_ATTEMPTS_RULE]: 'Violation of rules {rules} on day {day}',
   [TKeys.PROGRESS_START_DAILY_EVALUATION]: 'Evaluate my day',
   [TKeys.PROGRESS_EVALUATION_MESSAGE]: 'Select the rules that were violated',
+  [TKeys.BASMALAH]:
+    'In the name of God, the Most Gracious, the Most Merciful, and may blessings and peace be upon the most honorable of the prophets and messengers, our master Muhammad, and upon all his family and companions.',
 };

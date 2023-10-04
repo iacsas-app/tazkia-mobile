@@ -17,10 +17,10 @@ import { TabParamList } from './types';
 const Tab = createBottomTabNavigator<TabParamList>();
 
 const TabNavigator = () => {
-  const { locale } = useApplication();
+  const { arabic } = useApplication();
   const { formatMessage } = useMessage();
   const { hasProgress } = useApplication();
-  const menuSize = locale === 'ar' ? 14 : 11;
+  const menuSize = arabic ? 14 : 11;
 
   return (
     <Tab.Navigator initialRouteName="HomeTab">

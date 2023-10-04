@@ -21,14 +21,14 @@ interface Props {
 
 export default function SettingsDialog({ open, onClose }: Props) {
   const { formatMessage } = useMessage();
-  const { arabicOrientation } = useApplication();
+  const { arabic } = useApplication();
   const props: any = {};
 
   return (
     <Dialog visible={open} onDismiss={onClose} {...props}>
       <DialogHeader
         title={
-          <HStack spacing={10} reverse={arabicOrientation}>
+          <HStack spacing={10} reverse={arabic}>
             <Icon name="settings" size={28} color="black" />
             <Text variant="h5" style={{ fontWeight: 'bold' }}>
               {formatMessage(TKeys.MENU_SETTINGS)}

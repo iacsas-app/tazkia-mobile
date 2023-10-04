@@ -3,7 +3,7 @@ import { useStoreActions, useStoreState } from '../stores/hooks';
 
 export interface Application {
   locale: SupportedLocale;
-  arabicOrientation: boolean;
+  arabic: boolean;
   hasProgress: boolean;
   hasPurificationProgress: boolean;
   hasSunnahsProgress: boolean;
@@ -12,7 +12,7 @@ export interface Application {
 
 export function useApplication(): Application {
   const locale = useStoreState((state) => state.intl.locale);
-  const arabicOrientation = useStoreState((state) => state.global.arabicOrientation);
+  const arabic = useStoreState((state) => state.global.arabic);
   const purification = useStoreState((state) => state.purification.item);
   const sunnahs = useStoreState((state) => state.sunnahs.item);
   const setLocale = useStoreActions((actions) => actions.intl.update);
@@ -30,7 +30,7 @@ export function useApplication(): Application {
     locale,
     hasPurificationProgress,
     hasSunnahsProgress,
-    arabicOrientation,
+    arabic,
     hasProgress: hasPurificationProgress || hasSunnahsProgress,
     setLocale: handleLocaleChange,
   };

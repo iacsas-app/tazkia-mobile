@@ -15,7 +15,7 @@ interface BodyPartsProgressProps {
   onAdd: (route: keyof PurificationParamList) => void;
 }
 export default function BodyPartsProgress({ items, onAdd }: BodyPartsProgressProps) {
-  const { arabicOrientation } = useApplication();
+  const { arabic } = useApplication();
   const { formatMessage } = useMessage();
   const map = useMemo(() => mapByIndex(items), []);
 
@@ -37,7 +37,7 @@ export default function BodyPartsProgress({ items, onAdd }: BodyPartsProgressPro
       collapse={map.size === 0}
       onAdd={handleAddAction}
     >
-      <HStack spacing={11} reverse={arabicOrientation}>
+      <HStack spacing={11} reverse={arabic}>
         {Array.from(map.values()).map((values: BodyPart[], key: number) => (
           <Stack key={`key_${key}`}>
             {values.map((item: BodyPart, index) => (
