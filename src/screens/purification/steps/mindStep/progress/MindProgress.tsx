@@ -14,7 +14,7 @@ interface MindProgressProps {
 }
 
 export default function MindProgress({ items, onAdd }: MindProgressProps) {
-  const { arabicOrientation } = useApplication();
+  const { arabic } = useApplication();
   const { formatMessage } = useMessage();
   const map = useMemo(() => mapByIndex(items), []);
 
@@ -29,7 +29,7 @@ export default function MindProgress({ items, onAdd }: MindProgressProps) {
       variant="green"
       onAdd={handleAddAction}
     >
-      <HStack spacing={15} reverse={arabicOrientation}>
+      <HStack spacing={15} reverse={arabic}>
         {Array.from(map.values()).map((values: Mind[], key: number) => (
           <Stack key={`key_${key}`} spacing={5}>
             {values.map((item: Mind, index) => (

@@ -2,7 +2,7 @@ import { Action, Computed, Thunk, action, computed, persist, thunk } from 'easy-
 import ProgressLine from '../../domains/common/ProgressLine';
 import BodyPart, { BodyPartType } from '../../domains/purification/BodyPart';
 import Purification from '../../domains/purification/Purification';
-import { PurificationStep } from '../../screens/purification/steps/bodyPartsStep/BodyPartsScreen';
+import { PurificationStage } from '../../screens/purification/steps/bodyPartsStep/BodyPartsScreen';
 import { isBodyPartStepInProgress } from '../../services/Helpers';
 import { Injections } from '../injections';
 import { storageEngine } from '../storage-engine';
@@ -13,22 +13,22 @@ export interface PurificationModel {
 
   // Actions
   load: Action<PurificationModel, Purification>;
-  bodyPartEvaluation: Action<PurificationModel, [BodyPartType, PurificationStep, number[]]>;
+  bodyPartEvaluation: Action<PurificationModel, [BodyPartType, PurificationStage, number[]]>;
   reset: Action<PurificationModel>;
 
   // Thunk
   find: Thunk<PurificationModel, void, Injections>;
   createOrUpdate: Thunk<PurificationModel, Purification, Injections>;
-  evaluateBodyPart: Thunk<PurificationModel, [BodyPartType, PurificationStep, number[]], Injections>;
+  evaluateBodyPart: Thunk<PurificationModel, [BodyPartType, PurificationStage, number[]], Injections>;
 
   // Computed
   findByPart: Computed<PurificationModel, (part: BodyPartType) => BodyPart | undefined>;
 
   findByPartAndStep: Computed<
     PurificationModel,
-    (part: BodyPartType, step: PurificationStep) => ProgressLine[] | undefined
+    (part: BodyPartType, step: PurificationStage) => ProgressLine[] | undefined
   >;
-  hasBodyPartProgress: Computed<PurificationModel, (part: BodyPartType, step: PurificationStep) => boolean>;
+  hasBodyPartProgress: Computed<PurificationModel, (part: BodyPartType, step: PurificationStage) => boolean>;
 }
 
 const purificationModel: PurificationModel = {
@@ -44,7 +44,7 @@ const purificationModel: PurificationModel = {
     state.item = undefined;
     state.isLoaded = false;
   }),
-  bodyPartEvaluation: action((state, payload: [BodyPartType, PurificationStep, number[]]) => {
+  bodyPartEvaluation: action((state, payload: [BodyPartType, PurificationStage, number[]]) => {
     const [type, step, errors] = payload;
     if (!state.item) {
       return;
@@ -68,7 +68,7 @@ const purificationModel: PurificationModel = {
     //const item = await tazkiaService.createOrUpdate(payload);
     actions.load(payload);
   }),
-  evaluateBodyPart: thunk(async (actions, payload: [BodyPartType, PurificationStep, number[]], { injections }) => {
+  evaluateBodyPart: thunk(async (actions, payload: [BodyPartType, PurificationStage, number[]], { injections }) => {
     actions.bodyPartEvaluation(payload);
   }),
 
@@ -79,14 +79,14 @@ const purificationModel: PurificationModel = {
     }
     return state.item.bodyParts.find((item) => item.name === part);
   }),
-  findByPartAndStep: computed((state) => (part: BodyPartType, step: PurificationStep): ProgressLine[] | undefined => {
+  findByPartAndStep: computed((state) => (part: BodyPartType, step: PurificationStage): ProgressLine[] | undefined => {
     if (!state.item) {
       return undefined;
     }
     const result = state.item.bodyParts.find((item) => item.name === part && item[step]?.length !== 0);
     return isBodyPartStepInProgress(result, step);
   }),
-  hasBodyPartProgress: computed((state) => (part: BodyPartType, mode: PurificationStep): boolean => {
+  hasBodyPartProgress: computed((state) => (part: BodyPartType, mode: PurificationStage): boolean => {
     return state.findByPartAndStep(part, mode) !== undefined;
   }),
 };

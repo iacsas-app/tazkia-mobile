@@ -17,7 +17,7 @@ interface ProgressItemProps {
 }
 export default function BodyPartProgressItem({ value }: ProgressItemProps) {
   const { formatMessage } = useMessage();
-  const { arabicOrientation } = useApplication();
+  const { arabic } = useApplication();
   const navigation = useNavigation<PurificationStackNavigationProp>();
 
   const cleaningCount = value.cleaning ? value.cleaning.length - 1 : 0;
@@ -44,12 +44,12 @@ export default function BodyPartProgressItem({ value }: ProgressItemProps) {
         spacing={10}
         style={{
           ...styles.chip,
-          paddingHorizontal: arabicOrientation ? 17 : 7,
-          borderRightWidth: fullyCompleted && arabicOrientation ? 10 : 0,
-          borderLeftWidth: fullyCompleted && !arabicOrientation ? 10 : 0,
+          paddingHorizontal: arabic ? 17 : 7,
+          borderRightWidth: fullyCompleted && arabic ? 10 : 0,
+          borderLeftWidth: fullyCompleted && !arabic ? 10 : 0,
           borderColor: 'green',
         }}
-        reverse={arabicOrientation}
+        reverse={arabic}
       >
         <VStack style={GlobalStyles.center}>
           <Avatar size={25} image={findPartProps(value.name)} />
@@ -66,11 +66,11 @@ export default function BodyPartProgressItem({ value }: ProgressItemProps) {
         </VStack>
         <VStack spacing={5} style={{ alignItems: 'baseline' }}>
           <Box>
-            <Text variant="body1" style={{ ...styles.partName, fontSize: arabicOrientation ? 17 : 14 }}>
+            <Text variant="body1" style={{ ...styles.partName, fontSize: arabic ? 17 : 14 }}>
               {formatMessage(`purification.body-parts.${value.name}`)}
             </Text>
           </Box>
-          <HStack spacing={8} reverse={arabicOrientation}>
+          <HStack spacing={8} reverse={arabic}>
             <VStack spacing={1} style={{ alignItems: 'flex-start' }}>
               <Box>
                 <ProgressStatus

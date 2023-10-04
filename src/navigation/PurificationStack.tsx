@@ -4,7 +4,7 @@ import { useMessage } from '../hooks/use-message';
 import { TKeys } from '../locales/constants';
 import PurificationProgressScreen from '../screens/purification/PurificationProgressScreen';
 import PurificationScreen from '../screens/purification/PurificationScreen';
-import BodyPartsScreen, { PurificationStep } from '../screens/purification/steps/bodyPartsStep/BodyPartsScreen';
+import BodyPartsScreen, { PurificationStage } from '../screens/purification/steps/bodyPartsStep/BodyPartsScreen';
 import BodyPartEvaluationScreen from '../screens/purification/steps/bodyPartsStep/evaluation/BodyPartEvaluationScreen';
 import BodyPartProgressScreen from '../screens/purification/steps/bodyPartsStep/progress/BodyPartProgressScreen';
 import BodyPartsRulesScreen from '../screens/purification/steps/bodyPartsStep/rules/BodyPartRulesScreen';
@@ -17,7 +17,7 @@ export default function PurificationStack() {
   const { formatMessage } = useMessage();
   const Stack = createNativeStackNavigator<PurificationParamList>();
 
-  function rulesBarTitle(step: PurificationStep) {
+  function rulesBarTitle(step: PurificationStage) {
     const phase = formatMessage(`purification.bodypart.${step}`).toLocaleLowerCase();
     return formatMessage(TKeys.PURIFICATION_BODYPART_ADD_PHASE, { phase });
   }

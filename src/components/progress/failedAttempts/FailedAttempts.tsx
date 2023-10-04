@@ -16,7 +16,7 @@ interface Props extends FailedAttemptsBase {
 
 export default function FailedAttempts({ attempts, attemptFormatter }: Props) {
   const { formatMessage } = useMessage();
-  const { arabicOrientation } = useApplication();
+  const { arabic } = useApplication();
   const [open, setOpen] = useState(false);
   const count = attempts.length;
 
@@ -30,13 +30,13 @@ export default function FailedAttempts({ attempts, attemptFormatter }: Props) {
 
   return (
     <Box mt={-10}>
-      <HStack style={GlobalStyles.centerAlign} reverse={arabicOrientation}>
+      <HStack style={GlobalStyles.centerAlign} reverse={arabic}>
         <ProgressStatusInfo
           label={formatMessage(TKeys.PROGRESS_FAILED_ATTEMPTS)}
           value={count}
           icon="repeat-off"
           color="#ff4500"
-          reverse={arabicOrientation}
+          reverse={arabic}
         />
         <IconButton
           icon={() => <Icon name={open ? 'eye-off' : 'history'} size={23} color="#2e8b57" />}
@@ -46,12 +46,7 @@ export default function FailedAttempts({ attempts, attemptFormatter }: Props) {
       {open && (
         <Box mt={20}>
           {attempts.map((attempt, index: number) => (
-            <FailedAttempt
-              key={index}
-              attempt={attempt}
-              reverse={arabicOrientation}
-              attemptFormatter={attemptFormatter}
-            />
+            <FailedAttempt key={index} attempt={attempt} reverse={arabic} attemptFormatter={attemptFormatter} />
           ))}
         </Box>
       )}

@@ -14,7 +14,7 @@ interface SoulProgressProps {
 }
 
 export default function SoulProgress({ items, onAdd }: SoulProgressProps) {
-  const { arabicOrientation } = useApplication();
+  const { arabic } = useApplication();
   const { formatMessage } = useMessage();
   const map = useMemo(() => mapByIndex(items), []);
 
@@ -29,7 +29,7 @@ export default function SoulProgress({ items, onAdd }: SoulProgressProps) {
       variant="orange"
       onAdd={handleAddAction}
     >
-      <HStack spacing={15} reverse={arabicOrientation}>
+      <HStack spacing={15} reverse={arabic}>
         {Array.from(map.values()).map((values: Soul[], key: number) => (
           <Stack key={`key_${key}`} spacing={5}>
             {values.map((item: Soul, index) => (

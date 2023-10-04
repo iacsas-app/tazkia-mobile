@@ -4,7 +4,7 @@ import BodyPart, { BodyPartType, BodyPartsOrder } from '../../../../../domains/p
 import Purification from '../../../../../domains/purification/Purification';
 import { TKeys } from '../../../../../locales/constants';
 import { PURIFICATION_MAX_DAYS, isCompleted } from '../../../../../services/Helpers';
-import { PurificationStep } from '../BodyPartsScreen';
+import { PurificationStage } from '../BodyPartsScreen';
 
 export function isFullyCompleted(part: BodyPart) {
   return isCompleted(part.cleaning, PURIFICATION_MAX_DAYS) && isCompleted(part.enlightenment, PURIFICATION_MAX_DAYS);
@@ -29,7 +29,7 @@ export function mapByIndex<T>(items: T[]): Map<number, T[]> {
   return result;
 }
 
-export function buildBodyParts(part: BodyPartType, mode: PurificationStep, purification: Purification | undefined) {
+export function buildBodyParts(part: BodyPartType, mode: PurificationStage, purification: Purification | undefined) {
   const newLine: ProgressLine = { startDate: Date.now(), day: 0, errors: [], evaluated: false };
   const newPart: BodyPart = { name: part, [mode]: [newLine] };
 

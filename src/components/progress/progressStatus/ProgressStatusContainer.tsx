@@ -25,7 +25,7 @@ interface Props extends FailedAttemptsBase {
 export default function ProgressStatusContainer(props: Props) {
   const { title, iconName, iconColor, backgroundColor, lines, maxDays } = props;
   const { formatMessage, intl } = useMessage();
-  const { arabicOrientation } = useApplication();
+  const { arabic } = useApplication();
   const last = lines.at(lines.length - 1);
 
   if (!last) {
@@ -38,7 +38,7 @@ export default function ProgressStatusContainer(props: Props) {
     <Box style={{ ...styles.container, backgroundColor }}>
       <VStack spacing={15}>
         <Box mb={15}>
-          <HStack spacing={15} style={styles.center} reverse={arabicOrientation}>
+          <HStack spacing={15} style={styles.center} reverse={arabic}>
             <Icon name={iconName as any} size={35} color={iconColor} />
             <Text variant="h5" style={{ fontWeight: '700' }}>
               {capitalize(title)}
@@ -51,7 +51,7 @@ export default function ProgressStatusContainer(props: Props) {
             value={intl.formatDate(last.startDate)}
             icon="calendar"
             color="#000080"
-            reverse={arabicOrientation}
+            reverse={arabic}
           />
           {endDate && (
             <ProgressStatusInfo
@@ -59,7 +59,7 @@ export default function ProgressStatusContainer(props: Props) {
               value={intl.formatDate(endDate)}
               icon="calendar"
               color="#2e8b57"
-              reverse={arabicOrientation}
+              reverse={arabic}
             />
           )}
           {!endDate && (
@@ -69,14 +69,14 @@ export default function ProgressStatusContainer(props: Props) {
                 value={progressPercentage(last.day, maxDays)}
                 icon="progress-clock"
                 color="black"
-                reverse={arabicOrientation}
+                reverse={arabic}
               />
               <ProgressStatusInfo
                 label={formatMessage(TKeys.PROGRESS_SUCCESSFUL_DAYS)}
                 value={`${last.day}/${maxDays}`}
                 icon="flag-checkered"
                 color="green"
-                reverse={arabicOrientation}
+                reverse={arabic}
               />
             </>
           )}

@@ -1,8 +1,8 @@
 import { BodyPartType } from '../../../../../domains/purification/BodyPart';
 import { TKeys } from '../../../../../locales/constants';
-import { PurificationStep } from '../BodyPartsScreen';
+import { PurificationStage } from '../BodyPartsScreen';
 
-export const rules: Record<BodyPartType, Record<PurificationStep, string[]>> = {
+export const rules: Record<BodyPartType, Record<PurificationStage, string[]>> = {
   eye: {
     cleaning: [
       TKeys.PURIFICATION_BODY_PARTS_EYE_CLEANING_RULE_1,
