@@ -37,19 +37,19 @@ const styles = StyleSheet.create({
 const parts: Part[] = [
   {
     route: 'BodyParts',
-    name: TKeys.STEP_1,
+    name: TKeys.PHASE_1,
     description: TKeys.PURIFICATION_BODYPART_TITLE,
     imageSource: require('./../../../assets/img/purification/step1.png'),
   },
   {
     route: 'Mind',
-    name: TKeys.STEP_2,
+    name: TKeys.PHASE_2,
     description: TKeys.PURIFICATION_MIND_TITLE,
     imageSource: require('./../../../assets/img/purification/step2.jpg'),
   },
   {
     route: 'Soul',
-    name: TKeys.STEP_3,
+    name: TKeys.PHASE_3,
     description: TKeys.PURIFICATION_SOUL_TITLE,
     imageSource: require('./../../../assets/img/purification/step3.jpg'),
   },
