@@ -18,17 +18,14 @@ export default function PurificationStack() {
   const Stack = createNativeStackNavigator<PurificationParamList>();
 
   function rulesBarTitle(step: PurificationStep) {
-    const key =
-      step === 'cleaning'
-        ? TKeys.PURIFICATION_BODYPART_ADD_CLEANING_PHASE
-        : TKeys.PURIFICATION_BODYPART_ADD_ENLIGHTENMENT_PHASE;
-    return formatMessage(key);
+    const phase = formatMessage(`purification.bodypart.${step}`).toLocaleLowerCase();
+    return formatMessage(TKeys.PURIFICATION_BODYPART_ADD_PHASE, { phase });
   }
 
   function bodyPartProgressBarTitle(part: BodyPart) {
     const name = formatMessage(`purification.body-parts.${part.name}`);
-    const purif = formatMessage('menu.purification');
-    return capitalize(`${name} ${purif.toLowerCase()}`);
+    const step = formatMessage('menu.purification');
+    return `${capitalize(step)} : ${name.toLowerCase()}`;
   }
 
   return (

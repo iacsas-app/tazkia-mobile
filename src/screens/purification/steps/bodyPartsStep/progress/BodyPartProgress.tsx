@@ -5,11 +5,11 @@ import { BodyPartType } from '../../../../../domains/purification/BodyPart';
 import { useMessage } from '../../../../../hooks/use-message';
 import { TKeys } from '../../../../../locales/constants';
 import { BodyPartEvaluationNavigationProp } from '../../../../../navigation/types';
-import { PurificationStep } from '../BodyPartsScreen';
+import { PurificationStep as PurificationPhase } from '../BodyPartsScreen';
 
 interface BodyPartProgressProps {
   part: BodyPartType;
-  step: PurificationStep;
+  step: PurificationPhase;
   lines: ProgressLine[];
 }
 export default function BodyPartProgress({ part, step, lines }: BodyPartProgressProps) {
@@ -21,7 +21,6 @@ export default function BodyPartProgress({ part, step, lines }: BodyPartProgress
   if (!last) {
     return <></>;
   }
-  const title = formatMessage('step', { name: formatMessage(`button.${step}`).toLowerCase() });
 
   function formatAttempt(line: ProgressLine) {
     return formatMessage(TKeys.PROGRESS_FAILED_ATTEMPTS_RULE, { rules: JSON.stringify(line.errors), day: line.day });
@@ -33,7 +32,7 @@ export default function BodyPartProgress({ part, step, lines }: BodyPartProgress
 
   return (
     <ProgressStatusContainer
-      title={title}
+      title={formatMessage(`purification.bodypart.${step}`)}
       lines={lines}
       maxDays={30}
       iconName={isCleaning ? 'account-tie-hat' : 'lightbulb-on'}

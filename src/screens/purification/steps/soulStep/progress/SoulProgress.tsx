@@ -25,7 +25,7 @@ export default function SoulProgress({ items, onAdd }: SoulProgressProps) {
   return (
     <ProgressContainer
       title={formatMessage(TKeys.PURIFICATION_SOUL_TITLE)}
-      subtitle={formatMessage(TKeys.STEP_3)}
+      subtitle={formatMessage(TKeys.PHASE_3)}
       variant="orange"
       onAdd={handleAddAction}
     >

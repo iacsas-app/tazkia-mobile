@@ -46,7 +46,7 @@ export default function BodyPartsRules({ part, step }: BodyPartsRulesProps) {
 
   function stepTitle() {
     const partName = formatMessage(`purification.body-parts.${part}`).toLowerCase();
-    return capitalize(formatMessage(`purification.bodypart.${step}.step`, { part: partName }));
+    return capitalize(formatMessage(`purification.bodypart.${step}.phase`, { part: partName }));
   }
 
   return (

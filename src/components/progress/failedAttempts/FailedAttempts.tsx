@@ -39,7 +39,7 @@ export default function FailedAttempts({ attempts, attemptFormatter }: Props) {
           reverse={arabicOrientation}
         />
         <IconButton
-          icon={() => <Icon name={open ? 'eye-off' : 'history'} size={23} color="grey" />}
+          icon={() => <Icon name={open ? 'eye-off' : 'history'} size={23} color="#2e8b57" />}
           onPress={handlePress}
         />
       </HStack>
