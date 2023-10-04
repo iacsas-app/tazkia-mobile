@@ -8,6 +8,8 @@ export const indonesian: Translations = {
   [TKeys.PRESENTATION_CENTER]: 'Pusat Akademik Internasional untuk Studi Sufi dan Estetika',
 
   // PURIFICATION
+  [TKeys.PURIFICATION_INTRODUCTION]:
+    'Pada bagian pertama ini insya Allah kita akan membahas tentang bersuci tujuh anggota badan yang diiringi dengan zikir kepada Muhammad yang disebut zikir taubat, dan zikir ruhani yang memajukan calon dalam tahap bersuci, serta meningkatkan kesucian. penglihatan dan wawasannya, pendengarannya dan batinnya, anggota badannya dan batinnya, dan urutannya adalah sebagai berikut:',
   [TKeys.PURIFICATION_BODYPART_TITLE]: 'Pemurnian bagian tubuh',
   [TKeys.PURIFICATION_BODYPART_DESCRIPTION]: 'Mensucikan hati melalui menyucikan dan mencerahkan tujuh bagian tubuh',
   [TKeys.PURIFICATION_MIND_TITLE]: 'Pemurnian pikiran',
@@ -159,4 +161,6 @@ export const indonesian: Translations = {
   [TKeys.PROGRESS_FAILED_ATTEMPTS_RULE]: 'Pelanggaran aturan {rules} pada hari {day}',
   [TKeys.PROGRESS_START_DAILY_EVALUATION]: 'Evaluasi hari saya',
   [TKeys.PROGRESS_EVALUATION_MESSAGE]: 'Pilih aturan yang dilanggar',
+  [TKeys.BASMALAH]:
+    'Dengan menyebut nama Tuhan Yang Maha Pengasih lagi Maha Penyayang, semoga shalawat dan salam tercurah kepada para nabi dan rasul yang paling mulia, junjungan kami Muhammad, serta atas seluruh keluarga dan para sahabatnya.',
 };

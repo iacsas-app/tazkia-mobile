@@ -1,6 +1,6 @@
 import ProgressLine from '../domains/common/ProgressLine';
 import BodyPart from '../domains/purification/BodyPart';
-import { PurificationStep } from '../screens/purification/steps/bodyPartsStep/BodyPartsScreen';
+import { PurificationStage } from '../screens/purification/steps/bodyPartsStep/BodyPartsScreen';
 
 export const PURIFICATION_MAX_DAYS = 30;
 export const SUNNAHS_MAX_DAYS = 15;
@@ -31,6 +31,6 @@ export function isCompleted(progress: ProgressLine[] | undefined, maxDays: numbe
   return last && last.day === maxDays && last.errors.length === 0;
 }
 
-export function isBodyPartStepInProgress(part: BodyPart | undefined, step: PurificationStep) {
+export function isBodyPartStepInProgress(part: BodyPart | undefined, step: PurificationStage) {
   return part ? part[step] : undefined;
 }

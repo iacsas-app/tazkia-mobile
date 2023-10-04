@@ -16,7 +16,7 @@ import { rules } from '../common/data';
 export default function BodyPartEvaluationScreen() {
   const { formatMessage } = useMessage();
   const [selected, setSelected] = useState<number[]>([]);
-  const { arabicOrientation } = useApplication();
+  const { arabic } = useApplication();
   const { part, step } = useRoute<BodyPartEvaluationScreenRouteProp>().params;
   const navigation = useNavigation<BodyPartEvaluationNavigationProp>();
   const evaluate = useStoreActions((actions) => actions.purification.evaluateBodyPart);
@@ -40,7 +40,7 @@ export default function BodyPartEvaluationScreen() {
       }}
     >
       <Avatar image={findPartProps(part)} size={120} />
-      <HStack spacing={15} style={styles.system} reverse={arabicOrientation}>
+      <HStack spacing={15} style={styles.system} reverse={arabic}>
         <Icon name="playlist-check" color="red" size={30} />
         <Text variant="h6" style={styles.title}>
           {formatMessage(TKeys.PROGRESS_EVALUATION_MESSAGE)}
@@ -53,7 +53,7 @@ export default function BodyPartEvaluationScreen() {
               key={index}
               id={index + 1}
               item={formatMessage(rule)}
-              reverse={arabicOrientation}
+              reverse={arabic}
               onSelect={handleSelect}
               onUnselect={handleUnselect}
             />

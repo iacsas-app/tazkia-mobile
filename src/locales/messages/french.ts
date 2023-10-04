@@ -8,6 +8,8 @@ export const french: Translations = {
   [TKeys.PRESENTATION_CENTER]: "Centre Académique International d'Études Soufies et Esthétiques",
 
   // PURIFICATION
+  [TKeys.PURIFICATION_INTRODUCTION]:
+    "Dans cette première partie, si Dieu Tout-Puissant le veut, nous discuterons de la purification des sept membres qui sont accompagnés d'invocations Mohammadiennes (Dikr Muhammadi), appelé invocations du repentir, et des observations spirituelles qui font progresser l'aspirant dans les étapes de purification et augmentent la pureté de sa vue et sa perspicacité, son oreille et sa clairvoyance, ses membres et son être intérieur, et ils viennent dans l'ordre suivant :",
   [TKeys.PURIFICATION_BODYPART_TITLE]: 'Purification des sens',
   [TKeys.PURIFICATION_BODYPART_DESCRIPTION]: "Purifier le cœur à travers le nettoyage et l'illuminantion des sept sens",
   [TKeys.PURIFICATION_MIND_TITLE]: 'Purification de la raison',
@@ -159,4 +161,6 @@ export const french: Translations = {
   [TKeys.PROGRESS_FAILED_ATTEMPTS_RULE]: 'Violation des règles {rules} le jour {day}',
   [TKeys.PROGRESS_START_DAILY_EVALUATION]: 'Évaluer ma journée',
   [TKeys.PROGRESS_EVALUATION_MESSAGE]: 'Sélectionnez les règles qui ont été enfreintes',
+  [TKeys.BASMALAH]:
+    'Au nom de Dieu, le Très Miséricordieux, le Très Miséricordieux, et que la bénédiction et la paix soient sur le plus honorable des prophètes et messagers, notre maître Muhammad, ainsi que sur toute sa famille et ses compagnons.',
 };

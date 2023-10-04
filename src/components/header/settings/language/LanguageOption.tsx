@@ -12,7 +12,7 @@ interface LanguageOptionProps {
 }
 export default function LanguageOption({ value, icon, onChange }: LanguageOptionProps) {
   const { formatMessage } = useMessage();
-  const { locale, arabicOrientation } = useApplication();
+  const { locale, arabic } = useApplication();
   const language = localesTranslation[value];
 
   function handleChange() {
@@ -23,8 +23,8 @@ export default function LanguageOption({ value, icon, onChange }: LanguageOption
 
   return (
     <Pressable onPress={handleChange}>
-      <HStack spacing={3} mv={8} justify="between" reverse={arabicOrientation}>
-        <HStack spacing={12} reverse={arabicOrientation}>
+      <HStack spacing={3} mv={8} justify="between" reverse={arabic}>
+        <HStack spacing={12} reverse={arabic}>
           <Avatar image={icon} size={40} />
           <VStack justify="start" content="center">
             <Text variant="body1" style={{ fontWeight: 'bold', fontSize: 15 }}>

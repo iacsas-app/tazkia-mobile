@@ -7,6 +7,8 @@ export const arabic: Translations = {
   [TKeys.PRESENTATION_CENTER]: 'المركز الأكاديمي الدولي للدراسات الصوفية والجمالية',
 
   // PURIFICATION
+  [TKeys.PURIFICATION_INTRODUCTION]:
+    'نتطرق بإذن الله تعالى في هذا الجزء الأول إلى تزكية الجوارح السبعة التي تكون مصحوبة بذكر محمدي يسمى بذكر التوبة، وبمراقبات روحية ترقي المريد في مراقي التطهير، وتزيد من صفاء بصره وبصيرته، أذنه وسريرته، جوارحه وباطنه، وتأتي بالترتيب التالي :',
   [TKeys.PURIFICATION_BODYPART_TITLE]: 'تزكية الجوارح',
   [TKeys.PURIFICATION_BODYPART_DESCRIPTION]: 'تزكية القلب من خلال تطهير وتنوير الجوارح السبعة',
   [TKeys.PURIFICATION_MIND_TITLE]: 'تزكية العقل',
@@ -168,4 +170,6 @@ export const arabic: Translations = {
   [TKeys.PROGRESS_FAILED_ATTEMPTS_RULE]: 'خرق القاعدة {rules} في اليوم {day}',
   [TKeys.PROGRESS_START_DAILY_EVALUATION]: 'تقييم يومي',
   [TKeys.PROGRESS_EVALUATION_MESSAGE]: 'اختر القواعد التي تم خرقها',
+  [TKeys.BASMALAH]:
+    'بسم الله الرحمن الرحيم والصلاة والسلام على أشرف الأنبياء والمرسلين سيدنا محمد وعلى آله وصحبه أجمعين',
 };

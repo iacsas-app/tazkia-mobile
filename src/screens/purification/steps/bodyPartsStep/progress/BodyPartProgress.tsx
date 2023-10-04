@@ -5,7 +5,7 @@ import { BodyPartType } from '../../../../../domains/purification/BodyPart';
 import { useMessage } from '../../../../../hooks/use-message';
 import { TKeys } from '../../../../../locales/constants';
 import { BodyPartEvaluationNavigationProp } from '../../../../../navigation/types';
-import { PurificationStep as PurificationPhase } from '../BodyPartsScreen';
+import { PurificationStage as PurificationPhase } from '../BodyPartsScreen';
 
 interface BodyPartProgressProps {
   part: BodyPartType;

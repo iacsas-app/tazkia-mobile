@@ -2,22 +2,22 @@ import { Action, action, persist } from 'easy-peasy';
 import { storageEngine } from '../storage-engine';
 
 export interface GlobalModel {
-  arabicOrientation: boolean; // Text orientation
+  arabic: boolean; // Text orientation
 
   // Actions
   setArabicOrientation: Action<GlobalModel, boolean>;
 }
 
 const globalModel: GlobalModel = {
-  arabicOrientation: false,
+  arabic: false,
 
   // Actions
   setArabicOrientation: action((state, payload: boolean) => {
-    state.arabicOrientation = payload;
+    state.arabic = payload;
   }),
 };
 
 export default persist(globalModel, {
   storage: storageEngine,
-  allow: ['arabicOrientation'],
+  allow: ['arabic'],
 });

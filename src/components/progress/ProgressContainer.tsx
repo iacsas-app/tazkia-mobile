@@ -19,7 +19,7 @@ interface Props {
   onAdd: () => void;
 }
 export default function ProgressContainer({ title, subtitle, variant, children, disabled, ...props }: Props) {
-  const { arabicOrientation } = useApplication();
+  const { arabic } = useApplication();
   const [collapse, setCollapse] = useState(props.collapse);
   const color = variant === 'orange' ? styles.orange : variant === 'blue' ? styles.blue : styles.green;
   const bgColor =
@@ -32,7 +32,7 @@ export default function ProgressContainer({ title, subtitle, variant, children, 
   return (
     <Box style={styles.container}>
       <Box h={50} style={{ ...styles.titleBox, ...color }}>
-        <HStack justify="between" reverse={arabicOrientation}>
+        <HStack justify="between" reverse={arabic}>
           <Box>
             <Text variant="body1" style={styles.title}>
               {title}
@@ -41,7 +41,7 @@ export default function ProgressContainer({ title, subtitle, variant, children, 
               {subtitle}
             </Text>
           </Box>
-          <HStack reverse={arabicOrientation}>
+          <HStack reverse={arabic}>
             {!disabled && (
               <IconButton
                 style={styles.plusButton}

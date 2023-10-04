@@ -12,7 +12,7 @@ import LanguageSelector from './LanguageSelector';
 export default function LanguageSetting() {
   const { formatMessage } = useMessage();
   const [show, setShow] = useState(false);
-  const { locale, arabicOrientation } = useApplication();
+  const { locale, arabic } = useApplication();
   const languageKey = localesTranslation[locale];
 
   const languageFlags: Record<SupportedLocale, ImageSourcePropType> = useMemo(() => {
@@ -32,7 +32,7 @@ export default function LanguageSetting() {
     <Surface elevation={3} style={SettingsStyles.container} category="large">
       <VStack spacing={10}>
         <Pressable onPress={handlePress} style={SettingsStyles.surface}>
-          <HStack spacing={17} reverse={arabicOrientation}>
+          <HStack spacing={17} reverse={arabic}>
             <Avatar image={languageFlags[locale]} size={40} />
             <VStack>
               <Text variant="subtitle1" style={{ fontWeight: 'bold' }}>

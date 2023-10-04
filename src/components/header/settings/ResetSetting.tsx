@@ -8,7 +8,7 @@ import { useStoreActions } from '../../../stores/hooks';
 import { SettingsStyles } from './SettingsStyles';
 
 export function ResetSetting() {
-  const { arabicOrientation } = useApplication();
+  const { arabic } = useApplication();
   const { formatMessage } = useMessage();
   const reset = useStoreActions((state) => state.purification.reset);
 
@@ -19,7 +19,7 @@ export function ResetSetting() {
   return (
     <Surface elevation={3} style={SettingsStyles.container} category="large">
       <Pressable onPress={handlePress} style={SettingsStyles.surface}>
-        <HStack spacing={17} reverse={arabicOrientation} style={styles.stack}>
+        <HStack spacing={17} reverse={arabic} style={styles.stack}>
           <Avatar icon={() => <Icon name="database-remove" size={40} />} size={40} style={styles.avatar} />
           <Text>{formatMessage(TKeys.SETTINGS_RESET)}</Text>
         </HStack>

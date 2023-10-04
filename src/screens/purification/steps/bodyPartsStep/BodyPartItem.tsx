@@ -1,13 +1,13 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import { Avatar, Box, HStack, Pressable, Surface, Text } from '@react-native-material/core';
-import { ImageSourcePropType, StyleSheet } from 'react-native';
+import { ImageSourcePropType, StyleSheet, View } from 'react-native';
 import { BodyPartType } from '../../../../domains/purification/BodyPart';
 import { useApplication } from '../../../../hooks/use-application';
 import { useMessage } from '../../../../hooks/use-message';
 import { isBodyPartStepInProgress } from '../../../../services/Helpers';
 import { useStoreState } from '../../../../stores/hooks';
 import GlobalStyles from '../../../../styles/GlobalStyles';
-import { PurificationStep } from './BodyPartsScreen';
+import { PurificationStage } from './BodyPartsScreen';
 import { isFullyCompleted } from './common/Helper';
 
 interface BodyPartItemProps {
@@ -15,16 +15,16 @@ interface BodyPartItemProps {
   type: BodyPartType;
   nameKey: string;
   imageSource: ImageSourcePropType;
-  onOpenRules: (type: BodyPartType, mode: PurificationStep) => void;
+  onOpenRules: (type: BodyPartType, mode: PurificationStage) => void;
 }
 export default function BodyPartItem({ id, type, nameKey, imageSource, onOpenRules }: BodyPartItemProps) {
   const { formatMessage } = useMessage();
-  const { arabicOrientation } = useApplication();
+  const { arabic } = useApplication();
   const findBodyPart = useStoreState((state) => state.purification.findByPart);
 
   const width = 194;
-  const space = arabicOrientation ? 10 : 2;
-  const btnVariant = arabicOrientation ? 'body1' : 'caption';
+  const space = arabic ? 10 : 2;
+  const btnVariant = arabic ? 'body1' : 'caption';
 
   const progress = findBodyPart(type);
   const inProgress = progress !== undefined;
@@ -32,18 +32,15 @@ export default function BodyPartItem({ id, type, nameKey, imageSource, onOpenRul
   const isCleaningInProgress = isBodyPartStepInProgress(progress, 'cleaning');
   const isEnlightenmentInProgress = isBodyPartStepInProgress(progress, 'enlightenment');
 
-  if (isCompleted || (isCleaningInProgress && isEnlightenmentInProgress)) {
-    return <></>;
-  }
   const backgroundColor = isCompleted ? '#2e8b57' : inProgress ? '#66cdaa' : '#87ceeb';
 
-  function handlePress(step: PurificationStep) {
+  function handlePress(step: PurificationStage) {
     onOpenRules(type, step);
   }
 
   return (
-    <Box style={styles.container}>
-      <Box h={90} w={width} style={{ ...styles.topBox, backgroundColor }}>
+    <View style={styles.container}>
+      <Box h={80} w={width} style={{ ...styles.topBox, backgroundColor }}>
         <Avatar size={50} style={styles.typeAvatar} image={imageSource} />
         <Avatar
           size={20}
@@ -64,11 +61,11 @@ export default function BodyPartItem({ id, type, nameKey, imageSource, onOpenRul
       </Box>
       {!isCompleted && (
         <Box h={40} w={width} style={styles.bottomBox}>
-          <HStack spacing={arabicOrientation ? 20 : 5} reverse={arabicOrientation}>
+          <HStack spacing={arabic ? 20 : 5} reverse={arabic}>
             {!isCleaningInProgress && (
               <Surface elevation={2} category="small" style={styles.action}>
                 <Pressable style={{ padding: 3 }} onPress={() => handlePress('cleaning')}>
-                  <HStack spacing={space} style={GlobalStyles.center} reverse={arabicOrientation}>
+                  <HStack spacing={space} style={GlobalStyles.center} reverse={arabic}>
                     <Icon name="account-tie-hat" size={15} color="#4b0082" />
                     <Text variant={btnVariant}>{formatMessage(`button.cleaning`)}</Text>
                   </HStack>
@@ -78,17 +75,20 @@ export default function BodyPartItem({ id, type, nameKey, imageSource, onOpenRul
             {!isEnlightenmentInProgress && (
               <Surface elevation={2} category="small" style={styles.action}>
                 <Pressable style={{ padding: 3 }} onPress={() => handlePress('enlightenment')}>
-                  <HStack spacing={space} style={GlobalStyles.center} reverse={arabicOrientation}>
+                  <HStack spacing={space} style={GlobalStyles.center} reverse={arabic}>
                     <Icon name="lightbulb-on" size={15} color="#32cd32" />
                     <Text variant={btnVariant}>{formatMessage(`button.enlightenment`)}</Text>
                   </HStack>
                 </Pressable>
               </Surface>
             )}
+            {isCleaningInProgress && isEnlightenmentInProgress && (
+              <Icon name="progress-check" size={25} color="#20b2aa" />
+            )}
           </HStack>
         </Box>
       )}
-    </Box>
+    </View>
   );
 }
 
