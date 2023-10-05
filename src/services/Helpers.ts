@@ -18,6 +18,12 @@ export function capitalize(str: string) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
+/**
+ *
+ * @param day Retreive progress
+ * @param maxDays
+ * @returns
+ */
 export function progressPercentage(day: number, maxDays: number): string {
   const precision = day < 3 ? 1 : 2;
   return `${((day * 100) / maxDays).toPrecision(precision)}%`;
