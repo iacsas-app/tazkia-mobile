@@ -4,10 +4,9 @@ export const RuleStyles = StyleSheet.create({
   stack: {
     alignItems: 'flex-start',
     textAlign: 'justify',
-    paddingVertical: 5,
-    marginHorizontal: 20,
+    paddingVertical: 4,
+    marginHorizontal: 24,
   },
-  box: { marginHorizontal: 10 },
   pressable: {
     paddingHorizontal: 8,
     marginBottom: 1,

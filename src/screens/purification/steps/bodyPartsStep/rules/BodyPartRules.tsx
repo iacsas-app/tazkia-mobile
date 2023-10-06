@@ -52,23 +52,23 @@ export default function BodyPartsRules({ part, step }: BodyPartsRulesProps) {
 
   return (
     <ScrollViewLayout>
-      <Avatar image={findPartProps(part)} size={110} />
+      <Avatar image={findPartProps(part)} size={100} />
       <Text
         variant="body1"
-        style={{ fontWeight: '600', marginVertical: 15, marginHorizontal: 0, fontSize: arabic ? 30 : 18 }}
+        style={{ fontWeight: '600', marginVertical: 5, marginHorizontal: 0, fontSize: arabic ? 30 : 18 }}
         color="blue"
       >
         {stepTitle()}
       </Text>
       <HStack spacing={12} style={styles.system} reverse={arabic}>
-        <Icon name={isCleaning ? 'account-tie-hat' : 'lightbulb-on'} color={isCleaning ? 'red' : 'green'} size={28} />
-        <Text variant="body1" style={{ ...styles.title, fontSize: arabic ? 25 : 18 }}>
+        <Icon name={isCleaning ? 'account-tie-hat' : 'lightbulb-on'} color={isCleaning ? 'red' : 'green'} size={23} />
+        <Text variant="body1" style={{ ...styles.title, fontSize: arabic ? 22 : 18 }}>
           {formatMessage(`${step}.bodypart.disciplinary-system`)}
         </Text>
       </HStack>
       <VStack mv={17}>
         {items.map((rule: string, index: number) => (
-          <SimpleRule key={index} id={index + 1} item={formatMessage(rule)} reverse={arabic} />
+          <SimpleRule key={index} id={index + 1} item={formatMessage(rule)} />
         ))}
       </VStack>
       {!progress && <Button title={formatMessage(TKeys.BUTTON_ADD)} style={styles.action} onPress={handlePress} />}

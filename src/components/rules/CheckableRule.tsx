@@ -1,6 +1,7 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import { Avatar, Box, HStack, Pressable, Text } from '@react-native-material/core';
 import { useState } from 'react';
+import { useApplication } from '../../hooks/use-application';
 import { RuleStyles } from './Styles';
 import { RuleBaseProps } from './types';
 
@@ -9,8 +10,12 @@ interface RuleProps extends RuleBaseProps {
   onUnselect: (id: number) => void;
 }
 
-export default function CheckableRule({ id, item, reverse, ...props }: RuleProps) {
+export default function CheckableRule({ id, item, ...props }: RuleProps) {
   const [checked, setChecked] = useState(false);
+  const { arabic } = useApplication();
+
+  const ml = arabic ? 25 : 5;
+  const mr = arabic ? 5 : 25;
 
   function handlePress() {
     checked ? props.onUnselect(id) : props.onSelect(id);
@@ -25,8 +30,8 @@ export default function CheckableRule({ id, item, reverse, ...props }: RuleProps
         backgroundColor: checked ? '#ffb6c1' : 'white',
       }}
     >
-      <Box style={RuleStyles.box}>
-        <HStack spacing={10} style={RuleStyles.stack} reverse={reverse}>
+      <Box style={{ marginLeft: ml, marginRight: mr }}>
+        <HStack spacing={10} style={RuleStyles.stack} reverse={arabic}>
           <Avatar
             label={
               checked ? undefined : (
@@ -40,7 +45,7 @@ export default function CheckableRule({ id, item, reverse, ...props }: RuleProps
             tintColor="white"
             icon={(props) => <Icon name="check-bold" {...props} />}
           />
-          <Text variant="body1" style={RuleStyles.text}>
+          <Text variant="body1" style={{ ...RuleStyles.text, fontSize: arabic ? 16 : 14 }}>
             {item}
           </Text>
         </HStack>
