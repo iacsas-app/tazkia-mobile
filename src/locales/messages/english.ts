@@ -128,6 +128,17 @@ export const english: Translations = {
   [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS_ENLIGHTENMENT_RULE_5]: 'rule 5 to translate',
   [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS_ENLIGHTENMENT_RULE_6]: 'rule 6 to translate',
 
+  [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_1]: 'Reject Obsessions',
+  [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_2]: 'Develop daily communication with Allah, the Almighty',
+  [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_3]: 'Ask God for permission in all your actions',
+  [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_4]: 'Presence of the Mind with God',
+  [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_5]: 'The feeling of being with God within 24 hours',
+  [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_6]: 'Deep thinking and extracting lessons and insights from every situation',
+  [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_7]: 'Positive thinking and avoiding bad thinking',
+  [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_8]:
+    'Loving the Messenger, while connecting our minds to him, peace and blessings be upon him',
+  [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_9]: 'Loving God, while connecting our minds to Him Almighty',
+
   // MENUS
   [TKeys.MENU_SETTINGS]: 'Settings',
   [TKeys.MENU_HOME]: 'Home',
@@ -164,4 +175,5 @@ export const english: Translations = {
   [TKeys.PROGRESS_EVALUATION_MESSAGE]: 'Select the rules that were violated',
   [TKeys.BASMALAH]:
     'In the name of God, the Most Gracious, the Most Merciful, and may blessings and peace be upon the most honorable of the prophets and messengers, our master Muhammad, and upon all his family and companions.',
+  [TKeys.LEVEL]: 'Level {value}',
 };
