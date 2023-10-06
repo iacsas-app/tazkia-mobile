@@ -9,6 +9,7 @@ export enum TKeys {
   PHASE_1 = 'phase1',
   PHASE_2 = 'phase2',
   PHASE_3 = 'phase3',
+  LEVEL = 'level',
   PURIFICATION_INTRODUCTION = 'purification.introduction',
   PURIFICATION_BODYPART_CLEANING = 'purification.bodypart.cleaning',
   PURIFICATION_BODYPART_ENLIGHTENMENT = 'purification.bodypart.enlightenment',
@@ -133,6 +134,17 @@ export enum TKeys {
   PURIFICATION_BODY_PARTS_PRIVATE_PARTS_ENLIGHTENMENT_RULE_4 = 'purification.body-parts.private-parts.enlightenment.rule-4',
   PURIFICATION_BODY_PARTS_PRIVATE_PARTS_ENLIGHTENMENT_RULE_5 = 'purification.body-parts.private-parts.enlightenment.rule-5',
   PURIFICATION_BODY_PARTS_PRIVATE_PARTS_ENLIGHTENMENT_RULE_6 = 'purification.body-parts.private-parts.enlightenment.rule-6',
+
+  // Mind purification
+  PURIFICATION_MIND_SUMMARY_LEVEL_1 = 'purification.mind.summary.level-1',
+  PURIFICATION_MIND_SUMMARY_LEVEL_2 = 'purification.mind.summary.level-2',
+  PURIFICATION_MIND_SUMMARY_LEVEL_3 = 'purification.mind.summary.level-3',
+  PURIFICATION_MIND_SUMMARY_LEVEL_4 = 'purification.mind.summary.level-4',
+  PURIFICATION_MIND_SUMMARY_LEVEL_5 = 'purification.mind.summary.level-5',
+  PURIFICATION_MIND_SUMMARY_LEVEL_6 = 'purification.mind.summary.level-6',
+  PURIFICATION_MIND_SUMMARY_LEVEL_7 = 'purification.mind.summary.level-7',
+  PURIFICATION_MIND_SUMMARY_LEVEL_8 = 'purification.mind.summary.level-8',
+  PURIFICATION_MIND_SUMMARY_LEVEL_9 = 'purification.mind.summary.level-9',
 
   LANGUAGE_ARABIC = 'language.arabic',
   LANGUAGE_FRENCH = 'language.french',

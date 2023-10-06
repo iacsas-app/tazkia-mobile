@@ -19,9 +19,6 @@ export default function PurificationProgressScreen() {
     return <></>;
   }
 
-  purification.mind = [];
-  purification.soul = [];
-
   return (
     <Flex fill style={styles.container}>
       <BodyPartsProgress items={purification.bodyParts} onAdd={handleAdd} />

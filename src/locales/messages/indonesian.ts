@@ -127,6 +127,19 @@ export const indonesian: Translations = {
   [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS_ENLIGHTENMENT_RULE_5]: '',
   [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS_ENLIGHTENMENT_RULE_6]: '',
 
+  [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_1]: 'Menolak obsesi',
+  [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_2]: 'Kembangkan kontak sehari-hari dengan Tuhan Yang Maha Esa',
+  [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_3]: 'Mintalah izin kepada Tuhan dalam segala tindakan Anda',
+  [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_4]: 'Kehadiran Akal Bersama Allah',
+  [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_5]: 'Perasaan Kehadiran Allah dalam 24 Jam',
+  [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_6]:
+    'Merenungkan secara mendalam dan menarik pelajaran dan hikmah dari setiap situasi',
+  [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_7]: 'Berpikir positif dan baik serta hindari berpikir negatif',
+  [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_8]:
+    'Mencintai Rasulullah, sembari menyambungkan pikiran kita kepadanya, shalawat dan salam',
+  [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_9]:
+    'Mencintai Tuhan, sekaligus menghubungkan pikiran kita dengan-Nya Yang Maha Esa',
+
   // MENUS
   [TKeys.MENU_SETTINGS]: 'Pengaturan',
   [TKeys.MENU_HOME]: 'Rumah',
@@ -163,4 +176,5 @@ export const indonesian: Translations = {
   [TKeys.PROGRESS_EVALUATION_MESSAGE]: 'Pilih aturan yang dilanggar',
   [TKeys.BASMALAH]:
     'Dengan menyebut nama Tuhan Yang Maha Pengasih lagi Maha Penyayang, semoga shalawat dan salam tercurah kepada para nabi dan rasul yang paling mulia, junjungan kami Muhammad, serta atas seluruh keluarga dan para sahabatnya.',
+  [TKeys.LEVEL]: 'Tingkat {value} :',
 };
