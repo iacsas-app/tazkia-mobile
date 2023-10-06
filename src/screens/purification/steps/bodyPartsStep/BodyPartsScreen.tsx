@@ -53,9 +53,9 @@ export default function BodyPartsScreen() {
           {formatMessage(TKeys.PURIFICATION_INTRODUCTION)}
         </Text>
       </VStack>
-      <VStack spacing={13} style={GlobalStyles.center}>
+      <VStack spacing={15} style={{ ...GlobalStyles.center, marginHorizontal: 15 }}>
         {Object.keys(partsByLine).map((key: string) => (
-          <HStack key={key} spacing={18} reverse={arabic}>
+          <HStack key={key} spacing={3} reverse={arabic}>
             {partsByLine[key].map(({ line, ...props }: PartItem, index: number) => (
               <View key={`${key}_${index}_${line}`}>
                 <BodyPartItem id={BodyPartsOrder[props.type]} {...props} onOpenRules={handleOpenRules} />

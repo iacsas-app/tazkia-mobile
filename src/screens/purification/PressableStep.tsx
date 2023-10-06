@@ -24,12 +24,12 @@ export default function PressableStep({ item }: Props) {
 
   return (
     <Pressable onPress={handlePress}>
-      <Stack style={styles.container}>
-        <Avatar image={item.imageSource} imageStyle={styles.img} size={120} />
+      <Stack spacing={1} style={styles.container}>
+        <Avatar image={item.imageSource} imageStyle={styles.img} size={90} />
+        <Text variant="body1">{formatMessage(item.name)}</Text>
         <Text variant="h6" style={{ fontWeight: 'bold' }}>
-          {formatMessage(item.name)}
+          {formatMessage(item.description)}
         </Text>
-        <Text variant="body1">{formatMessage(item.description)}</Text>
       </Stack>
     </Pressable>
   );
@@ -39,10 +39,10 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: -15,
+    marginTop: -20,
   },
   img: {
-    width: 120,
-    height: 120,
+    width: 90,
+    height: 90,
   },
 });

@@ -22,10 +22,9 @@ export default function BodyPartItem({ id, type, nameKey, imageSource, onOpenRul
   const { arabic } = useApplication();
   const findBodyPart = useStoreState((state) => state.purification.findByPart);
 
-  const width = 194;
+  const width = 175;
   const space = arabic ? 10 : 2;
-  const btnVariant = arabic ? 'body1' : 'caption';
-
+  const btnFontSize = arabic ? 15 : 10;
   const progress = findBodyPart(type);
   const inProgress = progress !== undefined;
   const isCompleted = inProgress && isFullyCompleted(progress);
@@ -53,7 +52,7 @@ export default function BodyPartItem({ id, type, nameKey, imageSource, onOpenRul
           }
         />
         <HStack spacing={10} style={GlobalStyles.center}>
-          <Text variant="h6" style={{ ...styles.partName, color: isCompleted ? 'white' : 'black' }}>
+          <Text style={{ ...styles.partName, color: isCompleted ? 'white' : 'black', fontSize: arabic ? 18 : 15 }}>
             {formatMessage(nameKey)}
           </Text>
           {isCompleted && <Icon name="check" size={26} color="white" />}
@@ -67,7 +66,7 @@ export default function BodyPartItem({ id, type, nameKey, imageSource, onOpenRul
                 <Pressable style={{ padding: 3 }} onPress={() => handlePress('cleaning')}>
                   <HStack spacing={space} style={GlobalStyles.center} reverse={arabic}>
                     <Icon name="account-tie-hat" size={15} color="#4b0082" />
-                    <Text variant={btnVariant}>{formatMessage(`button.cleaning`)}</Text>
+                    <Text style={{ fontSize: btnFontSize }}>{formatMessage(`button.cleaning`)}</Text>
                   </HStack>
                 </Pressable>
               </Surface>
@@ -77,7 +76,7 @@ export default function BodyPartItem({ id, type, nameKey, imageSource, onOpenRul
                 <Pressable style={{ padding: 3 }} onPress={() => handlePress('enlightenment')}>
                   <HStack spacing={space} style={GlobalStyles.center} reverse={arabic}>
                     <Icon name="lightbulb-on" size={15} color="#32cd32" />
-                    <Text variant={btnVariant}>{formatMessage(`button.enlightenment`)}</Text>
+                    <Text style={{ fontSize: btnFontSize }}>{formatMessage(`button.enlightenment`)}</Text>
                   </HStack>
                 </Pressable>
               </Surface>

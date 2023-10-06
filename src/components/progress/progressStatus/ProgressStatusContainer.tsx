@@ -38,11 +38,9 @@ export default function ProgressStatusContainer(props: Props) {
     <Box style={{ ...styles.container, backgroundColor }}>
       <VStack spacing={15}>
         <Box mb={15}>
-          <HStack spacing={15} style={styles.center} reverse={arabic}>
-            <Icon name={iconName as any} size={35} color={iconColor} />
-            <Text variant="h5" style={{ fontWeight: '700' }}>
-              {capitalize(title)}
-            </Text>
+          <HStack spacing={10} style={styles.center} reverse={arabic}>
+            <Icon name={iconName as any} size={28} color={iconColor} />
+            <Text style={{ fontWeight: '700', fontSize: arabic ? 20 : 17 }}>{capitalize(title)}</Text>
           </HStack>
         </Box>
         <Box>
@@ -51,7 +49,6 @@ export default function ProgressStatusContainer(props: Props) {
             value={intl.formatDate(last.startDate)}
             icon="calendar"
             color="#000080"
-            reverse={arabic}
           />
           {endDate && (
             <ProgressStatusInfo
@@ -59,7 +56,6 @@ export default function ProgressStatusContainer(props: Props) {
               value={intl.formatDate(endDate)}
               icon="calendar"
               color="#2e8b57"
-              reverse={arabic}
             />
           )}
           {!endDate && (
@@ -69,14 +65,12 @@ export default function ProgressStatusContainer(props: Props) {
                 value={progressPercentage(last.day, maxDays)}
                 icon="progress-clock"
                 color="black"
-                reverse={arabic}
               />
               <ProgressStatusInfo
                 label={formatMessage(TKeys.PROGRESS_SUCCESSFUL_DAYS)}
                 value={`${last.day}/${maxDays}`}
                 icon="flag-checkered"
                 color="green"
-                reverse={arabic}
               />
             </>
           )}
@@ -91,6 +85,8 @@ export default function ProgressStatusContainer(props: Props) {
             style={styles.btn}
             title={formatMessage(TKeys.PROGRESS_START_DAILY_EVALUATION)}
             onPress={props.onEvaluate}
+            titleStyle={{ fontSize: arabic ? 18 : 15 }}
+            uppercase={false}
           />
         )}
       </VStack>
@@ -99,7 +95,7 @@ export default function ProgressStatusContainer(props: Props) {
 }
 
 const styles = StyleSheet.create({
-  container: { paddingHorizontal: 25, paddingVertical: 15, borderRadius: 15, elevation: 1 },
+  container: { paddingHorizontal: 20, paddingVertical: 12, borderRadius: 15, elevation: 1 },
   btn: { marginTop: 10 },
   center: { alignItems: 'center' },
 });

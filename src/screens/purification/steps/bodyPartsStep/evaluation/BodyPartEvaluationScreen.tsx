@@ -2,7 +2,8 @@ import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import { Avatar, Button, HStack, Text, VStack } from '@react-native-material/core';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useMemo, useState } from 'react';
-import { SafeAreaView, ScrollView, StatusBar, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
+import ScrollViewLayout from '../../../../../components/layout/ScrollViewLayout';
 import CheckableRule from '../../../../../components/rules/CheckableRule';
 import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';
@@ -33,35 +34,27 @@ export default function BodyPartEvaluationScreen() {
   }
 
   return (
-    <SafeAreaView
-      style={{
-        ...styles.container,
-        paddingTop: StatusBar.currentHeight,
-      }}
-    >
-      <Avatar image={findPartProps(part)} size={120} />
+    <ScrollViewLayout>
+      <Avatar image={findPartProps(part)} size={90} />
       <HStack spacing={15} style={styles.system} reverse={arabic}>
         <Icon name="playlist-check" color="red" size={30} />
-        <Text variant="h6" style={styles.title}>
+        <Text variant="h6" style={{ ...styles.title, fontSize: arabic ? 20 : 15 }}>
           {formatMessage(TKeys.PROGRESS_EVALUATION_MESSAGE)}
         </Text>
       </HStack>
-      <ScrollView>
-        <VStack mv={15}>
-          {items.map((rule: string, index: number) => (
-            <CheckableRule
-              key={index}
-              id={index + 1}
-              item={formatMessage(rule)}
-              reverse={arabic}
-              onSelect={handleSelect}
-              onUnselect={handleUnselect}
-            />
-          ))}
-        </VStack>
-        <Button title={formatMessage(TKeys.BUTTON_SAVE)} style={styles.action} onPress={handleSave} />
-      </ScrollView>
-    </SafeAreaView>
+      <VStack mv={15}>
+        {items.map((rule: string, index: number) => (
+          <CheckableRule
+            key={index}
+            id={index + 1}
+            item={formatMessage(rule)}
+            onSelect={handleSelect}
+            onUnselect={handleUnselect}
+          />
+        ))}
+      </VStack>
+      <Button title={formatMessage(TKeys.BUTTON_SAVE)} style={styles.action} onPress={handleSave} />
+    </ScrollViewLayout>
   );
 }
 
@@ -72,14 +65,13 @@ const styles = StyleSheet.create({
     ...GlobalStyles.center,
   },
   action: {
-    marginVertical: 25,
+    marginVertical: 10,
     marginHorizontal: 55,
   },
-  system: { alignItems: 'flex-start', paddingHorizontal: 15, marginVertical: 15 },
+  system: { alignItems: 'flex-start', paddingHorizontal: 15, marginBottm: 10 },
   title: {
-    marginBottom: 15,
+    marginTop: 5,
     textAlign: 'justify',
     fontWeight: '600',
-    fontSize: 22,
   },
 });
