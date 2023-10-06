@@ -136,6 +136,16 @@ export const arabic: Translations = {
     'تعلم دعاء الدخول و الخروج من الخلاء والالتزام به',
   [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS_ENLIGHTENMENT_RULE_6]: 'تعلم دعاء الجماع و الالتزام به',
 
+  [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_1]: 'رفض الوساوس',
+  [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_2]: 'تنمية الاتصال اليومي مع الله عز وجل',
+  [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_3]: 'الاستئذان من الله في كل أعمالك',
+  [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_4]: 'حضور العقل مع الله',
+  [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_5]: 'الشعور بمعية الله خلال 24 ساعة',
+  [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_6]: 'التفكر العميق واستخلاص الدروس والعبر من كل المواقف',
+  [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_7]: 'التفكير الإيجابي والجيد وتجنب التفكير السيئ',
+  [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_8]: 'محبة الرسول، مع ربط عقولنا به عليه الصلاة والسلام',
+  [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_9]: 'محبة الله، مع ربط عقولنا به عز وجل',
+
   // MENUS
   [TKeys.MENU_SETTINGS]: 'إعدادات',
   [TKeys.MENU_HOME]: 'إستقبال',
@@ -172,4 +182,5 @@ export const arabic: Translations = {
   [TKeys.PROGRESS_EVALUATION_MESSAGE]: 'اختر القواعد التي تم خرقها',
   [TKeys.BASMALAH]:
     'بسم الله الرحمن الرحيم والصلاة والسلام على أشرف الأنبياء والمرسلين سيدنا محمد وعلى آله وصحبه أجمعين',
+  [TKeys.LEVEL]: 'المستوى {value}',
 };

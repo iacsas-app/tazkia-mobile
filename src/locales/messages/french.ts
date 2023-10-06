@@ -127,6 +127,18 @@ export const french: Translations = {
   [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS_ENLIGHTENMENT_RULE_5]: 'rule 5 to translate',
   [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS_ENLIGHTENMENT_RULE_6]: 'rule 6 to translate',
 
+  [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_1]: 'Refuser les pensées obsessionnelles',
+  [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_2]: 'Développer la communication quotidienne avec Dieu Tout-Puissant',
+  [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_3]: 'Demander la permission à Dieu dans toutes vos actions',
+  [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_4]: "Présence d'esprit avec Dieu",
+  [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_5]: 'Le sentiment de la présence de Dieu pendant 24 heures',
+  [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_6]:
+    'Réflechir en profondeur et tirer des leçons et enseignements de chaque situation',
+  [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_7]: "La pensée positive et bonne et l'évitement de la mauvaise pensée",
+  [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_8]:
+    'Aimer le Messager, tout en connectant nos esprits à lui, que la paix et les bénédictions soient sur lui',
+  [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_9]: 'Aimer Dieu, tout en connectant nos esprits à Lui Tout-Puissant',
+
   // MENUS
   [TKeys.MENU_SETTINGS]: 'Paramétrages',
   [TKeys.MENU_HOME]: 'Accueil',
@@ -163,4 +175,5 @@ export const french: Translations = {
   [TKeys.PROGRESS_EVALUATION_MESSAGE]: 'Sélectionnez les règles qui ont été enfreintes',
   [TKeys.BASMALAH]:
     'Au nom de Dieu, le Très Miséricordieux, le Très Miséricordieux, et que la bénédiction et la paix soient sur le plus honorable des prophètes et messagers, notre maître Muhammad, ainsi que sur toute sa famille et ses compagnons.',
+  [TKeys.LEVEL]: 'Niveau {value}',
 };
