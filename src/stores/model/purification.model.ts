@@ -1,6 +1,7 @@
 import { Action, Computed, Thunk, action, computed, persist, thunk } from 'easy-peasy';
 import ProgressLine from '../../domains/common/ProgressLine';
 import BodyPart, { BodyPartType } from '../../domains/purification/BodyPart';
+import Mind, { MindLevel } from '../../domains/purification/Mind';
 import Purification from '../../domains/purification/Purification';
 import { PurificationStage } from '../../screens/purification/steps/bodyPartsStep/BodyPartsScreen';
 import { isBodyPartStepInProgress } from '../../services/Helpers';
@@ -23,6 +24,7 @@ export interface PurificationModel {
 
   // Computed
   findByPart: Computed<PurificationModel, (part: BodyPartType) => BodyPart | undefined>;
+  findByMind: Computed<PurificationModel, (level: MindLevel) => Mind | undefined>;
 
   findByPartAndStep: Computed<
     PurificationModel,
@@ -88,6 +90,12 @@ const purificationModel: PurificationModel = {
   }),
   hasBodyPartProgress: computed((state) => (part: BodyPartType, mode: PurificationStage): boolean => {
     return state.findByPartAndStep(part, mode) !== undefined;
+  }),
+  findByMind: computed((state) => (level: MindLevel): Mind | undefined => {
+    if (!state.item) {
+      return undefined;
+    }
+    return state.item.mind.find((item) => item.level === level);
   }),
 };
 

@@ -138,6 +138,15 @@ export const french: Translations = {
   [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_8]:
     'Aimer le Messager, tout en connectant nos esprits à lui, que la paix et les bénédictions soient sur lui',
   [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_9]: 'Aimer Dieu, tout en connectant nos esprits à Lui Tout-Puissant',
+  [TKeys.PURIFICATION_MIND_DESCRIPTION_LEVEL_1]: '',
+  [TKeys.PURIFICATION_MIND_DESCRIPTION_LEVEL_2]: '',
+  [TKeys.PURIFICATION_MIND_DESCRIPTION_LEVEL_3]: '',
+  [TKeys.PURIFICATION_MIND_DESCRIPTION_LEVEL_4]: '',
+  [TKeys.PURIFICATION_MIND_DESCRIPTION_LEVEL_5]: '',
+  [TKeys.PURIFICATION_MIND_DESCRIPTION_LEVEL_6]: '',
+  [TKeys.PURIFICATION_MIND_DESCRIPTION_LEVEL_7]: '',
+  [TKeys.PURIFICATION_MIND_DESCRIPTION_LEVEL_8]: '',
+  [TKeys.PURIFICATION_MIND_DESCRIPTION_LEVEL_9]: '',
 
   // MENUS
   [TKeys.MENU_SETTINGS]: 'Paramétrages',
