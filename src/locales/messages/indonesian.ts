@@ -30,11 +30,16 @@ export const indonesian: Translations = {
   [TKeys.PURIFICATION_BODYPART_DISCIPLINARY_SYSTEM]: 'Sistem disiplin',
   [TKeys.PURIFICATION_BODYPART_POSITIVE_USAGE]: 'Aturan penggunaan positif',
 
-  [TKeys.PURIFICATION_BODY_PARTS_EYE_CLEANING_RULE_1]: '',
-  [TKeys.PURIFICATION_BODY_PARTS_EYE_CLEANING_RULE_2]: '',
-  [TKeys.PURIFICATION_BODY_PARTS_EYE_CLEANING_RULE_3]: '',
-  [TKeys.PURIFICATION_BODY_PARTS_EYE_CLEANING_RULE_4]: '',
-  [TKeys.PURIFICATION_BODY_PARTS_EYE_CLEANING_RULE_5]: '',
+  [TKeys.PURIFICATION_BODY_PARTS_EYE_CLEANING_RULE_1]:
+    'Menjaga mata dari pandangan terhadap lawan jenis dengan syahwat',
+  [TKeys.PURIFICATION_BODY_PARTS_EYE_CLEANING_RULE_2]:
+    'Menjaga pandangan dari melihat muharramat di malajah atau video di internet atau televisi',
+  [TKeys.PURIFICATION_BODY_PARTS_EYE_CLEANING_RULE_3]:
+    'Menjaga mata dari memandang dengan dengki, benci atau dengan cara hina',
+  [TKeys.PURIFICATION_BODY_PARTS_EYE_CLEANING_RULE_4]:
+    'Menjaga mata dari melihat benda-benda duniawi hingga membuatmu lupa dari mengingat Allah',
+  [TKeys.PURIFICATION_BODY_PARTS_EYE_CLEANING_RULE_5]:
+    'Menjaga mata dari berhayal secara berlebihan dalam perkara duniawi dan berharap sangat untuk memilikinya',
   [TKeys.PURIFICATION_BODY_PARTS_EYE_ENLIGHTENMENT_RULE_1]: '',
   [TKeys.PURIFICATION_BODY_PARTS_EYE_ENLIGHTENMENT_RULE_2]: '',
   [TKeys.PURIFICATION_BODY_PARTS_EYE_ENLIGHTENMENT_RULE_3]: '',
@@ -139,6 +144,15 @@ export const indonesian: Translations = {
     'Mencintai Rasulullah, sembari menyambungkan pikiran kita kepadanya, shalawat dan salam',
   [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_9]:
     'Mencintai Tuhan, sekaligus menghubungkan pikiran kita dengan-Nya Yang Maha Esa',
+  [TKeys.PURIFICATION_MIND_DESCRIPTION_LEVEL_1]: '',
+  [TKeys.PURIFICATION_MIND_DESCRIPTION_LEVEL_2]: '',
+  [TKeys.PURIFICATION_MIND_DESCRIPTION_LEVEL_3]: '',
+  [TKeys.PURIFICATION_MIND_DESCRIPTION_LEVEL_4]: '',
+  [TKeys.PURIFICATION_MIND_DESCRIPTION_LEVEL_5]: '',
+  [TKeys.PURIFICATION_MIND_DESCRIPTION_LEVEL_6]: '',
+  [TKeys.PURIFICATION_MIND_DESCRIPTION_LEVEL_7]: '',
+  [TKeys.PURIFICATION_MIND_DESCRIPTION_LEVEL_8]: '',
+  [TKeys.PURIFICATION_MIND_DESCRIPTION_LEVEL_9]: '',
 
   // MENUS
   [TKeys.MENU_SETTINGS]: 'Pengaturan',

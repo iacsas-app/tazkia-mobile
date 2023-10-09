@@ -3,7 +3,7 @@ import OctIcon from '@expo/vector-icons/Octicons';
 
 import { Box, HStack, IconButton, Text } from '@react-native-material/core';
 import { ReactNode, useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, useWindowDimensions } from 'react-native';
 import { useApplication } from '../../hooks/use-application';
 import GlobalStyles from '../../styles/GlobalStyles';
 
@@ -20,6 +20,7 @@ interface Props {
 }
 export default function ProgressContainer({ title, subtitle, variant, children, disabled, ...props }: Props) {
   const { arabic } = useApplication();
+  const { width } = useWindowDimensions();
   const [collapse, setCollapse] = useState(props.collapse);
   const color = variant === 'orange' ? styles.orange : variant === 'blue' ? styles.blue : styles.green;
   const bgColor =
@@ -30,7 +31,7 @@ export default function ProgressContainer({ title, subtitle, variant, children, 
   }
 
   return (
-    <Box style={styles.container}>
+    <Box style={{ ...styles.container, width: width - 15 }}>
       <Box h={50} style={{ ...styles.titleBox, ...color }}>
         <HStack justify="between" reverse={arabic}>
           <Box>

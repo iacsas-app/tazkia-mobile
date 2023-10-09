@@ -1,6 +1,6 @@
-import { Flex } from '@react-native-material/core';
 import { useNavigation } from '@react-navigation/native';
 import { StyleSheet } from 'react-native';
+import ScrollViewLayout from '../../components/layout/ScrollViewLayout';
 import { PurificationParamList, PurificationStackNavigationProp } from '../../navigation/types';
 import { useStoreState } from '../../stores/hooks';
 import BodyPartsProgress from './steps/bodyPartsStep/progress/BodyPartsProgress';
@@ -20,11 +20,11 @@ export default function PurificationProgressScreen() {
   }
 
   return (
-    <Flex fill style={styles.container}>
+    <ScrollViewLayout>
       <BodyPartsProgress items={purification.bodyParts} onAdd={handleAdd} />
       <MindProgress items={purification.mind} onAdd={handleAdd} />
       <SoulProgress items={purification.soul} onAdd={handleAdd} />
-    </Flex>
+    </ScrollViewLayout>
   );
 }
 

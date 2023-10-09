@@ -138,6 +138,15 @@ export const english: Translations = {
   [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_8]:
     'Loving the Messenger, while connecting our minds to him, peace and blessings be upon him',
   [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_9]: 'Loving God, while connecting our minds to Him Almighty',
+  [TKeys.PURIFICATION_MIND_DESCRIPTION_LEVEL_1]: '',
+  [TKeys.PURIFICATION_MIND_DESCRIPTION_LEVEL_2]: '',
+  [TKeys.PURIFICATION_MIND_DESCRIPTION_LEVEL_3]: '',
+  [TKeys.PURIFICATION_MIND_DESCRIPTION_LEVEL_4]: '',
+  [TKeys.PURIFICATION_MIND_DESCRIPTION_LEVEL_5]: '',
+  [TKeys.PURIFICATION_MIND_DESCRIPTION_LEVEL_6]: '',
+  [TKeys.PURIFICATION_MIND_DESCRIPTION_LEVEL_7]: '',
+  [TKeys.PURIFICATION_MIND_DESCRIPTION_LEVEL_8]: '',
+  [TKeys.PURIFICATION_MIND_DESCRIPTION_LEVEL_9]: '',
 
   // MENUS
   [TKeys.MENU_SETTINGS]: 'Settings',
