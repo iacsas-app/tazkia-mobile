@@ -1,5 +1,6 @@
 import { Provider } from '@react-native-material/core';
-import { StatusBar } from 'react-native';
+import { registerRootComponent } from 'expo';
+import { StatusBar } from 'expo-status-bar';
 import RootNavigator from './src/navigation';
 import Providers from './src/providers';
 
@@ -8,9 +9,11 @@ export default function App() {
   return (
     <Providers>
       <Provider {...props}>
+        <StatusBar animated={true} hidden={true} />
         <RootNavigator />
-        <StatusBar animated={true} backgroundColor="white" showHideTransition={'fade'} hidden={false} />
       </Provider>
     </Providers>
   );
 }
+
+registerRootComponent(App);

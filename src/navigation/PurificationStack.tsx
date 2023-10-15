@@ -1,4 +1,4 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import BodyPart from '../domains/purification/BodyPart';
 import { useMessage } from '../hooks/use-message';
 import { TKeys } from '../locales/constants';
@@ -15,7 +15,7 @@ import { PurificationParamList } from './types';
 
 export default function PurificationStack() {
   const { formatMessage } = useMessage();
-  const Stack = createNativeStackNavigator<PurificationParamList>();
+  const Stack = createStackNavigator<PurificationParamList>();
 
   function rulesBarTitle(step: PurificationStage) {
     const phase = formatMessage(`purification.bodypart.${step}`).toLocaleLowerCase();
