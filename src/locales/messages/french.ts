@@ -155,9 +155,11 @@ export const french: Translations = {
   [TKeys.MENU_SUNNAHS]: 'Traditions prophétiques',
   [TKeys.MENU_INVOCATIONS]: 'Invocations',
   [TKeys.SETTINGS_LANGUAGE]: "Langue de l'application",
-  [TKeys.SETTINGS_RESET]: 'Réinitialiser la progression',
+  [TKeys.SETTINGS_RESET]: 'Réinitialiser',
 
   // BUTTONS
+  [TKeys.BUTTON_YES]: 'Oui',
+  [TKeys.BUTTON_NO]: 'Non',
   [TKeys.BUTTON_CLOSE]: 'Fermer',
   [TKeys.BUTTON_ADD]: 'Ajouter',
   [TKeys.BUTTON_SAVE]: 'Enregistrer',
@@ -182,6 +184,7 @@ export const french: Translations = {
   [TKeys.PROGRESS_FAILED_ATTEMPTS_RULE]: 'Violation des règles {rules} le jour {day}',
   [TKeys.PROGRESS_START_DAILY_EVALUATION]: 'Évaluer ma journée',
   [TKeys.PROGRESS_EVALUATION_MESSAGE]: 'Sélectionnez les règles qui ont été enfreintes',
+  [TKeys.PROGRESS_EVALUATION_QUESTION]: 'La règle suivante a-t-elle été respectée tout au long de la journée ?',
   [TKeys.BASMALAH]:
     'Au nom de Dieu, le Très Miséricordieux, le Très Miséricordieux, et que la bénédiction et la paix soient sur le plus honorable des prophètes et messagers, notre maître Muhammad, ainsi que sur toute sa famille et ses compagnons.',
   [TKeys.LEVEL]: 'Niveau {value}',

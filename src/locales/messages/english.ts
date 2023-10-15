@@ -158,6 +158,8 @@ export const english: Translations = {
   [TKeys.SETTINGS_RESET]: 'Reset progress',
 
   // BUTTONS
+  [TKeys.BUTTON_YES]: 'Yes',
+  [TKeys.BUTTON_NO]: 'No',
   [TKeys.BUTTON_CLOSE]: 'Close',
   [TKeys.BUTTON_ADD]: 'Add',
   [TKeys.BUTTON_SAVE]: 'Save',
@@ -182,6 +184,7 @@ export const english: Translations = {
   [TKeys.PROGRESS_FAILED_ATTEMPTS_RULE]: 'Violation of rules {rules} on day {day}',
   [TKeys.PROGRESS_START_DAILY_EVALUATION]: 'Evaluate my day',
   [TKeys.PROGRESS_EVALUATION_MESSAGE]: 'Select the rules that were violated',
+  [TKeys.PROGRESS_EVALUATION_QUESTION]: 'Was the following rule respected throughout the day ?',
   [TKeys.BASMALAH]:
     'In the name of God, the Most Gracious, the Most Merciful, and may blessings and peace be upon the most honorable of the prophets and messengers, our master Muhammad, and upon all his family and companions.',
   [TKeys.LEVEL]: 'Level {value}',

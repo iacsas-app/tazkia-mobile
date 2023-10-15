@@ -34,7 +34,7 @@ export function isCompleted(progress: ProgressLine[] | undefined, maxDays: numbe
     return false;
   }
   const last = progress.at(progress.length - 1);
-  return last && last.day === maxDays && last.errors.length === 0;
+  return last ? last.day === maxDays && last.errors.length === 0 : false;
 }
 
 export function isBodyPartStepInProgress(part: BodyPart | undefined, step: PurificationStage) {

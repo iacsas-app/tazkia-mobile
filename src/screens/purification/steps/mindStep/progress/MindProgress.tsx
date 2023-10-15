@@ -1,32 +1,45 @@
 import { Box, Text, VStack } from '@react-native-material/core';
+import { useState } from 'react';
+import EvaluationDialog from '../../../../../components/EvaluationDialog';
 import ProgressContainer from '../../../../../components/progress/ProgressContainer';
 import RuleProgress from '../../../../../components/progress/RuleProgress';
-import RuleResult from '../../../../../domains/common/RuleResult';
-import Mind from '../../../../../domains/purification/Mind';
+import Rule from '../../../../../domains/common/Rule';
+import Mind, { MindLevel } from '../../../../../domains/purification/Mind';
 import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';
 import { TKeys } from '../../../../../locales/constants';
 import { PurificationParamList } from '../../../../../navigation/types';
 import { PURIFICATION_MAX_DAYS } from '../../../../../services/Helpers';
-import { useStoreState } from '../../../../../stores/hooks';
+import { useStoreActions } from '../../../../../stores/hooks';
 
-interface MindProgressProps {
+interface Props {
   items: Mind[];
   onAdd: (route: keyof PurificationParamList) => void;
 }
 
-export default function MindProgress({ items, onAdd }: MindProgressProps) {
+export default function MindProgress({ items, onAdd }: Props) {
   const { arabic } = useApplication();
   const { formatMessage } = useMessage();
-  const purification = useStoreState((state) => state.purification.item);
+  const [current, setCurrent] = useState<Rule>();
+  const evaluate = useStoreActions((actions) => actions.purification.evaluateMind);
 
   function handleAddAction() {
     onAdd('Mind');
   }
 
-  function handleEvaluate(checked: boolean) {}
+  function handleDialogClose() {
+    setCurrent(undefined);
+  }
 
-  function toRule({ level, progress }: Mind): RuleResult {
+  function handleShowEvaluate(rule: Rule) {
+    setCurrent(rule);
+  }
+
+  function handleEvaluate(level: MindLevel, checked: boolean) {
+    evaluate([level, checked]).then(() => setCurrent(undefined));
+  }
+
+  function toRule({ level, progress }: Mind): Rule {
     return {
       id: level,
       title: formatMessage(TKeys.LEVEL, { value: level }),
@@ -37,23 +50,26 @@ export default function MindProgress({ items, onAdd }: MindProgressProps) {
   }
 
   return (
-    <ProgressContainer
-      title={formatMessage(TKeys.PURIFICATION_MIND_TITLE)}
-      subtitle={formatMessage(TKeys.PHASE_2)}
-      variant="green"
-      onAdd={handleAddAction}
-    >
-      {!purification || purification.mind.length === 0 ? (
-        <Text>No mind puirificatio in progress</Text>
-      ) : (
-        <VStack spacing={5} reverse={arabic}>
-          {purification.mind.map((item: Mind, index) => (
-            <Box key={`mind_${index}`}>
-              <RuleProgress rule={toRule(item)} maxDays={PURIFICATION_MAX_DAYS} onEvaluate={handleEvaluate} />
-            </Box>
-          ))}
-        </VStack>
-      )}
-    </ProgressContainer>
+    <>
+      <ProgressContainer
+        title={formatMessage(TKeys.PURIFICATION_MIND_TITLE)}
+        subtitle={formatMessage(TKeys.PHASE_2)}
+        variant="green"
+        onAdd={handleAddAction}
+      >
+        {items.length === 0 ? (
+          <Text>No mind puirificatio in progress</Text>
+        ) : (
+          <VStack spacing={5} reverse={arabic}>
+            {items.map((item: Mind, index) => (
+              <Box key={`mind_${index}`}>
+                <RuleProgress rule={toRule(item)} maxDays={PURIFICATION_MAX_DAYS} onEvaluate={handleShowEvaluate} />
+              </Box>
+            ))}
+          </VStack>
+        )}
+      </ProgressContainer>
+      <EvaluationDialog rule={current} onEvaluate={handleEvaluate} onClose={handleDialogClose} />
+    </>
   );
 }

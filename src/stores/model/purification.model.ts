@@ -15,16 +15,19 @@ export interface PurificationModel {
   // Actions
   load: Action<PurificationModel, Purification>;
   bodyPartEvaluation: Action<PurificationModel, [BodyPartType, PurificationStage, number[]]>;
+  mindEvaluation: Action<PurificationModel, [MindLevel, boolean]>;
   reset: Action<PurificationModel>;
 
   // Thunk
   find: Thunk<PurificationModel, void, Injections>;
   createOrUpdate: Thunk<PurificationModel, Purification, Injections>;
   evaluateBodyPart: Thunk<PurificationModel, [BodyPartType, PurificationStage, number[]], Injections>;
+  evaluateMind: Thunk<PurificationModel, [MindLevel, boolean], Injections>;
 
   // Computed
   findByPart: Computed<PurificationModel, (part: BodyPartType) => BodyPart | undefined>;
   findByMind: Computed<PurificationModel, (level: MindLevel) => Mind | undefined>;
+  lastMindLevel: Computed<PurificationModel, () => Mind | undefined>;
 
   findByPartAndStep: Computed<
     PurificationModel,
@@ -58,6 +61,22 @@ const purificationModel: PurificationModel = {
       }
     });
   }),
+  mindEvaluation: action((state, payload: [MindLevel, boolean]) => {
+    const [level, checked] = payload;
+    if (!state.item) {
+      return;
+    }
+    const errors: number[] = [];
+    if (!checked) {
+      errors.push(1);
+    }
+    state.item.mind.forEach((item) => {
+      if (item.level === level) {
+        item.progress = updateProgress(item.progress, errors);
+        return;
+      }
+    });
+  }),
 
   // Thunks
   find: thunk(async (actions, _void, { injections }) => {
@@ -72,6 +91,9 @@ const purificationModel: PurificationModel = {
   }),
   evaluateBodyPart: thunk(async (actions, payload: [BodyPartType, PurificationStage, number[]], { injections }) => {
     actions.bodyPartEvaluation(payload);
+  }),
+  evaluateMind: thunk(async (actions, payload: [MindLevel, boolean], { injections }) => {
+    actions.mindEvaluation(payload);
   }),
 
   // Computed
@@ -96,6 +118,17 @@ const purificationModel: PurificationModel = {
       return undefined;
     }
     return state.item.mind.find((item) => item.level === level);
+  }),
+  lastMindLevel: computed((state) => (): Mind | undefined => {
+    if (!state.item) {
+      return undefined;
+    }
+    const list = state.item.mind;
+    const size = list.length;
+    if (size === 0) {
+      return undefined;
+    }
+    return list.at(size - 1);
   }),
 };
 

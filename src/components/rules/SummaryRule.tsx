@@ -39,7 +39,11 @@ export default function SummaryRule({ rule, ...props }: Props) {
               style={{ width: 30, height: 30 }}
               onPressIn={handleCollapse}
             />
-            <HStack spacing={12} reverse={arabic} style={{ width: width - 170, alignItems: 'center' }}>
+            <HStack
+              spacing={12}
+              reverse={arabic}
+              style={{ width: width - (rule.disabled && !rule.status ? 120 : 170), alignItems: 'center' }}
+            >
               <Text style={{ fontWeight: '900', fontSize: 13, color: statusColor }}>{rule.title}</Text>
               <Text
                 style={{
@@ -52,13 +56,15 @@ export default function SummaryRule({ rule, ...props }: Props) {
               </Text>
             </HStack>
           </HStack>
-          <Box style={{ paddingHorizontal: 8 }}>
+          <Box style={{ paddingHorizontal: 5 }}>
             {!rule.status ? (
-              <IconButton
-                icon={(_, ...props) => <Icon name="plus-circle" size={20} {...props} />}
-                style={{ width: 30, height: 30 }}
-                onPressIn={() => props.onAdd(rule)}
-              />
+              !rule.disabled && (
+                <IconButton
+                  icon={(_, ...props) => <Icon name="plus-circle" size={20} color="#90ee90" {...props} />}
+                  style={{ width: 30, height: 30 }}
+                  onPressIn={() => props.onAdd(rule)}
+                />
+              )
             ) : (
               <Icon name={statusIcon} size={25} color={statusColor} />
             )}

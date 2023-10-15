@@ -1,10 +1,9 @@
-import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import { Box, HStack, Text } from '@react-native-material/core';
 import { StyleSheet } from 'react-native';
-import RepeatCount from '../../../../../components/progress/RepeatCount';
+import { ProgressStatus as Status } from '../../../../../components/progress/progressStatus/ProgressStatus';
 import ProgressLine from '../../../../../domains/common/ProgressLine';
 import { useApplication } from '../../../../../hooks/use-application';
-import { PURIFICATION_MAX_DAYS, progressPercentage } from '../../../../../services/Helpers';
+import { PURIFICATION_MAX_DAYS } from '../../../../../services/Helpers';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
 
 interface Props {
@@ -13,10 +12,10 @@ interface Props {
   count: number;
   completed: boolean;
 }
-export default function ProgressStatus({ last, count, title, completed }: Props) {
+export default function ProgressStatus({ title, ...props }: Props) {
   const { arabic } = useApplication();
 
-  if (!last) {
+  if (!props.last) {
     return <></>;
   }
 
@@ -25,19 +24,8 @@ export default function ProgressStatus({ last, count, title, completed }: Props)
       <Text style={{ fontSize: arabic ? 14 : 10 }} color="grey">
         {title}
       </Text>
-      {!completed && (
-        <Box>
-          <RepeatCount count={count} />
-        </Box>
-      )}
       <Box>
-        {completed ? (
-          <Icon name="check" size={15} color="green" />
-        ) : (
-          <Text variant="caption" style={styles.symbol}>
-            {progressPercentage(last.day, PURIFICATION_MAX_DAYS)}
-          </Text>
-        )}
+        <Status maxDays={PURIFICATION_MAX_DAYS} {...props} />
       </Box>
     </HStack>
   );
