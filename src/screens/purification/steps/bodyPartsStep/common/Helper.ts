@@ -1,6 +1,7 @@
 import { ImageSourcePropType } from 'react-native';
 import ProgressLine from '../../../../../domains/common/ProgressLine';
 import BodyPart, { BodyPartType, BodyPartsOrder } from '../../../../../domains/purification/BodyPart';
+import Mind from '../../../../../domains/purification/Mind';
 import Purification from '../../../../../domains/purification/Purification';
 import { TKeys } from '../../../../../locales/constants';
 import { PURIFICATION_MAX_DAYS, isCompleted } from '../../../../../services/Helpers';
@@ -53,6 +54,17 @@ function orderBodyParts(items: BodyPart[]) {
     if (BodyPartsOrder[a.name] < BodyPartsOrder[b.name]) {
       return -1;
     } else if (BodyPartsOrder[a.name] > BodyPartsOrder[b.name]) {
+      return 1;
+    }
+    return 0;
+  });
+}
+
+export function orderMindLevels(items: Mind[]) {
+  return items.sort((a: Mind, b: Mind) => {
+    if (a.level > b.level) {
+      return -1;
+    } else if (a.level < b.level) {
       return 1;
     }
     return 0;

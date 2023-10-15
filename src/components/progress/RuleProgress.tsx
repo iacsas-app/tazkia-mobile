@@ -1,25 +1,30 @@
-import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import OctIcon from '@expo/vector-icons/Octicons';
 import { Box, Button, HStack, IconButton, Pressable, Text } from '@react-native-material/core';
 import { useState } from 'react';
 import { StyleSheet, useWindowDimensions } from 'react-native';
-import RuleResult from '../../domains/common/RuleResult';
+import Rule from '../../domains/common/Rule';
 import { useApplication } from '../../hooks/use-application';
 import { useMessage } from '../../hooks/use-message';
 import { TKeys } from '../../locales/constants';
+import { isCompleted } from '../../services/Helpers';
 import GlobalStyles from '../../styles/GlobalStyles';
+import { ProgressStatus } from './progressStatus/ProgressStatus';
 
 interface Props {
-  rule: RuleResult;
+  rule: Rule;
   maxDays: number;
-  onEvaluate: (checked: boolean) => void;
+  onEvaluate: (rule: Rule) => void;
 }
 
-export default function RuleProgress({ rule, ...props }: Props) {
+export default function RuleProgress({ rule, maxDays, ...props }: Props) {
   const { formatMessage } = useMessage();
   const { width } = useWindowDimensions();
   const { arabic } = useApplication();
   const [show, setShow] = useState(false);
+
+  const countProgress = rule.progress ? rule.progress.length - 1 : 0;
+  const lastProgress = rule.progress ? rule.progress[countProgress] : undefined;
+  const isLastCompleted = isCompleted(rule.progress, maxDays);
 
   function handleCollapse() {
     setShow(!show);
@@ -29,10 +34,21 @@ export default function RuleProgress({ rule, ...props }: Props) {
     setShow(true);
   }
 
-  function handleEvaluate() {}
+  function handleEvaluate() {
+    setShow(false);
+    props.onEvaluate(rule);
+  }
 
   return (
-    <Box style={{ ...styles.box, width: width - 28 }}>
+    <Box
+      style={{
+        ...styles.box,
+        width: width - 28,
+        borderRightWidth: isLastCompleted && arabic ? 8 : 0,
+        borderLeftWidth: isLastCompleted && !arabic ? 8 : 0,
+        borderColor: 'green',
+      }}
+    >
       <Pressable onPressIn={handleOpen}>
         <HStack spacing={1} reverse={arabic} style={{ alignItems: 'center', justifyContent: 'space-between' }}>
           <HStack spacing={2} reverse={arabic} style={{ alignItems: 'center', paddingHorizontal: 2 }}>
@@ -53,8 +69,8 @@ export default function RuleProgress({ rule, ...props }: Props) {
               </Text>
             </HStack>
           </HStack>
-          <Box style={{ paddingHorizontal: 8 }}>
-            <Icon name={'check-bold'} size={25} />
+          <Box style={{ paddingHorizontal: 10 }}>
+            <ProgressStatus last={lastProgress} count={countProgress} maxDays={maxDays} completed={isLastCompleted} />
           </Box>
         </HStack>
         {show && (
@@ -65,7 +81,7 @@ export default function RuleProgress({ rule, ...props }: Props) {
           </Box>
         )}
       </Pressable>
-      {show && (
+      {show && !isLastCompleted && (
         <Box style={{ ...GlobalStyles.center, paddingBottom: 15, paddingTop: 5 }}>
           <Button
             title={formatMessage(TKeys.PROGRESS_START_DAILY_EVALUATION)}

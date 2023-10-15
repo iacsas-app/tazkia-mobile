@@ -7,12 +7,14 @@ import SummaryRule from '../../../../components/rules/SummaryRule';
 import Rule from '../../../../domains/common/Rule';
 import { MindLevel } from '../../../../domains/purification/Mind';
 import Purification from '../../../../domains/purification/Purification';
+import { useApplication } from '../../../../hooks/use-application';
 import { useMessage } from '../../../../hooks/use-message';
 import { TKeys } from '../../../../locales/constants';
 import { PurificationStackNavigationProp } from '../../../../navigation/types';
 import { PURIFICATION_MAX_DAYS, isCompleted } from '../../../../services/Helpers';
 import { useStoreActions, useStoreState } from '../../../../stores/hooks';
 import GlobalStyles from '../../../../styles/GlobalStyles';
+import { orderMindLevels } from '../bodyPartsStep/common/Helper';
 
 const levels: MindLevel[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -22,10 +24,16 @@ export default function MindScreen() {
   const navigation = useNavigation<PurificationStackNavigationProp>();
   let purification: Purification | undefined = useStoreState((state) => state.purification.item);
   const findByMind = useStoreState((state) => state.purification.findByMind);
+  const lastMindLevel = useStoreState((state) => state.purification.lastMindLevel);
+  const { arabic } = useApplication();
 
-  const items: Rule[] = useMemo(() => levels.map((level) => toRule(level)), []);
+  const items: Rule[] = useMemo(() => {
+    const last = lastMindLevel();
+    const isLastCompleted = last ? isCompleted(last.progress, PURIFICATION_MAX_DAYS) : false;
+    return levels.map((level) => toRule(level, last?.level, isLastCompleted));
+  }, [arabic]);
 
-  function toRule(level: MindLevel): Rule {
+  function toRule(level: MindLevel, last: MindLevel | undefined, isLastCompleted: boolean): Rule {
     const mind = findByMind(level);
 
     return {
@@ -33,6 +41,8 @@ export default function MindScreen() {
       title: formatMessage(TKeys.LEVEL, { value: level }),
       summary: formatMessage(`purification.mind.summary.level-${level}`),
       description: formatMessage(`purification.mind.description.level-${level}`),
+      disabled: last ? last !== level - 1 && isLastCompleted : level !== 1,
+      progress: mind ? mind.progress : [],
       status: mind ? (isCompleted(mind.progress, PURIFICATION_MAX_DAYS) ? 'completed' : 'progress') : undefined,
     };
   }
@@ -41,10 +51,14 @@ export default function MindScreen() {
     if (!purification) {
       purification = { id: 0, bodyParts: [], mind: [], soul: [] };
     }
-    purification.mind.push({
-      level: rule.id as MindLevel,
-      progress: [{ startDate: Date.now(), day: 0, evaluated: false, errors: [] }],
-    });
+    const result = [
+      ...purification.mind,
+      {
+        level: rule.id as MindLevel,
+        progress: [{ startDate: Date.now(), day: 0, evaluated: false, errors: [] }],
+      },
+    ];
+    purification.mind = orderMindLevels(result);
     createOrUpdate(purification);
     navigation.push('Purification');
   }

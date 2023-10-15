@@ -174,6 +174,8 @@ export const arabic: Translations = {
   [TKeys.SETTINGS_RESET]: 'إعادة ضبط التقدم',
 
   // BUTTONS
+  [TKeys.BUTTON_YES]: 'نعم',
+  [TKeys.BUTTON_NO]: 'لا',
   [TKeys.BUTTON_CLOSE]: 'غلق',
   [TKeys.BUTTON_ADD]: 'إضافة',
   [TKeys.BUTTON_SAVE]: 'حفظ',
@@ -198,6 +200,7 @@ export const arabic: Translations = {
   [TKeys.PROGRESS_FAILED_ATTEMPTS_RULE]: 'خرق القاعدة {rules} في اليوم {day}',
   [TKeys.PROGRESS_START_DAILY_EVALUATION]: 'تقييم يومي',
   [TKeys.PROGRESS_EVALUATION_MESSAGE]: 'اختر القواعد التي تم خرقها',
+  [TKeys.PROGRESS_EVALUATION_QUESTION]: 'هل تم احترام القاعدة التالية طوال اليوم ؟',
   [TKeys.BASMALAH]:
     'بسم الله الرحمن الرحيم والصلاة والسلام على أشرف الأنبياء والمرسلين سيدنا محمد وعلى آله وصحبه أجمعين',
   [TKeys.LEVEL]: 'المستوى {value}',
