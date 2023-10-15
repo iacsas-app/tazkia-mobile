@@ -17,6 +17,7 @@ interface Props {
 export default function EvaluationDialog({ rule, ...props }: Props) {
   const { formatMessage } = useMessage();
   const { arabic } = useApplication();
+  const btnTextSize = arabic ? 20 : 12;
 
   function handleYesPress() {
     evaluate(true);
@@ -49,14 +50,14 @@ export default function EvaluationDialog({ rule, ...props }: Props) {
               title={<Text variant="h6">{formatMessage(TKeys.BUTTON_YES)}</Text>}
               uppercase={false}
               color="#66cdaa"
-              leading={() => <Icon name="thumb-up-outline" size={20} {...props} />}
+              leading={() => <Icon name="thumb-up-outline" size={btnTextSize} {...props} />}
               onPress={handleYesPress}
             />
             <Button
               title={<Text variant="h6">{formatMessage(TKeys.BUTTON_NO)}</Text>}
               uppercase={false}
               color="#c0c0c0"
-              leading={() => <Icon name="thumb-down-outline" size={20} {...props} />}
+              leading={() => <Icon name="thumb-down-outline" size={btnTextSize} {...props} />}
               onPress={handleNoPress}
             />
           </HStack>
@@ -68,5 +69,5 @@ export default function EvaluationDialog({ rule, ...props }: Props) {
 
 const styles = StyleSheet.create({
   question: { fontWeight: '700' },
-  rule: { fontSize: 17 },
+  rule: { fontSize: 14 },
 });
