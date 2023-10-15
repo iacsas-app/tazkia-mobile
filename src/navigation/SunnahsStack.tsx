@@ -1,4 +1,4 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 
 import SunnahsScreen from '../screens/sunnahs';
@@ -8,7 +8,7 @@ import SpiritTravelsScreen from '../screens/sunnahs/SpiritTravelsScreen';
 import { SunnahsParamList } from './types';
 
 export default function SunnahsStack() {
-  const Stack = createNativeStackNavigator<SunnahsParamList>();
+  const Stack = createStackNavigator<SunnahsParamList>();
 
   return (
     <Stack.Navigator initialRouteName="Sunnahs">

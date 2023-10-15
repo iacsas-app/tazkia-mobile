@@ -22,9 +22,9 @@ export default function BodyPartItem({ id, type, nameKey, imageSource, onOpenRul
   const { arabic } = useApplication();
   const findBodyPart = useStoreState((state) => state.purification.findByPart);
 
-  const width = 175;
+  const width = 155;
   const space = arabic ? 10 : 2;
-  const btnFontSize = arabic ? 15 : 10;
+  const btnFontSize = arabic ? 15 : 9;
   const progress = findBodyPart(type);
   const inProgress = progress !== undefined;
   const isCompleted = inProgress && isFullyCompleted(progress);
@@ -51,7 +51,7 @@ export default function BodyPartItem({ id, type, nameKey, imageSource, onOpenRul
             </Text>
           }
         />
-        <HStack spacing={10} style={GlobalStyles.center}>
+        <HStack spacing={10}>
           <Text style={{ ...styles.partName, color: isCompleted ? 'white' : 'black', fontSize: arabic ? 18 : 15 }}>
             {formatMessage(nameKey)}
           </Text>
@@ -62,20 +62,20 @@ export default function BodyPartItem({ id, type, nameKey, imageSource, onOpenRul
         <Box h={40} w={width} style={styles.bottomBox}>
           <HStack spacing={arabic ? 20 : 5} reverse={arabic}>
             {!isCleaningInProgress && (
-              <Surface elevation={2} category="small" style={styles.action}>
+              <Surface elevation={2} category="small">
                 <Pressable style={{ padding: 3 }} onPress={() => handlePress('cleaning')}>
                   <HStack spacing={space} style={GlobalStyles.center} reverse={arabic}>
-                    <Icon name="account-tie-hat" size={15} color="#4b0082" />
+                    <Icon name="account-tie-hat" size={12} color="#4b0082" />
                     <Text style={{ fontSize: btnFontSize }}>{formatMessage(`button.cleaning`)}</Text>
                   </HStack>
                 </Pressable>
               </Surface>
             )}
             {!isEnlightenmentInProgress && (
-              <Surface elevation={2} category="small" style={styles.action}>
+              <Surface elevation={2} category="small">
                 <Pressable style={{ padding: 3 }} onPress={() => handlePress('enlightenment')}>
                   <HStack spacing={space} style={GlobalStyles.center} reverse={arabic}>
-                    <Icon name="lightbulb-on" size={15} color="#32cd32" />
+                    <Icon name="lightbulb-on" size={12} color="#32cd32" />
                     <Text style={{ fontSize: btnFontSize }}>{formatMessage(`button.enlightenment`)}</Text>
                   </HStack>
                 </Pressable>
@@ -92,7 +92,7 @@ export default function BodyPartItem({ id, type, nameKey, imageSource, onOpenRul
 }
 
 const styles = StyleSheet.create({
-  container: { width: 185, height: 130, ...GlobalStyles.center },
+  container: { height: 130 },
   id: { fontWeight: 'bold' },
   topBox: {
     ...GlobalStyles.center,
@@ -107,7 +107,6 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 15,
   },
   partName: { fontWeight: 'bold', marginTop: 3 },
-  action: {},
   typeAvatar: { marginTop: -18 },
   idAvatar: { marginTop: -8 },
 });
