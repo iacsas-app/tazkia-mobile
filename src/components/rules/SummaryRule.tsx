@@ -44,11 +44,11 @@ export default function SummaryRule({ rule, ...props }: Props) {
               reverse={arabic}
               style={{ width: width - (rule.disabled && !rule.status ? 120 : 170), alignItems: 'center' }}
             >
-              <Text style={{ fontWeight: '900', fontSize: 13, color: statusColor }}>{rule.title}</Text>
+              <Text style={{ fontWeight: '900', fontSize: 11.5, color: statusColor }}>{rule.title}</Text>
               <Text
                 style={{
                   fontWeight: '600',
-                  fontSize: arabic ? 15 : 13,
+                  fontSize: arabic ? 15 : 11.5,
                   color: summaryColor,
                 }}
               >

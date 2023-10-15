@@ -1,7 +1,8 @@
-import { HStack, Text, VStack } from '@react-native-material/core';
+import { Box, HStack, Text, VStack } from '@react-native-material/core';
 import { useNavigation } from '@react-navigation/native';
 import { useMemo } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import ScrollViewLayout from '../../../../components/layout/ScrollViewLayout';
 import { BodyPartType, BodyPartsOrder } from '../../../../domains/purification/BodyPart';
 import { useApplication } from '../../../../hooks/use-application';
@@ -20,6 +21,7 @@ export default function BodyPartsScreen() {
   const { formatMessage } = useMessage();
   const navigation = useNavigation<BodyPartsRulesNavigationProp>();
   const partsByLine = useMemo(() => groupBy(bodyParts, 'line'), []);
+  const insets = useSafeAreaInsets();
 
   function handleOpenRules(part: BodyPartType, step: PurificationStage) {
     navigation.navigate('BodyPartsRules', { part, step });
@@ -53,13 +55,16 @@ export default function BodyPartsScreen() {
           {formatMessage(TKeys.PURIFICATION_INTRODUCTION)}
         </Text>
       </VStack>
-      <VStack spacing={15} style={{ ...GlobalStyles.center, marginHorizontal: 15 }}>
+      <VStack
+        spacing={20}
+        style={{ ...GlobalStyles.center, paddingHorizontal: Math.max(20, insets.left + insets.right) }}
+      >
         {Object.keys(partsByLine).map((key: string) => (
-          <HStack key={key} spacing={3} reverse={arabic}>
+          <HStack key={key} spacing={15} reverse={arabic}>
             {partsByLine[key].map(({ line, ...props }: PartItem, index: number) => (
-              <View key={`${key}_${index}_${line}`}>
+              <Box key={`${key}_${index}_${line}`}>
                 <BodyPartItem id={BodyPartsOrder[props.type]} {...props} onOpenRules={handleOpenRules} />
-              </View>
+              </Box>
             ))}
           </HStack>
         ))}

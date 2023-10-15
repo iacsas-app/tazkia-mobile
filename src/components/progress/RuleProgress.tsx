@@ -58,11 +58,11 @@ export default function RuleProgress({ rule, maxDays, ...props }: Props) {
               onPressIn={handleCollapse}
             />
             <HStack spacing={12} reverse={arabic} style={{ width: width - 170, alignItems: 'center' }}>
-              <Text style={{ fontWeight: '900', fontSize: 13 }}>{rule.title}</Text>
+              <Text style={{ fontWeight: '900', fontSize: 11.5 }}>{rule.title}</Text>
               <Text
                 style={{
                   fontWeight: '600',
-                  fontSize: arabic ? 15 : 13,
+                  fontSize: arabic ? 14 : 11.5,
                 }}
               >
                 {rule.summary}
@@ -86,7 +86,7 @@ export default function RuleProgress({ rule, maxDays, ...props }: Props) {
           <Button
             title={formatMessage(TKeys.PROGRESS_START_DAILY_EVALUATION)}
             onPress={handleEvaluate}
-            titleStyle={{ fontSize: arabic ? 18 : 15 }}
+            titleStyle={{ fontSize: arabic ? 16 : 14 }}
             uppercase={false}
           />
         </Box>
