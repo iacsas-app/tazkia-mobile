@@ -1,6 +1,7 @@
 import { TKeys, Translations } from '../constants';
 
 export const arabic: Translations = {
+  [TKeys.WELCOME]: 'مرحبا بكم في تطبيق التزكية',
   [TKeys.APPLICATION_TITLE_PRIMARY]: 'المنهج النبوي',
   [TKeys.APPLICATION_TITLE_SECONDARY]: 'منهج الفلاح',
 
@@ -171,6 +172,7 @@ export const arabic: Translations = {
   [TKeys.MENU_SUNNAHS]: 'سنن نبوية',
   [TKeys.MENU_INVOCATIONS]: 'أذكار',
   [TKeys.SETTINGS_LANGUAGE]: 'لغة التطبيق',
+  [TKeys.SETTINGS_LANGUAGE_DEFAULT]: 'هل تريدون الاستمرار باللغة {lang} ؟',
   [TKeys.SETTINGS_RESET]: 'إعادة ضبط التقدم',
 
   // BUTTONS

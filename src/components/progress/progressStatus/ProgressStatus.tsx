@@ -1,10 +1,11 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
-import { Box, HStack, Text } from '@react-native-material/core';
+import { Box, HStack } from '@react-native-material/core';
 import { StyleSheet } from 'react-native';
 import ProgressLine from '../../../domains/common/ProgressLine';
 import { useApplication } from '../../../hooks/use-application';
 import { progressPercentage } from '../../../services/Helpers';
 import GlobalStyles from '../../../styles/GlobalStyles';
+import Text from '../../Text';
 import RepeatCount from '../RepeatCount';
 
 interface Props {

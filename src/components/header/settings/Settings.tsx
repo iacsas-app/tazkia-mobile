@@ -2,10 +2,13 @@ import { Divider, VStack } from '@react-native-material/core';
 import { ResetSetting } from './ResetSetting';
 import LanguageSetting from './language/LanguageSetting';
 
-export default function Settings() {
+interface Props {
+  color: string;
+}
+export default function Settings({ color }: Props) {
   return (
     <VStack>
-      <LanguageSetting />
+      <LanguageSetting color={color} />
       <Divider />
       <ResetSetting />
     </VStack>

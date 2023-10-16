@@ -1,11 +1,12 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import OctIcon from '@expo/vector-icons/Octicons';
 
-import { Box, HStack, IconButton, Text } from '@react-native-material/core';
+import { Box, HStack, IconButton } from '@react-native-material/core';
 import { ReactNode, useState } from 'react';
 import { StyleSheet, useWindowDimensions } from 'react-native';
 import { useApplication } from '../../hooks/use-application';
 import GlobalStyles from '../../styles/GlobalStyles';
+import Text from '../Text';
 
 type StyleVariant = 'orange' | 'blue' | 'green';
 
@@ -31,8 +32,8 @@ export default function ProgressContainer({ title, subtitle, variant, children, 
   }
 
   return (
-    <Box style={{ ...styles.container, width: width - 15 }}>
-      <Box h={50} style={{ ...styles.titleBox, ...color }}>
+    <Box style={{ ...styles.container, width: width - 25 }}>
+      <Box h={40} style={{ ...styles.titleBox, ...color }}>
         <HStack justify="between" reverse={arabic}>
           <Box>
             <Text variant="body1" style={styles.title}>
@@ -82,7 +83,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: 'bold',
-    fontSize: 18,
+    fontSize: 15,
   },
   subtitle: {
     marginTop: -3,

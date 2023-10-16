@@ -1,5 +1,5 @@
 import OctIcon from '@expo/vector-icons/Octicons';
-import { Box, Button, HStack, IconButton, Pressable, Text } from '@react-native-material/core';
+import { Box, Button, HStack, IconButton, Pressable } from '@react-native-material/core';
 import { useState } from 'react';
 import { StyleSheet, useWindowDimensions } from 'react-native';
 import Rule from '../../domains/common/Rule';
@@ -8,6 +8,7 @@ import { useMessage } from '../../hooks/use-message';
 import { TKeys } from '../../locales/constants';
 import { isCompleted } from '../../services/Helpers';
 import GlobalStyles from '../../styles/GlobalStyles';
+import Text from '../Text';
 import { ProgressStatus } from './progressStatus/ProgressStatus';
 
 interface Props {

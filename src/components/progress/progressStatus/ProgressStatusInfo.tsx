@@ -1,7 +1,8 @@
 import McIcon from '@expo/vector-icons/MaterialCommunityIcons';
-import { HStack, Text } from '@react-native-material/core';
+import { HStack } from '@react-native-material/core';
 import { StyleSheet } from 'react-native';
 import { useApplication } from '../../../hooks/use-application';
+import Text from '../../Text';
 
 interface Props {
   label: string;

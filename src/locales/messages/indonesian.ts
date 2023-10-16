@@ -1,6 +1,7 @@
 import { TKeys, Translations } from '../constants';
 
 export const indonesian: Translations = {
+  [TKeys.WELCOME]: 'Selamat datang di aplikasi Tazkia',
   [TKeys.APPLICATION_TITLE_PRIMARY]: 'Pendekatan profetik',
   [TKeys.APPLICATION_TITLE_SECONDARY]: 'Metode kesuksesan',
 
@@ -204,6 +205,7 @@ export const indonesian: Translations = {
   [TKeys.MENU_SUNNAHS]: 'Tradisi kenabian',
   [TKeys.MENU_INVOCATIONS]: 'Doa',
   [TKeys.SETTINGS_LANGUAGE]: 'Bahasa aplikasi',
+  [TKeys.SETTINGS_LANGUAGE_DEFAULT]: 'Apakah Anda ingin melanjutkan dalam bahasa {lang} ?',
   [TKeys.SETTINGS_RESET]: 'Setel ulang kemajuan',
 
   // BUTTONS

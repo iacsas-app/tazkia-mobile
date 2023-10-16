@@ -1,7 +1,9 @@
-import { Text, VStack } from '@react-native-material/core';
+import { VStack } from '@react-native-material/core';
 import { StyleSheet } from 'react-native';
 import { useMessage } from '../../hooks/use-message';
 import { TKeys } from '../../locales/constants';
+import GlobalStyles from '../../styles/GlobalStyles';
+import Text from '../Text';
 
 export default function Header() {
   const { formatMessage } = useMessage();
@@ -16,5 +18,5 @@ export default function Header() {
 }
 
 const styles = StyleSheet.create({
-  title: { fontWeight: 'bold' },
+  title: { ...GlobalStyles.text, fontWeight: 'bold' },
 });

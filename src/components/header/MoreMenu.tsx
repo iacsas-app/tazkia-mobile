@@ -1,10 +1,11 @@
 import Icon from '@expo/vector-icons/SimpleLineIcons';
 
-import { Box, HStack, IconButton, Text } from '@react-native-material/core';
+import { Box, HStack, IconButton } from '@react-native-material/core';
 import { useState } from 'react';
 import { Menu, MenuItem } from 'react-native-material-menu';
 import { useMessage } from '../../hooks/use-message';
 import { TKeys } from '../../locales/constants';
+import Text from '../Text';
 import SettingsDialog from './settings/SettingsDialog';
 
 interface MoreMenuProps {
