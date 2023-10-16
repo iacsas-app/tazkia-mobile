@@ -1,5 +1,5 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
-import { Button, Dialog, DialogContent, HStack, Text, VStack } from '@react-native-material/core';
+import { Button, Dialog, DialogContent, HStack, VStack } from '@react-native-material/core';
 import { StyleSheet } from 'react-native';
 import Rule from '../domains/common/Rule';
 import { MindLevel } from '../domains/purification/Mind';
@@ -7,6 +7,7 @@ import { useApplication } from '../hooks/use-application';
 import { useMessage } from '../hooks/use-message';
 import { TKeys } from '../locales/constants';
 import GlobalStyles from '../styles/GlobalStyles';
+import Text from './Text';
 
 interface Props {
   rule: Rule | undefined;
@@ -68,6 +69,6 @@ export default function EvaluationDialog({ rule, ...props }: Props) {
 }
 
 const styles = StyleSheet.create({
-  question: { fontWeight: '700' },
-  rule: { fontSize: 14 },
+  question: { ...GlobalStyles.text, fontWeight: '700' },
+  rule: { ...GlobalStyles.text, fontSize: 14 },
 });

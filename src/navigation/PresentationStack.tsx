@@ -13,16 +13,18 @@ export default function PresentationStack() {
   return (
     <Stack.Navigator initialRouteName="Presentation">
       <Stack.Screen name="Presentation" component={PresentationScreen} options={{ headerShown: false }} />
-      <Stack.Screen
-        name="Center"
-        component={CenterScreen}
-        options={{
-          title: 'Create a new note',
-          presentation: 'modal',
-        }}
-      />
+
       <Stack.Screen name="Approach" component={ApproachScreen} />
       <Stack.Screen name="Cheikh" component={CheikhScreen} />
+      <Stack.Group screenOptions={{ presentation: 'modal' }}>
+        <Stack.Screen
+          name="Center"
+          component={CenterScreen}
+          options={{
+            title: 'Create a new note',
+          }}
+        />
+      </Stack.Group>
     </Stack.Navigator>
   );
 }

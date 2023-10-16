@@ -32,7 +32,7 @@ export default function BodyPartsProgress({ items, onAdd }: BodyPartsProgressPro
     <ProgressContainer
       title={formatMessage(TKeys.PURIFICATION_BODYPART_TITLE)}
       subtitle={formatMessage(TKeys.PHASE_1)}
-      variant="blue"
+      variant="green"
       disabled={allInProgress}
       collapse={map.size === 0}
       onAdd={handleAddAction}

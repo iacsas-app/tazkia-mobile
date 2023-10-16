@@ -1,7 +1,8 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
-import { Avatar, Box, HStack, Pressable, Text } from '@react-native-material/core';
+import { Avatar, Box, HStack, Pressable } from '@react-native-material/core';
 import { useState } from 'react';
 import { useApplication } from '../../hooks/use-application';
+import Text from '../Text';
 import { RuleStyles } from './Styles';
 import { RuleBaseProps } from './types';
 
@@ -45,7 +46,7 @@ export default function CheckableRule({ id, item, ...props }: RuleProps) {
             tintColor="white"
             icon={(props) => <Icon name="check-bold" {...props} />}
           />
-          <Text variant="body1" style={{ ...RuleStyles.text, fontSize: arabic ? 16 : 14 }}>
+          <Text variant="body1" style={{ ...RuleStyles.text, fontSize: arabic ? 13 : 12 }}>
             {item}
           </Text>
         </HStack>

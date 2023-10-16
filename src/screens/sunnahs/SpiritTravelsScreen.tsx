@@ -1,5 +1,6 @@
-import { Text, VStack } from '@react-native-material/core';
+import { VStack } from '@react-native-material/core';
 import { View } from 'react-native';
+import Text from '../../components/Text';
 import { useApplication } from '../../hooks/use-application';
 import GlobalStyles from '../../styles/GlobalStyles';
 import SunnahsProgressScreen from './SunnahsProgressScreen';

@@ -1,6 +1,6 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 
-import { Box, Button, HStack, Text, VStack } from '@react-native-material/core';
+import { Box, Button, HStack, VStack } from '@react-native-material/core';
 import { StyleSheet } from 'react-native';
 
 import ProgressLine from '../../../domains/common/ProgressLine';
@@ -9,6 +9,7 @@ import { useMessage } from '../../../hooks/use-message';
 import { TKeys } from '../../../locales/constants';
 import { capitalize, progressPercentage } from '../../../services/Helpers';
 import GlobalStyles from '../../../styles/GlobalStyles';
+import Text from '../../Text';
 import { FailedAttemptsBase } from '../BaseProps';
 import FailedAttempts from '../failedAttempts/FailedAttempts';
 import ProgressStatusInfo from './ProgressStatusInfo';
@@ -36,8 +37,8 @@ export default function ProgressStatusContainer(props: Props) {
 
   return (
     <Box style={{ ...styles.container, backgroundColor }}>
-      <VStack spacing={15}>
-        <Box mb={15}>
+      <VStack spacing={11}>
+        <Box mb={1}>
           <HStack spacing={10} style={styles.center} reverse={arabic}>
             <Icon name={iconName as any} size={28} color={iconColor} />
             <Text style={{ fontWeight: '700', fontSize: arabic ? 20 : 17 }}>{capitalize(title)}</Text>
@@ -82,10 +83,9 @@ export default function ProgressStatusContainer(props: Props) {
           </Box>
         ) : (
           <Button
-            style={styles.btn}
             title={formatMessage(TKeys.PROGRESS_START_DAILY_EVALUATION)}
             onPress={props.onEvaluate}
-            titleStyle={{ fontSize: arabic ? 18 : 15 }}
+            titleStyle={{ fontSize: arabic ? 16 : 14 }}
             uppercase={false}
           />
         )}
@@ -95,7 +95,6 @@ export default function ProgressStatusContainer(props: Props) {
 }
 
 const styles = StyleSheet.create({
-  container: { paddingHorizontal: 20, paddingVertical: 12, borderRadius: 15, elevation: 1 },
-  btn: { marginTop: 10 },
+  container: { paddingHorizontal: 20, paddingVertical: 10, borderRadius: 15, elevation: 1 },
   center: { alignItems: 'center' },
 });

@@ -1,6 +1,8 @@
-import { Avatar, Pressable, Stack, Text } from '@react-native-material/core';
+import { Avatar, Pressable, Stack } from '@react-native-material/core';
 import { useNavigation } from '@react-navigation/native';
 import { ImageSourcePropType, StyleSheet } from 'react-native';
+import Text from '../../components/Text';
+import { useApplication } from '../../hooks/use-application';
 import { useMessage } from '../../hooks/use-message';
 import { PurificationParamList, PurificationStackNavigationProp } from '../../navigation/types';
 
@@ -16,6 +18,7 @@ interface Props {
 }
 export default function PressableStep({ item }: Props) {
   const { formatMessage } = useMessage();
+  const { arabic } = useApplication();
   const navigation = useNavigation<PurificationStackNavigationProp>();
 
   function handlePress() {
@@ -27,9 +30,7 @@ export default function PressableStep({ item }: Props) {
       <Stack spacing={1} style={styles.container}>
         <Avatar image={item.imageSource} imageStyle={styles.img} size={90} />
         <Text variant="body1">{formatMessage(item.name)}</Text>
-        <Text variant="h6" style={{ fontWeight: 'bold' }}>
-          {formatMessage(item.description)}
-        </Text>
+        <Text style={{ fontWeight: 'bold', fontSize: arabic ? 19 : 16 }}>{formatMessage(item.description)}</Text>
       </Stack>
     </Pressable>
   );

@@ -2,6 +2,7 @@ export type Translations = Record<TKeys, string>;
 export const GLOBAL_LANGUAGE = 'global.language';
 
 export enum TKeys {
+  WELCOME = 'welcome',
   APPLICATION_TITLE_PRIMARY = 'application.title.primary',
   APPLICATION_TITLE_SECONDARY = 'application.title.secondary',
   PRESENTATION_CENTER = 'home.presentation.center',
@@ -172,6 +173,7 @@ export enum TKeys {
   MENU_INVOCATIONS = 'menu.invocations',
   MENU_SETTINGS = 'menu.settings',
   SETTINGS_LANGUAGE = 'settings.app-language',
+  SETTINGS_LANGUAGE_DEFAULT = 'settings.language.default',
   SETTINGS_RESET = 'settings.reset',
   PROGRESS_TITLE = 'progress.title',
   PROGRESS_START_DATE = 'progress.start-date',

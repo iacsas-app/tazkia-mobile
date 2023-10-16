@@ -1,6 +1,7 @@
-import { HStack, Text } from '@react-native-material/core';
+import { HStack } from '@react-native-material/core';
 import ProgressLine from '../../../domains/common/ProgressLine';
 import { useMessage } from '../../../hooks/use-message';
+import Text from '../../Text';
 import { FailedAttemptsBase } from '../BaseProps';
 
 interface Props extends FailedAttemptsBase {

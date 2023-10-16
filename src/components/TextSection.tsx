@@ -1,12 +1,14 @@
 import React, { PropsWithChildren } from 'react';
 
-import { StyleSheet, Text, View, useColorScheme } from 'react-native';
+import { StyleSheet, View, useColorScheme } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
+import Text from './Text';
 
 type SectionProps = PropsWithChildren<{
   title: string;
+  color?: string;
 }>;
-export default function TextSection({ children, title }: SectionProps): JSX.Element {
+export default function TextSection({ children, title, color }: SectionProps): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
   return (
@@ -15,33 +17,34 @@ export default function TextSection({ children, title }: SectionProps): JSX.Elem
         style={[
           styles.sectionTitle,
           {
-            color: isDarkMode ? Colors.white : Colors.black,
+            color: color ? color : isDarkMode ? 'green' : Colors.black,
           },
         ]}
       >
         {title}
       </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}
-      >
-        {children}
-      </Text>
+      {children && (
+        <Text
+          style={[
+            styles.sectionDescription,
+            {
+              color: isDarkMode ? Colors.light : Colors.dark,
+            },
+          ]}
+        >
+          {children}
+        </Text>
+      )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+    paddingHorizontal: 20,
   },
   sectionTitle: {
-    fontSize: 24,
+    fontSize: 18,
     fontWeight: '600',
   },
   sectionDescription: {

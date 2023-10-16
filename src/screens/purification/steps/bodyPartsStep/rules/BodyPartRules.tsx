@@ -3,10 +3,11 @@ import { BodyPartType } from '../../../../../domains/purification/BodyPart';
 import { useStoreActions, useStoreState } from '../../../../../stores/hooks';
 import { PurificationStage } from '../BodyPartsScreen';
 
-import { Avatar, Button, HStack, Text, VStack } from '@react-native-material/core';
+import { Avatar, Button, HStack, VStack } from '@react-native-material/core';
 import { useNavigation } from '@react-navigation/native';
 import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
+import Text from '../../../../../components/Text';
 import ScrollViewLayout from '../../../../../components/layout/ScrollViewLayout';
 import SimpleRule from '../../../../../components/rules/SimpleRule';
 import ProgressLine from '../../../../../domains/common/ProgressLine';
@@ -52,21 +53,21 @@ export default function BodyPartsRules({ part, step }: BodyPartsRulesProps) {
 
   return (
     <ScrollViewLayout>
-      <Avatar image={findPartProps(part)} size={100} />
+      <Avatar image={findPartProps(part)} size={80} />
       <Text
         variant="body1"
-        style={{ fontWeight: '600', marginVertical: 5, marginHorizontal: 0, fontSize: arabic ? 30 : 18 }}
-        color="blue"
+        style={{ fontWeight: '600', marginVertical: 5, marginHorizontal: 0, fontSize: arabic ? 22 : 18 }}
+        color="green"
       >
         {stepTitle()}
       </Text>
-      <HStack spacing={12} style={styles.system} reverse={arabic}>
+      <HStack spacing={10} style={styles.system} reverse={arabic}>
         <Icon name={isCleaning ? 'account-tie-hat' : 'lightbulb-on'} color={isCleaning ? 'red' : 'green'} size={23} />
-        <Text variant="body1" style={{ ...styles.title, fontSize: arabic ? 22 : 18 }}>
+        <Text variant="body1" style={{ ...styles.title, fontSize: arabic ? 20 : 16 }}>
           {formatMessage(`${step}.bodypart.disciplinary-system`)}
         </Text>
       </HStack>
-      <VStack mv={17}>
+      <VStack mv={10}>
         {items.map((rule: string, index: number) => (
           <SimpleRule key={index} id={index + 1} item={formatMessage(rule)} />
         ))}
@@ -91,7 +92,8 @@ const styles = StyleSheet.create({
   system: { alignItems: 'flex-start', paddingHorizontal: 16.5, marginVertical: 5 },
   image: { borderRadius: 80 },
   action: {
-    marginVertical: 15,
+    marginTop: 5,
+    marginBottom: 15,
     marginHorizontal: 55,
   },
 });

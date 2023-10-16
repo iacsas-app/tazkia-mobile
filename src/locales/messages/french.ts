@@ -1,6 +1,7 @@
 import { TKeys, Translations } from '../constants';
 
 export const french: Translations = {
+  [TKeys.WELCOME]: "Bienvenue dans l'application de Tazkia",
   [TKeys.APPLICATION_TITLE_PRIMARY]: "L'approche prophétique",
   [TKeys.APPLICATION_TITLE_SECONDARY]: 'Méthode de la réussite',
 
@@ -155,6 +156,7 @@ export const french: Translations = {
   [TKeys.MENU_SUNNAHS]: 'Traditions prophétiques',
   [TKeys.MENU_INVOCATIONS]: 'Invocations',
   [TKeys.SETTINGS_LANGUAGE]: "Langue de l'application",
+  [TKeys.SETTINGS_LANGUAGE_DEFAULT]: 'Voulez-vous continuer en {lang} ?',
   [TKeys.SETTINGS_RESET]: 'Réinitialiser',
 
   // BUTTONS

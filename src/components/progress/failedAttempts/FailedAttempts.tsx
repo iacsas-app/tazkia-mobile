@@ -36,7 +36,6 @@ export default function FailedAttempts({ attempts, attemptFormatter }: Props) {
           value={count}
           icon="repeat-off"
           color="#ff4500"
-          reverse={arabic}
         />
         <IconButton
           icon={() => <Icon name={open ? 'eye-off' : 'history'} size={23} color="#2e8b57" />}
@@ -44,7 +43,7 @@ export default function FailedAttempts({ attempts, attemptFormatter }: Props) {
         />
       </HStack>
       {open && (
-        <Box mt={20}>
+        <Box mt={10}>
           {attempts.map((attempt, index: number) => (
             <FailedAttempt key={index} attempt={attempt} reverse={arabic} attemptFormatter={attemptFormatter} />
           ))}

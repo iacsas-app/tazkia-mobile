@@ -1,6 +1,6 @@
-import { Text } from '@react-native-material/core';
 import { ReactElement } from 'react';
 import { View } from 'react-native';
+import Text from '../../components/Text';
 import GlobalStyles from '../../styles/GlobalStyles';
 
 /**
