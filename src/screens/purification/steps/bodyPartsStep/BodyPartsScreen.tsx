@@ -1,8 +1,9 @@
-import { Box, HStack, Text, VStack } from '@react-native-material/core';
+import { Box, HStack, VStack } from '@react-native-material/core';
 import { useNavigation } from '@react-navigation/native';
 import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import Text from '../../../../components/Text';
 import ScrollViewLayout from '../../../../components/layout/ScrollViewLayout';
 import { BodyPartType, BodyPartsOrder } from '../../../../domains/purification/BodyPart';
 import { useApplication } from '../../../../hooks/use-application';
@@ -56,7 +57,7 @@ export default function BodyPartsScreen() {
         </Text>
       </VStack>
       <VStack
-        spacing={20}
+        spacing={15}
         style={{ ...GlobalStyles.center, paddingHorizontal: Math.max(20, insets.left + insets.right) }}
       >
         {Object.keys(partsByLine).map((key: string) => (

@@ -1,6 +1,7 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
-import { Box, Text } from '@react-native-material/core';
+import { Box } from '@react-native-material/core';
 import { StyleSheet } from 'react-native';
+import Text from '../Text';
 
 interface Props {
   count: number;

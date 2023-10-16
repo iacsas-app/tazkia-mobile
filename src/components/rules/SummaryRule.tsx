@@ -1,10 +1,11 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import OctIcon from '@expo/vector-icons/Octicons';
-import { Box, HStack, IconButton, Pressable, Text } from '@react-native-material/core';
+import { Box, HStack, IconButton, Pressable } from '@react-native-material/core';
 import { useState } from 'react';
 import { StyleSheet, useWindowDimensions } from 'react-native';
 import Rule from '../../domains/common/Rule';
 import { useApplication } from '../../hooks/use-application';
+import Text from '../Text';
 
 interface Props {
   rule: Rule;

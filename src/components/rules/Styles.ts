@@ -13,6 +13,6 @@ export const RuleStyles = StyleSheet.create({
   },
   text: {
     marginTop: 2,
-    fontWeight: 'bold',
+    fontWeight: '400',
   },
 });

@@ -1,6 +1,7 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
-import { Avatar, Box, HStack, Pressable, Surface, Text } from '@react-native-material/core';
+import { Avatar, Box, HStack, Pressable } from '@react-native-material/core';
 import { ImageSourcePropType, StyleSheet, View } from 'react-native';
+import Text from '../../../../components/Text';
 import { BodyPartType } from '../../../../domains/purification/BodyPart';
 import { useApplication } from '../../../../hooks/use-application';
 import { useMessage } from '../../../../hooks/use-message';
@@ -22,7 +23,7 @@ export default function BodyPartItem({ id, type, nameKey, imageSource, onOpenRul
   const { arabic } = useApplication();
   const findBodyPart = useStoreState((state) => state.purification.findByPart);
 
-  const width = 155;
+  const width = 170;
   const space = arabic ? 10 : 2;
   const btnFontSize = arabic ? 15 : 9;
   const progress = findBodyPart(type);
@@ -62,24 +63,24 @@ export default function BodyPartItem({ id, type, nameKey, imageSource, onOpenRul
         <Box h={40} w={width} style={styles.bottomBox}>
           <HStack spacing={arabic ? 20 : 5} reverse={arabic}>
             {!isCleaningInProgress && (
-              <Surface elevation={2} category="small">
+              <Box style={styles.btn}>
                 <Pressable style={{ padding: 3 }} onPress={() => handlePress('cleaning')}>
                   <HStack spacing={space} style={GlobalStyles.center} reverse={arabic}>
                     <Icon name="account-tie-hat" size={12} color="#4b0082" />
                     <Text style={{ fontSize: btnFontSize }}>{formatMessage(`button.cleaning`)}</Text>
                   </HStack>
                 </Pressable>
-              </Surface>
+              </Box>
             )}
             {!isEnlightenmentInProgress && (
-              <Surface elevation={2} category="small">
+              <Box style={styles.btn}>
                 <Pressable style={{ padding: 3 }} onPress={() => handlePress('enlightenment')}>
                   <HStack spacing={space} style={GlobalStyles.center} reverse={arabic}>
                     <Icon name="lightbulb-on" size={12} color="#32cd32" />
                     <Text style={{ fontSize: btnFontSize }}>{formatMessage(`button.enlightenment`)}</Text>
                   </HStack>
                 </Pressable>
-              </Surface>
+              </Box>
             )}
             {isCleaningInProgress && isEnlightenmentInProgress && (
               <Icon name="progress-check" size={25} color="#20b2aa" />
@@ -98,7 +99,7 @@ const styles = StyleSheet.create({
     ...GlobalStyles.center,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
-    elevation: 6,
+    elevation: 5,
   },
   bottomBox: {
     ...GlobalStyles.center,
@@ -109,4 +110,5 @@ const styles = StyleSheet.create({
   partName: { fontWeight: 'bold', marginTop: 3 },
   typeAvatar: { marginTop: -18 },
   idAvatar: { marginTop: -8 },
+  btn: { elevation: 2, backgroundColor: '#f5fffa', borderRadius: 5, paddingHorizontal: 1 },
 });

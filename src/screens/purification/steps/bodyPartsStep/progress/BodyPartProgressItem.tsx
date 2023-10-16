@@ -1,7 +1,8 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
-import { Avatar, Box, HStack, Text, VStack } from '@react-native-material/core';
+import { Avatar, Box, HStack, VStack } from '@react-native-material/core';
 import { useNavigation } from '@react-navigation/native';
 import { Pressable, StyleSheet } from 'react-native';
+import Text from '../../../../../components/Text';
 import BodyPart, { BodyPartsOrder } from '../../../../../domains/purification/BodyPart';
 import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';
@@ -41,12 +42,13 @@ export default function BodyPartProgressItem({ value }: ProgressItemProps) {
   return (
     <Pressable onPress={handlePress}>
       <HStack
-        spacing={10}
+        spacing={7}
         style={{
           ...styles.chip,
           paddingHorizontal: arabic ? 17 : 7,
           borderRightWidth: fullyCompleted && arabic ? 10 : 0,
           borderLeftWidth: fullyCompleted && !arabic ? 10 : 0,
+          minWidth: 160,
           borderColor: 'green',
         }}
         reverse={arabic}
@@ -64,9 +66,9 @@ export default function BodyPartProgressItem({ value }: ProgressItemProps) {
             style={styles.numberAvatar}
           />
         </VStack>
-        <VStack spacing={5} style={{ alignItems: 'baseline' }}>
+        <VStack spacing={5} style={{ alignItems: 'stretch' }}>
           <Box>
-            <Text variant="body1" style={{ ...styles.partName, fontSize: arabic ? 17 : 14 }}>
+            <Text variant="body1" style={{ ...styles.partName, fontSize: arabic ? 16 : 13 }}>
               {formatMessage(`purification.body-parts.${value.name}`)}
             </Text>
           </Box>
@@ -103,9 +105,9 @@ export default function BodyPartProgressItem({ value }: ProgressItemProps) {
 
 const styles = StyleSheet.create({
   chip: {
-    height: 78,
+    height: 75,
     backgroundColor: '#fff',
-    marginBottom: 7,
+    marginBottom: 5,
     paddingTop: 4,
     paddingBottom: 30,
     borderRadius: 15,

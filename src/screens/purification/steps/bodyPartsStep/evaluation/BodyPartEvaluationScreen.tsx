@@ -1,8 +1,9 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
-import { Avatar, Button, HStack, Text, VStack } from '@react-native-material/core';
+import { Avatar, Button, HStack, VStack } from '@react-native-material/core';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useMemo, useState } from 'react';
 import { StyleSheet } from 'react-native';
+import Text from '../../../../../components/Text';
 import ScrollViewLayout from '../../../../../components/layout/ScrollViewLayout';
 import CheckableRule from '../../../../../components/rules/CheckableRule';
 import { useApplication } from '../../../../../hooks/use-application';
@@ -30,7 +31,7 @@ export default function BodyPartEvaluationScreen() {
     setSelected(selected.filter((item) => item !== id));
   }
   function handleSave() {
-    evaluate([part, step, selected.sort()]).then(() => navigation.push('PurificationProgress'));
+    evaluate([part, step, selected.sort()]).then(() => navigation.popToTop());
   }
 
   return (

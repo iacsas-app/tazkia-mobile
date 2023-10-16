@@ -1,8 +1,9 @@
 import { useStoreRehydrated } from 'easy-peasy';
 import { PropsWithChildren, useEffect } from 'react';
 import { RawIntlProvider, createIntl, createIntlCache } from 'react-intl';
-import { defaultLanguage } from '../locales';
-import { useStoreActions, useStoreState } from '../stores/hooks';
+import { useApplication } from '../hooks/use-application';
+import FirstVisitScreen from '../screens/FirstVisitScreen';
+import { useStoreState } from '../stores/hooks';
 
 function WaitForStateRehydration({ children }: PropsWithChildren<unknown>) {
   const isRehydrated = useStoreRehydrated();
@@ -10,22 +11,19 @@ function WaitForStateRehydration({ children }: PropsWithChildren<unknown>) {
 }
 
 export default function IntlProvider({ children }: PropsWithChildren<unknown>) {
-  const locale = useStoreState((state) => state.intl.locale);
   const messages = useStoreState((state) => state.intl.messages);
-  const update = useStoreActions((actions) => actions.intl.update);
-
-  useEffect(() => {
-    if (locale !== defaultLanguage) {
-      update(locale);
-    }
-  }, [locale]);
+  const { firstVisit, locale, setLocale } = useApplication();
 
   const cache = createIntlCache();
   const intl = createIntl({ locale, messages: messages as any }, cache);
 
+  useEffect(() => {
+    setLocale(locale);
+  }, [locale]);
+
   return (
     <WaitForStateRehydration>
-      <RawIntlProvider value={intl}>{children}</RawIntlProvider>
+      <RawIntlProvider value={intl}>{firstVisit ? <FirstVisitScreen /> : children}</RawIntlProvider>
     </WaitForStateRehydration>
   );
 }

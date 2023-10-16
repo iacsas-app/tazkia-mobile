@@ -1,3 +1,4 @@
+import { NativeModules, Platform } from 'react-native';
 import ProgressLine from '../domains/common/ProgressLine';
 import BodyPart from '../domains/purification/BodyPart';
 import { PurificationStage } from '../screens/purification/steps/bodyPartsStep/BodyPartsScreen';
@@ -39,4 +40,10 @@ export function isCompleted(progress: ProgressLine[] | undefined, maxDays: numbe
 
 export function isBodyPartStepInProgress(part: BodyPart | undefined, step: PurificationStage) {
   return part ? part[step] : undefined;
+}
+
+export function deviceLanguage() {
+  return Platform.OS === 'ios'
+    ? NativeModules.SettingsManager.settings.AppleLocale || NativeModules.SettingsManager.settings.AppleLanguages[0] //iOS 13
+    : NativeModules.I18nManager.localeIdentifier;
 }

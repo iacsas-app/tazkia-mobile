@@ -1,5 +1,6 @@
-import { Box, HStack, Text } from '@react-native-material/core';
+import { Box, HStack } from '@react-native-material/core';
 import { StyleSheet } from 'react-native';
+import Text from '../../../../../components/Text';
 import { ProgressStatus as Status } from '../../../../../components/progress/progressStatus/ProgressStatus';
 import ProgressLine from '../../../../../domains/common/ProgressLine';
 import { useApplication } from '../../../../../hooks/use-application';
