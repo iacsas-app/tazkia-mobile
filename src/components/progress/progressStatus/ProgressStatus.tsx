@@ -22,7 +22,7 @@ export function ProgressStatus({ last, count, maxDays, completed }: Props) {
   }
 
   return (
-    <HStack spacing={5} style={GlobalStyles.center} reverse={arabic}>
+    <HStack spacing={1} style={GlobalStyles.center} reverse={arabic}>
       {!completed && (
         <Box>
           <RepeatCount count={count} />

@@ -85,8 +85,6 @@ const purificationModel: PurificationModel = {
     actions.load(item);
   }),
   createOrUpdate: thunk(async (actions, payload: Purification, { injections }) => {
-    //const { tazkiaService } = injections;
-    //const item = await tazkiaService.createOrUpdate(payload);
     actions.load(payload);
   }),
   evaluateBodyPart: thunk(async (actions, payload: [BodyPartType, PurificationStage, number[]], { injections }) => {

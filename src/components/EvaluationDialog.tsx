@@ -17,8 +17,9 @@ interface Props {
 
 export default function EvaluationDialog({ rule, ...props }: Props) {
   const { formatMessage } = useMessage();
-  const { arabic } = useApplication();
-  const btnTextSize = arabic ? 20 : 12;
+  const { arabic, isDarkMode } = useApplication();
+  const btnTextSize = arabic ? 20 : 18;
+  const color = isDarkMode ? 'white' : 'black';
 
   function handleYesPress() {
     evaluate(true);
@@ -42,23 +43,35 @@ export default function EvaluationDialog({ rule, ...props }: Props) {
     <Dialog visible={true} onDismiss={props.onClose} {...p}>
       <DialogContent>
         <VStack spacing={20} pt={20} style={GlobalStyles.center}>
-          <Text variant="h6" style={styles.question}>
+          <Text color={color} variant="h6" style={styles.question}>
             {formatMessage(TKeys.PROGRESS_EVALUATION_QUESTION)}
           </Text>
-          <Text style={styles.rule}>{rule.description}</Text>
+          <Text color={color} style={{ fontSize: arabic ? 14 : 12 }}>
+            {rule.description}
+          </Text>
           <HStack spacing={15} style={GlobalStyles.center} reverse={arabic}>
             <Button
-              title={<Text variant="h6">{formatMessage(TKeys.BUTTON_YES)}</Text>}
+              title={
+                <Text color={color} style={{ fontSize: btnTextSize, fontWeight: '900' }}>
+                  {formatMessage(TKeys.BUTTON_YES)}
+                </Text>
+              }
+              style={styles.btn}
               uppercase={false}
               color="#66cdaa"
-              leading={() => <Icon name="thumb-up-outline" size={btnTextSize} {...props} />}
+              leading={() => <Icon name="thumb-up-outline" size={btnTextSize} color={color} {...props} />}
               onPress={handleYesPress}
             />
             <Button
-              title={<Text variant="h6">{formatMessage(TKeys.BUTTON_NO)}</Text>}
+              title={
+                <Text color={color} style={{ fontSize: btnTextSize, fontWeight: '900' }}>
+                  {formatMessage(TKeys.BUTTON_NO)}
+                </Text>
+              }
+              style={styles.btn}
               uppercase={false}
               color="#c0c0c0"
-              leading={() => <Icon name="thumb-down-outline" size={btnTextSize} {...props} />}
+              leading={() => <Icon name="thumb-down-outline" size={btnTextSize} color={color} {...props} />}
               onPress={handleNoPress}
             />
           </HStack>
@@ -69,6 +82,6 @@ export default function EvaluationDialog({ rule, ...props }: Props) {
 }
 
 const styles = StyleSheet.create({
-  question: { ...GlobalStyles.text, fontWeight: '700' },
-  rule: { ...GlobalStyles.text, fontSize: 14 },
+  question: { fontWeight: '700' },
+  btn: { width: 100 },
 });

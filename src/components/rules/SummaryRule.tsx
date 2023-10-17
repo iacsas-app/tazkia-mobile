@@ -32,7 +32,7 @@ export default function SummaryRule({ rule, ...props }: Props) {
 
   return (
     <Box style={{ ...styles.box, width: width - 20, backgroundColor: bgColor }}>
-      <Pressable onPressIn={handleOpen}>
+      <Pressable onLongPress={handleOpen} onPress={() => setShow(false)}>
         <HStack spacing={1} reverse={arabic} style={{ alignItems: 'center', justifyContent: 'space-between' }}>
           <HStack spacing={2} reverse={arabic} style={{ alignItems: 'center', paddingHorizontal: 2 }}>
             <IconButton
@@ -41,15 +41,15 @@ export default function SummaryRule({ rule, ...props }: Props) {
               onPressIn={handleCollapse}
             />
             <HStack
-              spacing={12}
+              spacing={8}
               reverse={arabic}
-              style={{ width: width - (rule.disabled && !rule.status ? 120 : 170), alignItems: 'center' }}
+              style={{ width: width - (rule.disabled && !rule.status ? 155 : 170), alignItems: 'center' }}
             >
-              <Text style={{ fontWeight: '900', fontSize: 11.5, color: statusColor }}>{rule.title}</Text>
+              <Text style={{ fontWeight: '900', fontSize: 12, color: statusColor }}>{rule.title}</Text>
               <Text
                 style={{
                   fontWeight: '600',
-                  fontSize: arabic ? 15 : 11.5,
+                  fontSize: arabic ? 13 : 11.5,
                   color: summaryColor,
                 }}
               >
@@ -73,7 +73,7 @@ export default function SummaryRule({ rule, ...props }: Props) {
         </HStack>
         {show && (
           <Box style={{ padding: 15 }}>
-            <Text style={{ textAlign: arabic ? 'auto' : 'justify', fontSize: arabic ? 16 : 14 }}>
+            <Text style={{ textAlign: arabic ? 'auto' : 'justify', fontSize: arabic ? 16 : 12 }}>
               {rule.description}
             </Text>
           </Box>
@@ -86,7 +86,7 @@ export default function SummaryRule({ rule, ...props }: Props) {
 const styles = StyleSheet.create({
   box: {
     paddingVertical: 5,
-    borderRadius: 15,
-    elevation: 5,
+    borderRadius: 8,
+    elevation: 3,
   },
 });

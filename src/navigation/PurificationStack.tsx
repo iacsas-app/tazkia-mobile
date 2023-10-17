@@ -48,11 +48,7 @@ export default function PurificationStack() {
           options={({ route }) => ({ title: bodyPartProgressBarTitle(route.params.value) })}
         />
         <Stack.Screen name="PurificationProgress" component={PurificationProgressScreen} />
-        <Stack.Screen
-          name="Mind"
-          component={MindScreen}
-          options={{ title: formatMessage(TKeys.PURIFICATION_MIND_TITLE) }}
-        />
+
         <Stack.Screen
           name="Soul"
           component={SoulScreen}
@@ -64,6 +60,11 @@ export default function PurificationStack() {
           name="BodyPartEvaluation"
           component={BodyPartEvaluationScreen}
           options={({ route }) => ({ title: rulesBarTitle(route.params.step) })}
+        />
+        <Stack.Screen
+          name="Mind"
+          component={MindScreen}
+          options={{ title: formatMessage(TKeys.PURIFICATION_MIND_TITLE) }}
         />
       </Stack.Group>
     </Stack.Navigator>

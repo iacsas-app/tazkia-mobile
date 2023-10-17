@@ -54,11 +54,11 @@ export default function MindProgress({ items, onAdd }: Props) {
       <ProgressContainer
         title={formatMessage(TKeys.PURIFICATION_MIND_TITLE)}
         subtitle={formatMessage(TKeys.PHASE_2)}
-        variant="green"
+        variant="orange"
         onAdd={handleAddAction}
       >
         {items.length === 0 ? (
-          <Text>No mind puirificatio in progress</Text>
+          <Text>No progress</Text>
         ) : (
           <VStack spacing={5} reverse={arabic}>
             {items.map((item: Mind, index) => (
