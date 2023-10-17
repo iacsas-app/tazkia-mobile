@@ -2,29 +2,26 @@ import { Box, Stack } from '@react-native-material/core';
 import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 import PressableStep, { Part } from '../../components/PressableStep';
-import { useApplication } from '../../hooks/use-application';
 import { TKeys } from '../../locales/constants';
 import GlobalStyles from '../../styles/GlobalStyles';
-import PurificationProgressScreen from './PurificationProgressScreen';
 
-export default function PurificationScreen() {
-  const { hasPurificationProgress } = useApplication();
+export default function SunnahsScreen() {
   const parts: Part[] = useMemo(
     () => [
       {
-        route: 'BodyParts',
+        route: 'Habits',
         name: TKeys.PHASE_1,
         description: TKeys.PURIFICATION_BODYPART_TITLE,
         imageSource: require('./../../../assets/img/purification/step1.png'),
       },
       {
-        route: 'Mind',
+        route: 'Practice',
         name: TKeys.PHASE_2,
         description: TKeys.PURIFICATION_MIND_TITLE,
         imageSource: require('./../../../assets/img/purification/step2.jpg'),
       },
       {
-        route: 'Soul',
+        route: 'SpiritTravels',
         name: TKeys.PHASE_3,
         description: TKeys.PURIFICATION_SOUL_TITLE,
         imageSource: require('./../../../assets/img/purification/step3.jpg'),
@@ -32,10 +29,6 @@ export default function PurificationScreen() {
     ],
     [],
   );
-
-  if (hasPurificationProgress) {
-    return <PurificationProgressScreen />;
-  }
 
   return (
     <Stack style={GlobalStyles.container} items="center" spacing={15}>
