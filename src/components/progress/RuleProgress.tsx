@@ -1,7 +1,8 @@
 import OctIcon from '@expo/vector-icons/Octicons';
-import { Box, Button, HStack, IconButton, Pressable } from '@react-native-material/core';
+import { Box, Button, HStack, IconButton, Pressable, VStack } from '@react-native-material/core';
 import { useState } from 'react';
 import { StyleSheet, useWindowDimensions } from 'react-native';
+import ProgressLine from '../../domains/common/ProgressLine';
 import Rule from '../../domains/common/Rule';
 import { useApplication } from '../../hooks/use-application';
 import { useMessage } from '../../hooks/use-message';
@@ -9,6 +10,7 @@ import { TKeys } from '../../locales/constants';
 import { isCompleted } from '../../services/Helpers';
 import GlobalStyles from '../../styles/GlobalStyles';
 import Text from '../Text';
+import FailedAttempts from './failedAttempts/FailedAttempts';
 import { ProgressStatus } from './progressStatus/ProgressStatus';
 
 interface Props {
@@ -38,6 +40,10 @@ export default function RuleProgress({ rule, maxDays, ...props }: Props) {
   function handleEvaluate() {
     setShow(false);
     props.onEvaluate(rule);
+  }
+
+  function formatAttempt(line: ProgressLine) {
+    return formatMessage(TKeys.PROGRESS_FAILED_ATTEMPTS_RULE_SIMPLE, { day: line.day });
   }
 
   return (
@@ -84,14 +90,17 @@ export default function RuleProgress({ rule, maxDays, ...props }: Props) {
         )}
       </Pressable>
       {show && !isLastCompleted && (
-        <Box style={{ ...GlobalStyles.center, paddingBottom: 15, paddingTop: 5 }}>
+        <VStack style={{ ...GlobalStyles.center, paddingBottom: 15, paddingTop: 10 }} spacing={5}>
+          <Box>
+            <FailedAttempts attempts={rule.progress.slice(0, -1)} attemptFormatter={formatAttempt} />
+          </Box>
           <Button
             title={formatMessage(TKeys.PROGRESS_START_DAILY_EVALUATION)}
             onPress={handleEvaluate}
             titleStyle={{ fontSize: arabic ? 16 : 14 }}
             uppercase={false}
           />
-        </Box>
+        </VStack>
       )}
     </Box>
   );
