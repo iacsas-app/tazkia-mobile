@@ -26,7 +26,7 @@ export default function SoulProgress({ items, onAdd }: SoulProgressProps) {
     <ProgressContainer
       title={formatMessage(TKeys.PURIFICATION_SOUL_TITLE)}
       subtitle={formatMessage(TKeys.PHASE_3)}
-      variant="green"
+      variant="blue"
       onAdd={handleAddAction}
     >
       <HStack spacing={15} reverse={arabic}>

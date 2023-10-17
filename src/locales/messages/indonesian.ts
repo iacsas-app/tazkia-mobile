@@ -170,7 +170,7 @@ export const indonesian: Translations = {
 
   [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_1]: 'Menolak Waswas',
   [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_2]:
-    'Mengembangkan ittishal (hubungan)mu dengan Allah Yang Maha Esa setiap hari',
+    'Mengembangkan ittishal (hubungan) mu dengan Allah Yang Maha Esa setiap hari',
   [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_3]: 'Meminta idzin dari Allah Swt dalam setiap melakukan pekerjaanmu',
   [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_4]: 'Penghadiran akal kebersamaan Allah',
   [TKeys.PURIFICATION_MIND_SUMMARY_LEVEL_5]: 'Merasakan kebersamaan Allah selama 24 jam',
