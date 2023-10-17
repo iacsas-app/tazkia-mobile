@@ -200,6 +200,7 @@ export const arabic: Translations = {
   [TKeys.PROGRESS_SUCCESSFUL_DAYS]: 'الأيام الناجحة',
   [TKeys.PROGRESS_FAILED_ATTEMPTS]: 'المحاولات الفاشلة',
   [TKeys.PROGRESS_FAILED_ATTEMPTS_RULE]: 'خرق القاعدة {rules} في اليوم {day}',
+  [TKeys.PROGRESS_FAILED_ATTEMPTS_RULE_SIMPLE]: 'تم خرق القاعدة في اليوم {day}',
   [TKeys.PROGRESS_START_DAILY_EVALUATION]: 'تقييم يومي',
   [TKeys.PROGRESS_EVALUATION_MESSAGE]: 'اختر القواعد التي تم خرقها',
   [TKeys.PROGRESS_EVALUATION_QUESTION]: 'هل تم احترام القاعدة التالية طوال اليوم ؟',

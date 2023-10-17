@@ -184,6 +184,7 @@ export const english: Translations = {
   [TKeys.PROGRESS_SUCCESSFUL_DAYS]: 'Successful days',
   [TKeys.PROGRESS_FAILED_ATTEMPTS]: 'Failed attempts',
   [TKeys.PROGRESS_FAILED_ATTEMPTS_RULE]: 'Violation of rules {rules} on day {day}',
+  [TKeys.PROGRESS_FAILED_ATTEMPTS_RULE_SIMPLE]: 'The rule was broken on the day {day}',
   [TKeys.PROGRESS_START_DAILY_EVALUATION]: 'Evaluate my day',
   [TKeys.PROGRESS_EVALUATION_MESSAGE]: 'Select the rules that were violated',
   [TKeys.PROGRESS_EVALUATION_QUESTION]: 'Was the following rule respected throughout the day ?',
