@@ -17,7 +17,7 @@ interface BodyPartsProgressProps {
 export default function BodyPartsProgress({ items, onAdd }: BodyPartsProgressProps) {
   const { arabic } = useApplication();
   const { formatMessage } = useMessage();
-  const map = useMemo(() => mapByIndex(items), []);
+  const map = mapByIndex(items);
 
   const allInProgress = useMemo(
     () => items.length === 7 && items.every((item: BodyPart) => item.cleaning && item.enlightenment),

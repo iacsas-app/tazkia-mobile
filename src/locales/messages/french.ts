@@ -184,6 +184,7 @@ export const french: Translations = {
   [TKeys.PROGRESS_SUCCESSFUL_DAYS]: 'Jours réussis',
   [TKeys.PROGRESS_FAILED_ATTEMPTS]: 'Tentatives échouées',
   [TKeys.PROGRESS_FAILED_ATTEMPTS_RULE]: 'Violation des règles {rules} le jour {day}',
+  [TKeys.PROGRESS_FAILED_ATTEMPTS_RULE_SIMPLE]: 'La règle a été enfreinte le jour {day}',
   [TKeys.PROGRESS_START_DAILY_EVALUATION]: 'Évaluer ma journée',
   [TKeys.PROGRESS_EVALUATION_MESSAGE]: 'Sélectionnez les règles qui ont été enfreintes',
   [TKeys.PROGRESS_EVALUATION_QUESTION]: 'La règle suivante a-t-elle été respectée tout au long de la journée ?',

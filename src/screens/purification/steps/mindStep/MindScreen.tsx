@@ -29,15 +29,6 @@ export default function MindScreen() {
   function toRule(level: MindLevel, last: MindLevel | undefined, isLastCompleted: boolean): Rule {
     const mind = findByMind(level);
 
-    if (last)
-      console.log(
-        'level !== last + 1',
-        level !== last + 1,
-        'isLastCompleted',
-        isLastCompleted,
-        level !== last + 1 && isLastCompleted,
-      );
-
     return {
       id: level,
       title: formatMessage(TKeys.LEVEL, { value: level }),
@@ -64,7 +55,7 @@ export default function MindScreen() {
         progress: [{ startDate: Date.now(), day: 0, evaluated: false, errors: [] }],
       },
     ];
-    newPurif.mind = result; //, orderMindLevels(result);
+    newPurif.mind = result;
     createOrUpdate(newPurif);
     setRules(
       rules.map((r) => {

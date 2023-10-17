@@ -1,5 +1,4 @@
 import { useNavigation } from '@react-navigation/native';
-import { StyleSheet } from 'react-native';
 import ScrollViewLayout from '../../components/layout/ScrollViewLayout';
 import { PurificationParamList, PurificationStackNavigationProp } from '../../navigation/types';
 import { useStoreState } from '../../stores/hooks';
@@ -27,11 +26,3 @@ export default function PurificationProgressScreen() {
     </ScrollViewLayout>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    marginVertical: 20,
-    paddingTop: 15,
-    marginHorizontal: 10,
-  },
-});

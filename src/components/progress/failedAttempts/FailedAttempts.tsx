@@ -30,20 +30,22 @@ export default function FailedAttempts({ attempts, attemptFormatter }: Props) {
 
   return (
     <Box mt={-10}>
-      <HStack style={GlobalStyles.centerAlign} reverse={arabic}>
-        <ProgressStatusInfo
-          label={formatMessage(TKeys.PROGRESS_FAILED_ATTEMPTS)}
-          value={count}
-          icon="repeat-off"
-          color="#ff4500"
-        />
+      <HStack style={GlobalStyles.center} reverse={arabic}>
+        <Box>
+          <ProgressStatusInfo
+            label={formatMessage(TKeys.PROGRESS_FAILED_ATTEMPTS)}
+            value={count}
+            icon="repeat-off"
+            color="#ff4500"
+          />
+        </Box>
         <IconButton
           icon={() => <Icon name={open ? 'eye-off' : 'history'} size={23} color="#2e8b57" />}
           onPress={handlePress}
         />
       </HStack>
       {open && (
-        <Box mt={10}>
+        <Box mt={1} mb={15}>
           {attempts.map((attempt, index: number) => (
             <FailedAttempt key={index} attempt={attempt} reverse={arabic} attemptFormatter={attemptFormatter} />
           ))}
