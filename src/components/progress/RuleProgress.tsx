@@ -32,7 +32,7 @@ export default function RuleProgress({ rule, maxDays, ...props }: Props) {
   }
 
   function handleOpen() {
-    setShow(true);
+    setShow(!show);
   }
 
   function handleEvaluate() {
@@ -44,26 +44,27 @@ export default function RuleProgress({ rule, maxDays, ...props }: Props) {
     <Box
       style={{
         ...styles.box,
-        width: width - 28,
+        width: width - 48,
         borderRightWidth: isLastCompleted && arabic ? 8 : 0,
         borderLeftWidth: isLastCompleted && !arabic ? 8 : 0,
         borderColor: 'green',
+        backgroundColor: '#fffafa',
       }}
     >
-      <Pressable onPressIn={handleOpen}>
+      <Pressable onLongPress={handleOpen} onPress={() => setShow(false)}>
         <HStack spacing={1} reverse={arabic} style={{ alignItems: 'center', justifyContent: 'space-between' }}>
           <HStack spacing={2} reverse={arabic} style={{ alignItems: 'center', paddingHorizontal: 2 }}>
             <IconButton
-              icon={(_, ...props) => <OctIcon name={show ? 'chevron-up' : 'chevron-down'} size={20} {...props} />}
-              style={{ width: 30, height: 30 }}
+              icon={(_, ...props) => <OctIcon name={show ? 'chevron-up' : 'chevron-down'} size={15} {...props} />}
+              style={{ width: 20, height: 20 }}
               onPressIn={handleCollapse}
             />
-            <HStack spacing={12} reverse={arabic} style={{ width: width - 170, alignItems: 'center' }}>
-              <Text style={{ fontWeight: '900', fontSize: 11.5 }}>{rule.title}</Text>
+            <HStack spacing={10} reverse={arabic} style={{ width: width - (arabic ? 195 : 200), alignItems: 'center' }}>
+              <Text style={{ fontWeight: '900', fontSize: arabic ? 12 : 10, color: '#ff4500' }}>{rule.title}</Text>
               <Text
                 style={{
                   fontWeight: '600',
-                  fontSize: arabic ? 14 : 11.5,
+                  fontSize: arabic ? 12 : 10,
                 }}
               >
                 {rule.summary}
@@ -76,7 +77,7 @@ export default function RuleProgress({ rule, maxDays, ...props }: Props) {
         </HStack>
         {show && (
           <Box style={{ padding: 15 }}>
-            <Text style={{ textAlign: arabic ? 'auto' : 'justify', fontSize: arabic ? 16 : 14 }}>
+            <Text style={{ textAlign: arabic ? 'auto' : 'justify', fontSize: arabic ? 14 : 12 }}>
               {rule.description}
             </Text>
           </Box>
