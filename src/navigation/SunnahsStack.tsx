@@ -1,10 +1,10 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 
-import SunnahsScreen from '../screens/sunnahs';
 import HabitsScreen from '../screens/sunnahs/HabitsScreen';
 import PracticeScreen from '../screens/sunnahs/PracticeScreen';
 import SpiritTravelsScreen from '../screens/sunnahs/SpiritTravelsScreen';
+import SunnahsScreen from '../screens/sunnahs/SunnahsScreen';
 import { SunnahsParamList } from './types';
 
 export default function SunnahsStack() {

@@ -1,14 +1,14 @@
 import { Avatar, Pressable, Stack } from '@react-native-material/core';
 import { useNavigation } from '@react-navigation/native';
 import { ImageSourcePropType, StyleSheet } from 'react-native';
-import Text from '../../components/Text';
-import { useApplication } from '../../hooks/use-application';
-import { useMessage } from '../../hooks/use-message';
-import { PurificationParamList, PurificationStackNavigationProp } from '../../navigation/types';
+import { useApplication } from '../hooks/use-application';
+import { useMessage } from '../hooks/use-message';
+import { PurificationParamList, SunnahsParamList } from '../navigation/types';
+import Text from './Text';
 
 export interface Part {
   name: string;
-  route: keyof PurificationParamList;
+  route: keyof PurificationParamList | keyof SunnahsParamList;
   description: string;
   imageSource: ImageSourcePropType;
 }
@@ -19,7 +19,7 @@ interface Props {
 export default function PressableStep({ item }: Props) {
   const { formatMessage } = useMessage();
   const { arabic } = useApplication();
-  const navigation = useNavigation<PurificationStackNavigationProp>();
+  const navigation = useNavigation<any>();
 
   function handlePress() {
     navigation.navigate(item.route as any);
