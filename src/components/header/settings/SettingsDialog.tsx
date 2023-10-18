@@ -21,7 +21,7 @@ export default function SettingsDialog({ open, onClose }: Props) {
     <Dialog visible={open} onDismiss={onClose} {...props}>
       <DialogHeader
         title={
-          <HStack spacing={10} reverse={arabic}>
+          <HStack spacing={10}>
             <Icon name="settings" size={28} color={color} />
             <Text color={color} variant="h5" style={{ fontWeight: 'bold' }}>
               {formatMessage(TKeys.MENU_SETTINGS)}

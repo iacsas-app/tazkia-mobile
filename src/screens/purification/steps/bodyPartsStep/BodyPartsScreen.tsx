@@ -1,8 +1,6 @@
 import { Box, HStack, VStack } from '@react-native-material/core';
 import { useNavigation } from '@react-navigation/native';
 import { useMemo } from 'react';
-import { StyleSheet } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Text from '../../../../components/Text';
 import ScrollViewLayout from '../../../../components/layout/ScrollViewLayout';
 import { BodyPartType, BodyPartsOrder } from '../../../../domains/purification/BodyPart';
@@ -22,7 +20,6 @@ export default function BodyPartsScreen() {
   const { formatMessage } = useMessage();
   const navigation = useNavigation<BodyPartsRulesNavigationProp>();
   const partsByLine = useMemo(() => groupBy(bodyParts, 'line'), []);
-  const insets = useSafeAreaInsets();
 
   function handleOpenRules(part: BodyPartType, step: PurificationStage) {
     navigation.navigate('BodyPartsRules', { part, step });
@@ -31,37 +28,32 @@ export default function BodyPartsScreen() {
   return (
     <ScrollViewLayout>
       <VStack>
-        <Text style={styles.description}>{formatMessage(TKeys.PURIFICATION_BODYPART_DESCRIPTION)}</Text>
+        <Text style={GlobalStyles.description}>{formatMessage(TKeys.PURIFICATION_BODYPART_DESCRIPTION)}</Text>
         <Text
           style={{
-            paddingHorizontal: 15,
-            paddingVertical: 15,
+            paddingVertical: 10,
             fontSize: arabic ? 17 : 14,
             fontWeight: '900',
-            textAlign: arabic ? 'auto' : 'justify',
+            textAlign: 'justify',
           }}
         >
           {formatMessage(TKeys.BASMALAH)}
         </Text>
         <Text
           style={{
-            paddingHorizontal: 15,
             paddingTop: arabic ? 8 : 0,
             marginBottom: 30,
             fontSize: arabic ? 16 : 14,
             fontWeight: arabic ? '600' : 'normal',
-            textAlign: arabic ? 'auto' : 'justify',
+            textAlign: 'justify',
           }}
         >
           {formatMessage(TKeys.PURIFICATION_INTRODUCTION)}
         </Text>
       </VStack>
-      <VStack
-        spacing={15}
-        style={{ ...GlobalStyles.center, paddingHorizontal: Math.max(20, insets.left + insets.right) }}
-      >
+      <VStack spacing={15} style={{ ...GlobalStyles.center }}>
         {Object.keys(partsByLine).map((key: string) => (
-          <HStack key={key} spacing={15} reverse={arabic}>
+          <HStack key={key} spacing={10}>
             {partsByLine[key].map(({ line, ...props }: PartItem, index: number) => (
               <Box key={`${key}_${index}_${line}`}>
                 <BodyPartItem id={BodyPartsOrder[props.type]} {...props} onOpenRules={handleOpenRules} />
@@ -73,13 +65,3 @@ export default function BodyPartsScreen() {
     </ScrollViewLayout>
   );
 }
-
-const styles = StyleSheet.create({
-  description: {
-    marginTop: 15,
-    paddingHorizontal: 18,
-    fontSize: 19,
-    fontWeight: '900',
-    color: 'green',
-  },
-});

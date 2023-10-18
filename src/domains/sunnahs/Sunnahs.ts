@@ -1,3 +1,9 @@
-export type SunnahsType = 'habits' | 'whorship' | 'truths';
+import Sunnah from './Sunnah';
 
-export default interface Sunnahs {}
+export type SunnahsType = 'habits' | 'worship' | 'truths';
+
+export default interface Sunnahs {
+  habits: Sunnah[];
+  worship: Sunnah[];
+  truths: Sunnah[];
+}

@@ -3,7 +3,6 @@ import { useMemo } from 'react';
 
 import ProgressContainer from '../../../../../components/progress/ProgressContainer';
 import BodyPart from '../../../../../domains/purification/BodyPart';
-import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';
 import { TKeys } from '../../../../../locales/constants';
 import { PurificationParamList } from '../../../../../navigation/types';
@@ -15,7 +14,6 @@ interface BodyPartsProgressProps {
   onAdd: (route: keyof PurificationParamList) => void;
 }
 export default function BodyPartsProgress({ items, onAdd }: BodyPartsProgressProps) {
-  const { arabic } = useApplication();
   const { formatMessage } = useMessage();
   const map = mapByIndex(items);
 
@@ -37,7 +35,7 @@ export default function BodyPartsProgress({ items, onAdd }: BodyPartsProgressPro
       collapse={map.size === 0}
       onAdd={handleAddAction}
     >
-      <HStack spacing={11} reverse={arabic}>
+      <HStack spacing={11}>
         {Array.from(map.values()).map((values: BodyPart[], key: number) => (
           <Stack key={`key_${key}`}>
             {values.map((item: BodyPart, index) => (

@@ -1,6 +1,7 @@
 import { useStoreRehydrated } from 'easy-peasy';
 import { PropsWithChildren, useEffect } from 'react';
 import { RawIntlProvider, createIntl, createIntlCache } from 'react-intl';
+import { I18nManager } from 'react-native';
 import { useApplication } from '../hooks/use-application';
 import FirstVisitScreen from '../screens/FirstVisitScreen';
 import { useStoreState } from '../stores/hooks';
@@ -19,6 +20,9 @@ export default function IntlProvider({ children }: PropsWithChildren<unknown>) {
 
   useEffect(() => {
     setLocale(locale);
+    const isAr = locale === 'ar';
+    I18nManager.allowRTL(isAr);
+    I18nManager.forceRTL(isAr);
   }, [locale]);
 
   return (

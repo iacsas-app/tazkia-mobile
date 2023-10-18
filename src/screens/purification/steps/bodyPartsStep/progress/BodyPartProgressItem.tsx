@@ -51,7 +51,6 @@ export default function BodyPartProgressItem({ value }: ProgressItemProps) {
           minWidth: 160,
           borderColor: 'green',
         }}
-        reverse={arabic}
       >
         <VStack style={GlobalStyles.center}>
           <Avatar size={25} image={findPartProps(value.name)} />
@@ -72,7 +71,7 @@ export default function BodyPartProgressItem({ value }: ProgressItemProps) {
               {formatMessage(`purification.body-parts.${value.name}`)}
             </Text>
           </Box>
-          <HStack spacing={8} reverse={arabic}>
+          <HStack spacing={8}>
             <VStack spacing={1} style={{ alignItems: 'flex-start' }}>
               <Box>
                 <ProgressStatus

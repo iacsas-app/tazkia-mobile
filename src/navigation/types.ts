@@ -34,6 +34,7 @@ export type SunnahsParamList = {
   Habits: undefined;
   Worship: undefined;
   Truths: undefined;
+  SunnahsProgress: undefined;
 };
 
 // Navigation props

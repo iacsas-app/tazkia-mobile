@@ -6,13 +6,12 @@ import { FailedAttemptsBase } from '../BaseProps';
 
 interface Props extends FailedAttemptsBase {
   attempt: ProgressLine;
-  reverse: boolean;
 }
-export default function FailedAttempt({ attempt, reverse, attemptFormatter }: Props) {
+export default function FailedAttempt({ attempt, attemptFormatter }: Props) {
   const { intl } = useMessage();
 
   return (
-    <HStack spacing={5} reverse={reverse}>
+    <HStack spacing={5}>
       <Text variant="caption" style={{ fontWeight: '500' }}>
         {intl.formatDate(attempt.startDate)} :
       </Text>

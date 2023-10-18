@@ -11,7 +11,7 @@ export default function SimpleRule({ id, item }: RuleBaseProps) {
 
   return (
     <Box style={{ marginLeft: ml, marginRight: mr }}>
-      <HStack spacing={10} style={RuleStyles.stack} reverse={arabic}>
+      <HStack spacing={10} style={RuleStyles.stack}>
         <Avatar
           label={
             <Text variant="subtitle2" color="white">

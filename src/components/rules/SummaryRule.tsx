@@ -33,8 +33,8 @@ export default function SummaryRule({ rule, ...props }: Props) {
   return (
     <Box style={{ ...styles.box, width: width - 20, backgroundColor: bgColor }}>
       <Pressable onLongPress={handleOpen} onPress={() => setShow(false)}>
-        <HStack spacing={1} reverse={arabic} style={{ alignItems: 'center', justifyContent: 'space-between' }}>
-          <HStack spacing={2} reverse={arabic} style={{ alignItems: 'center', paddingHorizontal: 2 }}>
+        <HStack spacing={1} style={{ alignItems: 'center', justifyContent: 'space-between' }}>
+          <HStack spacing={2} style={{ alignItems: 'center', paddingHorizontal: 2 }}>
             <IconButton
               icon={(_, ...props) => <OctIcon name={show ? 'chevron-up' : 'chevron-down'} size={20} {...props} />}
               style={{ width: 30, height: 30 }}
@@ -42,16 +42,18 @@ export default function SummaryRule({ rule, ...props }: Props) {
             />
             <HStack
               spacing={8}
-              reverse={arabic}
               style={{ width: width - (rule.disabled && !rule.status ? 155 : 170), alignItems: 'center' }}
             >
-              <Text style={{ fontWeight: '900', fontSize: 12, color: statusColor }}>{rule.title}</Text>
+              <Text style={{ fontWeight: '900', fontSize: 12, color: statusColor, textAlign: 'justify' }}>
+                {rule.title}
+              </Text>
               {rule.summary && (
                 <Text
                   style={{
                     fontWeight: '600',
                     fontSize: arabic ? 13 : 11.5,
                     color: summaryColor,
+                    textAlign: 'justify',
                   }}
                 >
                   {rule.summary}

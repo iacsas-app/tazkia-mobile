@@ -16,6 +16,12 @@ const GlobalStyles = StyleSheet.create({
     textAlign: 'center',
   },
   centerAlign: { alignItems: 'center' },
+  description: {
+    marginTop: 5,
+    fontSize: 19,
+    fontWeight: '900',
+    color: 'green',
+  },
 });
 
 export default GlobalStyles;
