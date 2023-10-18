@@ -150,6 +150,8 @@ export const english: Translations = {
   [TKeys.PURIFICATION_MIND_DESCRIPTION_LEVEL_9]: '',
 
   [TKeys.SUNNAHS_DESCRIPTION]: 'Inculcating the Prophetic traditions',
+  [TKeys.SUNNAHS_TYPE_VERBAL]: 'Verbal',
+  [TKeys.SUNNAHS_TYPE_ACTIONAL]: 'Actional',
   [TKeys.SUNNAHS_INTRODUTION]: '',
   [TKeys.SUNNAHS_INTRODUTION_RULE_1]: '',
   [TKeys.SUNNAHS_INTRODUTION_RULE_2]: '',
@@ -162,12 +164,24 @@ export const english: Translations = {
 
   [TKeys.SUNNAHS_HABITS_INTRODUCTION]: '',
   [TKeys.SUNNAHS_HABITS_1_TITLE]: '',
-  [TKeys.SUNNAHS_HABITS_1_RULE_1]: '',
-  [TKeys.SUNNAHS_HABITS_1_RULE_2]: '',
-  [TKeys.SUNNAHS_HABITS_1_RULE_3]: '',
+  [TKeys.SUNNAHS_HABITS_1_VERBAL_RULE_1]: '',
+  [TKeys.SUNNAHS_HABITS_1_VERBAL_RULE_2]: '',
+  [TKeys.SUNNAHS_HABITS_1_VERBAL_RULE_3]: '',
 
+  // Sunnah habit 2
   [TKeys.SUNNAHS_HABITS_2_TITLE]: '',
-  [TKeys.SUNNAHS_HABITS_2_RULE_1]: '',
+  [TKeys.SUNNAHS_HABITS_2_VERBAL_RULE_1]: '',
+
+  // Sunnah habit 3
+  [TKeys.SUNNAHS_HABITS_3_TITLE]: '',
+
+  // Sunnah habit 4
+  [TKeys.SUNNAHS_HABITS_4_TITLE]: '',
+
+  // Sunnah habit 5
+  [TKeys.SUNNAHS_HABITS_5_TITLE]: '',
+  [TKeys.SUNNAHS_HABITS_5_VERBAL_RULE_1]: '',
+  [TKeys.SUNNAHS_HABITS_5_ACTIONAL_RULE_1]: '',
 
   // MENUS
   [TKeys.MENU_SETTINGS]: 'Settings',

@@ -166,6 +166,8 @@ export const arabic: Translations = {
     'في هذا المستوى يركز المريد انتباهه نحو الحضور الدائم لله سبحانه وتعالى معه، فيقضي اليوم وكأنه يشاهده في كل تصرفاته ويشعر بمراقبته له في كل حركاته، ويكون كل تفكيره بتجليات الأسماء الحسنى والصفات العلى',
 
   [TKeys.SUNNAHS_DESCRIPTION]: 'غَرْسُ السُّنَنِ النَّبَوِيَّةِ',
+  [TKeys.SUNNAHS_TYPE_VERBAL]: 'القولية',
+  [TKeys.SUNNAHS_TYPE_ACTIONAL]: 'الفعلية',
   [TKeys.SUNNAHS_INTRODUTION]:
     'يبدأ المريد بسنن العادات مع بداية تزكية جوارح القلب، ثم ينتقل إلى سنن العبادات مع بداية تزكية العقل، وسنن الحقائق والمعارج مع بداية تزكية النفس حيث يُفترض أن يكون قد أتقن مجموعة من سنن العادات قبل انتقاله مرحلة تزكية العقل، كما يفترض أن تكون قد غرست فيه الكثير من سنن العبادات قبل بَدْء تزكية النفس التي تتوافق مع سنن السير والحقائق',
   [TKeys.SUNNAHS_INTRODUTION_RULE_1]:
@@ -181,13 +183,27 @@ export const arabic: Translations = {
 
   [TKeys.SUNNAHS_HABITS_INTRODUCTION]:
     'هذه بعض السنن التي كان يقوم بها سيدنا محمد ﷺ على سبيل العادة، والأخذ بها هو إحياء للسنة النبوية التي تنير قلب المريد وتساعده على تجاوز هذه المرحلة الأولى من التزكية بنجاح، ويمكن اعتماد سنن أخرى ثبت عمله عليه الصلاة والسلام بها',
-  [TKeys.SUNNAHS_HABITS_1_TITLE]: 'سُننُ النوم',
-  [TKeys.SUNNAHS_HABITS_1_RULE_1]: 'ما يقرأ قبل النوم "باسمك اللهم أحيا وأموت"',
-  [TKeys.SUNNAHS_HABITS_1_RULE_2]: 'إذا قلق في فراشه فلم ينم',
-  [TKeys.SUNNAHS_HABITS_1_RULE_3]: 'إذا كان يفزع في منامه',
 
+  // Sunnah habit 1
+  [TKeys.SUNNAHS_HABITS_1_TITLE]: 'سُننُ النوم',
+  [TKeys.SUNNAHS_HABITS_1_VERBAL_RULE_1]: 'ما يقرأ قبل النوم "باسمك اللهم أحيا وأموت"',
+  [TKeys.SUNNAHS_HABITS_1_VERBAL_RULE_2]: 'إذا قلق في فراشه فلم ينم',
+  [TKeys.SUNNAHS_HABITS_1_VERBAL_RULE_3]: 'إذا كان يفزع في منامه',
+
+  // Sunnah habit 2
   [TKeys.SUNNAHS_HABITS_2_TITLE]: 'سُننُ الاستيقاظ',
-  [TKeys.SUNNAHS_HABITS_2_RULE_1]: 'ما يقرأ عند الاستيقاظ  "الحمد لله الذي أحيانا بعد ما أماتنا وإليه النشور"',
+  [TKeys.SUNNAHS_HABITS_2_VERBAL_RULE_1]: 'ما يقرأ عند الاستيقاظ  "الحمد لله الذي أحيانا بعد ما أماتنا وإليه النشور"',
+
+  // Sunnah habit 3
+  [TKeys.SUNNAHS_HABITS_3_TITLE]: '',
+
+  // Sunnah habit 4
+  [TKeys.SUNNAHS_HABITS_4_TITLE]: '',
+
+  // Sunnah habit 5
+  [TKeys.SUNNAHS_HABITS_5_TITLE]: 'سُننُ دخول البيت غير المسكون',
+  [TKeys.SUNNAHS_HABITS_5_VERBAL_RULE_1]: 'السلام علينا وعلى عباد الله الصالحين',
+  [TKeys.SUNNAHS_HABITS_5_ACTIONAL_RULE_1]: 'تقديم الرجل اليمنى عند الدخول وتقديم الرجل اليسرى في الخروج',
 
   // MENUS
   [TKeys.MENU_SETTINGS]: 'إعدادات',
