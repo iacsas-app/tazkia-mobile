@@ -45,7 +45,7 @@ export default function ProgressContainer({ title, subtitle, variant, children, 
             {!disabled && (
               <IconButton
                 style={styles.plusButton}
-                icon={(_, ...props) => <Icon name="playlist-plus" size={28} {...props} />}
+                icon={(_, ...props) => <Icon name="playlist-plus" size={25} {...props} />}
                 onPressIn={props.onAdd}
               />
             )}
@@ -81,9 +81,10 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: 'bold',
-    fontSize: 15,
+    fontSize: 12,
   },
   subtitle: {
+    fontSize: 10,
     marginTop: -3,
   },
   plusButton: { marginTop: -6, marginHorizontal: -10 },

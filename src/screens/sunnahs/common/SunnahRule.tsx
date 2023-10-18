@@ -13,6 +13,7 @@ interface Props {
 }
 export default function SunnahRule(props: Props) {
   const { formatMessage } = useMessage();
+
   return (
     <VStack style={{ paddingHorizontal: 5 }} spacing={5}>
       {props.verbals.length !== 0 && (
