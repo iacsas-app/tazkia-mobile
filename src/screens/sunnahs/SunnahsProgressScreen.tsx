@@ -1,6 +1,3 @@
-import Icon from '@expo/vector-icons/MaterialCommunityIcons';
-import { HStack, VStack } from '@react-native-material/core';
-
 import { useNavigation } from '@react-navigation/native';
 import { ReactNode } from 'react';
 import { useWindowDimensions } from 'react-native';
@@ -13,9 +10,9 @@ import { useMessage } from '../../hooks/use-message';
 import { SunnahsParamList, SunnahsStackNavigationProp } from '../../navigation/types';
 import { capitalize } from '../../services/Helpers';
 import { useStoreState } from '../../stores/hooks';
-import GlobalStyles from '../../styles/GlobalStyles';
-import SunnahStepProgress from './steps/common/SunnahStepProgress';
-import { habitsRules } from './steps/common/data';
+import SunnahRule from './common/SunnahRule';
+import SunnahStepProgress from './common/SunnahStepProgress';
+import { habitsRules } from './common/data';
 
 export default function SunnahsProgressScreen() {
   const { formatMessage } = useMessage();
@@ -32,16 +29,11 @@ export default function SunnahsProgressScreen() {
     return formatMessage(`sunnahs.habits.${id}.title`);
   }
   function habitDescriptionFormat(sunnah: Sunnah): ReactNode {
-    return (
-      <VStack style={{ width: width - 100 }}>
-        {habitsRules[sunnah.id].map((ruleKey) => (
-          <HStack key={ruleKey} spacing={5} style={GlobalStyles.centerAlign}>
-            <Icon name={`chevron-double-${arabic ? 'left' : 'right'}`} size={18} color="#008000" />
-            <Text style={{ fontSize: 13, textAlign: 'justify' }}>{formatMessage(ruleKey)}</Text>
-          </HStack>
-        ))}
-      </VStack>
-    );
+    const rules = habitsRules[sunnah.id];
+    const verbals = rules.verbal;
+    const actionals = rules.actional;
+
+    return <SunnahRule verbals={verbals} actionals={actionals} arabic={arabic} />;
   }
 
   function worshipSummaryFormat(id: number): string {

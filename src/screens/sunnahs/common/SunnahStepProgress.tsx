@@ -1,17 +1,17 @@
 import { Box, Text, VStack } from '@react-native-material/core';
 import { ReactNode, useState } from 'react';
 
-import EvaluationDialog from '../../../../components/EvaluationDialog';
-import ProgressContainer from '../../../../components/progress/ProgressContainer';
-import RuleProgress from '../../../../components/progress/RuleProgress';
-import Rule from '../../../../domains/common/Rule';
-import { MindLevel } from '../../../../domains/purification/Mind';
-import Sunnah from '../../../../domains/sunnahs/Sunnah';
-import { SunnahsType } from '../../../../domains/sunnahs/Sunnahs';
-import { useMessage } from '../../../../hooks/use-message';
-import { SunnahsParamList } from '../../../../navigation/types';
-import { SUNNAHS_MAX_DAYS } from '../../../../services/Helpers';
-import { useStoreActions } from '../../../../stores/hooks';
+import EvaluationDialog from '../../../components/EvaluationDialog';
+import ProgressContainer from '../../../components/progress/ProgressContainer';
+import RuleProgress from '../../../components/progress/RuleProgress';
+import Rule from '../../../domains/common/Rule';
+import { MindLevel } from '../../../domains/purification/Mind';
+import Sunnah from '../../../domains/sunnahs/Sunnah';
+import { SunnahsType } from '../../../domains/sunnahs/Sunnahs';
+import { useMessage } from '../../../hooks/use-message';
+import { SunnahsParamList } from '../../../navigation/types';
+import { SUNNAHS_MAX_DAYS } from '../../../services/Helpers';
+import { useStoreActions } from '../../../stores/hooks';
 
 interface Props {
   part: SunnahsType;
