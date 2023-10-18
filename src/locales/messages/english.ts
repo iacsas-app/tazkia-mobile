@@ -149,6 +149,18 @@ export const english: Translations = {
   [TKeys.PURIFICATION_MIND_DESCRIPTION_LEVEL_8]: '',
   [TKeys.PURIFICATION_MIND_DESCRIPTION_LEVEL_9]: '',
 
+  [TKeys.SUNNAHS_HABITS_TITLE]: 'Habits traditions',
+  [TKeys.SUNNAHS_WORSHIP_TITLE]: 'Worship traditions',
+  [TKeys.SUNNAHS_TRUTHS_TITLE]: 'Journey, truths and spiritual travels traditions',
+
+  [TKeys.SUNNAHS_HABITS_1_TITLE]: '',
+  [TKeys.SUNNAHS_HABITS_1_RULE_1]: '',
+  [TKeys.SUNNAHS_HABITS_1_RULE_2]: '',
+  [TKeys.SUNNAHS_HABITS_1_RULE_3]: '',
+
+  [TKeys.SUNNAHS_HABITS_2_TITLE]: '',
+  [TKeys.SUNNAHS_HABITS_2_RULE_1]: '',
+
   // MENUS
   [TKeys.MENU_SETTINGS]: 'Settings',
   [TKeys.MENU_HOME]: 'Home',

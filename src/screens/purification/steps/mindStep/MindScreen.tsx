@@ -2,11 +2,13 @@ import { VStack } from '@react-native-material/core';
 import { useNavigation } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
 import { View } from 'react-native';
+import Text from '../../../../components/Text';
 import ScrollViewLayout from '../../../../components/layout/ScrollViewLayout';
 import SummaryRule from '../../../../components/rules/SummaryRule';
 import Rule from '../../../../domains/common/Rule';
 import { MindLevel } from '../../../../domains/purification/Mind';
 import Purification from '../../../../domains/purification/Purification';
+import { useApplication } from '../../../../hooks/use-application';
 import { useMessage } from '../../../../hooks/use-message';
 import { TKeys } from '../../../../locales/constants';
 import { PurificationStackNavigationProp } from '../../../../navigation/types';
@@ -18,6 +20,7 @@ const levels: MindLevel[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 export default function MindScreen() {
   const { formatMessage } = useMessage();
+  const { arabic } = useApplication();
   const navigation = useNavigation<PurificationStackNavigationProp>();
   const createOrUpdate = useStoreActions((actions) => actions.purification.load);
   const purification: Purification | undefined = useStoreState((state) => state.purification.item);
@@ -33,7 +36,11 @@ export default function MindScreen() {
       id: level,
       title: formatMessage(TKeys.LEVEL, { value: level }),
       summary: formatMessage(`purification.mind.summary.level-${level}`),
-      description: formatMessage(`purification.mind.description.level-${level}`),
+      description: (
+        <Text style={{ textAlign: arabic ? 'auto' : 'justify', fontSize: arabic ? 16 : 12 }}>
+          {formatMessage(`purification.mind.description.level-${level}`)}
+        </Text>
+      ),
       disabled: last ? level !== last + 1 && !isLastCompleted : level !== 1,
       progress: mind ? mind.progress : [],
       status: mind ? (isCompleted(mind.progress, PURIFICATION_MAX_DAYS) ? 'completed' : 'progress') : undefined,

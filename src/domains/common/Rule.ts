@@ -1,10 +1,11 @@
+import { ReactNode } from 'react';
 import ProgressLine from './ProgressLine';
 
 export default interface Rule {
   id: number;
   title: string;
-  description: string;
   progress: ProgressLine[];
+  description?: ReactNode;
   summary?: string;
   status?: 'progress' | 'completed';
   disabled?: boolean;
