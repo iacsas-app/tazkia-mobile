@@ -1,5 +1,4 @@
-import Icon from '@expo/vector-icons/MaterialCommunityIcons';
-import { HStack, VStack } from '@react-native-material/core';
+import { VStack } from '@react-native-material/core';
 
 import { useNavigation } from '@react-navigation/native';
 import { useMemo, useState } from 'react';
@@ -17,7 +16,8 @@ import { TKeys } from '../../../locales/constants';
 import { SunnahsStackNavigationProp } from '../../../navigation/types';
 import { useStoreActions, useStoreState } from '../../../stores/hooks';
 import GlobalStyles from '../../../styles/GlobalStyles';
-import { habitsRules } from './common/data';
+import SunnahRule from '../common/SunnahRule';
+import { habitsRules } from '../common/data';
 
 export default function HabitsScreen() {
   const { formatMessage } = useMessage();
@@ -31,20 +31,15 @@ export default function HabitsScreen() {
 
   function toRule(sunnahId: string): Rule {
     const id = Number.parseInt(sunnahId);
+    const rules = habitsRules[id];
+    const verbals = rules.verbal;
+    const actionals = rules.actional;
+
     return {
       id: Number.parseInt(sunnahId),
       title: sunnahId,
       summary: formatMessage(`sunnahs.habits.${sunnahId}.title`),
-      description: (
-        <VStack style={{ paddingHorizontal: 5 }}>
-          {habitsRules[id].map((ruleKey) => (
-            <HStack key={ruleKey} spacing={5} style={GlobalStyles.centerAlign}>
-              <Icon name={`chevron-double-${arabic ? 'left' : 'right'}`} size={18} color="#008000" />
-              <Text style={{ fontSize: 13 }}>{formatMessage(ruleKey)}</Text>
-            </HStack>
-          ))}
-        </VStack>
-      ),
+      description: <SunnahRule verbals={verbals} actionals={actionals} arabic={arabic} />,
       disabled: false,
       progress: [],
       status: undefined,

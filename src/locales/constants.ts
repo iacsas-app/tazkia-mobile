@@ -158,6 +158,9 @@ export enum TKeys {
 
   SUNNAHS_DESCRIPTION = 'sunnahs.description',
   SUNNAHS_INTRODUTION = 'sunnahs.introdution',
+  SUNNAHS_TYPE_VERBAL = 'sunnahs.type.verbal',
+  SUNNAHS_TYPE_ACTIONAL = 'sunnahs.type.actional',
+
   SUNNAHS_INTRODUTION_RULE_1 = 'sunnahs.introdution.rule1',
   SUNNAHS_INTRODUTION_RULE_2 = 'sunnahs.introdution.rule2',
   SUNNAHS_INTRODUTION_RULE_3 = 'sunnahs.introdution.rule3',
@@ -169,12 +172,19 @@ export enum TKeys {
   // Habits sunnahs
   SUNNAHS_HABITS_INTRODUCTION = 'sunnahs.habits.introduction',
   SUNNAHS_HABITS_1_TITLE = 'sunnahs.habits.1.title',
-  SUNNAHS_HABITS_1_RULE_1 = 'sunnahs.habits.1.rule1',
-  SUNNAHS_HABITS_1_RULE_2 = 'sunnahs.habits.1.rule2',
-  SUNNAHS_HABITS_1_RULE_3 = 'sunnahs.habits.1.rule3',
+  SUNNAHS_HABITS_1_VERBAL_RULE_1 = 'sunnahs.habits.1.verbal.rule1',
+  SUNNAHS_HABITS_1_VERBAL_RULE_2 = 'sunnahs.habits.1.verbal.rule2',
+  SUNNAHS_HABITS_1_VERBAL_RULE_3 = 'sunnahs.habits.1.verbal.rule3',
 
   SUNNAHS_HABITS_2_TITLE = 'sunnahs.habits.2.title',
-  SUNNAHS_HABITS_2_RULE_1 = 'sunnahs.habits.2.rule1',
+  SUNNAHS_HABITS_2_VERBAL_RULE_1 = 'sunnahs.habits.2.verbal.rule1',
+
+  SUNNAHS_HABITS_3_TITLE = 'sunnahs.habits.3.title',
+  SUNNAHS_HABITS_4_TITLE = 'sunnahs.habits.4.title',
+
+  SUNNAHS_HABITS_5_TITLE = 'sunnahs.habits.5.title',
+  SUNNAHS_HABITS_5_VERBAL_RULE_1 = 'sunnahs.habits.5.verbal.rule1',
+  SUNNAHS_HABITS_5_ACTIONAL_RULE_1 = 'sunnahs.habits.5.actional.rule1',
 
   LANGUAGE_ARABIC = 'language.arabic',
   LANGUAGE_FRENCH = 'language.french',
