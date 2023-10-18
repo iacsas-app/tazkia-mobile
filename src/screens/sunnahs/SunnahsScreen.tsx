@@ -11,20 +11,20 @@ export default function SunnahsScreen() {
       {
         route: 'Habits',
         name: TKeys.PHASE_1,
-        description: TKeys.PURIFICATION_BODYPART_TITLE,
-        imageSource: require('./../../../assets/img/purification/step1.png'),
+        description: TKeys.SUNNAHS_HABITS_TITLE,
+        imageSource: require('./../../../assets/img/sunnahs/step1.jpg'),
       },
       {
-        route: 'Practice',
+        route: 'Worship',
         name: TKeys.PHASE_2,
-        description: TKeys.PURIFICATION_MIND_TITLE,
-        imageSource: require('./../../../assets/img/purification/step2.jpg'),
+        description: TKeys.SUNNAHS_WORSHIP_TITLE,
+        imageSource: require('./../../../assets/img/sunnahs/step2.jpg'),
       },
       {
-        route: 'SpiritTravels',
+        route: 'Truths',
         name: TKeys.PHASE_3,
-        description: TKeys.PURIFICATION_SOUL_TITLE,
-        imageSource: require('./../../../assets/img/purification/step3.jpg'),
+        description: TKeys.SUNNAHS_TRUTHS_TITLE,
+        imageSource: require('./../../../assets/img/sunnahs/step3.jpg'),
       },
     ],
     [],
@@ -43,10 +43,10 @@ export default function SunnahsScreen() {
 
 const styles = StyleSheet.create({
   part: {
-    width: 250,
+    width: 270,
     paddingVertical: 10,
-    backgroundColor: '#f5fffa',
-    borderRadius: 20,
+    backgroundColor: '#b3f1d5',
+    borderRadius: 25,
     elevation: 6,
   },
 });
