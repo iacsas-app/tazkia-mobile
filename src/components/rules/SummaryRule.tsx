@@ -19,7 +19,7 @@ export default function SummaryRule({ rule, ...props }: Props) {
 
   const bgColor = rule.status === 'completed' ? '#2e8b57' : rule.status === 'progress' ? '#66cdaa' : '#f5fffa';
   const statusIcon = rule.status === 'progress' ? 'progress-check' : 'check';
-  const statusColor = rule.status === 'progress' ? '#ffefd5' : '#90ee90';
+  const statusColor = rule.status === 'progress' ? '#ffefd5' : '#20b2aa';
   const summaryColor = rule.status === 'completed' ? '#fffaf0' : 'black';
 
   function handleCollapse() {
@@ -46,22 +46,24 @@ export default function SummaryRule({ rule, ...props }: Props) {
               style={{ width: width - (rule.disabled && !rule.status ? 155 : 170), alignItems: 'center' }}
             >
               <Text style={{ fontWeight: '900', fontSize: 12, color: statusColor }}>{rule.title}</Text>
-              <Text
-                style={{
-                  fontWeight: '600',
-                  fontSize: arabic ? 13 : 11.5,
-                  color: summaryColor,
-                }}
-              >
-                {rule.summary}
-              </Text>
+              {rule.summary && (
+                <Text
+                  style={{
+                    fontWeight: '600',
+                    fontSize: arabic ? 13 : 11.5,
+                    color: summaryColor,
+                  }}
+                >
+                  {rule.summary}
+                </Text>
+              )}
             </HStack>
           </HStack>
           <Box style={{ paddingHorizontal: 5 }}>
             {!rule.status ? (
               !rule.disabled && (
                 <IconButton
-                  icon={(_, ...props) => <Icon name="plus-circle" size={20} color="#90ee90" {...props} />}
+                  icon={(_, ...props) => <Icon name="plus-circle" size={20} color="#20b2aa" {...props} />}
                   style={{ width: 30, height: 30 }}
                   onPressIn={() => props.onAdd(rule)}
                 />
@@ -71,13 +73,7 @@ export default function SummaryRule({ rule, ...props }: Props) {
             )}
           </Box>
         </HStack>
-        {show && (
-          <Box style={{ padding: 15 }}>
-            <Text style={{ textAlign: arabic ? 'auto' : 'justify', fontSize: arabic ? 16 : 12 }}>
-              {rule.description}
-            </Text>
-          </Box>
-        )}
+        {rule.description && show && <Box style={{ padding: 15 }}>{rule.description}</Box>}
       </Pressable>
     </Box>
   );

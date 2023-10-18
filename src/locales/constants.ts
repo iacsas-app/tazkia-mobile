@@ -156,6 +156,19 @@ export enum TKeys {
   PURIFICATION_MIND_DESCRIPTION_LEVEL_8 = 'purification.mind.description.level-8',
   PURIFICATION_MIND_DESCRIPTION_LEVEL_9 = 'purification.mind.description.level-9',
 
+  SUNNAHS_HABITS_TITLE = 'sunnahs.habits.title',
+  SUNNAHS_WORSHIP_TITLE = 'sunnahs.worship.title',
+  SUNNAHS_TRUTHS_TITLE = 'sunnahs.truths.title',
+
+  // Habits sunnahs
+  SUNNAHS_HABITS_1_TITLE = 'sunnahs_habits_1_title',
+  SUNNAHS_HABITS_1_RULE_1 = 'sunnahs_habits_1_rule_1',
+  SUNNAHS_HABITS_1_RULE_2 = 'sunnahs_habits_1_rule_2',
+  SUNNAHS_HABITS_1_RULE_3 = 'sunnahs_habits_1_rule_3',
+
+  SUNNAHS_HABITS_2_TITLE = 'sunnahs_habits_2_title',
+  SUNNAHS_HABITS_2_RULE_1 = 'sunnahs_habits_2_rule_1',
+
   LANGUAGE_ARABIC = 'language.arabic',
   LANGUAGE_FRENCH = 'language.french',
   LANGUAGE_ENGLISH = 'language.english',

@@ -32,8 +32,8 @@ export type PurificationParamList = {
 export type SunnahsParamList = {
   Sunnahs: undefined;
   Habits: undefined;
-  Practice: undefined;
-  SpiritTravels: undefined;
+  Worship: undefined;
+  Truths: undefined;
 };
 
 // Navigation props

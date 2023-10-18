@@ -165,6 +165,18 @@ export const arabic: Translations = {
   [TKeys.PURIFICATION_MIND_DESCRIPTION_LEVEL_9]:
     'في هذا المستوى يركز المريد انتباهه نحو الحضور الدائم لله سبحانه وتعالى معه، فيقضي اليوم وكأنه يشاهده في كل تصرفاته ويشعر بمراقبته له في كل حركاته، ويكون كل تفكيره بتجليات الأسماء الحسنى والصفات العلى',
 
+  [TKeys.SUNNAHS_HABITS_TITLE]: 'سنن العادات',
+  [TKeys.SUNNAHS_WORSHIP_TITLE]: 'سنن العبادات',
+  [TKeys.SUNNAHS_TRUTHS_TITLE]: 'سنن السير والحقائق والمعارج',
+
+  [TKeys.SUNNAHS_HABITS_1_TITLE]: 'سنن النوم',
+  [TKeys.SUNNAHS_HABITS_1_RULE_1]: 'ما يقرأ قبل النوم "باسمك اللهم أحيا وأموت"',
+  [TKeys.SUNNAHS_HABITS_1_RULE_2]: 'إذا قلق في فراشه فلم ينم',
+  [TKeys.SUNNAHS_HABITS_1_RULE_3]: 'إذا كان يفزع في منامه',
+
+  [TKeys.SUNNAHS_HABITS_2_TITLE]: 'سنن الاستيقاظ',
+  [TKeys.SUNNAHS_HABITS_2_RULE_1]: 'ما يقرأ عند الاستيقاظ  "الحمد لله الذي أحيانا بعد ما أماتنا وإليه النشور"',
+
   // MENUS
   [TKeys.MENU_SETTINGS]: 'إعدادات',
   [TKeys.MENU_HOME]: 'إستقبال',

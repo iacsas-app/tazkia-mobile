@@ -52,8 +52,8 @@ const styles = StyleSheet.create({
   part: {
     width: 250,
     paddingVertical: 10,
-    backgroundColor: '#f5fffa',
-    borderRadius: 20,
+    backgroundColor: '#cde7f7',
+    borderRadius: 25,
     elevation: 6,
   },
 });

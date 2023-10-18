@@ -198,6 +198,18 @@ export const indonesian: Translations = {
   [TKeys.PURIFICATION_MIND_DESCRIPTION_LEVEL_9]:
     'Pada tingkatan ini, murid terfokus pada penghadirannya bersama-Nya secara terus menerus, maka ia lalui harinya seakan ia menyaksikan dan melihat-Nya. Dalam setiap perilakunya dia merasakan pengawasan Allah terhadap setiap gerakannya, juga setiap pemikirannya semua dari tajalli asmaul husna dan sifat-Nya Yang Tinggi',
 
+  [TKeys.SUNNAHS_HABITS_TITLE]: '',
+  [TKeys.SUNNAHS_WORSHIP_TITLE]: '',
+  [TKeys.SUNNAHS_TRUTHS_TITLE]: '',
+
+  [TKeys.SUNNAHS_HABITS_1_TITLE]: '',
+  [TKeys.SUNNAHS_HABITS_1_RULE_1]: '',
+  [TKeys.SUNNAHS_HABITS_1_RULE_2]: '',
+  [TKeys.SUNNAHS_HABITS_1_RULE_3]: '',
+
+  [TKeys.SUNNAHS_HABITS_2_TITLE]: '',
+  [TKeys.SUNNAHS_HABITS_2_RULE_1]: '',
+
   // MENUS
   [TKeys.MENU_SETTINGS]: 'Pengaturan',
   [TKeys.MENU_HOME]: 'Rumah',
