@@ -1,6 +1,8 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
-import { Button, Dialog, DialogContent, HStack, VStack } from '@react-native-material/core';
+import { Box, Button, Dialog, DialogContent, HStack, VStack } from '@react-native-material/core';
+import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Rule from '../domains/common/Rule';
 import { MindLevel } from '../domains/purification/Mind';
 import { useApplication } from '../hooks/use-application';
@@ -18,6 +20,9 @@ interface Props {
 export default function EvaluationDialog({ rule, ...props }: Props) {
   const { formatMessage } = useMessage();
   const { arabic, isDarkMode } = useApplication();
+  const insets = useSafeAreaInsets();
+  const paddingHorizontal = useMemo(() => Math.max(1, insets.left + insets.right), []);
+
   const btnTextSize = arabic ? 20 : 18;
   const color = isDarkMode ? 'white' : 'black';
 
@@ -46,9 +51,7 @@ export default function EvaluationDialog({ rule, ...props }: Props) {
           <Text color={color} variant="h6" style={styles.question}>
             {formatMessage(TKeys.PROGRESS_EVALUATION_QUESTION)}
           </Text>
-          <Text color={color} style={{ fontSize: arabic ? 14 : 12, textAlign: 'justify' }}>
-            {rule.description}
-          </Text>
+          <Box style={{ paddingHorizontal }}>{rule.description}</Box>
           <HStack spacing={15} style={GlobalStyles.center}>
             <Button
               title={
