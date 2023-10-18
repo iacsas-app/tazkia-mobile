@@ -2,7 +2,6 @@ import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import { Box, HStack } from '@react-native-material/core';
 import { StyleSheet } from 'react-native';
 import ProgressLine from '../../../domains/common/ProgressLine';
-import { useApplication } from '../../../hooks/use-application';
 import { progressPercentage } from '../../../services/Helpers';
 import GlobalStyles from '../../../styles/GlobalStyles';
 import Text from '../../Text';
@@ -15,14 +14,12 @@ interface Props {
   completed: boolean;
 }
 export function ProgressStatus({ last, count, maxDays, completed }: Props) {
-  const { arabic } = useApplication();
-
   if (!last) {
     return <></>;
   }
 
   return (
-    <HStack spacing={1} style={GlobalStyles.center} reverse={arabic}>
+    <HStack spacing={1} style={GlobalStyles.center}>
       {!completed && (
         <Box>
           <RepeatCount count={count} />

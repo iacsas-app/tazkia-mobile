@@ -56,7 +56,7 @@ const purificationModel: PurificationModel = {
     }
     state.item.bodyParts.forEach((part) => {
       if (part.name === type) {
-        part[step] = updateProgress(part[step], errors);
+        part[step] = updateProgress(part[step], errors)[0];
         return;
       }
     });
@@ -66,16 +66,27 @@ const purificationModel: PurificationModel = {
     if (!state.item) {
       return;
     }
+
     const errors: number[] = [];
     if (!checked) {
       errors.push(1);
     }
+    let isLastCompletedWithSuccess = false;
     state.item.mind.forEach((item) => {
       if (item.level === level) {
-        item.progress = updateProgress(item.progress, errors);
+        const [progress, isLastSuccess] = updateProgress(item.progress, errors);
+        item.progress = progress;
+        isLastCompletedWithSuccess = isLastSuccess;
         return;
       }
     });
+    // Add automatically new level
+    if (isLastCompletedWithSuccess && level !== 9) {
+      state.item.mind.push({
+        level: (level + 1) as MindLevel,
+        progress: [{ startDate: Date.now(), day: 0, evaluated: false, errors: [] }],
+      });
+    }
   }),
 
   // Thunks
@@ -130,22 +141,24 @@ const purificationModel: PurificationModel = {
   }),
 };
 
-function updateProgress(progress: ProgressLine[] | undefined, errors: number[]): ProgressLine[] {
+function updateProgress(progress: ProgressLine[] | undefined, errors: number[]): [ProgressLine[], boolean] {
   if (!progress || progress.length === 0) {
-    return [];
+    return [[], false];
   }
   const lastIndex = progress.length - 1;
   let last = progress.at(lastIndex);
+  let lastIsSuccess = false;
   if (last) {
     const newValue = { ...last, evaluated: true, day: last.day < 30 ? last.day + 1 : last.day };
     if (errors.length === 0) {
+      lastIsSuccess = newValue.day === 30;
       progress[lastIndex] = newValue;
     } else {
       progress[lastIndex] = { ...newValue, errors };
       progress.push({ startDate: Date.now(), day: 0, errors: [], evaluated: false });
     }
   }
-  return progress;
+  return [progress, lastIsSuccess];
 }
 
 export default persist(purificationModel, {

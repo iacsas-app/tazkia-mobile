@@ -8,6 +8,7 @@ export interface SunnahsModel {
 
   // Actions
   load: Action<SunnahsModel, Sunnahs>;
+  reset: Action<SunnahsModel>;
 
   // Thunk
   //find: Thunk<SunnahsModel, void, Injections>;
@@ -22,6 +23,10 @@ const sunnahsModel: SunnahsModel = {
   load: action((state, payload: Sunnahs) => {
     state.item = payload;
     state.isLoaded = true;
+  }),
+  reset: action((state) => {
+    state.item = undefined;
+    state.isLoaded = false;
   }),
 
   // Thunks

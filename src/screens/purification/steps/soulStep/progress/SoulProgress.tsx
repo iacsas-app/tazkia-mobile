@@ -29,7 +29,7 @@ export default function SoulProgress({ items, onAdd }: SoulProgressProps) {
       variant="blue"
       onAdd={handleAddAction}
     >
-      <HStack spacing={15} reverse={arabic}>
+      <HStack spacing={15}>
         {Array.from(map.values()).map((values: Soul[], key: number) => (
           <Stack key={`key_${key}`} spacing={5}>
             {values.map((item: Soul, index) => (

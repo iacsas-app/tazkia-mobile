@@ -1,5 +1,5 @@
 import { Box, Text, VStack } from '@react-native-material/core';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import EvaluationDialog from '../../../../../components/EvaluationDialog';
 import ProgressContainer from '../../../../../components/progress/ProgressContainer';
 import RuleProgress from '../../../../../components/progress/RuleProgress';
@@ -11,6 +11,7 @@ import { TKeys } from '../../../../../locales/constants';
 import { PurificationParamList } from '../../../../../navigation/types';
 import { PURIFICATION_MAX_DAYS } from '../../../../../services/Helpers';
 import { useStoreActions } from '../../../../../stores/hooks';
+import { orderMindLevels } from '../Helper';
 
 interface Props {
   items: Mind[];
@@ -18,10 +19,12 @@ interface Props {
 }
 
 export default function MindProgress({ items, onAdd }: Props) {
-  const { arabic } = useApplication();
   const { formatMessage } = useMessage();
+  const { arabic } = useApplication();
   const [current, setCurrent] = useState<Rule>();
   const evaluate = useStoreActions((actions) => actions.purification.evaluateMind);
+
+  const levels = useMemo(() => orderMindLevels(items), [items]);
 
   function handleAddAction() {
     onAdd('Mind');
@@ -44,7 +47,11 @@ export default function MindProgress({ items, onAdd }: Props) {
       id: level,
       title: formatMessage(TKeys.LEVEL, { value: level }),
       summary: formatMessage(`purification.mind.summary.level-${level}`),
-      description: formatMessage(`purification.mind.description.level-${level}`),
+      description: (
+        <Text style={{ textAlign: 'justify', fontSize: arabic ? 13 : 12 }}>
+          {formatMessage(`purification.mind.description.level-${level}`)}
+        </Text>
+      ),
       progress,
     };
   }
@@ -57,11 +64,11 @@ export default function MindProgress({ items, onAdd }: Props) {
         variant="orange"
         onAdd={handleAddAction}
       >
-        {items.length === 0 ? (
+        {levels.length === 0 ? (
           <Text>No progress</Text>
         ) : (
-          <VStack spacing={5} reverse={arabic}>
-            {items.map((item: Mind, index) => (
+          <VStack spacing={5}>
+            {levels.map((item: Mind, index) => (
               <Box key={`mind_${index}`}>
                 <RuleProgress rule={toRule(item)} maxDays={PURIFICATION_MAX_DAYS} onEvaluate={handleShowEvaluate} />
               </Box>

@@ -53,7 +53,7 @@ export default function LanguageSetting({ open, color, borderRadius }: Props) {
       >
         <VStack spacing={10}>
           <Pressable onPress={handlePress} style={SettingsStyles.surface}>
-            <HStack spacing={17} reverse={arabic}>
+            <HStack spacing={17}>
               <Avatar image={languageFlags[locale]} size={40} />
               <VStack>
                 <Text color={color} variant="subtitle1" style={{ fontWeight: 'bold' }}>

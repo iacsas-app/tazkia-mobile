@@ -149,10 +149,18 @@ export const french: Translations = {
   [TKeys.PURIFICATION_MIND_DESCRIPTION_LEVEL_8]: '',
   [TKeys.PURIFICATION_MIND_DESCRIPTION_LEVEL_9]: '',
 
+  [TKeys.SUNNAHS_DESCRIPTION]: '',
+  [TKeys.SUNNAHS_INTRODUTION]: '',
+  [TKeys.SUNNAHS_INTRODUTION_RULE_1]: '',
+  [TKeys.SUNNAHS_INTRODUTION_RULE_2]: '',
+  [TKeys.SUNNAHS_INTRODUTION_RULE_3]: '',
+  [TKeys.SUNNAHS_INTRODUTION_RULE_4]: '',
+
   [TKeys.SUNNAHS_HABITS_TITLE]: 'Traditions des habitudes',
   [TKeys.SUNNAHS_WORSHIP_TITLE]: "Traditions d'adorations",
   [TKeys.SUNNAHS_TRUTHS_TITLE]: 'Traditions de cheminement, vérités et voyages spirituels',
 
+  [TKeys.SUNNAHS_HABITS_INTRODUCTION]: '',
   [TKeys.SUNNAHS_HABITS_1_TITLE]: '',
   [TKeys.SUNNAHS_HABITS_1_RULE_1]: '',
   [TKeys.SUNNAHS_HABITS_1_RULE_2]: '',
@@ -194,6 +202,7 @@ export const french: Translations = {
   [TKeys.PROGRESS_START_DATE]: 'Date de démarrage',
   [TKeys.PROGRESS_END_DATE]: 'Date de fin',
   [TKeys.PROGRESS_SUCCESSFUL_DAYS]: 'Jours réussis',
+  [TKeys.PROGRESS_TOTAL_DAYS]: 'Jours totaux',
   [TKeys.PROGRESS_FAILED_ATTEMPTS]: 'Tentatives échouées',
   [TKeys.PROGRESS_FAILED_ATTEMPTS_RULE]: 'Violation des règles {rules} le jour {day}',
   [TKeys.PROGRESS_FAILED_ATTEMPTS_RULE_SIMPLE]: 'La règle a été enfreinte le jour {day}',

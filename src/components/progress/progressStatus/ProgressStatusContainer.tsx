@@ -39,9 +39,9 @@ export default function ProgressStatusContainer(props: Props) {
     <Box style={{ ...styles.container, backgroundColor }}>
       <VStack spacing={11}>
         <Box mb={1}>
-          <HStack spacing={10} style={styles.center} reverse={arabic}>
+          <HStack spacing={10} style={styles.center}>
             <Icon name={iconName as any} size={28} color={iconColor} />
-            <Text style={{ fontWeight: '700', fontSize: arabic ? 20 : 17 }}>{capitalize(title)}</Text>
+            <Text style={{ fontWeight: '700', fontSize: arabic ? 20 : 15 }}>{capitalize(title)}</Text>
           </HStack>
         </Box>
         <Box>
@@ -96,5 +96,5 @@ export default function ProgressStatusContainer(props: Props) {
 
 const styles = StyleSheet.create({
   container: { paddingHorizontal: 20, paddingVertical: 10, borderRadius: 15, elevation: 1 },
-  center: { alignItems: 'center' },
+  center: { alignItems: 'center', width: 200 },
 });

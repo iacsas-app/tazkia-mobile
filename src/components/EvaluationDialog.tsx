@@ -46,16 +46,17 @@ export default function EvaluationDialog({ rule, ...props }: Props) {
           <Text color={color} variant="h6" style={styles.question}>
             {formatMessage(TKeys.PROGRESS_EVALUATION_QUESTION)}
           </Text>
-          <Text color={color} style={{ fontSize: arabic ? 14 : 12 }}>
+          <Text color={color} style={{ fontSize: arabic ? 14 : 12, textAlign: 'justify' }}>
             {rule.description}
           </Text>
-          <HStack spacing={15} style={GlobalStyles.center} reverse={arabic}>
+          <HStack spacing={15} style={GlobalStyles.center}>
             <Button
               title={
                 <Text color={color} style={{ fontSize: btnTextSize, fontWeight: '900' }}>
                   {formatMessage(TKeys.BUTTON_YES)}
                 </Text>
               }
+              compact
               style={styles.btn}
               uppercase={false}
               color="#66cdaa"
@@ -71,6 +72,7 @@ export default function EvaluationDialog({ rule, ...props }: Props) {
               style={styles.btn}
               uppercase={false}
               color="#c0c0c0"
+              compact
               leading={() => <Icon name="thumb-down-outline" size={btnTextSize} color={color} {...props} />}
               onPress={handleNoPress}
             />
@@ -82,6 +84,6 @@ export default function EvaluationDialog({ rule, ...props }: Props) {
 }
 
 const styles = StyleSheet.create({
-  question: { fontWeight: '700' },
-  btn: { width: 100 },
+  question: { fontWeight: '700', textAlign: 'justify' },
+  btn: { minWidth: 65 },
 });
