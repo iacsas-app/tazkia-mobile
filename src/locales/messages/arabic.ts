@@ -165,16 +165,28 @@ export const arabic: Translations = {
   [TKeys.PURIFICATION_MIND_DESCRIPTION_LEVEL_9]:
     'في هذا المستوى يركز المريد انتباهه نحو الحضور الدائم لله سبحانه وتعالى معه، فيقضي اليوم وكأنه يشاهده في كل تصرفاته ويشعر بمراقبته له في كل حركاته، ويكون كل تفكيره بتجليات الأسماء الحسنى والصفات العلى',
 
-  [TKeys.SUNNAHS_HABITS_TITLE]: 'سنن العادات',
-  [TKeys.SUNNAHS_WORSHIP_TITLE]: 'سنن العبادات',
-  [TKeys.SUNNAHS_TRUTHS_TITLE]: 'سنن السير والحقائق والمعارج',
+  [TKeys.SUNNAHS_DESCRIPTION]: 'غَرْسُ السُّنَنِ النَّبَوِيَّةِ',
+  [TKeys.SUNNAHS_INTRODUTION]:
+    'يبدأ المريد بسنن العادات مع بداية تزكية جوارح القلب، ثم ينتقل إلى سنن العبادات مع بداية تزكية العقل، وسنن الحقائق والمعارج مع بداية تزكية النفس حيث يُفترض أن يكون قد أتقن مجموعة من سنن العادات قبل انتقاله مرحلة تزكية العقل، كما يفترض أن تكون قد غرست فيه الكثير من سنن العبادات قبل بَدْء تزكية النفس التي تتوافق مع سنن السير والحقائق',
+  [TKeys.SUNNAHS_INTRODUTION_RULE_1]:
+    'يستحسن تطبيق سُنَّة في كل نصف شهر ليتم ضبطها، وهذا أفضل من كثرة السنن دون إتقان ولا استحضار',
+  [TKeys.SUNNAHS_INTRODUTION_RULE_2]: 'تعاد السُّنَّة إذا تجاوز المريد ثلاثة أخطاء في خمسة عشر يوما',
+  [TKeys.SUNNAHS_INTRODUTION_RULE_3]:
+    'إذا كان المريد يضبط مسبقا بعض السنن فإنه يعيدها من البداية، فهذا أفضل له وأكثر أجرا وبركة',
+  [TKeys.SUNNAHS_INTRODUTION_RULE_4]: 'حتى أطفال المنهج يمكنهم الالتزام بغرس بعض السنن خاصة العادات',
 
-  [TKeys.SUNNAHS_HABITS_1_TITLE]: 'سنن النوم',
+  [TKeys.SUNNAHS_HABITS_TITLE]: 'سُننُ العادات',
+  [TKeys.SUNNAHS_WORSHIP_TITLE]: 'سُننُ العبادات',
+  [TKeys.SUNNAHS_TRUTHS_TITLE]: 'سُننُ السير والحقائق والمعارج',
+
+  [TKeys.SUNNAHS_HABITS_INTRODUCTION]:
+    'هذه بعض السنن التي كان يقوم بها سيدنا محمد ﷺ على سبيل العادة، والأخذ بها هو إحياء للسنة النبوية التي تنير قلب المريد وتساعده على تجاوز هذه المرحلة الأولى من التزكية بنجاح، ويمكن اعتماد سنن أخرى ثبت عمله عليه الصلاة والسلام بها',
+  [TKeys.SUNNAHS_HABITS_1_TITLE]: 'سُننُ النوم',
   [TKeys.SUNNAHS_HABITS_1_RULE_1]: 'ما يقرأ قبل النوم "باسمك اللهم أحيا وأموت"',
   [TKeys.SUNNAHS_HABITS_1_RULE_2]: 'إذا قلق في فراشه فلم ينم',
   [TKeys.SUNNAHS_HABITS_1_RULE_3]: 'إذا كان يفزع في منامه',
 
-  [TKeys.SUNNAHS_HABITS_2_TITLE]: 'سنن الاستيقاظ',
+  [TKeys.SUNNAHS_HABITS_2_TITLE]: 'سُننُ الاستيقاظ',
   [TKeys.SUNNAHS_HABITS_2_RULE_1]: 'ما يقرأ عند الاستيقاظ  "الحمد لله الذي أحيانا بعد ما أماتنا وإليه النشور"',
 
   // MENUS
@@ -210,6 +222,7 @@ export const arabic: Translations = {
   [TKeys.PROGRESS_START_DATE]: 'تاريخ البدء',
   [TKeys.PROGRESS_END_DATE]: 'تاريخ الانتهاء',
   [TKeys.PROGRESS_SUCCESSFUL_DAYS]: 'الأيام الناجحة',
+  [TKeys.PROGRESS_TOTAL_DAYS]: 'إجمالي الأيام',
   [TKeys.PROGRESS_FAILED_ATTEMPTS]: 'المحاولات الفاشلة',
   [TKeys.PROGRESS_FAILED_ATTEMPTS_RULE]: 'خرق القاعدة {rules} في اليوم {day}',
   [TKeys.PROGRESS_FAILED_ATTEMPTS_RULE_SIMPLE]: 'تم خرق القاعدة في اليوم {day}',

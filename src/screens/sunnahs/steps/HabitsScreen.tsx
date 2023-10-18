@@ -7,10 +7,13 @@ import { View } from 'react-native';
 import Text from '../../../components/Text';
 import ScrollViewLayout from '../../../components/layout/ScrollViewLayout';
 import SummaryRule from '../../../components/rules/SummaryRule';
+import ProgressLine from '../../../domains/common/ProgressLine';
 import Rule from '../../../domains/common/Rule';
+import Sunnah from '../../../domains/sunnahs/Sunnah';
 import Sunnahs from '../../../domains/sunnahs/Sunnahs';
 import { useApplication } from '../../../hooks/use-application';
 import { useMessage } from '../../../hooks/use-message';
+import { TKeys } from '../../../locales/constants';
 import { SunnahsStackNavigationProp } from '../../../navigation/types';
 import { useStoreActions, useStoreState } from '../../../stores/hooks';
 import GlobalStyles from '../../../styles/GlobalStyles';
@@ -28,15 +31,14 @@ export default function HabitsScreen() {
 
   function toRule(sunnahId: string): Rule {
     const id = Number.parseInt(sunnahId);
-    const sunnahRules = habitsRules[id];
     return {
       id: Number.parseInt(sunnahId),
       title: sunnahId,
-      summary: formatMessage(`sunnahs_habits_${sunnahId}_title`),
+      summary: formatMessage(`sunnahs.habits.${sunnahId}.title`),
       description: (
         <VStack style={{ paddingHorizontal: 5 }}>
-          {sunnahRules.map((ruleKey) => (
-            <HStack spacing={5} reverse={arabic} style={GlobalStyles.centerAlign}>
+          {habitsRules[id].map((ruleKey) => (
+            <HStack key={ruleKey} spacing={5} style={GlobalStyles.centerAlign}>
               <Icon name={`chevron-double-${arabic ? 'left' : 'right'}`} size={18} color="#008000" />
               <Text style={{ fontSize: 13 }}>{formatMessage(ruleKey)}</Text>
             </HStack>
@@ -49,10 +51,27 @@ export default function HabitsScreen() {
     };
   }
 
-  function handleAdd(rule: Rule) {}
+  function handleAdd(rule: Rule) {
+    const firstDay: ProgressLine = { day: 1, errors: [], evaluated: false, startDate: Date.now() };
+    const sunnah: Sunnah = { id: rule.id, progress: [firstDay] };
+    const sunnahs: Sunnahs = { habits: [sunnah], worship: [], truths: [] };
+    createOrUpdate(sunnahs);
+    navigation.navigate('Sunnahs');
+  }
 
   return (
     <ScrollViewLayout>
+      <Text
+        style={{
+          marginBottom: 20,
+          fontSize: arabic ? 14 : 13,
+          fontWeight: arabic ? '600' : 'normal',
+          textAlign: 'justify',
+        }}
+      >
+        {formatMessage(TKeys.SUNNAHS_HABITS_INTRODUCTION)}
+      </Text>
+
       <VStack spacing={4} style={{ ...GlobalStyles.center, paddingBottom: 10 }}>
         {data.map((rule) => (
           <View key={rule.id}>

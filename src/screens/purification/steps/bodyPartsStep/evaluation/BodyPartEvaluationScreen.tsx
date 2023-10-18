@@ -37,7 +37,7 @@ export default function BodyPartEvaluationScreen() {
   return (
     <ScrollViewLayout>
       <Avatar image={findPartProps(part)} size={90} />
-      <HStack spacing={15} style={styles.system} reverse={arabic}>
+      <HStack spacing={15} style={styles.system}>
         <Icon name="playlist-check" color="red" size={30} />
         <Text variant="h6" style={{ ...styles.title, fontSize: arabic ? 20 : 15 }}>
           {formatMessage(TKeys.PROGRESS_EVALUATION_MESSAGE)}

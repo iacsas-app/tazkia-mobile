@@ -37,7 +37,7 @@ export default function MindScreen() {
       title: formatMessage(TKeys.LEVEL, { value: level }),
       summary: formatMessage(`purification.mind.summary.level-${level}`),
       description: (
-        <Text style={{ textAlign: arabic ? 'auto' : 'justify', fontSize: arabic ? 16 : 12 }}>
+        <Text style={{ textAlign: 'justify', fontSize: arabic ? 13 : 12 }}>
           {formatMessage(`purification.mind.description.level-${level}`)}
         </Text>
       ),

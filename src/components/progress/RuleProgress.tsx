@@ -12,6 +12,7 @@ import GlobalStyles from '../../styles/GlobalStyles';
 import Text from '../Text';
 import FailedAttempts from './failedAttempts/FailedAttempts';
 import { ProgressStatus } from './progressStatus/ProgressStatus';
+import ProgressStatusInfo from './progressStatus/ProgressStatusInfo';
 
 interface Props {
   rule: Rule;
@@ -20,13 +21,16 @@ interface Props {
 }
 
 export default function RuleProgress({ rule, maxDays, ...props }: Props) {
-  const { formatMessage } = useMessage();
+  const { formatMessage, intl } = useMessage();
   const { width } = useWindowDimensions();
   const { arabic } = useApplication();
   const [show, setShow] = useState(false);
 
+  const countDays = rule.progress
+    ? rule.progress.map((p) => p.day).reduce((total, currentValue) => (total += currentValue), 0)
+    : 0;
   const countProgress = rule.progress ? rule.progress.length - 1 : 0;
-  const lastProgress = rule.progress ? rule.progress[countProgress] : undefined;
+  const lastDay = rule.progress ? rule.progress[countProgress] : undefined;
   const isLastCompleted = isCompleted(rule.progress, maxDays);
 
   function handleCollapse() {
@@ -38,7 +42,6 @@ export default function RuleProgress({ rule, maxDays, ...props }: Props) {
   }
 
   function handleEvaluate() {
-    setShow(false);
     props.onEvaluate(rule);
   }
 
@@ -46,27 +49,41 @@ export default function RuleProgress({ rule, maxDays, ...props }: Props) {
     return formatMessage(TKeys.PROGRESS_FAILED_ATTEMPTS_RULE_SIMPLE, { day: line.day });
   }
 
+  if (!lastDay) {
+    return <></>;
+  }
+  const endDate =
+    lastDay.day >= maxDays && lastDay.evaluated === true && lastDay.errors.length === 0
+      ? lastDay.startDate + lastDay.day
+      : undefined;
   return (
     <Box
       style={{
         ...styles.box,
         width: width - 48,
-        borderRightWidth: isLastCompleted && arabic ? 8 : 0,
-        borderLeftWidth: isLastCompleted && !arabic ? 8 : 0,
-        borderColor: 'green',
-        backgroundColor: '#fffafa',
+        borderLeftWidth: isLastCompleted ? 8 : 0,
+        borderColor: '#20b2aa',
+        backgroundColor: isLastCompleted ? '#f5fffa' : '#fffafa',
       }}
     >
       <Pressable onLongPress={handleOpen} onPress={() => setShow(false)}>
-        <HStack spacing={1} reverse={arabic} style={{ alignItems: 'center', justifyContent: 'space-between' }}>
-          <HStack spacing={2} reverse={arabic} style={{ alignItems: 'center', paddingHorizontal: 2 }}>
+        <HStack spacing={1} style={{ alignItems: 'center', justifyContent: 'space-between' }}>
+          <HStack spacing={2} style={{ alignItems: 'center', paddingHorizontal: 2 }}>
             <IconButton
               icon={(_, ...props) => <OctIcon name={show ? 'chevron-up' : 'chevron-down'} size={15} {...props} />}
               style={{ width: 20, height: 20 }}
               onPressIn={handleCollapse}
             />
-            <HStack spacing={10} reverse={arabic} style={{ width: width - (arabic ? 195 : 200), alignItems: 'center' }}>
-              <Text style={{ fontWeight: '900', fontSize: arabic ? 12 : 10, color: '#ff4500' }}>{rule.title}</Text>
+            <HStack spacing={10} style={{ width: width - (arabic ? 195 : 200), alignItems: 'center' }}>
+              <Text
+                style={{
+                  fontWeight: '900',
+                  fontSize: arabic ? 12 : 10,
+                  color: isLastCompleted ? '#20b2aa' : '#ff4500',
+                }}
+              >
+                {rule.title}
+              </Text>
               <Text
                 style={{
                   fontWeight: '600',
@@ -78,28 +95,52 @@ export default function RuleProgress({ rule, maxDays, ...props }: Props) {
             </HStack>
           </HStack>
           <Box style={{ paddingHorizontal: 10 }}>
-            <ProgressStatus last={lastProgress} count={countProgress} maxDays={maxDays} completed={isLastCompleted} />
+            <ProgressStatus last={lastDay} count={countProgress} maxDays={maxDays} completed={isLastCompleted} />
           </Box>
         </HStack>
-        {show && (
-          <Box style={{ padding: 15 }}>
-            <Text style={{ textAlign: arabic ? 'auto' : 'justify', fontSize: arabic ? 14 : 12 }}>
-              {rule.description}
-            </Text>
-          </Box>
-        )}
+        {show && <Box style={{ padding: 15 }}>{rule.description}</Box>}
       </Pressable>
-      {show && !isLastCompleted && (
-        <VStack style={{ ...GlobalStyles.center, paddingBottom: 15, paddingTop: 10 }} spacing={5}>
+      {show && (
+        <VStack style={{ ...GlobalStyles.center, paddingBottom: 15, paddingTop: 10 }} spacing={13}>
           <Box>
+            <ProgressStatusInfo
+              label={formatMessage(TKeys.PROGRESS_START_DATE)}
+              value={intl.formatDate(lastDay.startDate)}
+              icon="calendar"
+              color="#000080"
+            />
+            {endDate && (
+              <ProgressStatusInfo
+                label={formatMessage(TKeys.PROGRESS_END_DATE)}
+                value={intl.formatDate(endDate)}
+                icon="calendar-check"
+                color="#2e8b57"
+              />
+            )}
+            <ProgressStatusInfo
+              label={formatMessage(TKeys.PROGRESS_TOTAL_DAYS)}
+              value={countDays}
+              icon="calendar-clock-outline"
+              color="#4169e1"
+            />
+            {!endDate && (
+              <ProgressStatusInfo
+                label={formatMessage(TKeys.PROGRESS_SUCCESSFUL_DAYS)}
+                value={`${lastDay.day}/${maxDays}`}
+                icon="flag-checkered"
+                color="green"
+              />
+            )}
             <FailedAttempts attempts={rule.progress.slice(0, -1)} attemptFormatter={formatAttempt} />
           </Box>
-          <Button
-            title={formatMessage(TKeys.PROGRESS_START_DAILY_EVALUATION)}
-            onPress={handleEvaluate}
-            titleStyle={{ fontSize: arabic ? 16 : 14 }}
-            uppercase={false}
-          />
+          {!isLastCompleted && (
+            <Button
+              title={formatMessage(TKeys.PROGRESS_START_DAILY_EVALUATION)}
+              onPress={handleEvaluate}
+              titleStyle={{ fontSize: arabic ? 16 : 14 }}
+              uppercase={false}
+            />
+          )}
         </VStack>
       )}
     </Box>

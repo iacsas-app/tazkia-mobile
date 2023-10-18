@@ -1,5 +1,5 @@
 import { Avatar, HStack, Pressable, VStack } from '@react-native-material/core';
-import { ImageSourcePropType } from 'react-native';
+import { I18nManager, ImageSourcePropType } from 'react-native';
 import { useApplication } from '../../../../hooks/use-application';
 import { useMessage } from '../../../../hooks/use-message';
 import { localesTranslation } from '../../../../locales';
@@ -20,13 +20,16 @@ export default function LanguageOption({ value, icon, color, onChange }: Languag
   function handleChange() {
     if (locale !== value) {
       onChange(value);
+      const isAr = value === 'ar';
+      I18nManager.allowRTL(isAr);
+      I18nManager.forceRTL(isAr);
     }
   }
 
   return (
     <Pressable onPress={handleChange}>
-      <HStack spacing={3} mv={8} justify="between" reverse={arabic}>
-        <HStack spacing={12} reverse={arabic}>
+      <HStack spacing={3} mv={8} justify="between">
+        <HStack spacing={12}>
           <Avatar image={icon} size={30} />
           <VStack justify="start" content="center">
             <Text color={color} style={{ fontWeight: 'bold', fontSize: 12 }}>

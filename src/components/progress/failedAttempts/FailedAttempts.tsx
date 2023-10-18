@@ -2,7 +2,6 @@ import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import { Box, HStack, IconButton } from '@react-native-material/core';
 import { useState } from 'react';
 import ProgressLine from '../../../domains/common/ProgressLine';
-import { useApplication } from '../../../hooks/use-application';
 import { useMessage } from '../../../hooks/use-message';
 import { TKeys } from '../../../locales/constants';
 import GlobalStyles from '../../../styles/GlobalStyles';
@@ -16,7 +15,6 @@ interface Props extends FailedAttemptsBase {
 
 export default function FailedAttempts({ attempts, attemptFormatter }: Props) {
   const { formatMessage } = useMessage();
-  const { arabic } = useApplication();
   const [open, setOpen] = useState(false);
   const count = attempts.length;
 
@@ -30,7 +28,7 @@ export default function FailedAttempts({ attempts, attemptFormatter }: Props) {
 
   return (
     <Box mt={-10}>
-      <HStack style={GlobalStyles.center} reverse={arabic}>
+      <HStack style={GlobalStyles.center}>
         <Box>
           <ProgressStatusInfo
             label={formatMessage(TKeys.PROGRESS_FAILED_ATTEMPTS)}
@@ -47,7 +45,7 @@ export default function FailedAttempts({ attempts, attemptFormatter }: Props) {
       {open && (
         <Box mt={1} mb={15}>
           {attempts.map((attempt, index: number) => (
-            <FailedAttempt key={index} attempt={attempt} reverse={arabic} attemptFormatter={attemptFormatter} />
+            <FailedAttempt key={index} attempt={attempt} attemptFormatter={attemptFormatter} />
           ))}
         </Box>
       )}

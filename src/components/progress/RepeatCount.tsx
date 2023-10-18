@@ -1,6 +1,6 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import { Box } from '@react-native-material/core';
-import { StyleSheet } from 'react-native';
+import { I18nManager, StyleSheet } from 'react-native';
 import Text from '../Text';
 
 interface Props {
@@ -11,9 +11,12 @@ export default function RepeatCount({ count, color }: Props) {
   if (count === 0) {
     return <></>;
   }
+  const margin = count < 10 ? 8 : 5;
+  const marginRight = I18nManager.isRTL ? margin : 0;
+  const marginLeft = I18nManager.isRTL ? 0 : margin;
   return (
     <Box style={styles.container}>
-      <Text variant="body2" style={{ ...styles.text, marginLeft: count < 10 ? 8 : 5 }}>
+      <Text variant="body2" style={{ ...styles.text, marginRight, marginLeft }}>
         {count}
       </Text>
       <Icon name="reload" size={25} color={color} style={styles.icon} />

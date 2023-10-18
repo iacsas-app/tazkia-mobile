@@ -198,10 +198,18 @@ export const indonesian: Translations = {
   [TKeys.PURIFICATION_MIND_DESCRIPTION_LEVEL_9]:
     'Pada tingkatan ini, murid terfokus pada penghadirannya bersama-Nya secara terus menerus, maka ia lalui harinya seakan ia menyaksikan dan melihat-Nya. Dalam setiap perilakunya dia merasakan pengawasan Allah terhadap setiap gerakannya, juga setiap pemikirannya semua dari tajalli asmaul husna dan sifat-Nya Yang Tinggi',
 
+  [TKeys.SUNNAHS_DESCRIPTION]: '',
+  [TKeys.SUNNAHS_INTRODUTION]: '',
+  [TKeys.SUNNAHS_INTRODUTION_RULE_1]: '',
+  [TKeys.SUNNAHS_INTRODUTION_RULE_2]: '',
+  [TKeys.SUNNAHS_INTRODUTION_RULE_3]: '',
+  [TKeys.SUNNAHS_INTRODUTION_RULE_4]: '',
+
   [TKeys.SUNNAHS_HABITS_TITLE]: '',
   [TKeys.SUNNAHS_WORSHIP_TITLE]: '',
   [TKeys.SUNNAHS_TRUTHS_TITLE]: '',
 
+  [TKeys.SUNNAHS_HABITS_INTRODUCTION]: '',
   [TKeys.SUNNAHS_HABITS_1_TITLE]: '',
   [TKeys.SUNNAHS_HABITS_1_RULE_1]: '',
   [TKeys.SUNNAHS_HABITS_1_RULE_2]: '',
@@ -243,6 +251,7 @@ export const indonesian: Translations = {
   [TKeys.PROGRESS_START_DATE]: 'Mulai tanggal',
   [TKeys.PROGRESS_END_DATE]: 'Tanggal akhir',
   [TKeys.PROGRESS_SUCCESSFUL_DAYS]: 'Hari-hari sukses',
+  [TKeys.PROGRESS_TOTAL_DAYS]: 'Jumlah hari',
   [TKeys.PROGRESS_FAILED_ATTEMPTS]: 'Upaya yang gagal',
   [TKeys.PROGRESS_FAILED_ATTEMPTS_RULE]: 'Pelanggaran aturan {rules} pada hari {day}',
   [TKeys.PROGRESS_FAILED_ATTEMPTS_RULE_SIMPLE]: 'Aturan tersebut dilanggar pada hari {day}',

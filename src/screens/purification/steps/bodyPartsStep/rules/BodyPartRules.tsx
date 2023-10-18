@@ -61,7 +61,7 @@ export default function BodyPartsRules({ part, step }: BodyPartsRulesProps) {
       >
         {stepTitle()}
       </Text>
-      <HStack spacing={10} style={styles.system} reverse={arabic}>
+      <HStack spacing={10} style={styles.system}>
         <Icon name={isCleaning ? 'account-tie-hat' : 'lightbulb-on'} color={isCleaning ? 'red' : 'green'} size={23} />
         <Text variant="body1" style={{ ...styles.title, fontSize: arabic ? 20 : 16 }}>
           {formatMessage(`${step}.bodypart.disciplinary-system`)}

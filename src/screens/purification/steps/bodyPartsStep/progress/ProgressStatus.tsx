@@ -21,7 +21,7 @@ export default function ProgressStatus({ title, ...props }: Props) {
   }
 
   return (
-    <HStack spacing={5} style={GlobalStyles.center} reverse={arabic}>
+    <HStack spacing={5} style={GlobalStyles.center}>
       <Text style={{ fontSize: arabic ? 14 : 10 }} color="grey">
         {title}
       </Text>

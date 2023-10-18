@@ -15,8 +15,10 @@ export interface Part {
 
 interface Props {
   item: Part;
+  nameTextSize?: number;
+  descriptionTextSize?: number;
 }
-export default function PressableStep({ item }: Props) {
+export default function PressableStep({ item, nameTextSize, descriptionTextSize }: Props) {
   const { formatMessage } = useMessage();
   const { arabic } = useApplication();
   const navigation = useNavigation<any>();
@@ -29,10 +31,17 @@ export default function PressableStep({ item }: Props) {
     <Pressable onPress={handlePress}>
       <Stack spacing={1} style={styles.container}>
         <Avatar image={item.imageSource} imageStyle={styles.img} size={90} />
-        <Text variant="body1" style={{ fontSize: arabic ? 17 : 13 }}>
+        <Text variant="body1" style={{ fontSize: nameTextSize ? nameTextSize : arabic ? 17 : 13 }}>
           {formatMessage(item.name)}
         </Text>
-        <Text style={{ fontWeight: 'bold', fontSize: arabic ? 19 : 14, justifyContent: 'center', textAlign: 'center' }}>
+        <Text
+          style={{
+            fontWeight: 'bold',
+            fontSize: descriptionTextSize ? descriptionTextSize : arabic ? 19 : 14,
+            justifyContent: 'center',
+            textAlign: 'center',
+          }}
+        >
           {formatMessage(item.description)}
         </Text>
       </Stack>

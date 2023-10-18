@@ -61,7 +61,7 @@ export default function FirstVisitScreen() {
             )}
           </Box>
           <Box>
-            <LanguageSetting open={true} borderRadius={25} />
+            <LanguageSetting open={true} borderRadius={15} />
           </Box>
           <Box style={{ ...GlobalStyles.center }}>
             <Button

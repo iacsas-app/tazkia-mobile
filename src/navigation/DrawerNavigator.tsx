@@ -9,6 +9,7 @@ import MoreMenu from '../components/header/MoreMenu';
 import ApproachScreen from '../screens/presentation/ApproachScreen';
 import CenterScreen from '../screens/presentation/CenterScreen';
 import CheikhScreen from '../screens/presentation/CheikhScreen';
+import PurificationScreen from '../screens/purification/PurificationScreen';
 import TabNavigator from './TabNavigator';
 
 function CustomDrawerContent(props: any) {
@@ -54,6 +55,14 @@ const DrawerNavigator = () => {
       <Drawer.Screen
         name="Manhaj"
         component={ApproachScreen}
+        options={{
+          headerTitle: (_) => <Header />,
+          headerRight: () => <MoreMenu size={10} color="black" />,
+        }}
+      />
+      <Drawer.Screen
+        name="Purification"
+        component={PurificationScreen}
         options={{
           headerTitle: (_) => <Header />,
           headerRight: () => <MoreMenu size={10} color="black" />,

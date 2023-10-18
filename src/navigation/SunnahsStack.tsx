@@ -3,6 +3,7 @@ import * as React from 'react';
 
 import { useMessage } from '../hooks/use-message';
 import { TKeys } from '../locales/constants';
+import SunnahsProgressScreen from '../screens/sunnahs/SunnahsProgressScreen';
 import SunnahsScreen from '../screens/sunnahs/SunnahsScreen';
 import HabitsScreen from '../screens/sunnahs/steps/HabitsScreen';
 import TruthsScreen from '../screens/sunnahs/steps/TruthsScreen';
@@ -16,6 +17,7 @@ export default function SunnahsStack() {
   return (
     <Stack.Navigator initialRouteName="Sunnahs">
       <Stack.Screen name="Sunnahs" component={SunnahsScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="SunnahsProgress" component={SunnahsProgressScreen} options={{ headerShown: false }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen
           name="Habits"

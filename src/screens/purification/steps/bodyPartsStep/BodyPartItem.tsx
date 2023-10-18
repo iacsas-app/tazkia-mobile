@@ -61,11 +61,11 @@ export default function BodyPartItem({ id, type, nameKey, imageSource, onOpenRul
       </Box>
       {!isCompleted && (
         <Box h={40} w={width} style={styles.bottomBox}>
-          <HStack spacing={arabic ? 20 : 5} reverse={arabic}>
+          <HStack spacing={arabic ? 20 : 5}>
             {!isCleaningInProgress && (
               <Box style={styles.btn}>
                 <Pressable style={{ padding: 3 }} onPress={() => handlePress('cleaning')}>
-                  <HStack spacing={space} style={GlobalStyles.center} reverse={arabic}>
+                  <HStack spacing={space} style={GlobalStyles.center}>
                     <Icon name="account-tie-hat" size={12} color="#4b0082" />
                     <Text style={{ fontSize: btnFontSize }}>{formatMessage(`button.cleaning`)}</Text>
                   </HStack>
@@ -75,7 +75,7 @@ export default function BodyPartItem({ id, type, nameKey, imageSource, onOpenRul
             {!isEnlightenmentInProgress && (
               <Box style={styles.btn}>
                 <Pressable style={{ padding: 3 }} onPress={() => handlePress('enlightenment')}>
-                  <HStack spacing={space} style={GlobalStyles.center} reverse={arabic}>
+                  <HStack spacing={space} style={GlobalStyles.center}>
                     <Icon name="lightbulb-on" size={12} color="#32cd32" />
                     <Text style={{ fontSize: btnFontSize }}>{formatMessage(`button.enlightenment`)}</Text>
                   </HStack>

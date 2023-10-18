@@ -32,7 +32,7 @@ export default function CheckableRule({ id, item, ...props }: RuleProps) {
       }}
     >
       <Box style={{ marginLeft: ml, marginRight: mr }}>
-        <HStack spacing={10} style={RuleStyles.stack} reverse={arabic}>
+        <HStack spacing={10} style={RuleStyles.stack}>
           <Avatar
             label={
               checked ? undefined : (
