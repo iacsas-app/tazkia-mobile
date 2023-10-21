@@ -222,7 +222,7 @@ export const french: Translations = {
   [TKeys.PROGRESS_FAILED_ATTEMPTS_RULE_SIMPLE]: 'La règle a été enfreinte le jour {day}',
   [TKeys.PROGRESS_START_DAILY_EVALUATION]: 'Évaluer ma journée',
   [TKeys.PROGRESS_EVALUATION_MESSAGE]: 'Sélectionnez les règles qui ont été enfreintes',
-  [TKeys.PROGRESS_EVALUATION_QUESTION]: 'La règle suivante a-t-elle été respectée tout au long de la journée ?',
+  [TKeys.PROGRESS_EVALUATION_QUESTION]: 'La règle suivante a-t-elle été respectée ?',
   [TKeys.BASMALAH]:
     'Au nom de Dieu, le Très Miséricordieux, le Très Miséricordieux, et que la bénédiction et la paix soient sur le plus honorable des prophètes et messagers, notre maître Muhammad, ainsi que sur toute sa famille et ses compagnons.',
   [TKeys.LEVEL]: 'Niveau {value}',

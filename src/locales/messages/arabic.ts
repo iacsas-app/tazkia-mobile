@@ -244,7 +244,7 @@ export const arabic: Translations = {
   [TKeys.PROGRESS_FAILED_ATTEMPTS_RULE_SIMPLE]: 'تم خرق القاعدة في اليوم {day}',
   [TKeys.PROGRESS_START_DAILY_EVALUATION]: 'تقييم يومي',
   [TKeys.PROGRESS_EVALUATION_MESSAGE]: 'اختر القواعد التي تم خرقها',
-  [TKeys.PROGRESS_EVALUATION_QUESTION]: 'هل تم احترام القاعدة التالية طوال اليوم ؟',
+  [TKeys.PROGRESS_EVALUATION_QUESTION]: 'هل تم احترام القاعدة التالية ؟',
   [TKeys.BASMALAH]:
     'بسم الله الرحمن الرحيم والصلاة والسلام على أشرف الأنبياء والمرسلين سيدنا محمد وعلى آله وصحبه أجمعين',
   [TKeys.LEVEL]: 'المستوى {value}',

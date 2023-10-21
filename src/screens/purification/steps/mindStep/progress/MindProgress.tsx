@@ -38,8 +38,8 @@ export default function MindProgress({ items, onAdd }: Props) {
     setCurrent(rule);
   }
 
-  function handleEvaluate(level: MindLevel, checked: boolean) {
-    evaluate([level, checked]).then(() => setCurrent(undefined));
+  function handleEvaluate(level: number, checked: boolean) {
+    evaluate([level as MindLevel, checked]).then(() => setCurrent(undefined));
   }
 
   function toRule({ level, progress }: Mind): Rule {
@@ -76,7 +76,7 @@ export default function MindProgress({ items, onAdd }: Props) {
           </VStack>
         )}
       </ProgressContainer>
-      <EvaluationDialog rule={current} onEvaluate={handleEvaluate} onClose={handleDialogClose} />
+      {current && <EvaluationDialog rule={current} onEvaluate={handleEvaluate} onClose={handleDialogClose} />}
     </>
   );
 }

@@ -4,7 +4,6 @@ import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Rule from '../domains/common/Rule';
-import { MindLevel } from '../domains/purification/Mind';
 import { useApplication } from '../hooks/use-application';
 import { useMessage } from '../hooks/use-message';
 import { TKeys } from '../locales/constants';
@@ -12,9 +11,9 @@ import GlobalStyles from '../styles/GlobalStyles';
 import Text from './Text';
 
 interface Props {
-  rule: Rule | undefined;
+  rule: Rule;
   onClose: () => void;
-  onEvaluate: (level: MindLevel, checked: boolean) => void;
+  onEvaluate: (ruleId: number, checked: boolean) => void;
 }
 
 export default function EvaluationDialog({ rule, ...props }: Props) {
@@ -23,7 +22,7 @@ export default function EvaluationDialog({ rule, ...props }: Props) {
   const insets = useSafeAreaInsets();
   const paddingHorizontal = useMemo(() => Math.max(1, insets.left + insets.right), []);
 
-  const btnTextSize = arabic ? 20 : 18;
+  const btnTextSize = arabic ? 18 : 16;
   const color = isDarkMode ? 'white' : 'black';
 
   function handleYesPress() {
@@ -35,11 +34,7 @@ export default function EvaluationDialog({ rule, ...props }: Props) {
   }
 
   function evaluate(checked: boolean) {
-    rule && props.onEvaluate(rule.id as MindLevel, checked);
-  }
-
-  if (!rule) {
-    return <></>;
+    rule && props.onEvaluate(rule.id, checked);
   }
 
   const p: any = {};
