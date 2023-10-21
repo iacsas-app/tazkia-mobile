@@ -4,7 +4,7 @@ import BodyPart, { BodyPartType } from '../../domains/purification/BodyPart';
 import Mind, { MindLevel } from '../../domains/purification/Mind';
 import Purification from '../../domains/purification/Purification';
 import { PurificationStage } from '../../screens/purification/steps/bodyPartsStep/BodyPartsScreen';
-import { isBodyPartStepInProgress } from '../../services/Helpers';
+import { PURIFICATION_MAX_DAYS, isBodyPartStepInProgress } from '../../services/Helpers';
 import { Injections } from '../injections';
 import { storageEngine } from '../storage-engine';
 
@@ -149,9 +149,10 @@ function updateProgress(progress: ProgressLine[] | undefined, errors: number[]):
   let last = progress.at(lastIndex);
   let lastIsSuccess = false;
   if (last) {
-    const newValue = { ...last, evaluated: true, day: last.day < 30 ? last.day + 1 : last.day };
+    const nextDay = last.day < PURIFICATION_MAX_DAYS ? last.day + 1 : last.day;
+    const newValue = { ...last, evaluated: true, day: nextDay };
     if (errors.length === 0) {
-      lastIsSuccess = newValue.day === 30;
+      lastIsSuccess = newValue.day === PURIFICATION_MAX_DAYS;
       progress[lastIndex] = newValue;
     } else {
       progress[lastIndex] = { ...newValue, errors };

@@ -47,8 +47,8 @@ export default function HabitsScreen() {
   }
 
   function handleAdd(rule: Rule) {
-    const firstDay: ProgressLine = { day: 1, errors: [], evaluated: false, startDate: Date.now() };
-    const sunnah: Sunnah = { id: rule.id, progress: [firstDay] };
+    const firstDay: ProgressLine = { day: 0, errors: [], evaluated: false, startDate: Date.now() };
+    const sunnah: Sunnah = { id: rule.id, progress: [firstDay], failedAttempts: 0 };
     const sunnahs: Sunnahs = { habits: [sunnah], worship: [], truths: [] };
     createOrUpdate(sunnahs);
     navigation.navigate('Sunnahs');
