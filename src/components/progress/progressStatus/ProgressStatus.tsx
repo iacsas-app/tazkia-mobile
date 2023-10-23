@@ -17,6 +17,7 @@ export function ProgressStatus({ last, count, maxDays, completed }: Props) {
   if (!last) {
     return <></>;
   }
+  const failed = last.failedAttempts ? last.failedAttempts : 0;
 
   return (
     <HStack spacing={1} style={GlobalStyles.center}>
@@ -30,7 +31,7 @@ export function ProgressStatus({ last, count, maxDays, completed }: Props) {
           <Icon name="check-bold" size={15} color="green" />
         ) : (
           <Text variant="caption" style={styles.symbol}>
-            {progressPercentage(last.day, maxDays)}
+            {progressPercentage(last.day - failed, maxDays)}
           </Text>
         )}
       </Box>

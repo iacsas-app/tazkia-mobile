@@ -32,7 +32,7 @@ export default function SummaryRule({ rule, ...props }: Props) {
 
   return (
     <Box style={{ ...styles.box, width: width - 20, backgroundColor: bgColor }}>
-      <Pressable onLongPress={handleOpen} onPress={() => setShow(false)}>
+      <Pressable onPress={handleOpen} onLongPress={() => setShow(false)}>
         <HStack spacing={1} style={{ alignItems: 'center', justifyContent: 'space-between' }}>
           <HStack spacing={2} style={{ alignItems: 'center', paddingHorizontal: 2 }}>
             <IconButton
