@@ -11,8 +11,7 @@ export const habitsRules: Record<number, Record<SunnahType, string[]>> = {
     actional: [],
   },
   2: { verbal: [TKeys.SUNNAHS_HABITS_2_VERBAL_RULE_1], actional: [] },
-  3: { verbal: [], actional: [] },
-  4: { verbal: [], actional: [] },
+
   5: {
     verbal: [TKeys.SUNNAHS_HABITS_5_VERBAL_RULE_1],
     actional: [TKeys.SUNNAHS_HABITS_5_ACTIONAL_RULE_1],

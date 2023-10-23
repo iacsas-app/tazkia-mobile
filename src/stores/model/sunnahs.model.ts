@@ -11,13 +11,13 @@ export interface SunnahsModel {
   item: Sunnahs | undefined;
 
   // Actions
-  load: Action<SunnahsModel, Sunnahs>;
+  load: Action<SunnahsModel, [SunnahStage, Sunnah]>;
   reset: Action<SunnahsModel>;
   evaluation: Action<SunnahsModel, [number, SunnahStage, boolean]>;
 
   // Thunk
   //find: Thunk<SunnahsModel, void, Injections>;
-  //createOrUpdate: Thunk<SunnahsModel, Purification, Injections>;
+  createOrUpdate: Thunk<SunnahsModel, [SunnahStage, Sunnah], Injections>;
   evaluate: Thunk<SunnahsModel, [number, SunnahStage, boolean], Injections>;
 }
 
@@ -26,8 +26,15 @@ const sunnahsModel: SunnahsModel = {
   item: undefined,
 
   // Actions
-  load: action((state, payload: Sunnahs) => {
-    state.item = payload;
+  load: action((state, payload: [SunnahStage, Sunnah]) => {
+    const [stage, sunnah] = payload;
+    if (!state.item) {
+      state.item = { habits: [], worship: [], truths: [] };
+    }
+    const current = getStageProgress(stage, state.item);
+    if (!current.find((item) => item.id === sunnah.id)) {
+      state.item = { ...state.item, [stage]: [...current, sunnah] };
+    }
     state.isLoaded = true;
   }),
   reset: action((state) => {
@@ -59,11 +66,13 @@ const sunnahsModel: SunnahsModel = {
     const item = await tazkiaService.find();
     actions.load(item);
   }),
-  createOrUpdate: thunk(async (actions, payload: Purification, { injections }) => {
-    const { tazkiaService } = injections;
-    const item = await tazkiaService.createOrUpdate(payload);
-    actions.load(item);
-  }),*/
+  **/
+  createOrUpdate: thunk(async (actions, payload: [SunnahStage, Sunnah], { injections }) => {
+    //const { tazkiaService } = injections;
+    //const item = await tazkiaService.createOrUpdate(payload);
+
+    actions.load(payload);
+  }),
   evaluate: thunk(async (actions, payload: [number, SunnahStage, boolean], { injections }) => {
     actions.evaluation(payload);
   }),
@@ -93,13 +102,16 @@ function updateProgress(item: Sunnah, errors: number[]): Sunnah {
     if (errors.length === 0) {
       progress[lastIndex] = newValue;
     } else {
-      if (item.failedAttempts === 3) {
+      if (last.failedAttempts === 2) {
         progress[lastIndex] = { ...newValue, errors };
         progress.push({ startDate: Date.now(), day: 0, errors: [], evaluated: false });
-        item.failedAttempts = 0;
+        last.failedAttempts = 0;
       } else {
-        //progress[lastIndex] = { ...last, day: nextDay };
-        item.failedAttempts = item.failedAttempts + 1;
+        progress[lastIndex] = {
+          ...last,
+          day: nextDay,
+          failedAttempts: last.failedAttempts ? last.failedAttempts + 1 : 1,
+        };
       }
     }
   }
