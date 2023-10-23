@@ -23,7 +23,7 @@ export default function HabitsScreen() {
   const { formatMessage } = useMessage();
   const { arabic } = useApplication();
   const navigation = useNavigation<SunnahsStackNavigationProp>();
-  const createOrUpdate = useStoreActions((actions) => actions.sunnahs.load);
+  const createOrUpdate = useStoreActions((actions) => actions.sunnahs.createOrUpdate);
   const sunnahs: Sunnahs | undefined = useStoreState((state) => state.sunnahs.item);
   const [rules, setRules] = useState<Rule[]>([]);
 
@@ -48,9 +48,8 @@ export default function HabitsScreen() {
 
   function handleAdd(rule: Rule) {
     const firstDay: ProgressLine = { day: 0, errors: [], evaluated: false, startDate: Date.now() };
-    const sunnah: Sunnah = { id: rule.id, progress: [firstDay], failedAttempts: 0 };
-    const sunnahs: Sunnahs = { habits: [sunnah], worship: [], truths: [] };
-    createOrUpdate(sunnahs);
+    const sunnah: Sunnah = { id: rule.id, progress: [firstDay] };
+    createOrUpdate(['habits', sunnah]);
     navigation.navigate('Sunnahs');
   }
 

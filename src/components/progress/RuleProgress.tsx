@@ -56,6 +56,7 @@ export default function RuleProgress({ rule, maxDays, ...props }: Props) {
     lastDay.day >= maxDays && lastDay.evaluated === true && lastDay.errors.length === 0
       ? lastDay.startDate + lastDay.day
       : undefined;
+  const failed = lastDay.failedAttempts ? lastDay.failedAttempts : 0;
   return (
     <Box
       style={{
@@ -66,7 +67,7 @@ export default function RuleProgress({ rule, maxDays, ...props }: Props) {
         backgroundColor: isLastCompleted ? '#f5fffa' : '#fffafa',
       }}
     >
-      <Pressable onLongPress={handleOpen} onPress={() => setShow(false)}>
+      <Pressable onPress={handleOpen} onLongPress={() => setShow(false)}>
         <HStack spacing={1} style={{ alignItems: 'center', justifyContent: 'space-between' }}>
           <HStack spacing={2} style={{ alignItems: 'center', paddingHorizontal: 2 }}>
             <IconButton
@@ -126,7 +127,7 @@ export default function RuleProgress({ rule, maxDays, ...props }: Props) {
             {!endDate && (
               <ProgressStatusInfo
                 label={formatMessage(TKeys.PROGRESS_SUCCESSFUL_DAYS)}
-                value={`${lastDay.day}/${maxDays}`}
+                value={`${lastDay.day - failed}/${maxDays}`}
                 icon="flag-checkered"
                 color="green"
               />
