@@ -1,7 +1,8 @@
 import OctIcon from '@expo/vector-icons/Octicons';
-import { Box, Button, HStack, IconButton, Pressable, VStack } from '@react-native-material/core';
+import { Box, HStack, Pressable, VStack } from '@react-native-material/core';
 import { useState } from 'react';
 import { StyleSheet, useWindowDimensions } from 'react-native';
+import { Button, IconButton } from 'react-native-paper';
 import ProgressLine from '../../domains/common/ProgressLine';
 import Rule from '../../domains/common/Rule';
 import { useApplication } from '../../hooks/use-application';
@@ -61,7 +62,7 @@ export default function RuleProgress({ rule, maxDays, ...props }: Props) {
     <Box
       style={{
         ...styles.box,
-        width: width - 48,
+        width: width - 40,
         borderLeftWidth: isLastCompleted ? 8 : 0,
         borderColor: '#20b2aa',
         backgroundColor: isLastCompleted ? '#f5fffa' : '#fffafa',
@@ -135,12 +136,9 @@ export default function RuleProgress({ rule, maxDays, ...props }: Props) {
             <FailedAttempts attempts={rule.progress.slice(0, -1)} attemptFormatter={formatAttempt} />
           </Box>
           {!isLastCompleted && (
-            <Button
-              title={formatMessage(TKeys.PROGRESS_START_DAILY_EVALUATION)}
-              onPress={handleEvaluate}
-              titleStyle={{ fontSize: arabic ? 16 : 14 }}
-              uppercase={false}
-            />
+            <Button mode="contained" onPress={handleEvaluate} uppercase={false}>
+              {formatMessage(TKeys.PROGRESS_START_DAILY_EVALUATION)}
+            </Button>
           )}
         </VStack>
       )}

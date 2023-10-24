@@ -1,8 +1,9 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
-import { Avatar, Button, HStack, VStack } from '@react-native-material/core';
+import { Avatar, HStack, VStack } from '@react-native-material/core';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useMemo, useState } from 'react';
 import { StyleSheet } from 'react-native';
+import { Button } from 'react-native-paper';
 import Text from '../../../../../components/Text';
 import ScrollViewLayout from '../../../../../components/layout/ScrollViewLayout';
 import CheckableRule from '../../../../../components/rules/CheckableRule';
@@ -54,7 +55,9 @@ export default function BodyPartEvaluationScreen() {
           />
         ))}
       </VStack>
-      <Button title={formatMessage(TKeys.BUTTON_SAVE)} style={styles.action} onPress={handleSave} />
+      <Button style={styles.action} onPress={handleSave}>
+        {formatMessage(TKeys.BUTTON_SAVE)}
+      </Button>
     </ScrollViewLayout>
   );
 }

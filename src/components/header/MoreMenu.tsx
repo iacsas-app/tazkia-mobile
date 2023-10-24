@@ -2,7 +2,7 @@ import Icon from '@expo/vector-icons/SimpleLineIcons';
 
 import { Box, HStack, IconButton } from '@react-native-material/core';
 import { useState } from 'react';
-import { Menu, MenuItem } from 'react-native-material-menu';
+import { Menu } from 'react-native-paper';
 import { useMessage } from '../../hooks/use-message';
 import { TKeys } from '../../locales/constants';
 import Text from '../Text';
@@ -34,17 +34,20 @@ export default function MoreMenu(props: MoreMenuProps) {
     <Box style={{ marginRight: 8 }}>
       <Menu
         visible={visible}
+        onDismiss={hideMenu}
         anchor={
           <IconButton icon={(props) => <Icon name="options-vertical" {...props} onPress={showMenu} />} {...props} />
         }
-        onRequestClose={hideMenu}
       >
-        <MenuItem onPress={handleSettingPress}>
-          <HStack spacing={8}>
-            <Icon name="settings" size={20} />
-            <Text>{formatMessage(TKeys.MENU_SETTINGS)}</Text>
-          </HStack>
-        </MenuItem>
+        <Menu.Item
+          onPress={handleSettingPress}
+          title={
+            <HStack spacing={8}>
+              <Icon name="settings" size={20} />
+              <Text>{formatMessage(TKeys.MENU_SETTINGS)}</Text>
+            </HStack>
+          }
+        />
       </Menu>
       <SettingsDialog open={showSettings} onClose={handleSettingDialogClose} />
     </Box>

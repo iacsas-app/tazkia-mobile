@@ -226,4 +226,7 @@ export const french: Translations = {
   [TKeys.BASMALAH]:
     'Au nom de Dieu, le Très Miséricordieux, le Très Miséricordieux, et que la bénédiction et la paix soient sur le plus honorable des prophètes et messagers, notre maître Muhammad, ainsi que sur toute sa famille et ses compagnons.',
   [TKeys.LEVEL]: 'Niveau {value}',
+
+  [TKeys.MESSAGE_ADDED_SUCCESSFULLY]: "L'ajout a été effectué avec succès",
+  [TKeys.MESSAGE_EVALUATED_SUCCESSFULLY]: 'Votre progression a été mise à jour avec succès',
 };

@@ -1,8 +1,9 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 
-import { Box, Button, HStack, VStack } from '@react-native-material/core';
+import { Box, HStack, VStack } from '@react-native-material/core';
 import { StyleSheet } from 'react-native';
 
+import { Button } from 'react-native-paper';
 import ProgressLine from '../../../domains/common/ProgressLine';
 import { useApplication } from '../../../hooks/use-application';
 import { useMessage } from '../../../hooks/use-message';
@@ -82,12 +83,9 @@ export default function ProgressStatusContainer(props: Props) {
             <Icon name="check-decagram" size={50} color="green" />
           </Box>
         ) : (
-          <Button
-            title={formatMessage(TKeys.PROGRESS_START_DAILY_EVALUATION)}
-            onPress={props.onEvaluate}
-            titleStyle={{ fontSize: arabic ? 16 : 14 }}
-            uppercase={false}
-          />
+          <Button onPress={props.onEvaluate} uppercase={false}>
+            {formatMessage(TKeys.PROGRESS_START_DAILY_EVALUATION)}
+          </Button>
         )}
       </VStack>
     </Box>

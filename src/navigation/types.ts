@@ -30,7 +30,7 @@ export type PurificationParamList = {
 };
 
 export type SunnahsParamList = {
-  Sunnahs: undefined;
+  Sunnahs: { rule: string | undefined };
   Habits: undefined;
   Worship: undefined;
   Truths: undefined;
@@ -72,3 +72,4 @@ export type SunnahsStackNavigationProp = CompositeNavigationProp<
 export type BodyPartsRulesScreenRouteProp = RouteProp<PurificationParamList, 'BodyPartsRules'>;
 export type BodyPartProgressScreenRouteProp = RouteProp<PurificationParamList, 'BodyPartProgress'>;
 export type BodyPartEvaluationScreenRouteProp = RouteProp<PurificationParamList, 'BodyPartEvaluation'>;
+export type SunnahsScreenRouteProp = RouteProp<SunnahsParamList, 'Sunnahs'>;

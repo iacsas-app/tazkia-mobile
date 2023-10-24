@@ -226,4 +226,7 @@ export const english: Translations = {
   [TKeys.BASMALAH]:
     'In the name of God, the Most Gracious, the Most Merciful, and may blessings and peace be upon the most honorable of the prophets and messengers, our master Muhammad, and upon all his family and companions.',
   [TKeys.LEVEL]: 'Level {value}',
+
+  [TKeys.MESSAGE_ADDED_SUCCESSFULLY]: 'The addition was completed successfully',
+  [TKeys.MESSAGE_EVALUATED_SUCCESSFULLY]: 'Your progress has been successfully updated',
 };

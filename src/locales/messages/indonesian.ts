@@ -277,4 +277,7 @@ export const indonesian: Translations = {
   [TKeys.BASMALAH]:
     'Dengan menyebut nama Tuhan Yang Maha Pengasih lagi Maha Penyayang, semoga shalawat dan salam tercurah kepada para nabi dan rasul yang paling mulia, junjungan kami Muhammad, serta atas seluruh keluarga dan para sahabatnya.',
   [TKeys.LEVEL]: 'Tingkatan {value} :',
+
+  [TKeys.MESSAGE_ADDED_SUCCESSFULLY]: 'Penambahan berhasil diselesaikan',
+  [TKeys.MESSAGE_EVALUATED_SUCCESSFULLY]: 'Kemajuan Anda telah berhasil diperbarui',
 };

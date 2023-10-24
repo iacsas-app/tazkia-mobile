@@ -1,7 +1,8 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
-import { Box, Button, VStack } from '@react-native-material/core';
+import { Box, VStack } from '@react-native-material/core';
 import { useEffect, useMemo } from 'react';
 import { View } from 'react-native';
+import { Button } from 'react-native-paper';
 import Text from '../components/Text';
 import TextSection from '../components/TextSection';
 import LanguageSetting from '../components/header/settings/language/LanguageSetting';
@@ -65,11 +66,12 @@ export default function FirstVisitScreen() {
           </Box>
           <Box style={{ ...GlobalStyles.center }}>
             <Button
-              title={formatMessage(TKeys.BUTTON_SAVE)}
-              leading={() => <Icon name="check-circle" size={20} color="white" />}
+              icon={() => <Icon name="check-circle" size={20} color="white" />}
               style={{ backgroundColor: '#4682b4' }}
               onPress={handleSave}
-            />
+            >
+              {formatMessage(TKeys.BUTTON_SAVE)}
+            </Button>
           </Box>
         </VStack>
       </View>

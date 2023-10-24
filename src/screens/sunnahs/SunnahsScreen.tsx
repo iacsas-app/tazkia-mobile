@@ -8,34 +8,13 @@ import { useMessage } from '../../hooks/use-message';
 import { TKeys } from '../../locales/constants';
 import GlobalStyles from '../../styles/GlobalStyles';
 import SunnahsProgressScreen from './SunnahsProgressScreen';
+import { sunnahsStages } from './common/Helper';
 
 export default function SunnahsScreen() {
   const { formatMessage } = useMessage();
   const { arabic, hasSunnahsProgress } = useApplication();
 
-  const parts: Part[] = useMemo(
-    () => [
-      {
-        route: 'Habits',
-        name: TKeys.PHASE_1,
-        description: TKeys.SUNNAHS_HABITS_TITLE,
-        imageSource: require('./../../../assets/img/sunnahs/step1.jpg'),
-      },
-      {
-        route: 'Worship',
-        name: TKeys.PHASE_2,
-        description: TKeys.SUNNAHS_WORSHIP_TITLE,
-        imageSource: require('./../../../assets/img/sunnahs/step2.jpg'),
-      },
-      {
-        route: 'Truths',
-        name: TKeys.PHASE_3,
-        description: TKeys.SUNNAHS_TRUTHS_TITLE,
-        imageSource: require('./../../../assets/img/sunnahs/step3.jpg'),
-      },
-    ],
-    [],
-  );
+  const parts: Part[] = useMemo(() => sunnahsStages, []);
 
   if (hasSunnahsProgress) {
     return <SunnahsProgressScreen />;

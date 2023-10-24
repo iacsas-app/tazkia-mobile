@@ -1,5 +1,6 @@
 import Icon from '@expo/vector-icons/SimpleLineIcons';
-import { Button, Dialog, DialogActions, DialogContent, DialogHeader, HStack } from '@react-native-material/core';
+import { HStack, VStack } from '@react-native-material/core';
+import { Button, Modal, Portal } from 'react-native-paper';
 import { useApplication } from '../../../hooks/use-application';
 import { useMessage } from '../../../hooks/use-message';
 import { TKeys } from '../../../locales/constants';
@@ -13,28 +14,26 @@ interface Props {
 
 export default function SettingsDialog({ open, onClose }: Props) {
   const { formatMessage } = useMessage();
-  const { arabic, isDarkMode } = useApplication();
+  const { isDarkMode } = useApplication();
   const color = isDarkMode ? 'white' : 'black';
-  const props: any = {};
+  const containerStyle = { backgroundColor: 'white', padding: 20 };
 
   return (
-    <Dialog visible={open} onDismiss={onClose} {...props}>
-      <DialogHeader
-        title={
+    <Portal>
+      <Modal visible={open} onDismiss={onClose} contentContainerStyle={containerStyle}>
+        <VStack spacing={20}>
           <HStack spacing={10}>
             <Icon name="settings" size={28} color={color} />
             <Text color={color} variant="h5" style={{ fontWeight: 'bold' }}>
               {formatMessage(TKeys.MENU_SETTINGS)}
             </Text>
           </HStack>
-        }
-      />
-      <DialogContent>
-        <Settings color={color} />
-      </DialogContent>
-      <DialogActions>
-        <Button title={formatMessage(TKeys.BUTTON_CLOSE)} variant="text" onPress={onClose} />
-      </DialogActions>
-    </Dialog>
+          <Settings color={color} />
+          <Button mode="text" style={{ marginTop: 30 }} onPress={onClose}>
+            {formatMessage(TKeys.BUTTON_CLOSE)}
+          </Button>
+        </VStack>
+      </Modal>
+    </Portal>
   );
 }

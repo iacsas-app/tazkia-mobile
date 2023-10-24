@@ -1,17 +1,18 @@
-import { useNavigation } from '@react-navigation/native';
-import { ReactNode, useState } from 'react';
-import EvaluationDialog from '../../components/EvaluationDialog';
+import { Avatar } from '@react-native-material/core';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { ReactNode, useEffect, useMemo, useState } from 'react';
+import { BottomNavigation } from 'react-native-paper';
 import Text from '../../components/Text';
-import ScrollViewLayout from '../../components/layout/ScrollViewLayout';
-import Rule from '../../domains/common/Rule';
 import Sunnah from '../../domains/sunnahs/Sunnah';
-import { SunnahStage } from '../../domains/sunnahs/Sunnahs';
 import { useApplication } from '../../hooks/use-application';
 import { useMessage } from '../../hooks/use-message';
-import { SunnahsParamList, SunnahsStackNavigationProp } from '../../navigation/types';
+import { TKeys } from '../../locales/constants';
+import { SunnahsParamList, SunnahsScreenRouteProp, SunnahsStackNavigationProp } from '../../navigation/types';
+import { useSnackbar } from '../../providers/SnackbarProvider';
 import { capitalize } from '../../services/Helpers';
-import { useStoreActions, useStoreState } from '../../stores/hooks';
+import { useStoreState } from '../../stores/hooks';
 import SunnahPart from './SunnahPart';
+import { sunnahsStages } from './common/Helper';
 import SunnahRule from './common/SunnahRule';
 import SunnahStepProgress from './common/SunnahStepProgress';
 import { habitsRules } from './common/data';
@@ -19,33 +20,20 @@ import { habitsRules } from './common/data';
 export default function SunnahsProgressScreen() {
   const { formatMessage } = useMessage();
   const { arabic } = useApplication();
-  const [current, setCurrent] = useState<Rule>();
-  const [stage, setStage] = useState<SunnahStage>();
-  const navigation = useNavigation<SunnahsStackNavigationProp>();
-  const sunnahs = useStoreState((state) => state.sunnahs.item);
+  const { displaySnackbar } = useSnackbar();
+  const [index, setIndex] = useState(0);
 
-  const evaluate = useStoreActions((actions) => actions.sunnahs.evaluate);
+  const navigation = useNavigation<SunnahsStackNavigationProp>();
+  const route = useRoute<SunnahsScreenRouteProp>();
+  const sunnahs = useStoreState((state) => state.sunnahs.item);
 
   function handleAdd(route: keyof SunnahsParamList) {
     navigation.navigate(capitalize(route) as any);
   }
 
-  function handleEvaluate(ruleId: number, checked: boolean) {
-    if (stage) {
-      evaluate([ruleId, stage, checked]).then(() => {
-        setCurrent(undefined);
-        setStage(undefined);
-      });
-    }
-  }
-
-  function handleDialogClose() {
-    setCurrent(undefined);
-  }
-
-  function handleShowEvaluate(rule: Rule, stage: SunnahStage) {
-    setCurrent(rule);
-    setStage(stage);
+  function image(key: string) {
+    const part = sunnahsStages.find((stage) => stage.route.toLowerCase() === key);
+    return part ? part.imageSource : undefined;
   }
 
   function habitSummaryFormat(id: number): string {
@@ -101,21 +89,62 @@ export default function SunnahsProgressScreen() {
     },
   ];
 
+  const routes: any = useMemo(
+    () =>
+      parts.map((item, index) => ({
+        key: item.part,
+        title: `phase${index + 1}`,
+        focusedIcon: `home-floor-${index + 1}`,
+      })),
+    [],
+  );
+
+  useEffect(() => {
+    if (route.params && route.params.rule) {
+      const message = formatMessage(TKeys.MESSAGE_ADDED_SUCCESSFULLY, { name: route.params.rule });
+      displaySnackbar(message, 'success');
+    }
+  }, [route.params]);
+
+  const scenes: Record<string, () => React.JSX.Element> = {};
+  parts.forEach((part, index: number) => {
+    scenes[part.part.toString()] = () => (
+      <SunnahStepProgress
+        key={index}
+        index={index + 1}
+        stage={part.part}
+        items={part.items}
+        summaryFormatter={part.summaryFormatter}
+        descriptionFormatter={part.descriptionFormatter}
+        onAdd={handleAdd}
+      />
+    );
+  });
+
+  const renderScene = BottomNavigation.SceneMap(scenes);
+
   return (
-    <ScrollViewLayout>
-      {parts.map((part, index: number) => (
-        <SunnahStepProgress
-          key={index}
-          index={index + 1}
-          stage={part.part}
-          items={part.items}
-          summaryFormatter={part.summaryFormatter}
-          descriptionFormatter={part.descriptionFormatter}
-          onAdd={handleAdd}
-          onShowEvaluate={handleShowEvaluate}
-        />
-      ))}
-      {current && <EvaluationDialog rule={current} onEvaluate={handleEvaluate} onClose={handleDialogClose} />}
-    </ScrollViewLayout>
+    <BottomNavigation
+      navigationState={{ index, routes }}
+      renderScene={renderScene}
+      activeColor="green"
+      renderLabel={({ route, color }) => (
+        <Text
+          variant="caption"
+          style={{
+            justifyContent: 'center',
+            textAlign: 'center',
+            fontWeight: '900',
+            color,
+          }}
+        >
+          {formatMessage(route.title ? route.title : '')}
+        </Text>
+      )}
+      renderIcon={({ route, focused }) => (
+        <Avatar image={image(route.key)} size={focused ? 40 : 35} style={{ marginTop: -10 }} />
+      )}
+      onIndexChange={setIndex}
+    />
   );
 }

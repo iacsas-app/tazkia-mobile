@@ -248,4 +248,7 @@ export const arabic: Translations = {
   [TKeys.BASMALAH]:
     'بسم الله الرحمن الرحيم والصلاة والسلام على أشرف الأنبياء والمرسلين سيدنا محمد وعلى آله وصحبه أجمعين',
   [TKeys.LEVEL]: 'المستوى {value}',
+
+  [TKeys.MESSAGE_ADDED_SUCCESSFULLY]: 'تمت الإضافة بنجاح',
+  [TKeys.MESSAGE_EVALUATED_SUCCESSFULLY]: 'لقد تم تحديث تقدمك بنجاح',
 };

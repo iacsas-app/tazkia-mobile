@@ -1,4 +1,4 @@
-import { Action, Thunk, action, persist, thunk } from 'easy-peasy';
+import { Action, Computed, Thunk, action, computed, persist, thunk } from 'easy-peasy';
 import ProgressLine from '../../domains/common/ProgressLine';
 import Sunnah from '../../domains/sunnahs/Sunnah';
 import Sunnahs, { SunnahStage } from '../../domains/sunnahs/Sunnahs';
@@ -19,6 +19,8 @@ export interface SunnahsModel {
   //find: Thunk<SunnahsModel, void, Injections>;
   createOrUpdate: Thunk<SunnahsModel, [SunnahStage, Sunnah], Injections>;
   evaluate: Thunk<SunnahsModel, [number, SunnahStage, boolean], Injections>;
+
+  findByIdForStage: Computed<SunnahsModel, (stage: SunnahStage, sunnahId: number) => Sunnah | undefined>;
 }
 
 const sunnahsModel: SunnahsModel = {
@@ -75,6 +77,15 @@ const sunnahsModel: SunnahsModel = {
   }),
   evaluate: thunk(async (actions, payload: [number, SunnahStage, boolean], { injections }) => {
     actions.evaluation(payload);
+  }),
+
+  // Computed
+  findByIdForStage: computed((state) => (stage: SunnahStage, sunnahId: number): Sunnah | undefined => {
+    if (!state.item) {
+      return undefined;
+    }
+    const current = getStageProgress(stage, state.item);
+    return current.find((item) => item.id === sunnahId);
   }),
 };
 

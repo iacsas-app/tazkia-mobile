@@ -197,6 +197,8 @@ export enum TKeys {
   BUTTON_SAVE = 'button.save',
   BUTTON_CLEANING = 'button.cleaning',
   BUTTON_ENLIGHTENMENT = 'button.enlightenment',
+  MESSAGE_ADDED_SUCCESSFULLY = 'message.added-successfully',
+  MESSAGE_EVALUATED_SUCCESSFULLY = 'message.evaluated-successfully',
   MENU_HOME = 'menu.home',
   MENU_PURIFICATION = 'menu.purification',
   MENU_SUNNAHS = 'menu.sunnahs',

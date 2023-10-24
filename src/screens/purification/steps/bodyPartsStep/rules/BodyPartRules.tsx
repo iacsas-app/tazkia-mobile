@@ -3,10 +3,11 @@ import { BodyPartType } from '../../../../../domains/purification/BodyPart';
 import { useStoreActions, useStoreState } from '../../../../../stores/hooks';
 import { PurificationStage } from '../BodyPartsScreen';
 
-import { Avatar, Button, HStack, VStack } from '@react-native-material/core';
+import { Avatar, HStack, VStack } from '@react-native-material/core';
 import { useNavigation } from '@react-navigation/native';
 import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
+import { Button } from 'react-native-paper';
 import Text from '../../../../../components/Text';
 import ScrollViewLayout from '../../../../../components/layout/ScrollViewLayout';
 import SimpleRule from '../../../../../components/rules/SimpleRule';
@@ -72,7 +73,11 @@ export default function BodyPartsRules({ part, step }: BodyPartsRulesProps) {
           <SimpleRule key={index} id={index + 1} item={formatMessage(rule)} />
         ))}
       </VStack>
-      {!progress && <Button title={formatMessage(TKeys.BUTTON_ADD)} style={styles.action} onPress={handlePress} />}
+      {!progress && (
+        <Button style={styles.action} onPress={handlePress}>
+          {formatMessage(TKeys.BUTTON_ADD)}
+        </Button>
+      )}
     </ScrollViewLayout>
   );
 }
