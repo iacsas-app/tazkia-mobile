@@ -15,6 +15,7 @@ import { PurificationStackNavigationProp } from '../../../../navigation/types';
 import { PURIFICATION_MAX_DAYS, isCompleted } from '../../../../services/Helpers';
 import { useStoreActions, useStoreState } from '../../../../stores/hooks';
 import GlobalStyles from '../../../../styles/GlobalStyles';
+import PurificationPrezLayout from '../../common/PurificationPrezLayout';
 
 const levels: MindLevel[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -88,7 +89,8 @@ export default function MindScreen() {
 
   return (
     <ScrollViewLayout>
-      <VStack spacing={4} style={{ ...GlobalStyles.center, paddingBottom: 10 }}>
+      <PurificationPrezLayout summary={TKeys.PURIFICATION_MIND_SUMMARY} body={TKeys.PURIFICATION_MIND_INTRODUCTION} />
+      <VStack spacing={4} style={{ ...GlobalStyles.center, paddingBottom: 10, marginTop: -35 }}>
         {rules.map((rule) => (
           <View key={rule.id}>
             <SummaryRule rule={rule} onAdd={handleAdd} />

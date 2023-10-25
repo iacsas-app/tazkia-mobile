@@ -16,7 +16,7 @@ export default function PurificationScreen() {
   }
 
   return (
-    <Stack style={GlobalStyles.container} items="center" spacing={15}>
+    <Stack style={styles.container} items="center" spacing={25}>
       {parts.map((item: Part, index: number) => (
         <Box key={index} style={styles.part}>
           <PressableStep item={item} />
@@ -27,6 +27,7 @@ export default function PurificationScreen() {
 }
 
 const styles = StyleSheet.create({
+  container: { ...GlobalStyles.container, backgroundColor: '#d5ecf37a' },
   part: {
     width: 250,
     paddingVertical: 10,

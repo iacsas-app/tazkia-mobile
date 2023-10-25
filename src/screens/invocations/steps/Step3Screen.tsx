@@ -12,7 +12,7 @@ export default function Step3Screen() {
   return (
     <ScrollViewLayout>
       <Text variant="body1" style={{ ...styles.title, color: 'orange', fontSize: arabic ? 28 : 20 }}>
-        {formatMessage(TKeys.INVOCATIONS_PART_3_TITLE)}
+        {formatMessage(TKeys.INVOCATION_STEP_3)}
       </Text>
     </ScrollViewLayout>
   );

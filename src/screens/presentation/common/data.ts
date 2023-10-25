@@ -1,0 +1,96 @@
+import { Book } from '../../../domains/presentation/Book';
+import { TKeys } from '../../../locales/constants';
+
+export const booksList: Book[] = [
+  {
+    id: 1,
+    image: require('./../../../../assets/img/presentation/books/altazkia.png'),
+    title: TKeys.BOOK_TITLE_1,
+    summary: TKeys.BOOK_DESC_1,
+    link: '',
+  },
+  {
+    id: 2,
+    image: require('./../../../../assets/img/presentation/books/altahsin.png'),
+    title: TKeys.BOOK_TITLE_2,
+    summary: TKeys.BOOK_DESC_2,
+    link: '',
+  },
+  {
+    id: 3,
+    image: require('./../../../../assets/img/presentation/books/altazkia.png'),
+    title: TKeys.BOOK_TITLE_3,
+    summary: TKeys.BOOK_DESC_3,
+    link: '',
+  },
+  {
+    id: 4,
+    image: require('./../../../../assets/img/presentation/books/alchaikh_alfattah.png'),
+    title: TKeys.BOOK_TITLE_4,
+    summary: TKeys.BOOK_DESC_4,
+    link: '',
+  },
+  {
+    id: 5,
+    image: require('./../../../../assets/img/presentation/books/aldaawa_almohamadiah.png'),
+    title: TKeys.BOOK_TITLE_5,
+    summary: TKeys.BOOK_DESC_5,
+    link: '',
+  },
+  {
+    id: 6,
+    image: require('./../../../../assets/img/presentation/books/tareq_chokr.png'),
+    title: TKeys.BOOK_TITLE_6,
+    summary: TKeys.BOOK_DESC_6,
+    link: '',
+  },
+  {
+    id: 7,
+    image: require('./../../../../assets/img/presentation/books/maqamat_sidikin.png'),
+    title: TKeys.BOOK_TITLE_7,
+    summary: TKeys.BOOK_DESC_7,
+    link: '',
+  },
+  {
+    id: 8,
+    image: require('./../../../../assets/img/presentation/books/hikam_almanan.png'),
+    title: TKeys.BOOK_TITLE_8,
+    summary: TKeys.BOOK_DESC_8,
+    link: '',
+  },
+  {
+    id: 9,
+    image: require('./../../../../assets/img/presentation/books/asrar_alkunuz.png'),
+    title: TKeys.BOOK_TITLE_9,
+    summary: TKeys.BOOK_DESC_9,
+    link: '',
+  },
+  {
+    id: 10,
+    image: require('./../../../../assets/img/presentation/books/safwat_almaarif.png'),
+    title: TKeys.BOOK_TITLE_10,
+    summary: TKeys.BOOK_DESC_10,
+    link: '',
+  },
+  {
+    id: 11,
+    image: require('./../../../../assets/img/presentation/books/ahwal_mokachafa.png'),
+    title: TKeys.BOOK_TITLE_11,
+    summary: TKeys.BOOK_DESC_11,
+    link: '',
+  },
+  {
+    id: 12,
+    image: require('./../../../../assets/img/presentation/books/alfayd_alrahmani.png'),
+    title: TKeys.BOOK_TITLE_12,
+    summary: TKeys.BOOK_DESC_12,
+    link: '',
+  },
+  {
+    id: 13,
+    image: require('./../../../../assets/img/presentation/books/almaarij.png'),
+    title: TKeys.BOOK_TITLE_13,
+    summary: TKeys.BOOK_DESC_13,
+    link: '',
+  },
+];

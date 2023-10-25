@@ -16,6 +16,7 @@ export type PresentationParamList = {
   Center: undefined;
   Cheikh: undefined;
   Approach: undefined;
+  Books: undefined;
 };
 
 export type PurificationParamList = {

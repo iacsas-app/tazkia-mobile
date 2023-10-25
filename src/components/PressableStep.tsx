@@ -3,12 +3,12 @@ import { useNavigation } from '@react-navigation/native';
 import { ImageSourcePropType, StyleSheet } from 'react-native';
 import { useApplication } from '../hooks/use-application';
 import { useMessage } from '../hooks/use-message';
-import { PurificationParamList, SunnahsParamList } from '../navigation/types';
+import { PresentationParamList, PurificationParamList, SunnahsParamList } from '../navigation/types';
 import Text from './Text';
 
 export interface Part {
-  name: string;
-  route: keyof PurificationParamList | keyof SunnahsParamList;
+  name?: string;
+  route: keyof PurificationParamList | keyof SunnahsParamList | keyof PresentationParamList;
   description: string;
   imageSource: ImageSourcePropType;
 }
@@ -29,11 +29,13 @@ export default function PressableStep({ item, nameTextSize, descriptionTextSize 
 
   return (
     <Pressable onPress={handlePress}>
-      <Stack spacing={1} style={styles.container}>
+      <Stack spacing={item.name ? 1 : 8} style={styles.container}>
         <Avatar image={item.imageSource} imageStyle={styles.img} size={90} />
-        <Text variant="body1" style={{ fontSize: nameTextSize ? nameTextSize : arabic ? 17 : 13 }}>
-          {formatMessage(item.name)}
-        </Text>
+        {item.name && (
+          <Text variant="body1" style={{ fontSize: nameTextSize ? nameTextSize : arabic ? 17 : 13 }}>
+            {formatMessage(item.name)}
+          </Text>
+        )}
         <Text
           style={{
             fontWeight: 'bold',
