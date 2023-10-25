@@ -5,7 +5,6 @@ import { TKeys } from '../locales/constants';
 import PurificationProgressScreen from '../screens/purification/PurificationProgressScreen';
 import PurificationScreen from '../screens/purification/PurificationScreen';
 import BodyPartsScreen, { PurificationStage } from '../screens/purification/steps/bodyPartsStep/BodyPartsScreen';
-import BodyPartEvaluationScreen from '../screens/purification/steps/bodyPartsStep/evaluation/BodyPartEvaluationScreen';
 import BodyPartProgressScreen from '../screens/purification/steps/bodyPartsStep/progress/BodyPartProgressScreen';
 import BodyPartsRulesScreen from '../screens/purification/steps/bodyPartsStep/rules/BodyPartRulesScreen';
 import MindScreen from '../screens/purification/steps/mindStep/MindScreen';
@@ -56,11 +55,6 @@ export default function PurificationStack() {
         />
       </Stack.Group>
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen
-          name="BodyPartEvaluation"
-          component={BodyPartEvaluationScreen}
-          options={({ route }) => ({ title: rulesBarTitle(route.params.step) })}
-        />
         <Stack.Screen
           name="Mind"
           component={MindScreen}

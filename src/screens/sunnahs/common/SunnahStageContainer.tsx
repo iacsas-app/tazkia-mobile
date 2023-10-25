@@ -13,6 +13,7 @@ import { SunnahStage } from '../../../domains/sunnahs/Sunnahs';
 import { useApplication } from '../../../hooks/use-application';
 import { useMessage } from '../../../hooks/use-message';
 import { SunnahsStackNavigationProp } from '../../../navigation/types';
+import { SUNNAHS_MAX_DAYS, isCompleted } from '../../../services/Helpers';
 import { useStoreActions, useStoreState } from '../../../stores/hooks';
 import GlobalStyles from '../../../styles/GlobalStyles';
 import SunnahRule from '../common/SunnahRule';
@@ -37,6 +38,7 @@ export default function SunnahStageContainer({ stage, rules }: Props) {
     const actionals = currentRules.actional;
     const current = findByIdForStage(stage, id);
     const inProgress = current !== undefined;
+    const completed = current ? isCompleted(current.progress, SUNNAHS_MAX_DAYS) : false;
 
     return {
       id: Number.parseInt(sunnahId),
@@ -45,7 +47,7 @@ export default function SunnahStageContainer({ stage, rules }: Props) {
       description: <SunnahRule verbals={verbals} actionals={actionals} arabic={arabic} />,
       disabled: inProgress,
       progress: [],
-      status: inProgress ? 'progress' : undefined,
+      status: completed ? 'completed' : inProgress ? 'progress' : undefined,
     };
   }
 

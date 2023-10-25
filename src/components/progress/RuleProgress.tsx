@@ -8,7 +8,6 @@ import Rule from '../../domains/common/Rule';
 import { useApplication } from '../../hooks/use-application';
 import { useMessage } from '../../hooks/use-message';
 import { TKeys } from '../../locales/constants';
-import { isCompleted } from '../../services/Helpers';
 import GlobalStyles from '../../styles/GlobalStyles';
 import Text from '../Text';
 import FailedAttempts from './failedAttempts/FailedAttempts';
@@ -18,10 +17,11 @@ import ProgressStatusInfo from './progressStatus/ProgressStatusInfo';
 interface Props {
   rule: Rule;
   maxDays: number;
+  isCompleted: boolean;
   onEvaluate: (rule: Rule) => void;
 }
 
-export default function RuleProgress({ rule, maxDays, ...props }: Props) {
+export default function RuleProgress({ rule, maxDays, isCompleted, ...props }: Props) {
   const { formatMessage, intl } = useMessage();
   const { width } = useWindowDimensions();
   const { arabic } = useApplication();
@@ -32,7 +32,6 @@ export default function RuleProgress({ rule, maxDays, ...props }: Props) {
     : 0;
   const countProgress = rule.progress ? rule.progress.length - 1 : 0;
   const lastDay = rule.progress ? rule.progress[countProgress] : undefined;
-  const isLastCompleted = isCompleted(rule.progress, maxDays);
 
   function handleCollapse() {
     setShow(!show);
@@ -63,9 +62,11 @@ export default function RuleProgress({ rule, maxDays, ...props }: Props) {
       style={{
         ...styles.box,
         width: width - 40,
-        borderLeftWidth: isLastCompleted ? 8 : 0,
+        borderLeftWidth: isCompleted ? 8 : 0,
+        borderBottomLeftRadius: isCompleted ? 15 : 0,
+        borderBottomRightRadius: isCompleted ? 15 : 0,
         borderColor: '#20b2aa',
-        backgroundColor: isLastCompleted ? '#f5fffa' : '#fffafa',
+        backgroundColor: isCompleted ? '#f5fffa' : '#fffafa',
       }}
     >
       <Pressable onPress={handleOpen} onLongPress={() => setShow(false)}>
@@ -81,7 +82,7 @@ export default function RuleProgress({ rule, maxDays, ...props }: Props) {
                 style={{
                   fontWeight: '900',
                   fontSize: arabic ? 12 : 10,
-                  color: isLastCompleted ? '#20b2aa' : '#ff4500',
+                  color: isCompleted ? '#20b2aa' : '#ff4500',
                 }}
               >
                 {rule.title}
@@ -97,7 +98,7 @@ export default function RuleProgress({ rule, maxDays, ...props }: Props) {
             </HStack>
           </HStack>
           <Box style={{ paddingHorizontal: 10 }}>
-            <ProgressStatus last={lastDay} count={countProgress} maxDays={maxDays} completed={isLastCompleted} />
+            <ProgressStatus last={lastDay} count={countProgress} maxDays={maxDays} completed={isCompleted} />
           </Box>
         </HStack>
         {show && <Box style={{ padding: 15 }}>{rule.description}</Box>}
@@ -135,7 +136,7 @@ export default function RuleProgress({ rule, maxDays, ...props }: Props) {
             )}
             <FailedAttempts attempts={rule.progress.slice(0, -1)} attemptFormatter={formatAttempt} />
           </Box>
-          {!isLastCompleted && (
+          {!isCompleted && (
             <Button mode="contained" onPress={handleEvaluate} uppercase={false}>
               {formatMessage(TKeys.PROGRESS_START_DAILY_EVALUATION)}
             </Button>

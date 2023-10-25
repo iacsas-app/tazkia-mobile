@@ -31,7 +31,7 @@ export default function BodyPartsRules({ part, step }: BodyPartsRulesProps) {
   const { arabic } = useApplication();
   const navigation = useNavigation<PurificationStackNavigationProp>();
   const createOrUpdate = useStoreActions((actions) => actions.purification.createOrUpdate);
-  const findBodyPart = useStoreState((state) => state.purification.findByPartAndStep);
+  const findBodyPart = useStoreState((state) => state.purification.findByPartTypeAndStage);
   let purification: Purification | undefined = useStoreState((state) => state.purification.item);
   const items: string[] = useMemo(() => rules[part][step], []);
 
@@ -74,7 +74,7 @@ export default function BodyPartsRules({ part, step }: BodyPartsRulesProps) {
         ))}
       </VStack>
       {!progress && (
-        <Button style={styles.action} onPress={handlePress}>
+        <Button style={styles.action} mode="elevated" onPress={handlePress}>
           {formatMessage(TKeys.BUTTON_ADD)}
         </Button>
       )}

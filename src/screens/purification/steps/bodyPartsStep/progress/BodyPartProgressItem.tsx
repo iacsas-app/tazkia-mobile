@@ -2,14 +2,14 @@ import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import { Avatar, Box, HStack, VStack } from '@react-native-material/core';
 import { useNavigation } from '@react-navigation/native';
 import { Pressable, StyleSheet } from 'react-native';
+import { MD3Colors, ProgressBar } from 'react-native-paper';
 import Text from '../../../../../components/Text';
 import BodyPart, { BodyPartsOrder } from '../../../../../domains/purification/BodyPart';
 import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';
 import { TKeys } from '../../../../../locales/constants';
 import { PurificationStackNavigationProp } from '../../../../../navigation/types';
-import { PURIFICATION_MAX_DAYS } from '../../../../../services/Helpers';
-import GlobalStyles from '../../../../../styles/GlobalStyles';
+import { PURIFICATION_MAX_DAYS, percentage } from '../../../../../services/Helpers';
 import { findPartProps } from '../common/Helper';
 import ProgressStatus from './ProgressStatus';
 
@@ -35,69 +35,77 @@ export default function BodyPartProgressItem({ value }: ProgressItemProps) {
 
   const fullyCompleted = cleaningCompleted && enlightenmentCompleted;
 
+  const cleanPercent = lastCleaning ? percentage(lastCleaning.day, PURIFICATION_MAX_DAYS) / 100 : 0;
+  const enlightPercent = lastEnlightenment ? percentage(lastEnlightenment.day, PURIFICATION_MAX_DAYS) / 100 : 0;
+
+  const globalPercentage = (cleanPercent + enlightPercent) / 2;
+
   function handlePress() {
     navigation.navigate('BodyPartProgress', { value });
   }
 
   return (
     <Pressable onPress={handlePress}>
-      <HStack
-        spacing={7}
-        style={{
-          ...styles.chip,
-          paddingHorizontal: arabic ? 17 : 7,
-          borderRightWidth: fullyCompleted && arabic ? 10 : 0,
-          borderLeftWidth: fullyCompleted && !arabic ? 10 : 0,
-          minWidth: 160,
-          borderColor: 'green',
-        }}
-      >
-        <VStack style={GlobalStyles.center}>
-          <Avatar size={25} image={findPartProps(value.name)} />
-          <Avatar
-            label={
-              <Text variant="caption" style={styles.numberText}>
-                {BodyPartsOrder[value.name]}
-              </Text>
-            }
-            size={20}
-            color="white"
-            style={styles.numberAvatar}
-          />
-        </VStack>
-        <VStack spacing={5} style={{ alignItems: 'stretch' }}>
-          <Box>
-            <Text variant="body1" style={{ ...styles.partName, fontSize: arabic ? 16 : 13 }}>
+      <VStack>
+        <HStack
+          spacing={10}
+          style={{
+            ...styles.chip,
+            paddingHorizontal: arabic ? 17 : 7,
+            borderRightWidth: fullyCompleted && arabic ? 10 : 0,
+            borderLeftWidth: fullyCompleted && !arabic ? 10 : 0,
+            borderBottomLeftRadius: fullyCompleted ? 15 : 0,
+            borderBottomRightRadius: fullyCompleted ? 15 : 0,
+            minWidth: 180,
+            borderColor: 'green',
+          }}
+        >
+          <VStack style={{ justifyContent: 'flex-start', alignItems: 'center', paddingHorizontal: 10 }}>
+            <Avatar size={55} image={findPartProps(value.name)} />
+            <Avatar
+              label={
+                <Text variant="caption" style={styles.numberText}>
+                  {BodyPartsOrder[value.name]}
+                </Text>
+              }
+              size={20}
+              color="white"
+              style={styles.numberAvatar}
+            />
+          </VStack>
+          <VStack spacing={5} style={{ marginHorizontal: 10 }}>
+            <Text variant="body1" style={{ ...styles.partName, fontSize: arabic ? 17 : 13 }}>
               {formatMessage(`purification.body-parts.${value.name}`)}
             </Text>
-          </Box>
-          <HStack spacing={8}>
-            <VStack spacing={1} style={{ alignItems: 'flex-start' }}>
-              <Box>
-                <ProgressStatus
-                  title={formatMessage(TKeys.BUTTON_CLEANING)}
-                  last={lastCleaning}
-                  count={cleaningCount}
-                  completed={cleaningCompleted}
-                />
-              </Box>
-              <Box>
-                <ProgressStatus
-                  title={formatMessage(TKeys.BUTTON_ENLIGHTENMENT)}
-                  last={lastEnlightenment}
-                  count={enlightenmentCount}
-                  completed={enlightenmentCompleted}
-                />
-              </Box>
-            </VStack>
-            {fullyCompleted && (
-              <Box mt={8}>
-                <Icon name="hand-clap" size={25} color="green" style={{ opacity: 0.7 }} />
-              </Box>
-            )}
-          </HStack>
-        </VStack>
-      </HStack>
+            <HStack spacing={8}>
+              <VStack spacing={1} style={{ alignItems: 'flex-start' }}>
+                <Box>
+                  <ProgressStatus
+                    title={formatMessage(TKeys.BUTTON_CLEANING)}
+                    last={lastCleaning}
+                    count={cleaningCount}
+                    completed={cleaningCompleted}
+                  />
+                </Box>
+                <Box>
+                  <ProgressStatus
+                    title={formatMessage(TKeys.BUTTON_ENLIGHTENMENT)}
+                    last={lastEnlightenment}
+                    count={enlightenmentCount}
+                    completed={enlightenmentCompleted}
+                  />
+                </Box>
+              </VStack>
+              {fullyCompleted && (
+                <Box mt={8}>
+                  <Icon name="hand-clap" size={25} color="green" style={{ opacity: 0.7 }} />
+                </Box>
+              )}
+            </HStack>
+          </VStack>
+        </HStack>
+        {!fullyCompleted && <ProgressBar progress={globalPercentage} color={MD3Colors.primary70} />}
+      </VStack>
     </Pressable>
   );
 }
@@ -107,7 +115,7 @@ const styles = StyleSheet.create({
     height: 75,
     backgroundColor: '#fff',
     marginBottom: 5,
-    paddingTop: 4,
+    paddingVertical: 4,
     paddingBottom: 30,
     borderRadius: 15,
     elevation: 5,

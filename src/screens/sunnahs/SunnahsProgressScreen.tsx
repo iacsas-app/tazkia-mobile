@@ -89,15 +89,7 @@ export default function SunnahsProgressScreen() {
     },
   ];
 
-  const routes: any = useMemo(
-    () =>
-      parts.map((item, index) => ({
-        key: item.part,
-        title: `phase${index + 1}`,
-        focusedIcon: `home-floor-${index + 1}`,
-      })),
-    [],
-  );
+  const routes: any = useMemo(() => parts.map((item, index) => ({ key: item.part, title: `phase${index + 1}` })), []);
 
   useEffect(() => {
     if (route.params && route.params.rule) {
@@ -128,6 +120,11 @@ export default function SunnahsProgressScreen() {
       navigationState={{ index, routes }}
       renderScene={renderScene}
       activeColor="green"
+      barStyle={{
+        backgroundColor: '#c4f5c4',
+        borderTopWidth: 2,
+        borderColor: '#77d777',
+      }}
       renderLabel={({ route, color }) => (
         <Text
           variant="caption"
@@ -135,6 +132,8 @@ export default function SunnahsProgressScreen() {
             justifyContent: 'center',
             textAlign: 'center',
             fontWeight: '900',
+            paddingTop: 2,
+            bottom: -10,
             color,
           }}
         >
@@ -142,7 +141,7 @@ export default function SunnahsProgressScreen() {
         </Text>
       )}
       renderIcon={({ route, focused }) => (
-        <Avatar image={image(route.key)} size={focused ? 40 : 35} style={{ marginTop: -10 }} />
+        <Avatar image={image(route.key)} size={focused ? 80 : 45} style={{ marginTop: -10 }} />
       )}
       onIndexChange={setIndex}
     />

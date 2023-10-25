@@ -3,35 +3,13 @@ import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 import PressableStep, { Part } from '../../components/PressableStep';
 import { useApplication } from '../../hooks/use-application';
-import { TKeys } from '../../locales/constants';
 import GlobalStyles from '../../styles/GlobalStyles';
 import PurificationProgressScreen from './PurificationProgressScreen';
+import { purificationStages } from './common/Helper';
 
 export default function PurificationScreen() {
   const { hasPurificationProgress } = useApplication();
-  const parts: Part[] = useMemo(
-    () => [
-      {
-        route: 'BodyParts',
-        name: TKeys.PHASE_1,
-        description: TKeys.PURIFICATION_BODYPART_TITLE,
-        imageSource: require('./../../../assets/img/purification/step1.png'),
-      },
-      {
-        route: 'Mind',
-        name: TKeys.PHASE_2,
-        description: TKeys.PURIFICATION_MIND_TITLE,
-        imageSource: require('./../../../assets/img/purification/step2.jpg'),
-      },
-      {
-        route: 'Soul',
-        name: TKeys.PHASE_3,
-        description: TKeys.PURIFICATION_SOUL_TITLE,
-        imageSource: require('./../../../assets/img/purification/step3.jpg'),
-      },
-    ],
-    [],
-  );
+  const parts: Part[] = useMemo(() => purificationStages, []);
 
   if (hasPurificationProgress) {
     return <PurificationProgressScreen />;

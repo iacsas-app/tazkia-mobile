@@ -229,4 +229,10 @@ export const french: Translations = {
 
   [TKeys.MESSAGE_ADDED_SUCCESSFULLY]: "L'ajout a été effectué avec succès",
   [TKeys.MESSAGE_EVALUATED_SUCCESSFULLY]: 'Votre progression a été mise à jour avec succès',
+  [TKeys.MESSAGE_EMPTY_LIST]: 'Liste vide',
+  [TKeys.MESSAGE_NO_PROGRESS]: "Il n'y a aucun progrès en cours",
+
+  [TKeys.INVOCATIONS_PART_1_TITLE]: '',
+  [TKeys.INVOCATIONS_PART_2_TITLE]: '',
+  [TKeys.INVOCATIONS_PART_3_TITLE]: '',
 };

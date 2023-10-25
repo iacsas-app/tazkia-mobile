@@ -7,7 +7,7 @@ import Octicons from '@expo/vector-icons/Octicons';
 import { useApplication } from '../hooks/use-application';
 import { useMessage } from '../hooks/use-message';
 import { TKeys } from '../locales/constants';
-import InvocationsScreen from '../screens/invocations';
+import InvocationsScreen from '../screens/invocations/InvocationsScreen';
 import ProgressScreen from '../screens/progress';
 import PresentationStack from './PresentationStack';
 import PurificationStack from './PurificationStack';
@@ -53,6 +53,19 @@ const TabNavigator = () => {
         }}
       />
       <Tab.Screen
+        name="InvocationsTab"
+        component={InvocationsScreen}
+        options={{
+          title: formatMessage(TKeys.MENU_INVOCATIONS),
+          tabBarIcon: ({ size, ...props }) => <MCIcons name="meditation" size={40} {...props} />,
+          tabBarActiveTintColor: '#ff6347',
+          tabBarLabelStyle: {
+            fontSize: menuSize,
+            fontWeight: '700',
+          },
+        }}
+      />
+      <Tab.Screen
         name="SunnahsTab"
         component={SunnahsStack}
         options={{
@@ -66,19 +79,6 @@ const TabNavigator = () => {
             fontSize: menuSize,
             fontWeight: '700',
             width: 150,
-          },
-        }}
-      />
-      <Tab.Screen
-        name="InvocationsTab"
-        component={InvocationsScreen}
-        options={{
-          title: formatMessage(TKeys.MENU_INVOCATIONS),
-          tabBarIcon: ({ size, ...props }) => <MCIcons name="meditation" size={40} {...props} />,
-          tabBarActiveTintColor: '#ff6347',
-          tabBarLabelStyle: {
-            fontSize: menuSize,
-            fontWeight: '700',
           },
         }}
       />

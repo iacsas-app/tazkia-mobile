@@ -29,9 +29,9 @@ export interface PurificationModel {
   findByMind: Computed<PurificationModel, (level: MindLevel) => Mind | undefined>;
   lastMindLevel: Computed<PurificationModel, () => Mind | undefined>;
 
-  findByPartAndStep: Computed<
+  findByPartTypeAndStage: Computed<
     PurificationModel,
-    (part: BodyPartType, step: PurificationStage) => ProgressLine[] | undefined
+    (type: BodyPartType, stage: PurificationStage) => ProgressLine[] | undefined
   >;
   hasBodyPartProgress: Computed<PurificationModel, (part: BodyPartType, step: PurificationStage) => boolean>;
 }
@@ -112,15 +112,18 @@ const purificationModel: PurificationModel = {
     }
     return state.item.bodyParts.find((item) => item.name === part);
   }),
-  findByPartAndStep: computed((state) => (part: BodyPartType, step: PurificationStage): ProgressLine[] | undefined => {
-    if (!state.item) {
-      return undefined;
-    }
-    const result = state.item.bodyParts.find((item) => item.name === part && item[step]?.length !== 0);
-    return isBodyPartStepInProgress(result, step);
-  }),
+  findByPartTypeAndStage: computed(
+    (state) =>
+      (part: BodyPartType, step: PurificationStage): ProgressLine[] | undefined => {
+        if (!state.item) {
+          return undefined;
+        }
+        const result = state.item.bodyParts.find((item) => item.name === part && item[step]?.length !== 0);
+        return isBodyPartStepInProgress(result, step);
+      },
+  ),
   hasBodyPartProgress: computed((state) => (part: BodyPartType, mode: PurificationStage): boolean => {
-    return state.findByPartAndStep(part, mode) !== undefined;
+    return state.findByPartTypeAndStage(part, mode) !== undefined;
   }),
   findByMind: computed((state) => (level: MindLevel): Mind | undefined => {
     if (!state.item) {

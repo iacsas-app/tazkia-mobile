@@ -2,7 +2,6 @@ import { Chip, HStack, Stack, Text } from '@react-native-material/core';
 import { useMemo } from 'react';
 import ProgressContainer from '../../../../../components/progress/ProgressContainer';
 import Soul from '../../../../../domains/purification/Soul';
-import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';
 import { TKeys } from '../../../../../locales/constants';
 import { PurificationParamList } from '../../../../../navigation/types';
@@ -14,7 +13,6 @@ interface SoulProgressProps {
 }
 
 export default function SoulProgress({ items, onAdd }: SoulProgressProps) {
-  const { arabic } = useApplication();
   const { formatMessage } = useMessage();
   const map = useMemo(() => mapByIndex(items), []);
 

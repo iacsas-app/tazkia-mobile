@@ -1,64 +1,46 @@
-import Icon from '@expo/vector-icons/MaterialCommunityIcons';
-import OctIcon from '@expo/vector-icons/Octicons';
-
-import { Box, HStack, IconButton } from '@react-native-material/core';
-import { ReactNode, useState } from 'react';
-import { StyleSheet, useWindowDimensions } from 'react-native';
+import { ReactNode } from 'react';
+import { StyleSheet, View } from 'react-native';
+import { FAB } from 'react-native-paper';
+import { useApplication } from '../../hooks/use-application';
 import GlobalStyles from '../../styles/GlobalStyles';
 import Text from '../Text';
+import ScrollViewLayout from '../layout/ScrollViewLayout';
 
 type StyleVariant = 'orange' | 'blue' | 'green';
 
 interface Props {
   title: string;
-  subtitle?: string;
   children: ReactNode;
-  disabled?: boolean;
-  collapse?: boolean;
+  subtitle?: string;
   variant?: StyleVariant;
+  disableAdd?: boolean;
+  fabLeft?: boolean;
   onAdd: () => void;
 }
-export default function ProgressContainer({ title, subtitle, variant, children, disabled, ...props }: Props) {
-  const { width } = useWindowDimensions();
-  const [collapse, setCollapse] = useState(props.collapse);
-  const color = variant === 'orange' ? styles.orange : variant === 'blue' ? styles.blue : styles.green;
+export default function ProgressContainer({ title, subtitle, variant, children, ...props }: Props) {
+  const { arabic } = useApplication();
   const bgColor =
     variant === 'orange' ? styles.orange_content : variant === 'blue' ? styles.blue_content : styles.green_content;
 
-  function handleCollapse() {
-    setCollapse(!collapse);
-  }
-
   return (
-    <Box style={{ ...styles.container, width: width - 25 }}>
-      <Box h={40} style={{ ...styles.titleBox, ...color }}>
-        <HStack justify="between">
-          <Box>
-            <Text variant="body1" style={styles.title}>
-              {title}
-            </Text>
-            <Text variant="caption" style={styles.subtitle}>
-              {subtitle}
-            </Text>
-          </Box>
-          <HStack>
-            {!disabled && (
-              <IconButton
-                style={styles.plusButton}
-                icon={(_, ...props) => <Icon name="playlist-plus" size={25} {...props} />}
-                onPressIn={props.onAdd}
-              />
-            )}
-            <IconButton
-              style={styles.plusButton}
-              icon={(_, ...props) => <OctIcon name={collapse ? 'chevron-down' : 'chevron-up'} size={25} {...props} />}
-              onPressIn={handleCollapse}
-            />
-          </HStack>
-        </HStack>
-      </Box>
-      {!collapse && <Box style={{ ...styles.content, ...bgColor }}>{children}</Box>}
-    </Box>
+    <View style={{ ...GlobalStyles.center, ...bgColor }}>
+      <ScrollViewLayout>
+        <Text variant="body1" style={{ ...styles.title, color: variant, fontSize: arabic ? 28 : 20 }}>
+          {title}
+        </Text>
+        {children}
+      </ScrollViewLayout>
+      {!props.disableAdd && (
+        <FAB
+          icon="playlist-plus"
+          style={{ ...styles.fab, backgroundColor: variant }}
+          variant="tertiary"
+          color="white"
+          animated
+          onPress={props.onAdd}
+        />
+      )}
+    </View>
   );
 }
 
@@ -72,7 +54,7 @@ const styles = StyleSheet.create({
     marginVertical: 13,
   },
   titleBox: {
-    paddingHorizontal: 15,
+    paddingHorizontal: 10,
     paddingVertical: 4,
     borderBottomWidth: 1,
     elevation: 5,
@@ -81,13 +63,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: 'bold',
-    fontSize: 12,
+    marginBottom: 20,
   },
   subtitle: {
     fontSize: 10,
     marginTop: -3,
   },
-  plusButton: { marginTop: -6, marginHorizontal: -10 },
   content: {
     ...GlobalStyles.center,
     paddingVertical: 10,
@@ -95,6 +76,11 @@ const styles = StyleSheet.create({
     borderBottomEndRadius: 15,
     borderBottomStartRadius: 15,
     borderBottomWidth: 0.1,
+  },
+  fab: {
+    position: 'absolute',
+    bottom: 15,
+    left: 15,
   },
   orange: {
     backgroundColor: '#ffe4e1',

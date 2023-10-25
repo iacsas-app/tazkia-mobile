@@ -23,7 +23,6 @@ export type PurificationParamList = {
   BodyParts: undefined;
   BodyPartsRules: { part: BodyPartType; step: PurificationStage };
   BodyPartProgress: { value: BodyPart };
-  BodyPartEvaluation: { part: BodyPartType; step: PurificationStage };
   PurificationProgress: undefined;
   Mind: undefined;
   Soul: undefined;
@@ -58,11 +57,6 @@ export type BodyPartProgressNavigationProp = CompositeNavigationProp<
   BottomTabNavigationProp<TabParamList>
 >;
 
-export type BodyPartEvaluationNavigationProp = CompositeNavigationProp<
-  NativeStackNavigationProp<PurificationParamList, 'BodyPartEvaluation'>,
-  BottomTabNavigationProp<TabParamList>
->;
-
 export type SunnahsStackNavigationProp = CompositeNavigationProp<
   NativeStackNavigationProp<SunnahsParamList, 'Sunnahs'>,
   BottomTabNavigationProp<TabParamList>
@@ -71,5 +65,4 @@ export type SunnahsStackNavigationProp = CompositeNavigationProp<
 // Route props
 export type BodyPartsRulesScreenRouteProp = RouteProp<PurificationParamList, 'BodyPartsRules'>;
 export type BodyPartProgressScreenRouteProp = RouteProp<PurificationParamList, 'BodyPartProgress'>;
-export type BodyPartEvaluationScreenRouteProp = RouteProp<PurificationParamList, 'BodyPartEvaluation'>;
 export type SunnahsScreenRouteProp = RouteProp<SunnahsParamList, 'Sunnahs'>;

@@ -6,11 +6,9 @@ import { RuleBaseProps } from './types';
 
 export default function SimpleRule({ id, item }: RuleBaseProps) {
   const { arabic } = useApplication();
-  const ml = arabic ? 25 : 5;
-  const mr = arabic ? 5 : 25;
 
   return (
-    <Box style={{ marginLeft: ml, marginRight: mr }}>
+    <Box style={{ marginHorizontal: 25 }}>
       <HStack spacing={10} style={RuleStyles.stack}>
         <Avatar
           label={

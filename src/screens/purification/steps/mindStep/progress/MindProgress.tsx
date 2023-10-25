@@ -1,5 +1,7 @@
 import { Box, Text, VStack } from '@react-native-material/core';
 import { useMemo, useState } from 'react';
+import { MD3Colors, ProgressBar } from 'react-native-paper';
+import EmptyList from '../../../../../components/EmptyList';
 import EvaluationDialog from '../../../../../components/EvaluationDialog';
 import ProgressContainer from '../../../../../components/progress/ProgressContainer';
 import RuleProgress from '../../../../../components/progress/RuleProgress';
@@ -9,7 +11,7 @@ import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';
 import { TKeys } from '../../../../../locales/constants';
 import { PurificationParamList } from '../../../../../navigation/types';
-import { PURIFICATION_MAX_DAYS } from '../../../../../services/Helpers';
+import { PURIFICATION_MAX_DAYS, isCompleted, percentage } from '../../../../../services/Helpers';
 import { useStoreActions } from '../../../../../stores/hooks';
 import { orderMindLevels } from '../Helper';
 
@@ -61,18 +63,33 @@ export default function MindProgress({ items, onAdd }: Props) {
       <ProgressContainer
         title={formatMessage(TKeys.PURIFICATION_MIND_TITLE)}
         subtitle={formatMessage(TKeys.PHASE_2)}
-        variant="orange"
+        variant="blue"
         onAdd={handleAddAction}
       >
         {levels.length === 0 ? (
-          <Text>No progress</Text>
+          <EmptyList />
         ) : (
           <VStack spacing={5}>
-            {levels.map((item: Mind, index) => (
-              <Box key={`mind_${index}`}>
-                <RuleProgress rule={toRule(item)} maxDays={PURIFICATION_MAX_DAYS} onEvaluate={handleShowEvaluate} />
-              </Box>
-            ))}
+            {levels.map((item: Mind, index) => {
+              const completed = isCompleted(item.progress, PURIFICATION_MAX_DAYS);
+              const last = item.progress[item.progress.length - 1];
+              return (
+                <Box key={`mind_${index}`}>
+                  <RuleProgress
+                    rule={toRule(item)}
+                    maxDays={PURIFICATION_MAX_DAYS}
+                    isCompleted={completed}
+                    onEvaluate={handleShowEvaluate}
+                  />
+                  {!completed && (
+                    <ProgressBar
+                      progress={percentage(last.day, PURIFICATION_MAX_DAYS) / 100}
+                      color={MD3Colors.primary70}
+                    />
+                  )}
+                </Box>
+              );
+            })}
           </VStack>
         )}
       </ProgressContainer>

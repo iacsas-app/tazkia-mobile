@@ -26,8 +26,12 @@ export function capitalize(str: string) {
  * @returns
  */
 export function progressPercentage(day: number, maxDays: number): string {
-  const precision = day < 3 ? 1 : 2;
-  return `${((day * 100) / maxDays).toPrecision(precision)}%`;
+  const result = percentage(day, maxDays);
+  return `${result.toPrecision(day === 0 ? 1 : 2)}%`;
+}
+
+export function percentage(day: number, maxDays: number): number {
+  return (day * 100) / maxDays;
 }
 
 export function isCompleted(progress: ProgressLine[] | undefined, maxDays: number) {

@@ -1,6 +1,7 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
-import { Avatar, Box, HStack, Pressable } from '@react-native-material/core';
+import { Avatar, HStack, Pressable } from '@react-native-material/core';
 import { useState } from 'react';
+import { useWindowDimensions } from 'react-native';
 import { useApplication } from '../../hooks/use-application';
 import Text from '../Text';
 import { RuleStyles } from './Styles';
@@ -14,9 +15,10 @@ interface RuleProps extends RuleBaseProps {
 export default function CheckableRule({ id, item, ...props }: RuleProps) {
   const [checked, setChecked] = useState(false);
   const { arabic } = useApplication();
+  const { width } = useWindowDimensions();
 
-  const ml = arabic ? 25 : 5;
-  const mr = arabic ? 5 : 25;
+  const paddingRight = arabic ? 50 : 15;
+  const paddingLeft = arabic ? 15 : 50;
 
   function handlePress() {
     checked ? props.onUnselect(id) : props.onSelect(id);
@@ -31,26 +33,24 @@ export default function CheckableRule({ id, item, ...props }: RuleProps) {
         backgroundColor: checked ? '#ffb6c1' : 'white',
       }}
     >
-      <Box style={{ marginLeft: ml, marginRight: mr }}>
-        <HStack spacing={10} style={RuleStyles.stack}>
-          <Avatar
-            label={
-              checked ? undefined : (
-                <Text variant="subtitle2" color="white">
-                  {id}
-                </Text>
-              )
-            }
-            size={25}
-            color={checked ? 'error' : '#228b22'}
-            tintColor="white"
-            icon={(props) => <Icon name="check-bold" {...props} />}
-          />
-          <Text variant="body1" style={{ ...RuleStyles.text, fontSize: arabic ? 13 : 12 }}>
-            {item}
-          </Text>
-        </HStack>
-      </Box>
+      <HStack spacing={10} style={{ ...RuleStyles.stack, paddingLeft, paddingRight }}>
+        <Avatar
+          label={
+            checked ? undefined : (
+              <Text variant="subtitle2" color="white">
+                {id}
+              </Text>
+            )
+          }
+          size={25}
+          color={checked ? 'error' : '#228b22'}
+          tintColor="white"
+          icon={(props) => <Icon name="check-bold" {...props} />}
+        />
+        <Text variant="body1" style={{ ...RuleStyles.text, fontSize: arabic ? 13 : 12 }}>
+          {item}
+        </Text>
+      </HStack>
     </Pressable>
   );
 }

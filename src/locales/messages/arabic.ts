@@ -251,4 +251,9 @@ export const arabic: Translations = {
 
   [TKeys.MESSAGE_ADDED_SUCCESSFULLY]: 'تمت الإضافة بنجاح',
   [TKeys.MESSAGE_EVALUATED_SUCCESSFULLY]: 'لقد تم تحديث تقدمك بنجاح',
+  [TKeys.MESSAGE_EMPTY_LIST]: 'قائمة فارغة',
+  [TKeys.MESSAGE_NO_PROGRESS]: 'لا يوجد تقدم',
+  [TKeys.INVOCATIONS_PART_1_TITLE]: 'الأذكار المصاحبة لتزكية الجوارح',
+  [TKeys.INVOCATIONS_PART_2_TITLE]: 'الأذكار المصاحبة لتزكية العقل',
+  [TKeys.INVOCATIONS_PART_3_TITLE]: 'الأذكار المصاحبة لتزكية النفس',
 };

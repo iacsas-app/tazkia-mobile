@@ -20,7 +20,7 @@ export function ProgressStatus({ last, count, maxDays, completed }: Props) {
   const failed = last.failedAttempts ? last.failedAttempts : 0;
 
   return (
-    <HStack spacing={1} style={GlobalStyles.center}>
+    <HStack spacing={3} style={GlobalStyles.center}>
       {!completed && (
         <Box>
           <RepeatCount count={count} />

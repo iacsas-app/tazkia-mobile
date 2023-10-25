@@ -198,6 +198,8 @@ export enum TKeys {
   BUTTON_CLEANING = 'button.cleaning',
   BUTTON_ENLIGHTENMENT = 'button.enlightenment',
   MESSAGE_ADDED_SUCCESSFULLY = 'message.added-successfully',
+  MESSAGE_EMPTY_LIST = 'message.empty-list',
+  MESSAGE_NO_PROGRESS = 'message.no-progress',
   MESSAGE_EVALUATED_SUCCESSFULLY = 'message.evaluated-successfully',
   MENU_HOME = 'menu.home',
   MENU_PURIFICATION = 'menu.purification',
@@ -218,4 +220,7 @@ export enum TKeys {
   PROGRESS_START_DAILY_EVALUATION = 'progress.start-daily-evaluation',
   PROGRESS_EVALUATION_MESSAGE = 'progress.daily-evaluation.message',
   PROGRESS_EVALUATION_QUESTION = 'progress.evaluation.question',
+  INVOCATIONS_PART_1_TITLE = 'invocations.part.1.title',
+  INVOCATIONS_PART_2_TITLE = 'invocations.part.2.title',
+  INVOCATIONS_PART_3_TITLE = 'invocations.part.3.title',
 }

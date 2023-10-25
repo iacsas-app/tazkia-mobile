@@ -280,4 +280,10 @@ export const indonesian: Translations = {
 
   [TKeys.MESSAGE_ADDED_SUCCESSFULLY]: 'Penambahan berhasil diselesaikan',
   [TKeys.MESSAGE_EVALUATED_SUCCESSFULLY]: 'Kemajuan Anda telah berhasil diperbarui',
+  [TKeys.MESSAGE_EMPTY_LIST]: 'daftar kosong',
+  [TKeys.MESSAGE_NO_PROGRESS]: 'Tidak ada kemajuan yang dicapai',
+
+  [TKeys.INVOCATIONS_PART_1_TITLE]: '',
+  [TKeys.INVOCATIONS_PART_2_TITLE]: '',
+  [TKeys.INVOCATIONS_PART_3_TITLE]: '',
 };
