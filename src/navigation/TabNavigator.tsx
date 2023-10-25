@@ -8,7 +8,7 @@ import { useApplication } from '../hooks/use-application';
 import { useMessage } from '../hooks/use-message';
 import { TKeys } from '../locales/constants';
 import InvocationsScreen from '../screens/invocations';
-import ProgressScreen from '../screens/progress';
+import ProgressScreen from '../screens/purification/progress';
 import PresentationStack from './PresentationStack';
 import PurificationStack from './PurificationStack';
 import SunnahsStack from './SunnahsStack';

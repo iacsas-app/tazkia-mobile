@@ -174,14 +174,259 @@ export const french: Translations = {
 
   // Sunnah habit 3
   [TKeys.SUNNAHS_HABITS_3_TITLE]: '',
+  [TKeys.SUNNAHS_HABITS_3_VERBAL_RULE_1]: '',
 
   // Sunnah habit 4
   [TKeys.SUNNAHS_HABITS_4_TITLE]: '',
+  [TKeys.SUNNAHS_HABITS_4_VERBAL_RULE_1]: '',
 
   // Sunnah habit 5
   [TKeys.SUNNAHS_HABITS_5_TITLE]: '',
   [TKeys.SUNNAHS_HABITS_5_VERBAL_RULE_1]: '',
   [TKeys.SUNNAHS_HABITS_5_ACTIONAL_RULE_1]: '',
+
+  
+// Sunnah habit 6
+[TKeys.SUNNAHS_HABITS_6_TITLE]: '',
+  [TKeys.SUNNAHS_HABITS_6_VERBAL_RULE_1]: '',
+
+// Sunnah habit 7
+[TKeys.SUNNAHS_HABITS_7_TITLE]: '',
+[TKeys.SUNNAHS_HABITS_7_VERBAL_RULE_1]: '',
+[TKeys.SUNNAHS_HABITS_7_VERBAL_RULE_2]: '',
+[TKeys.SUNNAHS_HABITS_7_VERBAL_RULE_3]: '',
+[TKeys.SUNNAHS_HABITS_7_ACTIONAL_RULE_1]: '',
+
+
+// Sunnah habit 8
+[TKeys.SUNNAHS_HABITS_8_TITLE]: '',
+[TKeys.SUNNAHS_HABITS_8_VERBAL_RULE_1]: '',
+[TKeys.SUNNAHS_HABITS_8_ACTIONAL_RULE_1]: '',
+
+// Sunnah habit 9
+
+[TKeys.SUNNAHS_HABITS_9_TITLE]: '',
+[TKeys.SUNNAHS_HABITS_9_VERBAL_RULE_1]: '',
+[TKeys.SUNNAHS_HABITS_9_ACTIONAL_RULE_1]: '',
+[TKeys.SUNNAHS_HABITS_9_ACTIONAL_RULE_2]: '',
+[TKeys.SUNNAHS_HABITS_9_ACTIONAL_RULE_3]: '',
+
+
+// Sunnah habit 10
+[TKeys.SUNNAHS_HABITS_10_TITLE]: '',
+[TKeys.SUNNAHS_HABITS_10_VERBAL_RULE_1]: '',
+[TKeys.SUNNAHS_HABITS_10_ACTIONAL_RULE_1]: '',
+
+
+// Sunnah habit 11
+[TKeys.SUNNAHS_HABITS_11_TITLE]: '',
+[TKeys.SUNNAHS_HABITS_11_VERBAL_RULE_1]: '',
+[TKeys.SUNNAHS_HABITS_11_ACTIONAL_RULE_1]: '',
+
+
+// Sunnah habit 12
+[TKeys.SUNNAHS_HABITS_12_TITLE]: '',
+[TKeys.SUNNAHS_HABITS_12_VERBAL_RULE_1]: '',
+[TKeys.SUNNAHS_HABITS_12_ACTIONAL_RULE_1]: '',
+
+// Sunnah habit 13
+[TKeys.SUNNAHS_HABITS_13_TITLE]: '',
+[TKeys.SUNNAHS_HABITS_13_VERBAL_RULE_1]: '',
+[TKeys.SUNNAHS_HABITS_13_ACTIONAL_RULE_1]: '',
+
+
+// Sunnah habit 14
+[TKeys.SUNNAHS_HABITS_14_TITLE]: '',
+[TKeys.SUNNAHS_HABITS_14_VERBAL_RULE_1]: '',
+[TKeys.SUNNAHS_HABITS_14_ACTIONAL_RULE_1]: '',
+
+
+
+
+[TKeys.SUNNAHS_worship_INTRODUCTION]: '',
+  [TKeys.SUNNAHS_worship_1_TITLE]: '',
+  [TKeys.SUNNAHS_worship_1_VERBAL_RULE_1]: '',
+  [TKeys.SUNNAHS_worship_1_VERBAL_RULE_2]: '',
+  [TKeys.SUNNAHS_worship_1_VERBAL_RULE_3]: '',
+  [TKeys.SUNNAHS_worship_1_VERBAL_RULE_4]: '',
+  [TKeys.SUNNAHS_worship_1_VERBAL_RULE_5]: '',
+  [TKeys.SUNNAHS_worship_1_VERBAL_RULE_6]: '',
+  [TKeys.SUNNAHS_worship_1_VERBAL_RULE_7]: '',
+  [TKeys.SUNNAHS_worship_1_VERBAL_RULE_8]: '',
+  [TKeys.SUNNAHS_worship_1_ACTIONAL_RULE_1]: '',
+
+
+  // Sunnah worship 2
+[TKeys.SUNNAHS_worship_2_TITLE]: '',
+[TKeys.SUNNAHS_worship_2_VERBAL_RULE_1]: '',
+
+
+
+ // Sunnah worship 3
+ [TKeys.SUNNAHS_worship_3_TITLE]: '',
+ [TKeys.SUNNAHS_worship_3_VERBAL_RULE_1]: '',
+ 
+// Sunnah worship 4
+[TKeys.SUNNAHS_worship_4_TITLE]: '',
+[TKeys.SUNNAHS_worship_4_VERBAL_RULE_1]: '',
+[TKeys.SUNNAHS_worship_4_VERBAL_RULE_2]: '',
+[TKeys.SUNNAHS_worship_4_ACTIONAL_RULE_1]: '',
+
+
+
+ // Sunnah worship 5
+ [TKeys.SUNNAHS_worship_5_TITLE]: '',
+ [TKeys.SUNNAHS_worship_5_VERBAL_RULE_1]: '',
+ [TKeys.SUNNAHS_worship_5_ACTIONAL_RULE_1]: '',
+
+// Sunnah worship 6
+[TKeys.SUNNAHS_worship_6_TITLE]: '',
+[TKeys.SUNNAHS_worship_6_VERBAL_RULE_1]: '',
+
+
+// Sunnah worship 7
+[TKeys.SUNNAHS_worship_7_TITLE]: '',
+[TKeys.SUNNAHS_worship_7_ACTIONAL_RULE_1]: '',
+[TKeys.SUNNAHS_worship_7_ACTIONAL_RULE_2]: '',
+[TKeys.SUNNAHS_worship_7_ACTIONAL_RULE_3]: '',
+[TKeys.SUNNAHS_worship_7_ACTIONAL_RULE_4]: '',
+[TKeys.SUNNAHS_worship_7_ACTIONAL_RULE_5]: '',
+
+
+// Sunnah worship 8
+[TKeys.SUNNAHS_worship_8_TITLE]: '',
+[TKeys.SUNNAHS_worship_8_VERBAL_RULE_1]: '',
+[TKeys.SUNNAHS_worship_8_VERBAL_RULE_2]: '',
+[TKeys.SUNNAHS_worship_8_VERBAL_RULE_3]: '',
+[TKeys.SUNNAHS_worship_8_VERBAL_RULE_4]: '',
+[TKeys.SUNNAHS_worship_8_VERBAL_RULE_5]: '',
+[TKeys.SUNNAHS_worship_8_VERBAL_RULE_6]: '',
+
+// Sunnah worship 9
+[TKeys.SUNNAHS_worship_9_TITLE]: '',
+[TKeys.SUNNAHS_worship_9_VERBAL_RULE_1]: '',
+
+
+// Sunnah worship 10
+[TKeys.SUNNAHS_worship_10_TITLE]: '',
+[TKeys.SUNNAHS_worship_10_VERBAL_RULE_1]: '',
+
+
+// Sunnah worship 11
+[TKeys.SUNNAHS_worship_11_TITLE]: '',
+[TKeys.SUNNAHS_worship_11_VERBAL_RULE_1]: '',
+
+
+
+// Sunnah worship 12
+[TKeys.SUNNAHS_worship_12_TITLE]: '',
+[TKeys.SUNNAHS_worship_12_VERBAL_RULE_1]: '',
+
+
+
+// Sunnah worship 13
+[TKeys.SUNNAHS_worship_13_TITLE]: '',
+[TKeys.SUNNAHS_worship_13_VERBAL_RULE_1]: '',
+
+// Sunnah worship 14
+[TKeys.SUNNAHS_worship_14_TITLE]: '',
+[TKeys.SUNNAHS_worship_14_VERBAL_RULE_1]: '',
+
+
+[TKeys.SUNNAHS_truths_INTRODUCTION]: '',
+  [TKeys.SUNNAHS_truths_1_TITLE]: '',
+  [TKeys.SUNNAHS_truths_1_ACTIONAL_RULE_1]: '',
+
+
+// Sunnah truths 2
+[TKeys.SUNNAHS_truths_2_TITLE]: '',
+[TKeys.SUNNAHS_truths_2_ACTIONAL_RULE_1]: '',
+
+
+// Sunnah truths 3
+[TKeys.SUNNAHS_truths_3_TITLE]: '',
+[TKeys.SUNNAHS_truths_3_ACTIONAL_RULE_1]: '',
+
+
+// Sunnah truths 4
+[TKeys.SUNNAHS_truths_4_TITLE]: '',
+[TKeys.SUNNAHS_truths_4_ACTIONAL_RULE_1]: '',
+
+// Sunnah truths 5
+[TKeys.SUNNAHS_truths_5_TITLE]: '',
+[TKeys.SUNNAHS_truths_5_ACTIONAL_RULE_1]: '',
+[TKeys.SUNNAHS_truths_5_ACTIONAL_RULE_2]: '',
+[TKeys.SUNNAHS_truths_5_ACTIONAL_RULE_3]: '',
+[TKeys.SUNNAHS_truths_5_ACTIONAL_RULE_4]: '',
+
+
+
+// Sunnah truths 6
+[TKeys.SUNNAHS_truths_6_TITLE]: '',
+[TKeys.SUNNAHS_truths_6_ACTIONAL_RULE_1]: '',
+[TKeys.SUNNAHS_truths_6_ACTIONAL_RULE_2]: '',
+[TKeys.SUNNAHS_truths_6_ACTIONAL_RULE_3]: '',
+[TKeys.SUNNAHS_truths_6_ACTIONAL_RULE_4]: '',
+
+
+
+// Sunnah truths 7
+[TKeys.SUNNAHS_truths_7_TITLE]: '',
+[TKeys.SUNNAHS_truths_7_ACTIONAL_RULE_1]: '',
+[TKeys.SUNNAHS_truths_7_ACTIONAL_RULE_2]: '',
+[TKeys.SUNNAHS_truths_7_ACTIONAL_RULE_3]: '',
+[TKeys.SUNNAHS_truths_7_ACTIONAL_RULE_4]: '',
+[TKeys.SUNNAHS_truths_7_ACTIONAL_RULE_5]: '',
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   // MENUS
   [TKeys.MENU_SETTINGS]: 'Paramétrages',
