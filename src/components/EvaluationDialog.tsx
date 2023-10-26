@@ -43,7 +43,7 @@ export default function EvaluationDialog({ rule, ...props }: Props) {
     <Portal>
       <Modal visible={true} onDismiss={props.onClose} contentContainerStyle={containerStyle}>
         <VStack spacing={20} pt={20} style={GlobalStyles.center}>
-          <Text color={color} variant="h6" style={styles.question}>
+          <Text color="black" variant="h6" style={styles.question}>
             {formatMessage(TKeys.PROGRESS_EVALUATION_QUESTION)}
           </Text>
           <Box style={{ paddingHorizontal }}>{rule.description}</Box>
