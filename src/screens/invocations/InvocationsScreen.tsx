@@ -1,9 +1,7 @@
 import { useMemo, useState } from 'react';
 import { BottomNavigation } from 'react-native-paper';
-import { Part } from '../../components/PressableStep';
 import Text from '../../components/Text';
 import { useMessage } from '../../hooks/use-message';
-import { purificationStages } from '../purification/common/Helper';
 import Step1Screen from './steps/Step1Screen';
 import Step2Screen from './steps/Step2Screen';
 import Step3Screen from './steps/Step3Screen';
@@ -11,13 +9,6 @@ import Step3Screen from './steps/Step3Screen';
 export default function InvocationsScreen() {
   const { formatMessage } = useMessage();
   const [index, setIndex] = useState(0);
-
-  const parts: Part[] = useMemo(() => purificationStages, []);
-
-  function image(key: string) {
-    const part = parts.find((stage) => stage.route.toLowerCase() === key.toLowerCase());
-    return part ? part.imageSource : undefined;
-  }
 
   const routes = useMemo(
     () => [
@@ -38,7 +29,7 @@ export default function InvocationsScreen() {
     <BottomNavigation
       navigationState={{ index, routes }}
       renderScene={renderScene}
-      activeColor="orange"
+      activeColor="#ff6347"
       barStyle={{
         backgroundColor: '#f3ead0',
         borderTopWidth: 2,

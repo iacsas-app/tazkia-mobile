@@ -403,7 +403,8 @@ export enum TKeys {
   INVOCATION_STEP_2 = 'invocation.step.2',
   INVOCATION_STEP_3 = 'invocation.step.3',
 
-  INVOCATION_STEP_1_RULE_1 = 'invocation.step.1.rule.1',
+  INVOCATION_STEP_1_RULE_1_SUMMARY = 'invocation.step.1.rule.1.summary',
+  INVOCATION_STEP_1_RULE_1_BODY = 'invocation.step.1.rule.1.body',
   INVOCATION_STEP_1_RULE_1_DESC = 'invocation.step.1.rule.1.desc',
   INVOCATION_STEP_1_RULE_2 = 'invocation.step.1.rule.2',
   INVOCATION_STEP_1_RULE_2_DESC = 'invocation.step.1.rule.2.desc',
@@ -417,7 +418,8 @@ export enum TKeys {
 
   INVOCATION_STEP_2_RULE_1 = 'invocation.step.2.rule.1',
   INVOCATION_STEP_2_RULE_1_DESC = 'invocation.step.2.rule.1.desc',
-  INVOCATION_STEP_2_RULE_2 = 'invocation.step.2.rule.2',
+  INVOCATION_STEP_2_RULE_2_SUMMARY = 'invocation.step.2.rule.2.summary',
+  INVOCATION_STEP_2_RULE_2_BODY = 'invocation.step.2.rule.2.body',
   INVOCATION_STEP_2_RULE_2_DESC = 'invocation.step.2.rule.2.desc',
   INVOCATION_STEP_2_RULE_3 = 'invocation.step.2.rule.3',
   INVOCATION_STEP_2_RULE_3_DESC = 'invocation.step.2.rule.3.desc',
@@ -428,7 +430,8 @@ export enum TKeys {
   INVOCATION_STEP_2_RULE_2_CROYANCE_2 = 'invocation.step.2.rule.2.croyance.2',
   INVOCATION_STEP_2_RULE_2_CROYANCE_3 = 'invocation.step.2.rule.2.croyance.3',
 
-  INVOCATION_STEP_3_RULE_1 = 'invocation.step.3.rule.1',
+  INVOCATION_STEP_3_RULE_1_SUMMARY = 'invocation.step.3.rule.1.summary',
+  INVOCATION_STEP_3_RULE_1_BODY = 'invocation.step.3.rule.1.body',
   INVOCATION_STEP_3_RULE_1_DESC = 'invocation.step.3.rule.1.desc',
   INVOCATION_STEP_3_RULE_2 = 'invocation.step.3.rule.2',
   INVOCATION_STEP_3_RULE_2_DESC = 'invocation.step.3.rule.2.desc',

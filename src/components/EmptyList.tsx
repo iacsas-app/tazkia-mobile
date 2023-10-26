@@ -1,5 +1,5 @@
 import { Box, VStack } from '@react-native-material/core';
-import { Avatar } from 'react-native-paper';
+import { Image, useWindowDimensions } from 'react-native';
 import { useMessage } from '../hooks/use-message';
 import { TKeys } from '../locales/constants';
 import GlobalStyles from '../styles/GlobalStyles';
@@ -7,13 +7,16 @@ import Text from './Text';
 
 export default function EmptyList() {
   const { formatMessage } = useMessage();
+  const { width } = useWindowDimensions();
 
   return (
     <VStack style={GlobalStyles.container} spacing={20} mt={30}>
-      <Avatar.Image
-        size={200}
+      <Image
         source={require('../../assets/img/empty.png')}
-        style={{ backgroundColor: 'transparent' }}
+        style={{
+          width: width - 130,
+          height: width - 120,
+        }}
       />
       <Box style={GlobalStyles.center}>
         <Text variant="h4">{formatMessage(TKeys.MESSAGE_EMPTY_LIST)}</Text>

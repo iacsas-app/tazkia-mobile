@@ -28,12 +28,13 @@ export default function SoulScreen() {
           <List.Section
             title={formatMessage(`purification.soul.${part}.title`)}
             style={{ width: width }}
-            titleStyle={{ fontSize: 20, fontWeight: '900' }}
+            titleStyle={{ fontSize: 20, fontWeight: '900', color: 'blue' }}
           >
             {levels.map((level, index) => (
               <List.Accordion
                 key={`${part}_${index}`}
                 title={formatMessage(TKeys.LEVEL, { value: index + 1 })}
+                titleStyle={{ fontWeight: '700', fontSize: 17 }}
                 id={part}
               >
                 <List.Section title={''} style={{ width: width - 10, paddingHorizontal: 15 }}>
