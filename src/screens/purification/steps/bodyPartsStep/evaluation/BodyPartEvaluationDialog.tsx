@@ -62,7 +62,7 @@ export default function BodyPartEvaluationDialog({ type, stage, onSave }: Props)
             </Box>
           ))}
         </VStack>
-        <Button style={styles.action} mode="contained" onPress={handleSave}>
+        <Button style={styles.action} mode="contained" buttonColor="green" onPress={handleSave}>
           {formatMessage(TKeys.BUTTON_SAVE)}
         </Button>
       </ScrollViewLayout>

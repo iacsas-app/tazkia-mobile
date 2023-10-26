@@ -29,13 +29,13 @@ export default function Step1Screen() {
             {formatMessage(TKeys.INVOCATION_STEP_1_RULE_1_DESC)}
           </Text>
           <VStack spacing={15}>
-            <Text style={{ textAlign: 'justify', fontSize: 14, fontWeight: '700', color: 'orange' }}>
+            <Text style={{ textAlign: 'justify', fontSize: 14, fontWeight: '700', color: '#ff6347' }}>
               {formatMessage(TKeys.INVOCATION_STEP_1_RULE_1_CROYANCE_1)}
             </Text>
-            <Text style={{ textAlign: 'justify', fontSize: 14, fontWeight: '700', color: 'orange' }}>
+            <Text style={{ textAlign: 'justify', fontSize: 14, fontWeight: '700', color: '#ff6347' }}>
               {formatMessage(TKeys.INVOCATION_STEP_1_RULE_1_CROYANCE_2)}
             </Text>
-            <Text style={{ textAlign: 'justify', fontSize: 14, fontWeight: '700', color: 'orange' }}>
+            <Text style={{ textAlign: 'justify', fontSize: 14, fontWeight: '700', color: '#ff6347' }}>
               {formatMessage(TKeys.INVOCATION_STEP_1_RULE_1_CROYANCE_3)}
             </Text>
           </VStack>

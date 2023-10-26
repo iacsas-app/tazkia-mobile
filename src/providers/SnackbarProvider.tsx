@@ -97,6 +97,7 @@ export default function SnackbarProvider({ children }: PropsWithChildren<unknown
           style={{ backgroundColor: backgroundColor(state.variant) }}
           elevation={5}
           onDismiss={onDismiss}
+          duration={500}
         >
           <HStack style={{ alignContent: 'center', justifyContent: 'space-between' }}>
             <Text variant="h6" color="white">

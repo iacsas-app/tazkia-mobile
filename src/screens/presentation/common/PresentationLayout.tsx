@@ -18,14 +18,14 @@ export default function PresentationLayout(props: Props) {
 
   return (
     <BasePresentationLayout>
-      <VStack spacing={25}>
+      <VStack spacing={20}>
         {props.source && (
           <Box>
             <ImageLayout source={props.source} />
           </Box>
         )}
         <Box>
-          <Text variant="h4">{formatMessage(props.title)}</Text>
+          <Text style={{ fontSize: 20, fontWeight: '700' }}>{formatMessage(props.title)}</Text>
           <Text style={{ ...styles.description, fontSize: arabic ? 18 : 15 }}>{formatMessage(props.description)}</Text>
         </Box>
       </VStack>

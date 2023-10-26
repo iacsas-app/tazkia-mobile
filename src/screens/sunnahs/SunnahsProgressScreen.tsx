@@ -3,7 +3,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { ReactNode, useEffect, useMemo, useState } from 'react';
 import { BottomNavigation } from 'react-native-paper';
 import Text from '../../components/Text';
-import Sunnah from '../../domains/sunnahs/Sunnah';
+import Sunnah, { SunnahType } from '../../domains/sunnahs/Sunnah';
 import { useApplication } from '../../hooks/use-application';
 import { useMessage } from '../../hooks/use-message';
 import { TKeys } from '../../locales/constants';
@@ -41,27 +41,31 @@ export default function SunnahsProgressScreen() {
   }
 
   function habitDescriptionFormat(sunnah: Sunnah): ReactNode {
-    const rules = habitsRules[sunnah.id];
+    return descriptionFormat(habitsRules, sunnah);
+  }
+
+  function worshipSummaryFormat(id: number): string {
+    return formatMessage(`sunnahs.worship.${id}.title`);
+  }
+
+  function worshipDescriptionFormat(sunnah: Sunnah): ReactNode {
+    return descriptionFormat(habitsRules, sunnah);
+  }
+
+  function truthsSummaryFormat(id: number): string {
+    return formatMessage(`sunnahs.truths.${id}.title`);
+  }
+
+  function truthsDescriptionFormat(sunnah: Sunnah): ReactNode {
+    return descriptionFormat(habitsRules, sunnah);
+  }
+
+  function descriptionFormat(records: Record<number, Record<SunnahType, string[]>>, sunnah: Sunnah): ReactNode {
+    const rules = records[sunnah.id];
     const verbals = rules.verbal;
     const actionals = rules.actional;
 
     return <SunnahRule verbals={verbals} actionals={actionals} arabic={arabic} />;
-  }
-
-  function worshipSummaryFormat(id: number): string {
-    return 'worship summary';
-  }
-
-  function worshipDescriptionFormat(): ReactNode {
-    return <Text>worship description</Text>;
-  }
-
-  function truthsSummaryFormat(id: number): string {
-    return 'truths summary';
-  }
-
-  function truthsDescriptionFormat(sunnah: Sunnah): ReactNode {
-    return <Text>truths description</Text>;
   }
 
   if (!sunnahs) {

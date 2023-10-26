@@ -74,7 +74,7 @@ export default function BodyPartsRules({ part, step }: BodyPartsRulesProps) {
         ))}
       </VStack>
       {!progress && (
-        <Button style={styles.action} mode="elevated" onPress={handlePress}>
+        <Button style={styles.action} mode="contained" buttonColor="green" onPress={handlePress}>
           {formatMessage(TKeys.BUTTON_ADD)}
         </Button>
       )}

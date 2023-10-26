@@ -31,7 +31,7 @@ export default function MoreMenu(props: MoreMenuProps) {
   }
 
   return (
-    <Box style={{ marginRight: 8 }}>
+    <Box style={{ marginRight: 4 }}>
       <Menu
         visible={visible}
         onDismiss={hideMenu}

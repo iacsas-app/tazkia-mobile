@@ -97,7 +97,7 @@ export default function ProgressStatusContainer(props: Props) {
               <Icon name="check-decagram" size={50} color="green" />
             </Box>
           ) : (
-            <Button mode="contained-tonal" onPress={props.onEvaluate} uppercase={false}>
+            <Button mode="contained" buttonColor="green" onPress={props.onEvaluate} uppercase={false}>
               {formatMessage(TKeys.PROGRESS_START_DAILY_EVALUATION)}
             </Button>
           )}

@@ -18,7 +18,7 @@ interface Props {
 export default function LanguageSetting({ open, color, borderRadius }: Props) {
   const { formatMessage } = useMessage();
   const [show, setShow] = useState(open === true);
-  const { locale, arabic } = useApplication();
+  const { locale } = useApplication();
   const languageKey = localesTranslation[locale];
   const { width } = useWindowDimensions();
 
@@ -56,10 +56,10 @@ export default function LanguageSetting({ open, color, borderRadius }: Props) {
             <HStack spacing={17}>
               <Avatar image={languageFlags[locale]} size={40} />
               <VStack>
-                <Text color={color} variant="subtitle1" style={{ fontWeight: 'bold' }}>
+                <Text color="black" variant="subtitle1" style={{ fontWeight: 'bold' }}>
                   {formatMessage(TKeys.SETTINGS_LANGUAGE)}
                 </Text>
-                <Text color={color} variant="subtitle1">
+                <Text color="black" variant="subtitle1">
                   {formatMessage(`language.${languageKey.key}`)}
                 </Text>
               </VStack>
@@ -67,7 +67,7 @@ export default function LanguageSetting({ open, color, borderRadius }: Props) {
           </Pressable>
         </VStack>
       </Box>
-      {show && <LanguageSelector flags={languageFlags} color={color} />}
+      {show && <LanguageSelector flags={languageFlags} color="black" />}
     </View>
   );
 }

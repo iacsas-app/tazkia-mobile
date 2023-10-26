@@ -4,11 +4,9 @@ import * as React from 'react';
 import FontAwesome5Brands from '@expo/vector-icons/FontAwesome5';
 import MCIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import Octicons from '@expo/vector-icons/Octicons';
-import { useApplication } from '../hooks/use-application';
 import { useMessage } from '../hooks/use-message';
 import { TKeys } from '../locales/constants';
 import InvocationsScreen from '../screens/invocations/InvocationsScreen';
-import ProgressScreen from '../screens/progress';
 import PresentationStack from './PresentationStack';
 import PurificationStack from './PurificationStack';
 import SunnahsStack from './SunnahsStack';
@@ -18,14 +16,13 @@ const Tab = createBottomTabNavigator<TabParamList>();
 
 const TabNavigator = () => {
   const { formatMessage } = useMessage();
-  const { hasProgress } = useApplication();
   const menuSize = 11;
 
   return (
     <Tab.Navigator initialRouteName="HomeTab">
       <Tab.Screen
         name="HomeTab"
-        component={hasProgress ? ProgressScreen : PresentationStack}
+        component={PresentationStack}
         options={{
           title: formatMessage(TKeys.MENU_HOME),
           headerShown: false,
