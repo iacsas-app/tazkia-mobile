@@ -1,10 +1,9 @@
-import Icon from '@expo/vector-icons/MaterialCommunityIcons';
-
-import { HStack, VStack } from '@react-native-material/core';
+import { Box, HStack, VStack } from '@react-native-material/core';
+import { useWindowDimensions } from 'react-native';
+import { Divider } from 'react-native-paper';
 import Text from '../../../components/Text';
 import { useMessage } from '../../../hooks/use-message';
 import { TKeys } from '../../../locales/constants';
-import GlobalStyles from '../../../styles/GlobalStyles';
 
 interface Props {
   verbals: string[];
@@ -13,35 +12,33 @@ interface Props {
 }
 export default function SunnahRule(props: Props) {
   const { formatMessage } = useMessage();
+  const { width } = useWindowDimensions();
+
+  function format(type: TKeys, items: string[]) {
+    const count = items.length;
+    if (count === 0) {
+      return <></>;
+    }
+    return (
+      <VStack spacing={5} style={{ width: width - 80 }}>
+        <Text style={{ fontSize: 15, fontWeight: '700', color: 'green' }}>{formatMessage(type)} :</Text>
+        {items.map((ruleKey, index) => (
+          <VStack spacing={3}>
+            <HStack key={ruleKey} spacing={10} style={{ alignContent: 'flex-start' }}>
+              {count > 1 && <Text style={{ fontSize: 15, fontWeight: '900', color: 'green' }}>{index + 1}</Text>}
+              <Text style={{ fontSize: 15, textAlign: 'justify' }}>{formatMessage(ruleKey)}</Text>
+            </HStack>
+            {index < count - 1 && <Divider />}
+          </VStack>
+        ))}
+      </VStack>
+    );
+  }
 
   return (
-    <VStack style={{ paddingHorizontal: 5 }} spacing={5}>
-      {props.verbals.length !== 0 && (
-        <VStack spacing={5}>
-          <Text style={{ fontSize: 15, fontWeight: '700', color: 'green' }}>
-            {formatMessage(TKeys.SUNNAHS_TYPE_VERBAL)} :{' '}
-          </Text>
-          {props.verbals.map((ruleKey) => (
-            <HStack key={ruleKey} spacing={5} style={GlobalStyles.centerAlign}>
-              <Icon name={`chevron-double-${props.arabic ? 'left' : 'right'}`} size={18} color="#008000" />
-              <Text style={{ fontSize: 13 }}>{formatMessage(ruleKey)}</Text>
-            </HStack>
-          ))}
-        </VStack>
-      )}
-      {props.actionals.length !== 0 && (
-        <VStack spacing={5} mt={15}>
-          <Text style={{ fontSize: 15, fontWeight: '700', color: 'green' }}>
-            {formatMessage(TKeys.SUNNAHS_TYPE_ACTIONAL)} :{' '}
-          </Text>
-          {props.actionals.map((ruleKey) => (
-            <HStack key={ruleKey} spacing={5} style={GlobalStyles.centerAlign}>
-              <Icon name={`chevron-double-${props.arabic ? 'left' : 'right'}`} size={18} color="#008000" />
-              <Text style={{ fontSize: 13 }}>{formatMessage(ruleKey)}</Text>
-            </HStack>
-          ))}
-        </VStack>
-      )}
+    <VStack style={{ paddingHorizontal: 3 }} spacing={20}>
+      <Box>{format(TKeys.SUNNAHS_TYPE_VERBAL, props.verbals)}</Box>
+      <Box>{format(TKeys.SUNNAHS_TYPE_ACTIONAL, props.actionals)}</Box>
     </VStack>
   );
 }

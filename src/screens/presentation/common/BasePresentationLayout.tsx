@@ -14,6 +14,6 @@ export default function BasePresentationLayout({ children }: PropsWithChildren) 
 const styles = StyleSheet.create({
   container: {
     ...GlobalStyles.container,
-    paddingHorizontal: 10,
+    paddingHorizontal: 8,
   },
 });

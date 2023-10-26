@@ -67,9 +67,7 @@ export default function PurificationProgressScreen() {
           {formatMessage(route.title ? route.title : '')}
         </Text>
       )}
-      renderIcon={({ route, focused }) => (
-        <Avatar image={image(route.key)} size={focused ? 80 : 45} style={{ marginTop: -10 }} />
-      )}
+      renderIcon={({ route }) => <Avatar image={image(route.key)} size={50} style={{ marginTop: -10 }} />}
       onIndexChange={setIndex}
     />
   );

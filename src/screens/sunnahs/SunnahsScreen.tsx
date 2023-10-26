@@ -50,7 +50,7 @@ export default function SunnahsScreen() {
             {formatMessage(TKeys.SUNNAHS_INTRODUTION)}
           </Text>
         </VStack>
-        <Stack style={GlobalStyles.container} items="center" spacing={27}>
+        <Stack style={GlobalStyles.container} items="center" spacing={27} mt={15}>
           {parts.map((item: Part, index: number) => (
             <Box key={index} style={{ ...styles.part, width: width - 140 }}>
               <PressableStep item={item} nameTextSize={17} descriptionTextSize={arabic ? 20 : 12} />
@@ -67,6 +67,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#b3f1d5',
     elevation: 6,
     borderRadius: 15,
-    paddingBottom: 5,
+    paddingBottom: 8,
   },
 });

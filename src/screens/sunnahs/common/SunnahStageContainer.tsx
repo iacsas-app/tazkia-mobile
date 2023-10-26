@@ -12,6 +12,7 @@ import Sunnah, { SunnahType } from '../../../domains/sunnahs/Sunnah';
 import { SunnahStage } from '../../../domains/sunnahs/Sunnahs';
 import { useApplication } from '../../../hooks/use-application';
 import { useMessage } from '../../../hooks/use-message';
+import { TKeys } from '../../../locales/constants';
 import { SunnahsStackNavigationProp } from '../../../navigation/types';
 import { SUNNAHS_MAX_DAYS, isCompleted } from '../../../services/Helpers';
 import { useStoreActions, useStoreState } from '../../../stores/hooks';
@@ -67,17 +68,28 @@ export default function SunnahStageContainer({ stage, rules }: Props) {
         }}
       >
         <Box>
-          <Text
-            style={{
-              marginBottom: 20,
-              fontSize: arabic ? 14 : 13,
-              fontWeight: arabic ? '600' : 'normal',
-              textAlign: 'justify',
-            }}
-          >
-            {formatMessage(`sunnahs.${stage}.introduction`)}
-          </Text>
-
+          <Box ph={7}>
+            <Text
+              style={{
+                paddingVertical: 15,
+                fontSize: arabic ? 15 : 12,
+                fontWeight: '900',
+                textAlign: arabic ? 'justify' : 'auto',
+              }}
+            >
+              {formatMessage(TKeys.BASMALAH)}
+            </Text>
+            <Text
+              style={{
+                marginBottom: 15,
+                fontSize: arabic ? 14 : 13,
+                fontWeight: arabic ? '600' : 'normal',
+                textAlign: 'justify',
+              }}
+            >
+              {formatMessage(`sunnahs.${stage}.introduction`)}
+            </Text>
+          </Box>
           <VStack spacing={4} style={{ ...GlobalStyles.center, paddingBottom: 10 }}>
             {data.map((rule) => (
               <View key={rule.id}>
