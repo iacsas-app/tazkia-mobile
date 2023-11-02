@@ -1,6 +1,8 @@
 import { Box, VStack } from '@react-native-material/core';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 
+import { Modal } from 'react-native-paper';
+import Text from '../../../../../components/Text';
 import ProgressContainer from '../../../../../components/progress/ProgressContainer';
 import BodyPart from '../../../../../domains/purification/BodyPart';
 import { useMessage } from '../../../../../hooks/use-message';
@@ -14,6 +16,7 @@ interface BodyPartsProgressProps {
 }
 export default function BodyPartsProgress({ items, onAdd }: BodyPartsProgressProps) {
   const { formatMessage } = useMessage();
+  const [showModal, setShowModal] = useState(false);
 
   const allInProgress = useMemo(
     () => items.length === 7 && items.every((item: BodyPart) => item.cleaning && item.enlightenment),
@@ -21,7 +24,8 @@ export default function BodyPartsProgress({ items, onAdd }: BodyPartsProgressPro
   );
 
   function handleAddAction() {
-    onAdd('BodyParts');
+    //onAdd('BodyParts');
+    setShowModal(true);
   }
 
   return (
@@ -39,6 +43,9 @@ export default function BodyPartsProgress({ items, onAdd }: BodyPartsProgressPro
           </Box>
         ))}
       </VStack>
+      <Modal visible={showModal} contentContainerStyle={{ backgroundColor: 'white', padding: 20 }}>
+        <Text>test</Text>
+      </Modal>
     </ProgressContainer>
   );
 }
