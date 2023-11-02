@@ -340,7 +340,7 @@ export const arabic: Translations = {
   [TKeys.SUNNAHS_truths_7_ACTIONAL_RULE_4]: '4. أن أخدم الدين كما يفعل سيدنا محمد الله بالدعوة إلى الله تعال. ',
   [TKeys.SUNNAHS_truths_7_ACTIONAL_RULE_5]: '5 أن أطيع الله تعالى ممتثلا لما أمرنا به سيدنا محمد ومنتهيا عما نهانا عنه.',
 
-
+// tahcine
 
 
 

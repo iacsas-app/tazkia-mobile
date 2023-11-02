@@ -12,5 +12,6 @@ export default function ProgressScreen(): ReactElement {
     <View style={GlobalStyles.container}>
       <Text variant="h5">My global progress and statistics</Text>
     </View>
+    
   );
 }

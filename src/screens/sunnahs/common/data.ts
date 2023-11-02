@@ -1,7 +1,7 @@
 import { SunnahType } from '../../../domains/sunnahs/Sunnah';
 import { TKeys } from '../../../locales/constants';
 
-export const habitsRules: Record<number, Record<SunnahType, string[]>> = {
+export const habitsRules: Record<number, Record<SunnahType,string[]>> = {
   1: {
     verbal: [
       TKeys.SUNNAHS_HABITS_1_VERBAL_RULE_1,
