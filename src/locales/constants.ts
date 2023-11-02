@@ -184,56 +184,50 @@ export enum TKeys {
 
   SUNNAHS_HABITS_4_TITLE = 'sunnahs.habits.4.title',
   SUNNAHS_HABITS_4_VERBAL_RULE_1 = 'sunnahs.habits.4.verbal.rule1',
-  
 
-   SUNNAHS_HABITS_5_TITLE ='sunnahs.habits.5.title',
+  SUNNAHS_HABITS_5_TITLE = 'sunnahs.habits.5.title',
   SUNNAHS_HABITS_5_VERBAL_RULE_1 = 'sunnahs.habits.5.verbal.rule1',
   SUNNAHS_HABITS_5_ACTIONAL_RULE_1 = 'sunnahs.habits.5.actional.rule1',
 
-  SUNNAHS_HABITS_6_TITLE ='sunnahs.habits.6.title',
+  SUNNAHS_HABITS_6_TITLE = 'sunnahs.habits.6.title',
   SUNNAHS_HABITS_6_VERBAL_RULE_1 = 'sunnahs.habits.6.verbal.rule1',
   SUNNAHS_HABITS_6_ACTIONAL_RULE_1 = 'sunnahs.habits.6.actional.rule1',
 
-  
-  SUNNAHS_HABITS_7_TITLE ='sunnahs.habits.7.title',
+  SUNNAHS_HABITS_7_TITLE = 'sunnahs.habits.7.title',
   SUNNAHS_HABITS_7_VERBAL_RULE_1 = 'sunnahs.habits.7.verbal.rule1',
   SUNNAHS_HABITS_7_VERBAL_RULE_2 = 'sunnahs.habits.7.verbal.rule2',
   SUNNAHS_HABITS_7_VERBAL_RULE_3 = 'sunnahs.habits.7.verbal.rule3',
   SUNNAHS_HABITS_7_ACTIONAL_RULE_1 = 'sunnahs.habits.7.actional.rule1',
 
-  SUNNAHS_HABITS_8_TITLE ='sunnahs.habits.8.title',
+  SUNNAHS_HABITS_8_TITLE = 'sunnahs.habits.8.title',
   SUNNAHS_HABITS_8_VERBAL_RULE_1 = 'sunnahs.habits.8.verbal.rule1',
   SUNNAHS_HABITS_8_ACTIONAL_RULE_1 = 'sunnahs.habits.8.actional.rule1',
 
-  SUNNAHS_HABITS_9_TITLE ='sunnahs.habits.9.title',
+  SUNNAHS_HABITS_9_TITLE = 'sunnahs.habits.9.title',
   SUNNAHS_HABITS_9_VERBAL_RULE_1 = 'sunnahs.habits.9.verbal.rule1',
   SUNNAHS_HABITS_9_ACTIONAL_RULE_1 = 'sunnahs.habits.9.actional.rule1',
   SUNNAHS_HABITS_9_ACTIONAL_RULE_2 = 'sunnahs.habits.9.actional.rule2',
   SUNNAHS_HABITS_9_ACTIONAL_RULE_3 = 'sunnahs.habits.9.actional.rule3',
 
-  SUNNAHS_HABITS_10_TITLE ='sunnahs.habits.10.title',
+  SUNNAHS_HABITS_10_TITLE = 'sunnahs.habits.10.title',
   SUNNAHS_HABITS_10_VERBAL_RULE_1 = 'sunnahs.habits.10.verbal.rule1',
   SUNNAHS_HABITS_10_ACTIONAL_RULE_1 = 'sunnahs.habits.10.actional.rule1',
 
-  SUNNAHS_HABITS_11_TITLE ='sunnahs.habits.11.title',
+  SUNNAHS_HABITS_11_TITLE = 'sunnahs.habits.11.title',
   SUNNAHS_HABITS_11_VERBAL_RULE_1 = 'sunnahs.habits.11.verbal.rule1',
   SUNNAHS_HABITS_11_ACTIONAL_RULE_1 = 'sunnahs.habits.11.actional.rule1',
 
-  SUNNAHS_HABITS_12_TITLE ='sunnahs.habits.12.title',
+  SUNNAHS_HABITS_12_TITLE = 'sunnahs.habits.12.title',
   SUNNAHS_HABITS_12_VERBAL_RULE_1 = 'sunnahs.habits.12.verbal.rule1',
   SUNNAHS_HABITS_12_ACTIONAL_RULE_1 = 'sunnahs.habits.12.actional.rule1',
 
-  SUNNAHS_HABITS_13_TITLE ='sunnahs.habits.13.title',
+  SUNNAHS_HABITS_13_TITLE = 'sunnahs.habits.13.title',
   SUNNAHS_HABITS_13_VERBAL_RULE_1 = 'sunnahs.habits.13.verbal.rule1',
   SUNNAHS_HABITS_13_ACTIONAL_RULE_1 = 'sunnahs.habits.13.actional.rule1',
 
-  SUNNAHS_HABITS_14_TITLE ='sunnahs.habits.14.title',
+  SUNNAHS_HABITS_14_TITLE = 'sunnahs.habits.14.title',
   SUNNAHS_HABITS_14_VERBAL_RULE_1 = 'sunnahs.habits.14.verbal.rule1',
   SUNNAHS_HABITS_14_ACTIONAL_RULE_1 = 'sunnahs.habits.14.actional.rule1',
-
-
-  
-
 
   // worship sunnahs
   SUNNAHS_worship_INTRODUCTION = 'sunnahs.worship.introduction',
@@ -272,8 +266,6 @@ export enum TKeys {
   SUNNAHS_worship_7_ACTIONAL_RULE_3 = 'sunnahs.worship.7.actional.rule3',
   SUNNAHS_worship_7_ACTIONAL_RULE_4 = 'sunnahs.worship.7.actional.rule4',
   SUNNAHS_worship_7_ACTIONAL_RULE_5 = 'sunnahs.worship.7.actional.rule5',
-  
-
 
   SUNNAHS_worship_8_TITLE = 'sunnahs.worship.8.title',
   SUNNAHS_worship_8_VERBAL_RULE_1 = 'sunnahs.worship.8.verbal.rule1',
@@ -301,46 +293,40 @@ export enum TKeys {
   SUNNAHS_worship_14_TITLE = 'sunnahs.worship.14.title',
   SUNNAHS_worship_14_VERBAL_RULE_1 = 'sunnahs.worship.14.verbal.rule1',
 
+  //  truths sunnahs
 
- //  truths sunnahs
+  SUNNAHS_truths_INTRODUCTION = 'sunnahs.truths.introduction',
+  SUNNAHS_truths_1_TITLE = 'sunnahs.truth.1.title',
+  SUNNAHS_truths_1_ACTIONAL_RULE_1 = 'sunnahs.truths.1.actional.rule1',
 
- SUNNAHS_truths_INTRODUCTION = 'sunnahs.truths.introduction',
- SUNNAHS_truths_1_TITLE = 'sunnahs.truth.1.title',
- SUNNAHS_truths_1_ACTIONAL_RULE_1 = 'sunnahs.truths.1.actional.rule1',
+  SUNNAHS_truths_2_TITLE = 'sunnahs.truth.2.title',
+  SUNNAHS_truths_2_ACTIONAL_RULE_1 = 'sunnahs.truths.2.actional.rule1',
 
- SUNNAHS_truths_2_TITLE = 'sunnahs.truth.2.title',
- SUNNAHS_truths_2_ACTIONAL_RULE_1 = 'sunnahs.truths.2.actional.rule1',
+  SUNNAHS_truths_3_TITLE = 'sunnahs.truth.3.title',
+  SUNNAHS_truths_3_ACTIONAL_RULE_1 = 'sunnahs.truths.3.actional.rule1',
 
- SUNNAHS_truths_3_TITLE = 'sunnahs.truth.3.title',
- SUNNAHS_truths_3_ACTIONAL_RULE_1 = 'sunnahs.truths.3.actional.rule1',
+  SUNNAHS_truths_4_TITLE = 'sunnahs.truth.4.title',
+  SUNNAHS_truths_4_ACTIONAL_RULE_1 = 'sunnahs.truths.4.actional.rule1',
 
- SUNNAHS_truths_4_TITLE = 'sunnahs.truth.4.title',
- SUNNAHS_truths_4_ACTIONAL_RULE_1 = 'sunnahs.truths.4.actional.rule1',
+  SUNNAHS_truths_5_TITLE = 'sunnahs.truth.5.title',
+  SUNNAHS_truths_5_ACTIONAL_RULE_1 = 'sunnahs.truths.5.actional.rule1',
+  SUNNAHS_truths_5_ACTIONAL_RULE_2 = 'sunnahs.truths.5.actional.rule2',
+  SUNNAHS_truths_5_ACTIONAL_RULE_3 = 'sunnahs.truths.5.actional.rule3',
+  SUNNAHS_truths_5_ACTIONAL_RULE_4 = 'sunnahs.truths.5.actional.rule4',
 
+  SUNNAHS_truths_6_TITLE = 'sunnahs.truth.6.title',
+  SUNNAHS_truths_6_ACTIONAL_RULE_1 = 'sunnahs.truths.6.actional.rule1',
+  SUNNAHS_truths_6_ACTIONAL_RULE_2 = 'sunnahs.truths.6.actional.rule2',
+  SUNNAHS_truths_6_ACTIONAL_RULE_3 = 'sunnahs.truths.6.actional.rule3',
+  SUNNAHS_truths_6_ACTIONAL_RULE_4 = 'sunnahs.truths.6.actional.rule4',
 
- SUNNAHS_truths_5_TITLE = 'sunnahs.truth.5.title',
- SUNNAHS_truths_5_ACTIONAL_RULE_1 = 'sunnahs.truths.5.actional.rule1',
- SUNNAHS_truths_5_ACTIONAL_RULE_2 = 'sunnahs.truths.5.actional.rule2',
- SUNNAHS_truths_5_ACTIONAL_RULE_3 = 'sunnahs.truths.5.actional.rule3',
- SUNNAHS_truths_5_ACTIONAL_RULE_4 = 'sunnahs.truths.5.actional.rule4',
+  SUNNAHS_truths_7_TITLE = 'sunnahs.truth.7.title',
+  SUNNAHS_truths_7_ACTIONAL_RULE_1 = 'sunnahs.truths.7.actional.rule1',
+  SUNNAHS_truths_7_ACTIONAL_RULE_2 = 'sunnahs.truths.7.actional.rule2',
+  SUNNAHS_truths_7_ACTIONAL_RULE_3 = 'sunnahs.truths.7.actional.rule3',
+  SUNNAHS_truths_7_ACTIONAL_RULE_4 = 'sunnahs.truths.7.actional.rule4',
+  SUNNAHS_truths_7_ACTIONAL_RULE_5 = 'sunnahs.truths.7.actional.rule5',
 
-
- SUNNAHS_truths_6_TITLE = 'sunnahs.truth.6.title',
- SUNNAHS_truths_6_ACTIONAL_RULE_1 = 'sunnahs.truths.6.actional.rule1',
- SUNNAHS_truths_6_ACTIONAL_RULE_2 = 'sunnahs.truths.6.actional.rule2',
- SUNNAHS_truths_6_ACTIONAL_RULE_3 = 'sunnahs.truths.6.actional.rule3',
- SUNNAHS_truths_6_ACTIONAL_RULE_4 = 'sunnahs.truths.6.actional.rule4',
- 
-
- SUNNAHS_truths_7_TITLE = 'sunnahs.truth.7.title',
- SUNNAHS_truths_7_ACTIONAL_RULE_1 = 'sunnahs.truths.7.actional.rule1',
- SUNNAHS_truths_7_ACTIONAL_RULE_2 = 'sunnahs.truths.7.actional.rule2',
- SUNNAHS_truths_7_ACTIONAL_RULE_3 = 'sunnahs.truths.7.actional.rule3',
- SUNNAHS_truths_7_ACTIONAL_RULE_4 = 'sunnahs.truths.7.actional.rule4',
- SUNNAHS_truths_7_ACTIONAL_RULE_5 = 'sunnahs.truths.7.actional.rule5',
-
-
-  
   LANGUAGE_ARABIC = 'language.arabic',
   LANGUAGE_FRENCH = 'language.french',
   LANGUAGE_ENGLISH = 'language.english',
@@ -371,4 +357,10 @@ export enum TKeys {
   PROGRESS_START_DAILY_EVALUATION = 'progress.start-daily-evaluation',
   PROGRESS_EVALUATION_MESSAGE = 'progress.daily-evaluation.message',
   PROGRESS_EVALUATION_QUESTION = 'progress.evaluation.question',
+
+  IMMUNIZATION_COMMON_1 = 'immunization.common.1',
+  IMMUNIZATION_MORNING_1 = 'immunization.morning.1',
+  IMMUNIZATION_MORNING_2 = 'immunization.morning.2',
+  IMMUNIZATION_EVENING_1 = 'immunization.evening.1',
+  IMMUNIZATION_EVENING_2 = 'immunization.evening.2',
 }
