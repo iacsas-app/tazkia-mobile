@@ -1,6 +1,6 @@
 import { Avatar, Pressable, Stack } from '@react-native-material/core';
 import { useNavigation } from '@react-navigation/native';
-import { ImageSourcePropType, StyleSheet } from 'react-native';
+import { ImageSourcePropType, PixelRatio, StyleSheet } from 'react-native';
 import { useApplication } from '../hooks/use-application';
 import { useMessage } from '../hooks/use-message';
 import { PresentationParamList, PurificationParamList, SunnahsParamList } from '../navigation/types';
@@ -23,6 +23,9 @@ export default function PressableStep({ item, nameTextSize, descriptionTextSize 
   const { arabic } = useApplication();
   const navigation = useNavigation<any>();
 
+  const fontScale = PixelRatio.getFontScale();
+  const getFontSize = (size: number) => size / fontScale;
+
   function handlePress() {
     navigation.navigate(item.route as any);
   }
@@ -32,14 +35,14 @@ export default function PressableStep({ item, nameTextSize, descriptionTextSize 
       <Stack spacing={item.name ? 1 : 8} style={styles.container}>
         <Avatar image={item.imageSource} imageStyle={styles.img} size={90} />
         {item.name && (
-          <Text variant="body1" style={{ fontSize: nameTextSize ? nameTextSize : arabic ? 17 : 13 }}>
+          <Text variant="body1" style={{ fontSize: getFontSize(nameTextSize ? nameTextSize : arabic ? 17 : 13) }}>
             {formatMessage(item.name)}
           </Text>
         )}
         <Text
           style={{
             fontWeight: 'bold',
-            fontSize: descriptionTextSize ? descriptionTextSize : arabic ? 19 : 14,
+            fontSize: getFontSize(descriptionTextSize ? descriptionTextSize : arabic ? 15 : 13),
             justifyContent: 'center',
             textAlign: 'center',
           }}
