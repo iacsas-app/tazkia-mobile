@@ -65,7 +65,7 @@ const DrawerNavigator = () => {
         component={PurificationScreen}
         options={{
           headerTitle: (_) => <Header />,
-          headerRight: () => <MoreMenu size={10} color="black" />,
+          headerRight: () => <MoreMenu size={30} color="black" />,
         }}
       />
     </Drawer.Navigator>

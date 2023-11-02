@@ -1,29 +1,25 @@
-import { Action, action, persist } from 'easy-peasy';
-import { storageEngine } from '../storage-engine';
+import { Action, action } from 'easy-peasy';
 
 export interface GlobalModel {
-  firstVisit: boolean;
+  firstVisitDate: number | undefined | null;
   arabic: boolean; // Text orientation
 
   // Actions
   setArabicOrientation: Action<GlobalModel, boolean>;
-  setFirstVisit: Action<GlobalModel, boolean>;
+  setFirstVisitDate: Action<GlobalModel, number | undefined | null>;
 }
 
 const globalModel: GlobalModel = {
-  firstVisit: true,
+  firstVisitDate: undefined,
   arabic: false,
 
   // Actions
   setArabicOrientation: action((state, payload: boolean) => {
     state.arabic = payload;
   }),
-  setFirstVisit: action((state, payload: boolean) => {
-    state.firstVisit = payload;
+  setFirstVisitDate: action((state, payload: number | undefined | null) => {
+    state.firstVisitDate = payload;
   }),
 };
 
-export default persist(globalModel, {
-  storage: storageEngine,
-  allow: ['firstVisit', 'arabic'],
-});
+export default globalModel;

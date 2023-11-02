@@ -1,10 +1,14 @@
 import { useStoreRehydrated } from 'easy-peasy';
 import { PropsWithChildren, useEffect } from 'react';
 import { RawIntlProvider, createIntl, createIntlCache } from 'react-intl';
-import { I18nManager } from 'react-native';
+import { ActivityIndicator, MD2Colors } from 'react-native-paper';
+import CenteredBox from '../components/CenteredBox';
 import { useApplication } from '../hooks/use-application';
+import { LOCALE_KEY } from '../locales/types';
 import FirstVisitScreen from '../screens/FirstVisitScreen';
-import { useStoreState } from '../stores/hooks';
+import { FIRST_VISIT_DATE } from '../services/Helpers';
+import { useStoreActions, useStoreState } from '../stores/hooks';
+import { storageEngine } from '../stores/storage-engine';
 
 function WaitForStateRehydration({ children }: PropsWithChildren<unknown>) {
   const isRehydrated = useStoreRehydrated();
@@ -12,22 +16,35 @@ function WaitForStateRehydration({ children }: PropsWithChildren<unknown>) {
 }
 
 export default function IntlProvider({ children }: PropsWithChildren<unknown>) {
+  const { locale, defaultLang } = useApplication();
   const messages = useStoreState((state) => state.intl.messages);
-  const { firstVisit, locale, setLocale } = useApplication();
+  const firstVisitDate = useStoreState((state) => state.global.firstVisitDate);
+  const update = useStoreActions((actions) => actions.intl.update);
+  const setFirstVisitDate = useStoreActions((actions) => actions.global.setFirstVisitDate);
+
+  useEffect(() => {
+    if (!locale) {
+      storageEngine.getItem(LOCALE_KEY).then((lang) => update(lang ? lang : defaultLang));
+    }
+    if (firstVisitDate === undefined) {
+      storageEngine.getItem(FIRST_VISIT_DATE).then((date) => setFirstVisitDate(date));
+    }
+  }, [locale, firstVisitDate]);
+
+  if (firstVisitDate === undefined || !locale) {
+    return (
+      <CenteredBox>
+        <ActivityIndicator animating={true} size={100} color={MD2Colors.green400} />
+      </CenteredBox>
+    );
+  }
 
   const cache = createIntlCache();
   const intl = createIntl({ locale, messages: messages as any }, cache);
 
-  useEffect(() => {
-    setLocale(locale);
-    const isAr = locale === 'ar';
-    I18nManager.allowRTL(isAr);
-    I18nManager.forceRTL(isAr);
-  }, [locale]);
-
   return (
     <WaitForStateRehydration>
-      <RawIntlProvider value={intl}>{firstVisit ? <FirstVisitScreen /> : children}</RawIntlProvider>
+      <RawIntlProvider value={intl}>{firstVisitDate === null ? <FirstVisitScreen /> : children}</RawIntlProvider>
     </WaitForStateRehydration>
   );
 }

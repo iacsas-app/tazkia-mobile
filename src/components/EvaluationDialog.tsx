@@ -19,12 +19,11 @@ interface Props {
 
 export default function EvaluationDialog({ rule, ...props }: Props) {
   const { formatMessage } = useMessage();
-  const { arabic, isDarkMode } = useApplication();
+  const { arabic } = useApplication();
   const insets = useSafeAreaInsets();
   const paddingHorizontal = useMemo(() => Math.max(1, insets.left + insets.right), []);
 
   const btnTextSize = arabic ? 18 : 16;
-  const color = isDarkMode ? 'white' : 'black';
   const containerStyle = { backgroundColor: 'white', padding: 20 };
 
   function handleYesPress() {
@@ -53,12 +52,12 @@ export default function EvaluationDialog({ rule, ...props }: Props) {
               style={styles.btn}
               uppercase={false}
               textColor="#66cdaa"
-              icon={() => <Icon name="thumb-up-outline" size={btnTextSize} color={color} {...props} />}
+              icon={() => <Icon name="thumb-up-outline" size={btnTextSize} color="black" {...props} />}
               compact
               dark
               onPress={handleYesPress}
             >
-              <Text color={color} style={{ fontSize: btnTextSize, fontWeight: '900' }}>
+              <Text color="black" style={{ fontSize: btnTextSize, fontWeight: '900' }}>
                 {formatMessage(TKeys.BUTTON_YES)}
               </Text>
             </Button>
@@ -67,12 +66,12 @@ export default function EvaluationDialog({ rule, ...props }: Props) {
               style={styles.btn}
               uppercase={false}
               textColor="#c0c0c0"
-              icon={() => <Icon name="thumb-down-outline" size={btnTextSize} color={color} {...props} />}
+              icon={() => <Icon name="thumb-down-outline" size={btnTextSize} color="black" {...props} />}
               compact
               dark
               onPress={handleNoPress}
             >
-              <Text color={color} style={{ fontSize: btnTextSize, fontWeight: '900' }}>
+              <Text color="black" style={{ fontSize: btnTextSize, fontWeight: '900' }}>
                 {formatMessage(TKeys.BUTTON_NO)}
               </Text>
             </Button>

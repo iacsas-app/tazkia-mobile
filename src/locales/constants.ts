@@ -452,7 +452,7 @@ export enum TKeys {
   BUTTON_YES = 'button.yes',
   BUTTON_NO = 'button.no',
   BUTTON_CLOSE = 'button.close',
-  BUTTON_ADD = 'button.add',
+  BUTTON_START = 'button.start',
   BUTTON_SAVE = 'button.save',
   BUTTON_CLEANING = 'button.cleaning',
   BUTTON_ENLIGHTENMENT = 'button.enlightenment',

@@ -1,8 +1,8 @@
 import { Box, Text, VStack } from '@react-native-material/core';
 import { useMemo, useState } from 'react';
-import { MD3Colors, ProgressBar } from 'react-native-paper';
 import EmptyList from '../../../../../components/EmptyList';
 import EvaluationDialog from '../../../../../components/EvaluationDialog';
+import ProgressBar from '../../../../../components/ProgressBar';
 import ProgressContainer from '../../../../../components/progress/ProgressContainer';
 import RuleProgress from '../../../../../components/progress/RuleProgress';
 import Rule from '../../../../../domains/common/Rule';
@@ -11,7 +11,7 @@ import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';
 import { TKeys } from '../../../../../locales/constants';
 import { PurificationParamList } from '../../../../../navigation/types';
-import { PURIFICATION_MAX_DAYS, isCompleted, percentage } from '../../../../../services/Helpers';
+import { PURIFICATION_MAX_DAYS, isCompleted } from '../../../../../services/Helpers';
 import { useStoreActions } from '../../../../../stores/hooks';
 import { orderMindLevels } from '../Helper';
 
@@ -81,12 +81,7 @@ export default function MindProgress({ items, onAdd }: Props) {
                     isCompleted={completed}
                     onEvaluate={handleShowEvaluate}
                   />
-                  {!completed && (
-                    <ProgressBar
-                      progress={percentage(last.day, PURIFICATION_MAX_DAYS) / 100}
-                      color={MD3Colors.primary70}
-                    />
-                  )}
+                  {!completed && <ProgressBar day={last.day} maxDays={PURIFICATION_MAX_DAYS} />}
                 </Box>
               );
             })}

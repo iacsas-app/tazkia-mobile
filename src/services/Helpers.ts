@@ -1,8 +1,11 @@
-import { NativeModules, Platform } from 'react-native';
+import * as ExpoUpdates from 'expo-updates';
+import { I18nManager, NativeModules, Platform } from 'react-native';
 import ProgressLine from '../domains/common/ProgressLine';
 import BodyPart from '../domains/purification/BodyPart';
+import { SupportedLocale } from '../locales/types';
 import { PurificationStage } from '../screens/purification/steps/bodyPartsStep/BodyPartsScreen';
 
+export const FIRST_VISIT_DATE = 'firstVisitDate';
 export const PURIFICATION_MAX_DAYS = 30;
 export const SUNNAHS_MAX_DAYS = 15;
 
@@ -46,8 +49,22 @@ export function isBodyPartStepInProgress(part: BodyPart | undefined, step: Purif
   return part ? part[step] : undefined;
 }
 
-export function deviceLanguage() {
-  return Platform.OS === 'ios'
-    ? NativeModules.SettingsManager.settings.AppleLocale || NativeModules.SettingsManager.settings.AppleLanguages[0] //iOS 13
-    : NativeModules.I18nManager.localeIdentifier;
+export function deviceLanguage(): string {
+  const systemLanguage =
+    Platform.OS === 'ios'
+      ? NativeModules.SettingsManager.settings.AppleLocale || NativeModules.SettingsManager.settings.AppleLanguages[0] //iOS 13
+      : NativeModules.I18nManager.localeIdentifier;
+
+  return systemLanguage.split('_')[0];
+}
+
+export function reloadIfNecessary(lang: SupportedLocale) {
+  const isArabic = lang === 'ar';
+  I18nManager.allowRTL(isArabic);
+  I18nManager.forceRTL(isArabic);
+  I18nManager.swapLeftAndRightInRTL(true);
+
+  if ((isArabic && !I18nManager.isRTL) || (!isArabic && I18nManager.isRTL)) {
+    ExpoUpdates.reloadAsync();
+  }
 }

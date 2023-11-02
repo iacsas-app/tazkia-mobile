@@ -1,78 +1,107 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
-import { Box, VStack } from '@react-native-material/core';
-import { useEffect, useMemo } from 'react';
+import { Box, HStack, VStack } from '@react-native-material/core';
+import { useEffect, useMemo, useState } from 'react';
 import { View } from 'react-native';
 import { Button } from 'react-native-paper';
 import Text from '../components/Text';
-import TextSection from '../components/TextSection';
-import LanguageSetting from '../components/header/settings/language/LanguageSetting';
+import LanguageSelector from '../components/header/settings/language/LanguageSelector';
+import { langFlags } from '../components/header/settings/language/LanguageSetting';
 import ScreenLayout from '../components/layout/ScreenLayout';
 import { useApplication } from '../hooks/use-application';
 import { useMessage } from '../hooks/use-message';
 import { localesTranslation } from '../locales';
 import { TKeys } from '../locales/constants';
 import { SupportedLocale } from '../locales/types';
-import { deviceLanguage } from '../services/Helpers';
+import { FIRST_VISIT_DATE, deviceLanguage } from '../services/Helpers';
+import { storageEngine } from '../stores/storage-engine';
 import GlobalStyles from '../styles/GlobalStyles';
 
 export default function FirstVisitScreen() {
-  const { locale, setLocale, setFirstVisit } = useApplication();
+  const { locale, setLocale, setFirstVisitDate } = useApplication();
   const { formatMessage } = useMessage();
-
-  const defaultDeviceLanguage = useMemo(() => deviceLanguage(), []);
+  const [chooseLanguage, setChooseLanguage] = useState<boolean>();
+  const systemLanguage = useMemo(() => deviceLanguage(), []);
   const languageKeys = useMemo(() => Object.keys(localesTranslation) as SupportedLocale[], []);
-  const language = defaultDeviceLanguage.split('_')[0];
   const isSupported = isDeviceLanguageHandled();
 
   function isDeviceLanguageHandled() {
-    return languageKeys.find((item) => item === language) !== undefined;
+    return languageKeys.find((item) => item === systemLanguage) !== undefined;
   }
 
-  function handleSave() {
-    setFirstVisit(false);
+  function handlePressYes() {
+    setLocale(locale);
+    init();
+  }
+
+  function handlePressNo() {
+    setChooseLanguage(true);
+  }
+
+  function handleLanguageChange() {
+    init();
+  }
+
+  function init() {
+    const date = Date.now();
+    storageEngine.setItem(FIRST_VISIT_DATE, date);
+    setFirstVisitDate(date);
   }
 
   useEffect(() => {
-    let lang: SupportedLocale = 'ar';
-    if (isSupported) {
-      lang = language as SupportedLocale;
-    }
-    setLocale(lang);
+    setChooseLanguage(!isSupported);
   }, []);
+
+  if (!locale || chooseLanguage === undefined) {
+    return <></>;
+  }
 
   return (
     <ScreenLayout>
       <View>
-        <VStack spacing={25}>
-          <Box style={{ ...GlobalStyles.center }}>
-            <Text variant="h6">{formatMessage(TKeys.WELCOME)}</Text>
-          </Box>
-          <Box style={{ ...GlobalStyles.center }}>
-            {isDeviceLanguageHandled() ? (
-              <TextSection
-                color="green"
-                title={formatMessage(TKeys.SETTINGS_LANGUAGE_DEFAULT, {
+        <VStack spacing={20}>
+          <VStack spacing={15} style={GlobalStyles.center}>
+            <Text variant="h5" style={{ fontWeight: '900' }}>
+              {formatMessage(TKeys.WELCOME)}
+            </Text>
+            {isSupported ? (
+              <Text color="green">
+                {formatMessage(TKeys.SETTINGS_LANGUAGE_DEFAULT, {
                   lang: formatMessage(`language.${localesTranslation[locale].key}`),
                 })}
-              />
+              </Text>
             ) : (
-              <TextSection title="نعتذر، لغة هاتفكم غير مدعومة" color="red">
-                المرجو اختيار لغة أخرى من بين القائمة التالية :
-              </TextSection>
+              <>
+                <Text variant="h5" color="red">
+                  نعتذر، لغة هاتفكم غير مدعومة
+                </Text>
+                <Text variant="h6">المرجو اختيار لغة أخرى من بين القائمة التالية :</Text>
+              </>
             )}
-          </Box>
-          <Box>
-            <LanguageSetting open={true} borderRadius={15} />
-          </Box>
-          <Box style={{ ...GlobalStyles.center }}>
-            <Button
-              icon={() => <Icon name="check-circle" size={20} color="white" />}
-              style={{ backgroundColor: '#4682b4' }}
-              onPress={handleSave}
-            >
-              {formatMessage(TKeys.BUTTON_SAVE)}
-            </Button>
-          </Box>
+          </VStack>
+          {chooseLanguage ? (
+            <Box style={GlobalStyles.center}>
+              <LanguageSelector flags={langFlags} all color="black" onChange={handleLanguageChange} />
+            </Box>
+          ) : (
+            <HStack style={{ ...GlobalStyles.center }} spacing={10}>
+              <Button
+                mode="contained"
+                buttonColor="green"
+                icon={() => <Icon name="thumb-up-outline" size={20} color="white" />}
+                onPress={handlePressYes}
+              >
+                {formatMessage(TKeys.BUTTON_YES)}
+              </Button>
+              <Button
+                mode="contained"
+                buttonColor="grey"
+                icon={() => <Icon name="thumb-down-outline" size={20} color="white" />}
+                onPress={handlePressNo}
+              >
+                {formatMessage(TKeys.BUTTON_NO)}
+              </Button>
+            </HStack>
+          )}
         </VStack>
       </View>
     </ScreenLayout>

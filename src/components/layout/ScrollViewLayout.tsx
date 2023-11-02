@@ -1,5 +1,5 @@
 import { PropsWithChildren, useMemo } from 'react';
-import { SafeAreaView, ScrollView } from 'react-native';
+import { SafeAreaView, ScrollView, useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import GlobalStyles from '../../styles/GlobalStyles';
 
@@ -7,6 +7,7 @@ interface Props extends PropsWithChildren {}
 
 export default function ScrollViewLayout(props: Props) {
   const insets = useSafeAreaInsets();
+  const { width } = useWindowDimensions();
   const paddingHorizontal = useMemo(() => Math.max(15, insets.left + insets.right), []);
 
   return (
@@ -16,7 +17,7 @@ export default function ScrollViewLayout(props: Props) {
         contentContainerStyle={[
           {
             ...GlobalStyles.center,
-            maxWidth: 960,
+            width: width,
             paddingVertical: 15,
             paddingHorizontal,
           },

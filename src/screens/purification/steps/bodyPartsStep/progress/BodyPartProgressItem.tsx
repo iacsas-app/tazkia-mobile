@@ -2,14 +2,14 @@ import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import { Avatar, Box, HStack, VStack } from '@react-native-material/core';
 import { useNavigation } from '@react-navigation/native';
 import { Pressable, StyleSheet } from 'react-native';
-import { MD3Colors, ProgressBar } from 'react-native-paper';
+import ProgressBar from '../../../../../components/ProgressBar';
 import Text from '../../../../../components/Text';
 import BodyPart, { BodyPartsOrder } from '../../../../../domains/purification/BodyPart';
 import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';
 import { TKeys } from '../../../../../locales/constants';
 import { PurificationStackNavigationProp } from '../../../../../navigation/types';
-import { PURIFICATION_MAX_DAYS, percentage } from '../../../../../services/Helpers';
+import { PURIFICATION_MAX_DAYS } from '../../../../../services/Helpers';
 import { findPartProps } from '../common/Helper';
 import ProgressStatus from './ProgressStatus';
 
@@ -35,10 +35,8 @@ export default function BodyPartProgressItem({ value }: ProgressItemProps) {
 
   const fullyCompleted = cleaningCompleted && enlightenmentCompleted;
 
-  const cleanPercent = lastCleaning ? percentage(lastCleaning.day, PURIFICATION_MAX_DAYS) / 100 : 0;
-  const enlightPercent = lastEnlightenment ? percentage(lastEnlightenment.day, PURIFICATION_MAX_DAYS) / 100 : 0;
-
-  const globalPercentage = (cleanPercent + enlightPercent) / 2;
+  const cleanDay = lastCleaning ? lastCleaning.day : 0;
+  const enlightDay = lastEnlightenment ? lastEnlightenment.day : 0;
 
   function handlePress() {
     navigation.navigate('BodyPartProgress', { value });
@@ -104,7 +102,7 @@ export default function BodyPartProgressItem({ value }: ProgressItemProps) {
             </HStack>
           </VStack>
         </HStack>
-        {!fullyCompleted && <ProgressBar progress={globalPercentage} color={MD3Colors.primary70} />}
+        {!fullyCompleted && <ProgressBar day={(cleanDay + enlightDay) / 2} maxDays={PURIFICATION_MAX_DAYS} />}
       </VStack>
     </Pressable>
   );

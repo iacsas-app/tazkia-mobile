@@ -9,8 +9,8 @@ export default function Providers({ children }: PropsWithChildren<unknown>) {
     ...DefaultTheme,
     colors: {
       ...DefaultTheme.colors,
-      primary: 'green',
-      secondary: 'red',
+      primary: '#3cb371',
+      secondary: '#87cefa',
     },
   };
 

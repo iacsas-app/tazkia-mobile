@@ -1,27 +1,27 @@
-import { Action, action, persist } from 'easy-peasy';
-import { defaultLanguage, locales } from '../../locales';
-import { MessageKeyValue, SupportedLocale } from '../../locales/types';
+import { Action, action } from 'easy-peasy';
+import { locales } from '../../locales';
+import { LOCALE_KEY, MessageKeyValue, SupportedLocale } from '../../locales/types';
+import { reloadIfNecessary } from '../../services/Helpers';
 import { storageEngine } from '../storage-engine';
 
 export interface IntlModel {
-  locale: SupportedLocale;
-  messages: MessageKeyValue;
-  update: Action<IntlModel, SupportedLocale>;
+  locale: SupportedLocale | undefined;
+  messages: MessageKeyValue | undefined;
+  update: Action<IntlModel, SupportedLocale | undefined>;
 }
 
-let defaultLocale: SupportedLocale = defaultLanguage;
-
 const intlModel: IntlModel = {
-  locale: defaultLocale,
-  messages: locales[defaultLocale] as any,
+  locale: undefined,
+  messages: undefined,
 
   update: action((state, payload) => {
-    state.locale = payload;
-    state.messages = locales[payload] as any;
+    if (payload) {
+      state.locale = payload;
+      state.messages = locales[payload] as any;
+      storageEngine.setItem(LOCALE_KEY, payload);
+      reloadIfNecessary(payload);
+    }
   }),
 };
 
-export default persist(intlModel, {
-  storage: storageEngine,
-  allow: ['locale'],
-});
+export default intlModel;

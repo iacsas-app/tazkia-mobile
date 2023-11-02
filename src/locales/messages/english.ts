@@ -482,7 +482,7 @@ export const english: Translations = {
   [TKeys.BUTTON_YES]: 'Yes',
   [TKeys.BUTTON_NO]: 'No',
   [TKeys.BUTTON_CLOSE]: 'Close',
-  [TKeys.BUTTON_ADD]: 'Add',
+  [TKeys.BUTTON_START]: 'Start',
   [TKeys.BUTTON_SAVE]: 'Save',
   [TKeys.BUTTON_CLEANING]: 'Cleaning',
   [TKeys.BUTTON_ENLIGHTENMENT]: 'Enlightenment',

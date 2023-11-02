@@ -1,9 +1,9 @@
 import { Box, VStack } from '@react-native-material/core';
 import { ReactNode, useState } from 'react';
 
-import { MD3Colors, ProgressBar } from 'react-native-paper';
 import EmptyList from '../../../components/EmptyList';
 import EvaluationDialog from '../../../components/EvaluationDialog';
+import ProgressBar from '../../../components/ProgressBar';
 import ProgressContainer from '../../../components/progress/ProgressContainer';
 import RuleProgress from '../../../components/progress/RuleProgress';
 import Rule from '../../../domains/common/Rule';
@@ -13,7 +13,7 @@ import { useMessage } from '../../../hooks/use-message';
 import { TKeys } from '../../../locales/constants';
 import { SunnahsParamList } from '../../../navigation/types';
 import { useSnackbar } from '../../../providers/SnackbarProvider';
-import { SUNNAHS_MAX_DAYS, isCompleted, percentage } from '../../../services/Helpers';
+import { SUNNAHS_MAX_DAYS, isCompleted } from '../../../services/Helpers';
 import { useStoreActions } from '../../../stores/hooks';
 
 interface Props {
@@ -80,9 +80,7 @@ export default function SunnahStepProgress({ stage, index, items, ...props }: Pr
                   isCompleted={completed}
                   onEvaluate={handleStartEvaluate}
                 />
-                {!completed && (
-                  <ProgressBar progress={percentage(last.day, SUNNAHS_MAX_DAYS) / 100} color={MD3Colors.primary70} />
-                )}
+                {!completed && <ProgressBar day={last.day} maxDays={SUNNAHS_MAX_DAYS} />}
               </Box>
             );
           })}

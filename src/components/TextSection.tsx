@@ -28,7 +28,7 @@ export default function TextSection({ children, title, color }: SectionProps): J
           style={[
             styles.sectionDescription,
             {
-              color: isDarkMode ? Colors.light : Colors.dark,
+              color: Colors.black,
             },
           ]}
         >

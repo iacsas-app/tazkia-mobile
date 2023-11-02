@@ -484,7 +484,7 @@ export const french: Translations = {
   [TKeys.BUTTON_YES]: 'Oui',
   [TKeys.BUTTON_NO]: 'Non',
   [TKeys.BUTTON_CLOSE]: 'Fermer',
-  [TKeys.BUTTON_ADD]: 'Ajouter',
+  [TKeys.BUTTON_START]: 'Commencer',
   [TKeys.BUTTON_SAVE]: 'Enregistrer',
   [TKeys.BUTTON_CLEANING]: 'Nettoyage',
   [TKeys.BUTTON_ENLIGHTENMENT]: 'Illumination',

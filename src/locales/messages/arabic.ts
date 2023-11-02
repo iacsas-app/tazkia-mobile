@@ -584,7 +584,7 @@ export const arabic: Translations = {
   [TKeys.BUTTON_YES]: 'نعم',
   [TKeys.BUTTON_NO]: 'لا',
   [TKeys.BUTTON_CLOSE]: 'غلق',
-  [TKeys.BUTTON_ADD]: 'إضافة',
+  [TKeys.BUTTON_START]: 'بدء',
   [TKeys.BUTTON_SAVE]: 'حفظ',
   [TKeys.BUTTON_CLEANING]: 'تطهير',
   [TKeys.BUTTON_ENLIGHTENMENT]: 'تنوير',

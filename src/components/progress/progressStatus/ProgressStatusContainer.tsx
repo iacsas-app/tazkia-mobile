@@ -3,19 +3,14 @@ import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import { Box, HStack, VStack } from '@react-native-material/core';
 import { StyleSheet } from 'react-native';
 
-import { Button, MD3Colors, ProgressBar } from 'react-native-paper';
+import { Button } from 'react-native-paper';
 import ProgressLine from '../../../domains/common/ProgressLine';
 import { useApplication } from '../../../hooks/use-application';
 import { useMessage } from '../../../hooks/use-message';
 import { TKeys } from '../../../locales/constants';
-import {
-  PURIFICATION_MAX_DAYS,
-  capitalize,
-  isCompleted,
-  percentage,
-  progressPercentage,
-} from '../../../services/Helpers';
+import { PURIFICATION_MAX_DAYS, capitalize, isCompleted, progressPercentage } from '../../../services/Helpers';
 import GlobalStyles from '../../../styles/GlobalStyles';
+import ProgressBar from '../../ProgressBar';
 import Text from '../../Text';
 import { FailedAttemptsBase } from '../BaseProps';
 import FailedAttempts from '../failedAttempts/FailedAttempts';
@@ -103,9 +98,7 @@ export default function ProgressStatusContainer(props: Props) {
           )}
         </VStack>
       </Box>
-      {!completed && (
-        <ProgressBar progress={percentage(last.day, PURIFICATION_MAX_DAYS) / 100} color={MD3Colors.primary70} />
-      )}
+      {!completed && <ProgressBar day={last.day} maxDays={PURIFICATION_MAX_DAYS} />}
     </>
   );
 }

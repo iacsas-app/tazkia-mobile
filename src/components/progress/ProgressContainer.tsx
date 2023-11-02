@@ -1,3 +1,4 @@
+import { Box } from '@react-native-material/core';
 import { ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { FAB } from 'react-native-paper';
@@ -24,12 +25,14 @@ export default function ProgressContainer({ title, subtitle, variant, children, 
 
   return (
     <View style={{ ...GlobalStyles.center, ...bgColor }}>
-      <ScrollViewLayout>
-        <Text variant="body1" style={{ ...styles.title, color: variant, fontSize: arabic ? 28 : 20 }}>
-          {title}
-        </Text>
-        {children}
-      </ScrollViewLayout>
+      <Box style={{ paddingBottom: 60 }}>
+        <ScrollViewLayout>
+          <Text variant="body1" style={{ ...styles.title, color: variant, fontSize: arabic ? 25 : 20 }}>
+            {title}
+          </Text>
+          {children}
+        </ScrollViewLayout>
+      </Box>
       {!props.disableAdd && (
         <FAB
           icon="playlist-plus"
@@ -50,25 +53,11 @@ ProgressContainer.defaultProps = {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    marginVertical: 13,
-  },
-  titleBox: {
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderBottomWidth: 1,
-    elevation: 5,
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
-  },
   title: {
     fontWeight: 'bold',
-    marginBottom: 20,
+    marginBottom: 10,
   },
-  subtitle: {
-    fontSize: 10,
-    marginTop: -3,
-  },
+
   content: {
     ...GlobalStyles.center,
     paddingVertical: 10,
@@ -79,8 +68,7 @@ const styles = StyleSheet.create({
   },
   fab: {
     position: 'absolute',
-    bottom: 15,
-    left: 15,
+    bottom: 10,
   },
   orange: {
     backgroundColor: '#ffe4e1',

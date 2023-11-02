@@ -1,51 +1,59 @@
+import { useMemo } from 'react';
 import { useColorScheme } from 'react-native';
+import { defaultLanguage, localesTranslation } from '../locales';
 import { SupportedLocale } from '../locales/types';
+import { deviceLanguage } from '../services/Helpers';
 import { useStoreActions, useStoreState } from '../stores/hooks';
 
 export interface Application {
-  locale: SupportedLocale;
-  firstVisit: boolean;
+  locale: SupportedLocale | undefined;
+  defaultLang: SupportedLocale;
   arabic: boolean;
   hasProgress: boolean;
   hasPurificationProgress: boolean;
   hasSunnahsProgress: boolean;
   isDarkMode: boolean;
-  setLocale(value: SupportedLocale): void;
-  setFirstVisit(isFirst: boolean): void;
+  isSystemLanguageSupported: boolean;
+  systemLanguage: string;
+  setLocale(value: SupportedLocale | undefined): void;
+  setFirstVisitDate(date: number | null): void;
 }
 
 export function useApplication(): Application {
   const locale = useStoreState((state) => state.intl.locale);
-  const firstVisit = useStoreState((state) => state.global.firstVisit);
-  const arabic = useStoreState((state) => state.global.arabic);
   const purification = useStoreState((state) => state.purification.item);
   const sunnahs = useStoreState((state) => state.sunnahs.item);
   const setLocale = useStoreActions((actions) => actions.intl.update);
-  const setFirstVisit = useStoreActions((actions) => actions.global.setFirstVisit);
-  const setArabicOrientation = useStoreActions((actions) => actions.global.setArabicOrientation);
+  const setFirstVisitDate = useStoreActions((actions) => actions.global.setFirstVisitDate);
   const isDarkMode = useColorScheme() === 'dark';
+  const languageKeys = useMemo(() => Object.keys(localesTranslation) as SupportedLocale[], []);
+  const systemLanguage = useMemo(() => deviceLanguage(), []);
 
   const hasPurificationProgress = purification !== undefined;
   const hasSunnahsProgress = sunnahs !== undefined;
+  const isLangSupported = isDeviceLanguageHandled();
 
-  function handleLocaleChange(value: SupportedLocale) {
-    setArabicOrientation(locale === 'ar');
-    setLocale(value);
+  const defaultLang: SupportedLocale = isLangSupported ? (systemLanguage as SupportedLocale) : defaultLanguage;
+
+  function isDeviceLanguageHandled() {
+    return languageKeys.find((item) => item === systemLanguage) !== undefined;
   }
 
-  function handleFirstVisitChange(isFirst: boolean) {
-    setFirstVisit(isFirst);
+  function handleLocaleChange(value: SupportedLocale) {
+    setLocale(value);
   }
 
   return {
     isDarkMode,
-    firstVisit,
     locale,
     hasPurificationProgress,
     hasSunnahsProgress,
-    arabic,
+    arabic: locale === 'ar',
     hasProgress: hasPurificationProgress || hasSunnahsProgress,
+    systemLanguage,
+    isSystemLanguageSupported: isLangSupported,
+    defaultLang,
+    setFirstVisitDate,
     setLocale: handleLocaleChange,
-    setFirstVisit: handleFirstVisitChange,
   };
 }

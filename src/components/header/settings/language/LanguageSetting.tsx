@@ -10,26 +10,27 @@ import Text from '../../../Text';
 import { SettingsStyles } from '../SettingsStyles';
 import LanguageSelector from './LanguageSelector';
 
+export const langFlags: Record<SupportedLocale, ImageSourcePropType> = {
+  ar: require('./../../../../../assets/img/flags/arabic-flag.png'),
+  fr: require('./../../../../../assets/img/flags/french-flag.png'),
+  en: require('./../../../../../assets/img/flags/english-flag.png'),
+  in: require('./../../../../../assets/img/flags/indonesian-flag.png'),
+};
+
 interface Props {
   color?: string;
   open?: boolean;
   borderRadius?: number;
 }
-export default function LanguageSetting({ open, color, borderRadius }: Props) {
+export default function LanguageSetting({ open, borderRadius }: Props) {
   const { formatMessage } = useMessage();
   const [show, setShow] = useState(open === true);
-  const { locale } = useApplication();
-  const languageKey = localesTranslation[locale];
+  const { locale, defaultLang } = useApplication();
+  const lang = locale ? locale : defaultLang;
+  const languageKey = localesTranslation[lang];
   const { width } = useWindowDimensions();
 
-  const languageFlags: Record<SupportedLocale, ImageSourcePropType> = useMemo(() => {
-    return {
-      ar: require('./../../../../../assets/img/flags/arabic-flag.png'),
-      fr: require('./../../../../../assets/img/flags/french-flag.png'),
-      en: require('./../../../../../assets/img/flags/english-flag.png'),
-      in: require('./../../../../../assets/img/flags/indonesian-flag.png'),
-    };
-  }, []);
+  const languageFlags: Record<SupportedLocale, ImageSourcePropType> = useMemo(() => langFlags, []);
 
   function handlePress() {
     setShow(!show);
@@ -45,16 +46,16 @@ export default function LanguageSetting({ open, color, borderRadius }: Props) {
       <Box
         style={{
           width: width - 110,
-          elevation: borderRadius ? 6 : 3,
-          backgroundColor: borderRadius ? 'white' : 'transparent',
+          elevation: borderRadius ? 6 : 0,
+          backgroundColor: 'white',
           paddingTop: 1,
-          borderRadius: borderRadius,
+          borderRadius: borderRadius ? borderRadius : 5,
         }}
       >
         <VStack spacing={10}>
           <Pressable onPress={handlePress} style={SettingsStyles.surface}>
             <HStack spacing={17}>
-              <Avatar image={languageFlags[locale]} size={40} />
+              <Avatar image={languageFlags[lang]} size={40} />
               <VStack>
                 <Text color="black" variant="subtitle1" style={{ fontWeight: 'bold' }}>
                   {formatMessage(TKeys.SETTINGS_LANGUAGE)}

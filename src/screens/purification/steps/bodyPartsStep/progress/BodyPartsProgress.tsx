@@ -32,7 +32,7 @@ export default function BodyPartsProgress({ items, onAdd }: BodyPartsProgressPro
       disableAdd={allInProgress}
       onAdd={handleAddAction}
     >
-      <VStack spacing={9}>
+      <VStack spacing={5}>
         {items.map((item, index) => (
           <Box key={index}>
             <BodyPartProgressItem key={`entry_${index}`} value={item} />

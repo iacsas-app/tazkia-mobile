@@ -43,7 +43,7 @@ export default function BodyPartsRules({ part, step }: BodyPartsRulesProps) {
 
     if (purification) {
       createOrUpdate(purification);
-      navigation.push('Purification');
+      navigation.goBack();
     }
   }
 
@@ -75,7 +75,7 @@ export default function BodyPartsRules({ part, step }: BodyPartsRulesProps) {
       </VStack>
       {!progress && (
         <Button style={styles.action} mode="contained" buttonColor="green" onPress={handlePress}>
-          {formatMessage(TKeys.BUTTON_ADD)}
+          {formatMessage(TKeys.BUTTON_START)}
         </Button>
       )}
     </ScrollViewLayout>

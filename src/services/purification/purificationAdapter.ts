@@ -10,7 +10,7 @@ import { PurificationGateway } from './purificationGateway';
  * @since 20/09/2023
  */
 export class PurificationAdapter implements PurificationGateway {
-  private readonly path: PathType = 'tazkia';
+  private readonly path: PathType = 'purification';
 
   find(): Promise<Purification> {
     return readData(this.path).then((value: Purification) => value);

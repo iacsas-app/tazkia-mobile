@@ -1,5 +1,5 @@
 import Icon from '@expo/vector-icons/SimpleLineIcons';
-import { HStack, VStack } from '@react-native-material/core';
+import { Box, HStack, VStack } from '@react-native-material/core';
 import { Button, Modal, Portal } from 'react-native-paper';
 import { useApplication } from '../../../hooks/use-application';
 import { useMessage } from '../../../hooks/use-message';
@@ -21,15 +21,17 @@ export default function SettingsDialog({ open, onClose }: Props) {
   return (
     <Portal>
       <Modal visible={open} onDismiss={onClose} contentContainerStyle={containerStyle}>
-        <VStack spacing={20}>
+        <VStack spacing={30} style={{ alignContent: 'center', alignItems: 'center' }}>
           <HStack spacing={10}>
-            <Icon name="settings" size={28} color={color} />
-            <Text color={color} variant="h5" style={{ fontWeight: 'bold' }}>
+            <Icon name="settings" size={28} color="black" />
+            <Text color="black" variant="h5" style={{ fontWeight: 'bold' }}>
               {formatMessage(TKeys.MENU_SETTINGS)}
             </Text>
           </HStack>
-          <Settings color={color} />
-          <Button mode="text" style={{ marginTop: 30 }} onPress={onClose}>
+          <Box>
+            <Settings color={color} />
+          </Box>
+          <Button mode="contained" icon={() => <Icon name="close" size={25} color={color} />} onPress={onClose}>
             {formatMessage(TKeys.BUTTON_CLOSE)}
           </Button>
         </VStack>

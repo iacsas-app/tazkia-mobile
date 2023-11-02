@@ -1,6 +1,5 @@
 import { Avatar, HStack, Pressable, VStack } from '@react-native-material/core';
-import { I18nManager, ImageSourcePropType } from 'react-native';
-import { useApplication } from '../../../../hooks/use-application';
+import { ImageSourcePropType } from 'react-native';
 import { useMessage } from '../../../../hooks/use-message';
 import { localesTranslation } from '../../../../locales';
 import { SupportedLocale } from '../../../../locales/types';
@@ -14,16 +13,10 @@ interface LanguageOptionProps {
 }
 export default function LanguageOption({ value, icon, color, onChange }: LanguageOptionProps) {
   const { formatMessage } = useMessage();
-  const { locale, arabic } = useApplication();
   const language = localesTranslation[value];
 
   function handleChange() {
-    if (locale !== value) {
-      onChange(value);
-      const isAr = value === 'ar';
-      I18nManager.allowRTL(isAr);
-      I18nManager.forceRTL(isAr);
-    }
+    onChange(value);
   }
 
   return (
