@@ -28,14 +28,15 @@ export default function PurificationStack() {
   }
 
   return (
-    <Stack.Navigator initialRouteName="Purification">
+    <Stack.Navigator
+      initialRouteName="Purification"
+      screenOptions={{
+        headerMode: 'float',
+      }}
+    >
       <Stack.Group>
         <Stack.Screen name="Purification" component={PurificationScreen} options={{ headerShown: false }} />
-        <Stack.Screen
-          name="BodyParts"
-          component={BodyPartsScreen}
-          options={{ title: formatMessage(TKeys.PURIFICATION_BODYPART_TITLE) }}
-        />
+
         <Stack.Screen
           name="BodyPartsRules"
           component={BodyPartsRulesScreen}
@@ -47,18 +48,22 @@ export default function PurificationStack() {
           options={({ route }) => ({ title: bodyPartProgressBarTitle(route.params.value) })}
         />
         <Stack.Screen name="PurificationProgress" component={PurificationProgressScreen} />
-
-        <Stack.Screen
-          name="Soul"
-          component={SoulScreen}
-          options={{ title: formatMessage(TKeys.PURIFICATION_SOUL_TITLE) }}
-        />
       </Stack.Group>
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
+        <Stack.Screen
+          name="BodyParts"
+          component={BodyPartsScreen}
+          options={{ title: formatMessage(TKeys.PURIFICATION_BODYPART_TITLE) }}
+        />
         <Stack.Screen
           name="Mind"
           component={MindScreen}
           options={{ title: formatMessage(TKeys.PURIFICATION_MIND_TITLE) }}
+        />
+        <Stack.Screen
+          name="Soul"
+          component={SoulScreen}
+          options={{ title: formatMessage(TKeys.PURIFICATION_SOUL_TITLE) }}
         />
       </Stack.Group>
     </Stack.Navigator>

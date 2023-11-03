@@ -15,7 +15,12 @@ export default function SunnahsStack() {
   const Stack = createStackNavigator<SunnahsParamList>();
 
   return (
-    <Stack.Navigator initialRouteName="Sunnahs">
+    <Stack.Navigator
+      initialRouteName="Sunnahs"
+      screenOptions={{
+        headerMode: 'float',
+      }}
+    >
       <Stack.Screen name="Sunnahs" component={SunnahsScreen} options={{ headerShown: false }} />
       <Stack.Screen name="SunnahsProgress" component={SunnahsProgressScreen} options={{ headerShown: false }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>

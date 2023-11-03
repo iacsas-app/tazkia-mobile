@@ -4,6 +4,7 @@ import { StyleSheet, useWindowDimensions } from 'react-native';
 import PressableStep, { Part } from '../../components/PressableStep';
 import { TKeys } from '../../locales/constants';
 import GlobalStyles from '../../styles/GlobalStyles';
+import BasePresentationLayout from './common/BasePresentationLayout';
 
 export default function PresentationScreen() {
   const { width } = useWindowDimensions();
@@ -34,13 +35,15 @@ export default function PresentationScreen() {
   );
 
   return (
-    <Stack style={styles.container} items="center" spacing={20}>
-      {parts.map((item: Part, index: number) => (
-        <Box key={index} style={{ ...styles.part, width: width - 70 }}>
-          <PressableStep item={item} />
-        </Box>
-      ))}
-    </Stack>
+    <BasePresentationLayout>
+      <Stack style={styles.container} items="center" spacing={15}>
+        {parts.map((item: Part, index: number) => (
+          <Box key={index} style={{ ...styles.part, width: width - 70 }}>
+            <PressableStep item={item} />
+          </Box>
+        ))}
+      </Stack>
+    </BasePresentationLayout>
   );
 }
 

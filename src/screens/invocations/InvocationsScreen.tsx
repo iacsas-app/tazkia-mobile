@@ -1,54 +1,84 @@
+import { Box, Stack, VStack } from '@react-native-material/core';
+import { useNavigation } from '@react-navigation/native';
 import { useMemo, useState } from 'react';
-import { BottomNavigation } from 'react-native-paper';
+import { StyleSheet, useWindowDimensions } from 'react-native';
 import Text from '../../components/Text';
 import { useMessage } from '../../hooks/use-message';
-import Step1Screen from './steps/Step1Screen';
-import Step2Screen from './steps/Step2Screen';
-import Step3Screen from './steps/Step3Screen';
+import { TKeys } from '../../locales/constants';
+import GlobalStyles from '../../styles/GlobalStyles';
+import BasePresentationLayout from '../presentation/common/BasePresentationLayout';
 
 export default function InvocationsScreen() {
   const { formatMessage } = useMessage();
-  const [index, setIndex] = useState(0);
+  const { width } = useWindowDimensions();
+  const navigation = useNavigation<any>();
+  const [showModal, setShowModal] = useState(false);
 
-  const routes = useMemo(
+  const parts = useMemo(
     () => [
-      { key: 'step1', title: 'phase1', focusedIcon: 'heart', unfocusedIcon: 'heart-outline' },
-      { key: 'step2', title: 'phase2', focusedIcon: 'heart', unfocusedIcon: 'heart-outline' },
-      { key: 'step3', title: 'phase3', focusedIcon: 'heart', unfocusedIcon: 'heart-outline' },
+      {
+        route: 'Purification',
+        name: TKeys.INVOCATION_PURIFICATION_TITLE,
+      },
+      {
+        route: 'Immunization',
+        name: TKeys.INVOCATION_IMMUNIZATION_TITLE,
+      },
+      {
+        route: 'Jewels',
+        name: TKeys.INVOCATION_JEWELS_TITLE,
+      },
     ],
     [],
   );
 
-  const renderScene = BottomNavigation.SceneMap({
-    step1: () => <Step1Screen />,
-    step2: () => <Step2Screen />,
-    step3: () => <Step3Screen />,
-  });
+  function handlePress(route: string) {
+    navigation.navigate(route);
+  }
 
   return (
-    <BottomNavigation
-      navigationState={{ index, routes }}
-      renderScene={renderScene}
-      activeColor="#ff6347"
-      barStyle={{
-        backgroundColor: '#f3ead0',
-        borderTopWidth: 2,
-        borderColor: '#f5e1a5',
-      }}
-      renderLabel={({ route, color }) => (
-        <Text
-          variant="caption"
-          style={{
-            justifyContent: 'center',
-            textAlign: 'center',
-            fontWeight: '900',
-            color,
-          }}
-        >
-          {formatMessage(route.title ? route.title : '')}
-        </Text>
-      )}
-      onIndexChange={setIndex}
-    />
+    <BasePresentationLayout>
+      <VStack spacing={2} style={{ alignItems: 'center' }}>
+        <VStack>
+          <Text
+            style={{
+              paddingVertical: 10,
+              fontSize: 15,
+              fontWeight: '900',
+              textAlign: 'justify',
+            }}
+          >
+            {formatMessage(TKeys.BASMALAH)}
+          </Text>
+        </VStack>
+        <Stack style={GlobalStyles.container} items="center" spacing={15} mt={13}>
+          {parts.map((item, index: number) => (
+            <Box
+              key={index}
+              style={{ ...styles.part, width: width - 120 }}
+              onTouchStart={() => handlePress(item.route)}
+            >
+              <Text variant="body1" style={{ fontSize: 18, fontWeight: '800' }}>
+                {formatMessage(item.name)}
+              </Text>
+            </Box>
+          ))}
+        </Stack>
+      </VStack>
+    </BasePresentationLayout>
   );
 }
+
+const styles = StyleSheet.create({
+  part: {
+    backgroundColor: '#f3ead0',
+    elevation: 6,
+    borderRadius: 45,
+    paddingVertical: 10,
+    minHeight: 90,
+    justifyContent: 'center',
+    alignContent: 'center',
+    textAlign: 'justify',
+    alignItems: 'center',
+  },
+});

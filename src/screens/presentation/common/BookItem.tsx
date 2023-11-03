@@ -3,7 +3,6 @@ import React, { ReactElement } from 'react';
 import { Image, StyleSheet, View, useWindowDimensions } from 'react-native';
 import Text from '../../../components/Text';
 import { Book } from '../../../domains/presentation/Book';
-import { arabic } from '../../../locales/messages/arabic';
 import GlobalStyles from '../../../styles/GlobalStyles';
 
 interface Props {
@@ -15,20 +14,22 @@ export default function FlatBook({ book }: Props): ReactElement {
 
   return (
     <View style={styles.row}>
-      <HStack spacing={25}>
-        <Box style={{ width: box1With }}>
-          <VStack style={GlobalStyles.center}>
-            <Image source={book.image} style={styles.image} />
-            <Text style={{ fontSize: arabic ? 16 : 14, fontWeight: '900' }}>{book.title}</Text>
-          </VStack>
-        </Box>
-        <Box style={{ width: width - box1With - 90 }}>
-          <VStack>
-            <Text style={{ ...styles.summary, fontSize: arabic ? 17 : 14 }}>{book.summary}</Text>
-            <Text style={styles.link}>{book.link}</Text>
-          </VStack>
-        </Box>
-      </HStack>
+      <VStack spacing={10} style={{ width: width - 80 }}>
+        <Text style={{ fontSize: 14, fontWeight: '900' }}>{book.title}</Text>
+        <HStack spacing={30}>
+          <Box style={{ width: box1With }}>
+            <VStack style={GlobalStyles.center}>
+              <Image source={book.image} style={styles.image} />
+            </VStack>
+          </Box>
+          <Box style={{ width: width - box1With - 100 }}>
+            <VStack>
+              <Text style={{ ...styles.summary, fontSize: 14 }}>{book.summary}</Text>
+              <Text style={styles.link}>{book.link}</Text>
+            </VStack>
+          </Box>
+        </HStack>
+      </VStack>
     </View>
   );
 }
@@ -48,8 +49,8 @@ const styles = StyleSheet.create({
   },
 
   image: {
-    width: 115,
-    height: 205,
+    width: 80,
+    height: 160,
   },
   summary: {
     textAlign: 'justify',

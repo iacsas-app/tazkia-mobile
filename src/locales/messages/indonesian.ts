@@ -475,6 +475,9 @@ export const indonesian: Translations = {
   [TKeys.SUNNAHS_TRUTHS_7_ACTIONAL_RULE_5]: '',
 
   //  INVOCATION
+  [TKeys.INVOCATION_PURIFICATION_TITLE]: '',
+  [TKeys.INVOCATION_IMMUNIZATION_TITLE]: '',
+  [TKeys.INVOCATION_JEWELS_TITLE]: '',
   [TKeys.INVOCATION_NIVEAU_TITLE]: 'مقامات ذكر السلوك',
   [TKeys.INVOCATION_NIVEAU_1]: '',
   [TKeys.INVOCATION_NIVEAU_2]: '',

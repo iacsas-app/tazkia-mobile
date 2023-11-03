@@ -15,7 +15,12 @@ export default function PresentationStack() {
   const { formatMessage } = useMessage();
 
   return (
-    <Stack.Navigator initialRouteName="Presentation">
+    <Stack.Navigator
+      initialRouteName="Presentation"
+      screenOptions={{
+        headerMode: 'float',
+      }}
+    >
       <Stack.Screen name="Presentation" component={PresentationScreen} options={{ headerShown: false }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen

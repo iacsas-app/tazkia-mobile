@@ -37,6 +37,13 @@ export type SunnahsParamList = {
   SunnahsProgress: undefined;
 };
 
+export type InvocationsParamList = {
+  Invocations: undefined;
+  Purification: undefined;
+  Immunization: undefined;
+  Jewels: undefined;
+};
+
 // Navigation props
 export type PresentationStackNavigationProp = CompositeNavigationProp<
   NativeStackNavigationProp<PresentationParamList, 'Presentation'>,

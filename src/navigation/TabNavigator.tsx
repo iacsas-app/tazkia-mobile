@@ -6,7 +6,7 @@ import MCIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import Octicons from '@expo/vector-icons/Octicons';
 import { useMessage } from '../hooks/use-message';
 import { TKeys } from '../locales/constants';
-import InvocationsScreen from '../screens/invocations/InvocationsScreen';
+import InvocationsStack from './InvocationsStack';
 import PresentationStack from './PresentationStack';
 import PurificationStack from './PurificationStack';
 import SunnahsStack from './SunnahsStack';
@@ -68,9 +68,10 @@ const TabNavigator = () => {
       />
       <Tab.Screen
         name="InvocationsTab"
-        component={InvocationsScreen}
+        component={InvocationsStack}
         options={{
           title: formatMessage(TKeys.MENU_INVOCATIONS),
+          headerShown: false,
           tabBarIcon: ({ size, ...props }) => <MCIcons name="meditation" size={40} {...props} />,
           tabBarActiveTintColor: '#ff6347',
           tabBarLabelStyle: {
