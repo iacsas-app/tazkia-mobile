@@ -11,12 +11,12 @@ interface Props {
 export default function Immunization({ period }: Props) {
   const { formatMessage } = useMessage();
   const data: InvocationRepeat[] = useMemo(() => immunizationData[period], []);
-
+  const size = useMemo(() => data.length, []);
   return (
-    <VStack spacing={10}>
+    <VStack spacing={12}>
       {data.map((item: InvocationRepeat, index) => (
         <Box key={index}>
-          <InvocationItem summary={formatMessage(item.key)} {...item} />
+          <InvocationItem index={index + 1} summary={formatMessage(item.key)} total={size} {...item} />
         </Box>
       ))}
     </VStack>

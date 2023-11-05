@@ -720,6 +720,8 @@ export const arabic: Translations = {
   [TKeys.LEVEL]: 'المستوى {value}',
   [TKeys.MORNING]: 'الصباحي',
   [TKeys.EVENING]: 'المسائي',
+  [TKeys.TIMES_COUNT]: 'مرة واحدة',
+  [TKeys.TIMES_COUNT_PLURAL]: '{times} مرات',
 
   [TKeys.MESSAGE_ADDED_SUCCESSFULLY]: 'تمت الإضافة بنجاح',
   [TKeys.MESSAGE_EVALUATED_SUCCESSFULLY]: 'لقد تم تحديث تقدمك بنجاح',

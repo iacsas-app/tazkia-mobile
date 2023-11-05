@@ -571,6 +571,8 @@ export const french: Translations = {
   [TKeys.LEVEL]: 'Niveau {value}',
   [TKeys.MORNING]: 'matin',
   [TKeys.EVENING]: 'soir',
+  [TKeys.TIMES_COUNT]: 'Une fois',
+  [TKeys.TIMES_COUNT_PLURAL]: '{times} fois',
 
   [TKeys.MESSAGE_ADDED_SUCCESSFULLY]: "L'ajout a été effectué avec succès",
   [TKeys.MESSAGE_EVALUATED_SUCCESSFULLY]: 'Votre progression a été mise à jour avec succès',
