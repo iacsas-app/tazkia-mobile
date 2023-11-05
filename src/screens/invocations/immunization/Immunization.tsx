@@ -6,11 +6,11 @@ import { useMessage } from '../../../hooks/use-message';
 import { ImmunizationPeriod, immunizationData } from './data';
 
 interface Props {
-  type: ImmunizationPeriod;
+  period: ImmunizationPeriod;
 }
-export default function Immunization({ type }: Props) {
+export default function Immunization({ period }: Props) {
   const { formatMessage } = useMessage();
-  const data: InvocationRepeat[] = useMemo(() => immunizationData[type], []);
+  const data: InvocationRepeat[] = useMemo(() => immunizationData[period], []);
 
   return (
     <VStack spacing={10}>

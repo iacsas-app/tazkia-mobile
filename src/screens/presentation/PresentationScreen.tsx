@@ -54,6 +54,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5fffa',
     borderRadius: 15,
     elevation: 6,
-    height: 145,
   },
 });

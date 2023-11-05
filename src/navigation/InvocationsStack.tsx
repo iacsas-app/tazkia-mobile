@@ -6,6 +6,7 @@ import { useMessage } from '../hooks/use-message';
 import { TKeys } from '../locales/constants';
 import InvocationsScreen from '../screens/invocations/InvocationsScreen';
 import ImmunizationInvocationsScreen from '../screens/invocations/immunization';
+import { ImmunizationPeriod } from '../screens/invocations/immunization/data';
 import JewelsInvocationsScreen from '../screens/invocations/jewels';
 import PurificationInvocationsScreen from '../screens/invocations/purification';
 import { InvocationsParamList } from './types';
@@ -14,6 +15,11 @@ export default function InvocationsStack() {
   const { formatMessage } = useMessage();
   const { width } = useWindowDimensions();
   const Stack = createStackNavigator<InvocationsParamList>();
+
+  function immunizationInvocationsTitle(period: ImmunizationPeriod) {
+    const periodTitle = formatMessage(period);
+    return formatMessage(TKeys.INVOCATIONS_IMMUNIZATION_TITLE, { period: periodTitle });
+  }
 
   return (
     <Stack.Navigator
@@ -35,9 +41,7 @@ export default function InvocationsStack() {
       <Stack.Screen
         name="Immunization"
         component={ImmunizationInvocationsScreen}
-        options={{
-          title: formatMessage(TKeys.INVOCATION_IMMUNIZATION_TITLE),
-        }}
+        options={({ route }) => ({ title: immunizationInvocationsTitle(route.params.period) })}
       />
       <Stack.Screen
         name="Jewels"

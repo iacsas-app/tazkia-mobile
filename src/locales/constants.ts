@@ -444,6 +444,7 @@ export enum TKeys {
   INVOCATION_STEP_3_IMPORTANCE = 'invocation.step.3.importance',
 
   // Invocations immunization
+  INVOCATIONS_IMMUNIZATION_TITLE = 'invocations.immunization.title',
   INVOCATIONS_IMMUNIZATION_INTRODUCTION = 'invocations.immunization.introduction',
   INVOCATIONS_IMMUNIZATION_CONCLUSION = 'invocations.immunization.conclusion',
 
@@ -503,6 +504,8 @@ export enum TKeys {
   PHASE_2 = 'phase2',
   PHASE_3 = 'phase3',
   LEVEL = 'level',
+  MORNING = 'morning',
+  EVENING = 'evening',
 
   LANGUAGE_ARABIC = 'language.arabic',
   LANGUAGE_FRENCH = 'language.french',

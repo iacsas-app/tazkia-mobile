@@ -24,24 +24,22 @@ export default function SunnahsScreen() {
 
   return (
     <BasePresentationLayout>
-      <Text style={{ ...GlobalStyles.description, fontSize: arabic ? 25 : 20 }}>
-        {formatMessage(TKeys.SUNNAHS_DESCRIPTION)}
-      </Text>
+      <Text style={{ ...GlobalStyles.description, fontSize: 20 }}>{formatMessage(TKeys.SUNNAHS_DESCRIPTION)}</Text>
       <VStack spacing={2} style={{ alignItems: 'center' }}>
         <VStack>
           <Text
             style={{
               paddingVertical: 15,
-              fontSize: arabic ? 15 : 12,
+              fontSize: 12,
               fontWeight: '900',
-              textAlign: arabic ? 'justify' : 'auto',
+              textAlign: 'justify',
             }}
           >
             {formatMessage(TKeys.BASMALAH)}
           </Text>
           <Text
             style={{
-              fontSize: arabic ? 16 : 13,
+              fontSize: 13,
               fontWeight: arabic ? '600' : 'normal',
               textAlign: 'justify',
             }}
@@ -52,7 +50,7 @@ export default function SunnahsScreen() {
         <Stack style={GlobalStyles.container} items="center" spacing={24} mt={13}>
           {parts.map((item: Part, index: number) => (
             <Box key={index} style={{ ...styles.part, width: width - 140 }}>
-              <PressableStep item={item} nameTextSize={17} descriptionTextSize={arabic ? 20 : 12} />
+              <PressableStep item={item} nameTextSize={14} descriptionTextSize={14} />
             </Box>
           ))}
         </Stack>

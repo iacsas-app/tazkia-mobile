@@ -27,7 +27,7 @@ export default function PurificationScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { ...GlobalStyles.container, backgroundColor: '#d5ecf37a' },
+  container: { ...GlobalStyles.container },
   part: {
     width: 250,
     paddingVertical: 10,

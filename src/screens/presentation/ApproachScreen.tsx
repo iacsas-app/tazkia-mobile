@@ -27,7 +27,7 @@ export default function ApproachScreen() {
       </VStack>
       <Image
         source={require('./../../../assets/img/presentation/manhajTargets.jpg')}
-        style={{ width: width, height: height - 290, marginTop: -30 }}
+        style={{ width: width, height: height - 260, marginBottom: 10 }}
       />
     </BasePresentationLayout>
   );
