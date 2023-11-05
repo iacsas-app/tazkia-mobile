@@ -1,7 +1,6 @@
 import { Box, VStack } from '@react-native-material/core';
 import { Image, StyleSheet, useWindowDimensions } from 'react-native';
 import Text from '../../components/Text';
-import { useApplication } from '../../hooks/use-application';
 import { useMessage } from '../../hooks/use-message';
 import { TKeys } from '../../locales/constants';
 import BasePresentationLayout from './common/BasePresentationLayout';
@@ -12,7 +11,6 @@ import BasePresentationLayout from './common/BasePresentationLayout';
  */
 export default function ApproachScreen() {
   const { formatMessage } = useMessage();
-  const { arabic } = useApplication();
   const { width, height } = useWindowDimensions();
 
   return (
@@ -20,9 +18,7 @@ export default function ApproachScreen() {
       <VStack>
         <Box style={{ width: width - 40 }}>
           <Text style={{ fontSize: 20, fontWeight: '700' }}>{formatMessage(TKeys.PRESENTATION_APPROACH_TITLE)}</Text>
-          <Text style={{ ...styles.description, fontSize: arabic ? 18 : 15 }}>
-            {formatMessage(TKeys.PRESENTATION_APPROACH)}
-          </Text>
+          <Text style={{ ...styles.description, fontSize: 15 }}>{formatMessage(TKeys.PRESENTATION_APPROACH)}</Text>
         </Box>
       </VStack>
       <Image
