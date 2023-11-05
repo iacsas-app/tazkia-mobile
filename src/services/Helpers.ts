@@ -66,5 +66,6 @@ export function reloadIfNecessary(lang: SupportedLocale) {
 
   if ((isArabic && !I18nManager.isRTL) || (!isArabic && I18nManager.isRTL)) {
     ExpoUpdates.reloadAsync();
+    //RNRestart.restart()
   }
 }

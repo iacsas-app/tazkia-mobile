@@ -569,6 +569,8 @@ export const english: Translations = {
   [TKeys.LEVEL]: 'Level {value}',
   [TKeys.MORNING]: 'Morning',
   [TKeys.EVENING]: 'Evening',
+  [TKeys.TIMES_COUNT]: 'One time',
+  [TKeys.TIMES_COUNT_PLURAL]: '{times} times',
 
   [TKeys.MESSAGE_ADDED_SUCCESSFULLY]: 'The addition was completed successfully',
   [TKeys.MESSAGE_EVALUATED_SUCCESSFULLY]: 'Your progress has been successfully updated',

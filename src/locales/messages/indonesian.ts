@@ -619,6 +619,8 @@ export const indonesian: Translations = {
   [TKeys.LEVEL]: 'Tingkatan {value} :',
   [TKeys.MORNING]: 'pagi',
   [TKeys.EVENING]: 'malam',
+  [TKeys.TIMES_COUNT]: 'Sekali',
+  [TKeys.TIMES_COUNT_PLURAL]: '{times} kali',
 
   [TKeys.MESSAGE_ADDED_SUCCESSFULLY]: 'Penambahan berhasil diselesaikan',
   [TKeys.MESSAGE_EVALUATED_SUCCESSFULLY]: 'Kemajuan Anda telah berhasil diperbarui',
