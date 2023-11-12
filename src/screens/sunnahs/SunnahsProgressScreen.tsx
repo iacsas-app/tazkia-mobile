@@ -15,7 +15,7 @@ import SunnahPart from './SunnahPart';
 import { sunnahsStages } from './common/Helper';
 import SunnahRule from './common/SunnahRule';
 import SunnahStepProgress from './common/SunnahStepProgress';
-import { habitsRules } from './common/data';
+import { habitsRules, truthsRules, worshipRules } from './common/data';
 
 export default function SunnahsProgressScreen() {
   const { formatMessage } = useMessage();
@@ -49,7 +49,7 @@ export default function SunnahsProgressScreen() {
   }
 
   function worshipDescriptionFormat(sunnah: Sunnah): ReactNode {
-    return descriptionFormat(habitsRules, sunnah);
+    return descriptionFormat(worshipRules, sunnah);
   }
 
   function truthsSummaryFormat(id: number): string {
@@ -57,7 +57,7 @@ export default function SunnahsProgressScreen() {
   }
 
   function truthsDescriptionFormat(sunnah: Sunnah): ReactNode {
-    return descriptionFormat(habitsRules, sunnah);
+    return descriptionFormat(truthsRules, sunnah);
   }
 
   function descriptionFormat(records: Record<number, Record<SunnahType, string[]>>, sunnah: Sunnah): ReactNode {

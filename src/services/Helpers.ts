@@ -58,14 +58,13 @@ export function deviceLanguage(): string {
   return systemLanguage.split('_')[0];
 }
 
-export function reloadIfNecessary(lang: SupportedLocale) {
+export async function reloadIfNecessary(lang: SupportedLocale) {
   const isArabic = lang === 'ar';
   I18nManager.allowRTL(isArabic);
   I18nManager.forceRTL(isArabic);
   I18nManager.swapLeftAndRightInRTL(true);
 
   if ((isArabic && !I18nManager.isRTL) || (!isArabic && I18nManager.isRTL)) {
-    ExpoUpdates.reloadAsync();
-    //RNRestart.restart()
+    await ExpoUpdates.reloadAsync();
   }
 }

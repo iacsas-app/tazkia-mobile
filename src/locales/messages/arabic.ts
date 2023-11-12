@@ -304,8 +304,10 @@ export const arabic: Translations = {
   // Sunnah habit 1
   [TKeys.SUNNAHS_HABITS_1_TITLE]: 'سُننُ النوم',
   [TKeys.SUNNAHS_HABITS_1_VERBAL_RULE_1]: 'ما يقرأ قبل النوم: باسمك اللهم أحيا وأموت',
-  [TKeys.SUNNAHS_HABITS_1_VERBAL_RULE_2]: 'إذا قلق في فراشه فلم ينم',
-  [TKeys.SUNNAHS_HABITS_1_VERBAL_RULE_3]: 'إذا كان يفزع في منامه',
+  [TKeys.SUNNAHS_HABITS_1_VERBAL_RULE_2]:
+    'إذا قلق في فراشه فلم ينم : اللَّهُمَّ غارَتِ النُّجُومُ وَهَدأتِ العُيُونُ وأنْتَ حَيُّ قَيُّومٌ لا تَأخُذُكَ سِنَةٌ وَلاَ نَوْمٌ، يا حيُّ يا قَيُّومُ أَهْدِىءْ لَيْلي، وأنِمْ عَيْنِي',
+  [TKeys.SUNNAHS_HABITS_1_VERBAL_RULE_3]:
+    'إذا كان يفزع في منامه : أعُوذُ بِكَلِماتِ اللَّهِ التَّامَّةِ مِنْ غَضَبهِ وَشَرِّ عِبادِهِ، وَمِنْ هَمَزَاتِ الشَّياطِينِ وأنْ يَحْضُرُونِ',
 
   // Sunnah habit 2
   [TKeys.SUNNAHS_HABITS_2_TITLE]: 'سُننُ الاستيقاظ',
