@@ -1,10 +1,10 @@
 import { Box, Stack } from '@react-native-material/core';
 import { useMemo } from 'react';
-import { StyleSheet, useWindowDimensions } from 'react-native';
+import { SafeAreaView, StyleSheet, useWindowDimensions } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import PressableStep, { Part } from '../../components/PressableStep';
 import { TKeys } from '../../locales/constants';
 import GlobalStyles from '../../styles/GlobalStyles';
-import BasePresentationLayout from './common/BasePresentationLayout';
 
 export default function PresentationScreen() {
   const { width } = useWindowDimensions();
@@ -35,20 +35,22 @@ export default function PresentationScreen() {
   );
 
   return (
-    <BasePresentationLayout>
-      <Stack style={styles.container} items="center" spacing={15}>
-        {parts.map((item: Part, index: number) => (
-          <Box key={index} style={{ ...styles.part, width: width - 70 }}>
-            <PressableStep item={item} />
-          </Box>
-        ))}
-      </Stack>
-    </BasePresentationLayout>
+    <SafeAreaView>
+      <ScrollView contentContainerStyle={{ ...GlobalStyles.center, paddingVertical: 15 }}>
+        <Stack style={styles.container} items="center" spacing={15}>
+          {parts.map((item: Part, index: number) => (
+            <Box key={index} style={{ ...styles.part, width: width - 70 }}>
+              <PressableStep item={item} />
+            </Box>
+          ))}
+        </Stack>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { ...GlobalStyles.container, backgroundColor: '#dcdcf730' },
+  container: { ...GlobalStyles.center, backgroundColor: '#dcdcf730' },
   part: {
     paddingVertical: 10,
     backgroundColor: '#f5fffa',

@@ -18,7 +18,7 @@ import Text from '../../components/Text';
 import { useMessage } from '../../hooks/use-message';
 import { TKeys } from '../../locales/constants';
 import GlobalStyles from '../../styles/GlobalStyles';
-import PeriodChooser, { ACCENT_COLOR, BACKDROP_COLOR, HEIGHT, OVERDRAG } from './immunization/PeriodChooser';
+import PeriodChooser, { BACKDROP_COLOR, HEIGHT, OVERDRAG } from './immunization/PeriodChooser';
 
 export default function InvocationsScreen() {
   const { formatMessage } = useMessage();
@@ -26,7 +26,6 @@ export default function InvocationsScreen() {
   const navigation = useNavigation<any>();
 
   const [isOpen, setOpen] = useState(false);
-  const accent = useSharedValue(ACCENT_COLOR);
   const offset = useSharedValue(0);
 
   const toggleSheet = () => {

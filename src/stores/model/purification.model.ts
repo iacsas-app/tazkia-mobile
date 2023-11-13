@@ -3,6 +3,7 @@ import ProgressLine from '../../domains/common/ProgressLine';
 import BodyPart, { BodyPartType } from '../../domains/purification/BodyPart';
 import Mind, { MindLevel } from '../../domains/purification/Mind';
 import Purification from '../../domains/purification/Purification';
+import Soul, { SoulPart, SoulPartLevel } from '../../domains/purification/Soul';
 import { PurificationStage } from '../../screens/purification/steps/bodyPartsStep/BodyPartsScreen';
 import { PURIFICATION_MAX_DAYS, isBodyPartStepInProgress } from '../../services/Helpers';
 import { Injections } from '../injections';
@@ -27,6 +28,7 @@ export interface PurificationModel {
   // Computed
   findByPart: Computed<PurificationModel, (part: BodyPartType) => BodyPart | undefined>;
   findByMind: Computed<PurificationModel, (level: MindLevel) => Mind | undefined>;
+  findSoul: Computed<PurificationModel, (part: SoulPart, level?: SoulPartLevel) => Soul | undefined>;
   lastMindLevel: Computed<PurificationModel, () => Mind | undefined>;
 
   findByPartTypeAndStage: Computed<
@@ -130,6 +132,14 @@ const purificationModel: PurificationModel = {
       return undefined;
     }
     return state.item.mind.find((item) => item.level === level);
+  }),
+  findSoul: computed((state) => (part: SoulPart, level?: SoulPartLevel): Soul | undefined => {
+    if (!state.item) {
+      return undefined;
+    }
+    return state.item.soul.find(
+      (item) => item.part === part && (!level || item.partProgress.some((l) => l.level === level)),
+    );
   }),
   lastMindLevel: computed((state) => (): Mind | undefined => {
     if (!state.item) {
