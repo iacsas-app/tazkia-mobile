@@ -57,10 +57,6 @@ export default function InvocationsScreen() {
   const parts = useMemo(
     () => [
       {
-        route: 'Purification',
-        name: TKeys.INVOCATION_PURIFICATION_TITLE,
-      },
-      {
         route: 'Immunization',
         name: TKeys.INVOCATION_IMMUNIZATION_TITLE,
       },
@@ -105,7 +101,7 @@ export default function InvocationsScreen() {
                 style={{ ...styles.part, width: width - 120 }}
                 onTouchStart={() => handlePress(item.route)}
               >
-                <Text variant="body1" style={{ fontSize: 18, fontWeight: '800' }}>
+                <Text variant="bodyLarge" style={{ fontSize: 18, fontWeight: '800' }}>
                   {formatMessage(item.name)}
                 </Text>
               </Box>

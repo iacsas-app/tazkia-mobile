@@ -16,7 +16,7 @@ export default function RepeatCount({ count, color }: Props) {
   const marginLeft = I18nManager.isRTL ? 0 : margin;
   return (
     <Box style={styles.container}>
-      <Text variant="body2" style={{ ...styles.text, marginRight, marginLeft }}>
+      <Text variant="bodyMedium" style={{ ...styles.text, marginRight, marginLeft }}>
         {count}
       </Text>
       <Icon name="reload" size={25} color={color} style={styles.icon} />

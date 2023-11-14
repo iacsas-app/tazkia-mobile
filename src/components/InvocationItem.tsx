@@ -33,7 +33,7 @@ export default function InvocationItem({ index, total, summary, repeat }: Props)
       onPress={handlePress}
     >
       <VStack spacing={25}>
-        <Text variant="body1" style={{ fontSize: 14, textAlign: 'justify', fontWeight: '500' }}>
+        <Text variant="titleLarge" style={{ fontSize: 14, textAlign: 'justify', fontWeight: '500' }}>
           {summary}
         </Text>
         <View style={{ flexDirection: 'row' }}>

@@ -1,15 +1,15 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import { Avatar, Box, HStack, Pressable } from '@react-native-material/core';
 import { ImageSourcePropType, StyleSheet, View } from 'react-native';
-import Text from '../../../../components/Text';
-import { BodyPartType } from '../../../../domains/purification/BodyPart';
-import { useApplication } from '../../../../hooks/use-application';
-import { useMessage } from '../../../../hooks/use-message';
-import { isBodyPartStepInProgress } from '../../../../services/Helpers';
-import { useStoreState } from '../../../../stores/hooks';
-import GlobalStyles from '../../../../styles/GlobalStyles';
-import { PurificationStage } from './BodyPartsScreen';
-import { isFullyCompleted } from './common/Helper';
+import Text from '../../../../../components/Text';
+import { BodyPartType } from '../../../../../domains/purification/BodyPart';
+import { useApplication } from '../../../../../hooks/use-application';
+import { useMessage } from '../../../../../hooks/use-message';
+import { isBodyPartStepInProgress } from '../../../../../services/Helpers';
+import { useStoreState } from '../../../../../stores/hooks';
+import GlobalStyles from '../../../../../styles/GlobalStyles';
+import { isFullyCompleted } from '../common/Helper';
+import { PurificationStage } from '../tabs/HomeScreen';
 
 interface BodyPartItemProps {
   id: number;
@@ -47,13 +47,16 @@ export default function BodyPartItem({ id, type, nameKey, imageSource, onOpenRul
           style={styles.idAvatar}
           color="white"
           label={
-            <Text variant="caption" color="#008080" style={styles.id}>
+            <Text variant="bodySmall" color="#008080" style={styles.id}>
               {id}
             </Text>
           }
         />
         <HStack spacing={10}>
-          <Text style={{ ...styles.partName, color: isCompleted ? 'white' : 'black', fontSize: arabic ? 18 : 15 }}>
+          <Text
+            variant="bodyLarge"
+            style={{ ...styles.partName, color: isCompleted ? 'white' : 'black', fontSize: arabic ? 18 : 15 }}
+          >
             {formatMessage(nameKey)}
           </Text>
           {isCompleted && <Icon name="check" size={26} color="white" />}
@@ -67,7 +70,9 @@ export default function BodyPartItem({ id, type, nameKey, imageSource, onOpenRul
                 <Pressable style={{ padding: 3 }} onPress={() => handlePress('cleaning')}>
                   <HStack spacing={space} style={GlobalStyles.center}>
                     <Icon name="account-tie-hat" size={12} color="#4b0082" />
-                    <Text style={{ fontSize: btnFontSize }}>{formatMessage(`button.cleaning`)}</Text>
+                    <Text variant="bodyLarge" style={{ fontSize: btnFontSize }}>
+                      {formatMessage(`button.cleaning`)}
+                    </Text>
                   </HStack>
                 </Pressable>
               </Box>
@@ -77,7 +82,9 @@ export default function BodyPartItem({ id, type, nameKey, imageSource, onOpenRul
                 <Pressable style={{ padding: 3 }} onPress={() => handlePress('enlightenment')}>
                   <HStack spacing={space} style={GlobalStyles.center}>
                     <Icon name="lightbulb-on" size={12} color="#32cd32" />
-                    <Text style={{ fontSize: btnFontSize }}>{formatMessage(`button.enlightenment`)}</Text>
+                    <Text variant="bodyLarge" style={{ fontSize: btnFontSize }}>
+                      {formatMessage(`button.enlightenment`)}
+                    </Text>
                   </HStack>
                 </Pressable>
               </Box>

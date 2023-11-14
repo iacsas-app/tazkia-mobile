@@ -62,7 +62,7 @@ export default function BodyPartProgressItem({ value }: ProgressItemProps) {
             <Avatar size={55} image={findPartProps(value.name)} />
             <Avatar
               label={
-                <Text variant="caption" style={styles.numberText}>
+                <Text variant="bodySmall" style={styles.numberText}>
                   {BodyPartsOrder[value.name]}
                 </Text>
               }
@@ -72,7 +72,7 @@ export default function BodyPartProgressItem({ value }: ProgressItemProps) {
             />
           </VStack>
           <VStack spacing={5} style={{ marginHorizontal: 10 }}>
-            <Text variant="body1" style={{ ...styles.partName, fontSize: arabic ? 17 : 13 }}>
+            <Text variant="bodyLarge" style={{ ...styles.partName, fontSize: arabic ? 17 : 13 }}>
               {formatMessage(`purification.body-parts.${value.name}`)}
             </Text>
             <HStack spacing={8}>

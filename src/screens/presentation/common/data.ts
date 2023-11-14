@@ -18,7 +18,7 @@ export const booksList: Book[] = [
   },
   {
     id: 3,
-    image: require('./../../../../assets/img/presentation/books/altazkia.png'),
+    image: require('./../../../../assets/img/presentation/books/jawaher.png'),
     title: TKeys.BOOK_TITLE_3,
     summary: TKeys.BOOK_DESC_3,
     link: '',

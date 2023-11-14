@@ -2,24 +2,23 @@ import { VStack } from '@react-native-material/core';
 import { useNavigation } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
 import { View } from 'react-native';
-import Text from '../../../../components/Text';
-import ScrollViewLayout from '../../../../components/layout/ScrollViewLayout';
-import SummaryRule from '../../../../components/rules/SummaryRule';
-import Rule from '../../../../domains/common/Rule';
-import { MindLevel } from '../../../../domains/purification/Mind';
-import Purification from '../../../../domains/purification/Purification';
-import { useApplication } from '../../../../hooks/use-application';
-import { useMessage } from '../../../../hooks/use-message';
-import { TKeys } from '../../../../locales/constants';
-import { PurificationStackNavigationProp } from '../../../../navigation/types';
-import { PURIFICATION_MAX_DAYS, isCompleted } from '../../../../services/Helpers';
-import { useStoreActions, useStoreState } from '../../../../stores/hooks';
-import GlobalStyles from '../../../../styles/GlobalStyles';
-import PurificationPrezLayout from '../../common/PurificationPrezLayout';
+import Text from '../../../../../components/Text';
+import ScrollViewLayout from '../../../../../components/layout/ScrollViewLayout';
+import SummaryRule from '../../../../../components/rules/SummaryRule';
+import Rule from '../../../../../domains/common/Rule';
+import { MindLevel } from '../../../../../domains/purification/Mind';
+import Purification from '../../../../../domains/purification/Purification';
+import { useApplication } from '../../../../../hooks/use-application';
+import { useMessage } from '../../../../../hooks/use-message';
+import { TKeys } from '../../../../../locales/constants';
+import { PurificationStackNavigationProp } from '../../../../../navigation/types';
+import { PURIFICATION_MAX_DAYS, isCompleted } from '../../../../../services/Helpers';
+import { useStoreActions, useStoreState } from '../../../../../stores/hooks';
+import GlobalStyles from '../../../../../styles/GlobalStyles';
 
 const levels: MindLevel[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-export default function MindScreen() {
+export default function HomeScreen() {
   const { formatMessage } = useMessage();
   const { arabic } = useApplication();
   const navigation = useNavigation<PurificationStackNavigationProp>();
@@ -38,7 +37,7 @@ export default function MindScreen() {
       title: formatMessage(TKeys.LEVEL, { value: level }),
       summary: formatMessage(`purification.mind.summary.level-${level}`),
       description: (
-        <Text style={{ textAlign: 'justify', fontSize: arabic ? 13 : 12 }}>
+        <Text variant="bodyLarge" style={{ textAlign: 'justify', fontSize: arabic ? 13 : 12 }}>
           {formatMessage(`purification.mind.description.level-${level}`)}
         </Text>
       ),
@@ -89,8 +88,7 @@ export default function MindScreen() {
 
   return (
     <ScrollViewLayout>
-      <PurificationPrezLayout summary={TKeys.PURIFICATION_MIND_SUMMARY} body={TKeys.PURIFICATION_MIND_INTRODUCTION} />
-      <VStack spacing={4} style={{ ...GlobalStyles.center, paddingBottom: 10, marginTop: -35 }}>
+      <VStack spacing={4} style={{ ...GlobalStyles.center, paddingBottom: 10, marginTop: 10 }}>
         {rules.map((rule) => (
           <View key={rule.id}>
             <SummaryRule rule={rule} onAdd={handleAdd} />

@@ -12,10 +12,10 @@ export default function FailedAttempt({ attempt, attemptFormatter }: Props) {
 
   return (
     <HStack spacing={5}>
-      <Text variant="caption" style={{ fontWeight: '500' }}>
+      <Text variant="bodySmall" style={{ fontWeight: '500' }}>
         {intl.formatDate(attempt.startDate)} :
       </Text>
-      <Text variant="caption">{attemptFormatter(attempt)}</Text>
+      <Text variant="bodySmall">{attemptFormatter(attempt)}</Text>
     </HStack>
   );
 }

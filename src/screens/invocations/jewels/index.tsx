@@ -1,11 +1,14 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
+import Text from '../../../components/Text';
 import GlobalStyles from './../../../styles/GlobalStyles';
 
 export default function JewelsInvocationsScreen() {
   return (
     <View style={GlobalStyles.container}>
-      <Text style={{ fontWeight: 'bold' }}>Jewels Invocations</Text>
+      <Text variant="bodyLarge" style={{ fontWeight: 'bold' }}>
+        Jewels Invocations
+      </Text>
     </View>
   );
 }

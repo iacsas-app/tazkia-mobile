@@ -10,7 +10,7 @@ import GlobalStyles from '../../styles/GlobalStyles';
 export default function ProgressScreen(): ReactElement {
   return (
     <View style={GlobalStyles.container}>
-      <Text variant="h5">My global progress and statistics</Text>
+      <Text variant="headlineSmall">My global progress and statistics</Text>
     </View>
   );
 }

@@ -2,9 +2,9 @@ import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import VStack from '../../../../components/stack/VStack';
-import { SoulPart } from '../../../../domains/purification/Soul';
-import GlobalStyles from '../../../../styles/GlobalStyles';
+import VStack from '../../../../../components/stack/VStack';
+import { SoulPart } from '../../../../../domains/purification/Soul';
+import GlobalStyles from '../../../../../styles/GlobalStyles';
 import LevelRule from './LevelRule';
 import { soulRules } from './data';
 

@@ -1,21 +1,41 @@
 import { Box, HStack, VStack } from '@react-native-material/core';
-import React, { ReactElement } from 'react';
-import { Image, StyleSheet, View, useWindowDimensions } from 'react-native';
+import React from 'react';
+import { Image, StyleSheet, ViewToken, useWindowDimensions } from 'react-native';
+import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import Text from '../../../components/Text';
 import { Book } from '../../../domains/presentation/Book';
 import GlobalStyles from '../../../styles/GlobalStyles';
 
-interface Props {
+type Props = {
+  viewableItems: Animated.SharedValue<ViewToken[]>;
   book: Book;
-}
-export default function FlatBook({ book }: Props): ReactElement {
+};
+
+export const FlatBook: React.FC<Props> = React.memo(({ book, viewableItems }) => {
   const { width } = useWindowDimensions();
   const box1With = width - 310;
 
+  const rStyle = useAnimatedStyle(() => {
+    const isVisible = Boolean(
+      viewableItems.value.filter((item) => item.isViewable).find((viewableItem) => viewableItem.item.id === book.id),
+    );
+
+    return {
+      opacity: withTiming(isVisible ? 1 : 0),
+      transform: [
+        {
+          scale: withTiming(isVisible ? 1 : 0.6),
+        },
+      ],
+    };
+  }, []);
+
   return (
-    <View style={styles.row}>
+    <Animated.View style={[rStyle, styles.row]}>
       <VStack spacing={10} style={{ width: width - 80 }}>
-        <Text style={{ fontSize: 14, fontWeight: '900' }}>{book.title}</Text>
+        <Text variant="bodyLarge" style={{ fontSize: 14, fontWeight: '900' }}>
+          {book.title}
+        </Text>
         <HStack spacing={30}>
           <Box style={{ width: box1With }}>
             <VStack style={GlobalStyles.center}>
@@ -24,15 +44,19 @@ export default function FlatBook({ book }: Props): ReactElement {
           </Box>
           <Box style={{ width: width - box1With - 100 }}>
             <VStack>
-              <Text style={{ ...styles.summary, fontSize: 14 }}>{book.summary}</Text>
-              <Text style={styles.link}>{book.link}</Text>
+              <Text variant="bodyLarge" style={{ ...styles.summary, fontSize: 14 }}>
+                {book.summary}
+              </Text>
+              <Text variant="bodyLarge" style={styles.link}>
+                {book.link}
+              </Text>
             </VStack>
           </Box>
         </HStack>
       </VStack>
-    </View>
+    </Animated.View>
   );
-}
+});
 
 const styles = StyleSheet.create({
   row: {

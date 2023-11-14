@@ -1,7 +1,8 @@
 import { VStack } from '@react-native-material/core';
 import { useRoute } from '@react-navigation/native';
 import React from 'react';
-import { Text, View, useWindowDimensions } from 'react-native';
+import { View, useWindowDimensions } from 'react-native';
+import Text from '../../../components/Text';
 import { useMessage } from '../../../hooks/use-message';
 import { TKeys } from '../../../locales/constants';
 import { InvocationsScreenRouteProp } from '../../../navigation/types';
@@ -26,12 +27,12 @@ export default function ImmunizationInvocationsScreen() {
           >
             {formatMessage(TKeys.BASMALAH)}
           </Text>
-          <Text style={{ textAlign: 'justify', fontWeight: '600' }}>
+          <Text variant="bodyLarge" style={{ textAlign: 'justify', fontWeight: '600' }}>
             {formatMessage(TKeys.INVOCATIONS_IMMUNIZATION_INTRODUCTION)}
           </Text>
         </VStack>
         <Immunization period={period} />
-        <Text style={{ textAlign: 'justify', fontWeight: '600', marginTop: 10 }}>
+        <Text variant="bodyLarge" style={{ textAlign: 'justify', fontWeight: '600', marginTop: 10 }}>
           {formatMessage(TKeys.INVOCATIONS_IMMUNIZATION_CONCLUSION)}
         </Text>
       </View>

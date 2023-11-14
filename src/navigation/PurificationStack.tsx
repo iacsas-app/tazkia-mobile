@@ -2,13 +2,13 @@ import { createStackNavigator } from '@react-navigation/stack';
 import BodyPart from '../domains/purification/BodyPart';
 import { useMessage } from '../hooks/use-message';
 import { TKeys } from '../locales/constants';
-import PurificationProgressScreen from '../screens/purification/PurificationProgressScreen';
 import PurificationScreen from '../screens/purification/PurificationScreen';
-import BodyPartsScreen, { PurificationStage } from '../screens/purification/steps/bodyPartsStep/BodyPartsScreen';
+import BodyPartsScreen from '../screens/purification/steps/bodyPartsStep';
 import BodyPartProgressScreen from '../screens/purification/steps/bodyPartsStep/progress/BodyPartProgressScreen';
 import BodyPartsRulesScreen from '../screens/purification/steps/bodyPartsStep/rules/BodyPartRulesScreen';
-import MindScreen from '../screens/purification/steps/mindStep/MindScreen';
-import SoulScreen from '../screens/purification/steps/soulStep/SoulScreen';
+import { PurificationStage } from '../screens/purification/steps/bodyPartsStep/tabs/HomeScreen';
+import MindScreen from '../screens/purification/steps/mindStep';
+import SoulScreen from '../screens/purification/steps/soulStep';
 import { capitalize } from '../services/Helpers';
 import { PurificationParamList } from './types';
 
@@ -47,7 +47,6 @@ export default function PurificationStack() {
           component={BodyPartProgressScreen}
           options={({ route }) => ({ title: bodyPartProgressBarTitle(route.params.value) })}
         />
-        <Stack.Screen name="PurificationProgress" component={PurificationProgressScreen} />
       </Stack.Group>
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen

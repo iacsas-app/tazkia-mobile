@@ -44,7 +44,10 @@ export default function SummaryRule({ rule, ...props }: Props) {
               spacing={8}
               style={{ width: width - (rule.disabled && !rule.status ? 155 : 170), alignItems: 'center' }}
             >
-              <Text style={{ fontWeight: '900', fontSize: 12, color: statusColor, textAlign: 'justify' }}>
+              <Text
+                variant="bodyLarge"
+                style={{ fontWeight: '900', fontSize: 12, color: statusColor, textAlign: 'justify' }}
+              >
                 {rule.title}
               </Text>
               {rule.summary && (

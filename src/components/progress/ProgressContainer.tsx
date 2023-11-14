@@ -27,7 +27,7 @@ export default function ProgressContainer({ title, subtitle, variant, children, 
     <View style={{ ...GlobalStyles.center, ...bgColor }}>
       <Box style={{ paddingBottom: 60 }}>
         <ScrollViewLayout>
-          <Text variant="body1" style={{ ...styles.title, color: variant, fontSize: arabic ? 25 : 20 }}>
+          <Text variant="bodyLarge" style={{ ...styles.title, color: variant, fontSize: arabic ? 25 : 20 }}>
             {title}
           </Text>
           {children}

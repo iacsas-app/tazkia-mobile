@@ -1,11 +1,12 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
-import { useNavigation } from '@react-navigation/native';
 import React, { useMemo, useState } from 'react';
-import { Dimensions, Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Avatar } from 'react-native-paper';
 import Animated, {
   FadeIn,
+  FadeInDown,
+  FadeInUp,
   FadeOut,
   SlideInDown,
   SlideOutDown,
@@ -15,24 +16,21 @@ import Animated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import Text from '../../../../components/Text';
-import HStack from '../../../../components/stack/HStack';
-import VStack from '../../../../components/stack/VStack';
-import { SoulPart, SoulPartLevel } from '../../../../domains/purification/Soul';
-import { useMessage } from '../../../../hooks/use-message';
-import usePurification from '../../../../hooks/use-purification';
-import { PurificationStackNavigationProp } from '../../../../navigation/types';
-import GlobalStyles from '../../../../styles/GlobalStyles';
-import { BACKDROP_COLOR, OVERDRAG } from '../../../invocations/immunization/PeriodChooser';
-import LevelChooser from './LevelChooser';
-import { hasSubTitle, soulRules } from './data';
+import Text from '../../../../../components/Text';
+import HStack from '../../../../../components/stack/HStack';
+import VStack from '../../../../../components/stack/VStack';
+import { SCREEN_WIDTH } from '../../../../../constants/Screen';
+import { SoulPart, SoulPartLevel } from '../../../../../domains/purification/Soul';
+import { useMessage } from '../../../../../hooks/use-message';
+import usePurification from '../../../../../hooks/use-purification';
+import GlobalStyles from '../../../../../styles/GlobalStyles';
+import { BACKDROP_COLOR, OVERDRAG } from '../../../../invocations/immunization/PeriodChooser';
+import LevelChooser from '../helpers/LevelChooser';
+import { hasSubTitle, soulRules } from '../helpers/data';
 
-const { width: windowWidth } = Dimensions.get('window');
-
-export default function SoulScreen() {
+export default function HomeScreen() {
   const { formatMessage, formatNumber } = useMessage();
   const { createSoul, findSoul } = usePurification();
-  const navigation = useNavigation<PurificationStackNavigationProp>();
 
   const parts: string[] = useMemo(() => Object.keys(soulRules), []);
   const [isOpen, setOpen] = useState(false);
@@ -51,7 +49,6 @@ export default function SoulScreen() {
     if (part) {
       createSoul(part, level);
       toggleSheet();
-      navigation.push('Purification');
     }
   }
 
@@ -91,32 +88,35 @@ export default function SoulScreen() {
             const hasSubtitle = hasSubTitle.find((part) => part.toString() === soulPart) !== undefined;
             const progress = findSoul(soulPart as any);
             const hasProgress = progress !== undefined;
+            const idx = index + 1;
 
             return (
-              <HStack
-                index={index + 10}
-                key={soulPart}
-                style={{ ...styles.part, backgroundColor: hasProgress ? '#66cdaa' : '#f5fffa' }}
-                onTouchStart={() => handlePress(soulPart as any)}
-              >
-                <Avatar.Text
-                  size={35}
-                  label={formatNumber(Number.parseInt(soulPart))}
-                  color="#191970"
-                  style={styles.partNumber}
-                />
-                <VStack center>
-                  <Text variant="body1" style={styles.partTitle}>
-                    {formatMessage(`purification.soul.${soulPart}.title`)}
-                  </Text>
-                  {hasSubtitle && (
-                    <Text variant="body2" style={styles.partSubTitle}>
-                      {formatMessage(`purification.soul.${soulPart}.sub.title`)}
+              <Animated.View key={index + 1} entering={FadeInUp.delay(200 * idx)}>
+                <HStack
+                  index={index + 10}
+                  key={soulPart}
+                  style={{ ...styles.part, backgroundColor: hasProgress ? '#66cdaa' : '#f5fffa' }}
+                  onTouchStart={() => handlePress(soulPart as any)}
+                >
+                  <Avatar.Text
+                    size={35}
+                    label={formatNumber(Number.parseInt(soulPart))}
+                    color="#191970"
+                    style={styles.partNumber}
+                  />
+                  <VStack center>
+                    <Text variant="bodyLarge" style={styles.partTitle}>
+                      {formatMessage(`purification.soul.${soulPart}.title`)}
                     </Text>
-                  )}
-                </VStack>
-                {hasProgress && <Icon name="progress-check" style={styles.partProgress} color={'#00fa9a'} />}
-              </HStack>
+                    {hasSubtitle && (
+                      <Animated.Text entering={FadeInDown.delay(270 * idx)} style={styles.partSubTitle}>
+                        {formatMessage(`purification.soul.${soulPart}.sub.title`)}
+                      </Animated.Text>
+                    )}
+                  </VStack>
+                  {hasProgress && <Icon name="progress-check" style={styles.partProgress} color={'#00fa9a'} />}
+                </HStack>
+              </Animated.View>
             );
           })}
         </VStack>
@@ -152,12 +152,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     textAlign: 'justify',
     flexBasis: 60,
-    width: windowWidth - 15,
+    width: SCREEN_WIDTH - 15,
   },
   partNumber: { left: 10, position: 'absolute', backgroundColor: '#add8e6' },
   partProgress: { right: 10, position: 'absolute', fontSize: 35 },
   partTitle: { fontSize: 18, fontWeight: '900' },
-  partSubTitle: { fontSize: 16, fontWeight: '600', color: 'grey' },
+  partSubTitle: { fontSize: 14, fontWeight: '700', color: '#708090' },
   sheet: {
     backgroundColor: 'white',
     padding: 20,

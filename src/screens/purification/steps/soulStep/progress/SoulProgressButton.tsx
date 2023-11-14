@@ -28,7 +28,7 @@ export default function SoulProgressButton({ progress, roundedStart, roundedEnd,
       }}
       onPress={() => props.onClick(progress.level)}
     >
-      <Text style={{ fontSize: 13, color: 'green' }}>
+      <Text variant="bodyLarge" style={{ fontSize: 13, color: 'green' }}>
         {formatMessage(TKeys.LEVEL, { value: formatNumber(progress.level) })}
       </Text>
     </Button>

@@ -60,21 +60,21 @@ export default function FirstVisitScreen() {
       <View>
         <VStack spacing={20}>
           <VStack spacing={15} style={GlobalStyles.center}>
-            <Text variant="h5" style={{ fontWeight: '900' }}>
+            <Text variant="headlineMedium" style={{ fontWeight: '900' }}>
               {formatMessage(TKeys.WELCOME)}
             </Text>
             {isSupported ? (
-              <Text color="green">
+              <Text variant="bodyLarge" color="green">
                 {formatMessage(TKeys.SETTINGS_LANGUAGE_DEFAULT, {
                   lang: formatMessage(`language.${localesTranslation[locale].key}`),
                 })}
               </Text>
             ) : (
               <>
-                <Text variant="h5" color="red">
+                <Text variant="headlineMedium" color="red">
                   نعتذر، لغة هاتفكم غير مدعومة
                 </Text>
-                <Text variant="h6">المرجو اختيار لغة أخرى من بين القائمة التالية :</Text>
+                <Text variant="headlineSmall">المرجو اختيار لغة أخرى من بين القائمة التالية :</Text>
               </>
             )}
           </VStack>

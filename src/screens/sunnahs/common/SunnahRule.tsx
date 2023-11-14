@@ -21,12 +21,16 @@ export default function SunnahRule(props: Props) {
     }
     return (
       <VStack spacing={5} style={{ width: width - 80 }}>
-        <Text style={{ fontSize: 15, fontWeight: '700', color: 'green' }}>{formatMessage(type)} :</Text>
+        <Text variant="bodyLarge" style={{ fontSize: 15, fontWeight: '700', color: 'green' }}>
+          {formatMessage(type)} :
+        </Text>
         {items.map((ruleKey, index) => (
           <VStack key={index} spacing={3}>
             <HStack key={ruleKey} spacing={10} style={{ alignContent: 'flex-start' }}>
               {count > 1 && <Text style={{ fontSize: 15, fontWeight: '900', color: 'green' }}>{index + 1}</Text>}
-              <Text style={{ fontSize: 15, textAlign: 'justify' }}>{formatMessage(ruleKey)}</Text>
+              <Text variant="bodyLarge" style={{ fontSize: 15, textAlign: 'justify' }}>
+                {formatMessage(ruleKey)}
+              </Text>
             </HStack>
             {index < count - 1 && <Divider />}
           </VStack>

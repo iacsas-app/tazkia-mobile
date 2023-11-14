@@ -1,5 +1,5 @@
-import { SoulPart } from '../../../../domains/purification/Soul';
-import { TKeys } from '../../../../locales/constants';
+import { SoulPart } from '../../../../../domains/purification/Soul';
+import { TKeys } from '../../../../../locales/constants';
 
 export const soulRules: Record<SoulPart, TKeys[]> = {
   1: [TKeys.PURIFICATION_SOUL_1_LEVEL_1, TKeys.PURIFICATION_SOUL_1_LEVEL_2, TKeys.PURIFICATION_SOUL_1_LEVEL_3],

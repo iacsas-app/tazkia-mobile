@@ -2,14 +2,14 @@ import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import { Avatar, Box } from '@react-native-material/core';
 
 import React, { useMemo } from 'react';
-import { Dimensions, Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import Text from '../../../components/Text';
+import { SCREEN_WIDTH } from '../../../constants/Screen';
 import { useMessage } from '../../../hooks/use-message';
 import { TKeys } from '../../../locales/constants';
 import GlobalStyles from '../../../styles/GlobalStyles';
 import { ImmunizationPeriod } from './data';
 
-const { width: windowWidth } = Dimensions.get('window');
 const gap = 10;
 
 export const PRIMARY_COLOR = '#001A72';
@@ -63,7 +63,7 @@ export default function PeriodChooser({ onSelect, onToogle }: Props) {
             >
               <Avatar image={image} size={40} />
               <Box>
-                <Text style={{ fontWeight: '800', fontSize: 15 }}>
+                <Text variant="bodyLarge" style={{ fontWeight: '800', fontSize: 15 }}>
                   {formatMessage(TKeys.INVOCATIONS_IMMUNIZATION_TITLE, { period: formatMessage(name) })}
                 </Text>
               </Box>
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     color: PRIMARY_COLOR,
   },
   swatch: {
-    height: (windowWidth - 10 * gap) / 7,
+    height: (SCREEN_WIDTH - 10 * gap) / 7,
     aspectRatio: 1,
     borderRadius: 4,
   },

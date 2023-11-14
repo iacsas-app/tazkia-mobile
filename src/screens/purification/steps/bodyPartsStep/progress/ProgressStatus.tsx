@@ -23,7 +23,7 @@ export default function ProgressStatus({ title, ...props }: Props) {
       spacing={5}
       style={{ width: 120, justifyContent: 'space-between', alignContent: 'stretch', alignItems: 'center' }}
     >
-      <Text style={{ fontSize: arabic ? 14 : 10 }} color="grey">
+      <Text variant="bodyLarge" style={{ fontSize: arabic ? 14 : 10 }} color="grey">
         {title}
       </Text>
       <Box>

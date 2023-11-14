@@ -57,10 +57,10 @@ export default function LanguageSetting({ open, borderRadius }: Props) {
             <HStack spacing={17}>
               <Avatar image={languageFlags[lang]} size={40} />
               <VStack>
-                <Text color="black" variant="subtitle1" style={{ fontWeight: 'bold' }}>
+                <Text variant="titleSmall" color="black" style={{ fontWeight: 'bold' }}>
                   {formatMessage(TKeys.SETTINGS_LANGUAGE)}
                 </Text>
-                <Text color="black" variant="subtitle1">
+                <Text variant="titleSmall" color="black">
                   {formatMessage(`language.${languageKey.key}`)}
                 </Text>
               </VStack>

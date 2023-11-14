@@ -1,10 +1,12 @@
-import { Box, Text, VStack } from '@react-native-material/core';
 import { useMemo, useState } from 'react';
+import Animated, { FadeInUp } from 'react-native-reanimated';
 import EmptyList from '../../../../../components/EmptyList';
 import EvaluationDialog from '../../../../../components/EvaluationDialog';
 import ProgressBar from '../../../../../components/ProgressBar';
+import Text from '../../../../../components/Text';
 import ProgressContainer from '../../../../../components/progress/ProgressContainer';
 import RuleProgress from '../../../../../components/progress/RuleProgress';
+import VStack from '../../../../../components/stack/VStack';
 import Rule from '../../../../../domains/common/Rule';
 import Mind, { MindLevel } from '../../../../../domains/purification/Mind';
 import { useApplication } from '../../../../../hooks/use-application';
@@ -13,7 +15,7 @@ import { TKeys } from '../../../../../locales/constants';
 import { PurificationParamList } from '../../../../../navigation/types';
 import { PURIFICATION_MAX_DAYS, isCompleted } from '../../../../../services/Helpers';
 import { useStoreActions } from '../../../../../stores/hooks';
-import { orderMindLevels } from '../Helper';
+import { orderMindLevels } from '../helpers/Helper';
 
 interface Props {
   items: Mind[];
@@ -50,7 +52,7 @@ export default function MindProgress({ items, onAdd }: Props) {
       title: formatMessage(TKeys.LEVEL, { value: level }),
       summary: formatMessage(`purification.mind.summary.level-${level}`),
       description: (
-        <Text style={{ textAlign: 'justify', fontSize: arabic ? 13 : 12 }}>
+        <Text variant="bodyLarge" style={{ textAlign: 'justify', fontSize: arabic ? 13 : 12 }}>
           {formatMessage(`purification.mind.description.level-${level}`)}
         </Text>
       ),
@@ -74,7 +76,7 @@ export default function MindProgress({ items, onAdd }: Props) {
               const completed = isCompleted(item.progress, PURIFICATION_MAX_DAYS);
               const last = item.progress[item.progress.length - 1];
               return (
-                <Box key={`mind_${index}`}>
+                <Animated.View key={`mind_${index}`} entering={FadeInUp.delay(200 * index)}>
                   <RuleProgress
                     rule={toRule(item)}
                     maxDays={PURIFICATION_MAX_DAYS}
@@ -82,7 +84,7 @@ export default function MindProgress({ items, onAdd }: Props) {
                     onEvaluate={handleShowEvaluate}
                   />
                   {!completed && <ProgressBar day={last.day} maxDays={PURIFICATION_MAX_DAYS} />}
-                </Box>
+                </Animated.View>
               );
             })}
           </VStack>

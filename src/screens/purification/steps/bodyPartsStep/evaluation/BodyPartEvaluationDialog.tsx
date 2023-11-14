@@ -12,9 +12,9 @@ import { useMessage } from '../../../../../hooks/use-message';
 import { TKeys } from '../../../../../locales/constants';
 import { useStoreActions } from '../../../../../stores/hooks';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
-import { PurificationStage } from '../BodyPartsScreen';
 import { findPartProps } from '../common/Helper';
 import { rules } from '../common/data';
+import { PurificationStage } from '../tabs/HomeScreen';
 
 interface Props {
   type: BodyPartType;
@@ -44,7 +44,7 @@ export default function BodyPartEvaluationDialog({ type, stage, onSave }: Props)
         <Avatar image={findPartProps(type)} size={90} />
         <HStack spacing={15} style={styles.system}>
           <Icon name="playlist-check" color="red" size={30} />
-          <Text variant="h6" style={{ ...styles.title, fontSize: arabic ? 20 : 15 }}>
+          <Text variant="headlineSmall" style={{ ...styles.title, fontSize: arabic ? 20 : 15 }}>
             {formatMessage(TKeys.PROGRESS_EVALUATION_MESSAGE)}
           </Text>
         </HStack>

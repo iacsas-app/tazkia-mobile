@@ -1,33 +1,26 @@
-import { Box, Stack } from '@react-native-material/core';
 import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
+import Animated, { FadeInUp } from 'react-native-reanimated';
 import PressableStep, { Part } from '../../components/PressableStep';
-import { useApplication } from '../../hooks/use-application';
+import VStack from '../../components/stack/VStack';
 import GlobalStyles from '../../styles/GlobalStyles';
-import PurificationProgressScreen from './PurificationProgressScreen';
 import { purificationStages } from './common/Helper';
 
 export default function PurificationScreen() {
-  const { hasPurificationProgress } = useApplication();
   const parts: Part[] = useMemo(() => purificationStages, []);
 
-  if (hasPurificationProgress) {
-    return <PurificationProgressScreen />;
-  }
-
   return (
-    <Stack style={styles.container} items="center" spacing={25}>
+    <VStack style={GlobalStyles.container} spacing={25}>
       {parts.map((item: Part, index: number) => (
-        <Box key={index} style={styles.part}>
-          <PressableStep item={item} />
-        </Box>
+        <Animated.View key={index} entering={FadeInUp.delay(200 * (index * 2))} style={styles.part}>
+          <PressableStep item={item} index={index} />
+        </Animated.View>
       ))}
-    </Stack>
+    </VStack>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { ...GlobalStyles.container },
   part: {
     width: 250,
     paddingVertical: 10,

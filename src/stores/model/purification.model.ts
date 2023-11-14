@@ -4,7 +4,7 @@ import BodyPart, { BodyPartType } from '../../domains/purification/BodyPart';
 import Mind, { MindLevel } from '../../domains/purification/Mind';
 import Purification from '../../domains/purification/Purification';
 import Soul, { SoulPart, SoulPartLevel } from '../../domains/purification/Soul';
-import { PurificationStage } from '../../screens/purification/steps/bodyPartsStep/BodyPartsScreen';
+import { PurificationStage } from '../../screens/purification/steps/bodyPartsStep/tabs/HomeScreen';
 import { PURIFICATION_MAX_DAYS, isBodyPartStepInProgress } from '../../services/Helpers';
 import { Injections } from '../injections';
 import { storageEngine } from '../storage-engine';

@@ -51,7 +51,9 @@ export default function ProgressStatusContainer(props: Props) {
           <Box mb={1}>
             <HStack spacing={10} style={styles.center}>
               <Icon name={iconName as any} size={28} color={iconColor} />
-              <Text style={{ fontWeight: '700', fontSize: arabic ? 20 : 15 }}>{capitalize(title)}</Text>
+              <Text variant="bodyLarge" style={{ fontWeight: '700', fontSize: arabic ? 20 : 15 }}>
+                {capitalize(title)}
+              </Text>
             </HStack>
           </Box>
           <Box>

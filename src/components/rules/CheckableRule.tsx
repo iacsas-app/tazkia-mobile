@@ -37,7 +37,7 @@ export default function CheckableRule({ id, item, ...props }: RuleProps) {
         <Avatar
           label={
             checked ? undefined : (
-              <Text variant="subtitle2" color="white">
+              <Text variant="titleLarge" color="white">
                 {id}
               </Text>
             )
@@ -47,7 +47,7 @@ export default function CheckableRule({ id, item, ...props }: RuleProps) {
           tintColor="white"
           icon={(props) => <Icon name="check-bold" {...props} />}
         />
-        <Text variant="body1" style={{ ...RuleStyles.text, fontSize: arabic ? 13 : 12 }}>
+        <Text variant="bodyLarge" style={{ ...RuleStyles.text, fontSize: arabic ? 13 : 12 }}>
           {item}
         </Text>
       </HStack>

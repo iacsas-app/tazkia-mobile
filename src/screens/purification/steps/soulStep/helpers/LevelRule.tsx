@@ -1,16 +1,15 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
-import { Dimensions, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Button } from 'react-native-paper';
-import Text from '../../../../components/Text';
-import HStack from '../../../../components/stack/HStack';
-import VStack from '../../../../components/stack/VStack';
-import { SoulPart } from '../../../../domains/purification/Soul';
-import { useMessage } from '../../../../hooks/use-message';
-import usePurification from '../../../../hooks/use-purification';
-import { TKeys } from '../../../../locales/constants';
-import GlobalStyles from '../../../../styles/GlobalStyles';
-
-const { width: windowWidth } = Dimensions.get('window');
+import Text from '../../../../../components/Text';
+import HStack from '../../../../../components/stack/HStack';
+import VStack from '../../../../../components/stack/VStack';
+import { SCREEN_WIDTH } from '../../../../../constants/Screen';
+import { SoulPart } from '../../../../../domains/purification/Soul';
+import { useMessage } from '../../../../../hooks/use-message';
+import usePurification from '../../../../../hooks/use-purification';
+import { TKeys } from '../../../../../locales/constants';
+import GlobalStyles from '../../../../../styles/GlobalStyles';
 
 type Props = {
   part: SoulPart;
@@ -32,7 +31,9 @@ export default function LevelRule({ part, index, levelKey, onSelect }: Props) {
       <HStack style={styles.header}>
         <HStack spacing={10}>
           <Icon name="comma-circle" size={22} color="#4169e1" />
-          <Text style={styles.levelTitle}>{formatMessage(TKeys.LEVEL, { value: formatNumber(index) })}</Text>
+          <Text variant="bodyLarge" style={styles.levelTitle}>
+            {formatMessage(TKeys.LEVEL, { value: formatNumber(index) })}
+          </Text>
         </HStack>
         {!soul ? (
           <Button
@@ -52,7 +53,9 @@ export default function LevelRule({ part, index, levelKey, onSelect }: Props) {
         )}
       </HStack>
 
-      <Text style={styles.levelSummary}>{formatMessage(levelKey)}</Text>
+      <Text variant="bodyLarge" style={styles.levelSummary}>
+        {formatMessage(levelKey)}
+      </Text>
     </VStack>
   );
 }
@@ -60,7 +63,7 @@ export default function LevelRule({ part, index, levelKey, onSelect }: Props) {
 const styles = StyleSheet.create({
   container: {
     ...GlobalStyles.rounded,
-    width: windowWidth - 20,
+    width: SCREEN_WIDTH - 20,
     backgroundColor: '#add8e6',
     padding: 10,
     elevation: 1,

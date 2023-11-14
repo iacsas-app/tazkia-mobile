@@ -5,7 +5,7 @@ import { BodyPartType } from '../../../../../domains/purification/BodyPart';
 import { useMessage } from '../../../../../hooks/use-message';
 import { TKeys } from '../../../../../locales/constants';
 import { useStoreState } from '../../../../../stores/hooks';
-import { PurificationStage as PurificationPhase } from '../BodyPartsScreen';
+import { PurificationStage as PurificationPhase } from '../tabs/HomeScreen';
 
 interface BodyPartProgressProps {
   type: BodyPartType;

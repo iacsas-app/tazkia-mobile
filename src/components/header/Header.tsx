@@ -8,10 +8,10 @@ export default function Header() {
   const { formatMessage } = useMessage();
   return (
     <VStack>
-      <Text variant="body1" style={styles.title}>
+      <Text variant="bodyLarge" style={styles.title}>
         {formatMessage(TKeys.APPLICATION_TITLE_PRIMARY)}
       </Text>
-      <Text variant="caption">{formatMessage(TKeys.APPLICATION_TITLE_SECONDARY)}</Text>
+      <Text variant="bodyMedium">{formatMessage(TKeys.APPLICATION_TITLE_SECONDARY)}</Text>
     </VStack>
   );
 }

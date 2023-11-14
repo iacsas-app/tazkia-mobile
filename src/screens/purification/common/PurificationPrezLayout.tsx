@@ -1,33 +1,29 @@
-import { Box, VStack } from '@react-native-material/core';
 import { PropsWithChildren } from 'react';
+import { ColorValue, View } from 'react-native';
+import Basmalah from '../../../components/Basmalah';
 import Text from '../../../components/Text';
+import VStack from '../../../components/stack/VStack';
 import { useApplication } from '../../../hooks/use-application';
 import { useMessage } from '../../../hooks/use-message';
 import { TKeys } from '../../../locales/constants';
-import GlobalStyles from '../../../styles/GlobalStyles';
+import { purificationStyles } from './Style';
 
 interface Props extends PropsWithChildren {
   summary: TKeys;
   body: TKeys;
+  titleColor?: ColorValue;
 }
 export default function PurificationPrezLayout(props: Props) {
   const { formatMessage } = useMessage();
   const { arabic } = useApplication();
 
   return (
-    <VStack spacing={2} style={{ alignItems: 'center' }}>
-      <VStack>
-        <Text style={{ ...GlobalStyles.description, color: 'blue' }}>{formatMessage(props.summary)}</Text>
-        <Text
-          style={{
-            paddingVertical: 10,
-            fontSize: arabic ? 17 : 14,
-            fontWeight: '900',
-            textAlign: 'justify',
-          }}
-        >
-          {formatMessage(TKeys.BASMALAH)}
+    <VStack spacing={2}>
+      <VStack spacing={5}>
+        <Text variant="bodyLarge" style={purificationStyles.title} color="blue">
+          {formatMessage(props.summary)}
         </Text>
+        <Basmalah />
         <Text
           style={{
             paddingTop: arabic ? 8 : 0,
@@ -40,7 +36,7 @@ export default function PurificationPrezLayout(props: Props) {
           {formatMessage(props.body)}
         </Text>
       </VStack>
-      {props.children && <Box>{props.children}</Box>}
+      {props.children && <View>{props.children}</View>}
     </VStack>
   );
 }

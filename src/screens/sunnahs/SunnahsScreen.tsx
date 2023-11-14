@@ -1,6 +1,7 @@
-import { Box, Stack, VStack } from '@react-native-material/core';
+import { Stack, VStack } from '@react-native-material/core';
 import { useMemo } from 'react';
 import { StyleSheet, useWindowDimensions } from 'react-native';
+import Animated, { FadeInUp } from 'react-native-reanimated';
 import PressableStep, { Part } from '../../components/PressableStep';
 import Text from '../../components/Text';
 import { useApplication } from '../../hooks/use-application';
@@ -24,7 +25,9 @@ export default function SunnahsScreen() {
 
   return (
     <BasePresentationLayout>
-      <Text style={{ ...GlobalStyles.description, fontSize: 20 }}>{formatMessage(TKeys.SUNNAHS_DESCRIPTION)}</Text>
+      <Text variant="bodyLarge" style={{ ...GlobalStyles.description, fontSize: 20 }}>
+        {formatMessage(TKeys.SUNNAHS_DESCRIPTION)}
+      </Text>
       <VStack spacing={2} style={{ alignItems: 'center' }}>
         <VStack>
           <Text
@@ -49,9 +52,13 @@ export default function SunnahsScreen() {
         </VStack>
         <Stack style={GlobalStyles.container} items="center" spacing={24} mt={13}>
           {parts.map((item: Part, index: number) => (
-            <Box key={index} style={{ ...styles.part, width: width - 140 }}>
-              <PressableStep item={item} nameTextSize={14} descriptionTextSize={14} />
-            </Box>
+            <Animated.View
+              key={index}
+              entering={FadeInUp.delay(200 * (index * 2))}
+              style={{ ...styles.part, width: width - 140 }}
+            >
+              <PressableStep item={item} nameTextSize={14} descriptionTextSize={14} index={index} />
+            </Animated.View>
           ))}
         </Stack>
       </VStack>

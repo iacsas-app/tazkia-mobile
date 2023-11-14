@@ -24,7 +24,7 @@ export default function SettingsDialog({ open, onClose }: Props) {
         <VStack spacing={30} style={{ alignContent: 'center', alignItems: 'center' }}>
           <HStack spacing={10}>
             <Icon name="settings" size={28} color="black" />
-            <Text color="black" variant="h5" style={{ fontWeight: 'bold' }}>
+            <Text variant="headlineMedium" color="black" style={{ fontWeight: 'bold' }}>
               {formatMessage(TKeys.MENU_SETTINGS)}
             </Text>
           </HStack>

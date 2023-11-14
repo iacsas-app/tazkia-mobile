@@ -17,10 +17,10 @@ const GlobalStyles = StyleSheet.create({
   },
   centerAlign: { alignItems: 'center' },
   description: {
-    marginTop: 5,
-    fontSize: 19,
+    marginTop: 15,
+    fontSize: 20,
     fontWeight: '900',
-    color: 'green',
+    alignSelf: 'center',
   },
 });
 

@@ -525,9 +525,11 @@ export enum TKeys {
   MESSAGE_NO_PROGRESS = 'message.no-progress',
   MESSAGE_EVALUATED_SUCCESSFULLY = 'message.evaluated-successfully',
   MENU_HOME = 'menu.home',
+  MENU_PRESENTATION = 'menu.presentation',
   MENU_PURIFICATION = 'menu.purification',
   MENU_SUNNAHS = 'menu.sunnahs',
   MENU_INVOCATIONS = 'menu.invocations',
+  MENU_INVOCATION = 'menu.invocation',
   MENU_SETTINGS = 'menu.settings',
   SETTINGS_LANGUAGE = 'settings.app-language',
   SETTINGS_LANGUAGE_DEFAULT = 'settings.language.default',
@@ -545,4 +547,6 @@ export enum TKeys {
   PROGRESS_EVALUATION_QUESTION = 'progress.evaluation.question',
   TIMES_COUNT = 'times.count',
   TIMES_COUNT_PLURAL = 'times.count.plural',
+  DURATION = 'duration',
+  DURATION2 = 'duration2',
 }

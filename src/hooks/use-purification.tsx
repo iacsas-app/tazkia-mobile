@@ -3,6 +3,9 @@ import Soul, { SoulPart, SoulPartLevel } from '../domains/purification/Soul';
 import { useStoreActions, useStoreState } from '../stores/hooks';
 
 export interface IPurification {
+  hasBodyPartsProgress: boolean;
+  hasMindProgress: boolean;
+  hasSoulProgress: boolean;
   createSoul(part: SoulPart, level: SoulPartLevel): void;
   findSoul(part: SoulPart, level?: SoulPartLevel): Soul | undefined;
 }
@@ -32,6 +35,9 @@ export default function usePurification(): IPurification {
   }
 
   return {
+    hasBodyPartsProgress: purification !== undefined && purification.bodyParts.length !== 0,
+    hasMindProgress: purification !== undefined && purification.mind.length !== 0,
+    hasSoulProgress: purification !== undefined && purification.soul.length !== 0,
     createSoul,
     findSoul,
   };

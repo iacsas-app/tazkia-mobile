@@ -17,8 +17,12 @@ export default function ApproachScreen() {
     <BasePresentationLayout>
       <VStack>
         <Box style={{ width: width - 40 }}>
-          <Text style={{ fontSize: 20, fontWeight: '700' }}>{formatMessage(TKeys.PRESENTATION_APPROACH_TITLE)}</Text>
-          <Text style={{ ...styles.description, fontSize: 15 }}>{formatMessage(TKeys.PRESENTATION_APPROACH)}</Text>
+          <Text variant="bodyLarge" style={{ fontSize: 20, fontWeight: '700' }}>
+            {formatMessage(TKeys.PRESENTATION_APPROACH_TITLE)}
+          </Text>
+          <Text variant="bodyLarge" style={{ ...styles.description, fontSize: 15 }}>
+            {formatMessage(TKeys.PRESENTATION_APPROACH)}
+          </Text>
         </Box>
       </VStack>
       <Image

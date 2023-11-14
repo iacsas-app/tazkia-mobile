@@ -1,12 +1,20 @@
-import { Text as CoreText, TextProps } from '@react-native-material/core';
+import { ColorValue } from 'react-native';
+import { Text as TextPaper, TextProps } from 'react-native-paper';
 
-export default function Text({ color, children, ...props }: TextProps) {
-  //const isDarkMode = useColorScheme() === 'dark';
-  const newColor = color ? color : 'black';
+type Props = TextProps<any> & {
+  color?: ColorValue;
+};
+export default function Text({ color, children, ...props }: Props) {
+  const newColor = color ?? 'black';
+  const style = [props.style, { color: newColor }];
 
   return (
-    <CoreText color={newColor} {...props}>
+    <TextPaper {...props} style={style}>
       {children}
-    </CoreText>
+    </TextPaper>
   );
 }
+
+Text.defaultProps = {
+  variant: 'bodyMedium',
+};

@@ -30,7 +30,7 @@ export function ProgressStatus({ last, count, maxDays, completed }: Props) {
         {completed ? (
           <Icon name="check-bold" size={15} color="green" />
         ) : (
-          <Text variant="caption" style={styles.symbol}>
+          <Text variant="bodySmall" style={styles.symbol}>
             {progressPercentage(last.day - failed, maxDays)}
           </Text>
         )}

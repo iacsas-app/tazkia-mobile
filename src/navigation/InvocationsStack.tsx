@@ -8,7 +8,6 @@ import InvocationsScreen from '../screens/invocations/InvocationsScreen';
 import ImmunizationInvocationsScreen from '../screens/invocations/immunization';
 import { ImmunizationPeriod } from '../screens/invocations/immunization/data';
 import JewelsInvocationsScreen from '../screens/invocations/jewels';
-import PurificationInvocationsScreen from '../screens/invocations/purification';
 import { InvocationsParamList } from './types';
 
 export default function InvocationsStack() {
@@ -31,13 +30,6 @@ export default function InvocationsStack() {
       }}
     >
       <Stack.Screen name="Invocations" component={InvocationsScreen} options={{ headerShown: false }} />
-      <Stack.Screen
-        name="Purification"
-        component={PurificationInvocationsScreen}
-        options={{
-          title: formatMessage(TKeys.INVOCATION_PURIFICATION_TITLE),
-        }}
-      />
       <Stack.Screen
         name="Immunization"
         component={ImmunizationInvocationsScreen}

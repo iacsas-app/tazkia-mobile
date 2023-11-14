@@ -1,6 +1,7 @@
-import { Avatar, Pressable, Stack } from '@react-native-material/core';
 import { useNavigation } from '@react-navigation/native';
-import { ImageSourcePropType, PixelRatio, StyleSheet } from 'react-native';
+import { ImageSourcePropType, PixelRatio, StyleSheet, View } from 'react-native';
+import { TouchableRipple } from 'react-native-paper';
+import Animated, { FadeInLeft, FadeInRight } from 'react-native-reanimated';
 import { useApplication } from '../hooks/use-application';
 import { useMessage } from '../hooks/use-message';
 import {
@@ -9,7 +10,7 @@ import {
   PurificationParamList,
   SunnahsParamList,
 } from '../navigation/types';
-import Text from './Text';
+import GlobalStyles from '../styles/GlobalStyles';
 
 export interface Part {
   name?: string;
@@ -23,11 +24,12 @@ export interface Part {
 }
 
 interface Props {
+  index: number;
   item: Part;
   nameTextSize?: number;
   descriptionTextSize?: number;
 }
-export default function PressableStep({ item, nameTextSize, descriptionTextSize }: Props) {
+export default function PressableStep({ index, item, nameTextSize, descriptionTextSize }: Props) {
   const { formatMessage } = useMessage();
   const { arabic } = useApplication();
   const navigation = useNavigation<any>();
@@ -40,26 +42,36 @@ export default function PressableStep({ item, nameTextSize, descriptionTextSize 
   }
 
   return (
-    <Pressable onPress={handlePress}>
-      <Stack spacing={item.name ? 1 : 8} style={styles.container}>
-        {item.imageSource && <Avatar image={item.imageSource} imageStyle={styles.img} size={90} />}
-        {item.name && (
-          <Text variant="body1" style={{ fontSize: getFontSize(nameTextSize ? nameTextSize : arabic ? 17 : 13) }}>
-            {formatMessage(item.name)}
-          </Text>
+    <TouchableRipple onPress={handlePress}>
+      <View style={{ ...styles.container, gap: item.name ? 1 : 8 }}>
+        {item.imageSource && (
+          <Animated.Image
+            entering={FadeInRight.duration(300 * (index * 2)).delay(300)}
+            source={item.imageSource}
+            style={styles.img}
+          />
         )}
-        <Text
+        {item.name && (
+          <Animated.Text
+            entering={FadeInRight.delay(400 + index * 50)}
+            style={{ fontSize: getFontSize(nameTextSize ? nameTextSize : arabic ? 17 : 13) }}
+          >
+            {formatMessage(item.name)}
+          </Animated.Text>
+        )}
+        <Animated.Text
+          entering={FadeInLeft.delay(400 + index * 60).duration(600)}
           style={{
-            fontWeight: 'bold',
+            fontWeight: '900',
             fontSize: getFontSize(descriptionTextSize ? descriptionTextSize : arabic ? 15 : 13),
             justifyContent: 'center',
             textAlign: 'center',
           }}
         >
           {formatMessage(item.description)}
-        </Text>
-      </Stack>
-    </Pressable>
+        </Animated.Text>
+      </View>
+    </TouchableRipple>
   );
 }
 
@@ -72,5 +84,6 @@ const styles = StyleSheet.create({
   img: {
     width: 90,
     height: 90,
+    ...GlobalStyles.circle,
   },
 });

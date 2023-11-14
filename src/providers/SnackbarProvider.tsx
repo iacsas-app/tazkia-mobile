@@ -100,7 +100,7 @@ export default function SnackbarProvider({ children }: PropsWithChildren<unknown
           duration={500}
         >
           <HStack style={{ alignContent: 'center', justifyContent: 'space-between' }}>
-            <Text variant="h6" color="white">
+            <Text variant="headlineSmall" color="white">
               {state.content}
             </Text>
             <Icon name={iconName(state.variant)} size={30} color="white" />

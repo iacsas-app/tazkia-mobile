@@ -4,7 +4,7 @@ import BodyPart, { BodyPartType, BodyPartsOrder } from '../../../../../domains/p
 import Purification from '../../../../../domains/purification/Purification';
 import { TKeys } from '../../../../../locales/constants';
 import { PURIFICATION_MAX_DAYS, isCompleted } from '../../../../../services/Helpers';
-import { PurificationStage } from '../BodyPartsScreen';
+import { PurificationStage } from '../tabs/HomeScreen';
 
 export function isFullyCompleted(part: BodyPart) {
   return isCompleted(part.cleaning, PURIFICATION_MAX_DAYS) && isCompleted(part.enlightenment, PURIFICATION_MAX_DAYS);

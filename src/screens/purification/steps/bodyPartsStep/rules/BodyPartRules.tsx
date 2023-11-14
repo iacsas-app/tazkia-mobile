@@ -1,7 +1,7 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import { BodyPartType } from '../../../../../domains/purification/BodyPart';
 import { useStoreActions, useStoreState } from '../../../../../stores/hooks';
-import { PurificationStage } from '../BodyPartsScreen';
+import { PurificationStage } from '../tabs/HomeScreen';
 
 import { Avatar, HStack, VStack } from '@react-native-material/core';
 import { useNavigation } from '@react-navigation/native';
@@ -56,7 +56,7 @@ export default function BodyPartsRules({ part, step }: BodyPartsRulesProps) {
     <ScrollViewLayout>
       <Avatar image={findPartProps(part)} size={80} />
       <Text
-        variant="body1"
+        variant="bodyLarge"
         style={{ fontWeight: '600', marginVertical: 5, marginHorizontal: 0, fontSize: arabic ? 22 : 18 }}
         color="green"
       >
@@ -64,7 +64,7 @@ export default function BodyPartsRules({ part, step }: BodyPartsRulesProps) {
       </Text>
       <HStack spacing={10} style={styles.system}>
         <Icon name={isCleaning ? 'account-tie-hat' : 'lightbulb-on'} color={isCleaning ? 'red' : 'green'} size={23} />
-        <Text variant="body1" style={{ ...styles.title, fontSize: arabic ? 20 : 16 }}>
+        <Text variant="bodyLarge" style={{ ...styles.title, fontSize: arabic ? 20 : 16 }}>
           {formatMessage(`${step}.bodypart.disciplinary-system`)}
         </Text>
       </HStack>

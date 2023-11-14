@@ -1,6 +1,7 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import Animated, { FadeInUp } from 'react-native-reanimated';
 import BottomSheet, { BottomSheetRefProps } from '../../../../../components/BottomSheet';
 import Text from '../../../../../components/Text';
 import ProgressContainer from '../../../../../components/progress/ProgressContainer';
@@ -37,6 +38,12 @@ export default function SoulProgress({ items, onAdd }: SoulProgressProps) {
     onAdd('Soul');
   }
 
+  const initialMode = useRef<boolean>(true);
+
+  useEffect(() => {
+    initialMode.current = false;
+  }, []);
+
   return (
     <GestureHandlerRootView style={styles.container}>
       <ProgressContainer
@@ -47,15 +54,17 @@ export default function SoulProgress({ items, onAdd }: SoulProgressProps) {
       >
         <View style={GlobalStyles.container}>
           <VStack style={styles.container} spacing={8}>
-            {items.map((item) => (
-              <SoulProgressItem key={item.part} soul={item} onClick={handleClick} />
+            {items.map((item, index) => (
+              <Animated.View key={index} entering={initialMode.current ? FadeInUp.delay(200 * index) : FadeInUp}>
+                <SoulProgressItem key={item.part} soul={item} onClick={handleClick} />
+              </Animated.View>
             ))}
           </VStack>
         </View>
       </ProgressContainer>
       <BottomSheet ref={ref}>
         <View style={{ flex: 1, backgroundColor: 'orange' }}>
-          <Text variant="h1">{level}</Text>
+          <Text variant="displaySmall">{level}</Text>
         </View>
       </BottomSheet>
     </GestureHandlerRootView>

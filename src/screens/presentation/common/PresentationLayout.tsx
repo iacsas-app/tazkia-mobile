@@ -23,8 +23,12 @@ export default function PresentationLayout(props: Props) {
           </Box>
         )}
         <Box>
-          <Text style={{ fontSize: 18, fontWeight: '700' }}>{formatMessage(props.title)}</Text>
-          <Text style={{ ...styles.description, fontSize: 15 }}>{formatMessage(props.description)}</Text>
+          <Text variant="bodyLarge" style={{ fontSize: 18, fontWeight: '700' }}>
+            {formatMessage(props.title)}
+          </Text>
+          <Text variant="bodyLarge" style={{ ...styles.description, fontSize: 15 }}>
+            {formatMessage(props.description)}
+          </Text>
         </Box>
       </VStack>
     </BasePresentationLayout>

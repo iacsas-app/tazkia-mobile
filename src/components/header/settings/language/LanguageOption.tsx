@@ -25,10 +25,10 @@ export default function LanguageOption({ value, icon, color, onChange }: Languag
         <HStack spacing={12}>
           <Avatar image={icon} size={30} />
           <VStack justify="start" content="center">
-            <Text color={color} style={{ fontWeight: 'bold', fontSize: 12 }}>
+            <Text variant="bodyLarge" color={color} style={{ fontWeight: 'bold', fontSize: 12 }}>
               {language.name}
             </Text>
-            <Text color={color} style={{ fontSize: 11 }}>
+            <Text variant="bodyLarge" color={color} style={{ fontSize: 11 }}>
               {formatMessage(`language.${language.key}`)}
             </Text>
           </VStack>

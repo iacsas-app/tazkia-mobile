@@ -8,7 +8,7 @@ import { useMessage } from '../../../../../hooks/use-message';
 import { TKeys } from '../../../../../locales/constants';
 import { BodyPartProgressScreenRouteProp } from '../../../../../navigation/types';
 import { useSnackbar } from '../../../../../providers/SnackbarProvider';
-import { PurificationStage } from '../BodyPartsScreen';
+import { PurificationStage } from '../tabs/HomeScreen';
 import { findPartProps } from '../common/Helper';
 import BodyPartEvaluationDialog from '../evaluation/BodyPartEvaluationDialog';
 import BodyPartProgress from './BodyPartProgress';

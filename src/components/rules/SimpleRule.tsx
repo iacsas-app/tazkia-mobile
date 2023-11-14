@@ -12,7 +12,7 @@ export default function SimpleRule({ id, item }: RuleBaseProps) {
       <HStack spacing={10} style={RuleStyles.stack}>
         <Avatar
           label={
-            <Text variant="subtitle2" color="white">
+            <Text variant="titleMedium" color="white">
               {id}
             </Text>
           }
@@ -20,7 +20,7 @@ export default function SimpleRule({ id, item }: RuleBaseProps) {
           color="#228b22"
           size={22}
         />
-        <Text variant="body1" style={{ ...RuleStyles.text, fontSize: arabic ? 16 : 12 }}>
+        <Text variant="bodyLarge" style={{ ...RuleStyles.text, fontSize: arabic ? 16 : 12 }}>
           {item}
         </Text>
       </HStack>

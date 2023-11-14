@@ -42,7 +42,7 @@ export default function EvaluationDialog({ rule, ...props }: Props) {
     <Portal>
       <Modal visible={true} onDismiss={props.onClose} contentContainerStyle={containerStyle}>
         <VStack spacing={20} pt={20} style={GlobalStyles.center}>
-          <Text color="black" variant="h6" style={styles.question}>
+          <Text variant="displaySmall" color="black" style={styles.question}>
             {formatMessage(TKeys.PROGRESS_EVALUATION_QUESTION)}
           </Text>
           <Box style={{ paddingHorizontal }}>{rule.description}</Box>
@@ -57,7 +57,7 @@ export default function EvaluationDialog({ rule, ...props }: Props) {
               dark
               onPress={handleYesPress}
             >
-              <Text color="black" style={{ fontSize: btnTextSize, fontWeight: '900' }}>
+              <Text variant="bodyLarge" color="black" style={{ fontSize: btnTextSize, fontWeight: '900' }}>
                 {formatMessage(TKeys.BUTTON_YES)}
               </Text>
             </Button>

@@ -3,7 +3,7 @@ import { I18nManager, NativeModules, Platform } from 'react-native';
 import ProgressLine from '../domains/common/ProgressLine';
 import BodyPart from '../domains/purification/BodyPart';
 import { SupportedLocale } from '../locales/types';
-import { PurificationStage } from '../screens/purification/steps/bodyPartsStep/BodyPartsScreen';
+import { PurificationStage } from '../screens/purification/steps/bodyPartsStep/tabs/HomeScreen';
 
 export const FIRST_VISIT_DATE = 'firstVisitDate';
 export const PURIFICATION_MAX_DAYS = 30;

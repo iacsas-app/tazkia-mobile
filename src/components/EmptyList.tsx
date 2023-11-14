@@ -19,8 +19,8 @@ export default function EmptyList() {
         }}
       />
       <Box style={GlobalStyles.center}>
-        <Text variant="h4">{formatMessage(TKeys.MESSAGE_EMPTY_LIST)}</Text>
-        <Text variant="h6">{formatMessage(TKeys.MESSAGE_NO_PROGRESS)}</Text>
+        <Text variant="displayMedium">{formatMessage(TKeys.MESSAGE_EMPTY_LIST)}</Text>
+        <Text variant="displaySmall">{formatMessage(TKeys.MESSAGE_NO_PROGRESS)}</Text>
       </Box>
     </VStack>
   );

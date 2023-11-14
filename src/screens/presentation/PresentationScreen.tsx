@@ -1,8 +1,8 @@
-import { Box, Stack } from '@react-native-material/core';
 import { useMemo } from 'react';
-import { SafeAreaView, StyleSheet, useWindowDimensions } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { StyleSheet, useWindowDimensions } from 'react-native';
+import Animated, { FadeIn } from 'react-native-reanimated';
 import PressableStep, { Part } from '../../components/PressableStep';
+import VStack from '../../components/stack/VStack';
 import { TKeys } from '../../locales/constants';
 import GlobalStyles from '../../styles/GlobalStyles';
 
@@ -35,22 +35,18 @@ export default function PresentationScreen() {
   );
 
   return (
-    <SafeAreaView>
-      <ScrollView contentContainerStyle={{ ...GlobalStyles.center, paddingVertical: 15 }}>
-        <Stack style={styles.container} items="center" spacing={15}>
-          {parts.map((item: Part, index: number) => (
-            <Box key={index} style={{ ...styles.part, width: width - 70 }}>
-              <PressableStep item={item} />
-            </Box>
-          ))}
-        </Stack>
-      </ScrollView>
-    </SafeAreaView>
+    <VStack style={styles.container} spacing={18}>
+      {parts.map((item: Part, index: number) => (
+        <Animated.View key={index} entering={FadeIn.delay(300 * index)} style={{ ...styles.part, width: width - 70 }}>
+          <PressableStep item={item} index={index} />
+        </Animated.View>
+      ))}
+    </VStack>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { ...GlobalStyles.center, backgroundColor: '#dcdcf730' },
+  container: { ...GlobalStyles.container, backgroundColor: '#dcdcf730' },
   part: {
     paddingVertical: 10,
     backgroundColor: '#f5fffa',
