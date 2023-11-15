@@ -1,5 +1,5 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Avatar } from 'react-native-paper';
@@ -27,10 +27,11 @@ import GlobalStyles from '../../../../../styles/GlobalStyles';
 import { BACKDROP_COLOR, OVERDRAG } from '../../../../invocations/immunization/PeriodChooser';
 import LevelChooser from '../helpers/LevelChooser';
 import { hasSubTitle, soulRules } from '../helpers/data';
+import SegmentedSoulProgress from '../progress/SegmentedSoulProgress';
 
 export default function HomeScreen() {
   const { formatMessage, formatNumber } = useMessage();
-  const { createSoul, findSoul } = usePurification();
+  const { createSoul, findSoul, evaluateSoul } = usePurification();
 
   const parts: string[] = useMemo(() => Object.keys(soulRules), []);
   const [isOpen, setOpen] = useState(false);
@@ -78,6 +79,11 @@ export default function HomeScreen() {
     toggleSheet();
   }
 
+  const handleEvaluate = useCallback((part: SoulPart, level: SoulPartLevel, checked: boolean) => {
+    console.log(part, level, checked);
+    evaluateSoul(part, level, checked);
+  }, []);
+
   const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
   return (
@@ -95,7 +101,7 @@ export default function HomeScreen() {
                 <HStack
                   index={index + 10}
                   key={soulPart}
-                  style={{ ...styles.part, backgroundColor: hasProgress ? '#66cdaa' : '#f5fffa' }}
+                  style={{ ...styles.part, backgroundColor: hasProgress ? '#b4f3b4bf' : '#f5fffa' }}
                   onTouchStart={() => handlePress(soulPart as any)}
                 >
                   <Avatar.Text
@@ -104,17 +110,20 @@ export default function HomeScreen() {
                     color="#191970"
                     style={styles.partNumber}
                   />
-                  <VStack center>
-                    <Text variant="bodyLarge" style={styles.partTitle}>
-                      {formatMessage(`purification.soul.${soulPart}.title`)}
-                    </Text>
-                    {hasSubtitle && (
-                      <Animated.Text entering={FadeInDown.delay(270 * idx)} style={styles.partSubTitle}>
-                        {formatMessage(`purification.soul.${soulPart}.sub.title`)}
-                      </Animated.Text>
-                    )}
+                  <VStack>
+                    <VStack center>
+                      <Text variant="bodyLarge" style={{ ...styles.partTitle, paddingBottom: hasSubtitle ? 0 : 8 }}>
+                        {formatMessage(`purification.soul.${soulPart}.title`)}
+                      </Text>
+                      {hasSubtitle && (
+                        <Animated.Text entering={FadeInDown.delay(270 * idx)} style={styles.partSubTitle}>
+                          {formatMessage(`purification.soul.${soulPart}.sub.title`)}
+                        </Animated.Text>
+                      )}
+                    </VStack>
+                    {progress && <SegmentedSoulProgress progress={progress.partProgress} />}
                   </VStack>
-                  {hasProgress && <Icon name="progress-check" style={styles.partProgress} color={'#00fa9a'} />}
+                  {hasProgress && <Icon name="progress-check" style={styles.partProgress} color={'#3cb371'} />}
                 </HStack>
               </Animated.View>
             );
@@ -130,7 +139,7 @@ export default function HomeScreen() {
               entering={SlideInDown.springify().damping(15)}
               exiting={SlideOutDown}
             >
-              <LevelChooser part={part} onSelect={handleSelect} onToogle={toggleSheet} />
+              <LevelChooser part={part} onSelect={handleSelect} onToogle={toggleSheet} onEvaluate={handleEvaluate} />
             </Animated.View>
           </GestureDetector>
         </>
@@ -151,13 +160,13 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     alignItems: 'center',
     textAlign: 'justify',
-    flexBasis: 60,
+    flexBasis: 70,
     width: SCREEN_WIDTH - 15,
   },
-  partNumber: { left: 10, position: 'absolute', backgroundColor: '#add8e6' },
+  partNumber: { left: 10, position: 'absolute', backgroundColor: '#add8e6', elevation: 1 },
   partProgress: { right: 10, position: 'absolute', fontSize: 35 },
   partTitle: { fontSize: 18, fontWeight: '900' },
-  partSubTitle: { fontSize: 14, fontWeight: '700', color: '#708090' },
+  partSubTitle: { fontSize: 12, fontWeight: '700', color: '#708090', marginTop: -3 },
   sheet: {
     backgroundColor: 'white',
     padding: 20,

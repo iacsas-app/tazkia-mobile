@@ -17,6 +17,7 @@ export interface PurificationModel {
   load: Action<PurificationModel, Purification>;
   bodyPartEvaluation: Action<PurificationModel, [BodyPartType, PurificationStage, number[]]>;
   mindEvaluation: Action<PurificationModel, [MindLevel, boolean]>;
+  soulEvaluation: Action<PurificationModel, [SoulPart, SoulPartLevel, boolean]>;
   reset: Action<PurificationModel>;
 
   // Thunk
@@ -24,6 +25,7 @@ export interface PurificationModel {
   createOrUpdate: Thunk<PurificationModel, Purification, Injections>;
   evaluateBodyPart: Thunk<PurificationModel, [BodyPartType, PurificationStage, number[]], Injections>;
   evaluateMind: Thunk<PurificationModel, [MindLevel, boolean], Injections>;
+  evaluateSoul: Thunk<PurificationModel, [SoulPart, SoulPartLevel, boolean], Injections>;
 
   // Computed
   findByPart: Computed<PurificationModel, (part: BodyPartType) => BodyPart | undefined>;
@@ -91,6 +93,29 @@ const purificationModel: PurificationModel = {
     }
   }),
 
+  soulEvaluation: action((state, payload: [SoulPart, SoulPartLevel, boolean]) => {
+    const [part, level, checked] = payload;
+    if (!state.item) {
+      return;
+    }
+
+    const errors: number[] = [];
+    if (!checked) {
+      errors.push(1);
+    }
+    state.item.soul.forEach((item) => {
+      if (item.part === part) {
+        const pp = item.partProgress.find((pp) => pp.level === level);
+        if (pp) {
+          const [progress, _] = updateProgress(pp.progress, errors);
+          pp.progress = progress;
+          item.partProgress = item.partProgress.map((i) => (i.level === level ? pp : i));
+          return;
+        }
+      }
+    });
+  }),
+
   // Thunks
   find: thunk(async (actions, _void, { injections }) => {
     const { tazkiaService } = injections;
@@ -105,6 +130,9 @@ const purificationModel: PurificationModel = {
   }),
   evaluateMind: thunk(async (actions, payload: [MindLevel, boolean], { injections }) => {
     actions.mindEvaluation(payload);
+  }),
+  evaluateSoul: thunk(async (actions, payload: [SoulPart, SoulPartLevel, boolean], { injections }) => {
+    actions.soulEvaluation(payload);
   }),
 
   // Computed

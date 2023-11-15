@@ -1,6 +1,6 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import VStack from '../../../../../components/stack/VStack';
 import { SoulPart } from '../../../../../domains/purification/Soul';
@@ -12,19 +12,34 @@ interface Props {
   part: SoulPart | undefined;
   onSelect(level: number): void;
   onToogle: () => void;
+  onEvaluate(part: SoulPart, level: number, checked: boolean): void;
 }
-export default function LevelChooser({ part, onSelect, onToogle }: Props) {
+export default function LevelChooser({ part, onSelect, onToogle, onEvaluate }: Props) {
+  const [opened, setOpened] = useState<number>();
   if (!part) {
     return <></>;
   }
   const levelKeys = soulRules[part];
+
+  function handleTouch(level: number) {
+    setOpened(level);
+  }
 
   return (
     <View style={GlobalStyles.container}>
       <Icon name="chevron-down" size={40} style={{ marginTop: -20, fontWeight: '900' }} onPress={onToogle} />
       <VStack style={styles.container} spacing={10}>
         {levelKeys.map((levelKey, index) => (
-          <LevelRule key={index} part={part} index={index + 1} levelKey={levelKey} onSelect={onSelect} />
+          <LevelRule
+            key={index}
+            part={part}
+            index={index + 1}
+            levelKey={levelKey}
+            opened={opened}
+            onSelect={onSelect}
+            onTouch={handleTouch}
+            onEvaluate={onEvaluate}
+          />
         ))}
       </VStack>
     </View>

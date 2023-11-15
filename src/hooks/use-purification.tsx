@@ -8,11 +8,13 @@ export interface IPurification {
   hasSoulProgress: boolean;
   createSoul(part: SoulPart, level: SoulPartLevel): void;
   findSoul(part: SoulPart, level?: SoulPartLevel): Soul | undefined;
+  evaluateSoul(part: SoulPart, level: SoulPartLevel, checked: boolean): void;
 }
 export default function usePurification(): IPurification {
   const purification = useStoreState((state) => state.purification.item);
   const findSoul = useStoreState((actions) => actions.purification.findSoul);
   const createOrUpdate = useStoreActions((actions) => actions.purification.createOrUpdate);
+  const evaluateSoul = useStoreActions((actions) => actions.purification.evaluateSoul);
 
   function createSoul(part: SoulPart, level: SoulPartLevel): void {
     const progress: Purification = getProgress();
@@ -25,6 +27,10 @@ export default function usePurification(): IPurification {
       progress.soul.push({ part, partProgress: [newLevel] });
     }
     createOrUpdate(progress);
+  }
+
+  function soulEvaluate(part: SoulPart, level: SoulPartLevel, checked: boolean) {
+    evaluateSoul([part, level, checked]);
   }
 
   function getProgress(): Purification {
@@ -40,5 +46,6 @@ export default function usePurification(): IPurification {
     hasSoulProgress: purification !== undefined && purification.soul.length !== 0,
     createSoul,
     findSoul,
+    evaluateSoul: soulEvaluate,
   };
 }
