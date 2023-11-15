@@ -2,7 +2,7 @@ import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import { useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { Button } from 'react-native-paper';
-import Animated, { FadeIn, FadeInUp, FadeOutUp, SlideOutDown } from 'react-native-reanimated';
+import Animated, { FadeIn, FadeInUp, FadeOut, FadeOutUp, SlideOutDown } from 'react-native-reanimated';
 import Text from '../../../../../components/Text';
 import FailedAttempts from '../../../../../components/progress/failedAttempts/FailedAttempts';
 import { ProgressStatus } from '../../../../../components/progress/progressStatus/ProgressStatus';
@@ -83,6 +83,7 @@ export default function LevelRule({ part, index, levelKey, ...props }: Props) {
 
   function evaluate(checked: boolean) {
     props.onEvaluate(part, index, checked);
+    setShowEvalute(false);
   }
 
   useEffect(() => {
@@ -91,15 +92,15 @@ export default function LevelRule({ part, index, levelKey, ...props }: Props) {
 
   return (
     <VStack
-      style={{ ...styles.container, backgroundColor: soul ? '#d9e9d9' : '#add8e6' }}
+      style={{ ...styles.container, backgroundColor: soul ? (completed ? '#8de0b6' : '#dbf6e8') : '#add8e6' }}
       spacing={10}
       center
       onTouchStart={handleTouch}
     >
       <HStack style={styles.header}>
         <HStack spacing={10}>
-          <Icon name="comma-circle" size={22} color="#4169e1" />
-          <Text variant="bodyLarge" style={styles.levelTitle}>
+          <Icon name="comma-circle" size={22} color={soul ? 'green' : '#4169e1'} />
+          <Text variant="bodyLarge" style={styles.levelTitle} color={soul ? 'green' : '#4169e1'}>
             {formatMessage(TKeys.LEVEL, { value: formatNumber(index) })}
           </Text>
         </HStack>
@@ -107,7 +108,7 @@ export default function LevelRule({ part, index, levelKey, ...props }: Props) {
           <Button
             mode="elevated"
             compact
-            icon={() => <Icon name="clock-check" size={19} color="green" />}
+            icon={() => <Icon name="clock-check" size={19} color="#4169e1" />}
             uppercase={false}
             style={{ height: 30, padding: 0, margin: 0 }}
             contentStyle={{ marginTop: -5 }}
@@ -123,7 +124,11 @@ export default function LevelRule({ part, index, levelKey, ...props }: Props) {
       {open && (
         <Animated.View>
           {showEvalute && (
-            <Animated.Text entering={FadeIn.delay(400).duration(800).springify()} style={styles.question}>
+            <Animated.Text
+              entering={FadeIn.delay(400).duration(800).springify()}
+              exiting={FadeOut}
+              style={styles.question}
+            >
               {formatMessage(TKeys.PROGRESS_EVALUATION_QUESTION)}
             </Animated.Text>
           )}
@@ -135,7 +140,10 @@ export default function LevelRule({ part, index, levelKey, ...props }: Props) {
             {formatMessage(levelKey)}
           </Animated.Text>
           {showEvalute && (
-            <Animated.View entering={FadeInUp.delay(400).duration(800).springify()}>
+            <Animated.View
+              entering={FadeInUp.delay(400).duration(800).springify()}
+              exiting={SlideOutDown.delay(10).damping(100)}
+            >
               <HStack spacing={15} style={GlobalStyles.center}>
                 <Button
                   mode="elevated"
@@ -169,12 +177,12 @@ export default function LevelRule({ part, index, levelKey, ...props }: Props) {
             </Animated.View>
           )}
           {lastDay && !showEvalute && (
-            <VStack style={{ ...GlobalStyles.center, paddingBottom: 15, paddingTop: 10 }} spacing={13}>
+            <VStack style={{ ...GlobalStyles.center, paddingBottom: 2, paddingTop: 10 }} spacing={13}>
               <Animated.View
                 entering={FadeInUp.delay(400).duration(800).springify()}
                 exiting={SlideOutDown.delay(10).damping(100)}
               >
-                <VStack style={{ backgroundColor: 'white', padding: 20, borderRadius: 20 }}>
+                <VStack style={{ backgroundColor: 'white', padding: 10, borderRadius: 20 }}>
                   <ProgressStatusInfo
                     label={formatMessage(TKeys.PROGRESS_START_DATE)}
                     value={intl.formatDate(lastDay.startDate)}
@@ -236,13 +244,13 @@ const styles = StyleSheet.create({
   },
   header: {
     alignContent: 'flex-start',
-    alignItems: 'baseline',
+    alignItems: 'center',
     justifyContent: 'space-between',
     alignSelf: 'stretch',
   },
-  levelTitle: { fontWeight: '900', fontSize: 18, color: '#4169e1' },
-  levelSummary: { fontWeight: '800', fontSize: 14, textAlign: 'justify' },
-  startButtonLabel: { fontWeight: '900', fontSize: 17, color: 'green' },
+  levelTitle: { fontWeight: '900', fontSize: 16, color: '#4169e1' },
+  levelSummary: { fontWeight: '800', fontSize: 12.5, textAlign: 'justify' },
+  startButtonLabel: { fontWeight: '900', fontSize: 17, color: '#4169e1' },
   btn: { minWidth: 65, marginTop: 10 },
   question: { fontWeight: '900', textAlign: 'justify', fontSize: 18, alignSelf: 'center', marginBottom: 10 },
 });

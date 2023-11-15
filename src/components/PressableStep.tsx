@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { ImageSourcePropType, PixelRatio, StyleSheet, View } from 'react-native';
 import { TouchableRipple } from 'react-native-paper';
-import Animated, { FadeInLeft, FadeInRight } from 'react-native-reanimated';
+import Animated, { FadeIn, FadeInLeft, FadeInRight, FadeOut } from 'react-native-reanimated';
 import { useApplication } from '../hooks/use-application';
 import { useMessage } from '../hooks/use-message';
 import {
@@ -46,14 +46,17 @@ export default function PressableStep({ index, item, nameTextSize, descriptionTe
       <View style={{ ...styles.container, gap: item.name ? 1 : 8 }}>
         {item.imageSource && (
           <Animated.Image
-            entering={FadeInRight.duration(300 * (index * 2)).delay(300)}
+            entering={FadeInRight.duration(300 * (index * 2))
+              .delay(300)
+              .springify()}
             source={item.imageSource}
             style={styles.img}
           />
         )}
         {item.name && (
           <Animated.Text
-            entering={FadeInRight.delay(400 + index * 50)}
+            entering={FadeIn}
+            exiting={FadeOut}
             style={{ fontSize: getFontSize(nameTextSize ? nameTextSize : arabic ? 17 : 13) }}
           >
             {formatMessage(item.name)}

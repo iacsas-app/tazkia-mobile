@@ -45,7 +45,7 @@ export default function InvocationAccordion(props: Props) {
 const styles = StyleSheet.create({
   id: { left: 10, position: 'absolute', backgroundColor: '#add8e6' },
   titleStyle: {
-    fontSize: 19,
+    fontSize: 16,
     fontWeight: '900',
     marginLeft: 45,
   },

@@ -28,9 +28,21 @@ export function capitalize(str: string) {
  * @param maxDays
  * @returns
  */
-export function progressPercentage(day: number, maxDays: number): string {
+export function progressPercentage(day: number, maxDays: number): number {
   const result = percentage(day, maxDays);
-  return `${result.toPrecision(day === 0 ? 1 : 2)}%`;
+  return parseFloat(result.toPrecision(day === 0 ? 1 : 2));
+}
+
+export function percentageCallback(accumulator: number, currentValue: ProgressLine[]) {
+  const percent = progressPercentage2(currentValue, PURIFICATION_MAX_DAYS);
+  return accumulator + percent;
+}
+
+export function progressPercentage2(lines: ProgressLine[], maxDays: number): number {
+  const lastDay = lines[lines.length - 1];
+  const day = lastDay.day;
+  const result = percentage(day, maxDays);
+  return parseFloat(result.toPrecision(day === 0 ? 1 : 2));
 }
 
 export function percentage(day: number, maxDays: number): number {

@@ -530,6 +530,7 @@ export enum TKeys {
   MENU_SUNNAHS = 'menu.sunnahs',
   MENU_INVOCATIONS = 'menu.invocations',
   MENU_INVOCATION = 'menu.invocation',
+  MENU_OBSTACLES = 'menu.obstacles',
   MENU_SETTINGS = 'menu.settings',
   SETTINGS_LANGUAGE = 'settings.app-language',
   SETTINGS_LANGUAGE_DEFAULT = 'settings.language.default',

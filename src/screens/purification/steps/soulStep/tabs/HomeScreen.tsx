@@ -1,11 +1,13 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import React, { useCallback, useMemo, useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
+import CircularProgress from 'react-native-circular-progress-indicator';
 import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Avatar } from 'react-native-paper';
 import Animated, {
   FadeIn,
   FadeInDown,
+  FadeInLeft,
   FadeInUp,
   FadeOut,
   SlideInDown,
@@ -23,6 +25,7 @@ import { SCREEN_WIDTH } from '../../../../../constants/Screen';
 import { SoulPart, SoulPartLevel } from '../../../../../domains/purification/Soul';
 import { useMessage } from '../../../../../hooks/use-message';
 import usePurification from '../../../../../hooks/use-purification';
+import { PURIFICATION_MAX_DAYS, progressPercentage2 } from '../../../../../services/Helpers';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
 import { BACKDROP_COLOR, OVERDRAG } from '../../../../invocations/immunization/PeriodChooser';
 import LevelChooser from '../helpers/LevelChooser';
@@ -34,6 +37,7 @@ export default function HomeScreen() {
   const { createSoul, findSoul, evaluateSoul } = usePurification();
 
   const parts: string[] = useMemo(() => Object.keys(soulRules), []);
+  const levels: number[] = useMemo(() => Object.values(soulRules).map((item) => item.length), []);
   const [isOpen, setOpen] = useState(false);
   const [part, setPart] = useState<SoulPart>();
   const offset = useSharedValue(0);
@@ -80,7 +84,6 @@ export default function HomeScreen() {
   }
 
   const handleEvaluate = useCallback((part: SoulPart, level: SoulPartLevel, checked: boolean) => {
-    console.log(part, level, checked);
     evaluateSoul(part, level, checked);
   }, []);
 
@@ -95,24 +98,35 @@ export default function HomeScreen() {
             const progress = findSoul(soulPart as any);
             const hasProgress = progress !== undefined;
             const idx = index + 1;
+            const size = progress ? levels[progress.part - 1] : 0;
+            const sum = progress
+              ? progress.partProgress
+                  .map((i) => progressPercentage2(i.progress, PURIFICATION_MAX_DAYS))
+                  .reduce((accumulator, currentValue) => accumulator + currentValue, 0)
+              : 0;
+            const percentage = sum / size;
+            const completed = percentage === 100;
 
             return (
               <Animated.View key={index + 1} entering={FadeInUp.delay(200 * idx)}>
                 <HStack
                   index={index + 10}
                   key={soulPart}
-                  style={{ ...styles.part, backgroundColor: hasProgress ? '#b4f3b4bf' : '#f5fffa' }}
+                  style={{
+                    ...styles.part,
+                    backgroundColor: hasProgress ? (completed ? '#8de0b6' : '#dbf6e8') : '#f5fffa',
+                  }}
                   onTouchStart={() => handlePress(soulPart as any)}
                 >
                   <Avatar.Text
-                    size={35}
+                    size={30}
                     label={formatNumber(Number.parseInt(soulPart))}
                     color="#191970"
-                    style={styles.partNumber}
+                    style={{ ...styles.partNumber, backgroundColor: completed ? '#dffcef' : '#add8e6' }}
                   />
                   <VStack>
                     <VStack center>
-                      <Text variant="bodyLarge" style={{ ...styles.partTitle, paddingBottom: hasSubtitle ? 0 : 8 }}>
+                      <Text variant="bodyLarge" style={{ ...styles.partTitle, paddingBottom: hasSubtitle ? 0 : 2 }}>
                         {formatMessage(`purification.soul.${soulPart}.title`)}
                       </Text>
                       {hasSubtitle && (
@@ -123,7 +137,27 @@ export default function HomeScreen() {
                     </VStack>
                     {progress && <SegmentedSoulProgress progress={progress.partProgress} />}
                   </VStack>
-                  {hasProgress && <Icon name="progress-check" style={styles.partProgress} color={'#3cb371'} />}
+                  {hasProgress && (
+                    <Animated.View
+                      entering={FadeInLeft.delay(400).duration(300).springify().stiffness(300)}
+                      style={styles.partProgress}
+                    >
+                      {completed ? (
+                        <Icon name="check-all" size={25} color="green" />
+                      ) : (
+                        <CircularProgress
+                          value={percentage}
+                          maxValue={100}
+                          duration={600}
+                          radius={21}
+                          valuePrefix={'%'}
+                          inActiveStrokeColor={'#3cb371'}
+                          inActiveStrokeOpacity={0.2}
+                          progressValueStyle={styles.progress}
+                        />
+                      )}
+                    </Animated.View>
+                  )}
                 </HStack>
               </Animated.View>
             );
@@ -160,16 +194,15 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     alignItems: 'center',
     textAlign: 'justify',
-    flexBasis: 70,
+    flexBasis: 55,
     width: SCREEN_WIDTH - 15,
   },
-  partNumber: { left: 10, position: 'absolute', backgroundColor: '#add8e6', elevation: 1 },
-  partProgress: { right: 10, position: 'absolute', fontSize: 35 },
-  partTitle: { fontSize: 18, fontWeight: '900' },
-  partSubTitle: { fontSize: 12, fontWeight: '700', color: '#708090', marginTop: -3 },
+  partNumber: { left: 10, position: 'absolute', elevation: 1 },
+  partProgress: { right: 10, position: 'absolute', fontSize: 30 },
+  partTitle: { fontSize: 14, fontWeight: '900' },
+  partSubTitle: { fontSize: 10, fontWeight: '700', color: '#708090', marginTop: -3 },
   sheet: {
     backgroundColor: 'white',
-    padding: 20,
     width: '100%',
     position: 'absolute',
     bottom: -OVERDRAG * 1.1,
@@ -182,4 +215,5 @@ const styles = StyleSheet.create({
     backgroundColor: BACKDROP_COLOR,
     zIndex: 1,
   },
+  progress: { color: 'green', fontWeight: '700', fontSize: 11 },
 });

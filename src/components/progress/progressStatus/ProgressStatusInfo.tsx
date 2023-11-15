@@ -11,12 +11,12 @@ interface Props {
 }
 export default function ProgressStatusInfo(props: Props) {
   return (
-    <HStack spacing={8} mt={1} style={styles.center}>
+    <HStack spacing={8} mt={0} style={styles.center}>
       <McIcon name={props.icon} size={20} color={props.color} />
-      <Text variant="titleMedium" style={styles.bold}>
+      <Text variant="labelMedium" style={styles.bold}>
         {props.label} :
       </Text>
-      <Text variant="titleMedium" style={styles.bold}>
+      <Text variant="labelMedium" style={styles.bold}>
         {props.value}
       </Text>
     </HStack>

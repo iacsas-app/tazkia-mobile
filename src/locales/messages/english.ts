@@ -534,6 +534,7 @@ export const english: Translations = {
   [TKeys.MENU_SUNNAHS]: 'Prophetic traditions',
   [TKeys.MENU_INVOCATIONS]: 'Invocations',
   [TKeys.MENU_INVOCATION]: 'Invocation',
+  [TKeys.MENU_OBSTACLES]: 'Obstacles',
   [TKeys.SETTINGS_LANGUAGE]: 'Application language',
   [TKeys.SETTINGS_LANGUAGE_DEFAULT]: 'Do you want to continue in {lang} ?',
   [TKeys.SETTINGS_RESET]: 'Reset progress',

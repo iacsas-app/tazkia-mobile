@@ -1,10 +1,10 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import { Box, HStack } from '@react-native-material/core';
 import { StyleSheet } from 'react-native';
+import CircularProgress from 'react-native-circular-progress-indicator';
 import ProgressLine from '../../../domains/common/ProgressLine';
 import { progressPercentage } from '../../../services/Helpers';
 import GlobalStyles from '../../../styles/GlobalStyles';
-import Text from '../../Text';
 import RepeatCount from '../RepeatCount';
 
 interface Props {
@@ -30,9 +30,16 @@ export function ProgressStatus({ last, count, maxDays, completed }: Props) {
         {completed ? (
           <Icon name="check-bold" size={15} color="green" />
         ) : (
-          <Text variant="bodySmall" style={styles.symbol}>
-            {progressPercentage(last.day - failed, maxDays)}
-          </Text>
+          <CircularProgress
+            value={progressPercentage(last.day - failed, maxDays)}
+            maxValue={100}
+            duration={600}
+            radius={25}
+            valuePrefix={'%'}
+            inActiveStrokeColor={'#2ecc71'}
+            inActiveStrokeOpacity={0.2}
+            progressValueStyle={styles.progress}
+          />
         )}
       </Box>
     </HStack>
@@ -40,5 +47,5 @@ export function ProgressStatus({ last, count, maxDays, completed }: Props) {
 }
 
 const styles = StyleSheet.create({
-  symbol: { fontSize: 13, color: '#4682b4', fontWeight: '900' },
+  progress: { color: 'green', fontWeight: '700', fontSize: 13 },
 });

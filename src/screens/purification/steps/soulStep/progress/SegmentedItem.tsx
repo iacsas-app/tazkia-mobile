@@ -26,9 +26,10 @@ export default function SegmentedItem({ progress, roundedStart, roundedEnd }: Pr
         borderColor: 'green',
         elevation: 1,
         opacity: 0.9,
+        height: 18,
       }}
     >
-      <Text variant="labelSmall" color="#075907" style={{ paddingHorizontal: 5, paddingVertical: 3 }}>
+      <Text variant="labelSmall" color="#075907" style={{ paddingHorizontal: 5 }}>
         {formatMessage(TKeys.LEVEL, { value: formatNumber(progress.level) })}
       </Text>
     </Animated.View>

@@ -27,7 +27,7 @@ export default function FailedAttempts({ attempts, attemptFormatter }: Props) {
   }
 
   return (
-    <Box mt={-10}>
+    <Box mt={-15}>
       <HStack style={GlobalStyles.center}>
         <Box>
           <ProgressStatusInfo
@@ -43,7 +43,7 @@ export default function FailedAttempts({ attempts, attemptFormatter }: Props) {
         />
       </HStack>
       {open && (
-        <Box mt={1} mb={15}>
+        <Box mt={1} mb={1}>
           {attempts.map((attempt, index: number) => (
             <FailedAttempt key={index} attempt={attempt} attemptFormatter={attemptFormatter} />
           ))}

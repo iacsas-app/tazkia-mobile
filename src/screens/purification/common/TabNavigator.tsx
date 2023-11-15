@@ -6,6 +6,7 @@ type TabParams = {
   Presentation: undefined;
   Purification: undefined;
   Invocation: undefined;
+  Obstacles: undefined;
 };
 
 type Props = {
@@ -13,6 +14,7 @@ type Props = {
   presentationComponent: any;
   purificationComponent: any;
   invocationComponent: any;
+  obstaclesComponent?: any;
 };
 export default function TabNavigator(props: Props) {
   const { formatMessage } = useMessage();
@@ -44,6 +46,15 @@ export default function TabNavigator(props: Props) {
           tabBarLabel: formatMessage(TKeys.MENU_INVOCATION),
         }}
       />
+      {props.obstaclesComponent && (
+        <Tab.Screen
+          name="Obstacles"
+          component={props.obstaclesComponent}
+          options={{
+            tabBarLabel: formatMessage(TKeys.MENU_OBSTACLES),
+          }}
+        />
+      )}
     </Tab.Navigator>
   );
 }

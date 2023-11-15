@@ -27,8 +27,8 @@ export default function LevelChooser({ part, onSelect, onToogle, onEvaluate }: P
 
   return (
     <View style={GlobalStyles.container}>
-      <Icon name="chevron-down" size={40} style={{ marginTop: -20, fontWeight: '900' }} onPress={onToogle} />
-      <VStack style={styles.container} spacing={10}>
+      <Icon name="chevron-down" size={35} style={{ fontWeight: '900' }} onPress={onToogle} />
+      <VStack style={styles.container} spacing={5}>
         {levelKeys.map((levelKey, index) => (
           <LevelRule
             key={index}
@@ -48,7 +48,7 @@ export default function LevelChooser({ part, onSelect, onToogle, onEvaluate }: P
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
+    paddingBottom: 20,
     flex: 1,
   },
 });

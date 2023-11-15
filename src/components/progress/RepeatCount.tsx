@@ -12,11 +12,11 @@ export default function RepeatCount({ count, color }: Props) {
     return <></>;
   }
   const margin = count < 10 ? 8 : 5;
-  const marginRight = I18nManager.isRTL ? margin : 0;
-  const marginLeft = I18nManager.isRTL ? 0 : margin;
+  const marginRight = I18nManager.isRTL ? margin : 10;
+  const marginLeft = I18nManager.isRTL ? 11 : margin;
   return (
     <Box style={styles.container}>
-      <Text variant="bodyMedium" style={{ ...styles.text, marginRight, marginLeft }}>
+      <Text variant="labelSmall" style={{ ...styles.text, marginRight, marginLeft }}>
         {count}
       </Text>
       <Icon name="reload" size={25} color={color} style={styles.icon} />

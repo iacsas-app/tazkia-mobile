@@ -559,7 +559,7 @@ export const arabic: Translations = {
   [TKeys.INVOCATION_STEP_2_RULE_2_CROYANCE_3]:
     '(إلا الله): عندما ينطق المريد هذه الكلمة يجب عليه أن يفكر ويتخيل أنه ليس في قلبه معبود سوى الله، وأن قلبه يضيء بلفظ الجلالة (الله). ',
 
-  [TKeys.INVOCATION_STEP_2_RULE_3]: 'التطهير (10 د) والمراقبة (10 د)',
+  [TKeys.INVOCATION_STEP_2_RULE_3]: 'التطهير والمراقبة',
   [TKeys.INVOCATION_STEP_2_RULE_3_DESC]:
     'يؤذن للمريد في هذا المستوى القيام بالتطهير باسم الجلالة (لمدة 10 دقائق)، وكذا بمراقبة القبة الخضراء ومراقبة الكعبة المشرفة (لمدة 10 دقائق)',
   [TKeys.INVOCATION_STEP_2_RULE_4]: 'الرابطة الروحية',
@@ -687,6 +687,7 @@ export const arabic: Translations = {
   [TKeys.MENU_SUNNAHS]: 'سنن نبوية',
   [TKeys.MENU_INVOCATIONS]: 'أذكار',
   [TKeys.MENU_INVOCATION]: 'ذكر',
+  [TKeys.MENU_OBSTACLES]: 'عراقيل',
   [TKeys.SETTINGS_LANGUAGE]: 'لغة التطبيق',
   [TKeys.SETTINGS_LANGUAGE_DEFAULT]: 'هل تريدون الاستمرار باللغة {lang} ؟',
   [TKeys.SETTINGS_RESET]: 'إعادة ضبط التقدم',

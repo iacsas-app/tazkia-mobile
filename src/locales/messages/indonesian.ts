@@ -584,6 +584,7 @@ export const indonesian: Translations = {
   [TKeys.MENU_SUNNAHS]: 'Tradisi kenabian',
   [TKeys.MENU_INVOCATIONS]: 'Doa',
   [TKeys.MENU_INVOCATION]: 'Doa',
+  [TKeys.MENU_OBSTACLES]: 'Hambatan',
   [TKeys.SETTINGS_LANGUAGE]: 'Bahasa aplikasi',
   [TKeys.SETTINGS_LANGUAGE_DEFAULT]: 'Apakah Anda ingin melanjutkan dalam bahasa {lang} ?',
   [TKeys.SETTINGS_RESET]: 'Setel ulang kemajuan',
