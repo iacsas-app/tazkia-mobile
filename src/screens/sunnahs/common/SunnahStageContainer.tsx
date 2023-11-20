@@ -3,6 +3,7 @@ import { Box, Stack, VStack } from '@react-native-material/core';
 import { useNavigation } from '@react-navigation/native';
 import { useMemo } from 'react';
 import { View } from 'react-native';
+import Basmalah from '../../../components/Basmalah';
 import Text from '../../../components/Text';
 import ScrollViewLayout from '../../../components/layout/ScrollViewLayout';
 import SummaryRule from '../../../components/rules/SummaryRule';
@@ -12,7 +13,6 @@ import Sunnah, { SunnahType } from '../../../domains/sunnahs/Sunnah';
 import { SunnahStage } from '../../../domains/sunnahs/Sunnahs';
 import { useApplication } from '../../../hooks/use-application';
 import { useMessage } from '../../../hooks/use-message';
-import { TKeys } from '../../../locales/constants';
 import { SunnahsStackNavigationProp } from '../../../navigation/types';
 import { SUNNAHS_MAX_DAYS, isCompleted } from '../../../services/Helpers';
 import { useStoreActions, useStoreState } from '../../../stores/hooks';
@@ -69,16 +69,7 @@ export default function SunnahStageContainer({ stage, rules }: Props) {
       >
         <Box>
           <Box ph={7}>
-            <Text
-              style={{
-                paddingVertical: 15,
-                fontSize: arabic ? 15 : 12,
-                fontWeight: '900',
-                textAlign: arabic ? 'justify' : 'auto',
-              }}
-            >
-              {formatMessage(TKeys.BASMALAH)}
-            </Text>
+            <Basmalah />
             <Text
               style={{
                 marginBottom: 15,

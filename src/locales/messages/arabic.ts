@@ -684,7 +684,7 @@ export const arabic: Translations = {
   [TKeys.MENU_HOME]: 'إستقبال',
   [TKeys.MENU_PRESENTATION]: 'تقديم',
   [TKeys.MENU_PURIFICATION]: 'تزكية',
-  [TKeys.MENU_SUNNAHS]: 'سنن نبوية',
+  [TKeys.MENU_SUNNAHS]: 'سنن',
   [TKeys.MENU_INVOCATIONS]: 'أذكار',
   [TKeys.MENU_INVOCATION]: 'ذكر',
   [TKeys.MENU_OBSTACLES]: 'عراقيل',

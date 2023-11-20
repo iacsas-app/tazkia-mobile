@@ -8,7 +8,6 @@ import { PurificationStage } from '../screens/purification/steps/bodyPartsStep/t
 export type TabParamList = {
   HomeTab: undefined;
   PurificationTab: undefined;
-  SunnahsTab: undefined;
   InvocationsTab: undefined;
 };
 

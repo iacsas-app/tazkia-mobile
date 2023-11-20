@@ -1,9 +1,9 @@
 import usePurification from '../../../../hooks/use-purification';
-import WorshipScreen from '../../../sunnahs/steps/WorshipScreen';
 import TabNavigator from '../../common/TabNavigator';
 import HomeScreen from './tabs/HomeScreen';
 import InvocationsScreen from './tabs/InvocationsScreen';
 import PresentationScreen from './tabs/PresentationScreen';
+import SunnahsWorshipScreen from './tabs/SunnahsWorshipScreen';
 
 export default function MindScreen() {
   const { hasMindProgress } = usePurification();
@@ -13,7 +13,7 @@ export default function MindScreen() {
       presentationComponent={PresentationScreen}
       purificationComponent={HomeScreen}
       invocationComponent={InvocationsScreen}
-      sunnahsComponent={WorshipScreen}
+      sunnahsComponent={SunnahsWorshipScreen}
     />
   );
 }

@@ -14,6 +14,7 @@ import Animated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
+import Basmalah from '../../components/Basmalah';
 import Text from '../../components/Text';
 import { useMessage } from '../../hooks/use-message';
 import { TKeys } from '../../locales/constants';
@@ -82,18 +83,7 @@ export default function InvocationsScreen() {
     <GestureHandlerRootView style={styles.container}>
       <Box style={GlobalStyles.center}>
         <VStack spacing={2} style={{ alignItems: 'center' }}>
-          <VStack>
-            <Text
-              style={{
-                paddingVertical: 10,
-                fontSize: 15,
-                fontWeight: '900',
-                textAlign: 'justify',
-              }}
-            >
-              {formatMessage(TKeys.BASMALAH)}
-            </Text>
-          </VStack>
+          <Basmalah />
           <Stack style={GlobalStyles.container} items="center" spacing={15} mt={13}>
             {parts.map((item, index: number) => (
               <Box

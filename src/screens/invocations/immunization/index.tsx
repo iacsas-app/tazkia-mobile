@@ -2,6 +2,7 @@ import { VStack } from '@react-native-material/core';
 import { useRoute } from '@react-navigation/native';
 import React from 'react';
 import { View, useWindowDimensions } from 'react-native';
+import Basmalah from '../../../components/Basmalah';
 import Text from '../../../components/Text';
 import { useMessage } from '../../../hooks/use-message';
 import { TKeys } from '../../../locales/constants';
@@ -18,15 +19,7 @@ export default function ImmunizationInvocationsScreen() {
     <BasePresentationLayout>
       <View style={{ width: width - 15 }}>
         <VStack spacing={10} style={{ marginBottom: 15 }}>
-          <Text
-            style={{
-              fontSize: 14,
-              fontWeight: '900',
-              textAlign: 'justify',
-            }}
-          >
-            {formatMessage(TKeys.BASMALAH)}
-          </Text>
+          <Basmalah />
           <Text variant="bodyLarge" style={{ textAlign: 'justify', fontWeight: '600' }}>
             {formatMessage(TKeys.INVOCATIONS_IMMUNIZATION_INTRODUCTION)}
           </Text>

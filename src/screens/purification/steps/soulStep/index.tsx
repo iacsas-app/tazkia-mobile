@@ -3,6 +3,7 @@ import TabNavigator from '../../common/TabNavigator';
 import HomeScreen from './tabs/HomeScreen';
 import InvocationsScreen from './tabs/InvocationsScreen';
 import PresentationScreen from './tabs/PresentationScreen';
+import SunnahsTruthsScreen from './tabs/SunnahsTruthsScreen';
 
 export default function SoulScreen() {
   const { hasSoulProgress } = usePurification();
@@ -12,6 +13,7 @@ export default function SoulScreen() {
       presentationComponent={PresentationScreen}
       purificationComponent={HomeScreen}
       invocationComponent={InvocationsScreen}
+      sunnahsComponent={SunnahsTruthsScreen}
     />
   );
 }

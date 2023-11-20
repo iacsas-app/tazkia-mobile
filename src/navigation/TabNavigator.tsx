@@ -1,26 +1,26 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
 
-import FontAwesome5Brands from '@expo/vector-icons/FontAwesome5';
 import MCIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import Octicons from '@expo/vector-icons/Octicons';
 import { useMessage } from '../hooks/use-message';
+import usePurification from '../hooks/use-purification';
 import { TKeys } from '../locales/constants';
 import InvocationsStack from './InvocationsStack';
 import PresentationStack from './PresentationStack';
 import PurificationStack from './PurificationStack';
-import SunnahsStack from './SunnahsStack';
 import { TabParamList } from './types';
 
 const Tab = createBottomTabNavigator<TabParamList>();
 
 const TabNavigator = () => {
+  const { hasBodyPartsProgress, hasMindProgress, hasSoulProgress } = usePurification();
   const { formatMessage } = useMessage();
   const menuSize = 11;
 
   return (
     <Tab.Navigator
-      initialRouteName="PurificationTab"
+      initialRouteName={hasBodyPartsProgress || hasMindProgress || hasSoulProgress ? 'PurificationTab' : 'HomeTab'}
       screenOptions={{ tabBarAllowFontScaling: true, tabBarActiveTintColor: 'red' }}
     >
       <Tab.Screen
@@ -49,23 +49,6 @@ const TabNavigator = () => {
           tabBarLabelStyle: {
             fontSize: menuSize,
             fontWeight: '700',
-          },
-        }}
-      />
-      <Tab.Screen
-        name="SunnahsTab"
-        component={SunnahsStack}
-        options={{
-          title: formatMessage(TKeys.MENU_SUNNAHS),
-          headerShown: false,
-          tabBarIcon: ({ size, ...props }) => (
-            <FontAwesome5Brands name="ussunnah" size={39} {...props} style={{ marginTop: -5 }} />
-          ),
-          tabBarActiveTintColor: '#2e8b57',
-          tabBarLabelStyle: {
-            fontSize: menuSize,
-            fontWeight: '700',
-            width: 150,
           },
         }}
       />

@@ -1,5 +1,6 @@
 import { PropsWithChildren, useMemo } from 'react';
 import { SafeAreaView, ScrollView, useWindowDimensions } from 'react-native';
+import Animated, { FadeInUp, FadeOutDown } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import GlobalStyles from '../../styles/GlobalStyles';
 
@@ -12,19 +13,25 @@ export default function ScrollViewLayout(props: Props) {
 
   return (
     <SafeAreaView>
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        contentContainerStyle={[
-          {
-            ...GlobalStyles.center,
-            width: width,
-            paddingVertical: 15,
-            paddingHorizontal,
-          },
-        ]}
+      <Animated.View
+        entering={FadeInUp.delay(300).duration(150).springify()}
+        exiting={FadeOutDown}
+        style={GlobalStyles.center}
       >
-        {props.children}
-      </ScrollView>
+        <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
+          contentContainerStyle={[
+            {
+              ...GlobalStyles.center,
+              width: width,
+              paddingVertical: 15,
+              paddingHorizontal,
+            },
+          ]}
+        >
+          {props.children}
+        </ScrollView>
+      </Animated.View>
     </SafeAreaView>
   );
 }

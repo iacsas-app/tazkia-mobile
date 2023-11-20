@@ -28,17 +28,20 @@ export default function HomeScreen() {
   function handleStart() {
     if (level) {
       createMind(level);
-      setLevel(undefined);
-      ref.current?.close();
+      close();
     }
   }
 
   function handleRestart() {
     if (level) {
       restartMind(level);
-      setLevel(undefined);
-      ref.current?.close();
+      close();
     }
+  }
+
+  function close() {
+    setLevel(undefined);
+    ref.current?.close();
   }
 
   function handleEvaluate(checked: boolean) {

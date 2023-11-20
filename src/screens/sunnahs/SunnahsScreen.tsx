@@ -2,6 +2,7 @@ import { Stack, VStack } from '@react-native-material/core';
 import { useMemo } from 'react';
 import { StyleSheet, useWindowDimensions } from 'react-native';
 import Animated, { FadeInUp } from 'react-native-reanimated';
+import Basmalah from '../../components/Basmalah';
 import PressableStep, { Part } from '../../components/PressableStep';
 import Text from '../../components/Text';
 import { useApplication } from '../../hooks/use-application';
@@ -30,16 +31,7 @@ export default function SunnahsScreen() {
       </Text>
       <VStack spacing={2} style={{ alignItems: 'center' }}>
         <VStack>
-          <Text
-            style={{
-              paddingVertical: 15,
-              fontSize: 12,
-              fontWeight: '900',
-              textAlign: 'justify',
-            }}
-          >
-            {formatMessage(TKeys.BASMALAH)}
-          </Text>
+          <Basmalah />
           <Text
             style={{
               fontSize: 13,
