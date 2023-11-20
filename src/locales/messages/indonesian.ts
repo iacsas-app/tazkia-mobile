@@ -594,7 +594,10 @@ export const indonesian: Translations = {
   [TKeys.BUTTON_NO]: 'Tidak',
   [TKeys.BUTTON_CLOSE]: 'Menutup',
   [TKeys.BUTTON_START]: 'Awal',
+  [TKeys.BUTTON_RESTART]: 'Ulang',
   [TKeys.BUTTON_SAVE]: 'Menyimpan',
+  [TKeys.BUTTON_AGREE]: 'Aku setuju',
+  [TKeys.BUTTON_DISAGREE]: 'Saya tidak setuju',
   [TKeys.BUTTON_CLEANING]: 'Pembersihan',
   [TKeys.BUTTON_ENLIGHTENMENT]: 'Pencerahan',
 
@@ -633,4 +636,6 @@ export const indonesian: Translations = {
   [TKeys.MESSAGE_NO_PROGRESS]: 'Tidak ada kemajuan yang dicapai',
   [TKeys.DURATION]: '{value} mnt',
   [TKeys.DURATION2]: '{value} mnt',
+  [TKeys.RESTART_CONFIRM_TITLE]: 'Apakah Anda yakin ingin memulai lagi?',
+  [TKeys.RESTART_CONFIRM_MESSAGE]: 'Ini akan menghapus kemajuan Anda !\nTindakan tidak dapat diubah',
 };

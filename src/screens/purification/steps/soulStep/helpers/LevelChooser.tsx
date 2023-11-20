@@ -1,34 +1,47 @@
-import Icon from '@expo/vector-icons/MaterialCommunityIcons';
-
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { Avatar } from 'react-native-paper';
+import Animated, { FadeInUp } from 'react-native-reanimated';
+import Text from '../../../../../components/Text';
+import HStack from '../../../../../components/stack/HStack';
 import VStack from '../../../../../components/stack/VStack';
 import { SoulPart } from '../../../../../domains/purification/Soul';
+import { useMessage } from '../../../../../hooks/use-message';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
 import LevelRule from './LevelRule';
-import { soulRules } from './data';
+import { hasSubTitle, soulRules } from './data';
 
 interface Props {
   part: SoulPart | undefined;
-  onSelect(level: number): void;
-  onToogle: () => void;
+  onStart(level: number): void;
   onEvaluate(part: SoulPart, level: number, checked: boolean): void;
 }
-export default function LevelChooser({ part, onSelect, onToogle, onEvaluate }: Props) {
+export default function LevelChooser({ part, ...props }: Props) {
+  const { formatMessage, formatNumber } = useMessage();
   const [opened, setOpened] = useState<number>();
+
   if (!part) {
     return <></>;
   }
   const levelKeys = soulRules[part];
+  const subtitle = hasSubTitle.some((item) => item === part);
 
   function handleTouch(level: number) {
     setOpened(level);
   }
 
   return (
-    <View style={GlobalStyles.container}>
-      <Icon name="chevron-down" size={35} style={{ fontWeight: '900' }} onPress={onToogle} />
-      <VStack style={styles.container} spacing={5}>
+    <Animated.View entering={FadeInUp.delay(400).duration(50).springify()} style={styles.container}>
+      <HStack spacing={10} style={styles.header}>
+        <Avatar.Text label={formatNumber(part)} size={35} color="#191970" style={{ backgroundColor: '#add8e6' }} />
+        <VStack style={GlobalStyles.center}>
+          <Text variant="titleLarge" style={{ fontWeight: '900' }}>
+            {formatMessage(`purification.soul.${part}.title`)}
+          </Text>
+          {subtitle && <Text variant="titleMedium">{formatMessage(`purification.soul.${part}.sub.title`)}</Text>}
+        </VStack>
+      </HStack>
+      <VStack style={styles.content} spacing={5}>
         {levelKeys.map((levelKey, index) => (
           <LevelRule
             key={index}
@@ -36,19 +49,26 @@ export default function LevelChooser({ part, onSelect, onToogle, onEvaluate }: P
             index={index + 1}
             levelKey={levelKey}
             opened={opened}
-            onSelect={onSelect}
+            onSelect={props.onStart}
             onTouch={handleTouch}
-            onEvaluate={onEvaluate}
+            onEvaluate={props.onEvaluate}
           />
         ))}
       </VStack>
-    </View>
+    </Animated.View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    paddingBottom: 20,
+    ...GlobalStyles.center,
+    backgroundColor: 'transparent',
+  },
+  header: {
+    ...GlobalStyles.center,
+    marginBottom: 10,
+  },
+  content: {
     flex: 1,
   },
 });

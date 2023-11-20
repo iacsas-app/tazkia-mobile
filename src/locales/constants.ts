@@ -517,7 +517,10 @@ export enum TKeys {
   BUTTON_NO = 'button.no',
   BUTTON_CLOSE = 'button.close',
   BUTTON_START = 'button.start',
+  BUTTON_RESTART = 'button.restart',
   BUTTON_SAVE = 'button.save',
+  BUTTON_AGREE = 'button.agree',
+  BUTTON_DISAGREE = 'button.disagree',
   BUTTON_CLEANING = 'button.cleaning',
   BUTTON_ENLIGHTENMENT = 'button.enlightenment',
   MESSAGE_ADDED_SUCCESSFULLY = 'message.added-successfully',
@@ -550,4 +553,6 @@ export enum TKeys {
   TIMES_COUNT_PLURAL = 'times.count.plural',
   DURATION = 'duration',
   DURATION2 = 'duration2',
+  RESTART_CONFIRM_TITLE = 'restart.confirm.title',
+  RESTART_CONFIRM_MESSAGE = 'restart.confirm.message',
 }

@@ -17,7 +17,9 @@ export interface PurificationModel {
   load: Action<PurificationModel, Purification>;
   bodyPartEvaluation: Action<PurificationModel, [BodyPartType, PurificationStage, number[]]>;
   mindEvaluation: Action<PurificationModel, [MindLevel, boolean]>;
+  resetMind: Action<PurificationModel, MindLevel>;
   soulEvaluation: Action<PurificationModel, [SoulPart, SoulPartLevel, boolean]>;
+  resetSoul: Action<PurificationModel, [SoulPart, SoulPartLevel]>;
   reset: Action<PurificationModel>;
 
   // Thunk
@@ -25,7 +27,9 @@ export interface PurificationModel {
   createOrUpdate: Thunk<PurificationModel, Purification, Injections>;
   evaluateBodyPart: Thunk<PurificationModel, [BodyPartType, PurificationStage, number[]], Injections>;
   evaluateMind: Thunk<PurificationModel, [MindLevel, boolean], Injections>;
+  restartMind: Thunk<PurificationModel, MindLevel, Injections>;
   evaluateSoul: Thunk<PurificationModel, [SoulPart, SoulPartLevel, boolean], Injections>;
+  restartSoul: Thunk<PurificationModel, [SoulPart, SoulPartLevel], Injections>;
 
   // Computed
   findByPart: Computed<PurificationModel, (part: BodyPartType) => BodyPart | undefined>;
@@ -54,10 +58,11 @@ const purificationModel: PurificationModel = {
     state.isLoaded = false;
   }),
   bodyPartEvaluation: action((state, payload: [BodyPartType, PurificationStage, number[]]) => {
-    const [type, step, errors] = payload;
     if (!state.item) {
       return;
     }
+    const [type, step, errors] = payload;
+
     state.item.bodyParts.forEach((part) => {
       if (part.name === type) {
         part[step] = updateProgress(part[step], errors)[0];
@@ -93,6 +98,17 @@ const purificationModel: PurificationModel = {
     }
   }),
 
+  resetMind: action((state, payload: MindLevel) => {
+    if (!state.item) {
+      return;
+    }
+    state.item.mind = state.item.mind.map((item) => ({
+      ...item,
+      progress:
+        item.level === payload ? [{ startDate: Date.now(), day: 0, evaluated: false, errors: [] }] : item.progress,
+    }));
+  }),
+
   soulEvaluation: action((state, payload: [SoulPart, SoulPartLevel, boolean]) => {
     const [part, level, checked] = payload;
     if (!state.item) {
@@ -116,6 +132,23 @@ const purificationModel: PurificationModel = {
     });
   }),
 
+  resetSoul: action((state, payload: [SoulPart, SoulPartLevel]) => {
+    if (!state.item) {
+      return;
+    }
+    const [part, level] = payload;
+    state.item.soul = state.item.soul.map((item) => {
+      if (item.part === part) {
+        item.partProgress = item.partProgress.map((pr) => ({
+          ...pr,
+          progress:
+            pr.level === level ? [{ startDate: Date.now(), day: 0, evaluated: false, errors: [] }] : pr.progress,
+        }));
+      }
+      return item;
+    });
+  }),
+
   // Thunks
   find: thunk(async (actions, _void, { injections }) => {
     const { tazkiaService } = injections;
@@ -131,8 +164,14 @@ const purificationModel: PurificationModel = {
   evaluateMind: thunk(async (actions, payload: [MindLevel, boolean], { injections }) => {
     actions.mindEvaluation(payload);
   }),
+  restartMind: thunk(async (actions, payload: MindLevel, { injections }) => {
+    actions.resetMind(payload);
+  }),
   evaluateSoul: thunk(async (actions, payload: [SoulPart, SoulPartLevel, boolean], { injections }) => {
     actions.soulEvaluation(payload);
+  }),
+  restartSoul: thunk(async (actions, payload: [SoulPart, SoulPartLevel], { injections }) => {
+    actions.resetSoul(payload);
   }),
 
   // Computed
@@ -166,7 +205,7 @@ const purificationModel: PurificationModel = {
       return undefined;
     }
     return state.item.soul.find(
-      (item) => item.part === part && (!level || item.partProgress.some((l) => l.level === level)),
+      (item) => item.part == part && (!level || item.partProgress.some((l) => l.level === level)),
     );
   }),
   lastMindLevel: computed((state) => (): Mind | undefined => {

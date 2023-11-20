@@ -131,7 +131,7 @@ export default function SunnahsProgressScreen() {
       }}
       renderLabel={({ route, color }) => (
         <Text
-          variant="caption"
+          variant="labelSmall"
           style={{
             justifyContent: 'center',
             textAlign: 'center',

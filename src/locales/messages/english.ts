@@ -544,7 +544,10 @@ export const english: Translations = {
   [TKeys.BUTTON_NO]: 'No',
   [TKeys.BUTTON_CLOSE]: 'Close',
   [TKeys.BUTTON_START]: 'Start',
+  [TKeys.BUTTON_RESTART]: 'Restart',
   [TKeys.BUTTON_SAVE]: 'Save',
+  [TKeys.BUTTON_AGREE]: 'Agree',
+  [TKeys.BUTTON_DISAGREE]: 'Disagree',
   [TKeys.BUTTON_CLEANING]: 'Cleaning',
   [TKeys.BUTTON_ENLIGHTENMENT]: 'Enlightenment',
 
@@ -583,4 +586,6 @@ export const english: Translations = {
   [TKeys.MESSAGE_NO_PROGRESS]: 'There is no progress being made',
   [TKeys.DURATION]: '{value} minutes',
   [TKeys.DURATION2]: '{value} minutes',
+  [TKeys.RESTART_CONFIRM_TITLE]: 'Are you sure you want to start again?',
+  [TKeys.RESTART_CONFIRM_MESSAGE]: 'This will delete your progress !\nIrreversible action',
 };

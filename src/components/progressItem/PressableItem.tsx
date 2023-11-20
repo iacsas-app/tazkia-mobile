@@ -1,0 +1,120 @@
+import Icon from '@expo/vector-icons/MaterialCommunityIcons';
+import { FC } from 'react';
+import { PrimitiveType } from 'react-intl';
+import { StyleSheet } from 'react-native';
+import CircularProgress from 'react-native-circular-progress-indicator';
+import { Avatar } from 'react-native-paper';
+import Animated, { FadeInDown, FadeInLeft, FadeInUp } from 'react-native-reanimated';
+import { SCREEN_WIDTH } from '../../constants/Screen';
+import { useMessage } from '../../hooks/use-message';
+import GlobalStyles from '../../styles/GlobalStyles';
+import SegmentedProgress from '../segmented/SegmentedProgress';
+import Text from './../Text';
+import HStack from './../stack/HStack';
+import VStack from './../stack/VStack';
+
+type Props = {
+  index: number;
+  stepTitle: string;
+  summaryKey: string;
+  stepTitleSize: number;
+  stepTitleWidth: number;
+  summaryKeyProps?: Record<string, PrimitiveType>;
+  subSummaryKey?: string;
+  subSummaryProps?: Record<string, PrimitiveType>;
+  subSummarySize?: number;
+  inProgress: boolean;
+  percentage: number;
+  flexBasis?: number;
+  progress?: string[];
+  circularProgressRadius?: number;
+  onPress(index: number): void;
+};
+const PressableItem: FC<Props> = (props: Props) => {
+  const { formatMessage } = useMessage();
+  const idx = props.index + 1;
+  const completed = props.percentage === 100;
+
+  return (
+    <Animated.View entering={FadeInUp.delay(200 * idx)} style={{ marginBottom: 5 }}>
+      <HStack
+        style={{
+          ...styles.part,
+          flexBasis: props.flexBasis,
+          backgroundColor: props.inProgress ? (completed ? '#8de0b6' : '#dbf6e8') : '#f5fffa',
+        }}
+        onTouchEnd={() => props.onPress(props.index)}
+      >
+        <Avatar.Text
+          size={30}
+          label={props.stepTitle}
+          color={props.inProgress ? 'green' : '#191970'}
+          labelStyle={{ fontSize: props.stepTitleSize, fontWeight: '900' }}
+          style={{
+            ...styles.partNumber,
+            backgroundColor: completed ? '#dffcef' : props.inProgress ? 'white' : '#add8e6',
+            width: props.stepTitleWidth,
+            padding: 0,
+          }}
+        />
+        <VStack>
+          <VStack spacing={10} center>
+            <Text variant="bodyLarge" style={{ ...styles.partTitle, paddingBottom: props.subSummaryKey ? 0 : 2 }}>
+              {formatMessage(props.summaryKey, props.summaryKeyProps)}
+            </Text>
+            {props.subSummaryKey && (
+              <Animated.Text
+                entering={FadeInDown.delay(270 * idx)}
+                style={{ ...styles.partSubTitle, fontSize: props.subSummarySize }}
+              >
+                {formatMessage(props.subSummaryKey, props.subSummaryProps)}
+              </Animated.Text>
+            )}
+          </VStack>
+          <SegmentedProgress progress={props.progress} />
+        </VStack>
+        {props.inProgress && (
+          <Animated.View
+            entering={FadeInLeft.delay(400).duration(300).springify().stiffness(300)}
+            style={styles.partProgress}
+          >
+            {completed ? (
+              <Icon name="check-all" size={25} color="green" style={{ marginRight: 8 }} />
+            ) : (
+              <CircularProgress
+                value={props.percentage}
+                maxValue={100}
+                duration={600}
+                radius={props.circularProgressRadius}
+                valuePrefix={'%'}
+                inActiveStrokeColor={'#3cb371'}
+                inActiveStrokeOpacity={0.2}
+                progressValueStyle={styles.progress}
+              />
+            )}
+          </Animated.View>
+        )}
+      </HStack>
+    </Animated.View>
+  );
+};
+
+const styles = StyleSheet.create({
+  partNumber: { left: 10, position: 'absolute', elevation: 1 },
+  partProgress: { right: 5, position: 'absolute', fontSize: 30 },
+  partTitle: { fontSize: 13, fontWeight: '900' },
+  partSubTitle: { fontWeight: '700', color: '#708090', marginTop: -3 },
+  progress: { color: 'green', fontWeight: '700', fontSize: 11 },
+  part: {
+    ...GlobalStyles.center,
+    elevation: 6,
+    borderRadius: 45,
+    justifyContent: 'center',
+    alignContent: 'center',
+    alignItems: 'center',
+    textAlign: 'justify',
+    width: SCREEN_WIDTH - 15,
+  },
+});
+
+export default PressableItem;

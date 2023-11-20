@@ -1,4 +1,5 @@
 import usePurification from '../../../../hooks/use-purification';
+import WorshipScreen from '../../../sunnahs/steps/WorshipScreen';
 import TabNavigator from '../../common/TabNavigator';
 import HomeScreen from './tabs/HomeScreen';
 import InvocationsScreen from './tabs/InvocationsScreen';
@@ -12,6 +13,7 @@ export default function MindScreen() {
       presentationComponent={PresentationScreen}
       purificationComponent={HomeScreen}
       invocationComponent={InvocationsScreen}
+      sunnahsComponent={WorshipScreen}
     />
   );
 }

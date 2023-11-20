@@ -1,18 +1,21 @@
 import Animated, { FadeInLeft } from 'react-native-reanimated';
-import HStack from '../../../../../components/stack/HStack';
-import { SoulPartProgress } from '../../../../../domains/purification/Soul';
+import HStack from '../stack/HStack';
 import SegmentedItem from './SegmentedItem';
 
 type Props = {
-  progress: SoulPartProgress[];
+  progress: string[] | undefined;
 };
-export default function SegmentedSoulProgress({ progress, ...props }: Props) {
+export default function SegmentedProgress({ progress }: Props) {
+  if (!progress) {
+    return <></>;
+  }
   const size = progress.length;
+
   return (
     <HStack spacing={0} center>
       {progress.map((item, index) => (
         <Animated.View key={index} entering={FadeInLeft.delay(250 * index)}>
-          <SegmentedItem key={item.level} progress={item} roundedStart={index === 0} roundedEnd={index === size - 1} />
+          <SegmentedItem label={item} roundedStart={index === 0} roundedEnd={index === size - 1} />
         </Animated.View>
       ))}
     </HStack>

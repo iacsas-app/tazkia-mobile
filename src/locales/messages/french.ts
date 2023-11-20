@@ -546,7 +546,10 @@ export const french: Translations = {
   [TKeys.BUTTON_NO]: 'Non',
   [TKeys.BUTTON_CLOSE]: 'Fermer',
   [TKeys.BUTTON_START]: 'Commencer',
+  [TKeys.BUTTON_RESTART]: 'Recommencer',
   [TKeys.BUTTON_SAVE]: 'Enregistrer',
+  [TKeys.BUTTON_AGREE]: "J'approuve",
+  [TKeys.BUTTON_DISAGREE]: 'Je désapprouve',
   [TKeys.BUTTON_CLEANING]: 'Nettoyage',
   [TKeys.BUTTON_ENLIGHTENMENT]: 'Illumination',
 
@@ -585,4 +588,6 @@ export const french: Translations = {
   [TKeys.MESSAGE_NO_PROGRESS]: "Il n'y a aucun progrès en cours",
   [TKeys.DURATION]: '{value} minutes',
   [TKeys.DURATION2]: '{value} minutes',
+  [TKeys.RESTART_CONFIRM_TITLE]: 'Êtes-vous sûr de bien vouloir recommencer ?',
+  [TKeys.RESTART_CONFIRM_MESSAGE]: 'Cela supprimera votre progression !\nAction irréversible',
 };

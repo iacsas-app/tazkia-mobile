@@ -6,6 +6,7 @@ type TabParams = {
   Presentation: undefined;
   Purification: undefined;
   Invocation: undefined;
+  Sunnahs: undefined;
   Obstacles: undefined;
 };
 
@@ -14,6 +15,7 @@ type Props = {
   presentationComponent: any;
   purificationComponent: any;
   invocationComponent: any;
+  sunnahsComponent?: any;
   obstaclesComponent?: any;
 };
 export default function TabNavigator(props: Props) {
@@ -46,6 +48,15 @@ export default function TabNavigator(props: Props) {
           tabBarLabel: formatMessage(TKeys.MENU_INVOCATION),
         }}
       />
+      {props.sunnahsComponent && (
+        <Tab.Screen
+          name="Sunnahs"
+          component={props.sunnahsComponent}
+          options={{
+            tabBarLabel: formatMessage(TKeys.MENU_SUNNAHS),
+          }}
+        />
+      )}
       {props.obstaclesComponent && (
         <Tab.Screen
           name="Obstacles"

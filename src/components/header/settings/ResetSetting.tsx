@@ -1,12 +1,18 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
-import { Avatar, HStack, Pressable, Surface, Text } from '@react-native-material/core';
-import { StyleSheet, View, useWindowDimensions } from 'react-native';
+import { StyleSheet, useWindowDimensions } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Avatar } from 'react-native-paper';
 import { useMessage } from '../../../hooks/use-message';
 import { TKeys } from '../../../locales/constants';
 import { useStoreActions } from '../../../stores/hooks';
+import Text from '../../Text';
+import HStack from '../../stack/HStack';
 import { SettingsStyles } from './SettingsStyles';
 
-export function ResetSetting() {
+type Props = {
+  onClick?(): void;
+};
+export function ResetSetting(props: Props) {
   const { formatMessage } = useMessage();
   const { width } = useWindowDimensions();
   const resetPurification = useStoreActions((state) => state.purification.reset);
@@ -15,19 +21,20 @@ export function ResetSetting() {
   function handlePress() {
     resetPurification();
     resetSunnahs();
+    if (props.onClick) {
+      props.onClick();
+    }
   }
 
   return (
-    <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-      <Surface elevation={2} style={{ width: width - 110, backgroundColor: 'transparent' }}>
-        <Pressable onPress={handlePress} style={SettingsStyles.surface}>
-          <HStack spacing={17} style={styles.stack}>
-            <Avatar icon={() => <Icon name="database-remove" size={40} />} size={40} style={styles.avatar} />
-            <Text>{formatMessage(TKeys.SETTINGS_RESET)}</Text>
-          </HStack>
-        </Pressable>
-      </Surface>
-    </View>
+    <TouchableOpacity onPress={handlePress} style={SettingsStyles.surface}>
+      <HStack spacing={17} style={styles.stack}>
+        <Avatar.Icon icon={() => <Icon name="database-remove" size={30} />} size={30} style={styles.avatar} />
+        <Text variant="titleMedium" color="black" style={{ fontWeight: '700' }}>
+          {formatMessage(TKeys.SETTINGS_RESET)}
+        </Text>
+      </HStack>
+    </TouchableOpacity>
   );
 }
 

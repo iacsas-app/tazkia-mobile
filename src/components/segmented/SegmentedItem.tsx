@@ -1,16 +1,12 @@
 import Animated from 'react-native-reanimated';
-import Text from '../../../../../components/Text';
-import { SoulPartProgress } from '../../../../../domains/purification/Soul';
-import { useMessage } from '../../../../../hooks/use-message';
-import { TKeys } from '../../../../../locales/constants';
+import Text from '../Text';
 
 type Props = {
-  progress: SoulPartProgress;
+  label: string;
   roundedStart: boolean;
   roundedEnd: boolean;
 };
-export default function SegmentedItem({ progress, roundedStart, roundedEnd }: Props) {
-  const { formatMessage, formatNumber } = useMessage();
+export default function SegmentedItem({ label, roundedStart, roundedEnd }: Props) {
   const rStart = roundedStart ? 15 : 0;
   const rEnd = roundedEnd ? 15 : 0;
   return (
@@ -30,7 +26,7 @@ export default function SegmentedItem({ progress, roundedStart, roundedEnd }: Pr
       }}
     >
       <Text variant="labelSmall" color="#075907" style={{ paddingHorizontal: 5 }}>
-        {formatMessage(TKeys.LEVEL, { value: formatNumber(progress.level) })}
+        {label}
       </Text>
     </Animated.View>
   );

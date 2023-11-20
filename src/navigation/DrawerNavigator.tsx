@@ -1,31 +1,32 @@
-import React from 'react';
-
 import { DrawerContentScrollView, DrawerItemList, createDrawerNavigator } from '@react-navigation/drawer';
-
-import { Box } from '@react-native-material/core';
+import React from 'react';
 import { Image } from 'react-native';
 import Header from '../components/header/Header';
 import MoreMenu from '../components/header/MoreMenu';
+import Stack from '../components/stack/Stack';
 import ApproachScreen from '../screens/presentation/ApproachScreen';
 import CenterScreen from '../screens/presentation/CenterScreen';
 import CheikhScreen from '../screens/presentation/CheikhScreen';
 import PurificationScreen from '../screens/purification/PurificationScreen';
 import TabNavigator from './TabNavigator';
 
+const Drawer = createDrawerNavigator();
+
 function CustomDrawerContent(props: any) {
   return (
     <DrawerContentScrollView {...props}>
-      <Box style={{ padding: 15, marginLeft: 10 }}>
+      <Stack style={{ padding: 15, marginLeft: 10 }}>
         <Image source={require('../../assets/iacsas.png')} style={{ width: 180, height: 180 }} />
-      </Box>
+      </Stack>
       <DrawerItemList {...props} />
     </DrawerContentScrollView>
   );
 }
 
-const Drawer = createDrawerNavigator();
-
-const DrawerNavigator = () => {
+type Props = {
+  onOpenSettingDialog(): void;
+};
+const DrawerNavigator = ({ onOpenSettingDialog }: Props) => {
   return (
     <Drawer.Navigator drawerContent={(props) => <CustomDrawerContent {...props} />}>
       <Drawer.Screen
@@ -33,7 +34,7 @@ const DrawerNavigator = () => {
         component={TabNavigator}
         options={{
           headerTitle: (_) => <Header />,
-          headerRight: () => <MoreMenu size={10} color="black" />,
+          headerRight: () => <MoreMenu onClick={onOpenSettingDialog} />,
         }}
       />
       <Drawer.Screen
@@ -41,7 +42,7 @@ const DrawerNavigator = () => {
         component={CenterScreen}
         options={{
           headerTitle: (_) => <Header />,
-          headerRight: () => <MoreMenu size={10} color="black" />,
+          headerRight: () => <MoreMenu onClick={onOpenSettingDialog} />,
         }}
       />
       <Drawer.Screen
@@ -49,7 +50,7 @@ const DrawerNavigator = () => {
         component={CheikhScreen}
         options={{
           headerTitle: (_) => <Header />,
-          headerRight: () => <MoreMenu size={10} color="black" />,
+          headerRight: () => <MoreMenu onClick={onOpenSettingDialog} />,
         }}
       />
       <Drawer.Screen
@@ -57,7 +58,7 @@ const DrawerNavigator = () => {
         component={ApproachScreen}
         options={{
           headerTitle: (_) => <Header />,
-          headerRight: () => <MoreMenu size={10} color="black" />,
+          headerRight: () => <MoreMenu onClick={onOpenSettingDialog} />,
         }}
       />
       <Drawer.Screen
@@ -65,7 +66,7 @@ const DrawerNavigator = () => {
         component={PurificationScreen}
         options={{
           headerTitle: (_) => <Header />,
-          headerRight: () => <MoreMenu size={30} color="black" />,
+          headerRight: () => <MoreMenu onClick={onOpenSettingDialog} />,
         }}
       />
     </Drawer.Navigator>

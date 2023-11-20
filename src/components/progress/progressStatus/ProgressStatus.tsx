@@ -28,7 +28,7 @@ export function ProgressStatus({ last, count, maxDays, completed }: Props) {
       )}
       <Box>
         {completed ? (
-          <Icon name="check-bold" size={15} color="green" />
+          <Icon name="check-bold" size={30} color="green" />
         ) : (
           <CircularProgress
             value={progressPercentage(last.day - failed, maxDays)}

@@ -1,100 +1,92 @@
 import { VStack } from '@react-native-material/core';
-import { useNavigation } from '@react-navigation/native';
-import { useEffect, useState } from 'react';
-import { View } from 'react-native';
-import Text from '../../../../../components/Text';
-import ScrollViewLayout from '../../../../../components/layout/ScrollViewLayout';
-import SummaryRule from '../../../../../components/rules/SummaryRule';
-import Rule from '../../../../../domains/common/Rule';
+import React, { useRef, useState } from 'react';
+import BottomSheet, { BottomSheetRef } from '../../../../../components/bottomSheet/BottomSheet';
+import ProgressView from '../../../../../components/progress/ProgressView';
+import PressableItem from '../../../../../components/progressItem/PressableItem';
 import { MindLevel } from '../../../../../domains/purification/Mind';
-import Purification from '../../../../../domains/purification/Purification';
-import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';
+import usePurification from '../../../../../hooks/use-purification';
 import { TKeys } from '../../../../../locales/constants';
-import { PurificationStackNavigationProp } from '../../../../../navigation/types';
-import { PURIFICATION_MAX_DAYS, isCompleted } from '../../../../../services/Helpers';
-import { useStoreActions, useStoreState } from '../../../../../stores/hooks';
+import { PURIFICATION_MAX_DAYS, progressPercentage2 } from '../../../../../services/Helpers';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
 
 const levels: MindLevel[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 export default function HomeScreen() {
-  const { formatMessage } = useMessage();
-  const { arabic } = useApplication();
-  const navigation = useNavigation<PurificationStackNavigationProp>();
-  const createOrUpdate = useStoreActions((actions) => actions.purification.load);
-  const purification: Purification | undefined = useStoreState((state) => state.purification.item);
-  const findByMind = useStoreState((state) => state.purification.findByMind);
-  const lastMindLevel = useStoreState((state) => state.purification.lastMindLevel);
+  const ref = useRef<BottomSheetRef>(null);
+  const { formatMessage, formatNumber } = useMessage();
+  const [level, setLevel] = useState<MindLevel>();
+  const { createMind, findMind, evaluateMind, restartMind } = usePurification();
 
-  const [rules, setRules] = useState<Rule[]>([]);
+  const mind = level ? findMind(level) : undefined;
 
-  function toRule(level: MindLevel, last: MindLevel | undefined, isLastCompleted: boolean): Rule {
-    const mind = findByMind(level);
-
-    return {
-      id: level,
-      title: formatMessage(TKeys.LEVEL, { value: level }),
-      summary: formatMessage(`purification.mind.summary.level-${level}`),
-      description: (
-        <Text variant="bodyLarge" style={{ textAlign: 'justify', fontSize: arabic ? 13 : 12 }}>
-          {formatMessage(`purification.mind.description.level-${level}`)}
-        </Text>
-      ),
-      disabled: last ? level !== last + 1 && !isLastCompleted : level !== 1,
-      progress: mind ? mind.progress : [],
-      status: mind ? (isCompleted(mind.progress, PURIFICATION_MAX_DAYS) ? 'completed' : 'progress') : undefined,
-    };
+  function handlePress(level: MindLevel) {
+    setLevel(level);
+    ref.current?.open();
   }
 
-  function handleAdd(rule: Rule) {
-    let newPurif = purification;
-    if (!newPurif) {
-      newPurif = { id: 0, bodyParts: [], mind: [], soul: [] };
+  function handleStart() {
+    if (level) {
+      createMind(level);
+      setLevel(undefined);
+      ref.current?.close();
     }
-    if (newPurif.mind.find((mind) => mind.level === rule.id)) {
-      return;
-    }
-    const result = [
-      ...newPurif.mind,
-      {
-        level: rule.id as MindLevel,
-        progress: [{ startDate: Date.now(), day: 0, evaluated: false, errors: [] }],
-      },
-    ];
-    newPurif.mind = result;
-    createOrUpdate(newPurif);
-    setRules(
-      rules.map((r) => {
-        if (r.id === rule.id) {
-          r.disabled = true;
-          r.status = 'progress';
-        }
-        if (r.id === rule.id + 1) {
-          r.disabled = false;
-        }
-        return r;
-      }),
-    );
-    navigation.push('Purification');
   }
 
-  useEffect(() => {
-    const last = lastMindLevel();
-    const isLastCompleted = last ? isCompleted(last.progress, PURIFICATION_MAX_DAYS) : false;
-    const rules = levels.map((level) => toRule(level, last?.level, isLastCompleted));
-    setRules(rules);
-  }, [purification]);
+  function handleRestart() {
+    if (level) {
+      restartMind(level);
+      setLevel(undefined);
+      ref.current?.close();
+    }
+  }
+
+  function handleEvaluate(checked: boolean) {
+    if (level) {
+      evaluateMind(level, checked);
+    }
+  }
 
   return (
-    <ScrollViewLayout>
-      <VStack spacing={4} style={{ ...GlobalStyles.center, paddingBottom: 10, marginTop: 10 }}>
-        {rules.map((rule) => (
-          <View key={rule.id}>
-            <SummaryRule rule={rule} onAdd={handleAdd} />
-          </View>
-        ))}
+    <BottomSheet
+      ref={ref}
+      content={
+        <ProgressView
+          titleKey={TKeys.LEVEL}
+          titleKeyParams={level ? { value: formatNumber(level) } : undefined}
+          subTitleKey={`purification.mind.summary.level-${level}`}
+          summaryKey={`purification.mind.description.level-${level}`}
+          progress={mind ? mind.progress : undefined}
+          maxDays={PURIFICATION_MAX_DAYS}
+          onStart={handleStart}
+          onRestart={handleRestart}
+          onEvaluate={handleEvaluate}
+        />
+      }
+    >
+      <VStack style={GlobalStyles.container}>
+        {levels.map((level, index) => {
+          const idx = index + 1;
+          const mind = findMind(level);
+          const percentage = progressPercentage2(mind?.progress, PURIFICATION_MAX_DAYS);
+
+          return (
+            <PressableItem
+              key={idx}
+              index={idx}
+              stepTitle={formatMessage(TKeys.LEVEL, { value: formatNumber(level) })}
+              stepTitleSize={9}
+              stepTitleWidth={47}
+              summaryKey={`purification.mind.summary.level-${level}`}
+              inProgress={mind !== undefined}
+              percentage={percentage}
+              flexBasis={47}
+              circularProgressRadius={19}
+              onPress={() => handlePress(idx as any)}
+            />
+          );
+        })}
       </VStack>
-    </ScrollViewLayout>
+    </BottomSheet>
   );
 }

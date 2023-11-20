@@ -19,7 +19,10 @@ const TabNavigator = () => {
   const menuSize = 11;
 
   return (
-    <Tab.Navigator initialRouteName="HomeTab">
+    <Tab.Navigator
+      initialRouteName="PurificationTab"
+      screenOptions={{ tabBarAllowFontScaling: true, tabBarActiveTintColor: 'red' }}
+    >
       <Tab.Screen
         name="HomeTab"
         component={PresentationStack}

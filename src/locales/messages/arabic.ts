@@ -697,7 +697,10 @@ export const arabic: Translations = {
   [TKeys.BUTTON_NO]: 'لا',
   [TKeys.BUTTON_CLOSE]: 'غلق',
   [TKeys.BUTTON_START]: 'بدء',
+  [TKeys.BUTTON_RESTART]: 'إعادة',
   [TKeys.BUTTON_SAVE]: 'حفظ',
+  [TKeys.BUTTON_AGREE]: 'أوافق',
+  [TKeys.BUTTON_DISAGREE]: 'أعارض',
   [TKeys.BUTTON_CLEANING]: 'تطهير',
   [TKeys.BUTTON_ENLIGHTENMENT]: 'تنوير',
 
@@ -736,4 +739,6 @@ export const arabic: Translations = {
   [TKeys.MESSAGE_NO_PROGRESS]: 'لا يوجد تقدم',
   [TKeys.DURATION]: '{value} دقيقة',
   [TKeys.DURATION2]: '{value} دقائق',
+  [TKeys.RESTART_CONFIRM_TITLE]: 'هل أنت متأكد أنك تريد البدء من جديد ؟',
+  [TKeys.RESTART_CONFIRM_MESSAGE]: 'سيؤدي هذا إلى حذف تقدمك  !\nعملية لا رجعة فيها',
 };
