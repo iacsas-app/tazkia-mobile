@@ -14,11 +14,12 @@ export interface SunnahsModel {
   load: Action<SunnahsModel, [SunnahStage, Sunnah]>;
   reset: Action<SunnahsModel>;
   evaluation: Action<SunnahsModel, [number, SunnahStage, boolean]>;
+  resetSunnah: Action<SunnahsModel, [SunnahStage, number]>;
 
   // Thunk
-  //find: Thunk<SunnahsModel, void, Injections>;
   createOrUpdate: Thunk<SunnahsModel, [SunnahStage, Sunnah], Injections>;
   evaluate: Thunk<SunnahsModel, [number, SunnahStage, boolean], Injections>;
+  restart: Thunk<SunnahsModel, [SunnahStage, number], Injections>;
 
   findByIdForStage: Computed<SunnahsModel, (stage: SunnahStage, sunnahId: number) => Sunnah | undefined>;
 }
@@ -39,10 +40,12 @@ const sunnahsModel: SunnahsModel = {
     }
     state.isLoaded = true;
   }),
+
   reset: action((state) => {
     state.item = undefined;
     state.isLoaded = false;
   }),
+
   evaluation: action((state, payload: [number, SunnahStage, boolean]) => {
     const [ruleId, stage, checked] = payload;
     if (!state.item) {
@@ -53,30 +56,37 @@ const sunnahsModel: SunnahsModel = {
     if (!checked) {
       errors.push(1);
     }
-    const current = getStageProgress(stage, state.item);
-    current.forEach((item) => {
+    state.item[stage].forEach((item) => {
       if (item.id === ruleId) {
         item = updateProgress(item, errors);
         return;
       }
     });
   }),
+  resetSunnah: action((state, payload: [SunnahStage, number]) => {
+    if (!state.item) {
+      return;
+    }
+    const [stage, id] = payload;
+    state.item[stage].forEach((item) => {
+      if (item.id === id) {
+        item.progress = [{ startDate: Date.now(), day: 0, evaluated: false, errors: [] }];
+        return;
+      }
+    });
+  }),
 
   // Thunks
-  /* find: thunk(async (actions, _void, { injections }) => {
-    const { tazkiaService } = injections;
-    const item = await tazkiaService.find();
-    actions.load(item);
-  }),
-  **/
   createOrUpdate: thunk(async (actions, payload: [SunnahStage, Sunnah], { injections }) => {
-    //const { tazkiaService } = injections;
-    //const item = await tazkiaService.createOrUpdate(payload);
-
     actions.load(payload);
   }),
+
   evaluate: thunk(async (actions, payload: [number, SunnahStage, boolean], { injections }) => {
     actions.evaluation(payload);
+  }),
+
+  restart: thunk(async (actions, payload: [SunnahStage, number], { injections }) => {
+    actions.resetSunnah(payload);
   }),
 
   // Computed
@@ -84,8 +94,7 @@ const sunnahsModel: SunnahsModel = {
     if (!state.item) {
       return undefined;
     }
-    const current = getStageProgress(stage, state.item);
-    return current.find((item) => item.id === sunnahId);
+    return state.item[stage].find((item) => item.id === sunnahId);
   }),
 };
 

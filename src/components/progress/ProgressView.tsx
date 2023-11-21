@@ -1,9 +1,10 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
-import { useRef } from 'react';
+import { ReactNode, useRef } from 'react';
 import { PrimitiveType } from 'react-intl';
 import { StyleSheet, View } from 'react-native';
 import { Button, IconButton } from 'react-native-paper';
 import Animated, { FadeInUp, SlideInDown } from 'react-native-reanimated';
+import { SCREEN_WIDTH } from '../../constants/Screen';
 import ProgressLine from '../../domains/common/ProgressLine';
 import { useMessage } from '../../hooks/use-message';
 import useProgress from '../../hooks/use-progress';
@@ -21,6 +22,7 @@ type Props = {
   titleKeyParams?: Record<string, PrimitiveType>;
   subTitleKey?: string;
   summaryKey: string;
+  summary?: ReactNode;
   progress: ProgressLine[] | undefined;
   maxDays: number;
   onStart(): void;
@@ -50,7 +52,7 @@ export default function ProgressView(props: Props) {
     >
       <HStack style={{ ...styles.status, alignSelf: props.progress ? 'stretch' : 'center' }}>
         <VStack style={{ ...GlobalStyles.center, flexDirection: 'column' }}>
-          <Text variant="titleLarge" style={{ fontWeight: '900' }} color={props.progress ? 'green' : 'blue'}>
+          <Text variant="titleMedium" style={{ fontWeight: '900' }} color={props.progress ? 'green' : 'blue'}>
             {formatMessage(props.titleKey, props.titleKeyParams)}
           </Text>
           {props.subTitleKey && <Text variant="titleSmall">{formatMessage(props.subTitleKey)}</Text>}
@@ -88,11 +90,12 @@ export default function ProgressView(props: Props) {
         <RuleProgress2
           {...progressProps}
           summaryKey={props.summaryKey}
+          summary={props.summary}
           progress={props.progress}
           maxDays={props.maxDays}
           onEvaluate={props.onEvaluate}
         />
-        <Animated.View entering={SlideInDown.duration(10).springify()}>
+        <Animated.View entering={SlideInDown.duration(10).springify()} style={{ paddingBottom: 10 }}>
           {!props.progress && (
             <Button
               mode="elevated"
@@ -115,11 +118,10 @@ export default function ProgressView(props: Props) {
 
 const styles = StyleSheet.create({
   container: {
-    ...GlobalStyles.center,
-    paddingBottom: 30,
-    flex: 1,
-    padding: 10,
-    marginTop: 10,
+    ...GlobalStyles.container,
+    paddingBottom: 25,
+    marginTop: 5,
+    width: SCREEN_WIDTH,
   },
   startButton: {
     width: 180,

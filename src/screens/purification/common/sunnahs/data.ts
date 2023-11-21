@@ -1,5 +1,5 @@
-import { SunnahType } from '../../../domains/sunnahs/Sunnah';
-import { TKeys } from '../../../locales/constants';
+import { SunnahType } from '../../../../domains/sunnahs/Sunnah';
+import { TKeys } from '../../../../locales/constants';
 
 export const habitsRules: Record<number, Record<SunnahType, string[]>> = {
   1: {

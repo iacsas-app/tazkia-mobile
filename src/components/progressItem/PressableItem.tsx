@@ -1,5 +1,4 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
-import { FC } from 'react';
 import { PrimitiveType } from 'react-intl';
 import { StyleSheet } from 'react-native';
 import CircularProgress from 'react-native-circular-progress-indicator';
@@ -30,20 +29,21 @@ type Props = {
   circularProgressRadius?: number;
   onPress(index: number): void;
 };
-const PressableItem: FC<Props> = (props: Props) => {
+
+function PressableItem(props: Props) {
   const { formatMessage } = useMessage();
-  const idx = props.index + 1;
   const completed = props.percentage === 100;
 
   return (
-    <Animated.View entering={FadeInUp.delay(200 * idx)} style={{ marginBottom: 5 }}>
+    <Animated.View entering={FadeInUp.delay(100 * props.index + 1)} style={{ marginBottom: 5 }}>
       <HStack
         style={{
           ...styles.part,
           flexBasis: props.flexBasis,
           backgroundColor: props.inProgress ? (completed ? '#8de0b6' : '#dbf6e8') : '#f5fffa',
+          minHeight: 40,
         }}
-        onTouchEnd={() => props.onPress(props.index)}
+        onTouchEnd={() => props.onPress(props.index + 1)}
       >
         <Avatar.Text
           size={30}
@@ -59,12 +59,12 @@ const PressableItem: FC<Props> = (props: Props) => {
         />
         <VStack>
           <VStack spacing={10} center>
-            <Text variant="bodyLarge" style={{ ...styles.partTitle, paddingBottom: props.subSummaryKey ? 0 : 2 }}>
+            <Text variant="bodySmall" style={{ ...styles.partTitle, paddingBottom: props.subSummaryKey ? 0 : 2 }}>
               {formatMessage(props.summaryKey, props.summaryKeyProps)}
             </Text>
             {props.subSummaryKey && (
               <Animated.Text
-                entering={FadeInDown.delay(270 * idx)}
+                entering={FadeInDown.delay(270 * props.index + 1)}
                 style={{ ...styles.partSubTitle, fontSize: props.subSummarySize }}
               >
                 {formatMessage(props.subSummaryKey, props.subSummaryProps)}
@@ -97,12 +97,12 @@ const PressableItem: FC<Props> = (props: Props) => {
       </HStack>
     </Animated.View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   partNumber: { left: 10, position: 'absolute', elevation: 1 },
   partProgress: { right: 5, position: 'absolute', fontSize: 30 },
-  partTitle: { fontSize: 13, fontWeight: '900' },
+  partTitle: { fontWeight: '900' },
   partSubTitle: { fontWeight: '700', color: '#708090', marginTop: -3 },
   progress: { color: 'green', fontWeight: '700', fontSize: 11 },
   part: {

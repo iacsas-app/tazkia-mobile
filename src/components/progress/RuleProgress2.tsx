@@ -1,5 +1,5 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
-import { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import { PrimitiveType } from 'react-intl';
 import { StyleSheet } from 'react-native';
 import { Button } from 'react-native-paper';
@@ -9,6 +9,7 @@ import FailedAttempts from '../../components/progress/failedAttempts/FailedAttem
 import ProgressStatusInfo from '../../components/progress/progressStatus/ProgressStatusInfo';
 import HStack from '../../components/stack/HStack';
 import VStack from '../../components/stack/VStack';
+import { SCREEN_WIDTH } from '../../constants/Screen';
 import ProgressLine from '../../domains/common/ProgressLine';
 import { useMessage } from '../../hooks/use-message';
 import { ProgressProps } from '../../hooks/use-progress';
@@ -18,6 +19,7 @@ import GlobalStyles from '../../styles/GlobalStyles';
 type Props = ProgressProps & {
   summaryKey: string;
   summaryKeyProps?: Record<string, PrimitiveType>;
+  summary?: ReactNode;
   progress: ProgressLine[] | undefined;
   maxDays: number;
   onEvaluate(checked: boolean): void;
@@ -50,14 +52,16 @@ export default function RuleProgress2({ progress, ...props }: Props) {
           {formatMessage(TKeys.PROGRESS_EVALUATION_QUESTION)}
         </Animated.Text>
       )}
-      <VStack>
-        <Animated.Text
-          entering={FadeInUp.springify().delay(100).duration(300)}
-          exiting={FadeOutUp.delay(100).duration(200)}
-          style={styles.levelSummary}
-        >
-          {formatMessage(props.summaryKey, props.summaryKeyProps)}
-        </Animated.Text>
+      <VStack style={{ width: SCREEN_WIDTH - 15 }}>
+        {props.summary ?? (
+          <Animated.Text
+            entering={FadeInUp.springify().delay(100).duration(300)}
+            exiting={FadeOutUp.delay(100).duration(200)}
+            style={styles.levelSummary}
+          >
+            {formatMessage(props.summaryKey, props.summaryKeyProps)}
+          </Animated.Text>
+        )}
       </VStack>
       {showEvalute && (
         <Animated.View
@@ -153,6 +157,10 @@ export default function RuleProgress2({ progress, ...props }: Props) {
 }
 
 const styles = StyleSheet.create({
+  fabStyle: {
+    bottom: 15,
+    position: 'absolute',
+  },
   levelSummary: { fontWeight: '800', fontSize: 13, textAlign: 'justify' },
   startButtonLabel: { fontWeight: '900', fontSize: 17, color: '#4169e1' },
   btn: { minWidth: 65, marginTop: 10 },

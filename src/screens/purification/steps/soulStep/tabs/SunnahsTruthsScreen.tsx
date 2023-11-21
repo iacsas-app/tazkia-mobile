@@ -1,5 +1,5 @@
-import SunnahStageContainer from '../../../../sunnahs/common/SunnahStageContainer';
-import { truthsRules } from '../../../../sunnahs/common/data';
+import SunnahStageContainer from '../../../common/sunnahs/SunnahStageContainer';
+import { truthsRules } from '../../../common/sunnahs/data';
 
 export default function SunnahsTruthsScreen() {
   return <SunnahStageContainer stage="truths" rules={truthsRules} />;

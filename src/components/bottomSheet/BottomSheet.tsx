@@ -100,7 +100,6 @@ const BottomSheet = forwardRef<BottomSheetRef, BottomSheetProps>(function Bottom
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f0e275',
   },
   backdrop: {
     ...StyleSheet.absoluteFillObject,
@@ -112,7 +111,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     width: '100%',
     position: 'absolute',
-    bottom: -OVERDRAG * 1.1,
+    bottom: -OVERDRAG * 5,
+    paddingBottom: 25,
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
     zIndex: 1,

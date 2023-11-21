@@ -23,7 +23,6 @@ export default function usePurification(): IPurification {
   const restartSoul = useStoreActions((actions) => actions.purification.restartSoul);
   const evaluateMind = useStoreActions((actions) => actions.purification.evaluateMind);
   const restartMind = useStoreActions((actions) => actions.purification.restartMind);
-
   const findSoul = useStoreState((actions) => actions.purification.findSoul);
   const findMind = useStoreState((state) => state.purification.findByMind);
 

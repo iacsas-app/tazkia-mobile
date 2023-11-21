@@ -39,7 +39,7 @@ export function percentageCallback(accumulator: number, currentValue: ProgressLi
 }
 
 export function progressPercentage2(lines: ProgressLine[] | undefined, maxDays: number): number {
-  if (!lines) {
+  if (!lines || lines.length === 0) {
     return 0;
   }
   const lastDay = lines[lines.length - 1];

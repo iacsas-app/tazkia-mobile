@@ -1,4 +1,4 @@
-import Mind from '../../../../../domains/purification/Mind';
+import Mind from '../../../../domains/purification/Mind';
 
 export function orderMindLevels(items: Mind[]) {
   return items.sort((a: Mind, b: Mind) => {

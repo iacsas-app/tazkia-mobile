@@ -7,7 +7,7 @@ export default function Basmalah() {
   return (
     <Text
       style={{
-        paddingVertical: 10,
+        paddingVertical: 1,
         fontSize: 14,
         fontWeight: '900',
         textAlign: 'justify',

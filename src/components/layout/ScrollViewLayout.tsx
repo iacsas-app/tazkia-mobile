@@ -1,37 +1,36 @@
-import { PropsWithChildren, useMemo } from 'react';
+import { PropsWithChildren } from 'react';
 import { SafeAreaView, ScrollView, useWindowDimensions } from 'react-native';
 import Animated, { FadeInUp, FadeOutDown } from 'react-native-reanimated';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import useWindow from '../../hooks/use-window';
 import GlobalStyles from '../../styles/GlobalStyles';
 
 interface Props extends PropsWithChildren {}
 
 export default function ScrollViewLayout(props: Props) {
-  const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
-  const paddingHorizontal = useMemo(() => Math.max(15, insets.left + insets.right), []);
+  const { paddingHorizontal } = useWindow();
 
   return (
     <SafeAreaView>
-      <Animated.View
-        entering={FadeInUp.delay(300).duration(150).springify()}
-        exiting={FadeOutDown}
-        style={GlobalStyles.center}
+      <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
+        contentContainerStyle={[
+          {
+            ...GlobalStyles.center,
+            width: width,
+            paddingVertical: 15,
+            paddingHorizontal,
+          },
+        ]}
       >
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          contentContainerStyle={[
-            {
-              ...GlobalStyles.center,
-              width: width,
-              paddingVertical: 15,
-              paddingHorizontal,
-            },
-          ]}
+        <Animated.View
+          entering={FadeInUp.delay(300).duration(150).springify()}
+          exiting={FadeOutDown}
+          style={GlobalStyles.center}
         >
           {props.children}
-        </ScrollView>
-      </Animated.View>
+        </Animated.View>
+      </ScrollView>
     </SafeAreaView>
   );
 }

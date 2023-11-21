@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   part: {
     width: 250,
     paddingVertical: 10,
-    backgroundColor: '#cde7f7',
+    backgroundColor: '#cde7f7', // #b3f1d5 (green)
     borderRadius: 25,
     elevation: 6,
   },

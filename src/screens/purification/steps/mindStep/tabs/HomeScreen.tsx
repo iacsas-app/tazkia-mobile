@@ -18,7 +18,7 @@ export default function HomeScreen() {
   const [level, setLevel] = useState<MindLevel>();
   const { createMind, findMind, evaluateMind, restartMind } = usePurification();
 
-  const mind = level ? findMind(level) : undefined;
+  const current = level ? findMind(level) : undefined;
 
   function handlePress(level: MindLevel) {
     setLevel(level);
@@ -59,7 +59,7 @@ export default function HomeScreen() {
           titleKeyParams={level ? { value: formatNumber(level) } : undefined}
           subTitleKey={`purification.mind.summary.level-${level}`}
           summaryKey={`purification.mind.description.level-${level}`}
-          progress={mind ? mind.progress : undefined}
+          progress={current?.progress}
           maxDays={PURIFICATION_MAX_DAYS}
           onStart={handleStart}
           onRestart={handleRestart}
@@ -69,14 +69,12 @@ export default function HomeScreen() {
     >
       <VStack style={GlobalStyles.container}>
         {levels.map((level, index) => {
-          const idx = index + 1;
           const mind = findMind(level);
           const percentage = progressPercentage2(mind?.progress, PURIFICATION_MAX_DAYS);
-
           return (
             <PressableItem
-              key={idx}
-              index={idx}
+              key={index}
+              index={index}
               stepTitle={formatMessage(TKeys.LEVEL, { value: formatNumber(level) })}
               stepTitleSize={9}
               stepTitleWidth={47}
@@ -85,7 +83,7 @@ export default function HomeScreen() {
               percentage={percentage}
               flexBasis={47}
               circularProgressRadius={19}
-              onPress={() => handlePress(idx as any)}
+              onPress={() => handlePress((index + 1) as any)}
             />
           );
         })}
