@@ -1,3 +1,4 @@
+import { Avatar, Divider } from 'react-native-paper';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import Text from '../../../../components/Text';
 import HStack from '../../../../components/stack/HStack';
@@ -16,18 +17,25 @@ export default function SunnahRuleTypeItem({ index, summary, count, color }: Pro
       entering={FadeIn.delay(100 * index)
         .duration(100)
         .springify()}
-      style={{ paddingHorizontal: 5 }}
+      style={{ paddingStart: 5 }}
     >
-      <HStack spacing={10} style={GlobalStyles.center}>
+      <HStack spacing={5} style={{ ...GlobalStyles.center, paddingHorizontal: 10 }}>
         {count > 1 && (
-          <Text variant="bodyMedium" style={{ fontWeight: '700' }} color={color}>
-            {index + 1}
-          </Text>
+          <Avatar.Text
+            label={(index + 1) as any}
+            size={20}
+            style={{ backgroundColor: color, opacity: 0.6 }}
+            labelStyle={{ fontWeight: '600', fontSize: 11 }}
+          />
         )}
-        <Text variant="bodyMedium" style={{ textAlign: 'justify', width: SCREEN_WIDTH - 45 }}>
+        <Text
+          variant={count > 3 ? 'bodySmall' : 'bodyMedium'}
+          style={{ textAlign: 'justify', width: SCREEN_WIDTH - 30, paddingHorizontal: 5 }}
+        >
           {summary}
         </Text>
       </HStack>
+      {count > 1 && index < count - 1 && <Divider />}
     </Animated.View>
   );
 }

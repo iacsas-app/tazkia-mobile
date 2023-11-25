@@ -48,11 +48,15 @@ export default function ProgressView(props: Props) {
   return (
     <Animated.View entering={FadeInUp.delay(400).duration(50).springify()} style={styles.view}>
       <HStack style={{ ...styles.status, alignSelf: props.progress ? 'stretch' : 'center' }}>
-        <VStack style={{ ...GlobalStyles.center, flexDirection: 'column' }}>
-          <Text variant="titleMedium" style={{ fontWeight: '900' }} color={props.progress ? 'green' : 'blue'}>
+        <VStack style={{ ...GlobalStyles.center }}>
+          <Text
+            variant="titleMedium"
+            style={{ fontWeight: '900', fontSize: 18 }}
+            color={props.progress ? 'green' : 'blue'}
+          >
             {formatMessage(props.titleKey, props.titleKeyParams)}
           </Text>
-          {props.subTitleKey && <Text variant="titleSmall">{formatMessage(props.subTitleKey)}</Text>}
+          {props.subTitleKey && <Text variant="titleMedium">{formatMessage(props.subTitleKey)}</Text>}
         </VStack>
         <HStack style={GlobalStyles.center} spacing={10}>
           {progressProps.completed && (
@@ -92,7 +96,7 @@ export default function ProgressView(props: Props) {
           maxDays={props.maxDays}
           onEvaluate={props.onEvaluate}
         />
-        <Animated.View entering={SlideInDown.duration(10).springify()} style={{ paddingBottom: 10 }}>
+        <Animated.View entering={SlideInDown.duration(10).springify()} style={{ paddingTop: 10 }}>
           {!props.progress && (
             <Button
               mode="elevated"
@@ -114,11 +118,11 @@ export default function ProgressView(props: Props) {
 }
 
 const styles = StyleSheet.create({
-  view: { ...GlobalStyles.container, backgroundColor: 'red' },
+  view: { ...GlobalStyles.container },
   container: {
     ...GlobalStyles.container,
     paddingBottom: 40,
-    marginTop: 5,
+    paddingTop: 15,
     width: SCREEN_WIDTH,
   },
   startButton: {
@@ -126,6 +130,7 @@ const styles = StyleSheet.create({
   },
   status: {
     justifyContent: 'space-between',
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
   },
 });

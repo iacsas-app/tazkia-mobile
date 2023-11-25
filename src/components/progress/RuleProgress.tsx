@@ -51,17 +51,15 @@ export default function RuleProgress({ progress, ...props }: Props) {
           {formatMessage(TKeys.PROGRESS_EVALUATION_QUESTION)}
         </Animated.Text>
       )}
-      <VStack>
-        {props.summary ?? (
-          <Animated.Text
-            entering={FadeInUp.springify().delay(100).duration(300)}
-            exiting={FadeOutUp.delay(100).duration(200)}
-            style={styles.levelSummary}
-          >
-            {formatMessage(props.summaryKey, props.summaryKeyProps)}
-          </Animated.Text>
-        )}
-      </VStack>
+      {props.summary ?? (
+        <Animated.Text
+          entering={FadeInUp.springify().delay(100).duration(300)}
+          exiting={FadeOutUp.delay(100).duration(200)}
+          style={styles.levelSummary}
+        >
+          {formatMessage(props.summaryKey, props.summaryKeyProps)}
+        </Animated.Text>
+      )}
       {showEvalute && (
         <Animated.View
           entering={FadeInUp.delay(400).duration(800).springify()}
@@ -156,14 +154,14 @@ export default function RuleProgress({ progress, ...props }: Props) {
 }
 
 const styles = StyleSheet.create({
-  levelSummary: { fontWeight: '800', fontSize: 13, textAlign: 'justify' },
+  levelSummary: { fontWeight: '800', fontSize: 13, textAlign: 'justify', paddingHorizontal: 10 },
   startButtonLabel: { fontWeight: '900', fontSize: 17, color: '#4169e1' },
   btn: { minWidth: 65, marginTop: 10 },
   question: { fontWeight: '900', textAlign: 'justify', fontSize: 18, alignSelf: 'center', marginBottom: 10 },
   progress: {
     ...GlobalStyles.container,
     flexDirection: 'row',
-    paddingHorizontal: 10,
+    paddingHorizontal: 20,
     alignItems: 'center',
     alignSelf: 'stretch',
     justifyContent: 'space-between',
