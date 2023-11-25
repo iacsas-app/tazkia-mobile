@@ -14,7 +14,7 @@ import Text from '../Text';
 import ConfirmRestartDialog, { ConfirmRestartDialogRef } from '../dialogs/ConfirmRestartDialog';
 import HStack from '../stack/HStack';
 import VStack from '../stack/VStack';
-import RuleProgress2 from './RuleProgress2';
+import RuleProgress from './RuleProgress';
 import { ProgressStatus } from './progressStatus/ProgressStatus';
 
 type Props = {
@@ -46,10 +46,7 @@ export default function ProgressView(props: Props) {
   }
 
   return (
-    <Animated.View
-      entering={FadeInUp.delay(400).duration(50).springify()}
-      style={{ ...GlobalStyles.center, backgroundColor: 'transparent' }}
-    >
+    <Animated.View entering={FadeInUp.delay(400).duration(50).springify()} style={styles.view}>
       <HStack style={{ ...styles.status, alignSelf: props.progress ? 'stretch' : 'center' }}>
         <VStack style={{ ...GlobalStyles.center, flexDirection: 'column' }}>
           <Text variant="titleMedium" style={{ fontWeight: '900' }} color={props.progress ? 'green' : 'blue'}>
@@ -87,7 +84,7 @@ export default function ProgressView(props: Props) {
           backgroundColor: props.progress ? (progressProps.completed ? '#8de0b6' : '#dbf6e8') : '#d8f0ff',
         }}
       >
-        <RuleProgress2
+        <RuleProgress
           {...progressProps}
           summaryKey={props.summaryKey}
           summary={props.summary}
@@ -117,9 +114,10 @@ export default function ProgressView(props: Props) {
 }
 
 const styles = StyleSheet.create({
+  view: { ...GlobalStyles.container, backgroundColor: 'red' },
   container: {
     ...GlobalStyles.container,
-    paddingBottom: 25,
+    paddingBottom: 40,
     marginTop: 5,
     width: SCREEN_WIDTH,
   },

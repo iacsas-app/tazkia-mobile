@@ -1,6 +1,6 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import { PrimitiveType } from 'react-intl';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import CircularProgress from 'react-native-circular-progress-indicator';
 import { Avatar } from 'react-native-paper';
 import Animated, { FadeInDown, FadeInLeft, FadeInUp } from 'react-native-reanimated';
@@ -15,6 +15,7 @@ import VStack from './../stack/VStack';
 type Props = {
   index: number;
   stepTitle: string;
+  partTitleSize?: number;
   summaryKey: string;
   stepTitleSize: number;
   stepTitleWidth: number;
@@ -58,8 +59,14 @@ function PressableItem(props: Props) {
           }}
         />
         <VStack>
-          <VStack spacing={10} center>
-            <Text variant="bodySmall" style={{ ...styles.partTitle, paddingBottom: props.subSummaryKey ? 0 : 2 }}>
+          <VStack spacing={2} center>
+            <Text
+              variant="bodyMedium"
+              style={{
+                ...styles.partTitle,
+                fontSize: props.partTitleSize ?? 12,
+              }}
+            >
               {formatMessage(props.summaryKey, props.summaryKeyProps)}
             </Text>
             {props.subSummaryKey && (
@@ -71,7 +78,9 @@ function PressableItem(props: Props) {
               </Animated.Text>
             )}
           </VStack>
-          <SegmentedProgress progress={props.progress} />
+          <View style={{ paddingTop: 2 }}>
+            <SegmentedProgress progress={props.progress} />
+          </View>
         </VStack>
         {props.inProgress && (
           <Animated.View
@@ -102,18 +111,14 @@ function PressableItem(props: Props) {
 const styles = StyleSheet.create({
   partNumber: { left: 10, position: 'absolute', elevation: 1 },
   partProgress: { right: 5, position: 'absolute', fontSize: 30 },
-  partTitle: { fontWeight: '900' },
+  partTitle: { fontWeight: '900', textAlign: 'center', width: SCREEN_WIDTH - 150 },
   partSubTitle: { fontWeight: '700', color: '#708090', marginTop: -3 },
   progress: { color: 'green', fontWeight: '700', fontSize: 11 },
   part: {
     ...GlobalStyles.center,
     elevation: 6,
     borderRadius: 45,
-    justifyContent: 'center',
-    alignContent: 'center',
-    alignItems: 'center',
-    textAlign: 'justify',
-    width: SCREEN_WIDTH - 15,
+    width: SCREEN_WIDTH - 8,
   },
 });
 

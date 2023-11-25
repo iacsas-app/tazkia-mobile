@@ -1,157 +1,171 @@
-import OctIcon from '@expo/vector-icons/Octicons';
-import { Box, HStack, Pressable, VStack } from '@react-native-material/core';
-import { useState } from 'react';
-import { StyleSheet, useWindowDimensions } from 'react-native';
-import { Button, IconButton } from 'react-native-paper';
+import Icon from '@expo/vector-icons/MaterialCommunityIcons';
+import React, { ReactNode, useState } from 'react';
+import { PrimitiveType } from 'react-intl';
+import { StyleSheet } from 'react-native';
+import { Button, Divider } from 'react-native-paper';
+import Animated, { FadeIn, FadeInUp, FadeOutUp, SlideOutDown, SlideOutUp } from 'react-native-reanimated';
+import Text from '../../components/Text';
+import FailedAttempts from '../../components/progress/failedAttempts/FailedAttempts';
+import ProgressStatusInfo from '../../components/progress/progressStatus/ProgressStatusInfo';
+import HStack from '../../components/stack/HStack';
+import VStack from '../../components/stack/VStack';
 import ProgressLine from '../../domains/common/ProgressLine';
-import Rule from '../../domains/common/Rule';
-import { useApplication } from '../../hooks/use-application';
 import { useMessage } from '../../hooks/use-message';
+import { ProgressProps } from '../../hooks/use-progress';
 import { TKeys } from '../../locales/constants';
 import GlobalStyles from '../../styles/GlobalStyles';
-import Text from '../Text';
-import FailedAttempts from './failedAttempts/FailedAttempts';
-import { ProgressStatus } from './progressStatus/ProgressStatus';
-import ProgressStatusInfo from './progressStatus/ProgressStatusInfo';
 
-interface Props {
-  rule: Rule;
+type Props = ProgressProps & {
+  summaryKey: string;
+  summaryKeyProps?: Record<string, PrimitiveType>;
+  summary?: ReactNode;
+  progress: ProgressLine[] | undefined;
   maxDays: number;
-  isCompleted: boolean;
-  onEvaluate: (rule: Rule) => void;
-}
-
-export default function RuleProgress({ rule, maxDays, isCompleted, ...props }: Props) {
+  onEvaluate(checked: boolean): void;
+};
+export default function RuleProgress({ progress, ...props }: Props) {
   const { formatMessage, intl } = useMessage();
-  const { width } = useWindowDimensions();
-  const { arabic } = useApplication();
-  const [show, setShow] = useState(false);
+  const [showEvalute, setShowEvalute] = useState(false);
 
-  const countDays = rule.progress
-    ? rule.progress.map((p) => p.day).reduce((total, currentValue) => (total += currentValue), 0)
-    : 0;
-  const countProgress = rule.progress ? rule.progress.length - 1 : 0;
-  const lastDay = rule.progress ? rule.progress[countProgress] : undefined;
-
-  function handleCollapse() {
-    setShow(!show);
+  function handleEvaluateShow() {
+    setShowEvalute(true);
   }
 
-  function handleOpen() {
-    setShow(!show);
-  }
-
-  function handleEvaluate() {
-    props.onEvaluate(rule);
+  function evaluate(checked: boolean) {
+    props.onEvaluate(checked);
+    setShowEvalute(false);
   }
 
   function formatAttempt(line: ProgressLine) {
     return formatMessage(TKeys.PROGRESS_FAILED_ATTEMPTS_RULE_SIMPLE, { day: line.day });
   }
 
-  if (!lastDay) {
-    return <></>;
-  }
-  const endDate =
-    lastDay.day >= maxDays && lastDay.evaluated === true && lastDay.errors.length === 0
-      ? lastDay.startDate + lastDay.day
-      : undefined;
-  const failed = lastDay.failedAttempts ? lastDay.failedAttempts : 0;
   return (
-    <Box
-      style={{
-        ...styles.box,
-        width: width - 40,
-        borderLeftWidth: isCompleted ? 8 : 0,
-        borderBottomLeftRadius: isCompleted ? 15 : 0,
-        borderBottomRightRadius: isCompleted ? 15 : 0,
-        borderColor: '#20b2aa',
-        backgroundColor: isCompleted ? '#f5fffa' : '#fffafa',
-      }}
-    >
-      <Pressable onPress={handleOpen} onLongPress={() => setShow(false)}>
-        <HStack spacing={1} style={{ alignItems: 'center', justifyContent: 'space-between' }}>
-          <HStack spacing={2} style={{ alignItems: 'center', paddingHorizontal: 2 }}>
-            <IconButton
-              icon={(_, ...props) => <OctIcon name={show ? 'chevron-up' : 'chevron-down'} size={15} {...props} />}
-              style={{ width: 20, height: 20 }}
-              onPressIn={handleCollapse}
-            />
-            <HStack spacing={10} style={{ width: width - (arabic ? 195 : 200), alignItems: 'center' }}>
-              <Text
-                style={{
-                  fontWeight: '900',
-                  fontSize: arabic ? 12 : 10,
-                  color: isCompleted ? '#20b2aa' : '#ff4500',
-                }}
-              >
-                {rule.title}
+    <Animated.View>
+      {showEvalute && (
+        <Animated.Text
+          entering={FadeIn.delay(400).duration(800).springify()}
+          exiting={SlideOutUp}
+          style={styles.question}
+        >
+          {formatMessage(TKeys.PROGRESS_EVALUATION_QUESTION)}
+        </Animated.Text>
+      )}
+      <VStack>
+        {props.summary ?? (
+          <Animated.Text
+            entering={FadeInUp.springify().delay(100).duration(300)}
+            exiting={FadeOutUp.delay(100).duration(200)}
+            style={styles.levelSummary}
+          >
+            {formatMessage(props.summaryKey, props.summaryKeyProps)}
+          </Animated.Text>
+        )}
+      </VStack>
+      {showEvalute && (
+        <Animated.View
+          entering={FadeInUp.delay(400).duration(800).springify()}
+          exiting={SlideOutDown.delay(10).damping(100)}
+        >
+          <HStack spacing={15} style={GlobalStyles.center}>
+            <Button
+              mode="elevated"
+              style={styles.btn}
+              uppercase={false}
+              icon={() => <Icon name="thumb-up-outline" size={15} color="green" {...props} />}
+              compact
+              dark
+              onPress={() => evaluate(true)}
+            >
+              <Text variant="titleMedium" color="green" style={{ fontWeight: '900' }}>
+                {formatMessage(TKeys.BUTTON_YES)}
               </Text>
-              <Text
-                style={{
-                  fontWeight: '600',
-                  fontSize: arabic ? 12 : 10,
-                }}
-              >
-                {rule.summary}
+            </Button>
+            <Button
+              mode="elevated"
+              style={styles.btn}
+              uppercase={false}
+              icon={() => <Icon name="thumb-down-outline" size={15} color="red" {...props} />}
+              compact
+              dark
+              onPress={() => evaluate(false)}
+            >
+              <Text variant="titleMedium" color="red" style={{ fontWeight: '900' }}>
+                {formatMessage(TKeys.BUTTON_NO)}
               </Text>
-            </HStack>
+            </Button>
           </HStack>
-          <Box style={{ paddingHorizontal: 10 }}>
-            <ProgressStatus last={lastDay} count={countProgress} maxDays={maxDays} completed={isCompleted} />
-          </Box>
-        </HStack>
-        {show && <Box style={{ padding: 15 }}>{rule.description}</Box>}
-      </Pressable>
-      {show && (
-        <VStack style={{ ...GlobalStyles.center, paddingBottom: 15, paddingTop: 10 }} spacing={13}>
-          <Box>
+        </Animated.View>
+      )}
+      {!showEvalute && progress && <Divider style={{ height: 1, marginVertical: 7 }} />}
+      {props.lastDay && !showEvalute && (
+        <Animated.View
+          entering={FadeInUp.delay(400).duration(800).springify()}
+          exiting={SlideOutDown.delay(10).damping(100)}
+          style={styles.progress}
+        >
+          <VStack>
             <ProgressStatusInfo
               label={formatMessage(TKeys.PROGRESS_START_DATE)}
-              value={intl.formatDate(lastDay.startDate)}
+              value={intl.formatDate(props.lastDay.startDate)}
               icon="calendar"
               color="#000080"
             />
-            {endDate && (
+            {props.endDate && (
               <ProgressStatusInfo
                 label={formatMessage(TKeys.PROGRESS_END_DATE)}
-                value={intl.formatDate(endDate)}
+                value={intl.formatDate(props.endDate)}
                 icon="calendar-check"
                 color="#2e8b57"
               />
             )}
             <ProgressStatusInfo
               label={formatMessage(TKeys.PROGRESS_TOTAL_DAYS)}
-              value={countDays}
+              value={props.countDays}
               icon="calendar-clock-outline"
               color="#4169e1"
             />
-            {!endDate && (
+            {!props.endDate && (
               <ProgressStatusInfo
                 label={formatMessage(TKeys.PROGRESS_SUCCESSFUL_DAYS)}
-                value={`${lastDay.day - failed}/${maxDays}`}
+                value={`${props.lastDay.day - props.failed}/${props.maxDays}`}
                 icon="flag-checkered"
                 color="green"
               />
             )}
-            <FailedAttempts attempts={rule.progress.slice(0, -1)} attemptFormatter={formatAttempt} />
-          </Box>
-          {!isCompleted && (
-            <Button mode="contained" onPress={handleEvaluate} uppercase={false}>
-              {formatMessage(TKeys.PROGRESS_START_DAILY_EVALUATION)}
+            {progress && <FailedAttempts attempts={progress.slice(0, -1)} attemptFormatter={formatAttempt} />}
+          </VStack>
+          {!props.completed && (
+            <Button
+              mode="elevated"
+              compact
+              icon={() => <Icon name="check-circle" size={15} color="green" />}
+              uppercase={false}
+              style={{ marginTop: 10, elevation: 8 }}
+              onTouchStart={handleEvaluateShow}
+            >
+              <Text variant="titleMedium" color="green" style={{ fontWeight: '900' }}>
+                {formatMessage(TKeys.PROGRESS_START_DAILY_EVALUATION)}
+              </Text>
             </Button>
           )}
-        </VStack>
+        </Animated.View>
       )}
-    </Box>
+    </Animated.View>
   );
 }
 
 const styles = StyleSheet.create({
-  box: {
-    paddingVertical: 5,
-    borderRadius: 15,
-    elevation: 5,
-    backgroundColor: 'white',
+  levelSummary: { fontWeight: '800', fontSize: 13, textAlign: 'justify' },
+  startButtonLabel: { fontWeight: '900', fontSize: 17, color: '#4169e1' },
+  btn: { minWidth: 65, marginTop: 10 },
+  question: { fontWeight: '900', textAlign: 'justify', fontSize: 18, alignSelf: 'center', marginBottom: 10 },
+  progress: {
+    ...GlobalStyles.container,
+    flexDirection: 'row',
+    paddingHorizontal: 10,
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    justifyContent: 'space-between',
   },
 });

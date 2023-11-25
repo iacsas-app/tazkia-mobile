@@ -32,13 +32,13 @@ export default function LevelChooser({ part, ...props }: Props) {
 
   return (
     <Animated.View entering={FadeInUp.delay(400).duration(50).springify()} style={styles.container}>
-      <HStack spacing={10} style={styles.header}>
+      <HStack spacing={20} style={styles.header}>
         <Avatar.Text label={formatNumber(part)} size={35} color="#191970" style={{ backgroundColor: '#add8e6' }} />
         <VStack style={GlobalStyles.center}>
-          <Text variant="titleLarge" style={{ fontWeight: '900' }}>
+          <Text variant="titleLarge" style={{ fontWeight: '900', fontSize: 18, textAlign: 'center' }}>
             {formatMessage(`purification.soul.${part}.title`)}
           </Text>
-          {subtitle && <Text variant="titleMedium">{formatMessage(`purification.soul.${part}.sub.title`)}</Text>}
+          {subtitle && <Text variant="titleSmall">{formatMessage(`purification.soul.${part}.sub.title`)}</Text>}
         </VStack>
       </HStack>
       <VStack style={styles.content} spacing={5}>
@@ -62,11 +62,12 @@ export default function LevelChooser({ part, ...props }: Props) {
 const styles = StyleSheet.create({
   container: {
     ...GlobalStyles.center,
-    backgroundColor: 'transparent',
+    width: '100%',
+    paddingBottom: 40,
   },
   header: {
     ...GlobalStyles.center,
-    marginBottom: 10,
+    paddingVertical: 5,
   },
   content: {
     flex: 1,

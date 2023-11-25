@@ -297,7 +297,7 @@ export const arabic: Translations = {
 
   [TKeys.SUNNAHS_HABITS_TITLE]: 'سُننُ العادات',
   [TKeys.SUNNAHS_WORSHIP_TITLE]: 'سُننُ العبادات',
-  [TKeys.SUNNAHS_TRUTHS_TITLE]: 'سُننُ السير والحقائق والمعارج',
+  [TKeys.SUNNAHS_TRUTHS_TITLE]: 'سُننُ السير\nوالحقائق والمعارج',
 
   // Habits sunnahs
   [TKeys.SUNNAHS_HABITS_INTRODUCTION]:

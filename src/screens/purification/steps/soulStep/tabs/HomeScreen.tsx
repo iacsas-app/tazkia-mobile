@@ -64,7 +64,8 @@ export default function HomeScreen() {
               key={idx}
               index={idx}
               stepTitle={formatNumber(idx)}
-              stepTitleSize={14}
+              partTitleSize={15}
+              stepTitleSize={16}
               stepTitleWidth={30}
               summaryKey={`purification.soul.${soulPart}.title`}
               subSummaryKey={hasSubtitle ? `purification.soul.${soulPart}.sub.title` : undefined}
@@ -73,7 +74,7 @@ export default function HomeScreen() {
               progress={getProgress(soul)}
               flexBasis={60}
               circularProgressRadius={25}
-              subSummarySize={12}
+              subSummarySize={11}
               onPress={() => handlePress(idx as any)}
             />
           );

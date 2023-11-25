@@ -1,4 +1,3 @@
-import { Divider } from 'react-native-paper';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import Text from '../../../../components/Text';
 import HStack from '../../../../components/stack/HStack';
@@ -14,7 +13,7 @@ interface Props {
 export default function SunnahRuleTypeItem({ index, summary, count, color }: Props) {
   return (
     <Animated.View
-      entering={FadeIn.delay(300 * index)
+      entering={FadeIn.delay(100 * index)
         .duration(100)
         .springify()}
       style={{ paddingHorizontal: 5 }}
@@ -29,7 +28,6 @@ export default function SunnahRuleTypeItem({ index, summary, count, color }: Pro
           {summary}
         </Text>
       </HStack>
-      {index < count - 1 && <Divider />}
     </Animated.View>
   );
 }

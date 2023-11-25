@@ -12,7 +12,6 @@ import VStack from '../../../../components/stack/VStack';
 import { SCREEN_WIDTH } from '../../../../constants/Screen';
 import { SunnahType } from '../../../../domains/sunnahs/Sunnah';
 import { SunnahStage } from '../../../../domains/sunnahs/Sunnahs';
-import { useApplication } from '../../../../hooks/use-application';
 import { useMessage } from '../../../../hooks/use-message';
 import useSunnahs from '../../../../hooks/use-sunnahs';
 import useWindow from '../../../../hooks/use-window';
@@ -29,7 +28,6 @@ interface Props {
 export default function SunnahStageContainer({ stage, rules }: Props) {
   const ref = useRef<BottomSheetRef>(null);
   const { paddingHorizontal } = useWindow();
-  const { arabic } = useApplication();
   const { formatMessage, formatNumber } = useMessage();
   const [id, setId] = useState<number>();
   const { find, create, evaluate, restart, globalPercentage } = useSunnahs();
@@ -90,10 +88,10 @@ export default function SunnahStageContainer({ stage, rules }: Props) {
         />
       }
     >
-      <VStack style={{ ...GlobalStyles.center, paddingHorizontal, paddingTop: 15 }} spacing={15}>
-        <HStack style={styles.header} spacing={20}>
-          <Avatar.Image source={sunnahsImages[stage]} size={80} />
-          <Text variant="bodyLarge" style={purificationStyles.title} color="blue">
+      <VStack style={{ ...GlobalStyles.center, paddingHorizontal, paddingTop: 8 }} spacing={10}>
+        <HStack style={styles.header} spacing={15}>
+          <Avatar.Image source={sunnahsImages[stage]} size={70} />
+          <Text variant="bodyMedium" style={purificationStyles.title} color="blue">
             {formatMessage(`sunnahs.${stage}.title`)}
           </Text>
           <CircularProgress
@@ -107,7 +105,7 @@ export default function SunnahStageContainer({ stage, rules }: Props) {
             inActiveStrokeOpacity={0.2}
           />
         </HStack>
-        <Text style={{ ...styles.introduction, fontSize: arabic ? 14 : 13, fontWeight: arabic ? '600' : 'normal' }}>
+        <Text variant="bodyMedium" style={styles.introduction}>
           {formatMessage(`sunnahs.${stage}.introduction`)}
         </Text>
       </VStack>

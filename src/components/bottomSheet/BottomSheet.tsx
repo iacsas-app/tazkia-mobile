@@ -1,4 +1,5 @@
-import React, { ReactNode, forwardRef, useImperativeHandle, useMemo, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import React, { ReactNode, forwardRef, useImperativeHandle, useLayoutEffect, useMemo, useState } from 'react';
 import { Pressable, StyleSheet } from 'react-native';
 import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
 import { IconButton } from 'react-native-paper';
@@ -32,23 +33,27 @@ const BottomSheet = forwardRef<BottomSheetRef, BottomSheetProps>(function Bottom
   const [isOpen, setOpen] = useState(false);
   const offset = useSharedValue(0);
   const AnimatedPressable = useMemo(() => Animated.createAnimatedComponent(Pressable), []);
+  const navigation = useNavigation<any>();
 
   useImperativeHandle(
     ref,
     () => {
       return {
         open() {
-          setOpen(true);
-          offset.value = 0;
+          toogle(true);
         },
         close() {
-          setOpen(false);
-          offset.value = 0;
+          toogle(false);
         },
       };
     },
     [],
   );
+
+  function toogle(open: boolean) {
+    setOpen(open);
+    offset.value = 0;
+  }
 
   const toggleSheet = () => {
     setOpen(!isOpen);
@@ -75,6 +80,10 @@ const BottomSheet = forwardRef<BottomSheetRef, BottomSheetProps>(function Bottom
     transform: [{ translateY: offset.value }],
   }));
 
+  useLayoutEffect(() => {
+    navigation.setOptions({ tabBarStyle: { display: isOpen ? 'none' : 'flex' } });
+  }, [isOpen]);
+
   return (
     <GestureHandlerRootView style={styles.container}>
       {props.children}
@@ -87,7 +96,12 @@ const BottomSheet = forwardRef<BottomSheetRef, BottomSheetProps>(function Bottom
               entering={SlideInDown.springify().damping(15)}
               exiting={SlideOutDown}
             >
-              <IconButton icon="arrow-down-bold" mode="contained-tonal" onPress={toggleSheet} />
+              <IconButton
+                icon="arrow-down-bold"
+                mode="contained-tonal"
+                style={{ marginTop: -15 }}
+                onPress={toggleSheet}
+              />
               {props.content}
             </Animated.View>
           </GestureDetector>

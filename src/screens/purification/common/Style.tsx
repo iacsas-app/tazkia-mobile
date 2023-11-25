@@ -5,5 +5,6 @@ export const purificationStyles = StyleSheet.create({
   title: {
     ...GlobalStyles.description,
     marginBottom: 20,
+    textAlign: 'center',
   },
 });

@@ -1,3 +1,4 @@
+import { Divider } from 'react-native-paper';
 import Animated from 'react-native-reanimated';
 import Text from '../../../../components/Text';
 import VStack from '../../../../components/stack/VStack';
@@ -30,11 +31,13 @@ export default function SunnahRuleTypes({ type, items, showType, hasProgress }: 
         </Text>
       )}
       <Animated.FlatList
+        StickyHeaderComponent={() => <Animated.Text>test</Animated.Text>}
         data={items}
         renderItem={({ item, index }) => (
           <SunnahRuleTypeItem index={index} summary={formatMessage(item)} count={count} color={color} />
         )}
         keyExtractor={(item) => item}
+        ItemSeparatorComponent={() => <Divider />}
       />
     </VStack>
   );

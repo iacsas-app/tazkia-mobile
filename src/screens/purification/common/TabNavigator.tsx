@@ -2,7 +2,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import { useMessage } from '../../../hooks/use-message';
 import { TKeys } from '../../../locales/constants';
 
-type TabParams = {
+export type TabParams = {
   Presentation: undefined;
   Purification: undefined;
   Invocation: undefined;
@@ -26,7 +26,7 @@ export default function TabNavigator(props: Props) {
     <Tab.Navigator
       initialRouteName={props.hasProgress ? 'Purification' : 'Presentation'}
       screenOptions={{
-        tabBarLabelStyle: { fontSize: 14, fontWeight: '900' },
+        tabBarLabelStyle: { fontSize: 12, fontWeight: '800' },
         tabBarActiveTintColor: 'blue',
         tabBarInactiveTintColor: 'black',
       }}
