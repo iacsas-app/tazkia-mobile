@@ -572,6 +572,7 @@ export const english: Translations = {
   [TKeys.PROGRESS_START_DAILY_EVALUATION]: 'Evaluate my day',
   [TKeys.PROGRESS_EVALUATION_MESSAGE]: 'Select the rules that were violated',
   [TKeys.PROGRESS_EVALUATION_QUESTION]: 'Was the following rule respected ?',
+  [TKeys.PROGRESS_EVALUATION_QUESTIONS]: 'Were the following rules respected ?',
   [TKeys.BASMALAH]:
     'In the name of God, the Most Gracious, the Most Merciful, and may blessings and peace be upon the most honorable of the prophets and messengers, our master Muhammad, and upon all his family and companions.',
   [TKeys.LEVEL]: 'Level {value}',

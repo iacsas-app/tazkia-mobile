@@ -1,7 +1,7 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import React, { ReactNode, useState } from 'react';
 import { PrimitiveType } from 'react-intl';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Button, Divider } from 'react-native-paper';
 import Animated, { FadeIn, FadeInUp, FadeOutUp, SlideOutDown, SlideOutUp } from 'react-native-reanimated';
 import Text from '../../components/Text';
@@ -21,6 +21,7 @@ type Props = ProgressProps & {
   summary?: ReactNode;
   progress: ProgressLine[] | undefined;
   maxDays: number;
+  questionMultiple?: boolean;
   onEvaluate(checked: boolean): void;
 };
 export default function RuleProgress({ progress, ...props }: Props) {
@@ -48,7 +49,7 @@ export default function RuleProgress({ progress, ...props }: Props) {
           exiting={SlideOutUp}
           style={styles.question}
         >
-          {formatMessage(TKeys.PROGRESS_EVALUATION_QUESTION)}
+          {formatMessage(`progress.evaluation.question${props.questionMultiple ? 's' : ''}`)}
         </Animated.Text>
       )}
       {props.summary ?? (
@@ -95,58 +96,60 @@ export default function RuleProgress({ progress, ...props }: Props) {
           </HStack>
         </Animated.View>
       )}
-      {!showEvalute && progress && <Divider style={{ height: 1, marginVertical: 7 }} />}
       {props.lastDay && !showEvalute && (
         <Animated.View
           entering={FadeInUp.delay(400).duration(800).springify()}
           exiting={SlideOutDown.delay(10).damping(100)}
-          style={styles.progress}
+          style={{ paddingTop: 15 }}
         >
-          <VStack>
-            <ProgressStatusInfo
-              label={formatMessage(TKeys.PROGRESS_START_DATE)}
-              value={intl.formatDate(props.lastDay.startDate)}
-              icon="calendar"
-              color="#000080"
-            />
-            {props.endDate && (
+          <Divider style={{ height: 1 }} />
+          <View style={styles.progress}>
+            <VStack>
               <ProgressStatusInfo
-                label={formatMessage(TKeys.PROGRESS_END_DATE)}
-                value={intl.formatDate(props.endDate)}
-                icon="calendar-check"
-                color="#2e8b57"
+                label={formatMessage(TKeys.PROGRESS_START_DATE)}
+                value={intl.formatDate(props.lastDay.startDate)}
+                icon="calendar"
+                color="#000080"
               />
-            )}
-            <ProgressStatusInfo
-              label={formatMessage(TKeys.PROGRESS_TOTAL_DAYS)}
-              value={props.countDays}
-              icon="calendar-clock-outline"
-              color="#4169e1"
-            />
-            {!props.endDate && (
+              {props.endDate && (
+                <ProgressStatusInfo
+                  label={formatMessage(TKeys.PROGRESS_END_DATE)}
+                  value={intl.formatDate(props.endDate)}
+                  icon="calendar-check"
+                  color="#2e8b57"
+                />
+              )}
               <ProgressStatusInfo
-                label={formatMessage(TKeys.PROGRESS_SUCCESSFUL_DAYS)}
-                value={`${props.lastDay.day - props.failed}/${props.maxDays}`}
-                icon="flag-checkered"
-                color="green"
+                label={formatMessage(TKeys.PROGRESS_TOTAL_DAYS)}
+                value={props.countDays}
+                icon="calendar-clock-outline"
+                color="#4169e1"
               />
+              {!props.endDate && (
+                <ProgressStatusInfo
+                  label={formatMessage(TKeys.PROGRESS_SUCCESSFUL_DAYS)}
+                  value={`${props.lastDay.day - props.failed}/${props.maxDays}`}
+                  icon="flag-checkered"
+                  color="green"
+                />
+              )}
+              {progress && <FailedAttempts attempts={progress.slice(0, -1)} attemptFormatter={formatAttempt} />}
+            </VStack>
+            {!props.completed && (
+              <Button
+                mode="elevated"
+                compact
+                icon={() => <Icon name="check-circle" size={15} color="green" />}
+                uppercase={false}
+                style={{ marginTop: 10, elevation: 8 }}
+                onTouchStart={handleEvaluateShow}
+              >
+                <Text variant="titleMedium" color="green" style={{ fontWeight: '900' }}>
+                  {formatMessage(TKeys.PROGRESS_START_DAILY_EVALUATION)}
+                </Text>
+              </Button>
             )}
-            {progress && <FailedAttempts attempts={progress.slice(0, -1)} attemptFormatter={formatAttempt} />}
-          </VStack>
-          {!props.completed && (
-            <Button
-              mode="elevated"
-              compact
-              icon={() => <Icon name="check-circle" size={15} color="green" />}
-              uppercase={false}
-              style={{ marginTop: 10, elevation: 8 }}
-              onTouchStart={handleEvaluateShow}
-            >
-              <Text variant="titleMedium" color="green" style={{ fontWeight: '900' }}>
-                {formatMessage(TKeys.PROGRESS_START_DAILY_EVALUATION)}
-              </Text>
-            </Button>
-          )}
+          </View>
         </Animated.View>
       )}
     </Animated.View>
@@ -159,11 +162,12 @@ const styles = StyleSheet.create({
   btn: { minWidth: 65, marginTop: 10 },
   question: { fontWeight: '900', textAlign: 'justify', fontSize: 18, alignSelf: 'center', marginBottom: 10 },
   progress: {
-    ...GlobalStyles.container,
     flexDirection: 'row',
     paddingHorizontal: 20,
     alignItems: 'center',
     alignSelf: 'stretch',
     justifyContent: 'space-between',
+    paddingTop: 5,
+    marginBottom: -20,
   },
 });

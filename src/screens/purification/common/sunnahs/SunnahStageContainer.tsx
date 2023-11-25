@@ -42,6 +42,14 @@ export default function SunnahStageContainer({ stage, rules }: Props) {
     return <SunnahRule verbals={verbal} actionals={actional} hasProgress={current !== undefined} />;
   }, [id]);
 
+  const questionMultiple: boolean = useMemo(() => {
+    if (!id) {
+      return false;
+    }
+    const { verbal, actional } = rules[id];
+    return verbal.length > 1 || actional.length > 1;
+  }, [id]);
+
   function handlePress(id: number) {
     setId(id);
     ref.current?.open();
@@ -82,6 +90,7 @@ export default function SunnahStageContainer({ stage, rules }: Props) {
           summary={sunnahRules}
           progress={current?.progress}
           maxDays={SUNNAHS_MAX_DAYS}
+          questionMultiple={questionMultiple}
           onStart={handleStart}
           onRestart={handleRestart}
           onEvaluate={handleEvaluate}

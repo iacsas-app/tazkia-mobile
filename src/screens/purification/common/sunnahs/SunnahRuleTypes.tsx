@@ -28,7 +28,7 @@ export default function SunnahRuleTypes({ type, items, showType, hasProgress }: 
         </Text>
       )}
       {items.map((item, index) => (
-        <SunnahRuleTypeItem index={index} summary={formatMessage(item)} count={count} color={color} />
+        <SunnahRuleTypeItem key={index} index={index} summary={formatMessage(item)} count={count} color={color} />
       ))}
     </VStack>
   );

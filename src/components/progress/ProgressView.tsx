@@ -25,6 +25,7 @@ type Props = {
   summary?: ReactNode;
   progress: ProgressLine[] | undefined;
   maxDays: number;
+  questionMultiple?: boolean;
   onStart(): void;
   onRestart(): void;
   onEvaluate(checked: boolean): void;
@@ -46,9 +47,9 @@ export default function ProgressView(props: Props) {
   }
 
   return (
-    <Animated.View entering={FadeInUp.delay(400).duration(50).springify()} style={styles.view}>
+    <Animated.View entering={FadeInUp.delay(400).duration(50).springify()} style={GlobalStyles.center}>
       <HStack style={{ ...styles.status, alignSelf: props.progress ? 'stretch' : 'center' }}>
-        <VStack style={{ ...GlobalStyles.center }}>
+        <VStack style={styles.header}>
           <Text
             variant="titleMedium"
             style={{ fontWeight: '900', fontSize: 18 }}
@@ -94,9 +95,10 @@ export default function ProgressView(props: Props) {
           summary={props.summary}
           progress={props.progress}
           maxDays={props.maxDays}
+          questionMultiple={props.questionMultiple}
           onEvaluate={props.onEvaluate}
         />
-        <Animated.View entering={SlideInDown.duration(10).springify()} style={{ paddingTop: 10 }}>
+        <Animated.View entering={SlideInDown.duration(10).springify()} style={{ paddingVertical: 20 }}>
           {!props.progress && (
             <Button
               mode="elevated"
@@ -118,12 +120,15 @@ export default function ProgressView(props: Props) {
 }
 
 const styles = StyleSheet.create({
-  view: { ...GlobalStyles.container },
   container: {
     ...GlobalStyles.container,
-    paddingBottom: 40,
+    paddingBottom: 30,
     paddingTop: 15,
     width: SCREEN_WIDTH,
+  },
+  header: {
+    ...GlobalStyles.center,
+    width: SCREEN_WIDTH - 80,
   },
   startButton: {
     width: 180,

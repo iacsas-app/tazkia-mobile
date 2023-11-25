@@ -725,6 +725,7 @@ export const arabic: Translations = {
   [TKeys.PROGRESS_START_DAILY_EVALUATION]: 'تقييم يومي',
   [TKeys.PROGRESS_EVALUATION_MESSAGE]: 'اختر القواعد التي تم خرقها',
   [TKeys.PROGRESS_EVALUATION_QUESTION]: 'هل تم احترام القاعدة التالية ؟',
+  [TKeys.PROGRESS_EVALUATION_QUESTIONS]: 'هل تم احترام القواعد التالية ؟',
   [TKeys.BASMALAH]:
     'بسم الله الرحمن الرحيم والصلاة والسلام على أشرف الأنبياء والمرسلين سيدنا محمد وعلى آله وصحبه أجمعين',
   [TKeys.LEVEL]: 'المستوى {value}',
