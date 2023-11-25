@@ -65,7 +65,7 @@ export default function InvocationItem({ index, total, summary, repeat }: Props)
               {formatMessage(count > 1 ? TKeys.TIMES_COUNT_PLURAL : TKeys.TIMES_COUNT, { times: count })}
             </Text>
           ) : (
-            <Icon name="check-all" color="green" size={20} />
+            <Icon name="check-all" color="seagreen" size={20} />
           )}
         </View>
       </VStack>

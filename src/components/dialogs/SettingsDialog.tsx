@@ -42,8 +42,8 @@ const SettingsDialog = forwardRef<SettingsDialogRef>(function SettingsDialog({},
     <Portal>
       <Dialog onDismiss={handleClose} visible={visible} style={{ ...GlobalStyles.center, backgroundColor: 'white' }}>
         <HStack spacing={20} style={styles.title}>
-          <Icon name="settings" size={35} color="green" />
-          <Text variant="headlineMedium" color="green" style={{ fontWeight: '900' }}>
+          <Icon name="settings" size={35} color="seagreen" />
+          <Text variant="headlineMedium" color="seagreen" style={{ fontWeight: '900' }}>
             {formatMessage(TKeys.MENU_SETTINGS)}
           </Text>
         </HStack>

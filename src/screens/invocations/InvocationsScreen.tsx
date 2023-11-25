@@ -126,14 +126,13 @@ export default function InvocationsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f0e275',
+    backgroundColor: '#f5fffa',
   },
   part: {
-    backgroundColor: '#e9c196',
+    backgroundColor: '#cde7f7',
     elevation: 6,
     borderRadius: 45,
     paddingVertical: 10,
-    minHeight: 90,
     justifyContent: 'center',
     alignContent: 'center',
     textAlign: 'justify',

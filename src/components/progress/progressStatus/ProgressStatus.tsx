@@ -24,14 +24,14 @@ export function ProgressStatus({ last, count, maxDays, completed }: Props) {
       {!completed && <RepeatCount count={count} />}
       <View>
         {completed ? (
-          <Icon name="check-bold" size={30} color="green" />
+          <Icon name="check-bold" size={30} color="seagreen" />
         ) : (
           <CircularProgress
             value={progressPercentage(last.day - failed, maxDays)}
             maxValue={100}
             duration={600}
             radius={25}
-            valuePrefix={'%'}
+            valueSuffix={'%'}
             inActiveStrokeColor={'#2ecc71'}
             inActiveStrokeOpacity={0.2}
             progressValueStyle={styles.progress}

@@ -3,6 +3,7 @@ import * as React from 'react';
 
 import MCIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import Octicons from '@expo/vector-icons/Octicons';
+import { Font } from '../constants/Font';
 import { useMessage } from '../hooks/use-message';
 import usePurification from '../hooks/use-purification';
 import { TKeys } from '../locales/constants';
@@ -16,12 +17,12 @@ const Tab = createBottomTabNavigator<TabParamList>();
 const TabNavigator = () => {
   const { hasBodyPartsProgress, hasMindProgress, hasSoulProgress } = usePurification();
   const { formatMessage } = useMessage();
-  const menuSize = 11;
+  const menuSize = Font.size(12);
 
   return (
     <Tab.Navigator
       initialRouteName={hasBodyPartsProgress || hasMindProgress || hasSoulProgress ? 'PurificationTab' : 'HomeTab'}
-      screenOptions={{ tabBarAllowFontScaling: true, tabBarActiveTintColor: 'red' }}
+      screenOptions={{ tabBarAllowFontScaling: true }}
     >
       <Tab.Screen
         name="HomeTab"
@@ -44,7 +45,7 @@ const TabNavigator = () => {
           title: formatMessage(TKeys.MENU_PURIFICATION),
           headerShown: false,
           tabBarIcon: ({ size, ...props }) => <Octicons name="code-of-conduct" size={30} {...props} />,
-          tabBarActiveTintColor: '#4169e1',
+          tabBarActiveTintColor: '#2e8b57',
           tabBarBadge: undefined,
           tabBarLabelStyle: {
             fontSize: menuSize,
@@ -59,7 +60,7 @@ const TabNavigator = () => {
           title: formatMessage(TKeys.MENU_INVOCATIONS),
           headerShown: false,
           tabBarIcon: ({ size, ...props }) => <MCIcons name="meditation" size={40} {...props} />,
-          tabBarActiveTintColor: '#ff6347',
+          tabBarActiveTintColor: '#4169e1',
           tabBarLabelStyle: {
             fontSize: menuSize,
             fontWeight: '700',

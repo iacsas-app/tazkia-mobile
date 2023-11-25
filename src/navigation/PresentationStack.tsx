@@ -1,6 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 
+import { Font } from '../constants/Font';
 import { useMessage } from '../hooks/use-message';
 import { TKeys } from '../locales/constants';
 import ApproachScreen from '../screens/presentation/ApproachScreen';
@@ -19,6 +20,7 @@ export default function PresentationStack() {
       initialRouteName="Presentation"
       screenOptions={{
         headerMode: 'float',
+        headerTitleStyle: { fontSize: Font.size(12) },
       }}
     >
       <Stack.Screen name="Presentation" component={PresentationScreen} options={{ headerShown: false }} />

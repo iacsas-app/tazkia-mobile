@@ -2,6 +2,8 @@ import { Box, VStack } from '@react-native-material/core';
 import { ImageSourcePropType, StyleSheet } from 'react-native';
 import ImageLayout from '../../../components/ImageLayout';
 import Text from '../../../components/Text';
+import { Font } from '../../../constants/Font';
+import { useApplication } from '../../../hooks/use-application';
 import { useMessage } from '../../../hooks/use-message';
 import { TKeys } from '../../../locales/constants';
 import BasePresentationLayout from './BasePresentationLayout';
@@ -13,6 +15,7 @@ interface Props {
 }
 export default function PresentationLayout(props: Props) {
   const { formatMessage } = useMessage();
+  const { arabic } = useApplication();
 
   return (
     <BasePresentationLayout>
@@ -23,10 +26,10 @@ export default function PresentationLayout(props: Props) {
           </Box>
         )}
         <Box>
-          <Text variant="bodyLarge" style={{ fontSize: 18, fontWeight: '700' }}>
+          <Text variant="bodyLarge" style={{ fontSize: Font.size(arabic ? 18 : 16), fontWeight: '700' }}>
             {formatMessage(props.title)}
           </Text>
-          <Text variant="bodyLarge" style={{ ...styles.description, fontSize: 15 }}>
+          <Text variant="bodyMedium" style={{ ...styles.description, fontSize: Font.size(arabic ? 15 : 14) }}>
             {formatMessage(props.description)}
           </Text>
         </Box>

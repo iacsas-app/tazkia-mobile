@@ -1,4 +1,5 @@
 import { createStackNavigator } from '@react-navigation/stack';
+import { Font } from '../constants/Font';
 import BodyPart from '../domains/purification/BodyPart';
 import { useMessage } from '../hooks/use-message';
 import { TKeys } from '../locales/constants';
@@ -32,11 +33,11 @@ export default function PurificationStack() {
       initialRouteName="Purification"
       screenOptions={{
         headerMode: 'float',
+        headerTitleStyle: { fontSize: Font.size(14) },
       }}
     >
       <Stack.Group>
         <Stack.Screen name="Purification" component={PurificationScreen} options={{ headerShown: false }} />
-
         <Stack.Screen
           name="BodyPartsRules"
           component={BodyPartsRulesScreen}
@@ -48,7 +49,7 @@ export default function PurificationStack() {
           options={({ route }) => ({ title: bodyPartProgressBarTitle(route.params.value) })}
         />
       </Stack.Group>
-      <Stack.Group screenOptions={{ presentation: 'modal' }}>
+      <Stack.Group screenOptions={{ presentation: 'card' }}>
         <Stack.Screen
           name="BodyParts"
           component={BodyPartsScreen}

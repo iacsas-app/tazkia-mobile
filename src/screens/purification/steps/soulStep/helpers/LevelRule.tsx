@@ -7,9 +7,11 @@ import Text from '../../../../../components/Text';
 import RuleProgress from '../../../../../components/progress/RuleProgress';
 import { ProgressStatus } from '../../../../../components/progress/progressStatus/ProgressStatus';
 import HStack from '../../../../../components/stack/HStack';
+import { Font } from '../../../../../constants/Font';
 import { SCREEN_WIDTH } from '../../../../../constants/Screen';
 import ProgressLine from '../../../../../domains/common/ProgressLine';
 import Soul, { SoulPart } from '../../../../../domains/purification/Soul';
+import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';
 import useProgress from '../../../../../hooks/use-progress';
 import usePurification from '../../../../../hooks/use-purification';
@@ -30,6 +32,7 @@ export default function LevelRule({ part, index, levelKey, ...props }: Props) {
   const { formatMessage, formatNumber } = useMessage();
   const [open, setOpen] = useState(false);
   const { findSoul, restartSoul } = usePurification();
+  const { arabic } = useApplication();
   const soul = findSoul(part, index as any);
   const progress = findSoulLevel(soul);
   const progressProps = useProgress(progress, PURIFICATION_MAX_DAYS);
@@ -72,8 +75,8 @@ export default function LevelRule({ part, index, levelKey, ...props }: Props) {
         ...styles.container,
         elevation: 6,
         paddingRight: open ? 5 : 3,
-        paddingHorizontal: 8,
-        paddingVertical: open ? 5 : 3,
+        paddingHorizontal: 5,
+        paddingTop: open ? 5 : 3,
         borderBottomLeftRadius: soul ? 30 : open ? 15 : radius(),
         borderBottomRightRadius: soul ? 30 : open ? 15 : radius(),
         borderTopLeftRadius: radius(),
@@ -87,7 +90,7 @@ export default function LevelRule({ part, index, levelKey, ...props }: Props) {
             <Icon name="comma-circle" size={22} color={soul ? 'green' : '#4169e1'} />
             <Text
               variant="bodyLarge"
-              style={{ ...styles.levelTitle, fontSize: open ? 20 : 17 }}
+              style={{ ...styles.levelTitle, fontSize: Font.size(open ? 18 : 16) }}
               color={soul ? 'green' : '#4169e1'}
             >
               {formatMessage(TKeys.LEVEL, { value: formatNumber(index) })}
@@ -98,11 +101,10 @@ export default function LevelRule({ part, index, levelKey, ...props }: Props) {
               <Button
                 mode="elevated"
                 compact
-                icon={() => <Icon name="clock-check" size={19} color="#4169e1" />}
+                icon={() => <Icon name="clock-plus" size={15} color="#4169e1" />}
                 uppercase={false}
-                style={{ height: 30, padding: 0, margin: 0 }}
-                contentStyle={{ marginTop: -5 }}
-                labelStyle={styles.startButtonLabel}
+                style={{ height: 30, paddingEnd: 5, marginTop: -3 }}
+                labelStyle={{ ...styles.startButtonLabel, fontSize: Font.size(arabic ? 13 : 11) }}
                 onTouchStart={handleStart}
               >
                 {formatMessage(TKeys.BUTTON_START)}
@@ -123,15 +125,13 @@ export default function LevelRule({ part, index, levelKey, ...props }: Props) {
           </Animated.View>
         </HStack>
         {open && (
-          <View style={{ padding: 10 }}>
-            <RuleProgress
-              {...progressProps}
-              summaryKey={levelKey}
-              progress={progress}
-              maxDays={PURIFICATION_MAX_DAYS}
-              onEvaluate={handleEvaluate}
-            />
-          </View>
+          <RuleProgress
+            {...progressProps}
+            summaryKey={levelKey}
+            progress={progress}
+            maxDays={PURIFICATION_MAX_DAYS}
+            onEvaluate={handleEvaluate}
+          />
         )}
       </View>
     </TouchableRipple>
@@ -143,14 +143,11 @@ const styles = StyleSheet.create({
     width: SCREEN_WIDTH - 15,
   },
   header: {
-    alignContent: 'flex-start',
     alignItems: 'center',
     justifyContent: 'space-between',
     alignSelf: 'stretch',
+    paddingVertical: 5,
   },
   levelTitle: { fontWeight: '900', color: '#4169e1' },
-  levelSummary: { fontWeight: '800', fontSize: 12.5, textAlign: 'justify' },
-  startButtonLabel: { fontWeight: '900', fontSize: 17, color: '#4169e1' },
-  btn: { minWidth: 65, marginTop: 10 },
-  question: { fontWeight: '900', textAlign: 'justify', fontSize: 18, alignSelf: 'center', marginBottom: 10 },
+  startButtonLabel: { fontWeight: '900', color: '#4169e1', marginTop: 3 },
 });

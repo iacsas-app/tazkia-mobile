@@ -1,4 +1,6 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { Font } from '../../../constants/Font';
+import { useApplication } from '../../../hooks/use-application';
 import { useMessage } from '../../../hooks/use-message';
 import { TKeys } from '../../../locales/constants';
 
@@ -20,14 +22,15 @@ type Props = {
 };
 export default function TabNavigator(props: Props) {
   const { formatMessage } = useMessage();
+  const { arabic } = useApplication();
   const Tab = createMaterialTopTabNavigator<TabParams>();
 
   return (
     <Tab.Navigator
       initialRouteName={props.hasProgress ? 'Purification' : 'Presentation'}
       screenOptions={{
-        tabBarLabelStyle: { fontSize: 12, fontWeight: '800' },
-        tabBarActiveTintColor: 'blue',
+        tabBarLabelStyle: { fontSize: Font.size(arabic ? 12 : 9), fontWeight: '800', textTransform: 'none' },
+        tabBarActiveTintColor: 'green',
         tabBarInactiveTintColor: 'black',
       }}
     >

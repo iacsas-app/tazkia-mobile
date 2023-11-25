@@ -23,10 +23,10 @@ export default function InvocationAccordion(props: Props) {
     <List.Accordion
       id={props.id}
       title={formatMessage(props.titleKey)}
-      left={() => <Avatar.Text size={35} label={formatNumber(props.id)} color="#191970" style={styles.id} />}
+      left={() => <Avatar.Text size={28} label={formatNumber(props.id)} color="#191970" style={styles.id} />}
       right={({ isExpanded }) => (
         <HStack style={{ ...GlobalStyles.center, marginRight: -15 }} spacing={5}>
-          <Text variant="labelMedium" style={{ fontWeight: isExpanded ? '900' : '700', fontSize: 13 }} color="#1e90ff">
+          <Text variant="labelMedium" style={{ fontWeight: isExpanded ? '900' : '700', fontSize: 13 }} color="#2da77c">
             {formatMessage(props.duration <= 10 ? TKeys.DURATION2 : TKeys.DURATION, {
               value: formatNumber(props.duration),
             })}
@@ -35,7 +35,7 @@ export default function InvocationAccordion(props: Props) {
         </HStack>
       )}
       titleStyle={styles.titleStyle}
-      style={{ width: SCREEN_WIDTH, elevation: 1, backgroundColor: '#f0f8ff', marginBottom: 2 }}
+      style={{ width: SCREEN_WIDTH, elevation: 1, backgroundColor: '#f1fffa', marginBottom: 2 }}
     >
       <List.Section style={styles.section}>{props.children}</List.Section>
     </List.Accordion>
@@ -43,7 +43,7 @@ export default function InvocationAccordion(props: Props) {
 }
 
 const styles = StyleSheet.create({
-  id: { left: 10, position: 'absolute', backgroundColor: '#add8e6' },
+  id: { left: 10, position: 'absolute', backgroundColor: '#64e7b8', alignSelf: 'center' },
   titleStyle: {
     fontSize: 16,
     fontWeight: '900',

@@ -2,7 +2,7 @@ import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import { ReactNode, useRef } from 'react';
 import { PrimitiveType } from 'react-intl';
 import { StyleSheet, View } from 'react-native';
-import { Button, IconButton } from 'react-native-paper';
+import { Button } from 'react-native-paper';
 import Animated, { FadeInUp, SlideInDown } from 'react-native-reanimated';
 import { SCREEN_WIDTH } from '../../constants/Screen';
 import ProgressLine from '../../domains/common/ProgressLine';
@@ -12,10 +12,8 @@ import { TKeys } from '../../locales/constants';
 import GlobalStyles from '../../styles/GlobalStyles';
 import Text from '../Text';
 import ConfirmRestartDialog, { ConfirmRestartDialogRef } from '../dialogs/ConfirmRestartDialog';
-import HStack from '../stack/HStack';
-import VStack from '../stack/VStack';
+import Header from './Header';
 import RuleProgress from './RuleProgress';
-import { ProgressStatus } from './progressStatus/ProgressStatus';
 
 type Props = {
   titleKey: string;
@@ -35,7 +33,7 @@ export default function ProgressView(props: Props) {
   const ref = useRef<ConfirmRestartDialogRef>(null);
   const progressProps = useProgress(props.progress, props.maxDays);
 
-  function onRestart() {
+  function handleRestart() {
     ref.current?.open();
   }
 
@@ -47,46 +45,24 @@ export default function ProgressView(props: Props) {
   }
 
   return (
-    <Animated.View entering={FadeInUp.delay(400).duration(50).springify()} style={GlobalStyles.center}>
-      <HStack style={{ ...styles.status, alignSelf: props.progress ? 'stretch' : 'center' }}>
-        <VStack style={styles.header}>
-          <Text
-            variant="titleMedium"
-            style={{ fontWeight: '900', fontSize: 18 }}
-            color={props.progress ? 'green' : 'blue'}
-          >
-            {formatMessage(props.titleKey, props.titleKeyParams)}
-          </Text>
-          {props.subTitleKey && <Text variant="titleMedium">{formatMessage(props.subTitleKey)}</Text>}
-        </VStack>
-        <HStack style={GlobalStyles.center} spacing={10}>
-          {progressProps.completed && (
-            <IconButton
-              icon="cog-counterclockwise"
-              mode="outlined"
-              iconColor="#d35858"
-              containerColor="#e9bcbc70"
-              style={{ borderColor: '#e9bcbc70' }}
-              size={25}
-              onPress={onRestart}
-            />
-          )}
-          {props.progress && (
-            <Animated.View>
-              <ProgressStatus
-                last={progressProps.lastDay}
-                count={progressProps.countProgress}
-                maxDays={props.maxDays}
-                completed={progressProps.completed}
-              />
-            </Animated.View>
-          )}
-        </HStack>
-      </HStack>
+    <Animated.View entering={FadeInUp.delay(400).duration(50).springify()} style={styles.container}>
+      <Header
+        titleKey={props.titleKey}
+        titleKeyParams={props.titleKeyParams}
+        subTitleKey={props.subTitleKey}
+        hasProgress={props.progress !== undefined}
+        completed={progressProps.completed}
+        countProgress={progressProps.countProgress}
+        lastDay={progressProps.lastDay}
+        maxDays={props.maxDays}
+        onRestart={handleRestart}
+      />
       <View
         style={{
-          ...styles.container,
-          backgroundColor: props.progress ? (progressProps.completed ? '#8de0b6' : '#dbf6e8') : '#d8f0ff',
+          backgroundColor: props.progress ? '#dbf6e8' : '#d8f0ff',
+          alignItems: 'center',
+          paddingHorizontal: 18,
+          width: SCREEN_WIDTH,
         }}
       >
         <RuleProgress
@@ -98,8 +74,8 @@ export default function ProgressView(props: Props) {
           questionMultiple={props.questionMultiple}
           onEvaluate={props.onEvaluate}
         />
-        <Animated.View entering={SlideInDown.duration(10).springify()} style={{ paddingVertical: 20 }}>
-          {!props.progress && (
+        {!props.progress && (
+          <Animated.View entering={SlideInDown.duration(10).springify()} style={{ paddingBottom: 20 }}>
             <Button
               mode="elevated"
               icon={() => <Icon name="clock-plus" size={20} color="#4169e1" />}
@@ -111,8 +87,8 @@ export default function ProgressView(props: Props) {
                 {formatMessage(TKeys.BUTTON_START)}
               </Text>
             </Button>
-          )}
-        </Animated.View>
+          </Animated.View>
+        )}
       </View>
       <ConfirmRestartDialog ref={ref} onConfirm={handleConfirm} />
     </Animated.View>
@@ -122,20 +98,9 @@ export default function ProgressView(props: Props) {
 const styles = StyleSheet.create({
   container: {
     ...GlobalStyles.container,
-    paddingBottom: 30,
-    paddingTop: 15,
     width: SCREEN_WIDTH,
-  },
-  header: {
-    ...GlobalStyles.center,
-    width: SCREEN_WIDTH - 80,
   },
   startButton: {
     width: 180,
-  },
-  status: {
-    justifyContent: 'space-between',
-    paddingHorizontal: 10,
-    paddingVertical: 5,
   },
 });

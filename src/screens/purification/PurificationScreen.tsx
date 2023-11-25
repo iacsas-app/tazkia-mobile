@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
-import Animated, { FadeInUp } from 'react-native-reanimated';
 import PressableStep, { Part } from '../../components/PressableStep';
 import VStack from '../../components/stack/VStack';
+import { SCREEN_WIDTH } from '../../constants/Screen';
 import GlobalStyles from '../../styles/GlobalStyles';
 import { purificationStages } from './common/Helper';
 
@@ -12,9 +12,7 @@ export default function PurificationScreen() {
   return (
     <VStack style={GlobalStyles.container} spacing={25}>
       {parts.map((item: Part, index: number) => (
-        <Animated.View key={index} entering={FadeInUp.delay(200 * (index * 2))} style={styles.part}>
-          <PressableStep item={item} index={index} />
-        </Animated.View>
+        <PressableStep key={index} item={item} index={index} style={styles.part} />
       ))}
     </VStack>
   );
@@ -22,10 +20,11 @@ export default function PurificationScreen() {
 
 const styles = StyleSheet.create({
   part: {
-    width: 250,
+    width: SCREEN_WIDTH - 150,
     paddingVertical: 10,
-    backgroundColor: '#cde7f7', // #b3f1d5 (green)
+    backgroundColor: '#b3f1d5', // #cde7f7 (green)
     borderRadius: 25,
     elevation: 6,
+    backfaceVisibility: 'hidden',
   },
 });

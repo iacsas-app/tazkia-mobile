@@ -6,7 +6,7 @@ import { purificationStyles } from '../../../common/Style';
 export default function ObstaclesScreen() {
   return (
     <ScrollViewLayout>
-      <Text variant="bodyLarge" style={purificationStyles.title} color="blue">
+      <Text variant="bodyLarge" style={purificationStyles.title} color="seagreen">
         بعض العراقيل التي قد تواجه المريد في هذه المرحلة
       </Text>
       <VStack spacing={15}>

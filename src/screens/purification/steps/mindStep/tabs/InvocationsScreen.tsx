@@ -12,7 +12,7 @@ export default function InvocationsScreen() {
 
   return (
     <ScrollViewLayout>
-      <Text variant="bodyLarge" style={purificationStyles.title} color="blue">
+      <Text variant="bodyLarge" style={purificationStyles.title} color="seagreen">
         {formatMessage(TKeys.INVOCATION_STEP_2)}
       </Text>
       <List.AccordionGroup>
@@ -23,7 +23,11 @@ export default function InvocationsScreen() {
         </InvocationAccordion>
         <InvocationAccordion id={2} titleKey={TKeys.INVOCATION_STEP_2_RULE_2_SUMMARY} duration={30}>
           <VStack spacing={10}>
-            <Text variant="bodyLarge" style={{ fontWeight: '900', fontSize: 17, textAlign: 'justify' }} color="green">
+            <Text
+              variant="bodyLarge"
+              style={{ fontWeight: '900', fontSize: 17, textAlign: 'justify' }}
+              color="seagreen"
+            >
               {formatMessage(TKeys.INVOCATION_STEP_2_RULE_2_BODY)}
             </Text>
             <Text variant="bodyLarge" style={{ textAlign: 'justify', fontSize: 17 }}>

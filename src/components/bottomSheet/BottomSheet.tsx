@@ -96,7 +96,13 @@ const BottomSheet = forwardRef<BottomSheetRef, BottomSheetProps>(function Bottom
               entering={SlideInDown.springify().damping(15)}
               exiting={SlideOutDown}
             >
-              <IconButton icon="arrow-down-bold" mode="contained-tonal" size={20} onPress={toggleSheet} />
+              <IconButton
+                icon="arrow-down-bold"
+                mode="contained-tonal"
+                size={15}
+                style={{ marginTop: -17 }}
+                onPress={toggleSheet}
+              />
               {props.content}
             </Animated.View>
           </GestureDetector>
@@ -113,7 +119,6 @@ const styles = StyleSheet.create({
   backdrop: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: BACKDROP_COLOR,
-    zIndex: 1,
   },
   sheet: {
     ...GlobalStyles.center,
@@ -121,10 +126,10 @@ const styles = StyleSheet.create({
     width: '100%',
     position: 'absolute',
     bottom: -OVERDRAG * 6.5,
-    paddingBottom: 25,
+    paddingBottom: 55,
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
-    zIndex: 1,
+    zIndex: 10,
   },
 });
 

@@ -3,6 +3,7 @@ import { ColorValue, View } from 'react-native';
 import Basmalah from '../../../components/Basmalah';
 import Text from '../../../components/Text';
 import VStack from '../../../components/stack/VStack';
+import { Font } from '../../../constants/Font';
 import { useApplication } from '../../../hooks/use-application';
 import { useMessage } from '../../../hooks/use-message';
 import { TKeys } from '../../../locales/constants';
@@ -19,16 +20,20 @@ export default function PurificationPrezLayout(props: Props) {
 
   return (
     <VStack spacing={2}>
-      <VStack spacing={5}>
-        <Text variant="bodyLarge" style={purificationStyles.title} color="blue">
+      <VStack spacing={2}>
+        <Text
+          variant="bodyMedium"
+          style={{ ...purificationStyles.title, fontSize: Font.size(arabic ? 19 : 16) }}
+          color="seagreen"
+        >
           {formatMessage(props.summary)}
         </Text>
         <Basmalah />
         <Text
           style={{
-            paddingTop: arabic ? 8 : 0,
+            paddingTop: 8,
             marginBottom: 30,
-            fontSize: arabic ? 16 : 14,
+            fontSize: Font.size(arabic ? 16 : 14),
             fontWeight: arabic ? '600' : 'normal',
             textAlign: 'justify',
           }}
@@ -36,7 +41,7 @@ export default function PurificationPrezLayout(props: Props) {
           {formatMessage(props.body)}
         </Text>
       </VStack>
-      {props.children && <View>{props.children}</View>}
+      <View>{props.children}</View>
     </VStack>
   );
 }

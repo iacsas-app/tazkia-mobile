@@ -24,7 +24,6 @@ export type PurificationParamList = {
   BodyParts: undefined;
   BodyPartsRules: { part: BodyPartType; step: PurificationStage };
   BodyPartProgress: { value: BodyPart };
-  PurificationProgress: undefined;
   Mind: undefined;
   Soul: undefined;
 };
@@ -34,7 +33,6 @@ export type SunnahsParamList = {
   Habits: undefined;
   Worship: undefined;
   Truths: undefined;
-  SunnahsProgress: undefined;
 };
 
 export type InvocationsParamList = {

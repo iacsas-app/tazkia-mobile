@@ -19,13 +19,13 @@ export default function SunnahRuleTypeItem({ index, summary, count, color }: Pro
         .springify()}
       style={{ paddingStart: 5 }}
     >
-      <HStack spacing={5} style={{ ...GlobalStyles.center, paddingHorizontal: 10 }}>
+      <HStack spacing={5} style={{ ...GlobalStyles.center, paddingHorizontal: 5 }}>
         {count > 1 && (
           <Avatar.Text
             label={(index + 1) as any}
-            size={20}
-            style={{ backgroundColor: color, opacity: 0.6 }}
-            labelStyle={{ fontWeight: '600', fontSize: 11 }}
+            size={16}
+            style={{ backgroundColor: color, opacity: 0.9 }}
+            labelStyle={{ fontWeight: '900', fontSize: 9 }}
           />
         )}
         <Text

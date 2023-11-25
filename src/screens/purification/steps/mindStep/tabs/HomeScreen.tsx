@@ -76,12 +76,11 @@ export default function HomeScreen() {
               key={index}
               index={index}
               stepTitle={formatMessage(TKeys.LEVEL, { value: formatNumber(level) })}
-              stepTitleSize={10}
-              stepTitleWidth={50}
+              stepTitleSize={9}
+              stepTitleWidth={55}
               summaryKey={`purification.mind.summary.level-${level}`}
               inProgress={mind !== undefined}
               percentage={percentage}
-              flexBasis={47}
               circularProgressRadius={19}
               onPress={() => handlePress((index + 1) as any)}
             />

@@ -1,13 +1,12 @@
 import { useMemo } from 'react';
-import { StyleSheet, useWindowDimensions } from 'react-native';
-import Animated, { FadeIn } from 'react-native-reanimated';
+import { StyleSheet } from 'react-native';
 import PressableStep, { Part } from '../../components/PressableStep';
 import VStack from '../../components/stack/VStack';
+import { SCREEN_WIDTH } from '../../constants/Screen';
 import { TKeys } from '../../locales/constants';
 import GlobalStyles from '../../styles/GlobalStyles';
 
 export default function PresentationScreen() {
-  const { width } = useWindowDimensions();
   const parts: Part[] = useMemo(
     () => [
       {
@@ -37,9 +36,7 @@ export default function PresentationScreen() {
   return (
     <VStack style={styles.container} spacing={18}>
       {parts.map((item: Part, index: number) => (
-        <Animated.View key={index} entering={FadeIn.delay(300 * index)} style={{ ...styles.part, width: width - 70 }}>
-          <PressableStep item={item} index={index} />
-        </Animated.View>
+        <PressableStep key={index} item={item} index={index} style={styles.part} />
       ))}
     </VStack>
   );
@@ -52,5 +49,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5fffa',
     borderRadius: 15,
     elevation: 6,
+    width: SCREEN_WIDTH - 70,
   },
 });
