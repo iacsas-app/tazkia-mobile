@@ -3,6 +3,7 @@ import BottomSheet, { BottomSheetRef } from '../../../../../components/bottomShe
 import PressableItem from '../../../../../components/progressItem/PressableItem';
 import VStack from '../../../../../components/stack/VStack';
 import Soul, { SoulPart, SoulPartLevel } from '../../../../../domains/purification/Soul';
+import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';
 import usePurification from '../../../../../hooks/use-purification';
 import { TKeys } from '../../../../../locales/constants';
@@ -13,6 +14,7 @@ import { hasSubTitle, soulRules } from '../helpers/data';
 
 export default function HomeScreen() {
   const ref = useRef<BottomSheetRef>(null);
+  const { arabic } = useApplication();
   const [part, setPart] = useState<SoulPart>();
   const { formatMessage, formatNumber } = useMessage();
   const { createSoul, findSoul, evaluateSoul } = usePurification();
@@ -73,6 +75,7 @@ export default function HomeScreen() {
               percentage={getSum(soul) / size}
               progress={getProgress(soul)}
               flexBasis={60}
+              arabic={arabic}
               circularProgressRadius={25}
               subSummarySize={11}
               onPress={() => handlePress(idx as any)}

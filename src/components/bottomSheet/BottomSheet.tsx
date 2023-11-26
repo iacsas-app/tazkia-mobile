@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { ReactNode, forwardRef, useImperativeHandle, useLayoutEffect, useMemo, useState } from 'react';
 import { Pressable, StyleSheet } from 'react-native';
-import { Gesture, GestureDetector, GestureHandlerRootView, ScrollView } from 'react-native-gesture-handler';
+import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
 import { IconButton } from 'react-native-paper';
 import Animated, {
   FadeIn,
@@ -86,7 +86,7 @@ const BottomSheet = forwardRef<BottomSheetRef, BottomSheetProps>(function Bottom
 
   return (
     <GestureHandlerRootView style={styles.container}>
-      <ScrollView contentContainerStyle={GlobalStyles.container}>{props.children}</ScrollView>
+      {props.children}
       {isOpen && (
         <>
           <AnimatedPressable style={styles.backdrop} entering={FadeIn} exiting={FadeOut} onPress={toggleSheet} />

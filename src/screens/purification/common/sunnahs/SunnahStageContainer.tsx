@@ -141,7 +141,8 @@ export default function SunnahStageContainer({ stage, rules }: Props) {
                 inProgress={current !== undefined}
                 percentage={percentage}
                 flexBasis={47}
-                circularProgressRadius={17}
+                arabic={arabic}
+                circularProgressRadius={18}
                 onPress={() => handlePress(idx as any)}
               />
             );

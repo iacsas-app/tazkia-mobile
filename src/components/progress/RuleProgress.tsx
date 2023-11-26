@@ -72,7 +72,7 @@ export default function RuleProgress({ progress, ...props }: Props) {
         <Animated.View
           entering={FadeInUp.delay(400).duration(800).springify()}
           exiting={SlideOutDown.delay(10).damping(100)}
-          style={{ paddingTop: 15, width: SCREEN_WIDTH }}
+          style={{ paddingTop: 15 }}
         >
           <Divider style={{ height: 1 }} />
           <HStack style={{ ...styles.progress, alignContent: align, justifyContent: align }}>

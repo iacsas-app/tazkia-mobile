@@ -1,9 +1,10 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Button, IconButton, TouchableRipple } from 'react-native-paper';
+import { Button, TouchableRipple } from 'react-native-paper';
 import Animated, { SlideInLeft } from 'react-native-reanimated';
 import Text from '../../../../../components/Text';
+import Restart from '../../../../../components/progress/Restart';
 import RuleProgress from '../../../../../components/progress/RuleProgress';
 import { ProgressStatus } from '../../../../../components/progress/progressStatus/ProgressStatus';
 import HStack from '../../../../../components/stack/HStack';
@@ -73,10 +74,9 @@ export default function LevelRule({ part, index, levelKey, ...props }: Props) {
       onPress={handleTouch}
       style={{
         ...styles.container,
-        elevation: 6,
-        paddingRight: open ? 5 : 3,
+        elevation: 4,
         paddingHorizontal: 5,
-        paddingTop: open ? 5 : 3,
+        paddingTop: open ? 4 : 0,
         borderBottomLeftRadius: soul ? 30 : open ? 15 : radius(),
         borderBottomRightRadius: soul ? 30 : open ? 15 : radius(),
         borderTopLeftRadius: radius(),
@@ -111,9 +111,7 @@ export default function LevelRule({ part, index, levelKey, ...props }: Props) {
               </Button>
             ) : (
               <HStack>
-                {progressProps.completed && (
-                  <IconButton icon="backup-restore" iconColor="red" size={30} onPress={handleRestart} />
-                )}
+                {!progressProps.completed && <Restart onClick={handleRestart} />}
                 <ProgressStatus
                   last={progressProps.lastDay}
                   count={progressProps.countProgress}

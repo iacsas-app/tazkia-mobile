@@ -39,7 +39,7 @@ export default function LevelChooser({ part, ...props }: Props) {
           {subtitle && <Text variant="titleSmall">{formatMessage(`purification.soul.${part}.sub.title`)}</Text>}
         </VStack>
       </HStack>
-      <VStack spacing={7}>
+      <VStack spacing={5}>
         {levelKeys.map((levelKey, index) => (
           <LevelRule
             key={index}
