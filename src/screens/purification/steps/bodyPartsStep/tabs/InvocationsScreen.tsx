@@ -15,52 +15,39 @@ export default function InvocationsScreen() {
 
   return (
     <ScrollViewLayout>
-      <Text variant="bodyLarge" style={purificationStyles.title} color="seagreen">
+      <Text variant="bodyMedium" style={purificationStyles.title} color="seagreen">
         {formatMessage(TKeys.INVOCATION_STEP_1)}
       </Text>
       <List.AccordionGroup>
         <InvocationAccordion id={1} titleKey={TKeys.INVOCATION_STEP_1_RULE_1_SUMMARY} duration={15}>
           <VStack spacing={10}>
-            <Text
-              variant="bodyLarge"
-              style={{ fontWeight: '900', fontSize: 17, textAlign: 'justify' }}
-              color="seagreen"
-            >
+            <Text variant="bodyMedium" style={{ fontWeight: '900', textAlign: 'justify' }} color="seagreen">
               {formatMessage(TKeys.INVOCATION_STEP_1_RULE_1_BODY)}
             </Text>
-            <Text variant="bodyLarge" style={{ textAlign: 'justify', fontSize: 17 }}>
+            <Text variant="bodyMedium" style={{ textAlign: 'justify' }}>
               {formatMessage(TKeys.INVOCATION_STEP_1_RULE_1_DESC)}
             </Text>
             <VStack spacing={15}>
-              <Text
-                variant="bodyLarge"
-                style={{ textAlign: 'justify', fontSize: 14, fontWeight: '700', color: '#ff6347' }}
-              >
+              <Text variant="bodySmall" style={{ textAlign: 'justify', fontWeight: '700', color: '#ff6347' }}>
                 {formatMessage(TKeys.INVOCATION_STEP_1_RULE_1_CROYANCE_1)}
               </Text>
-              <Text
-                variant="bodyLarge"
-                style={{ textAlign: 'justify', fontSize: 14, fontWeight: '700', color: '#ff6347' }}
-              >
+              <Text variant="bodySmall" style={{ textAlign: 'justify', fontWeight: '700', color: '#ff6347' }}>
                 {formatMessage(TKeys.INVOCATION_STEP_1_RULE_1_CROYANCE_2)}
               </Text>
-              <Text
-                variant="bodyLarge"
-                style={{ textAlign: 'justify', fontSize: 14, fontWeight: '700', color: '#ff6347' }}
-              >
+              <Text variant="bodySmall" style={{ textAlign: 'justify', fontWeight: '700', color: '#ff6347' }}>
                 {formatMessage(TKeys.INVOCATION_STEP_1_RULE_1_CROYANCE_3)}
               </Text>
             </VStack>
           </VStack>
         </InvocationAccordion>
         <InvocationAccordion id={2} titleKey={TKeys.INVOCATION_STEP_1_RULE_2} duration={15}>
-          <Text variant="bodyLarge" style={{ textAlign: 'justify', fontSize: 17 }}>
+          <Text variant="bodyMedium" style={{ textAlign: 'justify' }}>
             {formatMessage(TKeys.INVOCATION_STEP_1_RULE_2_DESC)}
           </Text>
         </InvocationAccordion>
         <InvocationAccordion id={3} titleKey={TKeys.INVOCATION_STEP_1_RULE_3} duration={10}>
           <VStack spacing={10}>
-            <Text variant="bodyLarge" style={{ textAlign: 'justify', fontSize: 17 }}>
+            <Text variant="bodyMedium" style={{ textAlign: 'justify' }}>
               {formatMessage(TKeys.INVOCATION_STEP_1_RULE_3_DESC)}
             </Text>
             <Image

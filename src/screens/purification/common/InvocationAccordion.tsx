@@ -4,6 +4,7 @@ import { StyleSheet } from 'react-native';
 import { Avatar, List } from 'react-native-paper';
 import Text from '../../../components/Text';
 import HStack from '../../../components/stack/HStack';
+import { Font } from '../../../constants/Font';
 import { SCREEN_WIDTH } from '../../../constants/Screen';
 import { useMessage } from '../../../hooks/use-message';
 import { TKeys } from '../../../locales/constants';
@@ -22,11 +23,19 @@ export default function InvocationAccordion(props: Props) {
   return (
     <List.Accordion
       id={props.id}
-      title={formatMessage(props.titleKey)}
-      left={() => <Avatar.Text size={28} label={formatNumber(props.id)} color="#191970" style={styles.id} />}
+      title={
+        <Text variant="bodySmall" style={{ fontSize: Font.size(13), fontWeight: '800' }} color="teal">
+          {formatMessage(props.titleKey)}
+        </Text>
+      }
+      left={() => <Avatar.Text size={25} label={formatNumber(props.id)} color="#191970" style={styles.id} />}
       right={({ isExpanded }) => (
         <HStack style={{ ...GlobalStyles.center, marginRight: -15 }} spacing={5}>
-          <Text variant="labelMedium" style={{ fontWeight: isExpanded ? '900' : '700', fontSize: 13 }} color="#2da77c">
+          <Text
+            variant="labelMedium"
+            style={{ fontWeight: isExpanded ? '900' : '700', fontSize: Font.size(10) }}
+            color="black"
+          >
             {formatMessage(props.duration <= 10 ? TKeys.DURATION2 : TKeys.DURATION, {
               value: formatNumber(props.duration),
             })}
@@ -35,7 +44,13 @@ export default function InvocationAccordion(props: Props) {
         </HStack>
       )}
       titleStyle={styles.titleStyle}
-      style={{ width: SCREEN_WIDTH, elevation: 1, backgroundColor: '#f1fffa', marginBottom: 2 }}
+      style={{
+        width: SCREEN_WIDTH,
+        elevation: 1,
+        backgroundColor: '#f1fffa',
+        marginBottom: 2,
+        paddingVertical: 2,
+      }}
     >
       <List.Section style={styles.section}>{props.children}</List.Section>
     </List.Accordion>
@@ -50,10 +65,9 @@ const styles = StyleSheet.create({
     marginLeft: 45,
   },
   section: {
-    paddingHorizontal: 15,
-    backgroundColor: 'white',
+    backgroundColor: '#fffafa',
     paddingVertical: 15,
     marginTop: -2,
-    ...GlobalStyles.center,
+    paddingEnd: 20,
   },
 });

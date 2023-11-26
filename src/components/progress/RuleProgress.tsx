@@ -12,6 +12,7 @@ import { useApplication } from '../../hooks/use-application';
 import { useMessage } from '../../hooks/use-message';
 import { ProgressProps } from '../../hooks/use-progress';
 import { TKeys } from '../../locales/constants';
+import HStack from '../stack/HStack';
 import YesNoButtons from './YesNoButtons';
 import ProgressInfos from './progressStatus/ProgressInfos';
 
@@ -42,13 +43,15 @@ export default function RuleProgress({ progress, ...props }: Props) {
     return formatMessage(TKeys.PROGRESS_FAILED_ATTEMPTS_RULE_SIMPLE, { day: line.day });
   }
 
+  const align = props.completed ? 'center' : 'space-between';
+
   return (
-    <View style={{ paddingVertical: 20 }}>
+    <View style={{ paddingBottom: 20, paddingTop: 10 }}>
       {showEvalute && (
         <Animated.Text
           entering={FadeIn.delay(400).duration(800).springify()}
           exiting={SlideOutUp}
-          style={styles.question}
+          style={{ ...styles.question, fontSize: Font.size(arabic ? 18 : 16) }}
         >
           {formatMessage(`progress.evaluation.question${props.questionMultiple ? 's' : ''}`)}
         </Animated.Text>
@@ -69,10 +72,10 @@ export default function RuleProgress({ progress, ...props }: Props) {
         <Animated.View
           entering={FadeInUp.delay(400).duration(800).springify()}
           exiting={SlideOutDown.delay(10).damping(100)}
-          style={{ paddingTop: 15 }}
+          style={{ paddingTop: 15, width: SCREEN_WIDTH }}
         >
           <Divider style={{ height: 1 }} />
-          <View style={styles.progress}>
+          <HStack style={{ ...styles.progress, alignContent: align, justifyContent: align }}>
             <ProgressInfos
               progress={progress}
               lastDay={props.lastDay}
@@ -100,7 +103,7 @@ export default function RuleProgress({ progress, ...props }: Props) {
                 </Text>
               </Button>
             )}
-          </View>
+          </HStack>
         </Animated.View>
       )}
     </View>
@@ -109,16 +112,12 @@ export default function RuleProgress({ progress, ...props }: Props) {
 
 const styles = StyleSheet.create({
   levelSummary: { fontSize: Font.size(12), textAlign: 'justify', paddingHorizontal: 10 },
-  question: { fontWeight: '900', textAlign: 'justify', fontSize: Font.size(18), alignSelf: 'center', marginBottom: 10 },
+  question: { fontWeight: '900', textAlign: 'justify', alignSelf: 'center', marginBottom: 10 },
   progress: {
-    flexDirection: 'row',
-    paddingHorizontal: 5,
+    paddingHorizontal: 20,
     paddingTop: 10,
     alignItems: 'center',
-    alignContent: 'center',
     alignSelf: 'stretch',
-    justifyContent: 'space-between',
-    width: SCREEN_WIDTH - 20,
   },
   evalBtn: { elevation: 8 },
 });

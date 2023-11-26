@@ -140,7 +140,7 @@ export default function LevelRule({ part, index, levelKey, ...props }: Props) {
 
 const styles = StyleSheet.create({
   container: {
-    width: SCREEN_WIDTH - 15,
+    width: SCREEN_WIDTH - 10,
   },
   header: {
     alignItems: 'center',

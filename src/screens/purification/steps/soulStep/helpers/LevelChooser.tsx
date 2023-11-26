@@ -31,7 +31,7 @@ export default function LevelChooser({ part, ...props }: Props) {
 
   return (
     <Animated.View entering={FadeInUp.delay(400).duration(50).springify()} style={styles.container}>
-      <HStack spacing={20} style={styles.header}>
+      <HStack style={styles.header}>
         <VStack style={GlobalStyles.center}>
           <Text variant="titleLarge" style={{ fontWeight: '900', fontSize: 18, textAlign: 'center' }}>
             {formatMessage(`purification.soul.${part}.title`)}

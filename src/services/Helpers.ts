@@ -43,6 +43,9 @@ export function progressPercentage2(lines: ProgressLine[] | undefined, maxDays: 
     return 0;
   }
   const lastDay = lines[lines.length - 1];
+  if (lastDay.failedAttempts) {
+    return 0;
+  }
   const day = lastDay.day;
   const result = percentage(day, maxDays);
   return parseFloat(result.toPrecision(day === 0 ? 1 : 2));

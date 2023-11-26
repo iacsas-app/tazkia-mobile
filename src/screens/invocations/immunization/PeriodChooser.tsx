@@ -1,5 +1,4 @@
-import Icon from '@expo/vector-icons/MaterialCommunityIcons';
-import { Avatar, Box } from '@react-native-material/core';
+import { Avatar } from '@react-native-material/core';
 
 import React, { useMemo } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
@@ -22,9 +21,8 @@ export const OVERDRAG = 10;
 
 interface Props {
   onSelect(period: ImmunizationPeriod): void;
-  onToogle: () => void;
 }
-export default function PeriodChooser({ onSelect, onToogle }: Props) {
+export default function PeriodChooser({ onSelect }: Props) {
   const { formatMessage } = useMessage();
   const periods = useMemo(
     () => [
@@ -35,42 +33,39 @@ export default function PeriodChooser({ onSelect, onToogle }: Props) {
   );
 
   return (
-    <View style={{ ...GlobalStyles.container }}>
-      <Icon name="chevron-down" size={25} style={{ marginTop: -15 }} onPress={onToogle} />
-      <View style={styles.container}>
-        {periods.map(({ name, image }) => (
-          <Pressable
-            key={name}
-            style={[
-              {
-                backgroundColor: '#ffb6c1',
-                ...GlobalStyles.circle,
-                elevation: 10,
-                width: 230,
-                alignItems: 'center',
-              },
-            ]}
-            onPress={() => onSelect(name as ImmunizationPeriod)}
+    <View style={styles.container}>
+      {periods.map(({ name, image }) => (
+        <Pressable
+          key={name}
+          style={[
+            {
+              backgroundColor: 'powderblue',
+              ...GlobalStyles.circle,
+              elevation: 10,
+              width: SCREEN_WIDTH - 120,
+              alignItems: 'center',
+            },
+          ]}
+          onPress={() => onSelect(name as ImmunizationPeriod)}
+        >
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              alignContent: 'center',
+              alignSelf: 'center',
+              paddingHorizontal: 5,
+              paddingVertical: 10,
+              gap: 25,
+            }}
           >
-            <View
-              style={{
-                flexDirection: 'row',
-                gap: 10,
-                alignItems: 'center',
-                paddingHorizontal: 10,
-                paddingVertical: 10,
-              }}
-            >
-              <Avatar image={image} size={40} />
-              <Box>
-                <Text variant="bodyLarge" style={{ fontWeight: '800', fontSize: 15 }}>
-                  {formatMessage(TKeys.INVOCATIONS_IMMUNIZATION_TITLE, { period: formatMessage(name) })}
-                </Text>
-              </Box>
-            </View>
-          </Pressable>
-        ))}
-      </View>
+            <Avatar image={image} size={50} style={{ right: 0, left: 0 }} />
+            <Text variant="bodyLarge" style={{ fontWeight: '800', fontSize: 15 }}>
+              {formatMessage(TKeys.INVOCATIONS_IMMUNIZATION_TITLE, { period: formatMessage(name) })}
+            </Text>
+          </View>
+        </Pressable>
+      ))}
     </View>
   );
 }
@@ -81,6 +76,8 @@ const styles = StyleSheet.create({
     gap: gap,
     flex: 1,
     ...GlobalStyles.center,
+    paddingTop: 10,
+    paddingBottom: 30,
   },
   label: {
     fontSize: 24,

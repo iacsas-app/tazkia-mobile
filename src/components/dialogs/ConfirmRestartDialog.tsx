@@ -35,10 +35,20 @@ const ConfirmRestartDialog = forwardRef<ConfirmRestartDialogRef, Props>(function
           <TextComponent>{formatMessage(TKeys.RESTART_CONFIRM_MESSAGE)}</TextComponent>
         </Dialog.Content>
         <Dialog.Actions>
-          <Button onPress={() => props.onConfirm(true)} mode="elevated" textColor="green">
+          <Button
+            onPress={() => props.onConfirm(true)}
+            mode="elevated"
+            textColor="green"
+            labelStyle={{ fontWeight: '700', fontSize: 15 }}
+          >
             {formatMessage(TKeys.BUTTON_AGREE)}
           </Button>
-          <Button onPress={() => props.onConfirm(false)} mode="elevated" textColor="red">
+          <Button
+            onPress={() => props.onConfirm(false)}
+            mode="elevated"
+            textColor="red"
+            labelStyle={{ fontWeight: '700', fontSize: 15 }}
+          >
             {formatMessage(TKeys.BUTTON_DISAGREE)}
           </Button>
         </Dialog.Actions>

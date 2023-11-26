@@ -1,5 +1,6 @@
 import Text from '../../../../components/Text';
 import VStack from '../../../../components/stack/VStack';
+import { Font } from '../../../../constants/Font';
 import { useMessage } from '../../../../hooks/use-message';
 import { TKeys } from '../../../../locales/constants';
 import SunnahRuleTypeItem from './SunnahRuleTypeItem';
@@ -23,7 +24,7 @@ export default function SunnahRuleTypes({ type, items, showType, hasProgress }: 
   return (
     <VStack spacing={5}>
       {count >= 1 && showType && (
-        <Text variant="bodyLarge" style={{ fontWeight: '900', fontSize: 16, paddingLeft: 15 }} color={color}>
+        <Text variant="bodyLarge" style={{ fontWeight: '900', fontSize: Font.size(16) }} color={color}>
           {formatMessage(type)}
         </Text>
       )}

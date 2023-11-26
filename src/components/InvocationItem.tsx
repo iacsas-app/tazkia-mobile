@@ -1,7 +1,9 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import { VStack } from '@react-native-material/core';
 import { useState } from 'react';
-import { Animated, Pressable, View } from 'react-native';
+import { View } from 'react-native';
+import { TouchableRipple } from 'react-native-paper';
+import Animated from 'react-native-reanimated';
 import { useMessage } from '../hooks/use-message';
 import { TKeys } from '../locales/constants';
 import Text from './Text';
@@ -16,19 +18,17 @@ export default function InvocationItem({ index, total, summary, repeat }: Props)
   const [count, setCount] = useState(repeat);
   const { formatMessage } = useMessage();
 
-  const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
-
   function handlePress() {
     setCount(count - 1);
   }
 
   return (
-    <AnimatedPressable
+    <TouchableRipple
       style={{
         elevation: 5,
         backgroundColor: count > 0 ? 'white' : '#d9e7df',
         borderRadius: 20,
-        padding: 10,
+        padding: 15,
       }}
       onPress={handlePress}
     >
@@ -43,14 +43,14 @@ export default function InvocationItem({ index, total, summary, repeat }: Props)
               position: 'absolute',
               right: 0,
               bottom: 0,
-              backgroundColor: '#90ee90',
+              backgroundColor: '#fff5ee',
               borderRadius: 100,
               paddingHorizontal: 5,
               opacity: 0.6,
             }}
           >{`${index}/${total}`}</Text>
           {count > 0 ? (
-            <Text
+            <Animated.Text
               style={{
                 fontSize: 10,
                 position: 'absolute',
@@ -63,12 +63,12 @@ export default function InvocationItem({ index, total, summary, repeat }: Props)
               }}
             >
               {formatMessage(count > 1 ? TKeys.TIMES_COUNT_PLURAL : TKeys.TIMES_COUNT, { times: count })}
-            </Text>
+            </Animated.Text>
           ) : (
-            <Icon name="check-all" color="seagreen" size={20} />
+            <Icon name="check-all" color="green" size={20} />
           )}
         </View>
       </VStack>
-    </AnimatedPressable>
+    </TouchableRipple>
   );
 }

@@ -18,7 +18,7 @@ export default function RepeatCount({ count, color }: Props) {
       <Text variant="labelSmall" style={{ ...styles.text, marginRight, marginLeft }}>
         {count}
       </Text>
-      <Icon name="reload" size={50} color={color} style={styles.icon} />
+      <Icon name="reload" size={45} color={color} style={styles.icon} />
     </View>
   );
 }
@@ -29,5 +29,5 @@ RepeatCount.defaultProps = {
 
 const styles = StyleSheet.create({
   text: { fontSize: 12, fontWeight: '700', marginBottom: -30, textAlign: 'center' },
-  icon: { marginTop: -1 },
+  icon: { marginTop: -1, opacity: 0.5 },
 });

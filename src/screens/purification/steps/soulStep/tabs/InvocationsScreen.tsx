@@ -13,32 +13,32 @@ export default function InvocationsScreen() {
 
   return (
     <ScrollViewLayout>
-      <Text variant="bodyLarge" style={purificationStyles.title} color="seagreen">
+      <Text variant="bodyMedium" style={purificationStyles.title} color="seagreen">
         {formatMessage(TKeys.INVOCATION_STEP_3)}
       </Text>
       <List.AccordionGroup>
         <InvocationAccordion id={1} titleKey={TKeys.INVOCATION_STEP_3_RULE_1_SUMMARY} duration={30}>
           <VStack spacing={10}>
-            <Text variant="headlineSmall" style={{ fontWeight: '900', textAlign: 'justify' }} color="seagreen">
+            <Text variant="bodyMedium" style={{ fontWeight: '900', textAlign: 'justify' }} color="seagreen">
               {formatMessage(TKeys.INVOCATION_STEP_3_RULE_1_BODY)}
             </Text>
-            <Text variant="bodyLarge" color="black" style={{ textAlign: 'justify' }}>
+            <Text variant="bodyMedium" color="black" style={{ textAlign: 'justify' }}>
               {formatMessage(TKeys.INVOCATION_STEP_3_RULE_1_DESC)}
             </Text>
           </VStack>
         </InvocationAccordion>
         <InvocationAccordion id={2} titleKey={TKeys.INVOCATION_STEP_3_RULE_2} duration={30}>
-          <Text variant="bodyLarge" style={{ textAlign: 'justify' }}>
+          <Text variant="bodyMedium" style={{ textAlign: 'justify' }}>
             {formatMessage(TKeys.INVOCATION_STEP_3_RULE_2_DESC)}
           </Text>
         </InvocationAccordion>
         <InvocationAccordion id={3} titleKey={TKeys.INVOCATION_STEP_3_RULE_3} duration={15}>
-          <Text variant="bodyLarge" style={{ textAlign: 'justify' }}>
+          <Text variant="bodyMedium" style={{ textAlign: 'justify' }}>
             {formatMessage(TKeys.INVOCATION_STEP_3_RULE_3_DESC)}
           </Text>
         </InvocationAccordion>
       </List.AccordionGroup>
-      <Text variant="bodyLarge" style={styles.importance}>
+      <Text variant="bodyMedium" style={styles.importance}>
         {formatMessage(TKeys.INVOCATION_STEP_3_IMPORTANCE)}
       </Text>
     </ScrollViewLayout>

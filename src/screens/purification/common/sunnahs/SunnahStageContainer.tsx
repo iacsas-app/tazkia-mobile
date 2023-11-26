@@ -111,7 +111,8 @@ export default function SunnahStageContainer({ stage, rules }: Props) {
           maxValue={100}
           duration={600}
           radius={30}
-          valueSuffix="%"
+          valueSuffix={arabic ? '' : '%'}
+          valuePrefix={arabic ? '%' : ''}
           progressValueStyle={{ fontWeight: '900' }}
           inActiveStrokeColor={'#3cb371'}
           inActiveStrokeOpacity={0.2}

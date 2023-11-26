@@ -35,7 +35,7 @@ export default function Header({ hasProgress, ...props }: Props) {
     >
       <VStack style={{ alignSelf: 'center' }}>
         <Text
-          variant="titleMedium"
+          variant="bodyLarge"
           style={{
             fontWeight: '900',
             fontSize: Font.size(arabic ? 18 : 16),
@@ -47,7 +47,7 @@ export default function Header({ hasProgress, ...props }: Props) {
         </Text>
         {props.subTitleKey && (
           <Text
-            variant="titleMedium"
+            variant="bodySmall"
             style={{
               textAlign: hasProgress ? 'auto' : 'center',
               width: SCREEN_WIDTH - (hasProgress ? 125 : 10),

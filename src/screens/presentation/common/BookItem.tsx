@@ -1,8 +1,9 @@
 import { Box, HStack, VStack } from '@react-native-material/core';
 import React from 'react';
-import { Image, StyleSheet, ViewToken, useWindowDimensions } from 'react-native';
+import { Image, StyleSheet, ViewToken } from 'react-native';
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import Text from '../../../components/Text';
+import { SCREEN_WIDTH } from '../../../constants/Screen';
 import { Book } from '../../../domains/presentation/Book';
 import GlobalStyles from '../../../styles/GlobalStyles';
 
@@ -12,8 +13,7 @@ type Props = {
 };
 
 export const FlatBook: React.FC<Props> = React.memo(({ book, viewableItems }) => {
-  const { width } = useWindowDimensions();
-  const box1With = width - 310;
+  const box1With = SCREEN_WIDTH - 310;
 
   const rStyle = useAnimatedStyle(() => {
     const isVisible = Boolean(
@@ -32,7 +32,7 @@ export const FlatBook: React.FC<Props> = React.memo(({ book, viewableItems }) =>
 
   return (
     <Animated.View style={[rStyle, styles.row]}>
-      <VStack spacing={10} style={{ width: width - 80 }}>
+      <VStack spacing={10} style={{ width: SCREEN_WIDTH - 80 }}>
         <Text variant="bodyLarge" style={{ fontSize: 14, fontWeight: '900' }}>
           {book.title}
         </Text>
@@ -42,7 +42,7 @@ export const FlatBook: React.FC<Props> = React.memo(({ book, viewableItems }) =>
               <Image source={book.image} style={styles.image} />
             </VStack>
           </Box>
-          <Box style={{ width: width - box1With - 100 }}>
+          <Box style={{ width: SCREEN_WIDTH - box1With - 100 }}>
             <VStack>
               <Text variant="bodyLarge" style={{ ...styles.summary, fontSize: 14 }}>
                 {book.summary}

@@ -2,6 +2,7 @@ import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import { StyleSheet, View } from 'react-native';
 import CircularProgress from 'react-native-circular-progress-indicator';
 import ProgressLine from '../../../domains/common/ProgressLine';
+import { useApplication } from '../../../hooks/use-application';
 import { progressPercentage } from '../../../services/Helpers';
 import GlobalStyles from '../../../styles/GlobalStyles';
 import HStack from '../../stack/HStack';
@@ -14,6 +15,7 @@ interface Props {
   completed: boolean;
 }
 export function ProgressStatus({ last, count, maxDays, completed }: Props) {
+  const { arabic } = useApplication();
   if (!last) {
     return <></>;
   }
@@ -31,7 +33,8 @@ export function ProgressStatus({ last, count, maxDays, completed }: Props) {
             maxValue={100}
             duration={600}
             radius={25}
-            valueSuffix={'%'}
+            valueSuffix={arabic ? '' : '%'}
+            valuePrefix={arabic ? '%' : ''}
             inActiveStrokeColor={'#2ecc71'}
             inActiveStrokeOpacity={0.2}
             progressValueStyle={styles.progress}

@@ -12,11 +12,13 @@ interface Props {
 }
 export default function ProgressStatusInfo(props: Props) {
   return (
-    <HStack spacing={8} mt={0} style={styles.center}>
-      <McIcon name={props.icon} size={15} color={props.color} />
-      <Text variant="labelSmall" style={styles.bold} color="black">
-        {props.label} :
-      </Text>
+    <HStack spacing={1}>
+      <HStack style={styles.center} spacing={5}>
+        <McIcon name={props.icon} size={15} color={props.color} />
+        <Text variant="labelSmall" style={styles.bold} color="black">
+          {props.label} :
+        </Text>
+      </HStack>
       <Text variant="labelSmall" style={styles.bold}>
         {props.value}
       </Text>
@@ -26,5 +28,5 @@ export default function ProgressStatusInfo(props: Props) {
 
 const styles = StyleSheet.create({
   center: { alignItems: 'center' },
-  bold: { fontWeight: '900', fontSize: Font.size(11) },
+  bold: { fontWeight: '900', fontSize: Font.size(10) },
 });

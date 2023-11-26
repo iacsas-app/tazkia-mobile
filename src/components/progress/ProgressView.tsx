@@ -61,7 +61,6 @@ export default function ProgressView(props: Props) {
         style={{
           backgroundColor: props.progress ? '#dbf6e8' : '#d8f0ff',
           alignItems: 'center',
-          paddingHorizontal: 18,
           width: SCREEN_WIDTH,
         }}
       >
