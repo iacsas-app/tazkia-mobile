@@ -1,9 +1,7 @@
 import * as ExpoUpdates from 'expo-updates';
 import { I18nManager, NativeModules, Platform } from 'react-native';
 import ProgressLine from '../domains/common/ProgressLine';
-import BodyPart from '../domains/purification/BodyPart';
 import { SupportedLocale } from '../locales/types';
-import { PurificationStage } from '../screens/purification/steps/bodyPartsStep/tabs/HomeScreen';
 
 export const FIRST_VISIT_DATE = 'firstVisitDate';
 export const PURIFICATION_MAX_DAYS = 30;
@@ -61,10 +59,6 @@ export function isCompleted(progress: ProgressLine[] | undefined, maxDays: numbe
   }
   const last = progress.at(progress.length - 1);
   return last ? last.day === maxDays && last.errors.length === 0 && last.evaluated === true : false;
-}
-
-export function isBodyPartStepInProgress(part: BodyPart | undefined, step: PurificationStage) {
-  return part ? part[step] : undefined;
 }
 
 export function deviceLanguage(): string {

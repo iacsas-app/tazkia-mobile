@@ -11,6 +11,8 @@ export enum BodyPartsOrder {
   'private-parts' = 7,
 }
 
+export type PurificationStage = 'cleaning' | 'enlightenment';
+
 export default interface BodyPart {
   name: BodyPartType;
   cleaning?: ProgressLine[];

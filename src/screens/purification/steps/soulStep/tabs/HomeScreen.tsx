@@ -9,7 +9,7 @@ import usePurification from '../../../../../hooks/use-purification';
 import { TKeys } from '../../../../../locales/constants';
 import { PURIFICATION_MAX_DAYS, progressPercentage2 } from '../../../../../services/Helpers';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
-import LevelChooser from '../helpers/LevelChooser';
+import LevelSelector from '../helpers/LevelSelector';
 import { hasSubTitle, soulRules } from '../helpers/data';
 
 export default function HomeScreen() {
@@ -17,7 +17,7 @@ export default function HomeScreen() {
   const { arabic } = useApplication();
   const [part, setPart] = useState<SoulPart>();
   const { formatMessage, formatNumber } = useMessage();
-  const { createSoul, findSoul, evaluateSoul } = usePurification();
+  const { createSoul, findSoul, evaluateSoul, restartSoul } = usePurification();
 
   const parts: string[] = useMemo(() => Object.keys(soulRules), []);
   const levels: number[] = useMemo(() => Object.values(soulRules).map((item) => item.length), []);
@@ -25,19 +25,30 @@ export default function HomeScreen() {
   function handleStart(level: SoulPartLevel) {
     if (part) {
       createSoul(part, level);
-      setPart(undefined);
-      ref.current?.close();
+      close();
     }
   }
 
-  function handlePress(level: SoulPart) {
-    setPart(level);
+  function handleRestart(level: SoulPartLevel) {
+    if (part) {
+      restartSoul(part, level);
+      close();
+    }
+  }
+
+  function handlePress(part: SoulPart) {
+    setPart(part);
     ref.current?.open();
   }
 
   const handleEvaluate = useCallback((part: SoulPart, level: SoulPartLevel, checked: boolean) => {
     evaluateSoul(part, level, checked);
   }, []);
+
+  function close() {
+    setPart(undefined);
+    ref.current?.close();
+  }
 
   function getProgress(value: Soul | undefined): string[] | undefined {
     return value ? value.partProgress.map((p) => formatMessage(TKeys.LEVEL, { value: formatNumber(p.level) })) : [];
@@ -52,7 +63,12 @@ export default function HomeScreen() {
   }
 
   return (
-    <BottomSheet ref={ref} content={<LevelChooser part={part} onStart={handleStart} onEvaluate={handleEvaluate} />}>
+    <BottomSheet
+      ref={ref}
+      content={
+        <LevelSelector part={part} onStart={handleStart} onRestart={handleRestart} onEvaluate={handleEvaluate} />
+      }
+    >
       <VStack style={GlobalStyles.container}>
         {parts.map((soulPart, index) => {
           const hasSubtitle = hasSubTitle.some((part) => part.toString() === soulPart);

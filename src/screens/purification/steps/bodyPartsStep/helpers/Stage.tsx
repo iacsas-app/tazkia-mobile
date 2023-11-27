@@ -1,105 +1,98 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
-import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { TouchableRipple } from 'react-native-paper';
-import Animated, { SlideInLeft } from 'react-native-reanimated';
 import Text from '../../../../../components/Text';
+
+import { useEffect, useState } from 'react';
+import Animated, { SlideInLeft } from 'react-native-reanimated';
 import Restart from '../../../../../components/progress/Restart';
-import RuleProgress from '../../../../../components/progress/RuleProgress';
 import Start from '../../../../../components/progress/Start';
 import { ProgressStatus } from '../../../../../components/progress/progressStatus/ProgressStatus';
 import HStack from '../../../../../components/stack/HStack';
 import { Font } from '../../../../../constants/Font';
 import { SCREEN_WIDTH } from '../../../../../constants/Screen';
 import ProgressLine from '../../../../../domains/common/ProgressLine';
-import { SoulPart } from '../../../../../domains/purification/Soul';
-import { useApplication } from '../../../../../hooks/use-application';
+import BodyPart, { BodyPartType, PurificationStage } from '../../../../../domains/purification/BodyPart';
 import { useMessage } from '../../../../../hooks/use-message';
 import useProgress from '../../../../../hooks/use-progress';
 import usePurification from '../../../../../hooks/use-purification';
-import { TKeys } from '../../../../../locales/constants';
 import { PURIFICATION_MAX_DAYS } from '../../../../../services/Helpers';
 
 type Props = {
-  part: SoulPart;
-  index: number;
-  levelKey: TKeys;
-  opened: number | undefined;
-  onSelect(level: number): void;
-  onTouch(level: number): void;
-  onRestart(): void;
-  onEvaluate(part: SoulPart, level: number, checked: boolean): void;
+  part: BodyPartType;
+  stage: PurificationStage;
+  opened: PurificationStage | undefined;
+  onStart(stage: PurificationStage): void;
+  onTouch(stage: PurificationStage): void;
+  onRestart(stage: PurificationStage): void;
+  onEvaluate(stage: PurificationStage, errors: number[]): void;
 };
-
-export default function LevelRule({ part, index, levelKey, ...props }: Props) {
-  const { formatMessage, formatNumber } = useMessage();
+export default function Stage({ part, stage, ...props }: Props) {
+  const { formatMessage } = useMessage();
   const [open, setOpen] = useState(false);
-  const { findSoul, restartSoul } = usePurification();
-  const { arabic } = useApplication();
-  const current = findSoul(part, index as any);
-  const progress = findSoulLevel();
+  const { findBodyPart } = usePurification();
+  const current: BodyPart | undefined = findBodyPart(part);
+  const progress = findStage();
   const progressProps = useProgress(progress, PURIFICATION_MAX_DAYS);
+  const cleaning = stage === 'cleaning';
 
-  function findSoulLevel(): ProgressLine[] | undefined {
+  function findStage(): ProgressLine[] | undefined {
     if (!current) {
       return undefined;
     }
-    return current.partProgress.find((item) => item.level === index)?.progress;
+    return current[stage];
   }
 
   function handleStart() {
-    props.onSelect(index);
+    props.onStart(stage);
+  }
+
+  function handleRestart() {
+    props.onRestart(stage);
   }
 
   function handleTouch() {
-    props.onTouch(index);
+    props.onTouch(stage);
   }
 
-  function handleEvaluate(checked: boolean) {
-    props.onEvaluate(part, index, checked);
-  }
-
-  function radius() {
-    return current ? 30 : 20;
+  function handleEvaluate(errors: number[]) {
+    props.onEvaluate(stage, errors);
   }
 
   useEffect(() => {
-    setOpen(index === props.opened);
+    setOpen(stage === props.opened);
   }, [props.opened]);
 
   return (
     <TouchableRipple
-      onPress={handleTouch}
       style={{
         ...styles.container,
-        elevation: 4,
-        paddingHorizontal: 5,
-        paddingTop: open ? 4 : 0,
-        borderBottomLeftRadius: current ? 30 : open ? 15 : radius(),
-        borderBottomRightRadius: current ? 30 : open ? 15 : radius(),
-        borderTopLeftRadius: radius(),
-        borderTopRightRadius: radius(),
-        backgroundColor: current ? (progressProps.completed ? '#8de0b6' : '#dbf6e8') : '#d8f0ff',
+        backgroundColor: progress ? (progressProps.completed ? '#8de0b6' : '#dbf6e8') : '#d8f0ff',
       }}
+      onPress={handleTouch}
     >
       <View>
         <HStack style={styles.header}>
           <HStack spacing={10}>
-            <Icon name="comma-circle" size={22} color={current ? 'green' : '#4169e1'} />
+            <Icon
+              name={cleaning ? 'account-tie-hat' : 'lightbulb-on'}
+              size={22}
+              color={cleaning ? '#4b0082' : '#32cd32'}
+            />
             <Text
               variant="bodyLarge"
               style={{ ...styles.levelTitle, fontSize: Font.size(open ? 18 : 16) }}
-              color={current ? 'green' : '#4169e1'}
+              color={progress ? 'seagreen' : '#4169e1'}
             >
-              {formatMessage(TKeys.LEVEL, { value: formatNumber(index) })}
+              {formatMessage(`purification.bodypart.${stage}`)}
             </Text>
           </HStack>
           <Animated.View entering={SlideInLeft.duration(10).springify()}>
-            {!current ? (
+            {!progress ? (
               <Start onStart={handleStart} />
             ) : (
               <HStack>
-                {progressProps.completed && <Restart onClick={props.onRestart} />}
+                {!progressProps.completed && <Restart onClick={handleRestart} />}
                 <ProgressStatus
                   last={progressProps.lastDay}
                   count={progressProps.countProgress}
@@ -110,15 +103,7 @@ export default function LevelRule({ part, index, levelKey, ...props }: Props) {
             )}
           </Animated.View>
         </HStack>
-        {open && (
-          <RuleProgress
-            {...progressProps}
-            summaryKey={levelKey}
-            progress={progress}
-            maxDays={PURIFICATION_MAX_DAYS}
-            onEvaluate={handleEvaluate}
-          />
-        )}
+        {open && <Text>Open</Text>}
       </View>
     </TouchableRipple>
   );
@@ -126,7 +111,11 @@ export default function LevelRule({ part, index, levelKey, ...props }: Props) {
 
 const styles = StyleSheet.create({
   container: {
-    width: SCREEN_WIDTH - 10,
+    width: SCREEN_WIDTH - 50,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    borderRadius: 25,
+    elevation: 6,
   },
   header: {
     alignItems: 'center',

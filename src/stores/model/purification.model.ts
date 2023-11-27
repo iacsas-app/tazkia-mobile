@@ -1,11 +1,10 @@
 import { Action, Computed, Thunk, action, computed, persist, thunk } from 'easy-peasy';
 import ProgressLine from '../../domains/common/ProgressLine';
-import BodyPart, { BodyPartType } from '../../domains/purification/BodyPart';
+import BodyPart, { BodyPartType, PurificationStage } from '../../domains/purification/BodyPart';
 import Mind, { MindLevel } from '../../domains/purification/Mind';
 import Purification from '../../domains/purification/Purification';
 import Soul, { SoulPart, SoulPartLevel } from '../../domains/purification/Soul';
-import { PurificationStage } from '../../screens/purification/steps/bodyPartsStep/tabs/HomeScreen';
-import { PURIFICATION_MAX_DAYS, isBodyPartStepInProgress } from '../../services/Helpers';
+import { PURIFICATION_MAX_DAYS } from '../../services/Helpers';
 import { Injections } from '../injections';
 import { storageEngine } from '../storage-engine';
 
@@ -16,6 +15,7 @@ export interface PurificationModel {
   // Actions
   load: Action<PurificationModel, Purification>;
   bodyPartEvaluation: Action<PurificationModel, [BodyPartType, PurificationStage, number[]]>;
+  resetBodyPart: Action<PurificationModel, [BodyPartType, PurificationStage]>;
   mindEvaluation: Action<PurificationModel, [MindLevel, boolean]>;
   resetMind: Action<PurificationModel, MindLevel>;
   soulEvaluation: Action<PurificationModel, [SoulPart, SoulPartLevel, boolean]>;
@@ -26,13 +26,14 @@ export interface PurificationModel {
   find: Thunk<PurificationModel, void, Injections>;
   createOrUpdate: Thunk<PurificationModel, Purification, Injections>;
   evaluateBodyPart: Thunk<PurificationModel, [BodyPartType, PurificationStage, number[]], Injections>;
+  restartBodyPart: Thunk<PurificationModel, [BodyPartType, PurificationStage], Injections>;
   evaluateMind: Thunk<PurificationModel, [MindLevel, boolean], Injections>;
   restartMind: Thunk<PurificationModel, MindLevel, Injections>;
   evaluateSoul: Thunk<PurificationModel, [SoulPart, SoulPartLevel, boolean], Injections>;
   restartSoul: Thunk<PurificationModel, [SoulPart, SoulPartLevel], Injections>;
 
   // Computed
-  findByPart: Computed<PurificationModel, (part: BodyPartType) => BodyPart | undefined>;
+  findBodyPart: Computed<PurificationModel, (part: BodyPartType) => BodyPart | undefined>;
   findByMind: Computed<PurificationModel, (level: MindLevel) => Mind | undefined>;
   findSoul: Computed<PurificationModel, (part: SoulPart, level?: SoulPartLevel) => Soul | undefined>;
   lastMindLevel: Computed<PurificationModel, () => Mind | undefined>;
@@ -69,6 +70,16 @@ const purificationModel: PurificationModel = {
         return;
       }
     });
+  }),
+  resetBodyPart: action((state, payload: [BodyPartType, PurificationStage]) => {
+    if (!state.item) {
+      return;
+    }
+    const [part, stage] = payload;
+    state.item.bodyParts = state.item.bodyParts.map((item) => ({
+      ...item,
+      progress: item.name === part ? undefined : item[stage],
+    }));
   }),
   mindEvaluation: action((state, payload: [MindLevel, boolean]) => {
     const [level, checked] = payload;
@@ -137,16 +148,17 @@ const purificationModel: PurificationModel = {
       return;
     }
     const [part, level] = payload;
+    let empty = false;
     state.item.soul = state.item.soul.map((item) => {
       if (item.part === part) {
-        item.partProgress = item.partProgress.map((pr) => ({
-          ...pr,
-          progress:
-            pr.level === level ? [{ startDate: Date.now(), day: 0, evaluated: false, errors: [] }] : pr.progress,
-        }));
+        item.partProgress = item.partProgress.filter((pr) => pr.level !== level);
+        empty = item.partProgress.length === 0;
       }
       return item;
     });
+    if (empty) {
+      state.item.soul = state.item.soul.filter((item) => item.part !== part);
+    }
   }),
 
   // Thunks
@@ -160,6 +172,9 @@ const purificationModel: PurificationModel = {
   }),
   evaluateBodyPart: thunk(async (actions, payload: [BodyPartType, PurificationStage, number[]], { injections }) => {
     actions.bodyPartEvaluation(payload);
+  }),
+  restartBodyPart: thunk(async (actions, payload: [BodyPartType, PurificationStage], { injections }) => {
+    actions.resetBodyPart(payload);
   }),
   evaluateMind: thunk(async (actions, payload: [MindLevel, boolean], { injections }) => {
     actions.mindEvaluation(payload);
@@ -175,7 +190,7 @@ const purificationModel: PurificationModel = {
   }),
 
   // Computed
-  findByPart: computed((state) => (part: BodyPartType): BodyPart | undefined => {
+  findBodyPart: computed((state) => (part: BodyPartType): BodyPart | undefined => {
     if (!state.item) {
       return undefined;
     }
@@ -188,7 +203,7 @@ const purificationModel: PurificationModel = {
           return undefined;
         }
         const result = state.item.bodyParts.find((item) => item.name === part && item[step]?.length !== 0);
-        return isBodyPartStepInProgress(result, step);
+        return result && result[step];
       },
   ),
   hasBodyPartProgress: computed((state) => (part: BodyPartType, mode: PurificationStage): boolean => {

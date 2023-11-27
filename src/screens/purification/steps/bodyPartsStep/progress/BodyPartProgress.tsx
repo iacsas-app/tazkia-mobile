@@ -1,16 +1,15 @@
 import { useEffect, useState } from 'react';
 import ProgressStatusContainer from '../../../../../components/progress/progressStatus/ProgressStatusContainer';
 import ProgressLine from '../../../../../domains/common/ProgressLine';
-import { BodyPartType } from '../../../../../domains/purification/BodyPart';
+import { BodyPartType, PurificationStage } from '../../../../../domains/purification/BodyPart';
 import { useMessage } from '../../../../../hooks/use-message';
 import { TKeys } from '../../../../../locales/constants';
 import { useStoreState } from '../../../../../stores/hooks';
-import { PurificationStage as PurificationPhase } from '../tabs/HomeScreen';
 
 interface BodyPartProgressProps {
   type: BodyPartType;
-  stage: PurificationPhase;
-  onShowEvaluate: (part: BodyPartType, step: PurificationPhase) => void;
+  stage: PurificationStage;
+  onShowEvaluate: (part: BodyPartType, step: PurificationStage) => void;
 }
 export default function BodyPartProgress({ type, stage, onShowEvaluate }: BodyPartProgressProps) {
   const { formatMessage } = useMessage();

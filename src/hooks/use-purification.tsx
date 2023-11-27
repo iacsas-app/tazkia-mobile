@@ -1,3 +1,5 @@
+import ProgressLine from '../domains/common/ProgressLine';
+import BodyPart, { BodyPartType, BodyPartsOrder, PurificationStage } from '../domains/purification/BodyPart';
 import Mind, { MindLevel } from '../domains/purification/Mind';
 import Purification from '../domains/purification/Purification';
 import Soul, { SoulPart, SoulPartLevel } from '../domains/purification/Soul';
@@ -7,6 +9,10 @@ export interface IPurification {
   hasBodyPartsProgress: boolean;
   hasMindProgress: boolean;
   hasSoulProgress: boolean;
+  createBodyPart(part: BodyPartType, stage: PurificationStage): void;
+  findBodyPart(part: BodyPartType): BodyPart | undefined;
+  evaluateBodyPart(part: BodyPartType, stage: PurificationStage, errors: number[]): void;
+  restartBodyPart(part: BodyPartType, stage: PurificationStage): void;
   createSoul(part: SoulPart, level: SoulPartLevel): void;
   findSoul(part: SoulPart, level?: SoulPartLevel): Soul | undefined;
   evaluateSoul(part: SoulPart, level: SoulPartLevel, checked: boolean): void;
@@ -19,12 +25,32 @@ export interface IPurification {
 export default function usePurification(): IPurification {
   const purification = useStoreState((state) => state.purification.item);
   const createOrUpdate = useStoreActions((actions) => actions.purification.createOrUpdate);
+  const evaluateBodyPart = useStoreActions((actions) => actions.purification.evaluateBodyPart);
+  const restartBodyPart = useStoreActions((actions) => actions.purification.restartBodyPart);
   const evaluateSoul = useStoreActions((actions) => actions.purification.evaluateSoul);
   const restartSoul = useStoreActions((actions) => actions.purification.restartSoul);
   const evaluateMind = useStoreActions((actions) => actions.purification.evaluateMind);
   const restartMind = useStoreActions((actions) => actions.purification.restartMind);
+  const findBodyPart = useStoreState((actions) => actions.purification.findBodyPart);
   const findSoul = useStoreState((actions) => actions.purification.findSoul);
   const findMind = useStoreState((state) => state.purification.findByMind);
+
+  function createBodyPart(part: BodyPartType, stage: PurificationStage): void {
+    const progress: Purification = getProgress();
+    const dbBodyPart = progress.bodyParts.find((item) => item.name === part);
+    const newLine: ProgressLine = { startDate: Date.now(), day: 0, errors: [], evaluated: false };
+
+    if (dbBodyPart) {
+      progress.bodyParts = progress.bodyParts.map((item) =>
+        item.name === part ? { ...item, [stage]: [newLine] } : item,
+      );
+    } else {
+      const newPart: BodyPart = { name: part, [stage]: [newLine] };
+      progress.bodyParts.push(newPart);
+    }
+    progress.bodyParts = orderBodyParts(progress.bodyParts);
+    createOrUpdate(progress);
+  }
 
   function createSoul(part: SoulPart, level: SoulPartLevel): void {
     const progress: Purification = getProgress();
@@ -59,17 +85,32 @@ export default function usePurification(): IPurification {
     return purification;
   }
 
+  function orderBodyParts(items: BodyPart[]) {
+    return items.sort((a: BodyPart, b: BodyPart) => {
+      if (BodyPartsOrder[a.name] < BodyPartsOrder[b.name]) {
+        return -1;
+      } else if (BodyPartsOrder[a.name] > BodyPartsOrder[b.name]) {
+        return 1;
+      }
+      return 0;
+    });
+  }
+
   return {
     hasBodyPartsProgress: purification !== undefined && purification.bodyParts.length !== 0,
     hasMindProgress: purification !== undefined && purification.mind.length !== 0,
     hasSoulProgress: purification !== undefined && purification.soul.length !== 0,
-    createSoul,
-    findSoul,
-    evaluateSoul: (part, level, checked) => evaluateSoul([part, level, checked]),
-    restartSoul: (part, level) => restartSoul([part, level]),
-    createMind,
+    findBodyPart,
     findMind,
+    findSoul,
+    createBodyPart,
+    createMind,
+    createSoul,
+    evaluateBodyPart: (part, stage, errors) => evaluateBodyPart([part, stage, errors]),
     evaluateMind: (level, checked) => evaluateMind([level, checked]),
+    evaluateSoul: (part, level, checked) => evaluateSoul([part, level, checked]),
+    restartBodyPart: (part, stage) => restartBodyPart([part, stage]),
+    restartSoul: (part, level) => restartSoul([part, level]),
     restartMind,
   };
 }

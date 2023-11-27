@@ -1,19 +1,15 @@
-import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import { ReactNode, useRef } from 'react';
 import { PrimitiveType } from 'react-intl';
 import { StyleSheet, View } from 'react-native';
-import { Button } from 'react-native-paper';
-import Animated, { FadeInUp, SlideInDown } from 'react-native-reanimated';
+import Animated, { FadeInUp } from 'react-native-reanimated';
 import { SCREEN_WIDTH } from '../../constants/Screen';
 import ProgressLine from '../../domains/common/ProgressLine';
-import { useMessage } from '../../hooks/use-message';
 import useProgress from '../../hooks/use-progress';
-import { TKeys } from '../../locales/constants';
 import GlobalStyles from '../../styles/GlobalStyles';
-import Text from '../Text';
 import ConfirmRestartDialog, { ConfirmRestartDialogRef } from '../dialogs/ConfirmRestartDialog';
 import Header from './Header';
 import RuleProgress from './RuleProgress';
+import Start from './Start';
 
 type Props = {
   titleKey: string;
@@ -29,7 +25,6 @@ type Props = {
   onEvaluate(checked: boolean): void;
 };
 export default function ProgressView(props: Props) {
-  const { formatMessage } = useMessage();
   const ref = useRef<ConfirmRestartDialogRef>(null);
   const progressProps = useProgress(props.progress, props.maxDays);
 
@@ -74,19 +69,9 @@ export default function ProgressView(props: Props) {
           onEvaluate={props.onEvaluate}
         />
         {!props.progress && (
-          <Animated.View entering={SlideInDown.duration(10).springify()} style={{ paddingBottom: 20 }}>
-            <Button
-              mode="elevated"
-              icon={() => <Icon name="clock-plus" size={20} color="#4169e1" />}
-              uppercase={false}
-              onPress={props.onStart}
-              style={styles.startButton}
-            >
-              <Text variant="titleMedium" color="#4169e1" style={{ fontWeight: '900' }}>
-                {formatMessage(TKeys.BUTTON_START)}
-              </Text>
-            </Button>
-          </Animated.View>
+          <View style={{ paddingBottom: 25 }}>
+            <Start onStart={props.onStart} />
+          </View>
         )}
       </View>
       <ConfirmRestartDialog ref={ref} onConfirm={handleConfirm} />
@@ -98,8 +83,5 @@ const styles = StyleSheet.create({
   container: {
     ...GlobalStyles.container,
     width: SCREEN_WIDTH,
-  },
-  startButton: {
-    width: 180,
   },
 });

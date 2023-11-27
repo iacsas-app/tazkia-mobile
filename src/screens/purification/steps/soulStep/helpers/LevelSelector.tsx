@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import Animated, { FadeInUp } from 'react-native-reanimated';
 import Text from '../../../../../components/Text';
+import ConfirmRestartDialog, { ConfirmRestartDialogRef } from '../../../../../components/dialogs/ConfirmRestartDialog';
 import HStack from '../../../../../components/stack/HStack';
 import VStack from '../../../../../components/stack/VStack';
-import { SoulPart } from '../../../../../domains/purification/Soul';
+import { SoulPart, SoulPartLevel } from '../../../../../domains/purification/Soul';
 import { useMessage } from '../../../../../hooks/use-message';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
 import LevelRule from './LevelRule';
@@ -14,10 +15,13 @@ interface Props {
   part: SoulPart | undefined;
   onStart(level: number): void;
   onEvaluate(part: SoulPart, level: number, checked: boolean): void;
+  onRestart(level: SoulPartLevel): void;
 }
-export default function LevelChooser({ part, ...props }: Props) {
+export default function LevelSelector({ part, ...props }: Props) {
+  const ref = useRef<ConfirmRestartDialogRef>(null);
   const { formatMessage } = useMessage();
   const [opened, setOpened] = useState<number>();
+  const [selected, setSelected] = useState<number>();
 
   if (!part) {
     return <></>;
@@ -27,6 +31,18 @@ export default function LevelChooser({ part, ...props }: Props) {
 
   function handleTouch(level: number) {
     setOpened(level);
+  }
+
+  function handleRestart(level: number) {
+    setSelected(level);
+    ref.current?.open();
+  }
+
+  function handleConfirm(confirm: boolean) {
+    if (confirm && selected) {
+      props.onRestart(selected as any);
+    }
+    ref.current?.close();
   }
 
   return (
@@ -49,10 +65,12 @@ export default function LevelChooser({ part, ...props }: Props) {
             opened={opened}
             onSelect={props.onStart}
             onTouch={handleTouch}
+            onRestart={() => handleRestart(index + 1)}
             onEvaluate={props.onEvaluate}
           />
         ))}
       </VStack>
+      <ConfirmRestartDialog ref={ref} onConfirm={handleConfirm} />
     </Animated.View>
   );
 }

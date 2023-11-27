@@ -1,39 +1,79 @@
 import { useNavigation } from '@react-navigation/native';
-import { useMemo } from 'react';
-import { View } from 'react-native';
-import ScrollViewLayout from '../../../../../components/layout/ScrollViewLayout';
+import { useCallback, useMemo, useRef, useState } from 'react';
+import BottomSheet, { BottomSheetRef } from '../../../../../components/bottomSheet/BottomSheet';
 import HStack from '../../../../../components/stack/HStack';
 import VStack from '../../../../../components/stack/VStack';
-import { BodyPartType, BodyPartsOrder } from '../../../../../domains/purification/BodyPart';
+import { BodyPartType, BodyPartsOrder, PurificationStage } from '../../../../../domains/purification/BodyPart';
+import usePurification from '../../../../../hooks/use-purification';
 import { BodyPartsRulesNavigationProp } from '../../../../../navigation/types';
 import { groupBy } from '../../../../../services/Helpers';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
 import { PartItem, bodyParts } from '../common/Helper';
 import BodyPartItem from '../helpers/BodyPartItem';
-
-export type PurificationStage = 'cleaning' | 'enlightenment';
+import StageSelector from '../helpers/StageSelector';
 
 export default function HomeScreen() {
+  const ref = useRef<BottomSheetRef>(null);
+  const [selected, setSelected] = useState<BodyPartType>();
+  const { createBodyPart, evaluateBodyPart, restartBodyPart } = usePurification();
   const navigation = useNavigation<BodyPartsRulesNavigationProp>();
   const partsByLine = useMemo(() => groupBy(bodyParts, 'line'), []);
 
-  function handleOpenRules(part: BodyPartType, step: PurificationStage) {
-    navigation.navigate('BodyPartsRules', { part, step });
+  function handlePress(part: BodyPartType) {
+    setSelected(part);
+    ref.current?.open();
   }
 
+  const handleStart = useCallback(
+    (stage: PurificationStage) => {
+      if (selected) {
+        createBodyPart(selected, stage);
+        setSelected(undefined);
+        ref.current?.close();
+      }
+    },
+    [selected],
+  );
+
+  const handleEvaluate = useCallback(
+    (stage: PurificationStage, errors: number[]) => {
+      if (selected) {
+        evaluateBodyPart(selected, stage, errors);
+      }
+    },
+    [selected],
+  );
+
+  const handleRestart = useCallback(
+    (stage: PurificationStage) => {
+      if (selected) {
+        restartBodyPart(selected, stage);
+      }
+    },
+    [selected],
+  );
+
   return (
-    <ScrollViewLayout>
-      <VStack spacing={15} style={{ ...GlobalStyles.center, alignItems: 'center', marginTop: 15 }}>
+    <BottomSheet
+      ref={ref}
+      content={
+        <StageSelector part={selected} onStart={handleStart} onRestart={handleRestart} onEvaluate={handleEvaluate} />
+      }
+    >
+      <VStack style={GlobalStyles.container} spacing={20}>
         {Object.keys(partsByLine).map((key: string) => (
-          <HStack key={key} spacing={10}>
+          <HStack key={key} spacing={13}>
             {partsByLine[key].map(({ line, ...props }: PartItem, index: number) => (
-              <View key={`${key}_${index}_${line}`}>
-                <BodyPartItem id={BodyPartsOrder[props.type]} {...props} onOpenRules={handleOpenRules} />
-              </View>
+              <BodyPartItem
+                key={`${key}_${index}_${line}`}
+                id={BodyPartsOrder[props.part]}
+                {...props}
+                onPress={handlePress}
+              />
             ))}
           </HStack>
         ))}
       </VStack>
-    </ScrollViewLayout>
+    </BottomSheet>
   );
 }

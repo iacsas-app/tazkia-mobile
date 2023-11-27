@@ -1,7 +1,6 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
-import { BodyPartType } from '../../../../../domains/purification/BodyPart';
+import { BodyPartType, PurificationStage } from '../../../../../domains/purification/BodyPart';
 import { useStoreActions, useStoreState } from '../../../../../stores/hooks';
-import { PurificationStage } from '../tabs/HomeScreen';
 
 import { Avatar, HStack, VStack } from '@react-native-material/core';
 import { useNavigation } from '@react-navigation/native';

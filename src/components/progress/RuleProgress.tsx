@@ -6,7 +6,6 @@ import { Button, Divider } from 'react-native-paper';
 import Animated, { FadeIn, FadeInUp, FadeOutUp, SlideOutDown, SlideOutUp } from 'react-native-reanimated';
 import Text from '../../components/Text';
 import { Font } from '../../constants/Font';
-import { SCREEN_WIDTH } from '../../constants/Screen';
 import ProgressLine from '../../domains/common/ProgressLine';
 import { useApplication } from '../../hooks/use-application';
 import { useMessage } from '../../hooks/use-message';
