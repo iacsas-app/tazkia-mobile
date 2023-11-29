@@ -23,7 +23,7 @@ type Props = {
   stage: PurificationStage;
   opened: PurificationStage | undefined;
   onStart(stage: PurificationStage): void;
-  onTouch(stage: PurificationStage): void;
+  onTouch(stage: PurificationStage, hasProgress: boolean): void;
   onRestart(stage: PurificationStage): void;
   onEvaluate(stage: PurificationStage, errors: number[]): void;
 };
@@ -33,6 +33,7 @@ export default function Stage({ part, stage, ...props }: Props) {
   const { findBodyPart } = usePurification();
   const current: BodyPart | undefined = findBodyPart(part);
   const progress = findStage();
+  const hasProgress = progress !== undefined;
   const progressProps = useProgress(progress, PURIFICATION_MAX_DAYS);
   const cleaning = stage === 'cleaning';
 
@@ -52,7 +53,7 @@ export default function Stage({ part, stage, ...props }: Props) {
   }
 
   function handleTouch() {
-    props.onTouch(stage);
+    props.onTouch(stage, hasProgress);
   }
 
   function handleEvaluate(errors: number[]) {
@@ -67,7 +68,7 @@ export default function Stage({ part, stage, ...props }: Props) {
     <TouchableRipple
       style={{
         ...styles.container,
-        backgroundColor: progress ? (progressProps.completed ? '#8de0b6' : '#dbf6e8') : '#d8f0ff',
+        backgroundColor: hasProgress ? (progressProps.completed ? '#8de0b6' : '#dbf6e8') : '#d8f0ff',
       }}
       onPress={handleTouch}
     >
@@ -82,13 +83,13 @@ export default function Stage({ part, stage, ...props }: Props) {
             <Text
               variant="bodyLarge"
               style={{ ...styles.levelTitle, fontSize: Font.size(open ? 18 : 16) }}
-              color={progress ? 'seagreen' : '#4169e1'}
+              color={hasProgress ? 'seagreen' : '#4169e1'}
             >
               {formatMessage(`purification.bodypart.${stage}`)}
             </Text>
           </HStack>
           <Animated.View entering={SlideInLeft.duration(10).springify()}>
-            {!progress ? (
+            {!hasProgress ? (
               <Start onStart={handleStart} />
             ) : (
               <HStack>
@@ -115,7 +116,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 10,
     borderRadius: 25,
-    elevation: 6,
+    elevation: 5,
   },
   header: {
     alignItems: 'center',

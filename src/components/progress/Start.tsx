@@ -23,7 +23,7 @@ export default function Start(props: Props) {
         icon={() => <Icon name="clock-plus" size={15} color="#4169e1" />}
         uppercase={false}
         style={{ height: 30, paddingEnd: 5 }}
-        labelStyle={{ ...styles.startButtonLabel, fontSize: Font.size(arabic ? 14 : 11) }}
+        labelStyle={{ ...styles.startButtonLabel, fontSize: Font.size(arabic ? 12 : 11) }}
         onTouchStart={props.onStart}
       >
         <Text variant="titleMedium" color="#4169e1" style={{ fontWeight: '900' }}>

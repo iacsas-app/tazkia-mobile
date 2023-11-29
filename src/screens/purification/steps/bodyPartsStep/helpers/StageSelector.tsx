@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import Animated, { FadeIn, FadeInUp, FadeOutDown, SlideInLeft } from 'react-native-reanimated';
+import ConfirmRestartDialog, { ConfirmRestartDialogRef } from '../../../../../components/dialogs/ConfirmRestartDialog';
 import VStack from '../../../../../components/stack/VStack';
 import { SCREEN_WIDTH } from '../../../../../constants/Screen';
 import { BodyPartType, PurificationStage } from '../../../../../domains/purification/BodyPart';
 import { useMessage } from '../../../../../hooks/use-message';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
 import { findPartProps } from '../common/Helper';
+import RulesDialog, { RulesDialogRef } from './RulesDialog';
 import Stage from './Stage';
 
 type Props = {
@@ -19,12 +21,30 @@ export default function StageSelector({ part, ...props }: Props) {
   if (!part) {
     return <></>;
   }
+  const rulesRef = useRef<RulesDialogRef>(null);
+  const restartRef = useRef<ConfirmRestartDialogRef>(null);
   const { formatMessage } = useMessage();
   const [opened, setOpened] = useState<PurificationStage>();
   const source = findPartProps(part);
 
-  function handleTouch(stage: PurificationStage) {
-    setOpened(stage);
+  function handleTouch(stage: PurificationStage, hasProgress: boolean) {
+    if (hasProgress) {
+      setOpened(stage);
+    } else if (part) {
+      rulesRef.current?.open(part, stage);
+    }
+  }
+
+  function handleRestart() {
+    restartRef.current?.open();
+  }
+
+  function handleConfirm(confirm: boolean) {
+    if (confirm && opened) {
+      props.onRestart(opened);
+    }
+    console.log(confirm, opened);
+    restartRef.current?.close();
   }
 
   return (
@@ -41,7 +61,7 @@ export default function StageSelector({ part, ...props }: Props) {
         <Animated.Text
           entering={SlideInLeft.delay(200).duration(200).springify()}
           exiting={FadeOutDown.duration(10)}
-          style={{ ...GlobalStyles.center, fontWeight: '900', fontSize: 25 }}
+          style={styles.partName}
         >
           {formatMessage(`purification.body-parts.${part}`)}
         </Animated.Text>
@@ -55,11 +75,13 @@ export default function StageSelector({ part, ...props }: Props) {
             opened={opened}
             onStart={props.onStart}
             onTouch={handleTouch}
-            onRestart={props.onRestart}
+            onRestart={handleRestart}
             onEvaluate={props.onEvaluate}
           />
         ))}
       </VStack>
+      <RulesDialog ref={rulesRef} />
+      <ConfirmRestartDialog ref={restartRef} onConfirm={handleConfirm} />
     </Animated.View>
   );
 }
@@ -75,7 +97,8 @@ const styles = StyleSheet.create({
   },
   image: {
     ...GlobalStyles.circle,
-    width: 60,
-    aspectRatio: 1,
+    width: 100,
+    height: 100,
   },
+  partName: { ...GlobalStyles.center, fontWeight: '900', fontSize: 25 },
 });

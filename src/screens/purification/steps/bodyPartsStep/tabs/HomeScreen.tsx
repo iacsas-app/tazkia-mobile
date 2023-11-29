@@ -1,11 +1,10 @@
-import { useNavigation } from '@react-navigation/native';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import BottomSheet, { BottomSheetRef } from '../../../../../components/bottomSheet/BottomSheet';
+import { ConfirmRestartDialogRef } from '../../../../../components/dialogs/ConfirmRestartDialog';
 import HStack from '../../../../../components/stack/HStack';
 import VStack from '../../../../../components/stack/VStack';
 import { BodyPartType, BodyPartsOrder, PurificationStage } from '../../../../../domains/purification/BodyPart';
 import usePurification from '../../../../../hooks/use-purification';
-import { BodyPartsRulesNavigationProp } from '../../../../../navigation/types';
 import { groupBy } from '../../../../../services/Helpers';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
 import { PartItem, bodyParts } from '../common/Helper';
@@ -14,9 +13,9 @@ import StageSelector from '../helpers/StageSelector';
 
 export default function HomeScreen() {
   const ref = useRef<BottomSheetRef>(null);
+  const restartRef = useRef<ConfirmRestartDialogRef>(null);
   const [selected, setSelected] = useState<BodyPartType>();
   const { createBodyPart, evaluateBodyPart, restartBodyPart } = usePurification();
-  const navigation = useNavigation<BodyPartsRulesNavigationProp>();
   const partsByLine = useMemo(() => groupBy(bodyParts, 'line'), []);
 
   function handlePress(part: BodyPartType) {

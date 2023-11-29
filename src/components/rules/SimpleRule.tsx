@@ -1,6 +1,9 @@
-import { Avatar, Box, HStack } from '@react-native-material/core';
+import { Avatar } from 'react-native-paper';
+import { SCREEN_WIDTH } from '../../constants/Screen';
 import { useApplication } from '../../hooks/use-application';
+import GlobalStyles from '../../styles/GlobalStyles';
 import Text from '../Text';
+import HStack from '../stack/HStack';
 import { RuleStyles } from './Styles';
 import { RuleBaseProps } from './types';
 
@@ -8,22 +11,11 @@ export default function SimpleRule({ id, item }: RuleBaseProps) {
   const { arabic } = useApplication();
 
   return (
-    <Box style={{ marginHorizontal: 25 }}>
-      <HStack spacing={10} style={RuleStyles.stack}>
-        <Avatar
-          label={
-            <Text variant="titleMedium" color="white">
-              {id}
-            </Text>
-          }
-          tintColor="white"
-          color="#228b22"
-          size={22}
-        />
-        <Text variant="bodyLarge" style={{ ...RuleStyles.text, fontSize: arabic ? 16 : 12 }}>
-          {item}
-        </Text>
-      </HStack>
-    </Box>
+    <HStack spacing={10} style={GlobalStyles.center}>
+      <Avatar.Text label={id.toString()} size={18} labelStyle={{ color: 'white' }} />
+      <Text variant="bodySmall" style={{ ...RuleStyles.text, fontSize: arabic ? 14 : 12, width: SCREEN_WIDTH - 110 }}>
+        {item}
+      </Text>
+    </HStack>
   );
 }

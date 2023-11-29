@@ -33,13 +33,14 @@ export default function Header({ hasProgress, ...props }: Props) {
         justifyContent: hasProgress ? 'space-between' : 'center',
       }}
     >
-      <VStack style={{ alignSelf: 'center' }}>
+      <VStack style={{ ...GlobalStyles.center, width: SCREEN_WIDTH - (hasProgress ? 125 : 10) }}>
         <Text
           variant="bodyLarge"
           style={{
             fontWeight: '900',
             fontSize: Font.size(arabic ? 18 : 16),
             textAlign: hasProgress ? 'auto' : 'center',
+            maxWidth: SCREEN_WIDTH - (hasProgress ? 150 : 0),
           }}
           color={hasProgress ? 'green' : 'blue'}
         >
@@ -50,7 +51,6 @@ export default function Header({ hasProgress, ...props }: Props) {
             variant="bodySmall"
             style={{
               textAlign: hasProgress ? 'auto' : 'center',
-              width: SCREEN_WIDTH - (hasProgress ? 125 : 10),
               fontSize: Font.size(arabic ? 14 : 12),
             }}
           >
@@ -58,7 +58,7 @@ export default function Header({ hasProgress, ...props }: Props) {
           </Text>
         )}
       </VStack>
-      <HStack style={GlobalStyles.center} spacing={5}>
+      <HStack style={GlobalStyles.center}>
         {props.completed && <Restart onClick={props.onRestart} />}
         {hasProgress && (
           <ProgressStatus
