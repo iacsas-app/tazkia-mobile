@@ -558,6 +558,7 @@ export enum TKeys {
   PROGRESS_START_DAILY_EVALUATION = 'progress.start-daily-evaluation',
   PROGRESS_EVALUATION_MESSAGE = 'progress.daily-evaluation.message',
   PROGRESS_EVALUATION_QUESTION = 'progress.evaluation.question',
+  PROGRESS_EVALUATION_QUESTIONS = 'progress.evaluation.questions',
   TIMES_COUNT = 'times.count',
   TIMES_COUNT_PLURAL = 'times.count.plural',
   DURATION = 'duration',
