@@ -77,13 +77,13 @@ export default function Immunization({ period }: ImmunizationProps) {
         <Modal animationType="slide" transparent={true} visible={isModalVisible} onRequestClose={closeModal}>
           <View style={styles.modalContainer}>
             <View style={styles.modalContent}>
-              <Text>{formatMessage(selectedItem?.key)}</Text>
+              <Text style={styles.text}>{formatMessage(selectedItem?.key)}</Text>
               {/* <Text>Nombre: {repeatCount + 1}</Text> */}
 
               {repeatCount > 0 ? (
                 <Animated.Text
                   style={{
-                    fontSize: 10,
+                    // fontSize: 20,
                     position: 'absolute',
                     left: 0,
                     bottom: 0,
@@ -101,8 +101,8 @@ export default function Immunization({ period }: ImmunizationProps) {
                 <Icon name="check-all" color="green" size={20} />
               )}
             </View>
-            <Button title="Suivant" onPress={nextItem} />
-            <Button title="Fermer" onPress={closeModal} />
+            <Button title="Suivant" onPress={nextItem} color="darkseagreen" />
+            <Button title="Fermer" onPress={closeModal} color="darkseagreen" />
           </View>
         </Modal>
       </View>
@@ -115,70 +115,23 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   modalContainer: {
+    fontSize: 15,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
   modalContent: {
-    backgroundColor: 'lightyellow',
+    backgroundColor: 'honeydew',
+    borderWidth: 10,
+    borderColor: 'darkseagreen',
     padding: 20,
     borderRadius: 10,
-    elevation: 5,
+    elevation: 50,
   },
-  button: {
-    margin: 20,
-    padding: 20,
-    backgroundColor: 'red', // Ajoutez cette ligne pour la couleur de fond du bouton
-    borderRadius: 18, // Ajoutez cette ligne pour arrondir les coins du bouton
+  text: {
+    fontSize: 20,
+    // marginTop: 22,
+    fontWeight: '500',
+    textAlign: 'justify',
   },
 });
-
-{
-  /* <TouchableRipple
-  style={{
-    elevation: 5,
-    backgroundColor: count > 0 ? 'white' : '#d9e7df',
-    borderRadius: 20,
-    padding: 15,
-  }}
-  onPress={handlePress}
->
-  <VStack spacing={25}>
-    <Text variant="titleLarge" style={{ fontSize: 14, textAlign: 'justify', fontWeight: '500' }}>
-      {summary}
-    </Text>
-    <View style={{ flexDirection: 'row' }}>
-      <Text
-        style={{
-          fontSize: 10,
-          position: 'absolute',
-          right: 0,
-          bottom: 0,
-          backgroundColor: '#fff5ee',
-          borderRadius: 100,
-          paddingHorizontal: 5,
-          opacity: 0.6,
-        }}
-      >{`${index}/${total}`}</Text>
-      {count > 0 ? (
-        <Animated.Text
-          style={{
-            fontSize: 10,
-            position: 'absolute',
-            left: 0,
-            bottom: 0,
-            backgroundColor: '#92b8df',
-            borderRadius: 100,
-            paddingHorizontal: 10,
-            opacity: 0.6,
-          }}
-        >
-          {formatMessage(count > 1 ? TKeys.TIMES_COUNT_PLURAL : TKeys.TIMES_COUNT, { times: count })}
-        </Animated.Text>
-      ) : (
-        <Icon name="check-all" color="green" size={20} />
-      )}
-    </View>
-  </VStack>
-</TouchableRipple>; */
-}

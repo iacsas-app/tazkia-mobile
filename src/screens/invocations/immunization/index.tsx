@@ -1,33 +1,42 @@
 import { VStack } from '@react-native-material/core';
 import { useRoute } from '@react-navigation/native';
-import React from 'react';
-import { StyleSheet, View, useWindowDimensions } from 'react-native';
+import React, { useState } from 'react';
+import { Button, StyleSheet, View, useWindowDimensions } from 'react-native';
 import Basmalah from '../../../components/Basmalah';
 import Text from '../../../components/Text';
 import { useMessage } from '../../../hooks/use-message';
 import { TKeys } from '../../../locales/constants';
 import { InvocationsScreenRouteProp } from '../../../navigation/types';
 import BasePresentationLayout from '../../presentation/common/BasePresentationLayout';
+
 import Immunization from './Immunization';
-import { ImmunizationPeriod, immunizationData } from './data';
+import { immunizationData } from './data';
 
 export default function ImmunizationInvocationsScreen() {
   const { formatMessage } = useMessage();
   const { period } = useRoute<InvocationsScreenRouteProp>().params;
   const { width } = useWindowDimensions();
-  interface ImmunizationProps {
-    period: ImmunizationPeriod;
-  }
+
   const data = immunizationData[period];
+  const [showImmunization, setShowImmunization] = useState(false);
+
+  const handleStartImmunization = () => {
+    setShowImmunization(true);
+  };
+
   return (
     <BasePresentationLayout>
-      <View style={{ width: width - 15 }}>
+      <View style={{ width: width - 6 }}>
         <VStack spacing={10} style={{ marginBottom: 15 }}>
           <Basmalah />
           <Text variant="bodyLarge" style={{ textAlign: 'justify', fontWeight: '600' }}>
             {formatMessage(TKeys.INVOCATIONS_IMMUNIZATION_INTRODUCTION)}
           </Text>
         </VStack>
+        <View style={{ marginVertical: 20, alignItems: 'center', justifyContent: 'center', width: '100%' }}>
+          <Button title="ابدأ" onPress={handleStartImmunization} color="darkgreen" />
+          {showImmunization && <Immunization period={period} />}
+        </View>
         <View>
           {data.map((item, index) => (
             <View style={styles.container} key={index}>
@@ -41,7 +50,7 @@ export default function ImmunizationInvocationsScreen() {
             </View>
           ))}
         </View>
-        <Immunization period={period} />
+        {/* <Immunization period={period} /> */}
         <Text variant="bodyLarge" style={{ textAlign: 'justify', fontWeight: '600', marginTop: 10 }}>
           {formatMessage(TKeys.INVOCATIONS_IMMUNIZATION_CONCLUSION)}
         </Text>
@@ -59,21 +68,38 @@ export const OVERDRAG = 10;
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'column',
-    flex: 1,
+    // flexDirection: 'column',
+    // flex: 1,
     paddingTop: 5,
     paddingBottom: 20,
     borderRadius: 25,
     backgroundColor: 'lightblue',
-    padding: 25,
+    padding: 10,
   },
   text: {
-    fflexDirection: 'row', // Aligne les enfants horizontalement
-    alignItems: 'flex-start', // Aligne les enfants en haut du conteneur
-    justifyContent: 'flex-start', // Aligne les enfants à gauche du conteneur
-    padding: 10,
-    backgroundColor: 'lightgray',
+    justifyContent: 'center',
+
+    backgroundColor: 'seashell',
     borderRadius: 10,
-    textAlign: 'center',
+    paddingVertical: -80,
+    paddingHorizontal: 150,
+    marginVertical: 7,
+  },
+  button: {
+    padding: 20,
+    borderRadius: 5,
+    width: 40,
+    height: 20,
+  },
+  title: {
+    fontWeight: '500',
+    textAlign: 'justify',
+  },
+  description: {
+    fontSize: 20,
+    // marginTop: 22,
+    marginTop: 22,
+    fontWeight: '500',
+    textAlign: 'justify',
   },
 });
