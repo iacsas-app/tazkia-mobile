@@ -594,6 +594,8 @@ export const french: Translations = {
   [TKeys.PROGRESS_START_DAILY_EVALUATION]: 'Évaluer ma journée',
   [TKeys.PROGRESS_EVALUATION_MESSAGE]: 'Sélectionnez les règles qui ont été enfreintes',
   [TKeys.PROGRESS_EVALUATION_QUESTION]: 'La règle suivante a-t-elle été respectée ?',
+  [TKeys.PROGRESS_EVALUATION_QUESTIONS]: 'Les règles suivantes ont-t-elles été respectées ?',
+
   [TKeys.BASMALAH]:
     'Au nom de Dieu, le Très Miséricordieux, le Très Miséricordieux, et que la bénédiction et la paix soient sur le plus honorable des prophètes et messagers, notre maître Muhammad, ainsi que sur toute sa famille et ses compagnons.',
   [TKeys.LEVEL]: 'Niveau {value}',

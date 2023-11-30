@@ -668,7 +668,7 @@ export const indonesian: Translations = {
   [TKeys.PROGRESS_START_DAILY_EVALUATION]: 'Evaluasi hari saya',
   [TKeys.PROGRESS_EVALUATION_MESSAGE]: 'Pilih aturan yang dilanggar',
   [TKeys.PROGRESS_EVALUATION_QUESTION]: 'Apakah aturan berikut dipatuhi sepanjang hari ?',
-  [TKeys.PROGRESS_EVALUATION_QUESTION]: 'Apakah aturan berikut dipatuhi sepanjang hari ?',
+  [TKeys.PROGRESS_EVALUATION_QUESTIONS]: 'Apakah aturan berikut dipatuhi sepanjang hari ?',
 
   [TKeys.BASMALAH]:
     'Dengan menyebut nama Tuhan Yang Maha Pengasih lagi Maha Penyayang, semoga shalawat dan salam tercurah kepada para nabi dan rasul yang paling mulia, junjungan kami Muhammad, serta atas seluruh keluarga dan para sahabatnya.',
