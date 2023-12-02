@@ -1,5 +1,4 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
-import { Box, HStack, VStack } from '@react-native-material/core';
 import { useEffect, useMemo, useState } from 'react';
 import { View } from 'react-native';
 import { Button } from 'react-native-paper';
@@ -7,6 +6,8 @@ import Text from '../components/Text';
 import LanguageSelector from '../components/header/settings/language/LanguageSelector';
 import { langFlags } from '../components/header/settings/language/LanguageSetting';
 import ScreenLayout from '../components/layout/ScreenLayout';
+import HStack from '../components/stack/HStack';
+import VStack from '../components/stack/VStack';
 import { useApplication } from '../hooks/use-application';
 import { useMessage } from '../hooks/use-message';
 import { localesTranslation } from '../locales';
@@ -57,31 +58,29 @@ export default function FirstVisitScreen() {
 
   return (
     <ScreenLayout>
-      <View>
-        <VStack spacing={20}>
-          <VStack spacing={15} style={GlobalStyles.center}>
-            <Text variant="headlineMedium" style={{ fontWeight: '900' }}>
-              {formatMessage(TKeys.WELCOME)}
+      <VStack spacing={20}>
+        <VStack spacing={15} style={GlobalStyles.center}>
+          <Text variant="headlineMedium" style={{ fontWeight: '900' }}>
+            {formatMessage(TKeys.WELCOME)}
+          </Text>
+          {isSupported ? (
+            <Text variant="bodyLarge" color="green">
+              {formatMessage(TKeys.SETTINGS_LANGUAGE_DEFAULT, {
+                lang: formatMessage(`language.${localesTranslation[locale].key}`),
+              })}
             </Text>
-            {isSupported ? (
-              <Text variant="bodyLarge" color="green">
-                {formatMessage(TKeys.SETTINGS_LANGUAGE_DEFAULT, {
-                  lang: formatMessage(`language.${localesTranslation[locale].key}`),
-                })}
+          ) : (
+            <>
+              <Text variant="headlineMedium" color="red">
+                نعتذر، لغة هاتفكم غير مدعومة
               </Text>
-            ) : (
-              <>
-                <Text variant="headlineMedium" color="red">
-                  نعتذر، لغة هاتفكم غير مدعومة
-                </Text>
-                <Text variant="headlineSmall">المرجو اختيار لغة أخرى من بين القائمة التالية :</Text>
-              </>
-            )}
-          </VStack>
+              <Text variant="headlineSmall">المرجو اختيار لغة أخرى من بين القائمة التالية :</Text>
+            </>
+          )}
+        </VStack>
+        <View style={GlobalStyles.center}>
           {chooseLanguage ? (
-            <Box style={GlobalStyles.center}>
-              <LanguageSelector flags={langFlags} all color="black" onChange={handleLanguageChange} />
-            </Box>
+            <LanguageSelector flags={langFlags} all color="black" onChange={handleLanguageChange} />
           ) : (
             <HStack style={{ ...GlobalStyles.center }} spacing={10}>
               <Button
@@ -102,8 +101,8 @@ export default function FirstVisitScreen() {
               </Button>
             </HStack>
           )}
-        </VStack>
-      </View>
+        </View>
+      </VStack>
     </ScreenLayout>
   );
 }

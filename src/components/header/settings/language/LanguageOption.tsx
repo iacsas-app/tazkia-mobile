@@ -1,5 +1,4 @@
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { Avatar } from 'react-native-paper';
+import { Avatar, TouchableRipple } from 'react-native-paper';
 import { AvatarImageSource } from 'react-native-paper/lib/typescript/components/Avatar/AvatarImage';
 import { useMessage } from '../../../../hooks/use-message';
 import { localesTranslation } from '../../../../locales';
@@ -24,7 +23,7 @@ export default function LanguageOption({ value, icon, color, onChange }: Languag
   }
 
   return (
-    <TouchableOpacity onPress={handleChange} style={{ paddingVertical: 4 }}>
+    <TouchableRipple onPress={handleChange} style={{ paddingVertical: 4 }}>
       <HStack spacing={12} style={{ ...GlobalStyles.centerAlign, justify: 'between' }}>
         <Avatar.Image source={icon} size={25} />
         <VStack>
@@ -36,6 +35,6 @@ export default function LanguageOption({ value, icon, color, onChange }: Languag
           </Text>
         </VStack>
       </HStack>
-    </TouchableOpacity>
+    </TouchableRipple>
   );
 }

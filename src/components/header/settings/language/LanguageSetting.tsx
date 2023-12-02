@@ -25,10 +25,9 @@ export const langFlags: Record<SupportedLocale, AvatarImageSource> = {
 interface Props {
   color?: string;
   open?: boolean;
-  borderRadius?: number;
   onClick?(): void;
 }
-export default function LanguageSetting({ open, borderRadius, onClick }: Props) {
+export default function LanguageSetting({ open, onClick }: Props) {
   const { formatMessage } = useMessage();
   const [show, setShow] = useState(open === true);
   const { locale, defaultLang } = useApplication();

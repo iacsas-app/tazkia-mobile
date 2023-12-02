@@ -87,16 +87,16 @@ const styles = StyleSheet.create({
   stage: {
     ...GlobalStyles.center,
     position: 'absolute',
-    top: 15,
+    top: 45,
     backgroundColor: '#5ea3a34d',
     borderRadius: 20,
     paddingHorizontal: 4,
   },
   enlightenment: {
-    right: 3,
+    right: 4,
   },
   cleaning: {
-    left: 3,
+    left: 4,
   },
   text: { fontSize: 8 },
 });
