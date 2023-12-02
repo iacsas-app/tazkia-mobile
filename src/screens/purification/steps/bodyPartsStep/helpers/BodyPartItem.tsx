@@ -1,12 +1,12 @@
-import { ImageSourcePropType, StyleSheet } from 'react-native';
+import { ImageSourcePropType, StyleSheet, View } from 'react-native';
 import { Avatar, TouchableRipple } from 'react-native-paper';
 import Text from '../../../../../components/Text';
-import HStack from '../../../../../components/stack/HStack';
 import { Font } from '../../../../../constants/Font';
 import { SCREEN_WIDTH } from '../../../../../constants/Screen';
 import { BodyPartType } from '../../../../../domains/purification/BodyPart';
 import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';
+import { TKeys } from '../../../../../locales/constants';
 import { useStoreState } from '../../../../../stores/hooks';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
 import { isFullyCompleted } from '../common/Helper';
@@ -42,14 +42,31 @@ export default function BodyPartItem({ id, part, imageSource, ...props }: BodyPa
           color="seagreen"
           label={id.toString()}
         />
-        <HStack spacing={10}>
-          <Text
-            variant="bodyLarge"
-            style={{ ...styles.partName, color: completed ? 'white' : 'black', fontSize: arabic ? 18 : 15 }}
-          >
-            {formatMessage(`purification.body-parts.${part}`)}
-          </Text>
-        </HStack>
+        <Text
+          variant="bodyLarge"
+          style={{ ...styles.partName, color: completed ? 'white' : 'black', fontSize: arabic ? 18 : 15 }}
+        >
+          {formatMessage(`purification.body-parts.${part}`)}
+        </Text>
+
+        {inProgress && (
+          <>
+            {progress.enlightenment && (
+              <View style={{ ...styles.stage, ...styles.enlightenment }}>
+                <Text style={styles.text} color="teal">
+                  {formatMessage(TKeys.BUTTON_ENLIGHTENMENT)}
+                </Text>
+              </View>
+            )}
+            {progress.cleaning && (
+              <View style={{ ...styles.stage, ...styles.cleaning }}>
+                <Text style={styles.text} color="teal">
+                  {formatMessage(TKeys.BUTTON_CLEANING)}
+                </Text>
+              </View>
+            )}
+          </>
+        )}
       </>
     </TouchableRipple>
   );
@@ -67,4 +84,19 @@ const styles = StyleSheet.create({
   partName: { fontWeight: 'bold', marginTop: 3 },
   typeAvatar: { marginTop: -18 },
   idAvatar: { marginTop: -8, backgroundColor: 'red' },
+  stage: {
+    ...GlobalStyles.center,
+    position: 'absolute',
+    top: 15,
+    backgroundColor: '#5ea3a34d',
+    borderRadius: 20,
+    paddingHorizontal: 4,
+  },
+  enlightenment: {
+    right: 3,
+  },
+  cleaning: {
+    left: 3,
+  },
+  text: { fontSize: 8 },
 });
