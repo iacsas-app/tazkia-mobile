@@ -9,11 +9,11 @@ import RuleProgress from '../../../../../components/progress/RuleProgress';
 import Start from '../../../../../components/progress/Start';
 import { ProgressStatus } from '../../../../../components/progress/progressStatus/ProgressStatus';
 import HStack from '../../../../../components/stack/HStack';
+import { Color } from '../../../../../constants/Color';
 import { Font } from '../../../../../constants/Font';
 import { SCREEN_WIDTH } from '../../../../../constants/Screen';
 import ProgressLine from '../../../../../domains/common/ProgressLine';
 import { SoulPart } from '../../../../../domains/purification/Soul';
-import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';
 import useProgress from '../../../../../hooks/use-progress';
 import usePurification from '../../../../../hooks/use-purification';
@@ -34,8 +34,7 @@ type Props = {
 export default function LevelRule({ part, index, levelKey, ...props }: Props) {
   const { formatMessage, formatNumber } = useMessage();
   const [open, setOpen] = useState(false);
-  const { findSoul, restartSoul } = usePurification();
-  const { arabic } = useApplication();
+  const { findSoul } = usePurification();
   const current = findSoul(part, index as any);
   const progress = findSoulLevel();
   const progressProps = useProgress(progress, PURIFICATION_MAX_DAYS);
@@ -79,7 +78,13 @@ export default function LevelRule({ part, index, levelKey, ...props }: Props) {
         borderBottomRightRadius: current ? 30 : open ? 15 : radius(),
         borderTopLeftRadius: radius(),
         borderTopRightRadius: radius(),
-        backgroundColor: current ? (progressProps.completed ? '#8de0b6' : '#dbf6e8') : '#d8f0ff',
+        backgroundColor: open
+          ? Color.active
+          : current
+          ? progressProps.completed
+            ? Color.completed
+            : Color.progress
+          : Color.noProgress,
       }}
     >
       <View>

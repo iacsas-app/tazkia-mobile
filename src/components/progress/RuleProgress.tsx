@@ -1,19 +1,16 @@
-import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import React, { ReactNode, useCallback, useState } from 'react';
 import { PrimitiveType } from 'react-intl';
 import { StyleSheet, View } from 'react-native';
-import { Button, Divider } from 'react-native-paper';
+import { Divider } from 'react-native-paper';
 import Animated, { FadeIn, FadeInUp, FadeOutUp, SlideOutDown, SlideOutUp } from 'react-native-reanimated';
-import Text from '../../components/Text';
 import { Font } from '../../constants/Font';
 import ProgressLine from '../../domains/common/ProgressLine';
 import { useApplication } from '../../hooks/use-application';
 import { useMessage } from '../../hooks/use-message';
 import { ProgressProps } from '../../hooks/use-progress';
 import { TKeys } from '../../locales/constants';
-import HStack from '../stack/HStack';
+import StatusAndEvaluation from '../../screens/purification/common/StatusAndEvaluation';
 import YesNoButtons from './YesNoButtons';
-import ProgressInfos from './progressStatus/ProgressInfos';
 
 type Props = ProgressProps & {
   summaryKey: string;
@@ -45,7 +42,7 @@ export default function RuleProgress({ progress, ...props }: Props) {
   const align = props.completed ? 'center' : 'space-between';
 
   return (
-    <View style={{ paddingBottom: 20, paddingTop: 10 }}>
+    <View style={{ paddingBottom: 10, paddingTop: 10 }}>
       {showEvalute && (
         <Animated.Text
           entering={FadeIn.delay(400).duration(800).springify()}
@@ -71,38 +68,17 @@ export default function RuleProgress({ progress, ...props }: Props) {
         <Animated.View
           entering={FadeInUp.delay(400).duration(800).springify()}
           exiting={SlideOutDown.delay(10).damping(100)}
-          style={{ paddingTop: 15 }}
+          style={{ paddingTop: 15, minWidth: '100%' }}
         >
           <Divider style={{ height: 1 }} />
-          <HStack style={{ ...styles.progress, alignContent: align, justifyContent: align }}>
-            <ProgressInfos
-              progress={progress}
-              lastDay={props.lastDay}
-              countDays={props.countDays}
-              endDate={props.endDate}
-              failed={props.failed}
-              maxDays={props.maxDays}
-              formatAttempt={formatAttempt}
-            />
-            {!props.completed && (
-              <Button
-                mode="elevated"
-                compact
-                icon={() => <Icon name="check-circle" size={15} color="seagreen" />}
-                uppercase={false}
-                style={styles.evalBtn}
-                onTouchStart={handleEvaluateShow}
-              >
-                <Text
-                  variant="titleSmall"
-                  color="seagreen"
-                  style={{ fontWeight: '500', fontSize: Font.size(arabic ? 13 : 11) }}
-                >
-                  {formatMessage(TKeys.PROGRESS_START_DAILY_EVALUATION)}
-                </Text>
-              </Button>
-            )}
-          </HStack>
+          <StatusAndEvaluation
+            {...props}
+            progress={progress}
+            align={align}
+            maxDays={props.maxDays}
+            formatAttempt={formatAttempt}
+            onEvaluate={handleEvaluateShow}
+          />
         </Animated.View>
       )}
     </View>
@@ -112,11 +88,4 @@ export default function RuleProgress({ progress, ...props }: Props) {
 const styles = StyleSheet.create({
   levelSummary: { fontSize: Font.size(12), textAlign: 'justify', paddingHorizontal: 10 },
   question: { fontWeight: '900', textAlign: 'justify', alignSelf: 'center', marginBottom: 10 },
-  progress: {
-    paddingHorizontal: 20,
-    paddingTop: 10,
-    alignItems: 'center',
-    alignSelf: 'stretch',
-  },
-  evalBtn: { elevation: 8 },
 });

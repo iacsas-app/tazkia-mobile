@@ -32,10 +32,11 @@ export function ProgressStatus({ last, count, maxDays, completed }: Props) {
             value={progressPercentage(last.day - failed, maxDays)}
             maxValue={100}
             duration={600}
-            radius={25}
+            radius={23}
             valueSuffix={arabic ? '' : '%'}
             valuePrefix={arabic ? '%' : ''}
             inActiveStrokeColor={'#2ecc71'}
+            valuePrefixStyle={{ marginRight: -2 }}
             inActiveStrokeOpacity={0.2}
             progressValueStyle={styles.progress}
           />

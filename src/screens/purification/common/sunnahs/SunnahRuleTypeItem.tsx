@@ -1,9 +1,10 @@
 import { Avatar, Divider } from 'react-native-paper';
-import Animated, { FadeIn } from 'react-native-reanimated';
+import Animated, { FadeInLeft, FadeInRight } from 'react-native-reanimated';
 import Text from '../../../../components/Text';
 import HStack from '../../../../components/stack/HStack';
 import { Font } from '../../../../constants/Font';
 import { SCREEN_WIDTH } from '../../../../constants/Screen';
+import { useApplication } from '../../../../hooks/use-application';
 import GlobalStyles from '../../../../styles/GlobalStyles';
 
 interface Props {
@@ -13,13 +14,11 @@ interface Props {
   color: string;
 }
 export default function SunnahRuleTypeItem({ index, summary, count, color }: Props) {
+  const { arabic } = useApplication();
+  const fade = arabic ? FadeInRight : FadeInLeft;
+
   return (
-    <Animated.View
-      entering={FadeIn.delay(100 * index)
-        .duration(100)
-        .springify()}
-      style={{ paddingStart: 7 }}
-    >
+    <Animated.View entering={fade.delay(100 * index).duration(150 * index)} style={{ paddingStart: 7 }}>
       <HStack spacing={5} style={{ ...GlobalStyles.center, paddingHorizontal: 5 }}>
         {count > 1 && (
           <Avatar.Text

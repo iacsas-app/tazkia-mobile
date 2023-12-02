@@ -1,34 +1,42 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import { StyleSheet, View } from 'react-native';
-import { TouchableRipple } from 'react-native-paper';
+import { Button, Divider, TouchableRipple } from 'react-native-paper';
 import Text from '../../../../../components/Text';
 
 import { useEffect, useState } from 'react';
-import Animated, { SlideInLeft } from 'react-native-reanimated';
+import Animated, { FadeInDown, SlideInLeft } from 'react-native-reanimated';
 import Restart from '../../../../../components/progress/Restart';
 import Start from '../../../../../components/progress/Start';
 import { ProgressStatus } from '../../../../../components/progress/progressStatus/ProgressStatus';
 import HStack from '../../../../../components/stack/HStack';
+import VStack from '../../../../../components/stack/VStack';
+import { Color } from '../../../../../constants/Color';
 import { Font } from '../../../../../constants/Font';
 import { SCREEN_WIDTH } from '../../../../../constants/Screen';
 import ProgressLine from '../../../../../domains/common/ProgressLine';
 import BodyPart, { BodyPartType, PurificationStage } from '../../../../../domains/purification/BodyPart';
+import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';
 import useProgress from '../../../../../hooks/use-progress';
 import usePurification from '../../../../../hooks/use-purification';
+import { TKeys } from '../../../../../locales/constants';
 import { PURIFICATION_MAX_DAYS } from '../../../../../services/Helpers';
+import GlobalStyles from '../../../../../styles/GlobalStyles';
+import StatusAndEvaluation from '../../../common/StatusAndEvaluation';
 
 type Props = {
   part: BodyPartType;
   stage: PurificationStage;
   opened: PurificationStage | undefined;
   onStart(stage: PurificationStage): void;
-  onTouch(stage: PurificationStage, hasProgress: boolean): void;
+  onOpen(stage: PurificationStage): void;
+  onShowRules(stage: PurificationStage): void;
   onRestart(stage: PurificationStage): void;
-  onEvaluate(stage: PurificationStage, errors: number[]): void;
+  onEvaluate(stage: PurificationStage): void;
 };
 export default function Stage({ part, stage, ...props }: Props) {
   const { formatMessage } = useMessage();
+  const { locale } = useApplication();
   const [open, setOpen] = useState(false);
   const { findBodyPart } = usePurification();
   const current: BodyPart | undefined = findBodyPart(part);
@@ -36,6 +44,16 @@ export default function Stage({ part, stage, ...props }: Props) {
   const hasProgress = progress !== undefined;
   const progressProps = useProgress(progress, PURIFICATION_MAX_DAYS);
   const cleaning = stage === 'cleaning';
+  const align = progressProps.completed ? 'center' : 'space-between';
+  const iconName = cleaning ? 'allergy' : 'lightbulb-on';
+  const iconColor = cleaning ? '#4b0082' : '#32cd32';
+  const bgColor = open
+    ? Color.active
+    : hasProgress
+    ? progressProps.completed
+      ? Color.completed
+      : Color.progress
+    : Color.noProgress;
 
   function findStage(): ProgressLine[] | undefined {
     if (!current) {
@@ -53,11 +71,19 @@ export default function Stage({ part, stage, ...props }: Props) {
   }
 
   function handleTouch() {
-    props.onTouch(stage, hasProgress);
+    if (hasProgress) {
+      props.onOpen(stage);
+    } else {
+      props.onShowRules(stage);
+    }
   }
 
-  function handleEvaluate(errors: number[]) {
-    props.onEvaluate(stage, errors);
+  function handleEvaluateShow() {
+    props.onEvaluate(stage);
+  }
+
+  function formatAttempt(line: ProgressLine) {
+    return formatMessage(TKeys.PROGRESS_FAILED_ATTEMPTS_RULE_SIMPLE, { day: line.day });
   }
 
   useEffect(() => {
@@ -68,22 +94,20 @@ export default function Stage({ part, stage, ...props }: Props) {
     <TouchableRipple
       style={{
         ...styles.container,
-        backgroundColor: hasProgress ? (progressProps.completed ? '#8de0b6' : '#dbf6e8') : '#d8f0ff',
+        elevation: open ? 0.5 : 5,
+        backgroundColor: bgColor,
       }}
+      disabled={open}
       onPress={handleTouch}
     >
       <View>
         <HStack style={styles.header}>
-          <HStack spacing={10}>
-            <Icon
-              name={cleaning ? 'account-tie-hat' : 'lightbulb-on'}
-              size={22}
-              color={cleaning ? '#4b0082' : '#32cd32'}
-            />
+          <HStack spacing={10} style={GlobalStyles.center}>
+            <Icon name={iconName} size={22} color={hasProgress ? 'seagreen' : '#4169e1'} />
             <Text
               variant="bodyLarge"
-              style={{ ...styles.levelTitle, fontSize: Font.size(open ? 18 : 16) }}
-              color={hasProgress ? 'seagreen' : '#4169e1'}
+              style={{ ...styles.stageTitle, fontSize: Font.size((open ? 18 : 16) - (locale === 'in' ? 3 : 0)) }}
+              color={open ? '#2e8b57' : hasProgress ? 'seagreen' : '#4169e1'}
             >
               {formatMessage(`purification.bodypart.${stage}`)}
             </Text>
@@ -92,8 +116,8 @@ export default function Stage({ part, stage, ...props }: Props) {
             {!hasProgress ? (
               <Start onStart={handleStart} />
             ) : (
-              <HStack>
-                {!progressProps.completed && <Restart onClick={handleRestart} />}
+              <HStack style={GlobalStyles.center}>
+                {progressProps.completed && <Restart onClick={handleRestart} />}
                 <ProgressStatus
                   last={progressProps.lastDay}
                   count={progressProps.countProgress}
@@ -104,7 +128,33 @@ export default function Stage({ part, stage, ...props }: Props) {
             )}
           </Animated.View>
         </HStack>
-        {open && <Text>Open</Text>}
+        {open && (
+          <Animated.View entering={FadeInDown.springify()} style={styles.footer}>
+            <VStack style={GlobalStyles.center}>
+              <Button
+                mode="elevated"
+                icon={() => <Icon name={iconName} size={20} color={iconColor} />}
+                uppercase={false}
+                textColor={iconColor}
+                labelStyle={styles.systemLabel}
+                style={styles.system}
+                compact={true}
+                onPress={() => props.onShowRules(stage)}
+              >
+                {formatMessage(`${stage}.bodypart.disciplinary-system`)}
+              </Button>
+              <Divider style={styles.divider} />
+              <StatusAndEvaluation
+                {...progressProps}
+                progress={progress}
+                align={align}
+                maxDays={PURIFICATION_MAX_DAYS}
+                formatAttempt={formatAttempt}
+                onEvaluate={handleEvaluateShow}
+              />
+            </VStack>
+          </Animated.View>
+        )}
       </View>
     </TouchableRipple>
   );
@@ -112,11 +162,10 @@ export default function Stage({ part, stage, ...props }: Props) {
 
 const styles = StyleSheet.create({
   container: {
-    width: SCREEN_WIDTH - 50,
-    paddingVertical: 10,
+    width: SCREEN_WIDTH - 30,
+    paddingVertical: 5,
     paddingHorizontal: 10,
-    borderRadius: 25,
-    elevation: 5,
+    borderRadius: 30,
   },
   header: {
     alignItems: 'center',
@@ -124,6 +173,9 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     paddingVertical: 5,
   },
-  levelTitle: { fontWeight: '900', color: '#4169e1' },
-  startButtonLabel: { fontWeight: '900', color: '#4169e1', marginTop: 3 },
+  stageTitle: { fontWeight: '900', color: '#4169e1', width: SCREEN_WIDTH - 200 },
+  footer: { paddingVertical: 8 },
+  divider: { backgroundColor: '#2e8b57', width: '100%', marginTop: 25 },
+  systemLabel: { fontSize: 15, fontWeight: '700' },
+  system: { paddingHorizontal: 10, backgroundColor: '#fffafa' },
 });

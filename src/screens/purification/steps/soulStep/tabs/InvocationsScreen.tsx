@@ -3,6 +3,8 @@ import { List } from 'react-native-paper';
 import Text from '../../../../../components/Text';
 import ScrollViewLayout from '../../../../../components/layout/ScrollViewLayout';
 import VStack from '../../../../../components/stack/VStack';
+import { Font } from '../../../../../constants/Font';
+import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';
 import { TKeys } from '../../../../../locales/constants';
 import InvocationAccordion from '../../../common/InvocationAccordion';
@@ -10,6 +12,7 @@ import { purificationStyles } from '../../../common/Style';
 
 export default function InvocationsScreen() {
   const { formatMessage } = useMessage();
+  const { arabic } = useApplication();
 
   return (
     <ScrollViewLayout>
@@ -38,7 +41,7 @@ export default function InvocationsScreen() {
           </Text>
         </InvocationAccordion>
       </List.AccordionGroup>
-      <Text variant="bodyMedium" style={styles.importance}>
+      <Text variant="bodyMedium" style={{ ...styles.importance, fontSize: Font.size(arabic ? 14 : 13) }}>
         {formatMessage(TKeys.INVOCATION_STEP_3_IMPORTANCE)}
       </Text>
     </ScrollViewLayout>
@@ -46,5 +49,5 @@ export default function InvocationsScreen() {
 }
 
 const styles = StyleSheet.create({
-  importance: { textAlign: 'justify', fontSize: 16, fontWeight: '500', marginTop: 20 },
+  importance: { textAlign: 'justify', fontWeight: '500', marginTop: 20 },
 });

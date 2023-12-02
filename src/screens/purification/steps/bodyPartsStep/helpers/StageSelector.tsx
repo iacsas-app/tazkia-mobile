@@ -5,11 +5,12 @@ import ConfirmRestartDialog, { ConfirmRestartDialogRef } from '../../../../../co
 import VStack from '../../../../../components/stack/VStack';
 import { SCREEN_WIDTH } from '../../../../../constants/Screen';
 import { BodyPartType, PurificationStage } from '../../../../../domains/purification/BodyPart';
+import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
 import { findPartProps } from '../common/Helper';
-import RulesDialog, { RulesDialogRef } from './RulesDialog';
 import Stage from './Stage';
+import RulesDialog, { RulesDialogRef } from './rules/RulesDialog';
 
 type Props = {
   part: BodyPartType | undefined;
@@ -21,29 +22,45 @@ export default function StageSelector({ part, ...props }: Props) {
   if (!part) {
     return <></>;
   }
-  const rulesRef = useRef<RulesDialogRef>(null);
+  const { arabic } = useApplication();
+  const stageRef = useRef<PurificationStage>();
+  const rulesDialogRef = useRef<RulesDialogRef>(null);
   const restartRef = useRef<ConfirmRestartDialogRef>(null);
   const { formatMessage } = useMessage();
   const [opened, setOpened] = useState<PurificationStage>();
   const source = findPartProps(part);
 
-  function handleTouch(stage: PurificationStage, hasProgress: boolean) {
-    if (hasProgress) {
-      setOpened(stage);
-    } else if (part) {
-      rulesRef.current?.open(part, stage);
+  function handleOpen(stage: PurificationStage) {
+    setOpened(stage);
+  }
+
+  function handleShowRules(stage: PurificationStage) {
+    if (part) {
+      rulesDialogRef.current?.show(part, stage);
     }
   }
 
-  function handleRestart() {
+  function handleShowEvaluate(stage: PurificationStage) {
+    if (part) {
+      rulesDialogRef.current?.evaluate(part, stage);
+    }
+  }
+
+  function handleRestart(stage: PurificationStage) {
+    stageRef.current = stage;
     restartRef.current?.open();
   }
 
-  function handleConfirm(confirm: boolean) {
-    if (confirm && opened) {
-      props.onRestart(opened);
+  function handleEvaluate(errors: number[]) {
+    if (opened) {
+      props.onEvaluate(opened, errors);
     }
-    console.log(confirm, opened);
+  }
+
+  function handleConfirm(confirm: boolean) {
+    if (confirm && stageRef.current) {
+      props.onRestart(stageRef.current);
+    }
     restartRef.current?.close();
   }
 
@@ -74,13 +91,14 @@ export default function StageSelector({ part, ...props }: Props) {
             stage={stage as any}
             opened={opened}
             onStart={props.onStart}
-            onTouch={handleTouch}
+            onOpen={handleOpen}
+            onShowRules={handleShowRules}
             onRestart={handleRestart}
-            onEvaluate={props.onEvaluate}
+            onEvaluate={handleShowEvaluate}
           />
         ))}
       </VStack>
-      <RulesDialog ref={rulesRef} />
+      <RulesDialog ref={rulesDialogRef} onEvaluate={handleEvaluate} />
       <ConfirmRestartDialog ref={restartRef} onConfirm={handleConfirm} />
     </Animated.View>
   );

@@ -6,7 +6,6 @@ import { Font } from '../../constants/Font';
 import { useApplication } from '../../hooks/use-application';
 import { useMessage } from '../../hooks/use-message';
 import { TKeys } from '../../locales/constants';
-import Text from '../Text';
 
 type Props = {
   onStart(): void;
@@ -23,12 +22,10 @@ export default function Start(props: Props) {
         icon={() => <Icon name="clock-plus" size={15} color="#4169e1" />}
         uppercase={false}
         style={{ height: 30, paddingEnd: 5 }}
-        labelStyle={{ ...styles.startButtonLabel, fontSize: Font.size(arabic ? 12 : 11) }}
+        labelStyle={{ ...styles.startButtonLabel, fontSize: Font.size(arabic ? 13 : 11) }}
         onTouchStart={props.onStart}
       >
-        <Text variant="titleMedium" color="#4169e1" style={{ fontWeight: '900' }}>
-          {formatMessage(TKeys.BUTTON_START)}
-        </Text>
+        {formatMessage(TKeys.BUTTON_START)}
       </Button>
     </Animated.View>
   );

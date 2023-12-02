@@ -8,10 +8,10 @@ export default function Restart(props: Props) {
     <IconButton
       icon="cog-counterclockwise"
       mode="outlined"
-      iconColor="#d35858"
-      containerColor="#e9bcbc70"
-      style={{ borderColor: '#e9bcbc70' }}
-      size={25}
+      iconColor="#48d1cc"
+      containerColor="#f5fffa"
+      style={{ borderColor: '#f5fffa', padding: 0, marginVertical: 0 }}
+      size={30}
       onPress={props.onClick}
     />
   );

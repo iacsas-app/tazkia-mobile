@@ -76,16 +76,19 @@ const purificationModel: PurificationModel = {
       return;
     }
     const [part, stage] = payload;
-    state.item.bodyParts = state.item.bodyParts.map((item) => {
-      if (item.name === part) {
-        return {
-          ...item,
-          [stage]: undefined,
-        };
-      }
-      return item;
-    });
+    state.item.bodyParts = state.item.bodyParts
+      .map((item) => {
+        if (item.name === part) {
+          return {
+            ...item,
+            [stage]: undefined,
+          };
+        }
+        return item;
+      })
+      .filter((item) => item.cleaning || item.enlightenment);
   }),
+
   mindEvaluation: action((state, payload: [MindLevel, boolean]) => {
     const [level, checked] = payload;
     if (!state.item) {
