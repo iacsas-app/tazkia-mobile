@@ -22,6 +22,12 @@ const GlobalStyles = StyleSheet.create({
     fontWeight: '900',
     alignSelf: 'center',
   },
+  spaceBetween: {
+    alignContent: 'space-between',
+    alignItems: 'stretch',
+    alignSelf: 'stretch',
+    justifyContent: 'space-between',
+  },
 });
 
 export default GlobalStyles;

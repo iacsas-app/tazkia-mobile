@@ -1,23 +1,13 @@
-import { Avatar } from '@react-native-material/core';
-
 import React, { useMemo } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { Avatar, TouchableRipple } from 'react-native-paper';
 import Text from '../../../components/Text';
+import VStack from '../../../components/stack/VStack';
 import { SCREEN_WIDTH } from '../../../constants/Screen';
 import { useMessage } from '../../../hooks/use-message';
 import { TKeys } from '../../../locales/constants';
 import GlobalStyles from '../../../styles/GlobalStyles';
 import { ImmunizationPeriod } from './data';
-
-const gap = 10;
-
-export const PRIMARY_COLOR = '#001A72';
-export const ACCENT_COLOR = '#782AEB';
-export const BACKGROUND_COLOR = '#F8F9FF';
-export const BORDER_COLOR = '#C1C6E5';
-export const BACKDROP_COLOR = 'rgba(0, 0, 0, 0.3)';
-export const HEIGHT = 200;
-export const OVERDRAG = 10;
 
 interface Props {
   onSelect(period: ImmunizationPeriod): void;
@@ -33,61 +23,41 @@ export default function PeriodChooser({ onSelect }: Props) {
   );
 
   return (
-    <View style={styles.container}>
+    <VStack style={styles.container} spacing={12}>
       {periods.map(({ name, image }) => (
-        <Pressable
-          key={name}
-          style={[
-            {
-              backgroundColor: 'powderblue',
-              ...GlobalStyles.circle,
-              elevation: 10,
-              width: SCREEN_WIDTH - 120,
-              alignItems: 'center',
-            },
-          ]}
-          onPress={() => onSelect(name as ImmunizationPeriod)}
-        >
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              alignContent: 'center',
-              alignSelf: 'center',
-              paddingHorizontal: 5,
-              paddingVertical: 10,
-              gap: 25,
-            }}
-          >
-            <Avatar image={image} size={50} style={{ right: 0, left: 0 }} />
-            <Text variant="bodyLarge" style={{ fontWeight: '800', fontSize: 15 }}>
+        <TouchableRipple key={name} style={styles.pressable} onPress={() => onSelect(name as ImmunizationPeriod)}>
+          <View style={styles.titleContainer}>
+            <Avatar.Image source={image} size={60} style={styles.image} />
+            <Text variant="bodyLarge" style={styles.title}>
               {formatMessage(TKeys.INVOCATIONS_IMMUNIZATION_TITLE, { period: formatMessage(name) })}
             </Text>
           </View>
-        </Pressable>
+        </TouchableRipple>
       ))}
-    </View>
+    </VStack>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'column',
-    gap: gap,
-    flex: 1,
     ...GlobalStyles.center,
     paddingTop: 10,
     paddingBottom: 30,
   },
-  label: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 16,
-    color: PRIMARY_COLOR,
+  pressable: {
+    ...GlobalStyles.circle,
+    backgroundColor: 'powderblue',
+    width: SCREEN_WIDTH - 80,
+    elevation: 8,
+    alignItems: 'center',
   },
-  swatch: {
-    height: (SCREEN_WIDTH - 10 * gap) / 7,
-    aspectRatio: 1,
-    borderRadius: 4,
+  titleContainer: {
+    alignItems: 'center',
+    alignContent: 'stretch',
+    justifyContent: 'center',
+    alignSelf: 'stretch',
+    height: 70,
   },
+  title: { fontWeight: '900', fontSize: 18, marginLeft: 25 },
+  image: { position: 'absolute', left: 6 },
 });

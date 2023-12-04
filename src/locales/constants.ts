@@ -405,6 +405,7 @@ export enum TKeys {
   INVOCATION_PURIFICATION_TITLE = 'invocation.purification.title',
   INVOCATION_IMMUNIZATION_TITLE = 'invocation.immunization.title',
   INVOCATION_JEWELS_TITLE = 'invocation.jewels.title',
+  INVOCATION_OVERFLOW_TITLE = 'invocation.overflow.title',
 
   INVOCATION_NIVEAU_TITLE = 'invocation.niveau.title',
   INVOCATION_NIVEAU_1 = 'invocation.niveau.1',
@@ -526,6 +527,8 @@ export enum TKeys {
   BUTTON_NO = 'button.no',
   BUTTON_CLOSE = 'button.close',
   BUTTON_START = 'button.start',
+  BUTTON_READ_START = 'button.read.start',
+  BUTTON_READ_STOP = 'button.read.stop',
   BUTTON_RESTART = 'button.restart',
   BUTTON_SAVE = 'button.save',
   BUTTON_AGREE = 'button.agree',

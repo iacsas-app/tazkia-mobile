@@ -1,10 +1,11 @@
+import { memo } from 'react';
 import { Font } from '../constants/Font';
 import { useApplication } from '../hooks/use-application';
 import { useMessage } from '../hooks/use-message';
 import { TKeys } from '../locales/constants';
 import Text from './Text';
 
-export default function Basmalah() {
+function Basmalah() {
   const { formatMessage } = useMessage();
   const { arabic } = useApplication();
   return (
@@ -21,3 +22,5 @@ export default function Basmalah() {
     </Text>
   );
 }
+
+export default memo(Basmalah);

@@ -5,7 +5,6 @@ import ConfirmRestartDialog, { ConfirmRestartDialogRef } from '../../../../../co
 import VStack from '../../../../../components/stack/VStack';
 import { SCREEN_WIDTH } from '../../../../../constants/Screen';
 import { BodyPartType, PurificationStage } from '../../../../../domains/purification/BodyPart';
-import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
 import { findPartProps } from '../common/Helper';
@@ -19,10 +18,6 @@ type Props = {
   onEvaluate(stage: PurificationStage, errors: number[]): void;
 };
 export default function StageSelector({ part, ...props }: Props) {
-  if (!part) {
-    return <></>;
-  }
-  const { arabic } = useApplication();
   const stageRef = useRef<PurificationStage>();
   const rulesDialogRef = useRef<RulesDialogRef>(null);
   const restartRef = useRef<ConfirmRestartDialogRef>(null);
@@ -62,6 +57,10 @@ export default function StageSelector({ part, ...props }: Props) {
       props.onRestart(stageRef.current);
     }
     restartRef.current?.close();
+  }
+
+  if (!part) {
+    return <></>;
   }
 
   return (
