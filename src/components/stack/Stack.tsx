@@ -1,13 +1,13 @@
 import { ReactNode } from 'react';
-import { StyleProp, Touchable, View } from 'react-native';
+import { StyleProp, View, ViewProps, ViewStyle } from 'react-native';
 
-export interface StackProps extends Touchable {
+export type StackProps = ViewProps & {
   children: ReactNode;
   spacing?: number;
   flexDirection?: 'column' | 'row';
   center?: boolean;
-  style?: StyleProp<any>;
-}
+  style?: StyleProp<ViewStyle> | undefined;
+};
 export default function Stack({ style, flexDirection, spacing, center, children, ...props }: StackProps) {
   let styles: StyleProp<any> = [{ flexDirection, gap: spacing }];
   if (center) {

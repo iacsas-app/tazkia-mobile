@@ -1,8 +1,8 @@
 import Icon from '@expo/vector-icons/Ionicons';
-import { HStack } from '@react-native-material/core';
 import { Dispatch, PropsWithChildren, ReactElement, createContext, useContext, useReducer } from 'react';
 import { Snackbar } from 'react-native-paper';
 import Text from '../components/Text';
+import HStack from '../components/stack/HStack';
 
 export type SnackbarVariant = 'info' | 'success' | 'warning' | 'error';
 

@@ -1,7 +1,7 @@
-import { Box, VStack } from '@react-native-material/core';
-import { ImageSourcePropType, StyleSheet } from 'react-native';
+import { ImageSourcePropType, StyleSheet, View } from 'react-native';
 import ImageLayout from '../../../components/ImageLayout';
 import Text from '../../../components/Text';
+import VStack from '../../../components/stack/VStack';
 import { Font } from '../../../constants/Font';
 import { useApplication } from '../../../hooks/use-application';
 import { useMessage } from '../../../hooks/use-message';
@@ -21,18 +21,18 @@ export default function PresentationLayout(props: Props) {
     <BasePresentationLayout>
       <VStack spacing={20}>
         {props.source && (
-          <Box>
+          <View>
             <ImageLayout source={props.source} />
-          </Box>
+          </View>
         )}
-        <Box>
+        <View>
           <Text variant="bodyLarge" style={{ fontSize: Font.size(arabic ? 18 : 16), fontWeight: '700' }}>
             {formatMessage(props.title)}
           </Text>
           <Text variant="bodyMedium" style={{ ...styles.description, fontSize: Font.size(arabic ? 15 : 14) }}>
             {formatMessage(props.description)}
           </Text>
-        </Box>
+        </View>
       </VStack>
     </BasePresentationLayout>
   );

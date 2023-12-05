@@ -1,12 +1,12 @@
 import { createStackNavigator } from '@react-navigation/stack';
-import { Font } from '../constants/Font';
-import { useMessage } from '../hooks/use-message';
-import { TKeys } from '../locales/constants';
-import PurificationScreen from '../screens/purification/PurificationScreen';
-import BodyPartsScreen from '../screens/purification/steps/bodyPartsStep';
-import MindScreen from '../screens/purification/steps/mindStep';
-import SoulScreen from '../screens/purification/steps/soulStep';
-import { PurificationParamList } from './types';
+import { Font } from '../../constants/Font';
+import { useMessage } from '../../hooks/use-message';
+import { TKeys } from '../../locales/constants';
+import PurificationScreen from '../../screens/purification/PurificationScreen';
+import BodyPartsScreen from '../../screens/purification/steps/bodyPartsStep';
+import MindScreen from '../../screens/purification/steps/mindStep';
+import SoulScreen from '../../screens/purification/steps/soulStep';
+import { PurificationParamList } from '../types';
 
 export default function PurificationStack() {
   const { formatMessage } = useMessage();
@@ -14,13 +14,13 @@ export default function PurificationStack() {
 
   return (
     <Stack.Navigator
-      initialRouteName="Purification"
+      initialRouteName="Home"
       screenOptions={{
         headerMode: 'float',
         headerTitleStyle: { fontSize: Font.size(14) },
       }}
     >
-      <Stack.Screen name="Purification" component={PurificationScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="Home" component={PurificationScreen} options={{ headerShown: false }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen
           name="BodyParts"

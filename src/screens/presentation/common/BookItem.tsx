@@ -1,8 +1,9 @@
-import { Box, HStack, VStack } from '@react-native-material/core';
 import React from 'react';
-import { Image, StyleSheet, ViewToken } from 'react-native';
+import { Image, StyleSheet, View, ViewToken } from 'react-native';
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import Text from '../../../components/Text';
+import HStack from '../../../components/stack/HStack';
+import VStack from '../../../components/stack/VStack';
 import { SCREEN_WIDTH } from '../../../constants/Screen';
 import { Book } from '../../../domains/presentation/Book';
 import GlobalStyles from '../../../styles/GlobalStyles';
@@ -37,12 +38,12 @@ export const FlatBook: React.FC<Props> = React.memo(({ book, viewableItems }) =>
           {book.title}
         </Text>
         <HStack spacing={30}>
-          <Box style={{ width: box1With }}>
+          <View style={{ width: box1With }}>
             <VStack style={GlobalStyles.center}>
               <Image source={book.image} style={styles.image} />
             </VStack>
-          </Box>
-          <Box style={{ width: SCREEN_WIDTH - box1With - 100 }}>
+          </View>
+          <View style={{ width: SCREEN_WIDTH - box1With - 100 }}>
             <VStack>
               <Text variant="bodyLarge" style={{ ...styles.summary, fontSize: 14 }}>
                 {book.summary}
@@ -51,7 +52,7 @@ export const FlatBook: React.FC<Props> = React.memo(({ book, viewableItems }) =>
                 {book.link}
               </Text>
             </VStack>
-          </Box>
+          </View>
         </HStack>
       </VStack>
     </Animated.View>

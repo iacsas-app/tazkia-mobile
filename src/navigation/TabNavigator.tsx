@@ -7,9 +7,9 @@ import { Font } from '../constants/Font';
 import { useMessage } from '../hooks/use-message';
 import usePurification from '../hooks/use-purification';
 import { TKeys } from '../locales/constants';
-import InvocationsStack from './InvocationsStack';
-import PresentationStack from './PresentationStack';
-import PurificationStack from './PurificationStack';
+import InvocationsStack from './stacks/InvocationsStack';
+import PresentationStack from './stacks/PresentationStack';
+import PurificationStack from './stacks/PurificationStack';
 import { TabParamList } from './types';
 
 const Tab = createBottomTabNavigator<TabParamList>();
@@ -20,10 +20,7 @@ const TabNavigator = () => {
   const menuSize = Font.size(12);
 
   return (
-    <Tab.Navigator
-      initialRouteName={hasBodyPartsProgress || hasMindProgress || hasSoulProgress ? 'PurificationTab' : 'HomeTab'}
-      screenOptions={{ tabBarAllowFontScaling: true }}
-    >
+    <Tab.Navigator initialRouteName={'HomeTab'}>
       <Tab.Screen
         name="HomeTab"
         component={PresentationStack}

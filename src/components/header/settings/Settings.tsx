@@ -1,7 +1,8 @@
-import { Divider, VStack } from '@react-native-material/core';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { Divider } from 'react-native-paper';
 import Animated, { FadeInUp } from 'react-native-reanimated';
 import { useApplication } from '../../../hooks/use-application';
+import VStack from '../../stack/VStack';
 import { ResetSetting } from './ResetSetting';
 import LanguageSetting from './language/LanguageSetting';
 

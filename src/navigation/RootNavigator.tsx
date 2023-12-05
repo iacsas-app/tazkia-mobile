@@ -2,7 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import React, { useCallback, useRef } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import SettingsDialog, { SettingsDialogRef } from '../components/dialogs/SettingsDialog';
-import DrawerNavigator from './DrawerNavigator';
+import TabNavigator from './TabNavigator';
 
 const RootNavigator = () => {
   const ref = useRef<SettingsDialogRef>(null);
@@ -11,7 +11,7 @@ const RootNavigator = () => {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <DrawerNavigator onOpenSettingDialog={openSettingDialog} />
+        <TabNavigator />
       </NavigationContainer>
       <SettingsDialog ref={ref} />
     </SafeAreaProvider>

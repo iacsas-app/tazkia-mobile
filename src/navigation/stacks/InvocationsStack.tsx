@@ -2,13 +2,13 @@ import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 
 import { useWindowDimensions } from 'react-native';
-import { useMessage } from '../hooks/use-message';
-import { TKeys } from '../locales/constants';
-import InvocationsScreen from '../screens/invocations/InvocationsScreen';
-import ImmunizationInvocationsScreen from '../screens/invocations/immunization';
-import { ImmunizationPeriod } from '../screens/invocations/immunization/data';
-import JewelsInvocationsScreen from '../screens/invocations/jewels';
-import { InvocationsParamList } from './types';
+import { useMessage } from '../../hooks/use-message';
+import { TKeys } from '../../locales/constants';
+import InvocationsScreen from '../../screens/invocations/InvocationsScreen';
+import ImmunizationInvocationsScreen from '../../screens/invocations/immunization';
+import { ImmunizationPeriod } from '../../screens/invocations/immunization/data';
+import JewelsInvocationsScreen from '../../screens/invocations/jewels';
+import { InvocationsParamList } from '../types';
 
 export default function InvocationsStack() {
   const { formatMessage } = useMessage();

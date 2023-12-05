@@ -1,9 +1,9 @@
-import { VStack } from '@react-native-material/core';
 import React, { useRef, useState } from 'react';
 import { SafeAreaView, ScrollView } from 'react-native';
 import BottomSheet, { BottomSheetRef } from '../../../../../components/bottomSheet/BottomSheet';
 import ProgressView from '../../../../../components/progress/ProgressView';
 import PressableItem from '../../../../../components/progressItem/PressableItem';
+import VStack from '../../../../../components/stack/VStack';
 import { MindLevel } from '../../../../../domains/purification/Mind';
 import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';

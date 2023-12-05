@@ -1,8 +1,8 @@
-import { VStack } from '@react-native-material/core';
 import { StyleSheet } from 'react-native';
 import { useMessage } from '../../hooks/use-message';
 import { TKeys } from '../../locales/constants';
 import Text from '../Text';
+import VStack from '../stack/VStack';
 
 export default function Header() {
   const { formatMessage } = useMessage();

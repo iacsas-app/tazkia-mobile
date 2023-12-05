@@ -1,7 +1,7 @@
-import { VStack } from '@react-native-material/core';
 import { List } from 'react-native-paper';
 import Text from '../../../../../components/Text';
 import ScrollViewLayout from '../../../../../components/layout/ScrollViewLayout';
+import VStack from '../../../../../components/stack/VStack';
 import { useMessage } from '../../../../../hooks/use-message';
 import { TKeys } from '../../../../../locales/constants';
 import InvocationAccordion from '../../../common/InvocationAccordion';

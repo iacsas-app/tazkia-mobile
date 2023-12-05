@@ -1,5 +1,4 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
-import { VStack } from '@react-native-material/core';
 import { memo, useState } from 'react';
 import { StyleSheet, ViewToken } from 'react-native';
 import { Avatar } from 'react-native-paper';
@@ -11,6 +10,7 @@ import { TKeys } from '../locales/constants';
 import GlobalStyles from '../styles/GlobalStyles';
 import Text from './Text';
 import HStack from './stack/HStack';
+import VStack from './stack/VStack';
 
 interface Props {
   index: number;

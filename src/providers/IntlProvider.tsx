@@ -2,7 +2,7 @@ import { useStoreRehydrated } from 'easy-peasy';
 import { PropsWithChildren, useEffect } from 'react';
 import { RawIntlProvider, createIntl, createIntlCache } from 'react-intl';
 import { ActivityIndicator, MD2Colors } from 'react-native-paper';
-import CenteredBox from '../components/CenteredBox';
+import CenteredView from '../components/CenteredView';
 import { useApplication } from '../hooks/use-application';
 import { LOCALE_KEY } from '../locales/types';
 import FirstVisitScreen from '../screens/FirstVisitScreen';
@@ -33,9 +33,9 @@ export default function IntlProvider({ children }: PropsWithChildren<unknown>) {
 
   if (firstVisitDate === undefined || !locale) {
     return (
-      <CenteredBox>
+      <CenteredView>
         <ActivityIndicator animating={true} size={100} color={MD2Colors.green400} />
-      </CenteredBox>
+      </CenteredView>
     );
   }
 
