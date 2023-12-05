@@ -1,7 +1,8 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useMemo, useRef } from 'react';
-import { StyleSheet } from 'react-native';
-import Animated from 'react-native-reanimated';
+import { StyleSheet, View } from 'react-native';
+import { Avatar } from 'react-native-paper';
+import Animated, { FadeInUp } from 'react-native-reanimated';
 import Text from '../../components/Text';
 import BottomSheet, { BottomSheetRef } from '../../components/bottomSheet/BottomSheet';
 import VStack from '../../components/stack/VStack';
@@ -23,14 +24,21 @@ export default function InvocationsScreen() {
       {
         route: 'Immunization',
         name: TKeys.INVOCATION_IMMUNIZATION_TITLE,
+        image: require('./../../../assets/img/presentation/books/altahsin.png'),
       },
       {
         route: 'Jewels',
         name: TKeys.INVOCATION_JEWELS_TITLE,
+        image: require('./../../../assets/img/presentation/books/jawaher.png'),
       },
       {
         route: 'Overflow',
         name: TKeys.INVOCATION_OVERFLOW_TITLE,
+        image: require('./../../../assets/img/presentation/books/alfayd_alrahmani.png'),
+      },
+      {
+        route: 'Ahzabs',
+        name: TKeys.INVOCATION_AHZABS_TITLE,
       },
     ],
     [],
@@ -53,14 +61,18 @@ export default function InvocationsScreen() {
     <BottomSheet ref={ref} content={<PeriodChooser onSelect={handleSelect} />}>
       <VStack spacing={15} style={styles.container}>
         {parts.map((item, index: number) => (
-          <Animated.View key={index} style={styles.part} onTouchStart={() => handlePress(item.route)}>
-            <Text
-              variant="bodyMedium"
-              style={{ fontSize: Font.size(18), fontWeight: '800', textAlign: 'center' }}
-              color="black"
-            >
-              {formatMessage(item.name)}
-            </Text>
+          <Animated.View
+            key={index}
+            entering={FadeInUp.delay(200 * (index * 2))}
+            style={styles.part}
+            onTouchStart={() => handlePress(item.route)}
+          >
+            {item.image && <Avatar.Image source={item.image} size={80} style={styles.image} />}
+            <View style={styles.summary}>
+              <Text variant="bodyMedium" style={styles.summaryLabel} color="black">
+                {formatMessage(item.name)}
+              </Text>
+            </View>
           </Animated.View>
         ))}
       </VStack>
@@ -77,7 +89,7 @@ const styles = StyleSheet.create({
   },
   part: {
     backgroundColor: '#cde7f7',
-    width: SCREEN_WIDTH - 40,
+    width: SCREEN_WIDTH - 20,
     flexBasis: 90,
     elevation: 6,
     borderRadius: 45,
@@ -86,5 +98,17 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     textAlign: 'justify',
     alignItems: 'center',
+    flexDirection: 'row',
+  },
+  image: { backgroundColor: 'whitesmoke', position: 'absolute', left: 5 },
+  summary: {
+    maxWidth: SCREEN_WIDTH - 120,
+    flexGrow: 1,
+    left: 45,
+  },
+  summaryLabel: {
+    fontSize: Font.size(18),
+    fontWeight: '800',
+    textAlign: 'auto',
   },
 });

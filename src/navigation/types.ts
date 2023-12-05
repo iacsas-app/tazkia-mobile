@@ -1,9 +1,8 @@
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { CompositeNavigationProp, RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import BodyPart, { BodyPartType } from '../domains/purification/BodyPart';
+import BodyPart, { BodyPartType, PurificationStage } from '../domains/purification/BodyPart';
 import { ImmunizationPeriod } from '../screens/invocations/immunization/data';
-import { PurificationStage } from '../screens/purification/steps/bodyPartsStep/tabs/HomeScreen';
 
 export type TabParamList = {
   HomeTab: undefined;

@@ -523,6 +523,7 @@ export const arabic: Translations = {
   [TKeys.INVOCATION_IMMUNIZATION_TITLE]: 'الأذكار النورانية المحمدية\nالتحصين الكامل من القرآن والسنة النبوية',
   [TKeys.INVOCATION_JEWELS_TITLE]: 'جواهر الأذكار السنية لكشف الأستار المخفية',
   [TKeys.INVOCATION_OVERFLOW_TITLE]: 'الفيض الرحماني والإمداد النوراني\nفي الصلاة على النبي العدناني',
+  [TKeys.INVOCATION_AHZABS_TITLE]: 'أَحْزَابُ السِّرِّ الفَيَّاضِ فِي تَحْقِيقِ الأَغْرَاضِ',
 
   [TKeys.INVOCATION_NIVEAU_TITLE]: 'مقامات ذكر السلوك',
   [TKeys.INVOCATION_NIVEAU_1]:
@@ -698,6 +699,7 @@ export const arabic: Translations = {
   [TKeys.MENU_HOME]: 'إستقبال',
   [TKeys.MENU_PRESENTATION]: 'تقديم',
   [TKeys.MENU_PURIFICATION]: 'تزكية',
+  [TKeys.MENU_METHODOLOGY]: 'منهجية',
   [TKeys.MENU_SUNNAHS]: 'سنن',
   [TKeys.MENU_INVOCATIONS]: 'أذكار',
   [TKeys.MENU_INVOCATION]: 'ذكر',

@@ -406,6 +406,7 @@ export enum TKeys {
   INVOCATION_IMMUNIZATION_TITLE = 'invocation.immunization.title',
   INVOCATION_JEWELS_TITLE = 'invocation.jewels.title',
   INVOCATION_OVERFLOW_TITLE = 'invocation.overflow.title',
+  INVOCATION_AHZABS_TITLE = 'invocation.ahzabs.title',
 
   INVOCATION_NIVEAU_TITLE = 'invocation.niveau.title',
   INVOCATION_NIVEAU_1 = 'invocation.niveau.1',
@@ -541,6 +542,7 @@ export enum TKeys {
   MENU_HOME = 'menu.home',
   MENU_PRESENTATION = 'menu.presentation',
   MENU_PURIFICATION = 'menu.purification',
+  MENU_METHODOLOGY = 'menu.methodology',
   MENU_SUNNAHS = 'menu.sunnahs',
   MENU_INVOCATIONS = 'menu.invocations',
   MENU_INVOCATION = 'menu.invocation',

@@ -6,7 +6,7 @@ import { TKeys } from '../../../locales/constants';
 
 export type TabParams = {
   Presentation: undefined;
-  Purification: undefined;
+  Methodology: undefined;
   Invocation: undefined;
   Sunnahs: undefined;
   Obstacles: undefined;
@@ -27,7 +27,7 @@ export default function TabNavigator(props: Props) {
 
   return (
     <Tab.Navigator
-      initialRouteName={props.hasProgress ? 'Purification' : 'Presentation'}
+      initialRouteName={props.hasProgress ? 'Methodology' : 'Presentation'}
       screenOptions={{
         tabBarLabelStyle: { fontSize: Font.size(arabic ? 12 : 9), fontWeight: '800', textTransform: 'none' },
         tabBarActiveTintColor: 'green',
@@ -40,9 +40,9 @@ export default function TabNavigator(props: Props) {
         options={{ tabBarLabel: formatMessage(TKeys.MENU_PRESENTATION) }}
       />
       <Tab.Screen
-        name="Purification"
+        name="Methodology"
         component={props.purificationComponent}
-        options={{ tabBarLabel: formatMessage(TKeys.MENU_PURIFICATION) }}
+        options={{ tabBarLabel: formatMessage(TKeys.MENU_METHODOLOGY) }}
       />
       <Tab.Screen
         name="Invocation"
