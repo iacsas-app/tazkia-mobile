@@ -24,7 +24,7 @@ export default function ImmunizationInvocationsScreen() {
     <>
       <BasePresentationLayout>
         <View style={styles.container}>
-          <VStack spacing={10}>
+          <VStack spacing={10} style={{ marginBottom: 15 }}>
             <Basmalah />
             <Text variant="bodyLarge" style={styles.introduction}>
               {formatMessage(TKeys.INVOCATIONS_IMMUNIZATION_INTRODUCTION)}

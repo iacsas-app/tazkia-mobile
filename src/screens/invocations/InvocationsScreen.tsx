@@ -57,7 +57,7 @@ export default function InvocationsScreen() {
             <Text
               variant="bodyMedium"
               style={{ fontSize: Font.size(18), fontWeight: '800', textAlign: 'center' }}
-              color="#4169e1"
+              color="black"
             >
               {formatMessage(item.name)}
             </Text>

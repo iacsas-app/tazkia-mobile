@@ -23,14 +23,14 @@ export default function ReaderDialog(props: Props) {
   return (
     <Portal>
       {visible && (
-        <Modal visible={visible} onDismiss={toogleFullScreen} contentContainerStyle={styles.dialog}>
+        <Modal visible={true} onDismiss={toogleFullScreen} contentContainerStyle={styles.dialog}>
           <Reader items={props.items} />
         </Modal>
       )}
       <FAB
         icon={visible ? 'fullscreen-exit' : 'fullscreen'}
         label={formatMessage(`button.read.${visible ? 'stop' : 'start'}`)}
-        style={{ ...styles.readFab, bottom: visible ? 10 : 45 }}
+        style={{ ...styles.readFab, bottom: visible ? 30 : 45 }}
         onPress={toogleFullScreen}
       />
     </Portal>
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     ...GlobalStyles.circle,
     alignSelf: 'center',
     position: 'absolute',
-    margin: 16,
+    margin: 10,
     backgroundColor: 'powderblue',
   },
 });

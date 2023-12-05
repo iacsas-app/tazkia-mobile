@@ -1,12 +1,14 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import { VStack } from '@react-native-material/core';
 import { useState } from 'react';
-import { View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { TouchableRipple } from 'react-native-paper';
 import Animated from 'react-native-reanimated';
 import { useMessage } from '../hooks/use-message';
 import { TKeys } from '../locales/constants';
+import GlobalStyles from '../styles/GlobalStyles';
 import Text from './Text';
+import HStack from './stack/HStack';
 
 interface Props {
   index: number;
@@ -24,51 +26,42 @@ export default function InvocationItem({ index, total, summary, repeat }: Props)
 
   return (
     <TouchableRipple
-      style={{
-        elevation: 5,
-        backgroundColor: count > 0 ? 'white' : '#d9e7df',
-        borderRadius: 20,
-        padding: 15,
-      }}
+      style={{ ...styles.touchable, backgroundColor: count > 0 ? 'white' : '#d9e7df' }}
+      disabled={count === 0}
       onPress={handlePress}
     >
       <VStack spacing={25}>
-        <Text variant="titleLarge" style={{ fontSize: 14, textAlign: 'justify', fontWeight: '500' }}>
+        <Text variant="titleLarge" style={styles.summary}>
           {summary}
         </Text>
-        <View style={{ flexDirection: 'row' }}>
-          <Text
-            style={{
-              fontSize: 10,
-              position: 'absolute',
-              right: 0,
-              bottom: 0,
-              backgroundColor: '#fff5ee',
-              borderRadius: 100,
-              paddingHorizontal: 5,
-              opacity: 0.6,
-            }}
-          >{`${index}/${total}`}</Text>
+        <HStack style={styles.counter}>
+          <Text style={{ ...styles.tag, backgroundColor: '#fff5ee' }}>{`${index}/${total}`}</Text>
           {count > 0 ? (
-            <Animated.Text
-              style={{
-                fontSize: 10,
-                position: 'absolute',
-                left: 0,
-                bottom: 0,
-                backgroundColor: '#92b8df',
-                borderRadius: 100,
-                paddingHorizontal: 10,
-                opacity: 0.6,
-              }}
-            >
+            <Animated.Text style={{ ...styles.tag, backgroundColor: '#92b8df' }}>
               {formatMessage(count > 1 ? TKeys.TIMES_COUNT_PLURAL : TKeys.TIMES_COUNT, { times: count })}
             </Animated.Text>
           ) : (
             <Icon name="check-all" color="green" size={20} />
           )}
-        </View>
+        </HStack>
       </VStack>
     </TouchableRipple>
   );
 }
+
+const styles = StyleSheet.create({
+  touchable: {
+    elevation: 5,
+    borderRadius: 20,
+    padding: 15,
+  },
+  summary: { fontSize: 15, textAlign: 'justify', fontWeight: '500' },
+  counter: { ...GlobalStyles.spaceBetween },
+  tag: {
+    ...GlobalStyles.circle,
+    fontSize: 12,
+    paddingHorizontal: 20,
+    opacity: 0.6,
+    alignSelf: 'center',
+  },
+});

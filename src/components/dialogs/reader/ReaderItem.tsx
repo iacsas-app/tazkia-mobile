@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { ProgressBar, TouchableRipple } from 'react-native-paper';
-import Animated, { SlideInLeft, SlideInRight, SlideOutLeft, SlideOutRight } from 'react-native-reanimated';
+import Animated, { SlideInLeft, SlideInUp, SlideOutDown, SlideOutRight } from 'react-native-reanimated';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../../../constants/Screen';
 import InvocationRepeat from '../../../domains/common/InvocationRepeat';
 import { useMessage } from '../../../hooks/use-message';
@@ -41,7 +41,7 @@ export default function ReaderItem({ index, total, value, ...props }: ReaderItem
   }
 
   return (
-    <Animated.View entering={SlideInRight.duration(200).springify()} exiting={SlideOutLeft.duration(200).mass(100)}>
+    <Animated.View entering={SlideInUp.duration(200).springify()} exiting={SlideOutDown.duration(200).mass(100)}>
       <TouchableRipple style={styles.touchable} onPress={handlePress}>
         <VStack style={styles.container}>
           <Text variant="titleLarge" style={styles.summary}>
@@ -49,14 +49,14 @@ export default function ReaderItem({ index, total, value, ...props }: ReaderItem
           </Text>
           <View style={styles.footer}>
             <HStack style={styles.counter}>
+              <Text style={{ ...styles.tag, backgroundColor: '#fff5ee' }}>{`${index}/${total}`}</Text>
               <Animated.Text
-                style={{ ...styles.tag, backgroundColor: '#92b8df', opacity: 0.8 }}
+                style={{ ...styles.tag, backgroundColor: '#92b8df' }}
                 entering={SlideInLeft.delay(100).duration(100).springify()}
                 exiting={SlideOutRight.delay(100).springify()}
               >
                 {formatMessage(count > 1 ? TKeys.TIMES_COUNT_PLURAL : TKeys.TIMES_COUNT, { times: count })}
               </Animated.Text>
-              <Text style={{ ...styles.tag, backgroundColor: '#fff5ee' }}>{`${index}/${total}`}</Text>
             </HStack>
             <ProgressBar progress={index / total} visible={true} style={styles.progress} />
           </View>
@@ -69,25 +69,25 @@ export default function ReaderItem({ index, total, value, ...props }: ReaderItem
 const styles = StyleSheet.create({
   touchable: {
     elevation: 8,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    marginHorizontal: 20,
+    borderRadius: 20,
+    marginHorizontal: 15,
     backgroundColor: 'white',
   },
   container: {
     ...GlobalStyles.center,
-    height: SCREEN_HEIGHT - 220,
-    marginHorizontal: 30,
+    height: SCREEN_HEIGHT - 20,
+    marginHorizontal: 20,
   },
-  summary: { ...GlobalStyles.center, textAlign: 'justify', fontWeight: '700' },
-  footer: { position: 'absolute', bottom: 0, width: SCREEN_WIDTH - 40 },
+  summary: { ...GlobalStyles.center, textAlign: 'justify', fontWeight: '600' },
+  footer: { position: 'absolute', bottom: 0, width: SCREEN_WIDTH - 30 },
   counter: { ...GlobalStyles.spaceBetween, marginBottom: 20 },
-  progress: { height: 20 },
+  progress: { height: 20, borderBottomEndRadius: 20, borderBottomStartRadius: 20 },
   tag: {
+    ...GlobalStyles.circle,
     fontSize: 15,
-    borderRadius: 100,
     paddingHorizontal: 20,
     opacity: 0.6,
     marginHorizontal: 20,
+    alignSelf: 'center',
   },
 });

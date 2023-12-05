@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   pressable: {
     ...GlobalStyles.circle,
     backgroundColor: 'powderblue',
-    width: SCREEN_WIDTH - 80,
+    width: SCREEN_WIDTH - 50,
     elevation: 8,
     alignItems: 'center',
   },
@@ -58,6 +58,6 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     height: 70,
   },
-  title: { fontWeight: '900', fontSize: 18, marginLeft: 25 },
+  title: { fontWeight: '900', fontSize: 16, marginLeft: 25 },
   image: { position: 'absolute', left: 6 },
 });
