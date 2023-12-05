@@ -714,7 +714,6 @@ export const arabic: Translations = {
   [TKeys.BUTTON_RESTART]: 'إعادة',
   [TKeys.BUTTON_SAVE]: 'حفظ',
   [TKeys.BUTTON_READ_START]: 'أبدأ القراءة',
-  [TKeys.BUTTON_READ_STOP]: 'أوقف القراءة',
   [TKeys.BUTTON_AGREE]: 'أوافق',
   [TKeys.BUTTON_DISAGREE]: 'أعارض',
   [TKeys.BUTTON_CLEANING]: 'تطهير',

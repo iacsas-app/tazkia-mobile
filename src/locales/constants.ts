@@ -528,7 +528,6 @@ export enum TKeys {
   BUTTON_CLOSE = 'button.close',
   BUTTON_START = 'button.start',
   BUTTON_READ_START = 'button.read.start',
-  BUTTON_READ_STOP = 'button.read.stop',
   BUTTON_RESTART = 'button.restart',
   BUTTON_SAVE = 'button.save',
   BUTTON_AGREE = 'button.agree',

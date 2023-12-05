@@ -644,7 +644,6 @@ export const indonesian: Translations = {
   [TKeys.BUTTON_RESTART]: 'Ulang',
   [TKeys.BUTTON_SAVE]: 'Menyimpan',
   [TKeys.BUTTON_READ_START]: 'Mulailah membaca',
-  [TKeys.BUTTON_READ_STOP]: 'Berhenti membaca',
   [TKeys.BUTTON_AGREE]: 'Aku setuju',
   [TKeys.BUTTON_DISAGREE]: 'Saya tidak setuju',
   [TKeys.BUTTON_CLEANING]: 'Pembersihan',

@@ -570,7 +570,6 @@ export const french: Translations = {
   [TKeys.BUTTON_RESTART]: 'Recommencer',
   [TKeys.BUTTON_SAVE]: 'Enregistrer',
   [TKeys.BUTTON_READ_START]: 'Démarrer la lecture',
-  [TKeys.BUTTON_READ_STOP]: 'Arrêter la lecture',
   [TKeys.BUTTON_AGREE]: "J'approuve",
   [TKeys.BUTTON_DISAGREE]: 'Je désapprouve',
   [TKeys.BUTTON_CLEANING]: 'Nettoyage',

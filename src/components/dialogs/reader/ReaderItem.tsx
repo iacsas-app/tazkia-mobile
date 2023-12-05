@@ -16,27 +16,32 @@ export type ReaderItemProps = {
   value: InvocationRepeat;
   total: number;
   onDone(): void;
+  onFinish(): void;
 };
 export default function ReaderItem({ index, total, value, ...props }: ReaderItemProps) {
   const [count, setCount] = useState(value.repeat);
   const { formatMessage } = useMessage();
 
   function handlePress() {
-    if (count > 0) {
-      setCount((prev) => {
-        if (prev === 1) {
-          props.onDone();
-        }
-        return prev - 1;
-      });
+    if (index === total) {
+      props.onFinish();
     }
+    if (count === 0) {
+      return;
+    }
+    setCount((prev) => {
+      if (prev === 1) {
+        props.onDone();
+      }
+      return prev - 1;
+    });
   }
 
   useEffect(() => {
     setCount(value.repeat);
   }, [value]);
 
-  if (count === 0) {
+  if (count === 0 && index !== total) {
     return <></>;
   }
 
@@ -48,16 +53,18 @@ export default function ReaderItem({ index, total, value, ...props }: ReaderItem
             {formatMessage(value.key)}
           </Text>
           <View style={styles.footer}>
-            <HStack style={styles.counter}>
-              <Text style={{ ...styles.tag, backgroundColor: '#fff5ee' }}>{`${index}/${total}`}</Text>
-              <Animated.Text
-                style={{ ...styles.tag, backgroundColor: '#92b8df' }}
-                entering={SlideInLeft.delay(100).duration(100).springify()}
-                exiting={SlideOutRight.delay(100).springify()}
-              >
-                {formatMessage(count > 1 ? TKeys.TIMES_COUNT_PLURAL : TKeys.TIMES_COUNT, { times: count })}
-              </Animated.Text>
-            </HStack>
+            {index !== total && (
+              <HStack style={styles.counter}>
+                <Text style={{ ...styles.tag, backgroundColor: '#fff5ee' }}>{`${index}/${total}`}</Text>
+                <Animated.Text
+                  style={{ ...styles.tag, backgroundColor: '#92b8df' }}
+                  entering={SlideInLeft.delay(100).duration(100).springify()}
+                  exiting={SlideOutRight.delay(100).springify()}
+                >
+                  {formatMessage(count > 1 ? TKeys.TIMES_COUNT_PLURAL : TKeys.TIMES_COUNT, { times: count })}
+                </Animated.Text>
+              </HStack>
+            )}
             <ProgressBar progress={index / total} visible={true} style={styles.progress} />
           </View>
         </VStack>

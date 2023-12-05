@@ -558,7 +558,6 @@ export const english: Translations = {
   [TKeys.BUTTON_RESTART]: 'Restart',
   [TKeys.BUTTON_SAVE]: 'Save',
   [TKeys.BUTTON_READ_START]: 'Start reading',
-  [TKeys.BUTTON_READ_STOP]: 'Stop reading',
   [TKeys.BUTTON_AGREE]: 'Agree',
   [TKeys.BUTTON_DISAGREE]: 'Disagree',
   [TKeys.BUTTON_CLEANING]: 'Cleaning',

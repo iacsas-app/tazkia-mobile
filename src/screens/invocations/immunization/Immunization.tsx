@@ -1,27 +1,26 @@
-import { Box, VStack } from '@react-native-material/core';
 import { memo, useMemo } from 'react';
+import { FlatList, ViewToken } from 'react-native';
+import { useSharedValue } from 'react-native-reanimated';
 import InvocationItem from '../../../components/InvocationItem';
 import InvocationRepeat from '../../../domains/common/InvocationRepeat';
-import { useMessage } from '../../../hooks/use-message';
-import { ImmunizationPeriod } from './data';
 
 interface Props {
-  period: ImmunizationPeriod;
   items: InvocationRepeat[];
 }
 function Immunization({ items }: Props) {
-  const { formatMessage } = useMessage();
-
-  const size = useMemo(() => items.length, []);
+  const viewableItems = useSharedValue<ViewToken[]>([]);
+  const size = useMemo(() => items.length - 1, []);
 
   return (
-    <VStack spacing={12}>
-      {items.map((item: InvocationRepeat, index) => (
-        <Box key={index}>
-          <InvocationItem index={index + 1} summary={formatMessage(item.key)} total={size} {...item} />
-        </Box>
-      ))}
-    </VStack>
+    <FlatList
+      data={items}
+      keyExtractor={(item) => item.key}
+      onViewableItemsChanged={({ viewableItems: vItems }) => (viewableItems.value = vItems)}
+      renderItem={({ item, index }) => (
+        <InvocationItem index={index + 1} total={size} item={item} viewableItems={viewableItems} />
+      )}
+      style={{ backgroundColor: 'mintcream' }}
+    />
   );
 }
 

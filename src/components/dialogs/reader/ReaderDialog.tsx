@@ -1,10 +1,10 @@
-import * as React from 'react';
 import { useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { FAB, Modal, Portal } from 'react-native-paper';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../../../constants/Screen';
 import InvocationRepeat from '../../../domains/common/InvocationRepeat';
 import { useMessage } from '../../../hooks/use-message';
+import { TKeys } from '../../../locales/constants';
 import GlobalStyles from '../../../styles/GlobalStyles';
 import Reader from './Reader';
 
@@ -20,17 +20,31 @@ export default function ReaderDialog(props: Props) {
     setVisible(!visible);
   }
 
+  if (!visible) {
+    return (
+      <FAB
+        icon="fullscreen"
+        label={formatMessage(TKeys.BUTTON_READ_START)}
+        style={{ ...styles.readFab, bottom: 10 }}
+        mode="elevated"
+        size="large"
+        onPress={toogleFullScreen}
+      />
+    );
+  }
+
   return (
     <Portal>
       {visible && (
         <Modal visible={true} onDismiss={toogleFullScreen} contentContainerStyle={styles.dialog}>
-          <Reader items={props.items} />
+          <Reader items={props.items} onFinish={toogleFullScreen} />
         </Modal>
       )}
       <FAB
-        icon={visible ? 'fullscreen-exit' : 'fullscreen'}
-        label={formatMessage(`button.read.${visible ? 'stop' : 'start'}`)}
-        style={{ ...styles.readFab, bottom: visible ? 30 : 45 }}
+        icon="fullscreen-exit"
+        style={{ ...styles.readFab, bottom: 32 }}
+        mode="elevated"
+        size="medium"
         onPress={toogleFullScreen}
       />
     </Portal>
@@ -38,7 +52,7 @@ export default function ReaderDialog(props: Props) {
 }
 
 const styles = StyleSheet.create({
-  dialog: { height: SCREEN_HEIGHT, width: SCREEN_WIDTH, backgroundColor: '#d5f3e3', padding: 0, margin: 0 },
+  dialog: { height: SCREEN_HEIGHT, width: SCREEN_WIDTH, backgroundColor: '#f5fffa', padding: 0, margin: 0 },
   labelBtn: { fontSize: 18, fontWeight: '900', color: 'seagreen' },
   btn: { paddingHorizontal: 15 },
   readFab: {

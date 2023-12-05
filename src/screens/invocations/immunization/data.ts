@@ -45,6 +45,7 @@ export const immunizationData: Record<ImmunizationPeriod, InvocationRepeat[]> = 
     { key: TKeys.INVOCATIONS_IMMUNIZATION_COMMON_38, repeat: 3 },
     { key: TKeys.INVOCATIONS_IMMUNIZATION_COMMON_39, repeat: 1 },
     { key: TKeys.INVOCATIONS_IMMUNIZATION_MORNING_40, repeat: 3 },
+    { key: TKeys.INVOCATIONS_IMMUNIZATION_CONCLUSION, repeat: 0 },
   ],
   evening: [
     { key: TKeys.INVOCATIONS_IMMUNIZATION_COMMON_1, repeat: 10 },
@@ -87,5 +88,6 @@ export const immunizationData: Record<ImmunizationPeriod, InvocationRepeat[]> = 
     { key: TKeys.INVOCATIONS_IMMUNIZATION_COMMON_38, repeat: 3 },
     { key: TKeys.INVOCATIONS_IMMUNIZATION_COMMON_39, repeat: 1 },
     { key: TKeys.INVOCATIONS_IMMUNIZATION_EVENING_40, repeat: 1 },
+    { key: TKeys.INVOCATIONS_IMMUNIZATION_CONCLUSION, repeat: 0 },
   ],
 };
