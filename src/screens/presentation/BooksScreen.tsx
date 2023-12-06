@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 import { FlatList, View, ViewToken } from 'react-native';
-import { Banner } from 'react-native-paper';
 import { useSharedValue } from 'react-native-reanimated';
 import Text from '../../components/Text';
 import { Book } from '../../domains/presentation/Book';
@@ -20,10 +19,20 @@ export default function BooksScreen() {
   );
 
   return (
-    <View style={{ flex: 1 }}>
-      <Banner visible={true}>
-        <Text variant="bodyLarge">{formatMessage(TKeys.PRESENTATION_BOOKS)}</Text>
-      </Banner>
+    <View>
+      <Text
+        variant="bodySmall"
+        style={{
+          padding: 10,
+          backgroundColor: '#fffafa',
+          borderBottomLeftRadius: 20,
+          borderBottomRightRadius: 20,
+          fontWeight: '700',
+          elevation: 10,
+        }}
+      >
+        {formatMessage(TKeys.PRESENTATION_BOOKS)}
+      </Text>
       <FlatList
         data={books}
         keyExtractor={(book) => book.id.toString()}

@@ -39,8 +39,10 @@ export default function Obstacles() {
     [],
   );
 
+  const fontSize = Font.size(arabic ? 15 : 13);
+
   const fontStyle: StyleProp<TextStyle> = {
-    fontSize: Font.size(arabic ? 16 : 14),
+    fontSize,
     fontWeight: arabic ? '600' : 'normal',
     textAlign: 'justify',
   };
@@ -50,7 +52,7 @@ export default function Obstacles() {
       <VStack style={GlobalStyles.center}>
         <Text
           variant="bodyMedium"
-          style={{ ...purificationStyles.title, fontSize: Font.size(arabic ? 19 : 16) }}
+          style={{ ...purificationStyles.title, fontSize: Font.size(arabic ? 17 : 15) }}
           color="seagreen"
         >
           {formatMessage(TKeys.PURIFICATION_OBSTACLES)}
@@ -80,16 +82,12 @@ export default function Obstacles() {
             <HStack style={{ ...GlobalStyles.centerAlign, width: SCREEN_WIDTH - 80, paddingEnd: 20 }} spacing={15}>
               <Avatar.Text
                 label={`${index + 1}`}
-                size={28}
-                style={{ backgroundColor: '#2e8b5770' }}
+                size={25}
+                style={{ backgroundColor: 'teal' }}
                 labelStyle={{ fontWeight: '900', color: 'white' }}
               />
 
-              <Text
-                variant="bodyMedium"
-                style={{ fontSize: Font.size(arabic ? 17 : 15), fontWeight: '900' }}
-                color="seagreen"
-              >
+              <Text variant="bodyMedium" style={{ fontSize, fontWeight: '900' }} color="teal">
                 {formatMessage(item.title)}
               </Text>
             </HStack>
@@ -99,12 +97,8 @@ export default function Obstacles() {
             {item.handle && (
               <VStack spacing={10}>
                 <HStack spacing={15} style={GlobalStyles.centerAlign}>
-                  <Icon name="doctor" size={25} color={'green'} />
-                  <Text
-                    variant="titleSmall"
-                    style={{ fontSize: Font.size(arabic ? 15 : 13), fontWeight: '700' }}
-                    color="black"
-                  >
+                  <Icon name="doctor" size={25} color="black" />
+                  <Text variant="titleSmall" style={{ fontSize, fontWeight: '700' }} color="black">
                     {formatMessage(TKeys.PURIFICATION_MIND_OBSTACLES_HOW_TO_HANDLE)}
                   </Text>
                 </HStack>

@@ -5,8 +5,10 @@ import Text from '../../../../../components/Text';
 import ConfirmRestartDialog, { ConfirmRestartDialogRef } from '../../../../../components/dialogs/ConfirmRestartDialog';
 import HStack from '../../../../../components/stack/HStack';
 import VStack from '../../../../../components/stack/VStack';
+import { Font } from '../../../../../constants/Font';
 import { SoulPart, SoulPartLevel } from '../../../../../domains/purification/Soul';
 import { useMessage } from '../../../../../hooks/use-message';
+import { arabic } from '../../../../../locales/messages/arabic';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
 import LevelRule from './LevelRule';
 import { hasSubTitle, soulRules } from './data';
@@ -49,13 +51,16 @@ export default function LevelSelector({ part, ...props }: Props) {
     <Animated.View entering={FadeInUp.delay(400).duration(50).springify()} style={styles.container}>
       <HStack style={styles.header}>
         <VStack style={GlobalStyles.center}>
-          <Text variant="titleLarge" style={{ fontWeight: '900', fontSize: 18, textAlign: 'center' }}>
+          <Text
+            variant="titleSmall"
+            style={{ fontWeight: '900', fontSize: Font.size(arabic ? 18 : 15), textAlign: 'center' }}
+          >
             {formatMessage(`purification.soul.${part}.title`)}
           </Text>
           {subtitle && <Text variant="titleSmall">{formatMessage(`purification.soul.${part}.sub.title`)}</Text>}
         </VStack>
       </HStack>
-      <VStack spacing={5}>
+      <VStack spacing={8}>
         {levelKeys.map((levelKey, index) => (
           <LevelRule
             key={index}

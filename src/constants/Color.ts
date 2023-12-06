@@ -3,4 +3,5 @@ export namespace Color {
   export const progress = '#dbf6e8';
   export const active = '#dee3e0';
   export const completed = '#8de0b6';
+  export const backgroundColor = '#d5f3e378';
 }

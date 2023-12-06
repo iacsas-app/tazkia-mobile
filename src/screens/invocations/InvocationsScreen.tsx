@@ -8,6 +8,7 @@ import BottomSheet, { BottomSheetRef } from '../../components/bottomSheet/Bottom
 import VStack from '../../components/stack/VStack';
 import { Font } from '../../constants/Font';
 import { SCREEN_WIDTH } from '../../constants/Screen';
+import { useApplication } from '../../hooks/use-application';
 import { useMessage } from '../../hooks/use-message';
 import { TKeys } from '../../locales/constants';
 import GlobalStyles from '../../styles/GlobalStyles';
@@ -17,6 +18,7 @@ import { ImmunizationPeriod } from './immunization/data';
 export default function InvocationsScreen() {
   const ref = useRef<BottomSheetRef>(null);
   const { formatMessage } = useMessage();
+  const { arabic } = useApplication();
   const navigation = useNavigation<any>();
 
   const parts = useMemo(
@@ -70,7 +72,11 @@ export default function InvocationsScreen() {
           >
             {item.image && <Avatar.Image source={item.image} size={80} style={styles.image} />}
             <View style={styles.summary}>
-              <Text variant="bodyMedium" style={styles.summaryLabel} color="black">
+              <Text
+                variant="bodySmall"
+                style={{ ...styles.summaryLabel, fontSize: Font.size(arabic ? 17 : 14) }}
+                color="black"
+              >
                 {formatMessage(item.name)}
               </Text>
             </View>
@@ -108,7 +114,6 @@ const styles = StyleSheet.create({
     left: 45,
   },
   summaryLabel: {
-    fontSize: Font.size(17),
     fontWeight: '800',
     textAlign: 'auto',
   },

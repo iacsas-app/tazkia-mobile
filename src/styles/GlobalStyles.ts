@@ -18,7 +18,7 @@ const GlobalStyles = StyleSheet.create({
   centerAlign: { alignItems: 'center' },
   description: {
     marginTop: 15,
-    fontSize: 20,
+    fontSize: 17,
     fontWeight: '900',
     alignSelf: 'center',
   },

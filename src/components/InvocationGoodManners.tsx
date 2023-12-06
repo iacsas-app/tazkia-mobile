@@ -13,7 +13,7 @@ import HStack from './stack/HStack';
 import VStack from './stack/VStack';
 
 function InvocationGoodManners() {
-  const { formatMessage, formatNumber } = useMessage();
+  const { formatMessage } = useMessage();
   const { arabic } = useApplication();
   const fade = arabic ? FadeInRight : FadeInLeft;
 
@@ -23,11 +23,15 @@ function InvocationGoodManners() {
       style={{
         ...GlobalStyles.center,
         marginVertical: 20,
+        backgroundColor: 'white',
+        paddingVertical: 15,
+        borderRadius: 20,
+        width: SCREEN_WIDTH - 30,
       }}
     >
       <HStack style={GlobalStyles.center} spacing={15}>
         <Icon name="seal" size={30} color="lightseagreen" />
-        <Text variant="bodyLarge" style={{ fontSize: Font.size(arabic ? 19 : 16), fontWeight: '900' }} color="black">
+        <Text variant="bodyLarge" style={{ fontSize: Font.size(arabic ? 17 : 15), fontWeight: '900' }} color="teal">
           {formatMessage(TKeys.INVOCATION_GOOD_MANNERS_TITLE)}
         </Text>
       </HStack>
@@ -39,14 +43,14 @@ function InvocationGoodManners() {
             style={{ ...GlobalStyles.centerAlign, flexDirection: 'row', gap: 15 }}
           >
             <Avatar.Text
-              label={formatNumber(id + 1)}
-              size={25}
-              style={{ backgroundColor: '#2e8b5770' }}
+              label={(id + 1).toString()}
+              size={20}
+              style={{ backgroundColor: 'teal' }}
               labelStyle={{ fontWeight: '900', color: 'white' }}
             />
             <Text
-              variant="bodyMedium"
-              style={{ fontSize: Font.size(arabic ? 16 : 14), fontWeight: '600', width: SCREEN_WIDTH - 60 }}
+              variant="bodySmall"
+              style={{ fontSize: Font.size(arabic ? 15 : 13), fontWeight: '600', width: SCREEN_WIDTH - 120 }}
               color="black"
             >
               {formatMessage(`invocation.good-manners_${id + 1}`)}

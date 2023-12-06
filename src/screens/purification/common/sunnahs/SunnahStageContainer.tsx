@@ -9,6 +9,7 @@ import ProgressView from '../../../../components/progress/ProgressView';
 import PressableItem from '../../../../components/progressItem/PressableItem';
 import HStack from '../../../../components/stack/HStack';
 import VStack from '../../../../components/stack/VStack';
+import { Color } from '../../../../constants/Color';
 import { Font } from '../../../../constants/Font';
 import { SCREEN_WIDTH } from '../../../../constants/Screen';
 import { SunnahType } from '../../../../domains/sunnahs/Sunnah';
@@ -28,7 +29,7 @@ interface Props {
 export default function SunnahStageContainer({ stage, rules }: Props) {
   const ref = useRef<BottomSheetRef>(null);
   const { arabic } = useApplication();
-  const { formatMessage, formatNumber } = useMessage();
+  const { formatMessage } = useMessage();
   const [id, setId] = useState<number>();
   const { find, create, evaluate, restart, globalPercentage } = useSunnahs();
 
@@ -83,7 +84,7 @@ export default function SunnahStageContainer({ stage, rules }: Props) {
   return (
     <BottomSheet
       ref={ref}
-      style={{ backgroundColor: '#d5f3e378' }}
+      style={{ backgroundColor: Color.backgroundColor }}
       content={
         <ProgressView
           titleKey={`sunnahs.${stage}.${id}.title`}
@@ -135,8 +136,8 @@ export default function SunnahStageContainer({ stage, rules }: Props) {
               <PressableItem
                 key={idx}
                 index={idx}
-                stepTitle={formatNumber(idx)}
-                stepTitleSize={Font.size(arabic ? 14 : 12)}
+                stepTitle={idx.toString()}
+                stepTitleSize={Font.size(12)}
                 stepTitleWidth={30}
                 summaryKey={`sunnahs.${stage}.${idx}.title`}
                 inProgress={current !== undefined}

@@ -2,11 +2,11 @@ import { useCallback, useMemo, useRef, useState } from 'react';
 import BottomSheet, { BottomSheetRef } from '../../../../../components/bottomSheet/BottomSheet';
 import HStack from '../../../../../components/stack/HStack';
 import VStack from '../../../../../components/stack/VStack';
+import { Color } from '../../../../../constants/Color';
 import { BodyPartType, BodyPartsOrder, PurificationStage } from '../../../../../domains/purification/BodyPart';
 import usePurification from '../../../../../hooks/use-purification';
 import { groupBy } from '../../../../../services/Helpers';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
-import { BACKGROUND_COLOR } from '../../../common/sunnahs/Helper';
 import { PartItem, bodyParts } from '../common/Helper';
 import BodyPartItem from '../helpers/BodyPartItem';
 import StageSelector from '../helpers/StageSelector';
@@ -54,7 +54,7 @@ export default function HomeScreen() {
   return (
     <BottomSheet
       ref={ref}
-      style={{ backgroundColor: BACKGROUND_COLOR }}
+      style={{ backgroundColor: Color.backgroundColor }}
       content={
         <StageSelector part={selected} onStart={handleStart} onRestart={handleRestart} onEvaluate={handleEvaluate} />
       }

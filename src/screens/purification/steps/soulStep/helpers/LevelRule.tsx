@@ -32,7 +32,7 @@ type Props = {
 };
 
 export default function LevelRule({ part, index, levelKey, ...props }: Props) {
-  const { formatMessage, formatNumber } = useMessage();
+  const { formatMessage } = useMessage();
   const [open, setOpen] = useState(false);
   const { findSoul } = usePurification();
   const current = findSoul(part, index as any);
@@ -52,9 +52,7 @@ export default function LevelRule({ part, index, levelKey, ...props }: Props) {
 
   function handleTouch() {
     props.onTouch(index);
-    if (open) {
-      setOpen(false);
-    }
+    setOpen(!open);
   }
 
   function handleEvaluate(checked: boolean) {
@@ -100,10 +98,10 @@ export default function LevelRule({ part, index, levelKey, ...props }: Props) {
             />
             <Text
               variant="bodyLarge"
-              style={{ ...styles.levelTitle, fontSize: Font.size(open ? 18 : 16) }}
+              style={{ ...styles.levelTitle, fontSize: Font.size(open ? 16 : 14) }}
               color={current ? 'green' : '#4169e1'}
             >
-              {formatMessage(TKeys.LEVEL, { value: formatNumber(index) })}
+              {formatMessage(TKeys.LEVEL, { value: index })}
             </Text>
           </HStack>
           <Animated.View entering={SlideInLeft.duration(10).springify()}>

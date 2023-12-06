@@ -42,7 +42,7 @@ export default function RuleProgress({ progress, ...props }: Props) {
   const align = props.completed ? 'center' : 'space-between';
 
   return (
-    <View style={{ paddingBottom: 10, paddingTop: 10 }}>
+    <View style={{ paddingBottom: 10, paddingTop: 5 }}>
       {showEvalute && (
         <Animated.Text
           entering={FadeIn.delay(400).duration(800).springify()}
@@ -86,6 +86,6 @@ export default function RuleProgress({ progress, ...props }: Props) {
 }
 
 const styles = StyleSheet.create({
-  levelSummary: { fontSize: Font.size(12), textAlign: 'justify', paddingHorizontal: 10 },
+  levelSummary: { fontSize: Font.size(12), textAlign: 'justify', paddingHorizontal: 5 },
   question: { fontWeight: '900', textAlign: 'justify', alignSelf: 'center', marginBottom: 10 },
 });

@@ -18,7 +18,7 @@ type Props = {
 };
 
 export default function InvocationAccordion(props: Props) {
-  const { formatMessage, formatNumber } = useMessage();
+  const { formatMessage } = useMessage();
 
   return (
     <List.Accordion
@@ -28,7 +28,7 @@ export default function InvocationAccordion(props: Props) {
           {formatMessage(props.titleKey)}
         </Text>
       }
-      left={() => <Avatar.Text size={25} label={formatNumber(props.id)} color="#191970" style={styles.id} />}
+      left={() => <Avatar.Text size={20} label={props.id.toString()} color="white" style={styles.id} />}
       right={({ isExpanded }) => (
         <HStack style={{ ...GlobalStyles.center, marginRight: -15 }} spacing={5}>
           <Text
@@ -37,7 +37,7 @@ export default function InvocationAccordion(props: Props) {
             color="black"
           >
             {formatMessage(props.duration <= 10 ? TKeys.DURATION2 : TKeys.DURATION, {
-              value: formatNumber(props.duration),
+              value: props.duration,
             })}
           </Text>
           <Icon name={`chevron-${isExpanded ? 'up' : 'down'}`} size={25} color="black" />
@@ -58,7 +58,7 @@ export default function InvocationAccordion(props: Props) {
 }
 
 const styles = StyleSheet.create({
-  id: { left: 10, position: 'absolute', backgroundColor: '#64e7b8', alignSelf: 'center' },
+  id: { left: 10, position: 'absolute', backgroundColor: 'teal', alignSelf: 'center' },
   titleStyle: {
     fontSize: 16,
     fontWeight: '900',

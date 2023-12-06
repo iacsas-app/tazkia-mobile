@@ -72,7 +72,7 @@ function PressableItem({ inProgress, ...props }: Props) {
                 variant="bodySmall"
                 style={{
                   ...styles.partTitle,
-                  fontSize: Font.size(props.partTitleSize ?? 12),
+                  fontSize: Font.size(props.partTitleSize ?? 10),
                   paddingEnd: 5,
                 }}
               >
@@ -136,8 +136,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'space-between',
     textAlign: 'center',
-    paddingStart: 4,
-    paddingEnd: 5,
+    paddingHorizontal: 6,
   },
 });
 

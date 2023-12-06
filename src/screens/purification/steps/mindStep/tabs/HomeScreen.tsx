@@ -4,6 +4,7 @@ import BottomSheet, { BottomSheetRef } from '../../../../../components/bottomShe
 import ProgressView from '../../../../../components/progress/ProgressView';
 import PressableItem from '../../../../../components/progressItem/PressableItem';
 import VStack from '../../../../../components/stack/VStack';
+import { Color } from '../../../../../constants/Color';
 import { MindLevel } from '../../../../../domains/purification/Mind';
 import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';
@@ -11,14 +12,13 @@ import usePurification from '../../../../../hooks/use-purification';
 import { TKeys } from '../../../../../locales/constants';
 import { PURIFICATION_MAX_DAYS, progressPercentage2 } from '../../../../../services/Helpers';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
-import { BACKGROUND_COLOR } from '../../../common/sunnahs/Helper';
 
 const levels: MindLevel[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 export default function HomeScreen() {
   const ref = useRef<BottomSheetRef>(null);
   const { arabic } = useApplication();
-  const { formatMessage, formatNumber } = useMessage();
+  const { formatMessage } = useMessage();
   const [level, setLevel] = useState<MindLevel>();
   const { createMind, findMind, evaluateMind, restartMind } = usePurification();
 
@@ -57,11 +57,11 @@ export default function HomeScreen() {
   return (
     <BottomSheet
       ref={ref}
-      style={{ backgroundColor: BACKGROUND_COLOR }}
+      style={{ backgroundColor: Color.backgroundColor }}
       content={
         <ProgressView
           titleKey={TKeys.LEVEL}
-          titleKeyParams={level ? { value: formatNumber(level) } : undefined}
+          titleKeyParams={level ? { value: level } : undefined}
           subTitleKey={`purification.mind.summary.level-${level}`}
           summaryKey={`purification.mind.description.level-${level}`}
           progress={current?.progress}
@@ -82,7 +82,7 @@ export default function HomeScreen() {
                 <PressableItem
                   key={index}
                   index={index}
-                  stepTitle={formatMessage(TKeys.LEVEL, { value: formatNumber(level) })}
+                  stepTitle={formatMessage(TKeys.LEVEL, { value: level })}
                   stepTitleSize={9}
                   stepTitleWidth={55}
                   summaryKey={`purification.mind.summary.level-${level}`}

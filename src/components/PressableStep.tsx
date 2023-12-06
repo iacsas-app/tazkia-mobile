@@ -5,21 +5,12 @@ import Animated, { FadeIn, FadeInLeft, FadeInRight, FadeInUp, FadeOut } from 're
 import { Font } from '../constants/Font';
 import { useApplication } from '../hooks/use-application';
 import { useMessage } from '../hooks/use-message';
-import {
-  InvocationsParamList,
-  PresentationParamList,
-  PurificationParamList,
-  SunnahsParamList,
-} from '../navigation/types';
+import { InvocationsParamList, PresentationParamList, PurificationParamList } from '../navigation/types';
 import GlobalStyles from '../styles/GlobalStyles';
 
 export interface Part {
   name?: string;
-  route:
-    | keyof PurificationParamList
-    | keyof SunnahsParamList
-    | keyof PresentationParamList
-    | keyof InvocationsParamList;
+  route: keyof PurificationParamList | keyof PresentationParamList | keyof InvocationsParamList;
   description: string;
   imageSource?: ImageSourcePropType;
 }
@@ -66,7 +57,7 @@ export default function PressableStep({ index, item, nameTextSize, descriptionTe
             entering={FadeInLeft.delay(400 + index * 60).duration(600)}
             style={{
               fontWeight: '900',
-              fontSize: Font.size(descriptionTextSize ?? arabic ? 16 : 13),
+              fontSize: Font.size(descriptionTextSize ?? arabic ? 14 : 13),
               textAlign: 'center',
             }}
           >

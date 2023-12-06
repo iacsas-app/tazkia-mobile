@@ -4,25 +4,25 @@ import InvocationGoodManners from '../../../../../components/InvocationGoodManne
 import Text from '../../../../../components/Text';
 import ScrollViewLayout from '../../../../../components/layout/ScrollViewLayout';
 import VStack from '../../../../../components/stack/VStack';
+import { Color } from '../../../../../constants/Color';
 import { Font } from '../../../../../constants/Font';
 import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';
 import { TKeys } from '../../../../../locales/constants';
 import InvocationAccordion from '../../../common/InvocationAccordion';
 import { purificationStyles } from '../../../common/Style';
-import { BACKGROUND_COLOR } from '../../../common/sunnahs/Helper';
 
 export default function InvocationsScreen() {
   const { formatMessage } = useMessage();
   const { arabic } = useApplication();
 
   return (
-    <ScrollViewLayout style={{ backgroundColor: BACKGROUND_COLOR, flex: 1 }}>
+    <ScrollViewLayout style={{ backgroundColor: Color.backgroundColor, flex: 1 }}>
       <Text variant="bodyMedium" style={purificationStyles.title} color="seagreen">
         {formatMessage(TKeys.INVOCATION_STEP_3)}
       </Text>
       <List.AccordionGroup>
-        <InvocationAccordion id={1} titleKey={TKeys.INVOCATION_STEP_3_RULE_1_SUMMARY} duration={30}>
+        <InvocationAccordion id={1} titleKey={TKeys.INVOCATION_STEP_3_RULE_1} duration={30}>
           <VStack spacing={10}>
             <Text variant="bodyMedium" style={{ fontWeight: '900', textAlign: 'justify' }} color="seagreen">
               {formatMessage(TKeys.INVOCATION_STEP_3_RULE_1_BODY)}
@@ -50,7 +50,7 @@ export default function InvocationsScreen() {
         </Text>
         <Text
           variant="bodyMedium"
-          style={{ ...styles.importance, fontSize: Font.size(arabic ? 16 : 14), fontWeight: arabic ? '600' : 'normal' }}
+          style={{ ...styles.importance, fontSize: Font.size(arabic ? 15 : 13), fontWeight: arabic ? '600' : 'normal' }}
         >
           {formatMessage(TKeys.INVOCATION_STEP_3_IMPORTANCE_SUMMARY)}
         </Text>
@@ -60,6 +60,6 @@ export default function InvocationsScreen() {
 }
 
 const styles = StyleSheet.create({
-  importanceContainer: { marginTop: 20 },
+  importanceContainer: { marginTop: 5 },
   importance: { textAlign: 'justify' },
 });

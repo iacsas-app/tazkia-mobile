@@ -26,7 +26,7 @@ export default function PresentationLayout(props: Props) {
           </View>
         )}
         <View>
-          <Text variant="bodyLarge" style={{ fontSize: Font.size(arabic ? 18 : 16), fontWeight: '700' }}>
+          <Text variant="bodyLarge" style={{ fontSize: Font.size(arabic ? 16 : 14), fontWeight: '800' }}>
             {formatMessage(props.title)}
           </Text>
           <Text variant="bodyMedium" style={{ ...styles.description, fontSize: Font.size(arabic ? 15 : 14) }}>

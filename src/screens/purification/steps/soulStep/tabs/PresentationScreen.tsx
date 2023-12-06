@@ -1,12 +1,12 @@
 import { Image } from 'react-native';
 import ScrollViewLayout from '../../../../../components/layout/ScrollViewLayout';
+import { Color } from '../../../../../constants/Color';
 import { TKeys } from '../../../../../locales/constants';
 import PurificationPrezLayout from '../../../common/PurificationPrezLayout';
-import { BACKGROUND_COLOR } from '../../../common/sunnahs/Helper';
 
 export default function PresentationScreen() {
   return (
-    <ScrollViewLayout style={{ backgroundColor: BACKGROUND_COLOR }}>
+    <ScrollViewLayout style={{ backgroundColor: Color.backgroundColor }}>
       <Image
         source={require('../../../../../../assets/img/sunnahs/step3.jpg')}
         style={{ height: 150, aspectRatio: 1, borderRadius: 100 }}

@@ -2,6 +2,7 @@ import React, { useCallback, useMemo, useRef, useState } from 'react';
 import BottomSheet, { BottomSheetRef } from '../../../../../components/bottomSheet/BottomSheet';
 import PressableItem from '../../../../../components/progressItem/PressableItem';
 import VStack from '../../../../../components/stack/VStack';
+import { Color } from '../../../../../constants/Color';
 import Soul, { SoulPart, SoulPartLevel } from '../../../../../domains/purification/Soul';
 import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';
@@ -9,7 +10,6 @@ import usePurification from '../../../../../hooks/use-purification';
 import { TKeys } from '../../../../../locales/constants';
 import { PURIFICATION_MAX_DAYS, progressPercentage2 } from '../../../../../services/Helpers';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
-import { BACKGROUND_COLOR } from '../../../common/sunnahs/Helper';
 import LevelSelector from '../helpers/LevelSelector';
 import { hasSubTitle, soulRules } from '../helpers/data';
 
@@ -17,7 +17,7 @@ export default function HomeScreen() {
   const ref = useRef<BottomSheetRef>(null);
   const { arabic } = useApplication();
   const [part, setPart] = useState<SoulPart>();
-  const { formatMessage, formatNumber } = useMessage();
+  const { formatMessage } = useMessage();
   const { createSoul, findSoul, evaluateSoul, restartSoul } = usePurification();
 
   const parts: string[] = useMemo(() => Object.keys(soulRules), []);
@@ -52,7 +52,7 @@ export default function HomeScreen() {
   }
 
   function getProgress(value: Soul | undefined): string[] | undefined {
-    return value ? value.partProgress.map((p) => formatMessage(TKeys.LEVEL, { value: formatNumber(p.level) })) : [];
+    return value ? value.partProgress.map((p) => formatMessage(TKeys.LEVEL, { value: p.level })) : [];
   }
 
   function getSum(value: Soul | undefined): number {
@@ -66,7 +66,7 @@ export default function HomeScreen() {
   return (
     <BottomSheet
       ref={ref}
-      style={{ backgroundColor: BACKGROUND_COLOR }}
+      style={{ backgroundColor: Color.backgroundColor }}
       content={
         <LevelSelector part={part} onStart={handleStart} onRestart={handleRestart} onEvaluate={handleEvaluate} />
       }
@@ -83,9 +83,9 @@ export default function HomeScreen() {
             <PressableItem
               key={idx}
               index={idx}
-              stepTitle={formatNumber(idx)}
-              partTitleSize={15}
-              stepTitleSize={16}
+              stepTitle={idx.toString()}
+              partTitleSize={arabic ? 15 : 13}
+              stepTitleSize={12}
               stepTitleWidth={30}
               summaryKey={`purification.soul.${soulPart}.title`}
               subSummaryKey={hasSubtitle ? `purification.soul.${soulPart}.sub.title` : undefined}

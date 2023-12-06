@@ -3,17 +3,17 @@ import InvocationGoodManners from '../../../../../components/InvocationGoodManne
 import Text from '../../../../../components/Text';
 import ScrollViewLayout from '../../../../../components/layout/ScrollViewLayout';
 import VStack from '../../../../../components/stack/VStack';
+import { Color } from '../../../../../constants/Color';
 import { useMessage } from '../../../../../hooks/use-message';
 import { TKeys } from '../../../../../locales/constants';
 import InvocationAccordion from '../../../common/InvocationAccordion';
 import { purificationStyles } from '../../../common/Style';
-import { BACKGROUND_COLOR } from '../../../common/sunnahs/Helper';
 
 export default function InvocationsScreen() {
   const { formatMessage } = useMessage();
 
   return (
-    <ScrollViewLayout style={{ backgroundColor: BACKGROUND_COLOR, flex: 1 }}>
+    <ScrollViewLayout style={{ backgroundColor: Color.backgroundColor, flex: 1 }}>
       <Text variant="bodyMedium" style={purificationStyles.title} color="seagreen">
         {formatMessage(TKeys.INVOCATION_STEP_2)}
       </Text>
@@ -23,7 +23,7 @@ export default function InvocationsScreen() {
             {formatMessage(TKeys.INVOCATION_STEP_2_RULE_1_DESC)}
           </Text>
         </InvocationAccordion>
-        <InvocationAccordion id={2} titleKey={TKeys.INVOCATION_STEP_2_RULE_2_SUMMARY} duration={30}>
+        <InvocationAccordion id={2} titleKey={TKeys.INVOCATION_STEP_2_RULE_2} duration={30}>
           <VStack spacing={10}>
             <Text variant="bodyMedium" style={{ fontWeight: '900', textAlign: 'justify' }} color="seagreen">
               {formatMessage(TKeys.INVOCATION_STEP_2_RULE_2_BODY)}
