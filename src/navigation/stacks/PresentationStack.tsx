@@ -1,6 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 
+import { NavigationContainer } from '@react-navigation/native';
 import { Font } from '../../constants/Font';
 import { useMessage } from '../../hooks/use-message';
 import { TKeys } from '../../locales/constants';
@@ -16,36 +17,38 @@ export default function PresentationStack() {
   const Stack = createStackNavigator<PresentationParamList>();
 
   return (
-    <Stack.Navigator
-      initialRouteName="Home"
-      screenOptions={{
-        headerMode: 'float',
-        headerTitleStyle: { fontSize: Font.size(13) },
-      }}
-    >
-      <Stack.Screen name="Home" component={PresentationScreen} options={{ headerShown: false }} />
-      <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen
-          name="Center"
-          component={CenterScreen}
-          options={{ title: formatMessage(TKeys.PRESENTATION_CENTER_TITLE) }}
-        />
-        <Stack.Screen
-          name="Approach"
-          options={{ title: formatMessage(TKeys.PRESENTATION_APPROACH_TITLE) }}
-          component={ApproachScreen}
-        />
-        <Stack.Screen
-          name="Cheikh"
-          options={{ title: formatMessage(TKeys.PRESENTATION_CHEIKH_TITLE) }}
-          component={CheikhScreen}
-        />
-        <Stack.Screen
-          name="Books"
-          options={{ title: formatMessage(TKeys.PRESENTATION_BOOKS_TITLE) }}
-          component={BooksScreen}
-        />
-      </Stack.Group>
-    </Stack.Navigator>
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          headerMode: 'float',
+          headerTitleStyle: { fontSize: Font.size(13) },
+        }}
+      >
+        <Stack.Screen name="Home" component={PresentationScreen} options={{ headerShown: false }} />
+        <Stack.Group screenOptions={{ presentation: 'modal' }}>
+          <Stack.Screen
+            name="Center"
+            component={CenterScreen}
+            options={{ title: formatMessage(TKeys.PRESENTATION_CENTER_TITLE) }}
+          />
+          <Stack.Screen
+            name="Approach"
+            options={{ title: formatMessage(TKeys.PRESENTATION_APPROACH_TITLE) }}
+            component={ApproachScreen}
+          />
+          <Stack.Screen
+            name="Cheikh"
+            options={{ title: formatMessage(TKeys.PRESENTATION_CHEIKH_TITLE) }}
+            component={CheikhScreen}
+          />
+          <Stack.Screen
+            name="Books"
+            options={{ title: formatMessage(TKeys.PRESENTATION_BOOKS_TITLE) }}
+            component={BooksScreen}
+          />
+        </Stack.Group>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }

@@ -2,7 +2,7 @@ import { TKeys, Translations } from '../constants';
 
 export const arabic: Translations = {
   [TKeys.WELCOME]: 'مرحبا بكم في تطبيق التزكية',
-  [TKeys.APPLICATION_TITLE_PRIMARY]: 'المنهج النبوي',
+  [TKeys.APPLICATION_TITLE_PRIMARY]: 'المنهج المحمدي',
   [TKeys.APPLICATION_TITLE_SECONDARY]: 'منهج الفلاح',
 
   // PRESENTATION

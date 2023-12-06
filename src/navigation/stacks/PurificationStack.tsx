@@ -1,3 +1,4 @@
+import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Font } from '../../constants/Font';
 import { useMessage } from '../../hooks/use-message';
@@ -13,31 +14,33 @@ export default function PurificationStack() {
   const Stack = createStackNavigator<PurificationParamList>();
 
   return (
-    <Stack.Navigator
-      initialRouteName="Home"
-      screenOptions={{
-        headerMode: 'float',
-        headerTitleStyle: { fontSize: Font.size(14) },
-      }}
-    >
-      <Stack.Screen name="Home" component={PurificationScreen} options={{ headerShown: false }} />
-      <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen
-          name="BodyParts"
-          component={BodyPartsScreen}
-          options={{ title: formatMessage(TKeys.PURIFICATION_BODYPART_TITLE) }}
-        />
-        <Stack.Screen
-          name="Mind"
-          component={MindScreen}
-          options={{ title: formatMessage(TKeys.PURIFICATION_MIND_TITLE) }}
-        />
-        <Stack.Screen
-          name="Soul"
-          component={SoulScreen}
-          options={{ title: formatMessage(TKeys.PURIFICATION_SOUL_TITLE) }}
-        />
-      </Stack.Group>
-    </Stack.Navigator>
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          headerMode: 'float',
+          headerTitleStyle: { fontSize: Font.size(14) },
+        }}
+      >
+        <Stack.Screen name="Home" component={PurificationScreen} options={{ headerShown: false }} />
+        <Stack.Group screenOptions={{ presentation: 'modal' }}>
+          <Stack.Screen
+            name="BodyParts"
+            component={BodyPartsScreen}
+            options={{ title: formatMessage(TKeys.PURIFICATION_BODYPART_TITLE) }}
+          />
+          <Stack.Screen
+            name="Mind"
+            component={MindScreen}
+            options={{ title: formatMessage(TKeys.PURIFICATION_MIND_TITLE) }}
+          />
+          <Stack.Screen
+            name="Soul"
+            component={SoulScreen}
+            options={{ title: formatMessage(TKeys.PURIFICATION_SOUL_TITLE) }}
+          />
+        </Stack.Group>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }

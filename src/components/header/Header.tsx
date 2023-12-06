@@ -7,7 +7,7 @@ import VStack from '../stack/VStack';
 export default function Header() {
   const { formatMessage } = useMessage();
   return (
-    <VStack>
+    <VStack style={{ paddingHorizontal: 15 }}>
       <Text variant="bodyLarge" style={styles.title}>
         {formatMessage(TKeys.APPLICATION_TITLE_PRIMARY)}
       </Text>
