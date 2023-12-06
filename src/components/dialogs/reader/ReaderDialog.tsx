@@ -25,9 +25,9 @@ export default function ReaderDialog(props: Props) {
       <FAB
         icon="fullscreen"
         label={formatMessage(TKeys.BUTTON_READ_START)}
-        style={{ ...styles.readFab, bottom: 10 }}
+        style={{ ...styles.readFab, bottom: 5 }}
         mode="elevated"
-        size="large"
+        size="medium"
         onPress={toogleFullScreen}
       />
     );

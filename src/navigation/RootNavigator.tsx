@@ -51,7 +51,7 @@ const RootNavigator = () => {
 
   return (
     <SafeAreaProvider>
-      <Appbar.Header elevated>
+      <Appbar.Header elevated style={{ height: 45 }}>
         <Appbar.Header style={{ backgroundColor: 'transparent' }}>
           <Header />
         </Appbar.Header>
@@ -66,6 +66,7 @@ const RootNavigator = () => {
         safeAreaInsets={{ bottom: insets.bottom }}
         navigationState={{ index, routes }}
         onIndexChange={setIndex}
+        barStyle={{ height: 67 }}
         labelMaxFontSizeMultiplier={2}
         renderScene={BottomNavigation.SceneMap({
           presentation: PresentationStack,

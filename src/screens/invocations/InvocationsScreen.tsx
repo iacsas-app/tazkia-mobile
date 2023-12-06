@@ -39,6 +39,7 @@ export default function InvocationsScreen() {
       {
         route: 'Ahzabs',
         name: TKeys.INVOCATION_AHZABS_TITLE,
+        image: require('./../../../assets/img/presentation/books/ahzabs.png'),
       },
     ],
     [],
@@ -107,7 +108,7 @@ const styles = StyleSheet.create({
     left: 45,
   },
   summaryLabel: {
-    fontSize: Font.size(18),
+    fontSize: Font.size(17),
     fontWeight: '800',
     textAlign: 'auto',
   },

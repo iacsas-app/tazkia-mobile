@@ -181,10 +181,10 @@ export enum TKeys {
   PURIFICATION_BODYPART_OBSTACLES_SUMMARY = 'purification.bodypart.obstacles.summary',
   PURIFICATION_BODYPART_OBSTACLES_HOW_TO_HANDLE_TITLE = 'purification.bodypart.obstacles.how-to-handle.title',
   PURIFICATION_BODYPART_OBSTACLES_HOW_TO_HANDLE_SUMMARY = 'purification.bodypart.obstacles.how-to-handle.summary',
-  PURIFICATION_BODYPART_OBSTACLES_HOW_TO_HANDLE_FACE_1_TITLE = 'purification.bodypart.obstacles.how-to-handle.face.1.title',
-  PURIFICATION_BODYPART_OBSTACLES_HOW_TO_HANDLE_FACE_1_SUMMARY = 'purification.bodypart.obstacles.how-to-handle.face.1.summary',
-  PURIFICATION_BODYPART_OBSTACLES_HOW_TO_HANDLE_FACE_2_TITLE = 'purification.bodypart.obstacles.how-to-handle.face.2.title',
-  PURIFICATION_BODYPART_OBSTACLES_HOW_TO_HANDLE_FACE_2_SUMMARY = 'purification.bodypart.obstacles.how-to-handle.face.2.summary',
+  PURIFICATION_BODYPART_OBSTACLES_HOW_TO_HANDLE_FACE_A_TITLE = 'purification.bodypart.obstacles.how-to-handle.face.a.title',
+  PURIFICATION_BODYPART_OBSTACLES_HOW_TO_HANDLE_FACE_A_SUMMARY = 'purification.bodypart.obstacles.how-to-handle.face.a.summary',
+  PURIFICATION_BODYPART_OBSTACLES_HOW_TO_HANDLE_FACE_B_TITLE = 'purification.bodypart.obstacles.how-to-handle.face.b.title',
+  PURIFICATION_BODYPART_OBSTACLES_HOW_TO_HANDLE_FACE_B_SUMMARY = 'purification.bodypart.obstacles.how-to-handle.face.b.summary',
 
   // Mind purification
   PURIFICATION_MIND_TITLE = 'purification.mind.title',

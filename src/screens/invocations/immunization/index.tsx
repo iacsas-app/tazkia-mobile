@@ -33,8 +33,8 @@ export default function ImmunizationInvocationsScreen() {
 const styles = StyleSheet.create({
   header: {
     paddingHorizontal: 20,
-    paddingTop: 20,
+    paddingTop: 10,
     backgroundColor: 'mintcream',
   },
-  introduction: { textAlign: 'justify', fontWeight: '600', marginTop: 20 },
+  introduction: { textAlign: 'justify', fontWeight: '600', marginTop: 10, paddingBottom: 5 },
 });

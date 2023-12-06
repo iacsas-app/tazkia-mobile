@@ -13,7 +13,7 @@ import HStack from './stack/HStack';
 import VStack from './stack/VStack';
 
 function InvocationGoodManners() {
-  const { formatMessage } = useMessage();
+  const { formatMessage, formatNumber } = useMessage();
   const { arabic } = useApplication();
   const fade = arabic ? FadeInRight : FadeInLeft;
 
@@ -39,7 +39,7 @@ function InvocationGoodManners() {
             style={{ ...GlobalStyles.centerAlign, flexDirection: 'row', gap: 15 }}
           >
             <Avatar.Text
-              label={`${id + 1}`}
+              label={formatNumber(id + 1)}
               size={25}
               style={{ backgroundColor: '#2e8b5770' }}
               labelStyle={{ fontWeight: '900', color: 'white' }}

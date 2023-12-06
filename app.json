@@ -1,9 +1,9 @@
 {
   "expo": {
-    "name": "Tazkya App",
-    "slug": "tazkia",
+    "name": "Manhaj Muhammadi :: منهج محمدي",
+    "slug": "manhaj-muhammadi",
     "version": "1.0.0",
-    "scheme": "tazkia-app",
+    "scheme": "manhaj-muhammadi-app",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
@@ -17,14 +17,14 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.iacsas.tazkia"
+      "bundleIdentifier": "com.iacsas.manhajmuhammadi"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.iacsas.tazkia"
+      "package": "com.iacsas.manhajmuhammadi"
     },
     "web": {
       "favicon": "./assets/favicon.png"
