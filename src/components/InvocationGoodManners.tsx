@@ -1,3 +1,4 @@
+import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import { memo } from 'react';
 import { Avatar } from 'react-native-paper';
 import Animated, { FadeInLeft, FadeInRight } from 'react-native-reanimated';
@@ -8,6 +9,7 @@ import { useMessage } from '../hooks/use-message';
 import { TKeys } from '../locales/constants';
 import GlobalStyles from '../styles/GlobalStyles';
 import Text from './Text';
+import HStack from './stack/HStack';
 import VStack from './stack/VStack';
 
 function InvocationGoodManners() {
@@ -23,9 +25,12 @@ function InvocationGoodManners() {
         marginVertical: 20,
       }}
     >
-      <Text variant="bodyLarge" style={{ fontSize: Font.size(arabic ? 19 : 16), fontWeight: '900' }}>
-        {formatMessage(TKeys.INVOCATION_GOOD_MANNERS_TITLE)}
-      </Text>
+      <HStack style={GlobalStyles.center} spacing={15}>
+        <Icon name="seal" size={30} color="lightseagreen" />
+        <Text variant="bodyLarge" style={{ fontSize: Font.size(arabic ? 19 : 16), fontWeight: '900' }} color="black">
+          {formatMessage(TKeys.INVOCATION_GOOD_MANNERS_TITLE)}
+        </Text>
+      </HStack>
       <VStack spacing={10}>
         {Array.from({ length: 4 }, (_, i) => i).map((id) => (
           <Animated.View

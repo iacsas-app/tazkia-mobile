@@ -1,5 +1,4 @@
 import { Image } from 'react-native';
-
 import { List } from 'react-native-paper';
 import InvocationGoodManners from '../../../../../components/InvocationGoodManners';
 import Text from '../../../../../components/Text';
