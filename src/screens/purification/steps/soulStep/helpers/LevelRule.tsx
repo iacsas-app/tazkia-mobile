@@ -52,6 +52,9 @@ export default function LevelRule({ part, index, levelKey, ...props }: Props) {
 
   function handleTouch() {
     props.onTouch(index);
+    if (open) {
+      setOpen(false);
+    }
   }
 
   function handleEvaluate(checked: boolean) {
@@ -90,7 +93,11 @@ export default function LevelRule({ part, index, levelKey, ...props }: Props) {
       <View>
         <HStack style={styles.header}>
           <HStack spacing={10}>
-            <Icon name="comma-circle" size={22} color={current ? 'green' : '#4169e1'} />
+            <Icon
+              name={`unfold-${open ? 'less' : 'more'}-horizontal`}
+              size={22}
+              color={current ? 'green' : '#4169e1'}
+            />
             <Text
               variant="bodyLarge"
               style={{ ...styles.levelTitle, fontSize: Font.size(open ? 18 : 16) }}

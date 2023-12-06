@@ -1,6 +1,7 @@
 import { Image } from 'react-native';
 
 import { List } from 'react-native-paper';
+import InvocationGoodManners from '../../../../../components/InvocationGoodManners';
 import Text from '../../../../../components/Text';
 import ScrollViewLayout from '../../../../../components/layout/ScrollViewLayout';
 import VStack from '../../../../../components/stack/VStack';
@@ -9,12 +10,13 @@ import { useMessage } from '../../../../../hooks/use-message';
 import { TKeys } from '../../../../../locales/constants';
 import InvocationAccordion from '../../../common/InvocationAccordion';
 import { purificationStyles } from '../../../common/Style';
+import { BACKGROUND_COLOR } from '../../../common/sunnahs/Helper';
 
 export default function InvocationsScreen() {
   const { formatMessage } = useMessage();
 
   return (
-    <ScrollViewLayout>
+    <ScrollViewLayout style={{ backgroundColor: BACKGROUND_COLOR, flex: 1 }}>
       <Text variant="bodyMedium" style={purificationStyles.title} color="seagreen">
         {formatMessage(TKeys.INVOCATION_STEP_1)}
       </Text>
@@ -57,6 +59,7 @@ export default function InvocationsScreen() {
           </VStack>
         </InvocationAccordion>
       </List.AccordionGroup>
+      <InvocationGoodManners />
     </ScrollViewLayout>
   );
 }

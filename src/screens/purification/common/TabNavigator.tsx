@@ -17,8 +17,7 @@ type Props = {
   presentationComponent: any;
   purificationComponent: any;
   invocationComponent: any;
-  sunnahsComponent?: any;
-  obstaclesComponent?: any;
+  sunnahsComponent: any;
 };
 export default function TabNavigator(props: Props) {
   const { formatMessage } = useMessage();
@@ -51,24 +50,13 @@ export default function TabNavigator(props: Props) {
           tabBarLabel: formatMessage(TKeys.MENU_INVOCATION),
         }}
       />
-      {props.sunnahsComponent && (
-        <Tab.Screen
-          name="Sunnahs"
-          component={props.sunnahsComponent}
-          options={{
-            tabBarLabel: formatMessage(TKeys.MENU_SUNNAHS),
-          }}
-        />
-      )}
-      {props.obstaclesComponent && (
-        <Tab.Screen
-          name="Obstacles"
-          component={props.obstaclesComponent}
-          options={{
-            tabBarLabel: formatMessage(TKeys.MENU_OBSTACLES),
-          }}
-        />
-      )}
+      <Tab.Screen
+        name="Sunnahs"
+        component={props.sunnahsComponent}
+        options={{
+          tabBarLabel: formatMessage(TKeys.MENU_SUNNAHS),
+        }}
+      />
     </Tab.Navigator>
   );
 }

@@ -52,6 +52,8 @@ export enum TKeys {
   BOOK_TITLE_18 = 'book.title.18',
   BOOK_DESC_18 = 'book.desc.18',
 
+  PURIFICATION_OBSTACLES = 'purification.obstacles',
+
   PURIFICATION_BODYPART_CLEANING = 'purification.bodypart.cleaning',
   PURIFICATION_BODYPART_ENLIGHTENMENT = 'purification.bodypart.enlightenment',
 
@@ -176,6 +178,14 @@ export enum TKeys {
   PURIFICATION_BODY_PARTS_PRIVATE_PARTS_ENLIGHTENMENT_RULE_5 = 'purification.body-parts.private-parts.enlightenment.rule-5',
   PURIFICATION_BODY_PARTS_PRIVATE_PARTS_ENLIGHTENMENT_RULE_6 = 'purification.body-parts.private-parts.enlightenment.rule-6',
 
+  PURIFICATION_BODYPART_OBSTACLES_SUMMARY = 'purification.bodypart.obstacles.summary',
+  PURIFICATION_BODYPART_OBSTACLES_HOW_TO_HANDLE_TITLE = 'purification.bodypart.obstacles.how-to-handle.title',
+  PURIFICATION_BODYPART_OBSTACLES_HOW_TO_HANDLE_SUMMARY = 'purification.bodypart.obstacles.how-to-handle.summary',
+  PURIFICATION_BODYPART_OBSTACLES_HOW_TO_HANDLE_FACE_1_TITLE = 'purification.bodypart.obstacles.how-to-handle.face.1.title',
+  PURIFICATION_BODYPART_OBSTACLES_HOW_TO_HANDLE_FACE_1_SUMMARY = 'purification.bodypart.obstacles.how-to-handle.face.1.summary',
+  PURIFICATION_BODYPART_OBSTACLES_HOW_TO_HANDLE_FACE_2_TITLE = 'purification.bodypart.obstacles.how-to-handle.face.2.title',
+  PURIFICATION_BODYPART_OBSTACLES_HOW_TO_HANDLE_FACE_2_SUMMARY = 'purification.bodypart.obstacles.how-to-handle.face.2.summary',
+
   // Mind purification
   PURIFICATION_MIND_TITLE = 'purification.mind.title',
   PURIFICATION_MIND_SUMMARY = 'purification.mind.summary',
@@ -198,6 +208,17 @@ export enum TKeys {
   PURIFICATION_MIND_DESCRIPTION_LEVEL_7 = 'purification.mind.description.level-7',
   PURIFICATION_MIND_DESCRIPTION_LEVEL_8 = 'purification.mind.description.level-8',
   PURIFICATION_MIND_DESCRIPTION_LEVEL_9 = 'purification.mind.description.level-9',
+
+  PURIFICATION_MIND_OBSTACLES_SUMMARY = 'purification.mind.obstacles.summary',
+  PURIFICATION_MIND_OBSTACLES_HOW_TO_HANDLE = 'purification.mind.obstacles.how-to-handle',
+  PURIFICATION_MIND_OBSTACLES_CASE_1_TITLE = 'purification.mind.obstacles.case.1.title',
+  PURIFICATION_MIND_OBSTACLES_CASE_1_SUMMARY = 'purification.mind.obstacles.case.1.summary',
+  PURIFICATION_MIND_OBSTACLES_CASE_1_HOW_TO_HANDLE = 'purification.mind.obstacles.case.1.how-to-handle',
+  PURIFICATION_MIND_OBSTACLES_CASE_2_TITLE = 'purification.mind.obstacles.case.2.title',
+  PURIFICATION_MIND_OBSTACLES_CASE_2_SUMMARY = 'purification.mind.obstacles.case.2.summary',
+  PURIFICATION_MIND_OBSTACLES_CASE_3_TITLE = 'purification.mind.obstacles.case.3.title',
+  PURIFICATION_MIND_OBSTACLES_CASE_3_SUMMARY = 'purification.mind.obstacles.case.3.summary',
+  PURIFICATION_MIND_OBSTACLES_CASE_3_HOW_TO_HANDLE = 'purification.mind.obstacles.case.3.how-to-handle',
 
   PURIFICATION_SOUL_TITLE = 'purification.soul.title',
   PURIFICATION_SOUL_SUMMARY = 'purification.soul.summary',
@@ -413,8 +434,11 @@ export enum TKeys {
   INVOCATION_NIVEAU_2 = 'invocation.niveau.2',
   INVOCATION_NIVEAU_3 = 'invocation.niveau.3',
 
-  INVOCATION_ETIQUETE_TITLE = 'invocation.etiquete.title',
-  INVOCATION_ETIQUETE = 'invocation.etiquete',
+  INVOCATION_GOOD_MANNERS_TITLE = 'invocation.good-manners.title',
+  INVOCATION_GOOD_MANNERS_1 = 'invocation.good-manners_1',
+  INVOCATION_GOOD_MANNERS_2 = 'invocation.good-manners_2',
+  INVOCATION_GOOD_MANNERS_3 = 'invocation.good-manners_3',
+  INVOCATION_GOOD_MANNERS_4 = 'invocation.good-manners_4',
 
   INVOCATION_STEP_1 = 'invocation.step.1',
   INVOCATION_STEP_2 = 'invocation.step.2',
@@ -454,7 +478,8 @@ export enum TKeys {
   INVOCATION_STEP_3_RULE_2_DESC = 'invocation.step.3.rule.2.desc',
   INVOCATION_STEP_3_RULE_3 = 'invocation.step.3.rule.3',
   INVOCATION_STEP_3_RULE_3_DESC = 'invocation.step.3.rule.3.desc',
-  INVOCATION_STEP_3_IMPORTANCE = 'invocation.step.3.importance',
+  INVOCATION_STEP_3_IMPORTANCE_TITLE = 'invocation.step.3.importance.title',
+  INVOCATION_STEP_3_IMPORTANCE_SUMMARY = 'invocation.step.3.importance.summary',
 
   // Invocations immunization
   INVOCATIONS_IMMUNIZATION_TITLE = 'invocations.immunization.title',
@@ -519,6 +544,8 @@ export enum TKeys {
   LEVEL = 'level',
   MORNING = 'morning',
   EVENING = 'evening',
+  A = 'a',
+  B = 'b',
 
   LANGUAGE_ARABIC = 'language.arabic',
   LANGUAGE_FRENCH = 'language.french',
@@ -546,7 +573,6 @@ export enum TKeys {
   MENU_SUNNAHS = 'menu.sunnahs',
   MENU_INVOCATIONS = 'menu.invocations',
   MENU_INVOCATION = 'menu.invocation',
-  MENU_OBSTACLES = 'menu.obstacles',
   MENU_SETTINGS = 'menu.settings',
   SETTINGS_LANGUAGE = 'settings.app-language',
   SETTINGS_LANGUAGE_DEFAULT = 'settings.language.default',

@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { List } from 'react-native-paper';
+import InvocationGoodManners from '../../../../../components/InvocationGoodManners';
 import Text from '../../../../../components/Text';
 import ScrollViewLayout from '../../../../../components/layout/ScrollViewLayout';
 import VStack from '../../../../../components/stack/VStack';
@@ -9,13 +10,14 @@ import { useMessage } from '../../../../../hooks/use-message';
 import { TKeys } from '../../../../../locales/constants';
 import InvocationAccordion from '../../../common/InvocationAccordion';
 import { purificationStyles } from '../../../common/Style';
+import { BACKGROUND_COLOR } from '../../../common/sunnahs/Helper';
 
 export default function InvocationsScreen() {
   const { formatMessage } = useMessage();
   const { arabic } = useApplication();
 
   return (
-    <ScrollViewLayout>
+    <ScrollViewLayout style={{ backgroundColor: BACKGROUND_COLOR, flex: 1 }}>
       <Text variant="bodyMedium" style={purificationStyles.title} color="seagreen">
         {formatMessage(TKeys.INVOCATION_STEP_3)}
       </Text>
@@ -41,13 +43,23 @@ export default function InvocationsScreen() {
           </Text>
         </InvocationAccordion>
       </List.AccordionGroup>
-      <Text variant="bodyMedium" style={{ ...styles.importance, fontSize: Font.size(arabic ? 14 : 13) }}>
-        {formatMessage(TKeys.INVOCATION_STEP_3_IMPORTANCE)}
-      </Text>
+      <InvocationGoodManners />
+      <VStack style={styles.importanceContainer}>
+        <Text variant="bodyMedium" style={purificationStyles.title} color="seagreen">
+          {formatMessage(TKeys.INVOCATION_STEP_3_IMPORTANCE_TITLE)}
+        </Text>
+        <Text
+          variant="bodyMedium"
+          style={{ ...styles.importance, fontSize: Font.size(arabic ? 16 : 14), fontWeight: arabic ? '600' : 'normal' }}
+        >
+          {formatMessage(TKeys.INVOCATION_STEP_3_IMPORTANCE_SUMMARY)}
+        </Text>
+      </VStack>
     </ScrollViewLayout>
   );
 }
 
 const styles = StyleSheet.create({
-  importance: { textAlign: 'justify', fontWeight: '500', marginTop: 20 },
+  importanceContainer: { marginTop: 20 },
+  importance: { textAlign: 'justify' },
 });

@@ -37,7 +37,7 @@ type Props = {
 function PressableItem({ inProgress, ...props }: Props) {
   const { formatMessage } = useMessage();
   const completed = props.percentage === 100;
-  const middleWidth = useMemo(() => SCREEN_WIDTH - props.stepTitleWidth, []);
+  const middleWidth = useMemo(() => SCREEN_WIDTH - 30 - props.stepTitleWidth, []);
 
   return (
     <Animated.View entering={FadeInUp.delay(100 * props.index + 1)} style={{ marginBottom: 7 }}>
@@ -91,27 +91,30 @@ function PressableItem({ inProgress, ...props }: Props) {
               <SegmentedProgress progress={props.progress} />
             </View>
           </VStack>
-          <View style={{ width: (props.circularProgressRadius ?? 0) * 2 }}>
-            {inProgress && (
-              <Animated.View entering={FadeInLeft.delay(400).duration(300).springify().stiffness(300)}>
-                {completed ? (
-                  <Icon name="check-all" size={25} color="seagreen" style={{ marginRight: 8 }} />
-                ) : (
-                  <CircularProgress
-                    value={props.percentage}
-                    maxValue={100}
-                    duration={600}
-                    radius={props.circularProgressRadius}
-                    valueSuffix={props.arabic ? '' : '%'}
-                    valuePrefix={props.arabic ? '%' : ''}
-                    inActiveStrokeColor={'#3cb371'}
-                    inActiveStrokeOpacity={0.2}
-                    progressValueStyle={styles.progress}
-                  />
-                )}
-              </Animated.View>
-            )}
-          </View>
+          <HStack style={GlobalStyles.center}>
+            <View style={{ width: (props.circularProgressRadius ?? 0) * 2 }}>
+              {inProgress && (
+                <Animated.View entering={FadeInLeft.delay(400).duration(300).springify().stiffness(300)}>
+                  {completed ? (
+                    <Icon name="check-all" size={25} color="seagreen" style={{ marginRight: 8 }} />
+                  ) : (
+                    <CircularProgress
+                      value={props.percentage}
+                      maxValue={100}
+                      duration={600}
+                      radius={props.circularProgressRadius}
+                      valueSuffix={props.arabic ? '' : '%'}
+                      valuePrefix={props.arabic ? '%' : ''}
+                      inActiveStrokeColor={'#3cb371'}
+                      inActiveStrokeOpacity={0.2}
+                      progressValueStyle={styles.progress}
+                    />
+                  )}
+                </Animated.View>
+              )}
+            </View>
+            <Icon name="unfold-more-horizontal" size={20} />
+          </HStack>
         </HStack>
       </TouchableRipple>
     </Animated.View>
@@ -124,7 +127,7 @@ const styles = StyleSheet.create({
   partSubTitle: { fontWeight: '700', color: '#708090', marginTop: -3 },
   progress: { color: 'green', fontWeight: '700', fontSize: 11 },
   part: {
-    minHeight: 40,
+    minHeight: 50,
     elevation: 6,
     borderRadius: 45,
     width: SCREEN_WIDTH - 8,
@@ -134,7 +137,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     textAlign: 'center',
     paddingStart: 4,
-    paddingEnd: 3,
+    paddingEnd: 5,
   },
 });
 

@@ -2,7 +2,6 @@ import usePurification from '../../../../hooks/use-purification';
 import TabNavigator from '../../common/TabNavigator';
 import HomeScreen from './tabs/HomeScreen';
 import InvocationsScreen from './tabs/InvocationsScreen';
-import ObstaclesScreen from './tabs/ObstaclesScreen';
 import PresentationScreen from './tabs/PresentationScreen';
 import SunnahsScreen from './tabs/SunnahsScreen';
 
@@ -15,7 +14,6 @@ export default function BodyPartsScreen() {
       purificationComponent={HomeScreen}
       invocationComponent={InvocationsScreen}
       sunnahsComponent={SunnahsScreen}
-      obstaclesComponent={ObstaclesScreen}
     />
   );
 }

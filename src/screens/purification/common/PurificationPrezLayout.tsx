@@ -1,5 +1,6 @@
 import { PropsWithChildren } from 'react';
-import { ColorValue, View } from 'react-native';
+import { ColorValue } from 'react-native';
+import { Divider } from 'react-native-paper';
 import Basmalah from '../../../components/Basmalah';
 import Text from '../../../components/Text';
 import VStack from '../../../components/stack/VStack';
@@ -19,7 +20,7 @@ export default function PurificationPrezLayout(props: Props) {
   const { arabic } = useApplication();
 
   return (
-    <VStack spacing={2}>
+    <VStack spacing={25}>
       <VStack spacing={2}>
         <Text
           variant="bodyMedium"
@@ -30,9 +31,9 @@ export default function PurificationPrezLayout(props: Props) {
         </Text>
         <Basmalah />
         <Text
+          variant="bodyMedium"
           style={{
-            paddingTop: 8,
-            marginBottom: 30,
+            paddingTop: 15,
             fontSize: Font.size(arabic ? 16 : 14),
             fontWeight: arabic ? '600' : 'normal',
             textAlign: 'justify',
@@ -41,7 +42,12 @@ export default function PurificationPrezLayout(props: Props) {
           {formatMessage(props.body)}
         </Text>
       </VStack>
-      <View>{props.children}</View>
+      {props.children && (
+        <VStack>
+          <Divider style={{ backgroundColor: 'black' }} />
+          {props.children}
+        </VStack>
+      )}
     </VStack>
   );
 }

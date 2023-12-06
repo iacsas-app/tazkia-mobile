@@ -5,3 +5,5 @@ export const sunnahsImages: Record<string, ImageSourcePropType> = {
   worship: require('./../../../../../assets/img/sunnahs/step2.jpg'),
   truths: require('./../../../../../assets/img/sunnahs/step3.jpg'),
 };
+
+export const BACKGROUND_COLOR = '#d5f3e378';

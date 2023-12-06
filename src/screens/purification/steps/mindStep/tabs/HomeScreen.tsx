@@ -11,6 +11,7 @@ import usePurification from '../../../../../hooks/use-purification';
 import { TKeys } from '../../../../../locales/constants';
 import { PURIFICATION_MAX_DAYS, progressPercentage2 } from '../../../../../services/Helpers';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
+import { BACKGROUND_COLOR } from '../../../common/sunnahs/Helper';
 
 const levels: MindLevel[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -56,6 +57,7 @@ export default function HomeScreen() {
   return (
     <BottomSheet
       ref={ref}
+      style={{ backgroundColor: BACKGROUND_COLOR }}
       content={
         <ProgressView
           titleKey={TKeys.LEVEL}
@@ -87,7 +89,7 @@ export default function HomeScreen() {
                   inProgress={mind !== undefined}
                   percentage={percentage}
                   arabic={arabic}
-                  circularProgressRadius={19}
+                  circularProgressRadius={18}
                   onPress={() => handlePress((index + 1) as any)}
                 />
               );

@@ -9,6 +9,7 @@ import usePurification from '../../../../../hooks/use-purification';
 import { TKeys } from '../../../../../locales/constants';
 import { PURIFICATION_MAX_DAYS, progressPercentage2 } from '../../../../../services/Helpers';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
+import { BACKGROUND_COLOR } from '../../../common/sunnahs/Helper';
 import LevelSelector from '../helpers/LevelSelector';
 import { hasSubTitle, soulRules } from '../helpers/data';
 
@@ -65,6 +66,7 @@ export default function HomeScreen() {
   return (
     <BottomSheet
       ref={ref}
+      style={{ backgroundColor: BACKGROUND_COLOR }}
       content={
         <LevelSelector part={part} onStart={handleStart} onRestart={handleRestart} onEvaluate={handleEvaluate} />
       }
@@ -92,7 +94,7 @@ export default function HomeScreen() {
               progress={getProgress(soul)}
               flexBasis={60}
               arabic={arabic}
-              circularProgressRadius={25}
+              circularProgressRadius={23}
               subSummarySize={11}
               onPress={() => handlePress(idx as any)}
             />

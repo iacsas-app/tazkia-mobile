@@ -1,17 +1,19 @@
 import { PropsWithChildren } from 'react';
-import { SafeAreaView, ScrollView, useWindowDimensions } from 'react-native';
+import { SafeAreaView, ScrollView, StyleProp, ViewStyle, useWindowDimensions } from 'react-native';
 import Animated, { FadeInUp, FadeOutDown } from 'react-native-reanimated';
 import useWindow from '../../hooks/use-window';
 import GlobalStyles from '../../styles/GlobalStyles';
 
-interface Props extends PropsWithChildren {}
+interface Props extends PropsWithChildren {
+  style?: StyleProp<ViewStyle>;
+}
 
 export default function ScrollViewLayout(props: Props) {
   const { width } = useWindowDimensions();
   const { paddingHorizontal } = useWindow();
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={props.style}>
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         contentContainerStyle={[

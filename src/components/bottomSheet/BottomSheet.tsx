@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { ReactNode, forwardRef, useImperativeHandle, useLayoutEffect, useMemo, useState } from 'react';
-import { Pressable, StyleSheet } from 'react-native';
+import { Pressable, StyleProp, StyleSheet, ViewStyle } from 'react-native';
 import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
 import { IconButton } from 'react-native-paper';
 import Animated, {
@@ -27,6 +27,7 @@ export type BottomSheetRef = {
 type BottomSheetProps = {
   children: ReactNode;
   content: ReactNode;
+  style?: StyleProp<ViewStyle>;
 };
 
 const BottomSheet = forwardRef<BottomSheetRef, BottomSheetProps>(function BottomSheet(props, ref) {
@@ -85,7 +86,7 @@ const BottomSheet = forwardRef<BottomSheetRef, BottomSheetProps>(function Bottom
   }, [isOpen]);
 
   return (
-    <GestureHandlerRootView style={styles.container}>
+    <GestureHandlerRootView style={[styles.container, props.style]}>
       {props.children}
       {isOpen && (
         <>

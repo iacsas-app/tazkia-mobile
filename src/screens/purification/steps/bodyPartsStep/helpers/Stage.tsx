@@ -104,13 +104,16 @@ export default function Stage({ part, stage, ...props }: Props) {
         <HStack style={styles.header}>
           <HStack spacing={10} style={GlobalStyles.center}>
             <Icon name={iconName} size={22} color={hasProgress ? 'seagreen' : '#4169e1'} />
-            <Text
-              variant="bodyLarge"
-              style={{ ...styles.stageTitle, fontSize: Font.size((open ? 18 : 16) - (locale === 'in' ? 3 : 0)) }}
-              color={open ? '#2e8b57' : hasProgress ? 'seagreen' : '#4169e1'}
-            >
-              {formatMessage(`purification.bodypart.${stage}`)}
-            </Text>
+            <HStack style={styles.stageTitle} spacing={10}>
+              <Text
+                variant="bodyLarge"
+                style={{ fontSize: Font.size((open ? 18 : 16) - (locale === 'in' ? 3 : 0)) }}
+                color={open ? '#2e8b57' : hasProgress ? 'seagreen' : '#4169e1'}
+              >
+                {formatMessage(`purification.bodypart.${stage}`)}
+              </Text>
+              <Icon name="arrow-top-left-thick" size={20} />
+            </HStack>
           </HStack>
           <Animated.View entering={SlideInLeft.duration(10).springify()}>
             {!hasProgress ? (
@@ -173,7 +176,14 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     paddingVertical: 5,
   },
-  stageTitle: { fontWeight: '900', color: '#4169e1', width: SCREEN_WIDTH - 200 },
+  stageTitle: {
+    alignContent: 'stretch',
+    alignItems: 'center',
+    alignSelf: 'center',
+    fontWeight: '900',
+    color: '#4169e1',
+    width: SCREEN_WIDTH - 200,
+  },
   footer: { paddingVertical: 8 },
   divider: { backgroundColor: '#2e8b57', width: '100%', marginTop: 25 },
   systemLabel: { fontSize: 15, fontWeight: '700' },

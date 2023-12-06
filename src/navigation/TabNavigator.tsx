@@ -5,7 +5,6 @@ import MCIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import Octicons from '@expo/vector-icons/Octicons';
 import { Font } from '../constants/Font';
 import { useMessage } from '../hooks/use-message';
-import usePurification from '../hooks/use-purification';
 import { TKeys } from '../locales/constants';
 import InvocationsStack from './stacks/InvocationsStack';
 import PresentationStack from './stacks/PresentationStack';
@@ -15,7 +14,6 @@ import { TabParamList } from './types';
 const Tab = createBottomTabNavigator<TabParamList>();
 
 const TabNavigator = () => {
-  const { hasBodyPartsProgress, hasMindProgress, hasSoulProgress } = usePurification();
   const { formatMessage } = useMessage();
   const menuSize = Font.size(12);
 

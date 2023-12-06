@@ -83,6 +83,7 @@ export default function SunnahStageContainer({ stage, rules }: Props) {
   return (
     <BottomSheet
       ref={ref}
+      style={{ backgroundColor: '#d5f3e378' }}
       content={
         <ProgressView
           titleKey={`sunnahs.${stage}.${id}.title`}
@@ -142,7 +143,7 @@ export default function SunnahStageContainer({ stage, rules }: Props) {
                 percentage={percentage}
                 flexBasis={47}
                 arabic={arabic}
-                circularProgressRadius={18}
+                circularProgressRadius={20}
                 onPress={() => handlePress(idx as any)}
               />
             );

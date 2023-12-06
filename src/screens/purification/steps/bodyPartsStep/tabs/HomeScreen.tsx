@@ -6,6 +6,7 @@ import { BodyPartType, BodyPartsOrder, PurificationStage } from '../../../../../
 import usePurification from '../../../../../hooks/use-purification';
 import { groupBy } from '../../../../../services/Helpers';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
+import { BACKGROUND_COLOR } from '../../../common/sunnahs/Helper';
 import { PartItem, bodyParts } from '../common/Helper';
 import BodyPartItem from '../helpers/BodyPartItem';
 import StageSelector from '../helpers/StageSelector';
@@ -53,6 +54,7 @@ export default function HomeScreen() {
   return (
     <BottomSheet
       ref={ref}
+      style={{ backgroundColor: BACKGROUND_COLOR }}
       content={
         <StageSelector part={selected} onStart={handleStart} onRestart={handleRestart} onEvaluate={handleEvaluate} />
       }
