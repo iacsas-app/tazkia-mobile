@@ -1,5 +1,5 @@
+import * as ExpoUpdates from 'expo-updates';
 import { I18nManager, NativeModules, Platform } from 'react-native';
-import CodePush from 'react-native-code-push';
 import ProgressLine from '../domains/common/ProgressLine';
 import { SupportedLocale } from '../locales/types';
 
@@ -77,7 +77,6 @@ export async function reloadIfNecessary(lang: SupportedLocale) {
   I18nManager.swapLeftAndRightInRTL(true);
 
   if ((isArabic && !I18nManager.isRTL) || (!isArabic && I18nManager.isRTL)) {
-    //await ExpoUpdates.reloadAsync();
-    await CodePush.restartApp();
+    await ExpoUpdates.reloadAsync();
   }
 }
