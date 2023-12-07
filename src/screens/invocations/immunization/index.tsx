@@ -7,13 +7,13 @@ import ReaderDialog from '../../../components/dialogs/reader/ReaderDialog';
 import InvocationRepeat from '../../../domains/common/InvocationRepeat';
 import { useMessage } from '../../../hooks/use-message';
 import { TKeys } from '../../../locales/constants';
-import { InvocationsScreenRouteProp } from '../../../navigation/types';
+import { ImmunizationScreenRouteProp } from '../../../navigation/types';
 import Immunization from './Immunization';
 import { immunizationData } from './data';
 
 export default function ImmunizationInvocationsScreen() {
   const { formatMessage } = useMessage();
-  const { period } = useRoute<InvocationsScreenRouteProp>().params;
+  const { period } = useRoute<ImmunizationScreenRouteProp>().params;
   const data: InvocationRepeat[] = useMemo(() => immunizationData[period], []);
 
   return (

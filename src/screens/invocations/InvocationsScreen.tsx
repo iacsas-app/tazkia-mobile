@@ -1,17 +1,19 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useMemo, useRef } from 'react';
+import React, { ReactNode, useMemo, useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Avatar } from 'react-native-paper';
 import Animated, { FadeInUp } from 'react-native-reanimated';
 import Text from '../../components/Text';
 import BottomSheet, { BottomSheetRef } from '../../components/bottomSheet/BottomSheet';
 import VStack from '../../components/stack/VStack';
+import { Color } from '../../constants/Color';
 import { Font } from '../../constants/Font';
 import { SCREEN_WIDTH } from '../../constants/Screen';
 import { useApplication } from '../../hooks/use-application';
 import { useMessage } from '../../hooks/use-message';
 import { TKeys } from '../../locales/constants';
 import GlobalStyles from '../../styles/GlobalStyles';
+import SectionChooser from './ahzabs/SectionChooser';
 import PeriodChooser from './immunization/PeriodChooser';
 import { ImmunizationPeriod } from './immunization/data';
 
@@ -20,6 +22,7 @@ export default function InvocationsScreen() {
   const { formatMessage } = useMessage();
   const { arabic } = useApplication();
   const navigation = useNavigation<any>();
+  const [content, setContent] = useState<ReactNode>();
 
   const parts = useMemo(
     () => [
@@ -49,19 +52,28 @@ export default function InvocationsScreen() {
 
   function handlePress(route: string) {
     if (route === 'Immunization') {
+      setContent(<PeriodChooser onSelect={handlePeriodSelect} />);
+      ref.current?.open();
+    } else if (route === 'Ahzabs') {
+      setContent(<SectionChooser onSelect={handleSectionSelect} />);
       ref.current?.open();
     } else {
       navigation.navigate(route);
     }
   }
 
-  function handleSelect(period: ImmunizationPeriod) {
+  function handlePeriodSelect(period: ImmunizationPeriod) {
     navigation.navigate('Immunization', { period });
     ref.current?.close();
   }
 
+  function handleSectionSelect(section: number) {
+    navigation.navigate('Ahzabs', { section });
+    ref.current?.close();
+  }
+
   return (
-    <BottomSheet ref={ref} content={<PeriodChooser onSelect={handleSelect} />}>
+    <BottomSheet ref={ref} content={content}>
       <VStack spacing={15} style={styles.container}>
         {parts.map((item, index: number) => (
           <Animated.View
@@ -74,7 +86,7 @@ export default function InvocationsScreen() {
             <View style={styles.summary}>
               <Text
                 variant="bodySmall"
-                style={{ ...styles.summaryLabel, fontSize: Font.size(arabic ? 17 : 14) }}
+                style={{ ...styles.summaryLabel, fontSize: Font.size(arabic ? 16 : 14) }}
                 color="black"
               >
                 {formatMessage(item.name)}
@@ -92,12 +104,12 @@ const styles = StyleSheet.create({
     ...GlobalStyles.center,
     flex: 1,
     width: SCREEN_WIDTH,
-    backgroundColor: '#f5fffa',
+    backgroundColor: Color.backgroundColor,
   },
   part: {
-    backgroundColor: '#cde7f7',
+    backgroundColor: Color.partLightBgColor,
     width: SCREEN_WIDTH - 20,
-    flexBasis: 90,
+    flexBasis: 95,
     elevation: 6,
     borderRadius: 45,
     paddingVertical: 10,
@@ -107,14 +119,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
   },
-  image: { backgroundColor: 'whitesmoke', position: 'absolute', left: 5 },
+  image: { backgroundColor: 'whitesmoke', position: 'absolute', left: 6 },
   summary: {
-    maxWidth: SCREEN_WIDTH - 120,
-    flexGrow: 1,
-    left: 45,
+    ...GlobalStyles.center,
+    left: 42,
+    width: '75%',
   },
   summaryLabel: {
-    fontWeight: '800',
-    textAlign: 'auto',
+    fontWeight: '700',
+    flexBasis: 90,
+    marginBottom: -6,
+    textAlign: 'center',
+    alignContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    verticalAlign: 'middle',
   },
 });

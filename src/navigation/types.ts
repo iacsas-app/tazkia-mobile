@@ -1,7 +1,6 @@
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { CompositeNavigationProp, RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { BodyPartType, PurificationStage } from '../domains/purification/BodyPart';
 import { ImmunizationPeriod } from '../screens/invocations/immunization/data';
 
 export type TabParamList = {
@@ -21,7 +20,6 @@ export type PresentationParamList = {
 export type PurificationParamList = {
   Home: undefined;
   BodyParts: undefined;
-  BodyPartsRules: { part: BodyPartType; step: PurificationStage };
   Mind: undefined;
   Soul: undefined;
 };
@@ -30,6 +28,8 @@ export type InvocationsParamList = {
   Invocations: undefined;
   Immunization: { period: ImmunizationPeriod };
   Jewels: undefined;
+  Overflow: undefined;
+  Ahzabs: { section: number };
 };
 
 // Navigation props
@@ -44,4 +44,5 @@ export type PurificationStackNavigationProp = CompositeNavigationProp<
 >;
 
 // Route props
-export type InvocationsScreenRouteProp = RouteProp<InvocationsParamList, 'Immunization'>;
+export type ImmunizationScreenRouteProp = RouteProp<InvocationsParamList, 'Immunization'>;
+export type AhzabsScreenRouteProp = RouteProp<InvocationsParamList, 'Ahzabs'>;

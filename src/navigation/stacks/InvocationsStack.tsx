@@ -6,9 +6,11 @@ import { useWindowDimensions } from 'react-native';
 import { useMessage } from '../../hooks/use-message';
 import { TKeys } from '../../locales/constants';
 import InvocationsScreen from '../../screens/invocations/InvocationsScreen';
+import AhzabsInvocationsScreen from '../../screens/invocations/ahzabs';
 import ImmunizationInvocationsScreen from '../../screens/invocations/immunization';
 import { ImmunizationPeriod } from '../../screens/invocations/immunization/data';
 import JewelsInvocationsScreen from '../../screens/invocations/jewels';
+import OverflowInvocationsScreen from '../../screens/invocations/overflow';
 import { InvocationsParamList } from '../types';
 
 export default function InvocationsStack() {
@@ -41,6 +43,16 @@ export default function InvocationsStack() {
           name="Jewels"
           component={JewelsInvocationsScreen}
           options={{ title: formatMessage(TKeys.INVOCATION_JEWELS_TITLE) }}
+        />
+        <Stack.Screen
+          name="Overflow"
+          component={OverflowInvocationsScreen}
+          options={{ title: formatMessage(TKeys.INVOCATION_OVERFLOW_TITLE) }}
+        />
+        <Stack.Screen
+          name="Ahzabs"
+          component={AhzabsInvocationsScreen}
+          options={{ title: formatMessage(TKeys.INVOCATION_AHZABS_TITLE) }}
         />
       </Stack.Navigator>
     </NavigationContainer>

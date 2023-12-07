@@ -26,7 +26,7 @@ function InvocationGoodManners() {
         backgroundColor: 'white',
         paddingVertical: 15,
         borderRadius: 20,
-        width: SCREEN_WIDTH - 30,
+        width: SCREEN_WIDTH - 20,
       }}
     >
       <HStack style={GlobalStyles.center} spacing={15}>
@@ -50,7 +50,7 @@ function InvocationGoodManners() {
             />
             <Text
               variant="bodySmall"
-              style={{ fontSize: Font.size(arabic ? 15 : 13), fontWeight: '600', width: SCREEN_WIDTH - 120 }}
+              style={{ fontSize: Font.size(arabic ? 15 : 13), fontWeight: '600', width: SCREEN_WIDTH - 90 }}
               color="black"
             >
               {formatMessage(`invocation.good-manners_${id + 1}`)}

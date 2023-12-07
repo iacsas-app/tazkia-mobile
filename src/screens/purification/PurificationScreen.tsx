@@ -27,9 +27,8 @@ const styles = StyleSheet.create({
   part: {
     width: SCREEN_WIDTH - 100,
     paddingVertical: 10,
-    backgroundColor: '#b3f1d5', // #cde7f7 (green)
+    backgroundColor: Color.partBgColor,
     borderRadius: 25,
     elevation: 6,
-    backfaceVisibility: 'hidden',
   },
 });

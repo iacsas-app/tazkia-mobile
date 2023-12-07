@@ -2,7 +2,6 @@ import React, { useCallback, useRef, useState } from 'react';
 import { Easing, Image, StyleSheet } from 'react-native';
 import { Appbar, BottomNavigation } from 'react-native-paper';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
-import Text from '../components/Text';
 import SettingsDialog, { SettingsDialogRef } from '../components/dialogs/SettingsDialog';
 import { useMessage } from '../hooks/use-message';
 import { TKeys } from '../locales/constants';
@@ -10,6 +9,12 @@ import GlobalStyles from '../styles/GlobalStyles';
 import InvocationsStack from './stacks/InvocationsStack';
 import PresentationStack from './stacks/PresentationStack';
 import PurificationStack from './stacks/PurificationStack';
+
+type RoutesState = Array<{
+  key: string;
+  title: string;
+  focusedIcon: string;
+}>;
 
 const RootNavigator = () => {
   const { formatMessage } = useMessage();
@@ -39,16 +44,12 @@ const RootNavigator = () => {
     },
   ]);
 
-  const renderScene = BottomNavigation.SceneMap({
-    presentation: PresentationStack,
-    purification: PurificationStack,
-    invocations: InvocationsStack,
-  });
-
   return (
     <SafeAreaProvider>
       <Appbar.Header elevated style={styles.header}>
-        <Image source={require('./../../assets/short.png')} style={styles.logo} />
+        <Appbar.Header style={styles.logoContainer}>
+          <Image source={require('./../../assets/short.png')} style={styles.logo} />
+        </Appbar.Header>
         <Appbar.Content
           title={formatMessage(TKeys.APPLICATION_TITLE_PRIMARY)}
           titleStyle={styles.headerContentTitle}
@@ -63,14 +64,13 @@ const RootNavigator = () => {
         activeColor="seagreen"
         barStyle={styles.bottomNav}
         labelMaxFontSizeMultiplier={2}
-        renderScene={renderScene}
+        renderScene={BottomNavigation.SceneMap({
+          presentation: PresentationStack,
+          purification: PurificationStack,
+          invocations: InvocationsStack,
+        })}
         sceneAnimationEnabled={sceneAnimation !== undefined}
         sceneAnimationType={sceneAnimation}
-        renderLabel={({ route, color }) => (
-          <Text variant="bodyLarge" style={{ ...GlobalStyles.center, marginTop: -4 }} color={color}>
-            {route.title}
-          </Text>
-        )}
         sceneAnimationEasing={Easing.ease}
       />
       <SettingsDialog ref={ref} />
@@ -79,28 +79,23 @@ const RootNavigator = () => {
 };
 
 const styles = StyleSheet.create({
-  header: { height: 40 },
-  logo: { width: 45, resizeMode: 'contain', marginStart: 3 },
+  header: { height: 45 },
+  logoContainer: { backgroundColor: 'transparent', height: 45 },
+  logo: {
+    width: 45,
+    resizeMode: 'contain',
+    marginStart: 3,
+    aspectRatio: 1,
+  },
   headerContentTitle: {
     fontSize: 17,
     fontWeight: '900',
     verticalAlign: 'middle',
     color: 'seagreen',
   },
-  headerContent: { ...GlobalStyles.center, paddingEnd: 55 },
+  headerContent: { ...GlobalStyles.center, paddingEnd: 60 },
   headerAction: { right: 0, position: 'absolute' },
   bottomNav: { height: 67 },
 });
-
-type RoutesState = Array<{
-  key: string;
-  title: string;
-  focusedIcon: string;
-  unfocusedIcon?: string;
-  color?: string;
-  badge?: boolean;
-  getAccessibilityLabel?: string;
-  getTestID?: string;
-}>;
 
 export default RootNavigator;

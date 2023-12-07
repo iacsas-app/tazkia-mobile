@@ -20,7 +20,6 @@ import { useMessage } from '../../../../../hooks/use-message';
 import useProgress from '../../../../../hooks/use-progress';
 import usePurification from '../../../../../hooks/use-purification';
 import { TKeys } from '../../../../../locales/constants';
-import { arabic } from '../../../../../locales/messages/arabic';
 import { PURIFICATION_MAX_DAYS } from '../../../../../services/Helpers';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
 import StatusAndEvaluation from '../../../common/StatusAndEvaluation';
@@ -113,7 +112,7 @@ export default function Stage({ part, stage, ...props }: Props) {
               >
                 {formatMessage(`purification.bodypart.${stage}`)}
               </Text>
-              <Icon name={`arrow-top-${arabic ? 'right' : 'left'}-thick`} size={20} color="blue" />
+              {!open && <Icon name="unfold-more-horizontal" size={20} color={hasProgress ? 'green' : 'blue'} />}
             </HStack>
           </HStack>
           <Animated.View entering={SlideInLeft.duration(10).springify()}>

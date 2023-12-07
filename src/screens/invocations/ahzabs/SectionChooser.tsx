@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Avatar, TouchableRipple } from 'react-native-paper';
 import Text from '../../../components/Text';
@@ -8,29 +8,26 @@ import { SCREEN_WIDTH } from '../../../constants/Screen';
 import { useMessage } from '../../../hooks/use-message';
 import { TKeys } from '../../../locales/constants';
 import GlobalStyles from '../../../styles/GlobalStyles';
-import { ImmunizationPeriod } from './data';
 
 interface Props {
-  onSelect(period: ImmunizationPeriod): void;
+  onSelect(section: number): void;
 }
-export default function PeriodChooser({ onSelect }: Props) {
+export default function SectionChooser({ onSelect }: Props) {
   const { formatMessage } = useMessage();
-  const periods = useMemo(
-    () => [
-      { name: 'morning', image: require('./../../../../assets/img/invocations/morning.png') },
-      { name: 'evening', image: require('./../../../../assets/img/invocations/evening.png') },
-    ],
-    [],
-  );
 
   return (
     <VStack style={styles.container} spacing={12}>
-      {periods.map(({ name, image }) => (
-        <TouchableRipple key={name} style={styles.pressable} onPress={() => onSelect(name as ImmunizationPeriod)}>
+      {[1, 2, 3].map((section: number) => (
+        <TouchableRipple key={section} style={styles.pressable} onPress={() => onSelect(section)}>
           <View style={styles.titleContainer}>
-            <Avatar.Image source={image} size={60} style={styles.image} />
-            <Text variant="bodyLarge" style={styles.title}>
-              {formatMessage(TKeys.INVOCATIONS_IMMUNIZATION_TITLE, { period: formatMessage(name) })}
+            <Avatar.Text
+              label={formatMessage(TKeys.SECTION, { value: section })}
+              size={25}
+              style={styles.id}
+              color="white"
+            />
+            <Text variant="bodyMedium" style={styles.title}>
+              {formatMessage(`invocations.ahzabs.section.${section}`)}
             </Text>
           </View>
         </TouchableRipple>
@@ -59,6 +56,6 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     height: 70,
   },
-  title: { fontWeight: '900', fontSize: 16, marginLeft: 25 },
-  image: { position: 'absolute', left: 6 },
+  title: { fontWeight: '700', fontSize: 16, marginLeft: 25 },
+  id: { position: 'absolute', left: 10, elevation: 2, width: 52 },
 });

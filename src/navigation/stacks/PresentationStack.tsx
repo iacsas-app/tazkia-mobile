@@ -26,7 +26,7 @@ export default function PresentationStack() {
         }}
       >
         <Stack.Screen name="Home" component={PresentationScreen} options={{ headerShown: false }} />
-        <Stack.Group screenOptions={{ presentation: 'modal' }}>
+        <Stack.Group screenOptions={{ presentation: 'card' }}>
           <Stack.Screen
             name="Center"
             component={CenterScreen}

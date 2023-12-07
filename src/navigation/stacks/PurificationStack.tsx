@@ -23,7 +23,7 @@ export default function PurificationStack() {
         }}
       >
         <Stack.Screen name="Home" component={PurificationScreen} options={{ headerShown: false }} />
-        <Stack.Group screenOptions={{ presentation: 'modal' }}>
+        <Stack.Group screenOptions={{ presentation: 'card' }}>
           <Stack.Screen
             name="BodyParts"
             component={BodyPartsScreen}

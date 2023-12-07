@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { View, useWindowDimensions } from 'react-native';
+import { View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Avatar } from 'react-native-paper';
 import { AvatarImageSource } from 'react-native-paper/lib/typescript/components/Avatar/AvatarImage';
@@ -33,7 +33,6 @@ export default function LanguageSetting({ open, onClick }: Props) {
   const { locale, defaultLang } = useApplication();
   const lang = locale ? locale : defaultLang;
   const languageKey = localesTranslation[lang];
-  const { width } = useWindowDimensions();
 
   const languageFlags: Record<SupportedLocale, AvatarImageSource> = useMemo(() => langFlags, []);
 

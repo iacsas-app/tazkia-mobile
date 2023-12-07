@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 import PressableStep, { Part } from '../../components/PressableStep';
 import VStack from '../../components/stack/VStack';
+import { Color } from '../../constants/Color';
 import { SCREEN_WIDTH } from '../../constants/Screen';
 import { TKeys } from '../../locales/constants';
 import GlobalStyles from '../../styles/GlobalStyles';
@@ -43,10 +44,10 @@ export default function PresentationScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { ...GlobalStyles.container, backgroundColor: '#dcdcf730' },
+  container: { ...GlobalStyles.container, backgroundColor: Color.backgroundColor },
   part: {
     paddingVertical: 10,
-    backgroundColor: '#f5fffa',
+    backgroundColor: Color.partLightBgColor,
     borderRadius: 15,
     elevation: 6,
     width: SCREEN_WIDTH - 70,
