@@ -1,53 +1,24 @@
-import { Image, StyleSheet, View, useWindowDimensions } from 'react-native';
-import Text from '../../components/Text';
-import VStack from '../../components/stack/VStack';
-import { useMessage } from '../../hooks/use-message';
+import { Image, StyleSheet } from 'react-native';
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../../constants/Screen';
 import { TKeys } from '../../locales/constants';
-import GlobalStyles from '../../styles/GlobalStyles';
-import BasePresentationLayout from './common/BasePresentationLayout';
+import PresentationLayout from './common/PresentationLayout';
 
 /**
  * Manhaj
  * @returns
  */
 export default function ApproachScreen() {
-  const { formatMessage } = useMessage();
-  const { width, height } = useWindowDimensions();
-
   return (
-    <BasePresentationLayout>
-      <VStack spacing={20} style={GlobalStyles.center}>
-        <View>
-          <Image
-            source={require('./../../../assets/img/presentation/manhaj.jpg')}
-            style={{ width: width - 150, borderRadius: 30 }}
-          />
-        </View>
-        <View style={{ width: width - 40 }}>
-          <Text variant="bodyLarge" style={{ fontSize: 20, fontWeight: '700' }}>
-            {formatMessage(TKeys.PRESENTATION_APPROACH_TITLE)}
-          </Text>
-          <Text variant="bodyLarge" style={{ ...styles.description, fontSize: 15 }}>
-            {formatMessage(TKeys.PRESENTATION_APPROACH)}
-          </Text>
-        </View>
-      </VStack>
-      <Image
-        source={require('./../../../assets/img/presentation/manhajTargets.jpg')}
-        style={{ width: width, height: height - 260, marginBottom: 10 }}
-      />
-    </BasePresentationLayout>
+    <PresentationLayout
+      source={require('./../../../assets/img/presentation/manhaj.jpg')}
+      title={TKeys.PRESENTATION_APPROACH_TITLE}
+      description={TKeys.PRESENTATION_APPROACH}
+    >
+      <Image source={require('./../../../assets/img/presentation/manhajTargets.jpg')} style={styles.manhaj} />
+    </PresentationLayout>
   );
 }
 
 const styles = StyleSheet.create({
-  title: {
-    fontWeight: '500',
-    textAlign: 'justify',
-  },
-  description: {
-    marginTop: 22,
-    fontWeight: '500',
-    textAlign: 'justify',
-  },
+  manhaj: { width: SCREEN_WIDTH, height: SCREEN_HEIGHT - 260, marginBottom: 10 },
 });

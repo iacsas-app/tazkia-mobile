@@ -4,9 +4,9 @@ import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated'
 import Text from '../../../components/Text';
 import HStack from '../../../components/stack/HStack';
 import VStack from '../../../components/stack/VStack';
+import { Font } from '../../../constants/Font';
 import { SCREEN_WIDTH } from '../../../constants/Screen';
 import { Book } from '../../../domains/presentation/Book';
-import GlobalStyles from '../../../styles/GlobalStyles';
 
 type Props = {
   viewableItems: Animated.SharedValue<ViewToken[]>;
@@ -14,9 +14,9 @@ type Props = {
 };
 
 export const FlatBook: React.FC<Props> = React.memo(({ book, viewableItems }) => {
-  const box1With = SCREEN_WIDTH - 310;
+  const imageWith = SCREEN_WIDTH - 320;
 
-  const rStyle = useAnimatedStyle(() => {
+  const rowStyle = useAnimatedStyle(() => {
     const isVisible = Boolean(
       viewableItems.value.filter((item) => item.isViewable).find((viewableItem) => viewableItem.item.id === book.id),
     );
@@ -32,23 +32,19 @@ export const FlatBook: React.FC<Props> = React.memo(({ book, viewableItems }) =>
   }, []);
 
   return (
-    <Animated.View style={[rStyle, styles.row]}>
+    <Animated.View style={[rowStyle, styles.row]}>
       <VStack spacing={10} style={{ width: SCREEN_WIDTH - 80 }}>
-        <Text variant="bodyLarge" style={{ fontSize: 14, fontWeight: '900' }}>
+        <Text variant="bodyMedium" style={styles.title}>
           {book.title}
         </Text>
         <HStack spacing={30}>
-          <View style={{ width: box1With }}>
-            <VStack style={GlobalStyles.center}>
-              <Image source={book.image} style={styles.image} />
-            </VStack>
-          </View>
-          <View style={{ width: SCREEN_WIDTH - box1With - 100 }}>
+          <Image source={book.image} style={{ ...styles.image, width: imageWith }} />
+          <View style={{ width: SCREEN_WIDTH - imageWith - 100 }}>
             <VStack>
-              <Text variant="bodyLarge" style={{ ...styles.summary, fontSize: 14 }}>
+              <Text variant="bodyMedium" style={styles.summary}>
                 {book.summary}
               </Text>
-              <Text variant="bodyLarge" style={styles.link}>
+              <Text variant="bodyMedium" style={styles.link}>
                 {book.link}
               </Text>
             </VStack>
@@ -72,15 +68,16 @@ const styles = StyleSheet.create({
     paddingTop: 15,
     paddingVertical: 1,
   },
-
+  title: { fontSize: Font.size(14), fontWeight: '900' },
   image: {
     width: 80,
     height: 160,
   },
   summary: {
     textAlign: 'justify',
+    fontSize: Font.size(14),
   },
   link: {
-    fontSize: 14,
+    fontSize: Font.size(14),
   },
 });

@@ -14,39 +14,51 @@ interface Props {
   chapter: number;
   total: number;
   viewableItems: Animated.SharedValue<ViewToken[]>;
+  onSelect(section: number, chapter: number): void;
 }
-function Chapter({ section, chapter, total, viewableItems }: Props) {
+function Chapter({ section, chapter, total, viewableItems, onSelect }: Props) {
   const { formatMessage } = useMessage();
 
+  const sectionKey = `invocations.ahzabs.section.${section}`;
+
+  const first = chapter === 0;
+  const summaryKey = `${sectionKey}.${chapter !== 0 ? `chapter.${chapter}.title` : 'introduction.title'}`;
+  const subSummaryKey = first ? sectionKey : `${sectionKey}.chapter.${chapter}.why`;
+
   const animatedStyle = useAnimatedStyle(() => {
-    const isLast = chapter > total;
+    const first = chapter === 0;
+    const last = chapter === total;
     const isVisible = Boolean(
       viewableItems.value.filter((item) => item.isViewable).find((viewableItem) => viewableItem.item === chapter),
     );
 
     return {
       opacity: withTiming(isVisible ? 1 : 0),
-      transform: [
-        {
-          scale: withTiming(isVisible ? 1 : 0.6),
-        },
-      ],
-      marginBottom: withTiming(isLast ? 90 : 5),
-      backgroundColor: withTiming(isLast ? 'transparent' : 'white'),
-      elevation: withTiming(isLast ? 0 : 14),
+      transform: [{ scale: withTiming(isVisible ? 1 : 0.6) }],
+      marginBottom: withTiming(last ? 20 : first ? 20 : 5),
+      marginTop: withTiming(first ? 20 : 5),
+      backgroundColor: withTiming(first ? 'seagreen' : 'white'),
+      borderRadius: first ? 10 : 25,
     };
   }, []);
 
-  function handlePress() {}
+  function handlePress() {
+    onSelect(section, chapter);
+  }
 
   return (
     <Animated.View style={[animatedStyle, styles.row]} onTouchEnd={handlePress}>
       <VStack style={styles.container}>
-        <HStack>
-          <Avatar.Text label={chapter.toString()} size={25} style={styles.id} color="white" />
-          <Text variant="titleLarge" style={styles.summary}>
-            {formatMessage(`invocations.ahzabs.section.${section}.chapter.${chapter}.title`)}
-          </Text>
+        <HStack style={GlobalStyles.center}>
+          {!first && <Avatar.Text label={chapter.toString()} size={25} style={styles.id} color="white" />}
+          <VStack style={GlobalStyles.center}>
+            <Text variant="titleSmall" style={styles.summary} color={first ? 'white' : 'black'}>
+              {formatMessage(summaryKey)}
+            </Text>
+            <Text variant="labelSmall" style={styles.subSummary}>
+              {formatMessage(subSummaryKey)}
+            </Text>
+          </VStack>
         </HStack>
       </VStack>
     </Animated.View>
@@ -56,14 +68,14 @@ function Chapter({ section, chapter, total, viewableItems }: Props) {
 const styles = StyleSheet.create({
   row: {
     ...GlobalStyles.center,
-    borderRadius: 30,
     marginHorizontal: 10,
-    paddingVertical: 10,
-    marginTop: 5,
+    paddingVertical: 8,
+    elevation: 10,
   },
-  container: { width: SCREEN_WIDTH - 40 },
-  summary: { fontSize: 18, textAlign: 'justify', fontWeight: '700', marginLeft: 45 },
-  id: { position: 'absolute', left: 1, elevation: 2 },
+  container: { width: SCREEN_WIDTH - 32 },
+  summary: { fontSize: 16, textAlign: 'justify', fontWeight: '700' },
+  subSummary: { maxWidth: SCREEN_WIDTH - 130 },
+  id: { elevation: 2, backgroundColor: '#3db371', position: 'absolute', left: 5 },
 });
 
 export default memo(Chapter);

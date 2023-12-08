@@ -1,3 +1,4 @@
+import { PropsWithChildren } from 'react';
 import { ImageSourcePropType, StyleSheet, View } from 'react-native';
 import ImageLayout from '../../../components/ImageLayout';
 import Text from '../../../components/Text';
@@ -8,7 +9,7 @@ import { useMessage } from '../../../hooks/use-message';
 import { TKeys } from '../../../locales/constants';
 import BasePresentationLayout from './BasePresentationLayout';
 
-interface Props {
+interface Props extends PropsWithChildren {
   title: TKeys;
   description: TKeys;
   source?: ImageSourcePropType;
@@ -34,6 +35,7 @@ export default function PresentationLayout(props: Props) {
           </Text>
         </View>
       </VStack>
+      {props.children && <View style={styles.children}>{props.children}</View>}
     </BasePresentationLayout>
   );
 }
@@ -48,4 +50,5 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     textAlign: 'justify',
   },
+  children: { marginTop: 15 },
 });

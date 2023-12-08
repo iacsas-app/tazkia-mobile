@@ -542,9 +542,12 @@ export enum TKeys {
   INVOCATIONS_AHZABS_SECTION_2 = 'invocations.ahzabs.section.2',
   INVOCATIONS_AHZABS_SECTION_3 = 'invocations.ahzabs.section.3',
 
-  INVOCATIONS_AHZABS_SECTION_1_INTRODUCTION = 'invocations.ahzabs.section.1.introduction',
-  INVOCATIONS_AHZABS_SECTION_2_INTRODUCTION = 'invocations.ahzabs.section.2.introduction',
-  INVOCATIONS_AHZABS_SECTION_3_INTRODUCTION = 'invocations.ahzabs.section.3.introduction',
+  INVOCATIONS_AHZABS_SECTION_1_INTRODUCTION_TITLE = 'invocations.ahzabs.section.1.introduction.title',
+  INVOCATIONS_AHZABS_SECTION_1_INTRODUCTION_SUMMARY = 'invocations.ahzabs.section.1.introduction.summary',
+  INVOCATIONS_AHZABS_SECTION_2_INTRODUCTION_TITLE = 'invocations.ahzabs.section.2.introduction.title',
+  INVOCATIONS_AHZABS_SECTION_2_INTRODUCTION_SUMMARY = 'invocations.ahzabs.section.2.introduction.summary',
+  INVOCATIONS_AHZABS_SECTION_3_INTRODUCTION_TITLE = 'invocations.ahzabs.section.3.introduction.title',
+  INVOCATIONS_AHZABS_SECTION_3_INTRODUCTION_SUMMARY = 'invocations.ahzabs.section.3.introduction.summary',
 
   INVOCATIONS_AHZABS_SECTION_1_CHAPTER_1_TITLE = 'invocations.ahzabs.section.1.chapter.1.title',
   INVOCATIONS_AHZABS_SECTION_1_CHAPTER_1_SUMMARY = 'invocations.ahzabs.section.1.chapter.1.summary',

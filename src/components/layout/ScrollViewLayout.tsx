@@ -1,6 +1,7 @@
 import { PropsWithChildren } from 'react';
-import { SafeAreaView, ScrollView, StyleProp, ViewStyle, useWindowDimensions } from 'react-native';
+import { SafeAreaView, ScrollView, StyleProp, ViewStyle } from 'react-native';
 import Animated, { FadeInUp, FadeOutDown } from 'react-native-reanimated';
+import { SCREEN_WIDTH } from '../../constants/Screen';
 import useWindow from '../../hooks/use-window';
 import GlobalStyles from '../../styles/GlobalStyles';
 
@@ -9,7 +10,6 @@ interface Props extends PropsWithChildren {
 }
 
 export default function ScrollViewLayout(props: Props) {
-  const { width } = useWindowDimensions();
   const { paddingHorizontal } = useWindow();
 
   return (
@@ -19,7 +19,7 @@ export default function ScrollViewLayout(props: Props) {
         contentContainerStyle={[
           {
             ...GlobalStyles.center,
-            width: width,
+            width: SCREEN_WIDTH,
             paddingVertical: 15,
             paddingHorizontal,
           },

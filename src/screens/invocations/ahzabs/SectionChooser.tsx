@@ -26,7 +26,7 @@ export default function SectionChooser({ onSelect }: Props) {
               style={styles.id}
               color="white"
             />
-            <Text variant="bodyMedium" style={styles.title}>
+            <Text variant="bodySmall" style={styles.title}>
               {formatMessage(`invocations.ahzabs.section.${section}`)}
             </Text>
           </View>
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   pressable: {
     ...GlobalStyles.circle,
     backgroundColor: Color.partBgColor,
-    width: SCREEN_WIDTH - 50,
+    width: SCREEN_WIDTH - 20,
     elevation: 8,
     alignItems: 'center',
   },
@@ -56,6 +56,15 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     height: 70,
   },
-  title: { fontWeight: '700', fontSize: 16, marginLeft: 25 },
-  id: { position: 'absolute', left: 10, elevation: 2, width: 52 },
+  title: {
+    fontWeight: '700',
+    fontSize: 16,
+    marginLeft: 20,
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    width: '73%',
+    justifyContent: 'center',
+    textAlign: 'center',
+  },
+  id: { position: 'absolute', left: 10, elevation: 2, width: 60, backgroundColor: '#3db371' },
 });

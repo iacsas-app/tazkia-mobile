@@ -79,10 +79,10 @@ export const indonesian: Translations = {
   [TKeys.PURIFICATION_OBSTACLES]: 'Beberapa kendala yang mungkin dihadapi murid pada tahap ini',
   [TKeys.PURIFICATION_BODYPART_INTRODUCTION]:
     'Pada bagian pertama ini insya Allah kita akan membahas tentang bersuci tujuh anggota badan yang diiringi dengan zikir kepada Muhammad yang disebut zikir taubat, dan zikir ruhani yang memajukan calon dalam tahap bersuci, serta meningkatkan kesucian. penglihatan dan wawasannya, pendengarannya dan batinnya, anggota badannya dan batinnya, dan urutannya adalah sebagai berikut:',
-  [TKeys.PURIFICATION_BODYPART_TITLE]: 'Pemurnian bagian tubuh',
+  [TKeys.PURIFICATION_BODYPART_TITLE]: 'Tazkiyah anggota tubuh',
   [TKeys.PURIFICATION_BODYPART_SUMMARY]: 'Mensucikan hati melalui menyucikan dan mencerahkan tujuh bagian tubuh',
-  [TKeys.PURIFICATION_MIND_TITLE]: 'Pemurnian pikiran',
-  [TKeys.PURIFICATION_SOUL_TITLE]: 'Pemurnian jiwa',
+  [TKeys.PURIFICATION_MIND_TITLE]: 'Tazkiyah akal',
+  [TKeys.PURIFICATION_SOUL_TITLE]: 'Tazkiyah nafsu',
   [TKeys.PURIFICATION_BODY_PARTS_EYE]: 'Mata',
   [TKeys.PURIFICATION_BODY_PARTS_HANDS]: 'Tangan',
   [TKeys.PURIFICATION_BODY_PARTS_TONGUE]: 'Lidah',
@@ -371,9 +371,9 @@ export const indonesian: Translations = {
   [TKeys.SUNNAHS_INTRODUTION_RULE_3]: '',
   [TKeys.SUNNAHS_INTRODUTION_RULE_4]: '',
 
-  [TKeys.SUNNAHS_HABITS_TITLE]: '',
-  [TKeys.SUNNAHS_WORSHIP_TITLE]: '',
-  [TKeys.SUNNAHS_TRUTHS_TITLE]: '',
+  [TKeys.SUNNAHS_HABITS_TITLE]: 'Sunnah-sunnah kebiasaan',
+  [TKeys.SUNNAHS_WORSHIP_TITLE]: 'Sunnah sunnah ibadah',
+  [TKeys.SUNNAHS_TRUTHS_TITLE]: "Sunnah sayr, hakikat dan mi'roj",
 
   // Habits sunnahs
   [TKeys.SUNNAHS_HABITS_INTRODUCTION]: '',
@@ -634,8 +634,9 @@ export const indonesian: Translations = {
   [TKeys.INVOCATION_STEP_3_RULE_3]: 'Dzikir Ism Jalalah (Allah) selama',
   [TKeys.INVOCATION_STEP_3_RULE_3_DESC]:
     'Dzikir ini dilakukan dengan menghadirkan kehadiran Allah Yang Maha Esa dalam hati dan pikirannya melalui tiga kunci: (Allah besertaku, Allah adalah penjagaku, Allah adalah pendengarku), kemudian dia menutup matanya dan membayangkan ism Jalalah (Allah) di atas kepalanya, dan cahaya itu turun darinya ke pikirannya, dan masuk melaluinya ke seluruh tubuh, hingga cahaya itu menetap di hati murid, dan lidah mulai menyebut Nama Allah dan batin merenungi Nama-nama Allah Yang Maha Indah dan Sifat-Sifat-Nya yang Maha Agung seraya membayangkan gambaran Nama itu dalam pikirannya, dan menggunakan hatinya untuk berhubungan dengan Rabbnya dengan rasa rindu dan cinta, hingga hatinya mempunyai suara yang memanggil (Allah, Allah) dan kemudian Dia membayangkan nama Yang Mulia terukir di dalam hatinya dan di seluruh sel tubuhnya.  Dan cahaya Nama itu mulai bersinar di dalam dirinya dan meliputi seluruh tubuhnya, dan kemudian dia membenamkan dirinya dalam berseru kepada-Nya, Yang Maha Kuasa, dari lubuk hatinya.',
-  [TKeys.INVOCATION_STEP_3_IMPORTANCE_TITLE]: '',
-  [TKeys.INVOCATION_STEP_3_IMPORTANCE_SUMMARY]: '',
+  [TKeys.INVOCATION_STEP_3_IMPORTANCE_TITLE]: 'Pentingnya dzikir pada tahap tazkiyah ini',
+  [TKeys.INVOCATION_STEP_3_IMPORTANCE_SUMMARY]:
+    "Dzikir ini mempunyai khasiat yang besar dalam mengobati penyakit-penyakit nafsu dan meredam pemberontakannya. Dzikir ini berbeda dengan dzikir sebelumnya karena dzikir pemanis yang membantu mempermanis nafsu, sehingga murid terkoneksi dengan alam ghaib secara tidak sempurna karena belum dihilangkannya pembatas nafsu dari jalan, dan dalam dzikir ini akan terdapat hudzur (rasa kehadiran Allah Swt), musyahadah, dan wahyu, talaqi ilmu makrifat dan ilmu lainnya, khazanah hakikat sirr, dan mengaktifkan kemampuan dan keajaiban, hal ini untuk memperlemah penghalang indra-indra yang menyokong penghalang nafsu, dan memperkuat cakrawala makna yang melipatgandakan cahayanya ruh, sehingga cahayanya mampu memadamkan kegelapan nafsu. Pada tahap ini murid diberikan muraqabah khusus, dari syekhnya, seperti muroqabah 'ilaj, muraqabah talaqi, muraqabah mi'roj, muraqabah alam barzakh. Adapun metode muraqabah tersebut tidak akan disebutkan dalam buku ini, melainkan murid yang menerimanya dengan cahaya, sirr, dan madad langsung dari syaikhnya, dan itulah izin yang diperolehnya dalam hakikat muraqabah tersebut, mengajarinya dengan ilmu serta makrifatnya, serta meningkatkan kesucian nafsunya dan memajukannya ke tingkat yang lebih tinggi kesempurnaannya, dan menghapusnya dari sifat-sifat buruk dan kelemahan-kelemahan yang sakit. Tidak ada keraguan bahwa murid benar-benar mencapai muraqabah ini, tetapi dia tidak diizinkan melakukannya kecuali dengan izin dan kehadiran syekhnya, dan dia tidak diizinkan untuk mengungkapkannya kepada siapa pun setelah memberitahukan syekhnya dan menyetujuinya. Segala puji bagi Allah, Tuhan Semesta Alam",
 
   // Invocations immunization
   [TKeys.INVOCATIONS_IMMUNIZATION_TITLE]: 'Imunisasi {period} hari',
@@ -694,9 +695,13 @@ export const indonesian: Translations = {
   [TKeys.INVOCATIONS_AHZABS_SECTION_2]: 'أَحْزَابُ الأَبْرَارِ لِلْتَّرَقِّي فِي مَقَامَاتِ الأَخْيَارِ',
   [TKeys.INVOCATIONS_AHZABS_SECTION_3]: 'أَحْزَابُ البِرِّ لِنَيْلِ السِّرِّ',
 
-  [TKeys.INVOCATIONS_AHZABS_SECTION_1_INTRODUCTION]: '',
-  [TKeys.INVOCATIONS_AHZABS_SECTION_2_INTRODUCTION]: '',
-  [TKeys.INVOCATIONS_AHZABS_SECTION_3_INTRODUCTION]: '',
+  [TKeys.INVOCATIONS_AHZABS_SECTION_1_INTRODUCTION_TITLE]: '',
+  [TKeys.INVOCATIONS_AHZABS_SECTION_2_INTRODUCTION_TITLE]: '',
+  [TKeys.INVOCATIONS_AHZABS_SECTION_3_INTRODUCTION_TITLE]: '',
+
+  [TKeys.INVOCATIONS_AHZABS_SECTION_1_INTRODUCTION_SUMMARY]: '',
+  [TKeys.INVOCATIONS_AHZABS_SECTION_2_INTRODUCTION_SUMMARY]: '',
+  [TKeys.INVOCATIONS_AHZABS_SECTION_3_INTRODUCTION_SUMMARY]: '',
 
   [TKeys.INVOCATIONS_AHZABS_SECTION_1_CHAPTER_1_TITLE]: '',
   [TKeys.INVOCATIONS_AHZABS_SECTION_1_CHAPTER_1_SUMMARY]: '',

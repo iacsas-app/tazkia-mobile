@@ -3,19 +3,21 @@ import { FlatList, ViewToken } from 'react-native';
 import { useSharedValue } from 'react-native-reanimated';
 import Chapter from './Chapter';
 
-interface Props {
+type Props = {
   section: number;
-}
-function Chapters({ section }: Props) {
+  onSelect(section: number, chapter: number): void;
+};
+function Chapters(props: Props) {
+  const size = 20;
   const viewableItems = useSharedValue<ViewToken[]>([]);
-  const chapters = useMemo(() => Array.from({ length: 20 }, (_, i) => i + 1), []);
+  const chapters = useMemo(() => Array.from({ length: size + 1 }, (_, i) => i), []);
 
   return (
     <FlatList
       data={chapters}
       keyExtractor={(item) => item.toString()}
       onViewableItemsChanged={({ viewableItems: vItems }) => (viewableItems.value = vItems)}
-      renderItem={({ item }) => <Chapter section={section} chapter={item} total={20} viewableItems={viewableItems} />}
+      renderItem={({ item }) => <Chapter chapter={item} total={size} viewableItems={viewableItems} {...props} />}
     />
   );
 }
