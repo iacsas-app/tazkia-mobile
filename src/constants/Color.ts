@@ -14,4 +14,5 @@ export namespace Color {
   export const idProgressColor = 'seagreen';
   export const flatItemNoneBgColor = 'seagreen';
   export const flatItemNoneColor = 'white';
+  export const tagGreenLight = '#fff5ee';
 }

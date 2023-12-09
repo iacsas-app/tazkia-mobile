@@ -25,7 +25,7 @@ export default function ReaderDialog(props: Props) {
       <FAB
         icon="fullscreen"
         label={formatMessage(TKeys.BUTTON_READ_START)}
-        style={{ ...styles.readFab, bottom: 5 }}
+        style={styles.readFab}
         mode="elevated"
         size="medium"
         onPress={toogleFullScreen}
@@ -35,18 +35,10 @@ export default function ReaderDialog(props: Props) {
 
   return (
     <Portal>
-      {visible && (
-        <Modal visible={true} onDismiss={toogleFullScreen} contentContainerStyle={styles.dialog}>
-          <Reader items={props.items} onFinish={toogleFullScreen} />
-        </Modal>
-      )}
-      <FAB
-        icon="fullscreen-exit"
-        style={{ ...styles.readFab, bottom: 32 }}
-        mode="elevated"
-        size="medium"
-        onPress={toogleFullScreen}
-      />
+      <Modal visible={true} onDismiss={toogleFullScreen} contentContainerStyle={styles.dialog}>
+        <Reader items={props.items} onFinished={toogleFullScreen} />
+      </Modal>
+      <FAB icon="fullscreen-exit" style={styles.readFab} mode="elevated" size="medium" onPress={toogleFullScreen} />
     </Portal>
   );
 }
@@ -59,7 +51,9 @@ const styles = StyleSheet.create({
     ...GlobalStyles.circle,
     alignSelf: 'center',
     position: 'absolute',
+    bottom: 5,
     margin: 10,
     backgroundColor: 'powderblue',
+    opacity: 0.9,
   },
 });

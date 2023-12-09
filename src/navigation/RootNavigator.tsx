@@ -28,6 +28,11 @@ const RootNavigator = () => {
 
   const [routes] = useState<RoutesState>([
     {
+      key: 'invocations',
+      title: formatMessage(TKeys.MENU_INVOCATIONS),
+      focusedIcon: 'meditation',
+    },
+    {
       key: 'presentation',
       title: formatMessage(TKeys.MENU_HOME),
       focusedIcon: 'home',
@@ -36,11 +41,6 @@ const RootNavigator = () => {
       key: 'purification',
       title: formatMessage(TKeys.MENU_PURIFICATION),
       focusedIcon: 'heart-pulse',
-    },
-    {
-      key: 'invocations',
-      title: formatMessage(TKeys.MENU_INVOCATIONS),
-      focusedIcon: 'meditation',
     },
   ]);
 

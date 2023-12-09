@@ -33,7 +33,6 @@ function Immunization({ index, item, total, viewableItems, ...props }: Props) {
   const offset = useSharedValue(0);
   const countStyle = useAnimatedStyle(() => ({ transform: [{ translateY: offset.value }] }));
 
-  const first = index === 0;
   const last = index > total;
 
   const animatedStyle = useAnimatedStyle(() => {
@@ -48,8 +47,10 @@ function Immunization({ index, item, total, viewableItems, ...props }: Props) {
   }, []);
 
   function handlePress() {
-    setCount(count + 1);
-    offset.value = withSequence(withTiming(40), withTiming(0));
+    if (count < item.repeat) {
+      setCount(count + 1);
+      offset.value = withSequence(withTiming(40), withTiming(0));
+    }
   }
 
   return (
@@ -58,9 +59,9 @@ function Immunization({ index, item, total, viewableItems, ...props }: Props) {
         animatedStyle,
         styles.row,
         {
-          marginTop: first ? 15 : 1,
+          marginTop: index === 1 ? 15 : 1,
           marginBottom: last ? 90 : 10,
-          backgroundColor: last ? Color.transparent : Color.partDefaultBgColor,
+          backgroundColor: last ? Color.partProgressBgColor : Color.partDefaultBgColor,
           elevation: last ? 1 : 14,
         },
       ]}
@@ -71,19 +72,19 @@ function Immunization({ index, item, total, viewableItems, ...props }: Props) {
           variant="titleLarge"
           style={{
             ...styles.summary,
-            textAlign: 'justify',
+            fontWeight: last ? '900' : '500',
             fontSize: Font.size(16),
-            color: last ? Color.flatItemNoneColor : 'black',
+            color: last ? Color.idProgressColor : 'black',
           }}
         >
           {formatMessage(item.key)}
         </Text>
-        {!first && !last && (
+        {!last && (
           <HStack style={GlobalStyles.spaceBetween}>
-            <Text style={{ ...styles.tag, backgroundColor: '#fff5ee' }}>{`${index}/${total}`}</Text>
-            <Animated.Text style={{ ...styles.tag, backgroundColor: Color.completed }}>
+            <Text style={{ ...styles.tag, backgroundColor: Color.tagGreenLight }}>{`${index}/${total}`}</Text>
+            <Text style={{ ...styles.tag, backgroundColor: Color.completed }}>
               {formatMessage(item.repeat > 1 ? TKeys.TIMES_COUNT_PLURAL : TKeys.TIMES_COUNT, { times: item.repeat })}
-            </Animated.Text>
+            </Text>
             {count > 0 && (
               <Animated.View style={countStyle}>
                 {count < item.repeat ? (
@@ -117,7 +118,7 @@ const styles = StyleSheet.create({
   },
   introduction: { textAlign: 'justify', fontWeight: '600', marginTop: 10, paddingBottom: 5 },
   container: { width: SCREEN_WIDTH - 80 },
-  summary: { fontWeight: '500' },
+  summary: { textAlign: 'justify' },
   tag: {
     ...GlobalStyles.circle,
     fontSize: Font.size(12),

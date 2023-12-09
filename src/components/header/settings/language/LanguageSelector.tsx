@@ -30,14 +30,13 @@ export default function LanguageSelector({ flags, color, all, onChange }: Langua
   return (
     <Animated.View entering={FadeInUp.duration(10).springify()} exiting={SlideOutDown} style={{ paddingVertical: 10 }}>
       <FlatList
-        style={{ backgroundColor: 'transparent', marginLeft: 35, maxHeight: 200 }}
+        data={keys}
         renderItem={({ item }) => (
           <LanguageOption icon={flags[item]} value={item} color={color} onChange={handleChange} />
         )}
-        keyExtractor={(item) => item}
         ItemSeparatorComponent={Divider}
-        data={keys}
         alwaysBounceVertical={false}
+        style={{ backgroundColor: 'transparent', marginLeft: 35, maxHeight: 200 }}
       />
     </Animated.View>
   );

@@ -1,6 +1,7 @@
 import { memo, useMemo } from 'react';
 import { FlatList, ViewToken } from 'react-native';
 import { useSharedValue } from 'react-native-reanimated';
+import { Color } from '../../../constants/Color';
 import Chapter from './Chapter';
 
 type Props = {
@@ -18,6 +19,7 @@ function Chapters(props: Props) {
       keyExtractor={(item) => item.toString()}
       onViewableItemsChanged={({ viewableItems: vItems }) => (viewableItems.value = vItems)}
       renderItem={({ item }) => <Chapter chapter={item} total={size} viewableItems={viewableItems} {...props} />}
+      style={{ backgroundColor: Color.backgroundColor }}
     />
   );
 }

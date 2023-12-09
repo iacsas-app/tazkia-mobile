@@ -4,19 +4,21 @@ import ReaderItem from './ReaderItem';
 
 type Props = {
   items: InvocationRepeat[];
-  onFinish(): void;
+  onFinished(): void;
 };
 function Reader({ items, ...props }: Props) {
-  const [index, setIndex] = useState(1);
-  const size = useMemo(() => items.length - 2, []);
+  const [index, setIndex] = useState(0);
+  const size = useMemo(() => items.length - 1, []);
   const current = items[index];
 
-  function handlePress() {
+  function handleCompleted() {
     if (index < size) {
       setIndex(index + 1);
+    } else {
+      props.onFinished();
     }
   }
-  return <ReaderItem index={index} value={current} total={size} onDone={handlePress} {...props} />;
+  return <ReaderItem index={index + 1} value={current} total={size} onCompleted={handleCompleted} />;
 }
 
 export default memo(Reader);

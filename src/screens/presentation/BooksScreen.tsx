@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { FlatList, View, ViewToken } from 'react-native';
 import { useSharedValue } from 'react-native-reanimated';
 import Text from '../../components/Text';
+import { Color } from '../../constants/Color';
 import { Book } from '../../domains/presentation/Book';
 import { useMessage } from '../../hooks/use-message';
 import { TKeys } from '../../locales/constants';
@@ -27,10 +28,9 @@ export default function BooksScreen() {
       <FlatList
         data={books}
         keyExtractor={(book) => book.id.toString()}
-        onViewableItemsChanged={({ viewableItems: vItems }) => {
-          viewableItems.value = vItems;
-        }}
+        onViewableItemsChanged={({ viewableItems: vItems }) => (viewableItems.value = vItems)}
         renderItem={({ item }) => <FlatBook book={item} viewableItems={viewableItems} />}
+        style={{ backgroundColor: Color.backgroundColor }}
       />
     </View>
   );
