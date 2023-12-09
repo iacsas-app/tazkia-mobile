@@ -30,7 +30,7 @@ const YesNoButtons = memo(function YesNoButtons(props: Props) {
           dark
           onPress={() => props.onEvaluate(true)}
         >
-          <Text variant="titleMedium" color="seagreen" style={{ fontWeight: '900' }}>
+          <Text variant="titleMedium" style={{ fontWeight: '900', color: 'seagreen' }}>
             {formatMessage(TKeys.BUTTON_YES)}
           </Text>
         </Button>
@@ -43,7 +43,7 @@ const YesNoButtons = memo(function YesNoButtons(props: Props) {
           dark
           onPress={() => props.onEvaluate(false)}
         >
-          <Text variant="titleMedium" color="red" style={{ fontWeight: '900' }}>
+          <Text variant="titleMedium" style={{ fontWeight: '900', color: 'red' }}>
             {formatMessage(TKeys.BUTTON_NO)}
           </Text>
         </Button>

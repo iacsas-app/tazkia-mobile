@@ -15,11 +15,11 @@ export default function ProgressStatusInfo(props: Props) {
     <HStack spacing={1}>
       <HStack style={styles.center} spacing={5}>
         <McIcon name={props.icon} size={15} color={props.color} />
-        <Text variant="labelSmall" style={styles.bold} color="black">
+        <Text variant="labelSmall" style={styles.label}>
           {props.label} :
         </Text>
       </HStack>
-      <Text variant="labelSmall" style={styles.bold}>
+      <Text variant="labelSmall" style={styles.label}>
         {props.value}
       </Text>
     </HStack>
@@ -28,5 +28,5 @@ export default function ProgressStatusInfo(props: Props) {
 
 const styles = StyleSheet.create({
   center: { alignItems: 'center' },
-  bold: { fontWeight: '900', fontSize: Font.size(10) },
+  label: { fontWeight: '900', fontSize: Font.size(10), color: 'black' },
 });

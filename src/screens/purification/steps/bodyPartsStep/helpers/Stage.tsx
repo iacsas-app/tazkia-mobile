@@ -107,8 +107,10 @@ export default function Stage({ part, stage, ...props }: Props) {
             <HStack style={styles.stageTitle} spacing={10}>
               <Text
                 variant="bodyLarge"
-                style={{ fontSize: Font.size((open ? 18 : 16) - (locale === 'in' ? 3 : 0)) }}
-                color={open ? '#2e8b57' : hasProgress ? 'seagreen' : '#4169e1'}
+                style={{
+                  fontSize: Font.size((open ? 18 : 16) - (locale === 'in' ? 3 : 0)),
+                  color: open ? '#2e8b57' : hasProgress ? 'seagreen' : '#4169e1',
+                }}
               >
                 {formatMessage(`purification.bodypart.${stage}`)}
               </Text>

@@ -483,6 +483,7 @@ export enum TKeys {
 
   // Invocations immunization
   INVOCATIONS_IMMUNIZATION_TITLE = 'invocations.immunization.title',
+  INVOCATIONS_IMMUNIZATION_SUB_TITLE = 'invocations.immunization.title.sub',
   INVOCATIONS_IMMUNIZATION_INTRODUCTION = 'invocations.immunization.introduction',
   INVOCATIONS_IMMUNIZATION_INITIATION = 'invocations.immunization.initiation',
   INVOCATIONS_IMMUNIZATION_CONCLUSION = 'invocations.immunization.conclusion',
@@ -539,6 +540,8 @@ export enum TKeys {
   INVOCATIONS_IMMUNIZATION_EVENING_40 = 'invocations.immunization.evening.40',
 
   // Invocations Ahzabs
+  INVOCATIONS_AHZABS_INTRODUCTION = 'invocations.ahzabs.introduction',
+  INVOCATIONS_AHZABS_CONCLUSION = 'invocations.ahzabs.conclusion',
   INVOCATIONS_AHZABS_SECTION_1 = 'invocations.ahzabs.section.1',
   INVOCATIONS_AHZABS_SECTION_2 = 'invocations.ahzabs.section.2',
   INVOCATIONS_AHZABS_SECTION_3 = 'invocations.ahzabs.section.3',
@@ -851,4 +854,5 @@ export enum TKeys {
   GENERAL_INTRODUCTION_TITLE = 'general.introduction.title',
   GENERAL_PRESENTATION_TITLE = 'general.presentation.title',
   INITIATION_TITLE = 'initiation.title',
+  CONCLUSION = 'conclusion',
 }

@@ -53,16 +53,12 @@ export default function BodyPartItem({ id, part, imageSource, ...props }: BodyPa
           <>
             {progress.enlightenment && (
               <View style={{ ...styles.stage, ...styles.enlightenment }}>
-                <Text style={styles.text} color="teal">
-                  {formatMessage(TKeys.BUTTON_ENLIGHTENMENT)}
-                </Text>
+                <Text style={styles.text}>{formatMessage(TKeys.BUTTON_ENLIGHTENMENT)}</Text>
               </View>
             )}
             {progress.cleaning && (
               <View style={{ ...styles.stage, ...styles.cleaning }}>
-                <Text style={styles.text} color="teal">
-                  {formatMessage(TKeys.BUTTON_CLEANING)}
-                </Text>
+                <Text style={styles.text}>{formatMessage(TKeys.BUTTON_CLEANING)}</Text>
               </View>
             )}
           </>
@@ -98,5 +94,5 @@ const styles = StyleSheet.create({
   cleaning: {
     left: 4,
   },
-  text: { fontSize: 8 },
+  text: { fontSize: 8, color: 'teal' },
 });

@@ -41,8 +41,8 @@ export default function Header({ hasProgress, ...props }: Props) {
             fontSize: Font.size(arabic ? 18 : 16),
             textAlign: hasProgress ? 'auto' : 'center',
             maxWidth: SCREEN_WIDTH - (hasProgress ? 150 : 0),
+            color: hasProgress ? 'green' : 'blue',
           }}
-          color={hasProgress ? 'green' : 'blue'}
         >
           {formatMessage(props.titleKey, props.titleKeyParams)}
         </Text>

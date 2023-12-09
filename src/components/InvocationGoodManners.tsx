@@ -31,7 +31,7 @@ function InvocationGoodManners() {
     >
       <HStack style={GlobalStyles.center} spacing={15}>
         <Icon name="seal" size={30} color="lightseagreen" />
-        <Text variant="bodyLarge" style={{ fontSize: Font.size(arabic ? 17 : 15), fontWeight: '900' }} color="teal">
+        <Text variant="bodyLarge" style={{ fontSize: Font.size(arabic ? 17 : 15), fontWeight: '900', color: 'teal' }}>
           {formatMessage(TKeys.INVOCATION_GOOD_MANNERS_TITLE)}
         </Text>
       </HStack>
@@ -50,8 +50,12 @@ function InvocationGoodManners() {
             />
             <Text
               variant="bodySmall"
-              style={{ fontSize: Font.size(arabic ? 15 : 13), fontWeight: '600', width: SCREEN_WIDTH - 90 }}
-              color="black"
+              style={{
+                fontSize: Font.size(arabic ? 15 : 13),
+                fontWeight: '600',
+                width: SCREEN_WIDTH - 90,
+                color: 'black',
+              }}
             >
               {formatMessage(`invocation.good-manners_${id + 1}`)}
             </Text>

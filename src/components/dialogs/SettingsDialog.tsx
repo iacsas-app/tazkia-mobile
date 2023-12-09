@@ -40,10 +40,10 @@ const SettingsDialog = forwardRef<SettingsDialogRef>(function SettingsDialog({},
 
   return (
     <Portal>
-      <Dialog onDismiss={handleClose} visible={visible} style={{ ...GlobalStyles.center, backgroundColor: 'white' }}>
+      <Dialog onDismiss={handleClose} visible={visible} style={styles.dialog}>
         <HStack spacing={20} style={styles.title}>
           <Icon name="settings" size={35} color="seagreen" />
-          <Text variant="headlineMedium" color="seagreen" style={{ fontWeight: '900' }}>
+          <Text variant="headlineMedium" style={styles.headline}>
             {formatMessage(TKeys.MENU_SETTINGS)}
           </Text>
         </HStack>
@@ -58,6 +58,7 @@ const SettingsDialog = forwardRef<SettingsDialogRef>(function SettingsDialog({},
 });
 
 const styles = StyleSheet.create({
+  dialog: { ...GlobalStyles.center, backgroundColor: 'white' },
   title: {
     marginBottom: 25,
   },
@@ -65,6 +66,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  headline: { fontWeight: '900', color: 'seagreen' },
   marginRight: {
     marginRight: 16,
   },

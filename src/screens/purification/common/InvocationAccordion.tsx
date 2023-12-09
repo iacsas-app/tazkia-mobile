@@ -24,7 +24,7 @@ export default function InvocationAccordion(props: Props) {
     <List.Accordion
       id={props.id}
       title={
-        <Text variant="bodySmall" style={{ fontSize: Font.size(13), fontWeight: '800' }} color="teal">
+        <Text variant="bodySmall" style={{ fontSize: Font.size(13), fontWeight: '800', color: 'teal' }}>
           {formatMessage(props.titleKey)}
         </Text>
       }
@@ -33,8 +33,7 @@ export default function InvocationAccordion(props: Props) {
         <HStack style={{ ...GlobalStyles.center, marginRight: -15 }} spacing={5}>
           <Text
             variant="labelMedium"
-            style={{ fontWeight: isExpanded ? '900' : '700', fontSize: Font.size(10) }}
-            color="black"
+            style={{ fontWeight: isExpanded ? '900' : '700', fontSize: Font.size(10), color: 'black' }}
           >
             {formatMessage(props.duration <= 10 ? TKeys.DURATION2 : TKeys.DURATION, {
               value: props.duration,

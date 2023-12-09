@@ -2,7 +2,8 @@ import * as React from 'react';
 import { forwardRef, useImperativeHandle, useState } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import { Dialog, FAB, Portal } from 'react-native-paper';
-import Animated, { FadeInDown, FadeInUp, FadeOutDown } from 'react-native-reanimated';
+import Animated, { FadeInDown, FadeInUp } from 'react-native-reanimated';
+import Text from '../../../components/Text';
 import VStack from '../../../components/stack/VStack';
 import { Color } from '../../../constants/Color';
 import { Font } from '../../../constants/Font';
@@ -59,39 +60,13 @@ const ImmunizationDialog = forwardRef<ImmunizationDialogRef>((_, ref) => {
           <ScrollView contentInsetAdjustmentBehavior="automatic" contentContainerStyle={GlobalStyles.center}>
             <VStack style={styles.main} spacing={5}>
               {isIntro && (
-                <Animated.Text
-                  entering={FadeInUp.delay(100).duration(100).springify()}
-                  exiting={FadeOutDown}
-                  style={styles.title}
-                >
+                <Animated.Text entering={FadeInUp.duration(50).springify()} style={styles.title}>
                   {formatMessage(TKeys.GENERAL_PRESENTATION_TITLE)}
                 </Animated.Text>
               )}
-              <Animated.Text
-                entering={FadeInDown.delay(250).duration(200).springify()}
-                exiting={FadeOutDown}
-                style={styles.contentText}
-              >
-                {formatMessage(bodyKey)}
-              </Animated.Text>
-              {isIntro && (
-                <>
-                  <Animated.Text
-                    entering={FadeInUp.delay(100).duration(100).springify()}
-                    exiting={FadeOutDown}
-                    style={styles.title}
-                  >
-                    {formatMessage(TKeys.INITIATION_TITLE)}
-                  </Animated.Text>
-                  <Animated.Text
-                    entering={FadeInDown.delay(250).duration(200).springify()}
-                    exiting={FadeOutDown}
-                    style={{ ...styles.contentText }}
-                  >
-                    {formatMessage(TKeys.INVOCATIONS_IMMUNIZATION_INITIATION)}
-                  </Animated.Text>
-                </>
-              )}
+              <Animated.View entering={FadeInDown.duration(50).springify()} style={styles.body}>
+                <Text style={styles.contentText}>{formatMessage(bodyKey)}</Text>
+              </Animated.View>
             </VStack>
           </ScrollView>
           <FAB
@@ -127,6 +102,7 @@ const styles = StyleSheet.create({
     ...GlobalStyles.center,
     paddingBottom: 60,
   },
+  body: { ...GlobalStyles.center, gap: 25 },
   contentContainer: {
     paddingHorizontal: 0,
     backgroundColor: Color.backgroundColor,

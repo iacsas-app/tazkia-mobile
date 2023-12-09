@@ -563,6 +563,9 @@ export const english: Translations = {
   [TKeys.INVOCATIONS_IMMUNIZATION_EVENING_27]: '',
   [TKeys.INVOCATIONS_IMMUNIZATION_EVENING_40]: '',
 
+  // Invocations Ahzabs
+  [TKeys.INVOCATIONS_AHZABS_INTRODUCTION]: '',
+  [TKeys.INVOCATIONS_AHZABS_CONCLUSION]: '',
   [TKeys.INVOCATIONS_AHZABS_SECTION_1]: 'أَحْزَابُ المَطَالِبِ لِنَيْلِ المَقَاصِدِ',
   [TKeys.INVOCATIONS_AHZABS_SECTION_2]: 'أَحْزَابُ الأَبْرَارِ لِلْتَّرَقِّي فِي مَقَامَاتِ الأَخْيَارِ',
   [TKeys.INVOCATIONS_AHZABS_SECTION_3]: 'أَحْزَابُ البِرِّ لِنَيْلِ السِّرِّ',
@@ -885,4 +888,5 @@ export const english: Translations = {
   [TKeys.GENERAL_INTRODUCTION_TITLE]: 'General introduction',
   [TKeys.GENERAL_PRESENTATION_TITLE]: 'General presentation',
   [TKeys.INITIATION_TITLE]: 'Initiation',
+  [TKeys.CONCLUSION]: 'Conclusion',
 };

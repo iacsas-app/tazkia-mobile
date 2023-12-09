@@ -50,9 +50,8 @@ function Chapter({ section, chapter, total, viewableItems, onSelect }: Props) {
         styles.row,
         {
           backgroundColor: first ? Color.flatItemNoneBgColor : Color.partDefaultBgColor,
-          marginTop: first ? 20 : 5,
-          marginBottom: last ? 20 : first ? 20 : 5,
-          borderRadius: first ? 10 : 25,
+          marginTop: first ? 20 : 3,
+          marginBottom: last ? 20 : first ? 10 : 2,
         },
       ]}
       onTouchEnd={handlePress}
@@ -61,12 +60,14 @@ function Chapter({ section, chapter, total, viewableItems, onSelect }: Props) {
         <HStack style={GlobalStyles.center}>
           {!first && <Avatar.Text label={chapter.toString()} size={25} style={styles.id} color="white" />}
           <VStack style={GlobalStyles.center}>
-            <Text variant="titleSmall" style={styles.summary} color={first ? 'white' : 'black'}>
+            <Text variant="titleSmall" style={{ ...styles.summary, color: first ? 'white' : 'black' }}>
               {formatMessage(summaryKey)}
             </Text>
-            <Text variant="labelSmall" style={styles.subSummary}>
-              {formatMessage(subSummaryKey)}
-            </Text>
+            {!first && (
+              <Text variant="labelSmall" style={styles.subSummary}>
+                {formatMessage(subSummaryKey)}
+              </Text>
+            )}
           </VStack>
         </HStack>
       </View>
@@ -80,6 +81,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     paddingVertical: 8,
     elevation: 10,
+    borderRadius: 25,
   },
   container: { width: SCREEN_WIDTH - 32 },
   summary: { fontSize: 16, textAlign: 'justify', fontWeight: '700' },

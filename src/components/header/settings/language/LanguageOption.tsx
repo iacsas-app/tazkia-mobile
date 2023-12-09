@@ -24,13 +24,13 @@ export default function LanguageOption({ value, icon, color, onChange }: Languag
 
   return (
     <TouchableRipple onPress={handleChange} style={{ paddingVertical: 4 }}>
-      <HStack spacing={12} style={{ ...GlobalStyles.centerAlign, justify: 'between' }}>
+      <HStack spacing={12} style={GlobalStyles.centerAlign}>
         <Avatar.Image source={icon} size={25} />
         <VStack>
-          <Text variant="bodyLarge" color={color} style={{ fontWeight: 'bold' }}>
+          <Text variant="bodyLarge" style={{ fontWeight: 'bold', color }}>
             {language.name}
           </Text>
-          <Text variant="bodySmall" color={color}>
+          <Text variant="bodySmall" style={{ color }}>
             {formatMessage(`language.${language.key}`)}
           </Text>
         </VStack>

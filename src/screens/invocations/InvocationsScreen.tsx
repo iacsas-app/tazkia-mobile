@@ -14,11 +14,13 @@ import { useMessage } from '../../hooks/use-message';
 import { TKeys } from '../../locales/constants';
 import GlobalStyles from '../../styles/GlobalStyles';
 import SectionChooser from './ahzabs/SectionChooser';
+import ImmunizationDialog, { ImmunizationDialogRef } from './immunization/ImmunizationDialog';
 import PeriodChooser from './immunization/PeriodChooser';
 import { ImmunizationPeriod } from './immunization/data';
 
 export default function InvocationsScreen() {
   const ref = useRef<BottomSheetRef>(null);
+  const immunizationDialogRef = useRef<ImmunizationDialogRef>(null);
   const { formatMessage } = useMessage();
   const { arabic } = useApplication();
   const navigation = useNavigation<any>();
@@ -50,9 +52,13 @@ export default function InvocationsScreen() {
     [],
   );
 
+  function handleIntroductionClick() {
+    immunizationDialogRef.current?.open();
+  }
+
   function handlePress(route: string) {
     if (route === 'Immunization') {
-      setContent(<PeriodChooser onSelect={handlePeriodSelect} />);
+      setContent(<PeriodChooser onSelect={handlePeriodSelect} onMetaSelect={handleIntroductionClick} />);
       ref.current?.open();
     } else if (route === 'Ahzabs') {
       setContent(<SectionChooser onSelect={handleSectionSelect} />);
@@ -68,8 +74,13 @@ export default function InvocationsScreen() {
   }
 
   function handleSectionSelect(section: number) {
-    navigation.navigate('Ahzabs', { section });
-    ref.current?.close();
+    if (section === 0 || section === 4) {
+      const key = `invocations.ahzabs.${section === 0 ? 'introduction' : 'conclusion'}`;
+      immunizationDialogRef.current?.open(key as TKeys);
+    } else {
+      navigation.navigate('Ahzabs', { section });
+      ref.current?.close();
+    }
   }
 
   return (
@@ -86,8 +97,7 @@ export default function InvocationsScreen() {
             <View style={styles.summary}>
               <Text
                 variant="bodySmall"
-                style={{ ...styles.summaryLabel, fontSize: Font.size(arabic ? 16 : 14) }}
-                color="black"
+                style={{ ...styles.summaryLabel, fontSize: Font.size(arabic ? 16 : 14), color: 'black' }}
               >
                 {formatMessage(item.name)}
               </Text>
@@ -95,6 +105,7 @@ export default function InvocationsScreen() {
           </Animated.View>
         ))}
       </VStack>
+      <ImmunizationDialog ref={immunizationDialogRef} />
     </BottomSheet>
   );
 }

@@ -35,7 +35,6 @@ function Immunization({ index, item, total, viewableItems, ...props }: Props) {
 
   const first = index === 0;
   const last = index > total;
-  const firstOrLast = first || last;
 
   const animatedStyle = useAnimatedStyle(() => {
     const isVisible = Boolean(
@@ -49,12 +48,8 @@ function Immunization({ index, item, total, viewableItems, ...props }: Props) {
   }, []);
 
   function handlePress() {
-    if (first) {
-      props.onSelect();
-    } else {
-      setCount(count + 1);
-      offset.value = withSequence(withTiming(40), withTiming(0));
-    }
+    setCount(count + 1);
+    offset.value = withSequence(withTiming(40), withTiming(0));
   }
 
   return (
@@ -65,8 +60,8 @@ function Immunization({ index, item, total, viewableItems, ...props }: Props) {
         {
           marginTop: first ? 15 : 1,
           marginBottom: last ? 90 : 10,
-          backgroundColor: first ? Color.flatItemNoneBgColor : last ? Color.transparent : Color.partDefaultBgColor,
-          elevation: firstOrLast ? 1 : 14,
+          backgroundColor: last ? Color.transparent : Color.partDefaultBgColor,
+          elevation: last ? 1 : 14,
         },
       ]}
       onTouchEnd={handlePress}
@@ -76,10 +71,10 @@ function Immunization({ index, item, total, viewableItems, ...props }: Props) {
           variant="titleLarge"
           style={{
             ...styles.summary,
-            textAlign: first ? 'center' : 'justify',
-            fontSize: Font.size(first ? 19 : 16),
+            textAlign: 'justify',
+            fontSize: Font.size(16),
+            color: last ? Color.flatItemNoneColor : 'black',
           }}
-          color={firstOrLast ? Color.flatItemNoneColor : 'black'}
         >
           {formatMessage(item.key)}
         </Text>

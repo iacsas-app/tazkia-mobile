@@ -2,7 +2,7 @@ import * as React from 'react';
 import { forwardRef, useImperativeHandle, useState } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import { Dialog, FAB, Portal } from 'react-native-paper';
-import Animated, { FadeInUp, FadeOutDown } from 'react-native-reanimated';
+import Animated, { FadeInUp } from 'react-native-reanimated';
 import Text from '../../../components/Text';
 import VStack from '../../../components/stack/VStack';
 import { Color } from '../../../constants/Color';
@@ -59,21 +59,17 @@ const ChapterDialog = forwardRef<ChapterDialogRef>((_, ref) => {
       <Dialog onDismiss={handleClose} visible={state !== undefined} style={GlobalStyles.defaultDialog}>
         <Dialog.Title style={{ paddingTop: 5 }}>
           <VStack style={GlobalStyles.center} spacing={5}>
-            <Text variant="bodyLarge" style={styles.sectionTitle} color="seagreen">
+            <Text variant="bodyLarge" style={{ ...styles.sectionTitle, color: 'seagreen' }}>
               {formatMessage(sectionKey)}
             </Text>
-            <Text variant="bodySmall" style={styles.chapterTitle} color="black">
+            <Text variant="bodySmall" style={{ ...styles.chapterTitle, color: 'black' }}>
               {formatMessage(chapterTitleKey)}
             </Text>
           </VStack>
         </Dialog.Title>
         <Dialog.ScrollArea style={styles.contentContainer}>
           <ScrollView contentInsetAdjustmentBehavior="automatic" contentContainerStyle={GlobalStyles.center}>
-            <Animated.Text
-              entering={FadeInUp.delay(300).duration(150).springify()}
-              exiting={FadeOutDown}
-              style={styles.contentText}
-            >
+            <Animated.Text entering={FadeInUp.duration(50).springify()} style={styles.contentText}>
               {formatMessage(contentKey)}
             </Animated.Text>
           </ScrollView>
@@ -112,10 +108,9 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 25,
   },
   contentText: {
-    fontSize: Font.size(16),
+    fontSize: Font.size(15),
     textAlign: 'justify',
     textAlignVertical: 'center',
-    textShadowRadius: 1,
     lineHeight: 22,
     paddingHorizontal: 20,
     paddingVertical: 10,

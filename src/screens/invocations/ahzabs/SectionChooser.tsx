@@ -1,11 +1,12 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Avatar } from 'react-native-paper';
-import Animated, { SlideInDown } from 'react-native-reanimated';
+import Animated, { FadeInLeft, FadeInRight, SlideInDown } from 'react-native-reanimated';
 import Text from '../../../components/Text';
 import HStack from '../../../components/stack/HStack';
 import VStack from '../../../components/stack/VStack';
 import { Color } from '../../../constants/Color';
+import { Font } from '../../../constants/Font';
 import { SCREEN_WIDTH } from '../../../constants/Screen';
 import { useMessage } from '../../../hooks/use-message';
 import { TKeys } from '../../../locales/constants';
@@ -19,10 +20,22 @@ export default function SectionChooser({ onSelect }: Props) {
 
   return (
     <VStack style={styles.container} spacing={12}>
+      <Animated.View
+        entering={FadeInRight.delay(600).duration(500).mass(80)}
+        style={styles.common}
+        onTouchEnd={() => onSelect(0)}
+      >
+        <Text variant="titleLarge" style={styles.commonBody}>
+          {formatMessage(TKeys.GENERAL_INTRODUCTION_TITLE)}
+        </Text>
+      </Animated.View>
       {[1, 2, 3].map((section: number) => (
         <Animated.View
           key={section}
-          entering={SlideInDown.delay(80 * section).springify()}
+          entering={SlideInDown.delay(50 * section)
+            .duration(200 * section)
+            .mass(1)
+            .springify()}
           style={styles.pressable}
           onTouchEnd={() => onSelect(section)}
         >
@@ -41,6 +54,15 @@ export default function SectionChooser({ onSelect }: Props) {
           </View>
         </Animated.View>
       ))}
+      <Animated.View
+        entering={FadeInLeft.delay(600).duration(500).mass(80)}
+        style={styles.common}
+        onTouchEnd={() => onSelect(4)}
+      >
+        <Text variant="titleLarge" style={styles.commonBody}>
+          {formatMessage(TKeys.CONCLUSION)}
+        </Text>
+      </Animated.View>
     </VStack>
   );
 }
@@ -65,7 +87,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: '700',
-    fontSize: 16,
+    fontSize: Font.size(16),
     justifyContent: 'center',
     textAlign: 'auto',
     width: '80%',
@@ -74,4 +96,21 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   id: { position: 'absolute', left: 5, elevation: 2, width: 60, backgroundColor: '#3db371', marginEnd: 50 },
+  common: {
+    ...GlobalStyles.circle,
+    backgroundColor: 'teal',
+    elevation: 5,
+    width: SCREEN_WIDTH - 200,
+    height: 30,
+    alignItems: 'center',
+    alignContent: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
+  },
+  commonBody: {
+    fontWeight: '900',
+    textAlign: 'center',
+    fontSize: Font.size(16),
+    color: Color.flatItemNoneColor,
+  },
 });

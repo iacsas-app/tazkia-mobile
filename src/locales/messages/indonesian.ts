@@ -692,6 +692,10 @@ export const indonesian: Translations = {
   [TKeys.INVOCATIONS_IMMUNIZATION_EVENING_27]: '',
   [TKeys.INVOCATIONS_IMMUNIZATION_EVENING_40]: '',
 
+  // Invocations Ahzabs
+  [TKeys.INVOCATIONS_AHZABS_INTRODUCTION]: '',
+  [TKeys.INVOCATIONS_AHZABS_CONCLUSION]: '',
+
   [TKeys.INVOCATIONS_AHZABS_SECTION_1]: 'أَحْزَابُ المَطَالِبِ لِنَيْلِ المَقَاصِدِ',
   [TKeys.INVOCATIONS_AHZABS_SECTION_2]: 'أَحْزَابُ الأَبْرَارِ لِلْتَّرَقِّي فِي مَقَامَاتِ الأَخْيَارِ',
   [TKeys.INVOCATIONS_AHZABS_SECTION_3]: 'أَحْزَابُ البِرِّ لِنَيْلِ السِّرِّ',
@@ -1014,4 +1018,5 @@ export const indonesian: Translations = {
   [TKeys.GENERAL_INTRODUCTION_TITLE]: 'Pengenalan umum',
   [TKeys.GENERAL_PRESENTATION_TITLE]: 'Presentasi umum',
   [TKeys.INITIATION_TITLE]: 'Inisiasi',
+  [TKeys.CONCLUSION]: 'Kesimpulan',
 };

@@ -25,7 +25,7 @@ export default function SegmentedItem({ label, roundedStart, roundedEnd }: Props
         height: 18,
       }}
     >
-      <Text variant="labelSmall" color="#075907" style={{ paddingHorizontal: 5 }}>
+      <Text variant="labelSmall" style={{ paddingHorizontal: 5, color: '#075907' }}>
         {label}
       </Text>
     </Animated.View>

@@ -98,8 +98,11 @@ export default function LevelRule({ part, index, levelKey, ...props }: Props) {
             />
             <Text
               variant="bodyLarge"
-              style={{ ...styles.levelTitle, fontSize: Font.size(open ? 16 : 14) }}
-              color={current ? 'green' : '#4169e1'}
+              style={{
+                ...styles.levelTitle,
+                fontSize: Font.size(open ? 16 : 14),
+                color: current ? 'green' : '#4169e1',
+              }}
             >
               {formatMessage(TKeys.LEVEL, { value: index })}
             </Text>

@@ -89,7 +89,7 @@ const RulesDialog = forwardRef<RulesDialogRef, Props>((props, ref) => {
       >
         <Dialog.Title style={{ paddingTop: 20 }}>
           <VStack style={GlobalStyles.center} spacing={5}>
-            <Text variant="bodyLarge" style={styles.title} color="seagreen">
+            <Text variant="bodyLarge" style={styles.title}>
               {stepTitle()}
             </Text>
             <Text variant="bodySmall" style={styles.system}>
@@ -134,9 +134,10 @@ const RulesDialog = forwardRef<RulesDialogRef, Props>((props, ref) => {
 const styles = StyleSheet.create({
   title: {
     ...GlobalStyles.center,
+    width: SCREEN_WIDTH - 90,
+    color: 'seagreen',
     fontWeight: '900',
     fontSize: Font.size(18),
-    width: SCREEN_WIDTH - 90,
   },
   smallPadding: {
     paddingHorizontal: 0,

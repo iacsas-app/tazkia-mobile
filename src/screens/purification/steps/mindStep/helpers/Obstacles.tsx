@@ -52,8 +52,7 @@ export default function Obstacles() {
       <VStack style={GlobalStyles.center}>
         <Text
           variant="bodyMedium"
-          style={{ ...purificationStyles.title, fontSize: Font.size(arabic ? 17 : 15) }}
-          color="seagreen"
+          style={{ ...purificationStyles.title, fontSize: Font.size(arabic ? 17 : 15), color: 'seagreen' }}
         >
           {formatMessage(TKeys.PURIFICATION_OBSTACLES)}
         </Text>
@@ -87,7 +86,7 @@ export default function Obstacles() {
                 labelStyle={{ fontWeight: '900', color: 'white' }}
               />
 
-              <Text variant="bodyMedium" style={{ fontSize, fontWeight: '900' }} color="teal">
+              <Text variant="bodyMedium" style={{ fontSize, fontWeight: '900', color: 'teal' }}>
                 {formatMessage(item.title)}
               </Text>
             </HStack>
@@ -98,7 +97,7 @@ export default function Obstacles() {
               <VStack spacing={10}>
                 <HStack spacing={15} style={GlobalStyles.centerAlign}>
                   <Icon name="doctor" size={25} color="black" />
-                  <Text variant="titleSmall" style={{ fontSize, fontWeight: '700' }} color="black">
+                  <Text variant="titleSmall" style={{ fontSize, fontWeight: '700', color: 'black' }}>
                     {formatMessage(TKeys.PURIFICATION_MIND_OBSTACLES_HOW_TO_HANDLE)}
                   </Text>
                 </HStack>

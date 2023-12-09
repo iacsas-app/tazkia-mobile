@@ -103,8 +103,7 @@ export default function SunnahStageContainer({ stage, rules }: Props) {
         <Avatar.Image source={sunnahsImages[stage]} size={70} />
         <Text
           variant="bodyMedium"
-          style={{ ...styles.summary, fontSize: Font.size(arabic ? 18 : 14) }}
-          color="seagreen"
+          style={{ ...styles.summary, fontSize: Font.size(arabic ? 18 : 14), color: 'seagreen' }}
         >
           {formatMessage(`sunnahs.${stage}.title`)}
         </Text>

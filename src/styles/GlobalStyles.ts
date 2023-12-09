@@ -39,6 +39,18 @@ const GlobalStyles = StyleSheet.create({
     opacity: 0.6,
   },
   defaultDialog: { maxHeight: 0.8 * SCREEN_HEIGHT, width: SCREEN_WIDTH - 30, marginLeft: 15, backgroundColor: 'white' },
+  justify: { textAlign: 'justify' },
+  fixedHeader: {
+    padding: 10,
+    backgroundColor: '#fffafa',
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+    fontWeight: '700',
+    elevation: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+  },
 });
 
 export default GlobalStyles;

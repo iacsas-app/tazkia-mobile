@@ -5,6 +5,7 @@ import Text from '../../components/Text';
 import { Book } from '../../domains/presentation/Book';
 import { useMessage } from '../../hooks/use-message';
 import { TKeys } from '../../locales/constants';
+import GlobalStyles from '../../styles/GlobalStyles';
 import { FlatBook } from './common/BookItem';
 import { booksList } from './common/data';
 
@@ -20,17 +21,7 @@ export default function BooksScreen() {
 
   return (
     <View>
-      <Text
-        variant="bodySmall"
-        style={{
-          padding: 10,
-          backgroundColor: '#fffafa',
-          borderBottomLeftRadius: 20,
-          borderBottomRightRadius: 20,
-          fontWeight: '700',
-          elevation: 10,
-        }}
-      >
+      <Text variant="bodySmall" style={GlobalStyles.fixedHeader}>
         {formatMessage(TKeys.PRESENTATION_BOOKS)}
       </Text>
       <FlatList

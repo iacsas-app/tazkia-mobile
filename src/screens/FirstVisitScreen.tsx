@@ -64,14 +64,14 @@ export default function FirstVisitScreen() {
             {formatMessage(TKeys.WELCOME)}
           </Text>
           {isSupported ? (
-            <Text variant="bodyLarge" color="green">
+            <Text variant="bodyLarge" style={{ color: 'green' }}>
               {formatMessage(TKeys.SETTINGS_LANGUAGE_DEFAULT, {
                 lang: formatMessage(`language.${localesTranslation[locale].key}`),
               })}
             </Text>
           ) : (
             <>
-              <Text variant="headlineMedium" color="red">
+              <Text variant="headlineMedium" style={{ color: 'red' }}>
                 نعتذر، لغة هاتفكم غير مدعومة
               </Text>
               <Text variant="headlineSmall">المرجو اختيار لغة أخرى من بين القائمة التالية :</Text>

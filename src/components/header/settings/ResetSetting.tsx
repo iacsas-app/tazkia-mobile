@@ -30,7 +30,7 @@ export function ResetSetting(props: Props) {
     <TouchableOpacity onPress={handlePress} style={SettingsStyles.surface}>
       <HStack spacing={17} style={styles.stack}>
         <Avatar.Icon icon={() => <Icon name="database-remove" size={30} />} size={30} style={styles.avatar} />
-        <Text variant="titleMedium" color="black" style={{ fontWeight: '700' }}>
+        <Text variant="titleMedium" style={{ fontWeight: '700', color: 'black' }}>
           {formatMessage(TKeys.SETTINGS_RESET)}
         </Text>
       </HStack>
