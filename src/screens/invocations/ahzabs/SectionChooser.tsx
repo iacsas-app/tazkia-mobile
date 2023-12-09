@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Avatar } from 'react-native-paper';
-import Animated, { FadeInLeft, FadeInRight, SlideInDown } from 'react-native-reanimated';
+import Animated, { FadeInUp, SlideInDown } from 'react-native-reanimated';
 import Text from '../../../components/Text';
 import HStack from '../../../components/stack/HStack';
 import VStack from '../../../components/stack/VStack';
@@ -19,16 +19,19 @@ export default function SectionChooser({ onSelect }: Props) {
   const { formatMessage } = useMessage();
 
   return (
-    <VStack style={styles.container} spacing={12}>
-      <Animated.View
-        entering={FadeInRight.delay(600).duration(500).mass(80)}
-        style={styles.common}
-        onTouchEnd={() => onSelect(0)}
-      >
-        <Text variant="titleLarge" style={styles.commonBody}>
-          {formatMessage(TKeys.GENERAL_INTRODUCTION_TITLE)}
-        </Text>
-      </Animated.View>
+    <VStack style={styles.container} spacing={10}>
+      <VStack spacing={5} style={styles.header}>
+        <Animated.Text entering={FadeInUp.delay(700).duration(500).mass(15)} style={styles.bookTitle}>
+          {formatMessage(TKeys.INVOCATION_AHZABS_TITLE)}
+        </Animated.Text>
+        {[TKeys.GENERAL_INTRODUCTION_TITLE, TKeys.CONCLUSION].map((item, index) => (
+          <View key={index} style={styles.common} onTouchEnd={() => onSelect(-(index + 1))}>
+            <Text variant="titleLarge" style={styles.commonBody}>
+              {formatMessage(item)}
+            </Text>
+          </View>
+        ))}
+      </VStack>
       {[1, 2, 3].map((section: number) => (
         <Animated.View
           key={section}
@@ -54,15 +57,6 @@ export default function SectionChooser({ onSelect }: Props) {
           </View>
         </Animated.View>
       ))}
-      <Animated.View
-        entering={FadeInLeft.delay(600).duration(500).mass(80)}
-        style={styles.common}
-        onTouchEnd={() => onSelect(4)}
-      >
-        <Text variant="titleLarge" style={styles.commonBody}>
-          {formatMessage(TKeys.CONCLUSION)}
-        </Text>
-      </Animated.View>
     </VStack>
   );
 }
@@ -73,6 +67,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 30,
   },
+  header: { paddingBottom: 10 },
   pressable: {
     ...GlobalStyles.circle,
     backgroundColor: Color.partProgressBgColor,
@@ -112,5 +107,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: Font.size(16),
     color: Color.flatItemNoneColor,
+  },
+  bookTitle: {
+    ...GlobalStyles.center,
+    fontWeight: '900',
+    fontSize: Font.size(19),
+    paddingBottom: 10,
+    textShadowRadius: 8,
+    color: 'teal',
   },
 });

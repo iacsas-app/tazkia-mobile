@@ -552,10 +552,12 @@ export const arabic: Translations = {
 
   // INVOCATION
   [TKeys.INVOCATION_PURIFICATION_TITLE]: 'أذكار التزكية',
-  [TKeys.INVOCATION_IMMUNIZATION_TITLE]: 'الأذكار النورانية المحمدية\nالتحصين الكامل من القرآن والسنة النبوية',
-  [TKeys.INVOCATION_JEWELS_TITLE]: 'جواهر الأذكار السَّنية لكشف الأستار المخفية',
-  [TKeys.INVOCATION_OVERFLOW_TITLE]: 'الفيض الرحماني والإمداد النوراني\nفي الصلاة على النبي العدناني',
-  [TKeys.INVOCATION_AHZABS_TITLE]: 'أَحْزَابُ السِّرِّ الفَيَّاضِ فِي تَحْقِيقِ الأَغْرَاضِ',
+  [TKeys.INVOCATION_IMMUNIZATION_TITLE]:
+    'الأَذْكَارُ النُّورَانِيَّةُ المُحَمَّدِيَّةُ\nالتَّحْصِينُ الكَامِلُ مِنَ القُرْآنِ وَالسُّنَّةِ النَّبَوِيَّةِ',
+  [TKeys.INVOCATION_JEWELS_TITLE]: 'جَوَاهِرُ الأَذْكَارِ السَّنِيَّةِ لِكَشْفِ الأَسْتَارِ الْخَفِيَّةِ',
+  [TKeys.INVOCATION_OVERFLOW_TITLE]:
+    'الْفَيْضُ الرَّحْمَانِيُّ وَالإِمْدَادُ النُّورَانِيُّ\nفِي الصَّلاَةِ عَلَى النَّبِيِّ الْعَدْنَانِيِّ',
+  [TKeys.INVOCATION_AHZABS_TITLE]: 'أَحْزَابُ السِّرِّ الْفَيَّاضِ فِي تَحْقِيقِ الأَغْرَاضِ',
 
   [TKeys.INVOCATION_NIVEAU_TITLE]: 'مقامات ذكر السلوك',
   [TKeys.INVOCATION_NIVEAU_1]:

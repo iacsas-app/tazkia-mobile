@@ -14,7 +14,7 @@ type Props = {
 };
 
 export const FlatBook: React.FC<Props> = React.memo(({ book, viewableItems }) => {
-  const imageWith = SCREEN_WIDTH - 320;
+  const imageWith = SCREEN_WIDTH - 300;
 
   const rowStyle = useAnimatedStyle(() => {
     const isVisible = Boolean(
@@ -23,11 +23,7 @@ export const FlatBook: React.FC<Props> = React.memo(({ book, viewableItems }) =>
 
     return {
       opacity: withTiming(isVisible ? 1 : 0),
-      transform: [
-        {
-          scale: withTiming(isVisible ? 1 : 0.6),
-        },
-      ],
+      transform: [{ scale: withTiming(isVisible ? 1 : 0.6) }],
     };
   }, []);
 
@@ -37,9 +33,9 @@ export const FlatBook: React.FC<Props> = React.memo(({ book, viewableItems }) =>
         <Text variant="bodyMedium" style={styles.title}>
           {book.title}
         </Text>
-        <HStack spacing={30}>
+        <HStack spacing={20}>
           <Image source={book.image} style={{ ...styles.image, width: imageWith }} />
-          <View style={{ width: SCREEN_WIDTH - imageWith - 100 }}>
+          <View style={{ width: SCREEN_WIDTH - imageWith - 85 }}>
             <VStack>
               <Text variant="bodyMedium" style={styles.summary}>
                 {book.summary}

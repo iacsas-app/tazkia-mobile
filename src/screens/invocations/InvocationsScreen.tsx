@@ -5,6 +5,7 @@ import { Avatar } from 'react-native-paper';
 import Animated, { FadeInUp } from 'react-native-reanimated';
 import Text from '../../components/Text';
 import BottomSheet, { BottomSheetRef } from '../../components/bottomSheet/BottomSheet';
+import SimpleDialog, { SimpleDialogRef } from '../../components/dialogs/SimpleDialog';
 import VStack from '../../components/stack/VStack';
 import { Color } from '../../constants/Color';
 import { Font } from '../../constants/Font';
@@ -14,13 +15,12 @@ import { useMessage } from '../../hooks/use-message';
 import { TKeys } from '../../locales/constants';
 import GlobalStyles from '../../styles/GlobalStyles';
 import SectionChooser from './ahzabs/SectionChooser';
-import ImmunizationDialog, { ImmunizationDialogRef } from './immunization/ImmunizationDialog';
 import PeriodChooser from './immunization/PeriodChooser';
 import { ImmunizationPeriod } from './immunization/data';
 
 export default function InvocationsScreen() {
   const ref = useRef<BottomSheetRef>(null);
-  const immunizationDialogRef = useRef<ImmunizationDialogRef>(null);
+  const dialogRef = useRef<SimpleDialogRef>(null);
   const { formatMessage } = useMessage();
   const { arabic } = useApplication();
   const navigation = useNavigation<any>();
@@ -53,7 +53,7 @@ export default function InvocationsScreen() {
   );
 
   function handleIntroductionClick() {
-    immunizationDialogRef.current?.open();
+    dialogRef.current?.open(TKeys.INVOCATIONS_IMMUNIZATION_INTRODUCTION, TKeys.GENERAL_PRESENTATION_TITLE);
   }
 
   function handlePress(route: string) {
@@ -74,9 +74,11 @@ export default function InvocationsScreen() {
   }
 
   function handleSectionSelect(section: number) {
-    if (section === 0 || section === 4) {
-      const key = `invocations.ahzabs.${section === 0 ? 'introduction' : 'conclusion'}`;
-      immunizationDialogRef.current?.open(key as TKeys);
+    if (section < 0) {
+      const intro = section === -1;
+      const key = `invocations.ahzabs.${intro ? 'introduction' : 'conclusion'}`;
+      const titleKey = intro ? TKeys.GENERAL_INTRODUCTION_TITLE : TKeys.CONCLUSION;
+      dialogRef.current?.open(key as TKeys, titleKey);
     } else {
       navigation.navigate('Ahzabs', { section });
       ref.current?.close();
@@ -96,7 +98,7 @@ export default function InvocationsScreen() {
             {item.image && <Avatar.Image source={item.image} size={70} style={styles.image} />}
             <View style={styles.summary}>
               <Text
-                variant="bodySmall"
+                variant="bodyMedium"
                 style={{ ...styles.summaryLabel, fontSize: Font.size(arabic ? 16 : 14), color: 'black' }}
               >
                 {formatMessage(item.name)}
@@ -105,7 +107,7 @@ export default function InvocationsScreen() {
           </Animated.View>
         ))}
       </VStack>
-      <ImmunizationDialog ref={immunizationDialogRef} />
+      <SimpleDialog ref={dialogRef} />
     </BottomSheet>
   );
 }

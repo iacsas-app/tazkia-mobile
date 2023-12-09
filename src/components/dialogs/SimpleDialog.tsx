@@ -3,26 +3,27 @@ import { forwardRef, useImperativeHandle, useState } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import { Dialog, FAB, Portal } from 'react-native-paper';
 import Animated, { FadeInDown, FadeInUp } from 'react-native-reanimated';
-import Text from '../../../components/Text';
-import VStack from '../../../components/stack/VStack';
-import { Color } from '../../../constants/Color';
-import { Font } from '../../../constants/Font';
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../../../constants/Screen';
-import { useMessage } from '../../../hooks/use-message';
-import { TKeys } from '../../../locales/constants';
-import GlobalStyles from '../../../styles/GlobalStyles';
+import { Color } from '../../constants/Color';
+import { Font } from '../../constants/Font';
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../../constants/Screen';
+import { useMessage } from '../../hooks/use-message';
+import { TKeys } from '../../locales/constants';
+import GlobalStyles from '../../styles/GlobalStyles';
+import Text from '../Text';
+import VStack from '../stack/VStack';
 
-export type ImmunizationDialogRef = {
-  open(key?: TKeys, detailsId?: number): void;
+export type SimpleDialogRef = {
+  open(key: TKeys, titleKey?: TKeys, detailsKey?: number): void;
   close(): void;
 };
 
 type State = {
-  key: TKeys | undefined;
-  detailsId: number;
+  key: TKeys;
+  titleKey?: TKeys;
+  detailsKey?: number;
 };
 
-const ImmunizationDialog = forwardRef<ImmunizationDialogRef>((_, ref) => {
+const SimpleDialog = forwardRef<SimpleDialogRef>((_, ref) => {
   const [state, setState] = useState<State>();
   const { formatMessage } = useMessage();
 
@@ -30,8 +31,8 @@ const ImmunizationDialog = forwardRef<ImmunizationDialogRef>((_, ref) => {
     ref,
     () => {
       return {
-        open(key: TKeys | undefined, detailsId: number) {
-          setState({ key, detailsId });
+        open(key: TKeys, titleKey?: TKeys, detailsKey?: number) {
+          setState({ key, titleKey, detailsKey });
         },
         close() {
           handleClose();
@@ -49,9 +50,7 @@ const ImmunizationDialog = forwardRef<ImmunizationDialogRef>((_, ref) => {
     return <></>;
   }
 
-  const { key, detailsId } = state;
-  const bodyKey = key ?? TKeys.INVOCATIONS_IMMUNIZATION_INTRODUCTION;
-  const isIntro = !key;
+  const { key, titleKey, detailsKey } = state;
 
   return (
     <Portal>
@@ -59,13 +58,13 @@ const ImmunizationDialog = forwardRef<ImmunizationDialogRef>((_, ref) => {
         <Dialog.ScrollArea style={styles.contentContainer}>
           <ScrollView contentInsetAdjustmentBehavior="automatic" contentContainerStyle={GlobalStyles.center}>
             <VStack style={styles.main} spacing={5}>
-              {isIntro && (
+              {titleKey && (
                 <Animated.Text entering={FadeInUp.duration(50).springify()} style={styles.title}>
-                  {formatMessage(TKeys.GENERAL_PRESENTATION_TITLE)}
+                  {formatMessage(titleKey)}
                 </Animated.Text>
               )}
               <Animated.View entering={FadeInDown.duration(50).springify()} style={styles.body}>
-                <Text style={styles.contentText}>{formatMessage(bodyKey)}</Text>
+                <Text style={styles.contentText}>{formatMessage(key)}</Text>
               </Animated.View>
             </VStack>
           </ScrollView>
@@ -121,4 +120,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ImmunizationDialog;
+export default SimpleDialog;

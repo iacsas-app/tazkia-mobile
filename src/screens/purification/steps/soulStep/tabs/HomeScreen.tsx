@@ -94,7 +94,7 @@ export default function HomeScreen() {
               progress={getProgress(soul)}
               flexBasis={60}
               arabic={arabic}
-              circularProgressRadius={23}
+              circularProgressRadius={21}
               subSummarySize={11}
               onPress={() => handlePress(idx as any)}
             />

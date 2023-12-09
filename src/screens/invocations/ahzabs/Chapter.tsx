@@ -51,7 +51,7 @@ function Chapter({ section, chapter, total, viewableItems, onSelect }: Props) {
         {
           backgroundColor: first ? Color.flatItemNoneBgColor : Color.partDefaultBgColor,
           marginTop: first ? 20 : 3,
-          marginBottom: last ? 20 : first ? 10 : 2,
+          marginBottom: last ? 60 : first ? 10 : 2,
         },
       ]}
       onTouchEnd={handlePress}

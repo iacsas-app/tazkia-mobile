@@ -137,6 +137,7 @@ export default function SunnahStageContainer({ stage, rules }: Props) {
                 index={idx}
                 stepTitle={idx.toString()}
                 stepTitleSize={Font.size(12)}
+                partTitleSize={Font.size(arabic ? 14 : 12)}
                 stepTitleWidth={30}
                 summaryKey={`sunnahs.${stage}.${idx}.title`}
                 inProgress={current !== undefined}

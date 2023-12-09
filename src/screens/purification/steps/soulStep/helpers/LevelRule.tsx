@@ -52,7 +52,6 @@ export default function LevelRule({ part, index, levelKey, ...props }: Props) {
 
   function handleTouch() {
     props.onTouch(index);
-    setOpen(!open);
   }
 
   function handleEvaluate(checked: boolean) {
@@ -72,8 +71,6 @@ export default function LevelRule({ part, index, levelKey, ...props }: Props) {
       onPress={handleTouch}
       style={{
         ...styles.container,
-        elevation: 4,
-        paddingHorizontal: 5,
         paddingTop: open ? 4 : 0,
         borderBottomLeftRadius: current ? 30 : open ? 15 : radius(),
         borderBottomRightRadius: current ? 30 : open ? 15 : radius(),
@@ -140,6 +137,8 @@ export default function LevelRule({ part, index, levelKey, ...props }: Props) {
 const styles = StyleSheet.create({
   container: {
     width: SCREEN_WIDTH - 10,
+    elevation: 4,
+    paddingHorizontal: 5,
   },
   header: {
     alignItems: 'center',

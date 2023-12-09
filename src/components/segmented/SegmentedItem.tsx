@@ -22,10 +22,10 @@ export default function SegmentedItem({ label, roundedStart, roundedEnd }: Props
         borderColor: 'green',
         elevation: 1,
         opacity: 0.9,
-        height: 18,
+        height: 15,
       }}
     >
-      <Text variant="labelSmall" style={{ paddingHorizontal: 5, color: '#075907' }}>
+      <Text variant="labelSmall" style={{ paddingHorizontal: 2, color: '#075907', fontSize: 9 }}>
         {label}
       </Text>
     </Animated.View>

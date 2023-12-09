@@ -29,23 +29,26 @@ export default function PeriodChooser(props: Props) {
   return (
     <View style={GlobalStyles.center}>
       <Animated.View entering={FadeInUp.delay(700).duration(500).mass(15)}>
-        <VStack spacing={5} style={GlobalStyles.center}>
-          <Text variant="titleMedium" style={styles.topTitle}>
+        <Text variant="titleLarge" style={[styles.topTitle, styles.bookTitle]}>
+          {formatMessage(TKeys.INVOCATION_IMMUNIZATION_TITLE)}
+        </Text>
+        <VStack spacing={1} style={GlobalStyles.center}>
+          <Animated.View
+            entering={FadeInRight.delay(1200).duration(500).mass(80)}
+            style={styles.introduction}
+            onTouchEnd={props.onMetaSelect}
+          >
+            <Text variant="titleLarge" style={styles.introductionBody}>
+              {formatMessage(TKeys.GENERAL_PRESENTATION_TITLE)}
+            </Text>
+          </Animated.View>
+          <Text variant="titleLarge" style={[styles.topTitle, styles.initiation]}>
             {formatMessage(TKeys.INITIATION_TITLE)}
           </Text>
           <Text style={styles.contentText}>{formatMessage(TKeys.INVOCATIONS_IMMUNIZATION_INITIATION)}</Text>
         </VStack>
       </Animated.View>
       <VStack style={styles.container} spacing={12}>
-        <Animated.View
-          entering={FadeInRight.delay(1200).duration(500).mass(80)}
-          style={styles.introduction}
-          onTouchEnd={props.onMetaSelect}
-        >
-          <Text variant="titleLarge" style={styles.introductionBody}>
-            {formatMessage(TKeys.GENERAL_PRESENTATION_TITLE)}
-          </Text>
-        </Animated.View>
         {periods.map(({ name, image }, index) => (
           <Animated.View
             key={name}
@@ -80,6 +83,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 30,
   },
+  bookTitle: { fontSize: Font.size(19), marginBottom: 15 },
   introduction: {
     ...GlobalStyles.circle,
     backgroundColor: 'teal',
@@ -121,11 +125,11 @@ const styles = StyleSheet.create({
   topTitle: {
     ...GlobalStyles.center,
     fontWeight: '900',
-    fontSize: Font.size(19),
     paddingTop: 5,
     textShadowRadius: 8,
     color: 'teal',
   },
+  initiation: { fontSize: Font.size(16), marginTop: 10 },
   contentText: {
     fontSize: Font.size(14),
     textAlign: 'justify',
