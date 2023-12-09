@@ -5,6 +5,7 @@ export type ImmunizationPeriod = 'morning' | 'evening';
 
 export const immunizationData: Record<ImmunizationPeriod, InvocationRepeat[]> = {
   morning: [
+    { key: TKeys.GENERAL_PRESENTATION_TITLE, repeat: 0 },
     { key: TKeys.INVOCATIONS_IMMUNIZATION_COMMON_1, repeat: 10 },
     { key: TKeys.INVOCATIONS_IMMUNIZATION_COMMON_2, repeat: 1 },
     { key: TKeys.INVOCATIONS_IMMUNIZATION_COMMON_3, repeat: 1 },
@@ -48,6 +49,7 @@ export const immunizationData: Record<ImmunizationPeriod, InvocationRepeat[]> = 
     { key: TKeys.INVOCATIONS_IMMUNIZATION_CONCLUSION, repeat: 0 },
   ],
   evening: [
+    { key: TKeys.GENERAL_PRESENTATION_TITLE, repeat: 0 },
     { key: TKeys.INVOCATIONS_IMMUNIZATION_COMMON_1, repeat: 10 },
     { key: TKeys.INVOCATIONS_IMMUNIZATION_COMMON_2, repeat: 1 },
     { key: TKeys.INVOCATIONS_IMMUNIZATION_COMMON_3, repeat: 1 },

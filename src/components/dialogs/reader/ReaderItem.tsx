@@ -1,7 +1,17 @@
 import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { ProgressBar, TouchableRipple } from 'react-native-paper';
-import Animated, { SlideInLeft, SlideInUp, SlideOutDown, SlideOutRight } from 'react-native-reanimated';
+import Animated, {
+  Easing,
+  SlideInUp,
+  SlideOutDown,
+  useAnimatedStyle,
+  useSharedValue,
+  withSequence,
+  withTiming,
+} from 'react-native-reanimated';
+import { Color } from '../../../constants/Color';
+import { Font } from '../../../constants/Font';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../../../constants/Screen';
 import InvocationRepeat from '../../../domains/common/InvocationRepeat';
 import { useMessage } from '../../../hooks/use-message';
@@ -21,6 +31,8 @@ export type ReaderItemProps = {
 export default function ReaderItem({ index, total, value, ...props }: ReaderItemProps) {
   const [count, setCount] = useState(value.repeat);
   const { formatMessage } = useMessage();
+  const offset = useSharedValue(0);
+  const countStyle = useAnimatedStyle(() => ({ transform: [{ translateY: -offset.value }] }));
 
   function handlePress() {
     if (index === total) {
@@ -35,6 +47,13 @@ export default function ReaderItem({ index, total, value, ...props }: ReaderItem
       }
       return prev - 1;
     });
+    offset.value = withSequence(
+      withTiming(100, {
+        duration: 100,
+        easing: Easing.inOut(Easing.circle),
+      }),
+      withTiming(0),
+    );
   }
 
   useEffect(() => {
@@ -56,13 +75,11 @@ export default function ReaderItem({ index, total, value, ...props }: ReaderItem
             {index !== total && (
               <HStack style={styles.counter}>
                 <Text style={{ ...styles.tag, backgroundColor: '#fff5ee' }}>{`${index}/${total}`}</Text>
-                <Animated.Text
-                  style={{ ...styles.tag, backgroundColor: '#92b8df' }}
-                  entering={SlideInLeft.delay(100).duration(100).springify()}
-                  exiting={SlideOutRight.delay(100).springify()}
-                >
-                  {formatMessage(count > 1 ? TKeys.TIMES_COUNT_PLURAL : TKeys.TIMES_COUNT, { times: count })}
-                </Animated.Text>
+                <Animated.View style={countStyle}>
+                  <Text variant="bodyMedium" style={[styles.tag, { backgroundColor: Color.completed }]}>
+                    {formatMessage(count > 1 ? TKeys.TIMES_COUNT_PLURAL : TKeys.TIMES_COUNT, { times: count })}
+                  </Text>
+                </Animated.View>
               </HStack>
             )}
             <ProgressBar progress={index / total} visible={true} style={styles.progress} />
@@ -91,7 +108,7 @@ const styles = StyleSheet.create({
   progress: { height: 20, borderBottomEndRadius: 20, borderBottomStartRadius: 20 },
   tag: {
     ...GlobalStyles.circle,
-    fontSize: 15,
+    fontSize: Font.size(15),
     paddingHorizontal: 20,
     opacity: 0.6,
     marginHorizontal: 20,

@@ -524,6 +524,7 @@ export const french: Translations = {
   // Invocations immunization
   [TKeys.INVOCATIONS_IMMUNIZATION_TITLE]: 'Protection du {period}',
   [TKeys.INVOCATIONS_IMMUNIZATION_INTRODUCTION]: '',
+  [TKeys.INVOCATIONS_IMMUNIZATION_INITIATION]: '',
   [TKeys.INVOCATIONS_IMMUNIZATION_CONCLUSION]: '',
   [TKeys.INVOCATIONS_IMMUNIZATION_COMMON_1]: '',
   [TKeys.INVOCATIONS_IMMUNIZATION_COMMON_2]: '',
@@ -887,12 +888,13 @@ export const french: Translations = {
 
   [TKeys.MESSAGE_ADDED_SUCCESSFULLY]: "L'ajout a été effectué avec succès",
   [TKeys.MESSAGE_EVALUATED_SUCCESSFULLY]: 'Votre progression a été mise à jour avec succès',
-  [TKeys.MESSAGE_EMPTY_LIST]: 'Liste vide',
-  [TKeys.MESSAGE_NO_PROGRESS]: "Il n'y a aucun progrès en cours",
   [TKeys.DURATION]: '{value} minutes',
   [TKeys.DURATION2]: '{value} minutes',
   [TKeys.RESTART_CONFIRM_TITLE]: 'Êtes-vous sûr de bien vouloir recommencer ?',
   [TKeys.RESTART_CONFIRM_MESSAGE]: 'Cela supprimera votre progression !\nAction irréversible',
   [TKeys.A]: 'a',
   [TKeys.B]: 'b',
+  [TKeys.GENERAL_INTRODUCTION_TITLE]: 'Introduction générale',
+  [TKeys.GENERAL_PRESENTATION_TITLE]: 'Présentation générale',
+  [TKeys.INITIATION_TITLE]: 'Initiation',
 };

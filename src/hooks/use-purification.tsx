@@ -1,14 +1,11 @@
 import ProgressLine from '../domains/common/ProgressLine';
 import BodyPart, { BodyPartType, BodyPartsOrder, PurificationStage } from '../domains/purification/BodyPart';
 import Mind, { MindLevel } from '../domains/purification/Mind';
-import Purification from '../domains/purification/Purification';
+import Purification, { PurificationType } from '../domains/purification/Purification';
 import Soul, { SoulPart, SoulPartLevel } from '../domains/purification/Soul';
 import { useStoreActions, useStoreState } from '../stores/hooks';
 
 export interface IPurification {
-  hasBodyPartsProgress: boolean;
-  hasMindProgress: boolean;
-  hasSoulProgress: boolean;
   createBodyPart(part: BodyPartType, stage: PurificationStage): void;
   findBodyPart(part: BodyPartType): BodyPart | undefined;
   evaluateBodyPart(part: BodyPartType, stage: PurificationStage, errors: number[]): void;
@@ -21,6 +18,7 @@ export interface IPurification {
   findMind(level: MindLevel): Mind | undefined;
   evaluateMind(level: MindLevel, checked: boolean): void;
   restartMind(level: MindLevel): void;
+  hasProgress(type: PurificationType): boolean;
 }
 export default function usePurification(): IPurification {
   const purification = useStoreState((state) => state.purification.item);
@@ -96,10 +94,12 @@ export default function usePurification(): IPurification {
     });
   }
 
+  function hasProgress(type: PurificationType): boolean {
+    return purification !== undefined && purification[type].length !== 0;
+  }
+
   return {
-    hasBodyPartsProgress: purification !== undefined && purification.bodyParts.length !== 0,
-    hasMindProgress: purification !== undefined && purification.mind.length !== 0,
-    hasSoulProgress: purification !== undefined && purification.soul.length !== 0,
+    hasProgress,
     findBodyPart,
     findMind,
     findSoul,

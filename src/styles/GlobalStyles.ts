@@ -1,4 +1,6 @@
 import { StyleSheet } from 'react-native';
+import { Color } from '../constants/Color';
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../constants/Screen';
 
 const GlobalStyles = StyleSheet.create({
   container: {
@@ -28,6 +30,15 @@ const GlobalStyles = StyleSheet.create({
     alignSelf: 'stretch',
     justifyContent: 'space-between',
   },
+  closeFab: {
+    borderRadius: 100,
+    position: 'absolute',
+    left: 15,
+    bottom: 15,
+    backgroundColor: Color.flatItemNoneBgColor,
+    opacity: 0.6,
+  },
+  defaultDialog: { maxHeight: 0.8 * SCREEN_HEIGHT, width: SCREEN_WIDTH - 30, marginLeft: 15, backgroundColor: 'white' },
 });
 
 export default GlobalStyles;

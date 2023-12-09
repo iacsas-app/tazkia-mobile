@@ -1,10 +1,11 @@
 import { memo } from 'react';
-import { StyleSheet, ViewToken } from 'react-native';
+import { StyleSheet, View, ViewToken } from 'react-native';
 import { Avatar } from 'react-native-paper';
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import Text from '../../../components/Text';
 import HStack from '../../../components/stack/HStack';
 import VStack from '../../../components/stack/VStack';
+import { Color } from '../../../constants/Color';
 import { SCREEN_WIDTH } from '../../../constants/Screen';
 import { useMessage } from '../../../hooks/use-message';
 import GlobalStyles from '../../../styles/GlobalStyles';
@@ -22,12 +23,12 @@ function Chapter({ section, chapter, total, viewableItems, onSelect }: Props) {
   const sectionKey = `invocations.ahzabs.section.${section}`;
 
   const first = chapter === 0;
+  const last = chapter === total;
+
   const summaryKey = `${sectionKey}.${chapter !== 0 ? `chapter.${chapter}.title` : 'introduction.title'}`;
   const subSummaryKey = first ? sectionKey : `${sectionKey}.chapter.${chapter}.why`;
 
   const animatedStyle = useAnimatedStyle(() => {
-    const first = chapter === 0;
-    const last = chapter === total;
     const isVisible = Boolean(
       viewableItems.value.filter((item) => item.isViewable).find((viewableItem) => viewableItem.item === chapter),
     );
@@ -35,10 +36,6 @@ function Chapter({ section, chapter, total, viewableItems, onSelect }: Props) {
     return {
       opacity: withTiming(isVisible ? 1 : 0),
       transform: [{ scale: withTiming(isVisible ? 1 : 0.6) }],
-      marginBottom: withTiming(last ? 20 : first ? 20 : 5),
-      marginTop: withTiming(first ? 20 : 5),
-      backgroundColor: withTiming(first ? 'seagreen' : 'white'),
-      borderRadius: first ? 10 : 25,
     };
   }, []);
 
@@ -47,8 +44,20 @@ function Chapter({ section, chapter, total, viewableItems, onSelect }: Props) {
   }
 
   return (
-    <Animated.View style={[animatedStyle, styles.row]} onTouchEnd={handlePress}>
-      <VStack style={styles.container}>
+    <Animated.View
+      style={[
+        animatedStyle,
+        styles.row,
+        {
+          backgroundColor: first ? Color.flatItemNoneBgColor : Color.partDefaultBgColor,
+          marginTop: first ? 20 : 5,
+          marginBottom: last ? 20 : first ? 20 : 5,
+          borderRadius: first ? 10 : 25,
+        },
+      ]}
+      onTouchEnd={handlePress}
+    >
+      <View style={styles.container}>
         <HStack style={GlobalStyles.center}>
           {!first && <Avatar.Text label={chapter.toString()} size={25} style={styles.id} color="white" />}
           <VStack style={GlobalStyles.center}>
@@ -60,7 +69,7 @@ function Chapter({ section, chapter, total, viewableItems, onSelect }: Props) {
             </Text>
           </VStack>
         </HStack>
-      </VStack>
+      </View>
     </Animated.View>
   );
 }
@@ -74,7 +83,7 @@ const styles = StyleSheet.create({
   },
   container: { width: SCREEN_WIDTH - 32 },
   summary: { fontSize: 16, textAlign: 'justify', fontWeight: '700' },
-  subSummary: { maxWidth: SCREEN_WIDTH - 130 },
+  subSummary: { maxWidth: SCREEN_WIDTH - 130, justifyContent: 'center', textAlign: 'center' },
   id: { elevation: 2, backgroundColor: '#3db371', position: 'absolute', left: 5 },
 });
 

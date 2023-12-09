@@ -78,7 +78,7 @@ export default function InvocationsScreen() {
         {parts.map((item, index: number) => (
           <Animated.View
             key={index}
-            entering={FadeInUp.delay(200 * (index * 2))}
+            entering={FadeInUp.delay(100 * (index * 2))}
             style={styles.part}
             onTouchStart={() => handlePress(item.route)}
           >
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     backgroundColor: Color.backgroundColor,
   },
   part: {
-    backgroundColor: Color.partLightBgColor,
+    backgroundColor: Color.partDefaultBgColor,
     width: SCREEN_WIDTH - 10,
     flexBasis: 95,
     elevation: 6,

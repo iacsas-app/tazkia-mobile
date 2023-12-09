@@ -6,10 +6,10 @@ import PresentationScreen from './tabs/PresentationScreen';
 import SunnahsScreen from './tabs/SunnahsScreen';
 
 export default function MindScreen() {
-  const { hasMindProgress } = usePurification();
+  const { hasProgress } = usePurification();
   return (
     <TabNavigator
-      hasProgress={hasMindProgress}
+      hasProgress={hasProgress('mind')}
       presentationComponent={PresentationScreen}
       purificationComponent={HomeScreen}
       invocationComponent={InvocationsScreen}

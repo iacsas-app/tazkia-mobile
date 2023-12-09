@@ -6,10 +6,10 @@ import PresentationScreen from './tabs/PresentationScreen';
 import SunnahsScreen from './tabs/SunnahsScreen';
 
 export default function BodyPartsScreen() {
-  const { hasBodyPartsProgress } = usePurification();
+  const { hasProgress } = usePurification();
   return (
     <TabNavigator
-      hasProgress={hasBodyPartsProgress}
+      hasProgress={hasProgress('bodyParts')}
       presentationComponent={PresentationScreen}
       purificationComponent={HomeScreen}
       invocationComponent={InvocationsScreen}

@@ -2,6 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import { ImageSourcePropType, StyleProp, StyleSheet, View } from 'react-native';
 import { TouchableRipple } from 'react-native-paper';
 import Animated, { FadeIn, FadeInLeft, FadeInRight, FadeInUp, FadeOut } from 'react-native-reanimated';
+import { Color } from '../constants/Color';
 import { Font } from '../constants/Font';
 import { useApplication } from '../hooks/use-application';
 import { useMessage } from '../hooks/use-message';
@@ -18,6 +19,7 @@ export interface Part {
 interface Props {
   index: number;
   item: Part;
+  hasProgress?: boolean;
   nameTextSize?: number;
   descriptionTextSize?: number;
   style?: StyleProp<any>;
@@ -27,12 +29,14 @@ export default function PressableStep({ index, item, nameTextSize, descriptionTe
   const { arabic } = useApplication();
   const navigation = useNavigation<any>();
 
+  const backgroundColor = props.hasProgress === true ? Color.partProgressBgColor : Color.partDefaultBgColor;
+
   function handlePress() {
     navigation.navigate(item.route as any);
   }
 
   return (
-    <Animated.View entering={FadeInUp.delay(200 * (index * 2))} style={props.style}>
+    <Animated.View entering={FadeInUp.delay(200 * (index * 2))} style={{ ...props.style, backgroundColor }}>
       <TouchableRipple onPress={handlePress}>
         <View style={{ ...styles.container, gap: item.name ? 1 : 8 }}>
           {item.imageSource && (

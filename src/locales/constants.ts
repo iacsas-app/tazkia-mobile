@@ -484,6 +484,7 @@ export enum TKeys {
   // Invocations immunization
   INVOCATIONS_IMMUNIZATION_TITLE = 'invocations.immunization.title',
   INVOCATIONS_IMMUNIZATION_INTRODUCTION = 'invocations.immunization.introduction',
+  INVOCATIONS_IMMUNIZATION_INITIATION = 'invocations.immunization.initiation',
   INVOCATIONS_IMMUNIZATION_CONCLUSION = 'invocations.immunization.conclusion',
 
   INVOCATIONS_IMMUNIZATION_COMMON_1 = 'invocations.immunization.common.1',
@@ -817,8 +818,6 @@ export enum TKeys {
   BUTTON_CLEANING = 'button.cleaning',
   BUTTON_ENLIGHTENMENT = 'button.enlightenment',
   MESSAGE_ADDED_SUCCESSFULLY = 'message.added-successfully',
-  MESSAGE_EMPTY_LIST = 'message.empty-list',
-  MESSAGE_NO_PROGRESS = 'message.no-progress',
   MESSAGE_EVALUATED_SUCCESSFULLY = 'message.evaluated-successfully',
   MENU_HOME = 'menu.home',
   MENU_PRESENTATION = 'menu.presentation',
@@ -849,4 +848,7 @@ export enum TKeys {
   DURATION2 = 'duration2',
   RESTART_CONFIRM_TITLE = 'restart.confirm.title',
   RESTART_CONFIRM_MESSAGE = 'restart.confirm.message',
+  GENERAL_INTRODUCTION_TITLE = 'general.introduction.title',
+  GENERAL_PRESENTATION_TITLE = 'general.presentation.title',
+  INITIATION_TITLE = 'initiation.title',
 }

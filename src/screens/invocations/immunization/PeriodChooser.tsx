@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Avatar, TouchableRipple } from 'react-native-paper';
+import { Avatar } from 'react-native-paper';
+import Animated, { SlideInDown } from 'react-native-reanimated';
 import Text from '../../../components/Text';
 import VStack from '../../../components/stack/VStack';
 import { Color } from '../../../constants/Color';
@@ -25,15 +26,22 @@ export default function PeriodChooser({ onSelect }: Props) {
 
   return (
     <VStack style={styles.container} spacing={12}>
-      {periods.map(({ name, image }) => (
-        <TouchableRipple key={name} style={styles.pressable} onPress={() => onSelect(name as ImmunizationPeriod)}>
+      {periods.map(({ name, image }, index) => (
+        <Animated.View
+          key={name}
+          entering={SlideInDown.delay(100 * (index + 1))
+            .duration(100)
+            .springify()}
+          style={styles.pressable}
+          onTouchEnd={() => onSelect(name as ImmunizationPeriod)}
+        >
           <View style={styles.titleContainer}>
             <Avatar.Image source={image} size={60} style={styles.image} />
             <Text variant="bodyLarge" style={styles.title}>
               {formatMessage(TKeys.INVOCATIONS_IMMUNIZATION_TITLE, { period: formatMessage(name) })}
             </Text>
           </View>
-        </TouchableRipple>
+        </Animated.View>
       ))}
     </VStack>
   );
@@ -47,7 +55,7 @@ const styles = StyleSheet.create({
   },
   pressable: {
     ...GlobalStyles.circle,
-    backgroundColor: Color.partBgColor,
+    backgroundColor: Color.partProgressBgColor,
     width: SCREEN_WIDTH - 50,
     elevation: 8,
     alignItems: 'center',

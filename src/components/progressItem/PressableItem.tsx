@@ -3,8 +3,9 @@ import { useMemo } from 'react';
 import { PrimitiveType } from 'react-intl';
 import { StyleSheet, View } from 'react-native';
 import CircularProgress from 'react-native-circular-progress-indicator';
-import { Avatar, TouchableRipple } from 'react-native-paper';
+import { Avatar } from 'react-native-paper';
 import Animated, { FadeInDown, FadeInLeft, FadeInUp } from 'react-native-reanimated';
+import { Color } from '../../constants/Color';
 import { Font } from '../../constants/Font';
 import { SCREEN_WIDTH } from '../../constants/Screen';
 import { useMessage } from '../../hooks/use-message';
@@ -40,90 +41,96 @@ function PressableItem({ inProgress, ...props }: Props) {
   const middleWidth = useMemo(() => SCREEN_WIDTH - 30 - props.stepTitleWidth, []);
 
   return (
-    <Animated.View entering={FadeInUp.delay(100 * props.index + 1)} style={{ marginBottom: 7 }}>
-      <TouchableRipple onPress={() => props.onPress(props.index + 1)}>
-        <HStack
+    <Animated.View
+      entering={FadeInUp.delay(100 * props.index + 1)}
+      style={{ marginBottom: 7 }}
+      onTouchEnd={() => props.onPress(props.index + 1)}
+    >
+      <HStack
+        style={{
+          ...styles.part,
+          flexBasis: props.flexBasis,
+          backgroundColor: inProgress ? (completed ? '#8de0b6' : '#dbf6e8') : 'white',
+        }}
+      >
+        <Avatar.Text
+          size={Font.size(30)}
+          label={props.stepTitle}
+          color={inProgress ? Color.idProgressColor : Color.idDefaultColor}
+          labelStyle={{ fontSize: Font.size(props.stepTitleSize), fontWeight: '900' }}
           style={{
-            ...styles.part,
-            flexBasis: props.flexBasis,
-            backgroundColor: inProgress ? (completed ? '#8de0b6' : '#dbf6e8') : '#f5fffa',
+            ...styles.partNumber,
+            backgroundColor: completed
+              ? Color.idCompletedBgColor
+              : inProgress
+              ? Color.idProgressBgColor
+              : Color.idDefaultBgColor,
+            width: props.stepTitleWidth,
+          }}
+        />
+        <VStack
+          style={{
+            ...GlobalStyles.center,
+            width: middleWidth - (inProgress ? 67 : 54),
+            backgroundColor: 'transparent',
           }}
         >
-          <Avatar.Text
-            size={Font.size(30)}
-            label={props.stepTitle}
-            color="seagreen"
-            labelStyle={{ fontSize: Font.size(props.stepTitleSize), fontWeight: '900' }}
-            style={{
-              ...styles.partNumber,
-              backgroundColor: completed ? '#dffcef' : inProgress ? 'white' : '#c5f5c5',
-              width: props.stepTitleWidth,
-            }}
-          />
-          <VStack
-            style={{
-              ...GlobalStyles.center,
-              width: middleWidth - (inProgress ? 67 : 54),
-              backgroundColor: 'transparent',
-            }}
-          >
-            <VStack spacing={2} center>
-              <Text
-                variant="bodySmall"
-                style={{
-                  ...styles.partTitle,
-                  fontSize: Font.size(props.partTitleSize ?? 10),
-                  paddingEnd: 5,
-                }}
+          <VStack spacing={2} center>
+            <Text
+              variant="bodySmall"
+              style={{
+                ...styles.partTitle,
+                fontSize: Font.size(props.partTitleSize ?? 10),
+                paddingEnd: 5,
+              }}
+            >
+              {formatMessage(props.summaryKey, props.summaryKeyProps)}
+            </Text>
+            {props.subSummaryKey && (
+              <Animated.Text
+                entering={FadeInDown.delay(270 * props.index + 1)}
+                style={{ ...styles.partSubTitle, fontSize: Font.size(props.subSummarySize ?? 10) }}
               >
-                {formatMessage(props.summaryKey, props.summaryKeyProps)}
-              </Text>
-              {props.subSummaryKey && (
-                <Animated.Text
-                  entering={FadeInDown.delay(270 * props.index + 1)}
-                  style={{ ...styles.partSubTitle, fontSize: Font.size(props.subSummarySize ?? 10) }}
-                >
-                  {formatMessage(props.subSummaryKey, props.subSummaryProps)}
-                </Animated.Text>
-              )}
-            </VStack>
-            <View style={{ paddingTop: 2 }}>
-              <SegmentedProgress progress={props.progress} />
-            </View>
+                {formatMessage(props.subSummaryKey, props.subSummaryProps)}
+              </Animated.Text>
+            )}
           </VStack>
-          <HStack style={GlobalStyles.center}>
-            <View style={{ width: (props.circularProgressRadius ?? 0) * 2 }}>
-              {inProgress && (
-                <Animated.View entering={FadeInLeft.delay(400).duration(300).springify().stiffness(300)}>
-                  {completed ? (
-                    <Icon name="check-all" size={25} color="seagreen" style={{ marginRight: 8 }} />
-                  ) : (
-                    <CircularProgress
-                      value={props.percentage}
-                      maxValue={100}
-                      duration={600}
-                      radius={props.circularProgressRadius}
-                      valueSuffix={props.arabic ? '' : '%'}
-                      valuePrefix={props.arabic ? '%' : ''}
-                      inActiveStrokeColor={'#3cb371'}
-                      inActiveStrokeOpacity={0.2}
-                      progressValueStyle={styles.progress}
-                    />
-                  )}
-                </Animated.View>
-              )}
-            </View>
-            <Icon name="unfold-more-horizontal" size={20} />
-          </HStack>
+          <View style={{ paddingTop: 2 }}>
+            <SegmentedProgress progress={props.progress} />
+          </View>
+        </VStack>
+        <HStack style={GlobalStyles.center}>
+          <View style={{ width: (props.circularProgressRadius ?? 0) * 2 }}>
+            {inProgress && (
+              <Animated.View entering={FadeInLeft.delay(400).duration(300).springify().stiffness(300)}>
+                {completed ? (
+                  <Icon name="check-all" size={25} color="seagreen" style={{ marginRight: 8 }} />
+                ) : (
+                  <CircularProgress
+                    value={props.percentage}
+                    maxValue={100}
+                    duration={600}
+                    radius={props.circularProgressRadius}
+                    valueSuffix={props.arabic ? '' : '%'}
+                    valuePrefix={props.arabic ? '%' : ''}
+                    inActiveStrokeColor={'#3cb371'}
+                    inActiveStrokeOpacity={0.2}
+                    progressValueStyle={styles.progress}
+                  />
+                )}
+              </Animated.View>
+            )}
+          </View>
+          <Icon name="unfold-more-horizontal" size={20} />
         </HStack>
-      </TouchableRipple>
+      </HStack>
     </Animated.View>
   );
 }
 
 const styles = StyleSheet.create({
   partNumber: { elevation: 1 },
-  partTitle: { fontWeight: '700', textAlign: 'center' },
+  partTitle: { fontWeight: '700', textAlign: 'center', paddingTop: 2 },
   partSubTitle: { fontWeight: '700', color: '#708090', marginTop: -3 },
   progress: { color: 'green', fontWeight: '700', fontSize: 11 },
   part: {
@@ -136,7 +143,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'space-between',
     textAlign: 'center',
-    paddingHorizontal: 6,
+    paddingHorizontal: 10,
   },
 });
 

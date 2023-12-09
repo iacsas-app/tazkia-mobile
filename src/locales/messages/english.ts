@@ -512,6 +512,7 @@ export const english: Translations = {
   // Invocations immunization
   [TKeys.INVOCATIONS_IMMUNIZATION_TITLE]: '{period} immunization',
   [TKeys.INVOCATIONS_IMMUNIZATION_INTRODUCTION]: '',
+  [TKeys.INVOCATIONS_IMMUNIZATION_INITIATION]: '',
   [TKeys.INVOCATIONS_IMMUNIZATION_CONCLUSION]: '',
   [TKeys.INVOCATIONS_IMMUNIZATION_COMMON_1]: '',
   [TKeys.INVOCATIONS_IMMUNIZATION_COMMON_2]: '',
@@ -875,12 +876,13 @@ export const english: Translations = {
 
   [TKeys.MESSAGE_ADDED_SUCCESSFULLY]: 'The addition was completed successfully',
   [TKeys.MESSAGE_EVALUATED_SUCCESSFULLY]: 'Your progress has been successfully updated',
-  [TKeys.MESSAGE_EMPTY_LIST]: 'Empty list',
-  [TKeys.MESSAGE_NO_PROGRESS]: 'There is no progress being made',
   [TKeys.DURATION]: '{value} minutes',
   [TKeys.DURATION2]: '{value} minutes',
   [TKeys.RESTART_CONFIRM_TITLE]: 'Are you sure you want to start again?',
   [TKeys.RESTART_CONFIRM_MESSAGE]: 'This will delete your progress !\nIrreversible action',
   [TKeys.A]: 'a',
   [TKeys.B]: 'b',
+  [TKeys.GENERAL_INTRODUCTION_TITLE]: 'General introduction',
+  [TKeys.GENERAL_PRESENTATION_TITLE]: 'General presentation',
+  [TKeys.INITIATION_TITLE]: 'Initiation',
 };

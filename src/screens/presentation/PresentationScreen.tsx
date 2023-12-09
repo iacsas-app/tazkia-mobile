@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   container: { ...GlobalStyles.container, backgroundColor: Color.backgroundColor },
   part: {
     paddingVertical: 10,
-    backgroundColor: Color.partLightBgColor,
+    backgroundColor: Color.partDefaultBgColor,
     borderRadius: 15,
     elevation: 6,
     width: SCREEN_WIDTH - 70,

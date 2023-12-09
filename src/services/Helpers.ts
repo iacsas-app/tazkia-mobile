@@ -16,10 +16,6 @@ export const groupBy = (items: any, key: any) =>
     {},
   );
 
-export function capitalize(str: string) {
-  return str[0].toUpperCase() + str.slice(1);
-}
-
 /**
  *
  * @param day Retreive progress

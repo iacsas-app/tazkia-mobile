@@ -641,6 +641,7 @@ export const indonesian: Translations = {
   // Invocations immunization
   [TKeys.INVOCATIONS_IMMUNIZATION_TITLE]: 'Imunisasi {period} hari',
   [TKeys.INVOCATIONS_IMMUNIZATION_INTRODUCTION]: '',
+  [TKeys.INVOCATIONS_IMMUNIZATION_INITIATION]: '',
   [TKeys.INVOCATIONS_IMMUNIZATION_CONCLUSION]: '',
   [TKeys.INVOCATIONS_IMMUNIZATION_COMMON_1]: '',
   [TKeys.INVOCATIONS_IMMUNIZATION_COMMON_2]: '',
@@ -1004,12 +1005,13 @@ export const indonesian: Translations = {
 
   [TKeys.MESSAGE_ADDED_SUCCESSFULLY]: 'Penambahan berhasil diselesaikan',
   [TKeys.MESSAGE_EVALUATED_SUCCESSFULLY]: 'Kemajuan Anda telah berhasil diperbarui',
-  [TKeys.MESSAGE_EMPTY_LIST]: 'daftar kosong',
-  [TKeys.MESSAGE_NO_PROGRESS]: 'Tidak ada kemajuan yang dicapai',
   [TKeys.DURATION]: '{value} menit',
   [TKeys.DURATION2]: '{value} menit',
   [TKeys.RESTART_CONFIRM_TITLE]: 'Apakah Anda yakin ingin memulai lagi?',
   [TKeys.RESTART_CONFIRM_MESSAGE]: 'Ini akan menghapus kemajuan Anda !\nTindakan tidak dapat diubah',
   [TKeys.A]: 'a',
   [TKeys.B]: 'b',
+  [TKeys.GENERAL_INTRODUCTION_TITLE]: 'Pengenalan umum',
+  [TKeys.GENERAL_PRESENTATION_TITLE]: 'Presentasi umum',
+  [TKeys.INITIATION_TITLE]: 'Inisiasi',
 };

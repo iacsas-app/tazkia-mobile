@@ -1,15 +1,14 @@
 import * as React from 'react';
 import { forwardRef, useImperativeHandle, useState } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
-import { Button, Dialog, Portal } from 'react-native-paper';
+import { Dialog, FAB, Portal } from 'react-native-paper';
 import Animated, { FadeInUp, FadeOutDown } from 'react-native-reanimated';
 import Text from '../../../components/Text';
 import VStack from '../../../components/stack/VStack';
 import { Color } from '../../../constants/Color';
 import { Font } from '../../../constants/Font';
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../../../constants/Screen';
+import { SCREEN_WIDTH } from '../../../constants/Screen';
 import { useMessage } from '../../../hooks/use-message';
-import { TKeys } from '../../../locales/constants';
 import GlobalStyles from '../../../styles/GlobalStyles';
 
 export type ChapterDialogRef = {
@@ -17,13 +16,13 @@ export type ChapterDialogRef = {
   close(): void;
 };
 
-type DialogState = {
+type State = {
   section: number;
   chapter: number;
 };
 
 const ChapterDialog = forwardRef<ChapterDialogRef>((_, ref) => {
-  const [state, setState] = useState<DialogState>();
+  const [state, setState] = useState<State>();
   const { formatMessage } = useMessage();
 
   useImperativeHandle(
@@ -57,7 +56,7 @@ const ChapterDialog = forwardRef<ChapterDialogRef>((_, ref) => {
 
   return (
     <Portal>
-      <Dialog onDismiss={handleClose} visible={state !== undefined} style={styles.dialog}>
+      <Dialog onDismiss={handleClose} visible={state !== undefined} style={GlobalStyles.defaultDialog}>
         <Dialog.Title style={{ paddingTop: 5 }}>
           <VStack style={GlobalStyles.center} spacing={5}>
             <Text variant="bodyLarge" style={styles.sectionTitle} color="seagreen">
@@ -78,25 +77,21 @@ const ChapterDialog = forwardRef<ChapterDialogRef>((_, ref) => {
               {formatMessage(contentKey)}
             </Animated.Text>
           </ScrollView>
-        </Dialog.ScrollArea>
-        <Dialog.Actions style={GlobalStyles.center}>
-          <Button
+          <FAB
+            icon="close"
+            style={GlobalStyles.closeFab}
             mode="elevated"
-            labelStyle={styles.closeBtnLabel}
-            style={styles.closeBtn}
-            uppercase={false}
-            onPressIn={handleClose}
-          >
-            {formatMessage(TKeys.BUTTON_CLOSE)}
-          </Button>
-        </Dialog.Actions>
+            size="small"
+            onPress={handleClose}
+            color="white"
+          />
+        </Dialog.ScrollArea>
       </Dialog>
     </Portal>
   );
 });
 
 const styles = StyleSheet.create({
-  dialog: { maxHeight: 1 * SCREEN_HEIGHT, width: SCREEN_WIDTH - 40, marginLeft: 20, backgroundColor: 'white' },
   sectionTitle: {
     ...GlobalStyles.center,
     fontWeight: '900',
@@ -112,6 +107,9 @@ const styles = StyleSheet.create({
   contentContainer: {
     paddingHorizontal: 0,
     backgroundColor: Color.backgroundColor,
+    marginBottom: 0,
+    borderBottomLeftRadius: 25,
+    borderBottomRightRadius: 25,
   },
   contentText: {
     fontSize: Font.size(16),
@@ -121,6 +119,7 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     paddingHorizontal: 20,
     paddingVertical: 10,
+    paddingBottom: 60,
   },
   closeBtn: { paddingHorizontal: 15 },
   closeBtnLabel: { fontSize: 16, fontWeight: '900', color: 'seagreen' },

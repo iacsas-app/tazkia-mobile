@@ -22,7 +22,7 @@ export type ShowingMode = 'show' | 'evaluate';
 type Props = {
   onEvaluate: (errors: number[]) => void;
 };
-type DialogState = {
+type State = {
   mode: ShowingMode;
   part: BodyPartType;
   stage: PurificationStage;
@@ -30,7 +30,7 @@ type DialogState = {
 };
 
 const RulesDialog = forwardRef<RulesDialogRef, Props>((props, ref) => {
-  const [state, setState] = useState<DialogState>();
+  const [state, setState] = useState<State>();
   const { formatMessage } = useMessage();
 
   useImperativeHandle(
