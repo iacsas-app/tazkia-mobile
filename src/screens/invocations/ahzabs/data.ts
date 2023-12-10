@@ -24,7 +24,7 @@ export const chaptersData: Record<number, Record<number, [number, boolean]>> = {
   },
   2: {
     1: [0, true],
-    2: [3, false],
+    2: [0, false],
     3: [3, false],
     4: [0, true],
     5: [3, true],

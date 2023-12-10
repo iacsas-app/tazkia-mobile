@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { forwardRef, useImperativeHandle, useState } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
-import { Dialog, FAB, Portal } from 'react-native-paper';
+import { Avatar, Dialog, FAB, Portal } from 'react-native-paper';
 import Text from '../../../components/Text';
+import HStack from '../../../components/stack/HStack';
 import VStack from '../../../components/stack/VStack';
 import { Color } from '../../../constants/Color';
 import { Font } from '../../../constants/Font';
@@ -68,9 +69,12 @@ const ChapterDialog = forwardRef<ChapterDialogRef>((_, ref) => {
             <Text variant="bodyLarge" style={{ ...styles.sectionTitle, color: 'seagreen' }}>
               {formatMessage(sectionKey)}
             </Text>
-            <Text variant="bodySmall" style={{ ...styles.chapterTitle, color: 'black' }}>
-              {formatMessage(chapterTitleKey)}
-            </Text>
+            <HStack style={GlobalStyles.center} spacing={10}>
+              <Text variant="bodySmall" style={{ ...styles.chapterTitle, color: 'black' }}>
+                {formatMessage(chapterTitleKey)}
+              </Text>
+              {!isIntro && <Avatar.Text label={chapter.toString()} size={25} style={styles.id} color="white" />}
+            </HStack>
           </VStack>
         </Dialog.Title>
         <Dialog.ScrollArea style={styles.contentContainer}>
@@ -97,7 +101,7 @@ const ChapterDialog = forwardRef<ChapterDialogRef>((_, ref) => {
                 )}
               </VStack>
             )}
-            <VStack style={{ paddingBottom: 50, ...GlobalStyles.center }}>
+            <VStack style={{ paddingBottom: 50, ...GlobalStyles.center }} spacing={15}>
               <Text variant="bodySmall" style={styles.contentText}>
                 {formatMessage(contentKey)}
               </Text>
@@ -153,6 +157,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     paddingTop: 5,
   },
+  id: { elevation: 2, backgroundColor: '#3db371' },
   meta: {
     alignItems: 'flex-start',
     paddingVertical: 15,
