@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { StyleSheet, View, ViewToken } from 'react-native';
 import { Avatar } from 'react-native-paper';
-import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated';
+import Animated, { SlideInLeft, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import Text from '../../../components/Text';
 import HStack from '../../../components/stack/HStack';
 import VStack from '../../../components/stack/VStack';
@@ -15,18 +15,18 @@ interface Props {
   chapter: number;
   total: number;
   viewableItems: Animated.SharedValue<ViewToken[]>;
+  metaData: [number, boolean] | undefined; // [repeat number, Must be read at a specific time ?]
   onSelect(section: number, chapter: number): void;
 }
-function Chapter({ section, chapter, total, viewableItems, onSelect }: Props) {
+function Chapter({ section, chapter, total, viewableItems, metaData, onSelect }: Props) {
   const { formatMessage } = useMessage();
 
   const sectionKey = `invocations.ahzabs.section.${section}`;
-
   const first = chapter === 0;
   const last = chapter === total;
-
   const summaryKey = `${sectionKey}.${chapter !== 0 ? `chapter.${chapter}.title` : 'introduction.title'}`;
   const subSummaryKey = first ? sectionKey : `${sectionKey}.chapter.${chapter}.why`;
+  const readAtSpecificTime = metaData ? metaData[1] : false;
 
   const animatedStyle = useAnimatedStyle(() => {
     const isVisible = Boolean(
@@ -68,6 +68,11 @@ function Chapter({ section, chapter, total, viewableItems, onSelect }: Props) {
                 {formatMessage(subSummaryKey)}
               </Text>
             )}
+            {readAtSpecificTime && (
+              <Animated.Text entering={SlideInLeft.delay(50).damping(10).duration(40).springify()} style={styles.when}>
+                {formatMessage(`invocations.ahzabs.section.${section}.chapter.${chapter}.when`)}
+              </Animated.Text>
+            )}
           </VStack>
         </HStack>
       </View>
@@ -85,8 +90,28 @@ const styles = StyleSheet.create({
   },
   container: { width: SCREEN_WIDTH - 32 },
   summary: { fontSize: 16, textAlign: 'justify', fontWeight: '700' },
-  subSummary: { maxWidth: SCREEN_WIDTH - 130, justifyContent: 'center', textAlign: 'center' },
+  subSummary: {
+    maxWidth: SCREEN_WIDTH - 130,
+    justifyContent: 'center',
+    textAlign: 'center',
+    fontWeight: '600',
+  },
   id: { elevation: 2, backgroundColor: '#3db371', position: 'absolute', left: 5 },
+  when: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'justify',
+    padding: 0,
+    marginTop: 4,
+    backgroundColor: '#66cdaa21',
+    borderRadius: 20,
+    paddingHorizontal: 15,
+    paddingVertical: 3,
+    fontSize: 9,
+    color: 'teal',
+    fontWeight: '600',
+    marginHorizontal: 40,
+  },
 });
 
 export default memo(Chapter);

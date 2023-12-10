@@ -2,14 +2,15 @@ import * as React from 'react';
 import { forwardRef, useImperativeHandle, useState } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import { Dialog, FAB, Portal } from 'react-native-paper';
-import Animated, { FadeInUp } from 'react-native-reanimated';
 import Text from '../../../components/Text';
 import VStack from '../../../components/stack/VStack';
 import { Color } from '../../../constants/Color';
 import { Font } from '../../../constants/Font';
 import { SCREEN_WIDTH } from '../../../constants/Screen';
 import { useMessage } from '../../../hooks/use-message';
+import { TKeys } from '../../../locales/constants';
 import GlobalStyles from '../../../styles/GlobalStyles';
+import { chaptersData } from './data';
 
 export type ChapterDialogRef = {
   open(section: number, chapter: number): void;
@@ -52,7 +53,12 @@ const ChapterDialog = forwardRef<ChapterDialogRef>((_, ref) => {
   const sectionKey = `invocations.ahzabs.section.${section}`;
   const isIntro = chapter === 0;
   const chapterTitleKey = `${sectionKey}.${isIntro ? 'introduction.title' : `chapter.${state.chapter}.title`}`;
+  const summaryKey = `${sectionKey}.chapter.${chapter}.why`;
   const contentKey = isIntro ? `${sectionKey}.introduction.summary` : `${sectionKey}.chapter.${chapter}.summary`;
+  const metaData = chaptersData[section];
+  const info = metaData ? metaData[chapter] : undefined;
+  const repeat = info ? info[0] : 0;
+  const readAtSpecificTime = info ? info[1] : false;
 
   return (
     <Portal>
@@ -69,9 +75,56 @@ const ChapterDialog = forwardRef<ChapterDialogRef>((_, ref) => {
         </Dialog.Title>
         <Dialog.ScrollArea style={styles.contentContainer}>
           <ScrollView contentInsetAdjustmentBehavior="automatic" contentContainerStyle={GlobalStyles.center}>
-            <Animated.Text entering={FadeInUp.duration(50).springify()} style={styles.contentText}>
-              {formatMessage(contentKey)}
-            </Animated.Text>
+            {!isIntro && (
+              <VStack style={styles.meta} spacing={15}>
+                <VStack spacing={2}>
+                  <Text variant="labelMedium" style={styles.chapterMetaTitle}>
+                    {formatMessage(TKeys.INVOCATIONS_AHZABS_SECRET)}
+                  </Text>
+                  <Text variant="labelMedium" style={styles.chapterMetaContent}>
+                    {formatMessage(summaryKey)}
+                  </Text>
+                </VStack>
+                {readAtSpecificTime && (
+                  <VStack spacing={2}>
+                    <Text variant="labelMedium" style={styles.chapterMetaTitle}>
+                      {formatMessage(TKeys.INVOCATIONS_AHZABS_WHEN)}
+                    </Text>
+                    <Text variant="labelMedium" style={styles.chapterMetaContent}>
+                      {formatMessage(`${sectionKey}.chapter.${chapter}.when`)}
+                    </Text>
+                  </VStack>
+                )}
+              </VStack>
+            )}
+            <VStack style={{ paddingBottom: 50, ...GlobalStyles.center }}>
+              <Text variant="bodySmall" style={styles.contentText}>
+                {formatMessage(contentKey)}
+              </Text>
+              {repeat > 0 && (
+                <VStack spacing={5} style={{ ...GlobalStyles.center }}>
+                  <Text
+                    variant="bodyMedium"
+                    style={{
+                      fontSize: Font.size(16),
+                      textAlign: 'justify',
+                      textAlignVertical: 'center',
+                      fontWeight: '900',
+                    }}
+                  >
+                    {formatMessage(`${sectionKey}.chapter.${chapter}.repeat`)}
+                  </Text>
+                  <Text style={{ ...styles.tag, backgroundColor: Color.completed }}>
+                    {formatMessage(
+                      repeat === 1 ? TKeys.TIMES_COUNT : repeat < 11 ? TKeys.TIMES_COUNT_PLURAL : TKeys.TIMES_COUNTS,
+                      {
+                        times: repeat,
+                      },
+                    )}
+                  </Text>
+                </VStack>
+              )}
+            </VStack>
           </ScrollView>
           <FAB
             icon="close"
@@ -100,6 +153,29 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     paddingTop: 5,
   },
+  meta: {
+    alignItems: 'flex-start',
+    paddingVertical: 15,
+    backgroundColor: '#66cdaa4f',
+    borderRadius: 20,
+    marginVertical: 10,
+    marginHorizontal: 10,
+    paddingHorizontal: 15,
+  },
+  chapterMetaTitle: { paddingHorizontal: 10, fontWeight: '900', fontSize: Font.size(13) },
+  chapterMetaContent: {
+    color: 'teal',
+    fontWeight: '700',
+    paddingHorizontal: 10,
+  },
+  tag: {
+    ...GlobalStyles.circle,
+    fontSize: Font.size(12),
+    paddingHorizontal: 20,
+    opacity: 0.6,
+    alignSelf: 'center',
+    fontWeight: '800',
+  },
   contentContainer: {
     paddingHorizontal: 0,
     backgroundColor: Color.backgroundColor,
@@ -114,7 +190,6 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     paddingHorizontal: 20,
     paddingVertical: 10,
-    paddingBottom: 60,
   },
   closeBtn: { paddingHorizontal: 15 },
   closeBtnLabel: { fontSize: 16, fontWeight: '900', color: 'seagreen' },
