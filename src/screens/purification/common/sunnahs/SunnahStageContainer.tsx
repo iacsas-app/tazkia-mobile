@@ -118,6 +118,10 @@ export default function SunnahStageContainer({ stage, rules }: Props) {
           valuePrefix={arabic ? '%' : ''}
           progressValueStyle={{ fontWeight: '900' }}
           inActiveStrokeColor={'#3cb371'}
+          activeStrokeWidth={10}
+          inActiveStrokeWidth={10}
+          valuePrefixStyle={{ marginRight: -4, marginLeft: 2, fontSize: 10, marginTop: -3 }}
+          valueSuffixStyle={{ marginLeft: -2, marginRight: 5 }}
           inActiveStrokeOpacity={0.2}
         />
       </HStack>

@@ -76,7 +76,7 @@ export const arabic: Translations = {
   // PURIFICATION
   [TKeys.PURIFICATION_OBSTACLES]: 'بعض العراقيل التي قد تواجه المريد في هذه المرحلة',
   [TKeys.PURIFICATION_BODYPART_TITLE]: 'تزكية الجوارح',
-  [TKeys.PURIFICATION_BODYPART_SUMMARY]: 'تزكية القلب من خلال تطهير وتنوير الجوارح السبعة',
+  [TKeys.PURIFICATION_BODYPART_SUMMARY]: 'تزكية القلب من خلال تَطْهِير وتنوير الجوارح السبعة',
   [TKeys.PURIFICATION_BODYPART_INTRODUCTION]:
     'نتطرق بإذن الله تعالى في هذا الجزء الأول إلى تزكية الجوارح السبعة التي تكون مصحوبة بذكر محمدي يسمى بذكر التوبة، وبمراقبات روحية ترقي المريد في مراقي التطهير، وتزيد من صفاء بصره وبصيرته، أذنه وسريرته، جوارحه وباطنه',
 
@@ -89,14 +89,14 @@ export const arabic: Translations = {
   [TKeys.PURIFICATION_BODY_PARTS_FEET]: 'القدمين',
   [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS]: 'الفرج',
 
-  [TKeys.PURIFICATION_BODYPART_CLEANING]: 'مرحلة التطهير',
-  [TKeys.PURIFICATION_BODYPART_ENLIGHTENMENT]: 'مرحلة التنوير',
+  [TKeys.PURIFICATION_BODYPART_CLEANING]: 'مَرْحَلَةُ التَّطْهِيرِ',
+  [TKeys.PURIFICATION_BODYPART_ENLIGHTENMENT]: 'مَرْحَلَةُ التَّنْوِير',
   [TKeys.PURIFICATION_BODYPART_ADD_PHASE]: 'إضافة {phase}',
-  [TKeys.PURIFICATION_BODYPART_CLEANING_PHASE]: 'مرحلة تطهير {part}',
-  [TKeys.PURIFICATION_BODYPART_ENLIGHTENMENT_PHASE]: 'مرحلة تنوير {part}',
-  [TKeys.PURIFICATION_BODYPART_DISCIPLINARY_SYSTEM]: 'النظام التأديـبي',
-  [TKeys.PURIFICATION_BODYPART_POSITIVE_USAGE]: 'قواعد الاستخدام الإيجابي',
-  [TKeys.PURIFICATION_BODYPART_ALERT]: 'يَجِبُ إِنْهَاءُ مَرْحَلَةِ التَّنْوِيرِ أَوَّلاً !',
+  [TKeys.PURIFICATION_BODYPART_CLEANING_PHASE]: 'مَرْحَلَةُ تَطْهِير {part}',
+  [TKeys.PURIFICATION_BODYPART_ENLIGHTENMENT_PHASE]: 'مَرْحَلَةُ تَنْوِير {part}',
+  [TKeys.PURIFICATION_BODYPART_DISCIPLINARY_SYSTEM]: 'النِّظَامُ التَّأْدِيـبِيُّ',
+  [TKeys.PURIFICATION_BODYPART_POSITIVE_USAGE]: 'قَوَاعِدُ الاسْتِخْدَامِ الإِيجَابِي',
+  [TKeys.PURIFICATION_BODYPART_ALERT]: 'يَجِبُ إِنْهَاءُ مَرْحَلَةِ التَّطْهِيرِ أَوَّلاً !',
 
   [TKeys.PURIFICATION_BODY_PARTS_EYE_CLEANING_RULE_1]: 'حفظهم من النظر بشهوة للجنس الآخر',
   [TKeys.PURIFICATION_BODY_PARTS_EYE_CLEANING_RULE_2]:
@@ -415,7 +415,7 @@ export const arabic: Translations = {
 
   // Worship sunnahs
   [TKeys.SUNNAHS_WORSHIP_INTRODUCTION]:
-    'في هذا الجزء من مراحل تزكية العقل لابد أن نُدْرِجَ ما يساعد في تطهير العقل وترقيته وهي الإتيان بسان العبادات التي تجعل عقل الإنسان حاضرا مع الله تعالى مُسْتَحْضِراً له في كل عبادة يُقبِل عليها، فَيُثْمِرُ هذا اقْتِفَاءَ الأثر المحمدي ودوامَ حضور العقل مع الله تعالى، ودوامَ مناجاته والحديث معه في كل حال من أحوال العبادة وتبقى الثمرة الكبرى هي تحصيل المريد الطالب لربه على الخشوع والحضور في العبادة، ومن ثمة يتحقق بحقيقتها ويحظى بمزيتها، ويُغسلُ بنورانيتها، لتنتقل عبادته من عبادة الظاهر المحضة إلى عبادة الظاهر بالخضوع، وعبادة الباطن بالخشوع.\n\nوقد اقترحنا مجموعة من سنن العبادات، يمكن تحصيل سنن أخرى وردت عن سيدنا محمد أو عن آل بيته الأكرمين، أو عن صحابته الطاهرين، هذا والحمد لله رب العالمين',
+    'في هذا الجزء من مراحل تزكية العقل لابد أن نُدْرِجَ ما يساعد في تَطْهِير العقل وترقيته وهي الإتيان بسان العبادات التي تجعل عقل الإنسان حاضرا مع الله تعالى مُسْتَحْضِراً له في كل عبادة يُقبِل عليها، فَيُثْمِرُ هذا اقْتِفَاءَ الأثر المحمدي ودوامَ حضور العقل مع الله تعالى، ودوامَ مناجاته والحديث معه في كل حال من أحوال العبادة وتبقى الثمرة الكبرى هي تحصيل المريد الطالب لربه على الخشوع والحضور في العبادة، ومن ثمة يتحقق بحقيقتها ويحظى بمزيتها، ويُغسلُ بنورانيتها، لتنتقل عبادته من عبادة الظاهر المحضة إلى عبادة الظاهر بالخضوع، وعبادة الباطن بالخشوع.\n\nوقد اقترحنا مجموعة من سنن العبادات، يمكن تحصيل سنن أخرى وردت عن سيدنا محمد أو عن آل بيته الأكرمين، أو عن صحابته الطاهرين، هذا والحمد لله رب العالمين',
 
   // Sunnah worship 1
   [TKeys.SUNNAHS_WORSHIP_1_TITLE]: 'سنن الوضوء',
@@ -607,7 +607,7 @@ export const arabic: Translations = {
   [TKeys.INVOCATION_STEP_2_RULE_2_DESC]:
     'ينبغي على المريد في هذه المرحلة من التزكية تخصيص وقت يومي لذكر الله بتلاوة ذكر: "لا إله إلا الله".\nعندما يقوم المريد بذكر: "لا إله إلا الله" يجب عليه أن يستحضر ما يلي:',
   [TKeys.INVOCATION_STEP_2_RULE_2_CROYANCE_1]:
-    '(لا): يجب أن يتبرأ مطلقا من كل الآلهة الأخرى المزيفة، وكل شيء قد الله ويعمل على تطهير عقله من كل الشوائب والصدأ يسبب غفلته عن والظلام والشهوات والمعاصي. ',
+    '(لا): يجب أن يتبرأ مطلقا من كل الآلهة الأخرى المزيفة، وكل شيء قد الله ويعمل على تَطْهِير عقله من كل الشوائب والصدأ يسبب غفلته عن والظلام والشهوات والمعاصي. ',
   [TKeys.INVOCATION_STEP_2_RULE_2_CROYANCE_2]:
     '(إله): تعني معبود، يجب أن يتخيل المريد أن العالم كله في عقله وكأنه يقول له: "إن النفس والشهوات المباحة وغير المباحة، وكل هؤلاء الناس الذين يتسببون في الغفلة عن الله تعالى ليسوا آلهة، لذا لن أتبعهم وأستمع إلهم"، ومع هذا التفكير يجب أن يتخيل أنه أخرجهم جميعا من عقله. ',
   [TKeys.INVOCATION_STEP_2_RULE_2_CROYANCE_3]:
@@ -1170,8 +1170,8 @@ export const arabic: Translations = {
   [TKeys.BUTTON_READ_START]: 'أبدأ القراءة',
   [TKeys.BUTTON_AGREE]: 'أوافق',
   [TKeys.BUTTON_DISAGREE]: 'أعارض',
-  [TKeys.BUTTON_CLEANING]: 'تطهير',
-  [TKeys.BUTTON_ENLIGHTENMENT]: 'تنوير',
+  [TKeys.BUTTON_CLEANING]: 'تَطْهِير',
+  [TKeys.BUTTON_ENLIGHTENMENT]: 'تَنْوِير',
 
   // LANGUAGES
   [TKeys.LANGUAGE_ARABIC]: 'العربية',

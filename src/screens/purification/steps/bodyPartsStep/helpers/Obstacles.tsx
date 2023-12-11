@@ -1,7 +1,5 @@
 import Icon from '@expo/vector-icons/Fontisto';
 
-import { StyleProp, TextStyle } from 'react-native';
-
 import { Avatar } from 'react-native-paper';
 import Text from '../../../../../components/Text';
 import HStack from '../../../../../components/stack/HStack';
@@ -17,10 +15,6 @@ import { purificationStyles } from '../../../common/Style';
 export default function Obstacles() {
   const { arabic } = useApplication();
   const { formatMessage } = useMessage();
-
-  const fontStyle: StyleProp<TextStyle> = {
-    textAlign: 'justify',
-  };
 
   return (
     <VStack spacing={25}>
@@ -38,7 +32,7 @@ export default function Obstacles() {
         />
       </VStack>
       <VStack spacing={15}>
-        <Text variant="bodyMedium" style={fontStyle}>
+        <Text variant="bodyMedium" style={GlobalStyles.justify}>
           {formatMessage(TKeys.PURIFICATION_BODYPART_OBSTACLES_SUMMARY)}
         </Text>
         <VStack
@@ -58,14 +52,14 @@ export default function Obstacles() {
               {formatMessage(TKeys.PURIFICATION_BODYPART_OBSTACLES_HOW_TO_HANDLE_TITLE)}
             </Text>
           </HStack>
-          <Text variant="bodyMedium" style={{ ...fontStyle, marginTop: 10 }}>
+          <Text variant="bodyMedium" style={{ ...GlobalStyles.justify, marginTop: 5 }}>
             {formatMessage(TKeys.PURIFICATION_BODYPART_OBSTACLES_HOW_TO_HANDLE_SUMMARY)}
           </Text>
           {[TKeys.A, TKeys.B].map((part) => (
-            <VStack key={part} spacing={10} style={{ marginTop: 15 }}>
+            <VStack key={part} style={{ marginTop: 15 }} spacing={1}>
               <HStack style={GlobalStyles.centerAlign} spacing={15}>
                 <Avatar.Text
-                  label={formatMessage(TKeys.A)}
+                  label={formatMessage(part)}
                   size={22}
                   style={{ backgroundColor: 'teal', opacity: 0.7 }}
                   labelStyle={{ fontWeight: '900', color: 'white' }}
@@ -74,7 +68,7 @@ export default function Obstacles() {
                   {formatMessage(`purification.bodypart.obstacles.how-to-handle.face.${part}.title`)}
                 </Text>
               </HStack>
-              <Text variant="bodyMedium" style={{ ...fontStyle }}>
+              <Text variant="bodyMedium" style={GlobalStyles.justify}>
                 {formatMessage(`purification.bodypart.obstacles.how-to-handle.face.${part}.summary`)}
               </Text>
             </VStack>

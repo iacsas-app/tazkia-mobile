@@ -66,6 +66,9 @@ export default function Header({ hasProgress, ...props }: Props) {
             count={props.countProgress}
             maxDays={props.maxDays}
             completed={props.completed}
+            activeStrokeWidth={8}
+            valueMarginRight={-1}
+            valueMarginLeft={2}
           />
         )}
       </HStack>

@@ -15,8 +15,21 @@ interface Props {
   completed: boolean;
   radius?: number;
   progressValueFontSize?: number;
+  activeStrokeWidth?: number;
+  valueMarginRight?: number;
+  valueMarginLeft?: number;
 }
-export function ProgressStatus({ last, count, maxDays, completed, radius, progressValueFontSize }: Props) {
+export function ProgressStatus({
+  last,
+  count,
+  maxDays,
+  completed,
+  radius,
+  progressValueFontSize,
+  activeStrokeWidth,
+  valueMarginRight,
+  valueMarginLeft,
+}: Props) {
   const { arabic } = useApplication();
   if (!last) {
     return <></>;
@@ -38,7 +51,15 @@ export function ProgressStatus({ last, count, maxDays, completed, radius, progre
             valueSuffix={arabic ? '' : '%'}
             valuePrefix={arabic ? '%' : ''}
             inActiveStrokeColor={'#2ecc71'}
-            valuePrefixStyle={{ marginRight: -2 }}
+            activeStrokeWidth={activeStrokeWidth ?? 5}
+            inActiveStrokeWidth={activeStrokeWidth ?? 5}
+            valuePrefixStyle={{
+              marginRight: valueMarginRight ?? -5,
+              marginLeft: valueMarginLeft ?? 4,
+              fontSize: 7,
+              marginTop: -2,
+            }}
+            valueSuffixStyle={{ marginLeft: valueMarginRight ?? -5, marginRight: valueMarginLeft ?? 4 }}
             inActiveStrokeOpacity={0.2}
             progressValueStyle={{ ...styles.progress, fontSize: progressValueFontSize ?? 13 }}
           />

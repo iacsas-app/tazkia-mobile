@@ -30,7 +30,7 @@ const lightGreenColors = {
   onPrimaryContainer: 'rgb(0, 34, 0)',
   secondary: 'rgb(84, 99, 77)',
   onSecondary: 'rgb(255, 255, 255)',
-  secondaryContainer: 'rgb(215, 232, 100)',
+  secondaryContainer: 'rgb(215, 232, 180)',
   onSecondaryContainer: 'rgb(18, 31, 14)',
   tertiary: 'rgb(56, 101, 104)',
   onTertiary: 'rgb(255, 255, 255)',

@@ -119,6 +119,10 @@ function PressableItem({ inProgress, ...props }: Props) {
                     valuePrefix={props.arabic ? '%' : ''}
                     inActiveStrokeColor={'#3cb371'}
                     inActiveStrokeOpacity={0.2}
+                    activeStrokeWidth={5}
+                    inActiveStrokeWidth={5}
+                    valuePrefixStyle={{ marginRight: -4, marginLeft: 2, fontSize: 7, marginTop: -3 }}
+                    valueSuffixStyle={{ marginLeft: -2, marginRight: 5 }}
                     progressValueStyle={styles.progress}
                   />
                 )}
@@ -136,7 +140,7 @@ const styles = StyleSheet.create({
   partNumber: { elevation: 1 },
   partTitle: { fontWeight: '700', textAlign: 'center', paddingTop: 2 },
   partSubTitle: { fontWeight: '700', color: '#708090', marginTop: -3 },
-  progress: { color: 'green', fontWeight: '700', fontSize: 11 },
+  progress: { color: 'green', fontWeight: '700', fontSize: 10 },
   part: {
     elevation: 6,
     borderRadius: 45,

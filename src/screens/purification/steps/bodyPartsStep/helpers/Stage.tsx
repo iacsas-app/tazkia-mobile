@@ -114,7 +114,6 @@ export default function Stage({ part, stage, ...props }: Props) {
               style={{
                 fontSize: Font.size((open ? 18 : 16) - (locale === 'in' ? 3 : 0)),
                 color: open ? '#2e8b57' : color,
-                textShadowRadius: 3,
               }}
             >
               {formatMessage(`purification.bodypart.${stage}`)}
@@ -136,6 +135,9 @@ export default function Stage({ part, stage, ...props }: Props) {
                 count={progressProps.countProgress}
                 maxDays={PURIFICATION_MAX_DAYS}
                 completed={progressProps.completed}
+                activeStrokeWidth={10}
+                valueMarginLeft={-1}
+                valueMarginRight={-1}
               />
             </HStack>
           )}

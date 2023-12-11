@@ -41,6 +41,13 @@
     ],
     "plugins": [
       "expo-router"
-    ]
+    
+    ],
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/58ee58ea-6a0c-438d-92b6-529eae2c6942"
+    }
   }
 }

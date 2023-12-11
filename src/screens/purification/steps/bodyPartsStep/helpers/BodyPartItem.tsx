@@ -43,8 +43,9 @@ export default function BodyPartItem({ id, part, imageSource, ...props }: BodyPa
         count={progressProps.countProgress}
         maxDays={PURIFICATION_MAX_DAYS}
         completed={progressProps.completed}
-        radius={12}
-        progressValueFontSize={10}
+        radius={14}
+        progressValueFontSize={8}
+        activeStrokeWidth={3}
       />
     );
   };
@@ -54,8 +55,8 @@ export default function BodyPartItem({ id, part, imageSource, ...props }: BodyPa
   }, [props.selected, purification]);
 
   const labelVariant = `label${arabic ? 'Large' : 'Small'}`;
-  const stageStyle = { ...styles.text, fontSize: arabic ? 12 : 9, paddingHorizontal: arabic ? 2 : 0 };
-  const space = arabic ? 15 : 5;
+  const stageStyle = { ...styles.text, fontSize: arabic ? 12 : 7, paddingHorizontal: arabic ? 2 : 0 };
+  const space = arabic ? 15 : 1;
 
   return (
     <Animated.View
@@ -126,7 +127,7 @@ const styles = StyleSheet.create({
     ...GlobalStyles.center,
     position: 'absolute',
     top: 42,
-    backgroundColor: '#5ea3a34d',
+    backgroundColor: 'transparent',
     borderRadius: 10,
     paddingHorizontal: 4,
     paddingVertical: 2,
