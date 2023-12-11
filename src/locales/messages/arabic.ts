@@ -89,7 +89,7 @@ export const arabic: Translations = {
   [TKeys.PURIFICATION_BODY_PARTS_FEET]: 'القدمين',
   [TKeys.PURIFICATION_BODY_PARTS_PRIVATE_PARTS]: 'الفرج',
 
-  [TKeys.PURIFICATION_BODYPART_CLEANING]: 'مَرْحَلَةُ التَّطْهِيرِ',
+  [TKeys.PURIFICATION_BODYPART_CLEANING]: 'مَرْحَلَةُ التَّطْهِير',
   [TKeys.PURIFICATION_BODYPART_ENLIGHTENMENT]: 'مَرْحَلَةُ التَّنْوِير',
   [TKeys.PURIFICATION_BODYPART_ADD_PHASE]: 'إضافة {phase}',
   [TKeys.PURIFICATION_BODYPART_CLEANING_PHASE]: 'مَرْحَلَةُ تَطْهِير {part}',
