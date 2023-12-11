@@ -31,9 +31,15 @@ export default function Rules({ mode, part, step, ...props }: Props) {
 
   return (
     <ScrollView>
-      <VStack spacing={mode === 'show' ? 5 : 0} style={{ paddingVertical: 20 }}>
+      <VStack>
         {items.map((rule: string, index: number) => (
-          <Animated.View key={index} entering={fade.delay(100 * index).duration((100 * (index + 1)) / 2)}>
+          <Animated.View
+            key={index}
+            entering={fade
+              .delay(100 * index)
+              .duration(150)
+              .mass(2)}
+          >
             <Rule
               mode={mode}
               id={index + 1}

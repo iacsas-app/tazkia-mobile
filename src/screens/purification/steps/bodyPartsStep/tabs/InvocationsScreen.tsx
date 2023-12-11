@@ -1,11 +1,11 @@
-import { Image, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { List } from 'react-native-paper';
 import InvocationGoodManners from '../../../../../components/InvocationGoodManners';
+import Observation from '../../../../../components/Observation';
 import Text from '../../../../../components/Text';
 import ScrollViewLayout from '../../../../../components/layout/ScrollViewLayout';
 import VStack from '../../../../../components/stack/VStack';
 import { Color } from '../../../../../constants/Color';
-import { SCREEN_WIDTH } from '../../../../../constants/Screen';
 import { useMessage } from '../../../../../hooks/use-message';
 import { TKeys } from '../../../../../locales/constants';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
@@ -30,13 +30,13 @@ export default function InvocationsScreen() {
               {formatMessage(TKeys.INVOCATION_STEP_1_RULE_1_DESC)}
             </Text>
             <VStack spacing={15}>
-              <Text variant="bodySmall" style={styles.croyance}>
+              <Text variant="bodyMedium" style={styles.croyance}>
                 {formatMessage(TKeys.INVOCATION_STEP_1_RULE_1_CROYANCE_1)}
               </Text>
-              <Text variant="bodySmall" style={styles.croyance}>
+              <Text variant="bodyMedium" style={styles.croyance}>
                 {formatMessage(TKeys.INVOCATION_STEP_1_RULE_1_CROYANCE_2)}
               </Text>
-              <Text variant="bodySmall" style={styles.croyance}>
+              <Text variant="bodyMedium" style={styles.croyance}>
                 {formatMessage(TKeys.INVOCATION_STEP_1_RULE_1_CROYANCE_3)}
               </Text>
             </VStack>
@@ -48,14 +48,11 @@ export default function InvocationsScreen() {
           </Text>
         </InvocationAccordion>
         <InvocationAccordion id={3} titleKey={TKeys.INVOCATION_STEP_1_RULE_3} duration={10}>
-          <VStack spacing={10}>
+          <VStack spacing={20} style={GlobalStyles.center}>
             <Text variant="bodyMedium" style={GlobalStyles.justify}>
               {formatMessage(TKeys.INVOCATION_STEP_1_RULE_3_DESC)}
             </Text>
-            <Image
-              source={require('../../../../../../assets/img/purification/soul/mourakaba.png')}
-              style={styles.image}
-            />
+            <Observation />
           </VStack>
         </InvocationAccordion>
       </List.AccordionGroup>
@@ -68,6 +65,5 @@ const styles = StyleSheet.create({
   root: { backgroundColor: Color.backgroundColor, flex: 1 },
   title: { ...purificationStyles.title, color: 'seagreen' },
   body: { fontWeight: '900', textAlign: 'justify', color: 'seagreen' },
-  croyance: { textAlign: 'justify', fontWeight: '700', color: '#ff6347' },
-  image: { width: SCREEN_WIDTH - 100, aspectRatio: 1, borderRadius: 40 },
+  croyance: { textAlign: 'justify', color: '#00773c' },
 });

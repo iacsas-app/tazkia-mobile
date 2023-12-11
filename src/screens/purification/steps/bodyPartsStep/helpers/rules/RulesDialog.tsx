@@ -58,10 +58,10 @@ const RulesDialog = forwardRef<RulesDialogRef, Props>((props, ref) => {
   }
 
   function handleEvaluate() {
+    handleClose();
     if (state) {
       props.onEvaluate(state.errors.sort());
     }
-    handleClose();
   }
 
   function handleClose() {
@@ -117,9 +117,9 @@ const RulesDialog = forwardRef<RulesDialogRef, Props>((props, ref) => {
             </Button>
           )}
           <Button
-            mode="text"
-            labelStyle={{ ...styles.labelBtn, color: 'black' }}
-            style={styles.btn}
+            mode="contained-tonal"
+            labelStyle={{ ...styles.labelBtn, color: '#000' }}
+            style={{ ...styles.btn, backgroundColor: '#95a59a38' }}
             uppercase={false}
             onPressIn={handleClose}
           >

@@ -9,7 +9,7 @@ interface Props {
 }
 export default function SunnahRule({ verbals, actionals, ...props }: Props) {
   return (
-    <VStack spacing={10} style={{ paddingStart: 5 }}>
+    <VStack spacing={10} style={{ paddingHorizontal: 5 }}>
       <SunnahRuleTypes type={TKeys.SUNNAHS_TYPE_VERBAL} items={verbals} showType={actionals.length > 0} {...props} />
       <SunnahRuleTypes type={TKeys.SUNNAHS_TYPE_ACTIONAL} items={actionals} showType={verbals.length > 0} {...props} />
     </VStack>

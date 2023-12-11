@@ -1,77 +1,119 @@
-import { ImageSourcePropType, StyleSheet, View } from 'react-native';
-import { Avatar, TouchableRipple } from 'react-native-paper';
+import { useEffect, useState } from 'react';
+import { ImageSourcePropType, StyleSheet } from 'react-native';
+import { Avatar } from 'react-native-paper';
+import Animated, { FadeInDown, SlideInUp, SlideOutDown } from 'react-native-reanimated';
 import Text from '../../../../../components/Text';
+import { ProgressStatus } from '../../../../../components/progress/progressStatus/ProgressStatus';
 import { Font } from '../../../../../constants/Font';
 import { SCREEN_WIDTH } from '../../../../../constants/Screen';
-import { BodyPartType } from '../../../../../domains/purification/BodyPart';
+import BodyPart, { BodyPartType, PurificationStage } from '../../../../../domains/purification/BodyPart';
 import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';
+import useProgress from '../../../../../hooks/use-progress';
+import usePurification from '../../../../../hooks/use-purification';
 import { TKeys } from '../../../../../locales/constants';
-import { useStoreState } from '../../../../../stores/hooks';
+import { PURIFICATION_MAX_DAYS } from '../../../../../services/Helpers';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
-import { isFullyCompleted } from '../common/Helper';
+import { findStage, isFullyCompleted } from '../common/Helper';
 
 interface BodyPartItemProps {
   id: number;
   part: BodyPartType;
+  selected: BodyPartType | undefined;
   imageSource: ImageSourcePropType;
   onPress: (part: BodyPartType) => void;
 }
 export default function BodyPartItem({ id, part, imageSource, ...props }: BodyPartItemProps) {
   const { formatMessage } = useMessage();
   const { arabic } = useApplication();
-  const findBodyPart = useStoreState((state) => state.purification.findBodyPart);
+  const { purification, findBodyPart } = usePurification();
 
-  const progress = findBodyPart(part);
-  const inProgress = progress !== undefined;
-  const completed = inProgress && isFullyCompleted(progress);
+  const [current, setCurrent] = useState<BodyPart | undefined>(findBodyPart(part));
+  const inProgress = current !== undefined;
+  const completed = inProgress && isFullyCompleted(current);
   const backgroundColor = inProgress ? (completed ? '#8de0b6' : '#ccf3df') : '#f5fffa';
+  const fadeSpeed = 200 * id;
 
-  function handlePress() {
-    props.onPress(part);
-  }
+  const statusOf = (stage: PurificationStage) => {
+    const progress = findStage(current, stage);
+    const progressProps = useProgress(progress, PURIFICATION_MAX_DAYS);
+    return (
+      <ProgressStatus
+        last={progressProps.lastDay}
+        count={progressProps.countProgress}
+        maxDays={PURIFICATION_MAX_DAYS}
+        completed={progressProps.completed}
+        radius={12}
+        progressValueFontSize={10}
+      />
+    );
+  };
+
+  useEffect(() => {
+    setCurrent(findBodyPart(part));
+  }, [props.selected, purification]);
+
+  const labelVariant = `label${arabic ? 'Large' : 'Small'}`;
+  const stageStyle = { ...styles.text, fontSize: arabic ? 12 : 9, paddingHorizontal: arabic ? 2 : 0 };
+  const space = arabic ? 15 : 5;
 
   return (
-    <TouchableRipple style={{ ...styles.container, backgroundColor }} onPress={handlePress}>
-      <>
-        <Avatar.Image size={60} style={styles.typeAvatar} source={imageSource} />
-        <Avatar.Text
-          size={25}
-          style={{ ...styles.idAvatar, backgroundColor: completed ? '#dffcef' : inProgress ? 'white' : '#c5f5c5' }}
-          labelStyle={{ fontSize: Font.size(12), fontWeight: '900' }}
-          color="seagreen"
-          label={id.toString()}
-        />
-        <Text
-          variant="bodyLarge"
-          style={{ ...styles.partName, color: completed ? 'white' : 'black', fontSize: arabic ? 18 : 15 }}
-        >
-          {formatMessage(`purification.body-parts.${part}`)}
-        </Text>
+    <Animated.View
+      entering={FadeInDown.delay(fadeSpeed).duration(fadeSpeed).mass(1).springify()}
+      style={{ ...styles.container, backgroundColor }}
+      onTouchEnd={() => props.onPress(part)}
+    >
+      <Avatar.Image size={60} style={styles.typeAvatar} source={imageSource} />
+      <Avatar.Text
+        size={25}
+        style={{ ...styles.idAvatar, backgroundColor: completed ? '#dffcef' : inProgress ? 'white' : '#c5f5c5' }}
+        labelStyle={{ fontSize: Font.size(12), fontWeight: '900' }}
+        color="seagreen"
+        label={id.toString()}
+      />
+      <Text
+        variant="bodyLarge"
+        style={{ ...styles.partName, color: completed ? 'white' : 'black', fontSize: arabic ? 18 : 15 }}
+      >
+        {formatMessage(`purification.body-parts.${part}`)}
+      </Text>
 
-        {inProgress && (
-          <>
-            {progress.enlightenment && (
-              <View style={{ ...styles.stage, ...styles.enlightenment }}>
-                <Text style={styles.text}>{formatMessage(TKeys.BUTTON_ENLIGHTENMENT)}</Text>
-              </View>
-            )}
-            {progress.cleaning && (
-              <View style={{ ...styles.stage, ...styles.cleaning }}>
-                <Text style={styles.text}>{formatMessage(TKeys.BUTTON_CLEANING)}</Text>
-              </View>
-            )}
-          </>
-        )}
-      </>
-    </TouchableRipple>
+      {inProgress && (
+        <>
+          {current.enlightenment && (
+            <Animated.View
+              entering={SlideInUp.delay(100).duration(50).mass(1).springify()}
+              exiting={SlideOutDown.delay(200).duration(200)}
+              style={[styles.stage, { right: space }]}
+            >
+              <Text variant={labelVariant as any} style={stageStyle}>
+                {formatMessage(TKeys.BUTTON_ENLIGHTENMENT)}
+              </Text>
+              {statusOf('enlightenment')}
+            </Animated.View>
+          )}
+          {current.cleaning && (
+            <Animated.View
+              entering={SlideInUp.delay(100).duration(50).mass(1).springify()}
+              exiting={SlideOutDown.delay(200).duration(200)}
+              style={[styles.stage, { left: space }]}
+            >
+              <Text variant={labelVariant as any} style={stageStyle}>
+                {formatMessage(TKeys.BUTTON_CLEANING)}
+              </Text>
+              {statusOf('cleaning')}
+            </Animated.View>
+          )}
+        </>
+      )}
+    </Animated.View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     ...GlobalStyles.center,
-    width: (SCREEN_WIDTH - 40) / 2,
+    width: (SCREEN_WIDTH - 20) / 2,
     height: 100,
     borderRadius: 30,
     elevation: 6,
@@ -83,16 +125,11 @@ const styles = StyleSheet.create({
   stage: {
     ...GlobalStyles.center,
     position: 'absolute',
-    top: 45,
+    top: 42,
     backgroundColor: '#5ea3a34d',
-    borderRadius: 20,
+    borderRadius: 10,
     paddingHorizontal: 4,
+    paddingVertical: 2,
   },
-  enlightenment: {
-    right: 4,
-  },
-  cleaning: {
-    left: 4,
-  },
-  text: { fontSize: 8, color: 'teal' },
+  text: { color: 'teal' },
 });

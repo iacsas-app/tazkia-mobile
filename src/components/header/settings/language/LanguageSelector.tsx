@@ -1,5 +1,4 @@
 import { useMemo } from 'react';
-import { FlatList } from 'react-native';
 import { Divider } from 'react-native-paper';
 import { AvatarImageSource } from 'react-native-paper/lib/typescript/components/Avatar/AvatarImage';
 import Animated, { FadeInUp, SlideOutDown } from 'react-native-reanimated';
@@ -29,7 +28,7 @@ export default function LanguageSelector({ flags, color, all, onChange }: Langua
 
   return (
     <Animated.View entering={FadeInUp.duration(10).springify()} exiting={SlideOutDown} style={{ paddingVertical: 10 }}>
-      <FlatList
+      <Animated.FlatList
         data={keys}
         renderItem={({ item }) => (
           <LanguageOption icon={flags[item]} value={item} color={color} onChange={handleChange} />

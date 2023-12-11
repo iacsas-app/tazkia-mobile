@@ -9,6 +9,7 @@ import { SCREEN_WIDTH } from '../../../constants/Screen';
 import { useMessage } from '../../../hooks/use-message';
 import { TKeys } from '../../../locales/constants';
 import GlobalStyles from '../../../styles/GlobalStyles';
+import { Color } from '../../../constants/Color';
 
 type Props = {
   id: number;
@@ -46,7 +47,7 @@ export default function InvocationAccordion(props: Props) {
       style={{
         width: SCREEN_WIDTH,
         elevation: 1,
-        backgroundColor: '#f1fffa',
+        backgroundColor: '#ffffff',
         marginBottom: 2,
         paddingVertical: 2,
       }}
@@ -64,7 +65,7 @@ const styles = StyleSheet.create({
     marginLeft: 45,
   },
   section: {
-    backgroundColor: '#fffafa',
+    backgroundColor: Color.partDefaultBgColor,
     paddingVertical: 15,
     marginTop: -2,
     paddingEnd: 20,

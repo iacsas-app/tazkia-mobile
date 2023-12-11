@@ -31,11 +31,11 @@ function InvocationGoodManners() {
     >
       <HStack style={GlobalStyles.center} spacing={15}>
         <Icon name="seal" size={30} color="lightseagreen" />
-        <Text variant="bodyLarge" style={{ fontSize: Font.size(arabic ? 17 : 15), fontWeight: '900', color: 'teal' }}>
+        <Text variant="bodyLarge" style={{ fontSize: Font.size(arabic ? 15 : 13), fontWeight: '900', color: 'teal' }}>
           {formatMessage(TKeys.INVOCATION_GOOD_MANNERS_TITLE)}
         </Text>
       </HStack>
-      <VStack spacing={10}>
+      <VStack spacing={3}>
         {Array.from({ length: 4 }, (_, i) => i).map((id) => (
           <Animated.View
             key={id}
@@ -51,9 +51,7 @@ function InvocationGoodManners() {
             <Text
               variant="bodySmall"
               style={{
-                fontSize: Font.size(arabic ? 15 : 13),
-                fontWeight: '600',
-                width: SCREEN_WIDTH - 90,
+                width: SCREEN_WIDTH - 80,
                 color: 'black',
               }}
             >

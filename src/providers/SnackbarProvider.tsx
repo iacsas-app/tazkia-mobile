@@ -94,16 +94,16 @@ export default function SnackbarProvider({ children }: PropsWithChildren<unknown
         {children}
         <Snackbar
           visible={state.visible}
-          style={{ backgroundColor: backgroundColor(state.variant) }}
+          style={{ backgroundColor: backgroundColor(state.variant), borderRadius: 20 }}
           elevation={5}
           onDismiss={onDismiss}
-          duration={500}
+          duration={2500}
         >
           <HStack style={{ alignContent: 'center', justifyContent: 'space-between' }}>
-            <Text variant="headlineSmall" style={{ color: 'white' }}>
+            <Text variant="bodyMedium" style={{ color: 'white' }}>
               {state.content}
             </Text>
-            <Icon name={iconName(state.variant)} size={30} color="white" />
+            <Icon name={iconName(state.variant)} size={25} color="white" />
           </HStack>
         </Snackbar>
       </DispatchContext.Provider>

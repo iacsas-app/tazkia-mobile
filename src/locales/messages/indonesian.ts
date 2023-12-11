@@ -98,6 +98,7 @@ export const indonesian: Translations = {
   [TKeys.PURIFICATION_BODYPART_ENLIGHTENMENT_PHASE]: 'Kursus mencerahkan {part}',
   [TKeys.PURIFICATION_BODYPART_DISCIPLINARY_SYSTEM]: 'Sistem disiplin',
   [TKeys.PURIFICATION_BODYPART_POSITIVE_USAGE]: 'Aturan penggunaan positif',
+  [TKeys.PURIFICATION_BODYPART_ALERT]: '',
 
   [TKeys.PURIFICATION_BODY_PARTS_EYE_CLEANING_RULE_1]:
     'Menjaga mata dari pandangan terhadap lawan jenis dengan syahwat',

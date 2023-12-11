@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react';
+import { SafeAreaView, ScrollView } from 'react-native';
 import BottomSheet, { BottomSheetRef } from '../../../../../components/bottomSheet/BottomSheet';
 import PressableItem from '../../../../../components/progressItem/PressableItem';
 import VStack from '../../../../../components/stack/VStack';
@@ -71,36 +72,39 @@ export default function HomeScreen() {
         <LevelSelector part={part} onStart={handleStart} onRestart={handleRestart} onEvaluate={handleEvaluate} />
       }
     >
-      <VStack style={GlobalStyles.container}>
-        {parts.map((soulPart, index) => {
-          const hasSubtitle = hasSubTitle.some((part) => part.toString() === soulPart);
-          const soul = findSoul(soulPart as any);
-          const hasProgress = soul !== undefined;
-          const idx = index + 1;
-          const size = soul ? levels[soul.part - 1] : 0;
+      <SafeAreaView>
+        <ScrollView contentContainerStyle={{ ...GlobalStyles.center, paddingVertical: 15 }}>
+          <VStack>
+            {parts.map((soulPart, index) => {
+              const hasSubtitle = hasSubTitle.some((part) => part.toString() === soulPart);
+              const soul = findSoul(soulPart as any);
+              const hasProgress = soul !== undefined;
+              const idx = index + 1;
+              const size = soul ? levels[soul.part - 1] : 0;
 
-          return (
-            <PressableItem
-              key={idx}
-              index={idx}
-              stepTitle={idx.toString()}
-              partTitleSize={arabic ? 15 : 13}
-              stepTitleSize={12}
-              stepTitleWidth={30}
-              summaryKey={`purification.soul.${soulPart}.title`}
-              subSummaryKey={hasSubtitle ? `purification.soul.${soulPart}.sub.title` : undefined}
-              inProgress={hasProgress}
-              percentage={getSum(soul) / size}
-              progress={getProgress(soul)}
-              flexBasis={60}
-              arabic={arabic}
-              circularProgressRadius={21}
-              subSummarySize={11}
-              onPress={() => handlePress(idx as any)}
-            />
-          );
-        })}
-      </VStack>
+              return (
+                <PressableItem
+                  key={idx}
+                  index={idx}
+                  stepTitle={idx.toString()}
+                  partTitleSize={arabic ? 14 : 12}
+                  stepTitleSize={12}
+                  stepTitleWidth={30}
+                  summaryKey={`purification.soul.${soulPart}.title`}
+                  subSummaryKey={hasSubtitle ? `purification.soul.${soulPart}.sub.title` : undefined}
+                  inProgress={hasProgress}
+                  percentage={getSum(soul) / size}
+                  progress={getProgress(soul)}
+                  arabic={arabic}
+                  circularProgressRadius={21}
+                  subSummarySize={11}
+                  onPress={() => handlePress(idx as any)}
+                />
+              );
+            })}
+          </VStack>
+        </ScrollView>
+      </SafeAreaView>
     </BottomSheet>
   );
 }

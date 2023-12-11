@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   part: {
     paddingVertical: 10,
     backgroundColor: Color.partDefaultBgColor,
-    borderRadius: 15,
+    borderRadius: 25,
     elevation: 6,
     width: SCREEN_WIDTH - 70,
   },

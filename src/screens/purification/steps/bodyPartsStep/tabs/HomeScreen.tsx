@@ -17,21 +17,18 @@ export default function HomeScreen() {
   const { createBodyPart, evaluateBodyPart, restartBodyPart } = usePurification();
   const partsByLine = useMemo(() => groupBy(bodyParts, 'line'), []);
 
-  function handlePress(part: BodyPartType) {
+  const handlePress = useCallback((part: BodyPartType) => {
     setSelected(part);
     ref.current?.open();
-  }
+  }, []);
 
-  const handleStart = useCallback(
-    (stage: PurificationStage) => {
-      if (selected) {
-        createBodyPart(selected, stage);
-        setSelected(undefined);
-        ref.current?.close();
-      }
-    },
-    [selected],
-  );
+  function handleStart(stage: PurificationStage) {
+    if (selected) {
+      createBodyPart(selected, stage);
+      setSelected(undefined);
+      ref.current?.close();
+    }
+  }
 
   const handleEvaluate = useCallback(
     (stage: PurificationStage, errors: number[]) => {
@@ -61,11 +58,12 @@ export default function HomeScreen() {
     >
       <VStack style={GlobalStyles.container} spacing={20}>
         {Object.keys(partsByLine).map((key: string) => (
-          <HStack key={key} spacing={13}>
+          <HStack key={key} spacing={8}>
             {partsByLine[key].map(({ line, ...props }: PartItem, index: number) => (
               <BodyPartItem
                 key={`${key}_${index}_${line}`}
                 id={BodyPartsOrder[props.part]}
+                selected={selected}
                 {...props}
                 onPress={handlePress}
               />

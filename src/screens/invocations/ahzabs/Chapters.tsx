@@ -1,6 +1,6 @@
 import { memo, useMemo } from 'react';
-import { FlatList, ViewToken } from 'react-native';
-import { useSharedValue } from 'react-native-reanimated';
+import { ViewToken } from 'react-native';
+import Animated, { useSharedValue } from 'react-native-reanimated';
 import { Color } from '../../../constants/Color';
 import Chapter from './Chapter';
 import { chaptersData } from './data';
@@ -16,7 +16,7 @@ function Chapters(props: Props) {
   const metaData = useMemo(() => chaptersData[props.section], [props.section]);
 
   return (
-    <FlatList
+    <Animated.FlatList
       data={chapters}
       keyExtractor={(item) => item.toString()}
       onViewableItemsChanged={({ viewableItems: vItems }) => (viewableItems.value = vItems)}

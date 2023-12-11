@@ -41,7 +41,7 @@ export default function PressableStep({ index, item, nameTextSize, descriptionTe
         <View style={{ ...styles.container, gap: item.name ? 1 : 8 }}>
           {item.imageSource && (
             <Animated.Image
-              entering={FadeInRight.duration(300 * (index * 2))
+              entering={FadeInRight.duration(400 * (index * 2))
                 .delay(300)
                 .springify()}
               source={item.imageSource}
@@ -60,7 +60,7 @@ export default function PressableStep({ index, item, nameTextSize, descriptionTe
           <Animated.Text
             entering={FadeInLeft.delay(400 + index * 60).duration(600)}
             style={{
-              fontWeight: '900',
+              fontWeight: 'bold',
               fontSize: Font.size(descriptionTextSize ?? arabic ? 14 : 13),
               textAlign: 'center',
             }}

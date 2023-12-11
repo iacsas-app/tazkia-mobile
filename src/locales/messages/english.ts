@@ -80,6 +80,7 @@ export const english: Translations = {
   [TKeys.PURIFICATION_BODYPART_ENLIGHTENMENT_PHASE]: '{part} enlightening stage',
   [TKeys.PURIFICATION_BODYPART_DISCIPLINARY_SYSTEM]: 'Disciplinary system',
   [TKeys.PURIFICATION_BODYPART_POSITIVE_USAGE]: 'Rules of positive use',
+  [TKeys.PURIFICATION_BODYPART_ALERT]: 'Cleansing stage should be finished before !',
 
   [TKeys.PURIFICATION_BODY_PARTS_EYE_CLEANING_RULE_1]: 'to translate',
   [TKeys.PURIFICATION_BODY_PARTS_EYE_CLEANING_RULE_2]: 'to translate',

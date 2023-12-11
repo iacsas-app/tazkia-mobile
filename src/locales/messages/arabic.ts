@@ -78,7 +78,7 @@ export const arabic: Translations = {
   [TKeys.PURIFICATION_BODYPART_TITLE]: 'تزكية الجوارح',
   [TKeys.PURIFICATION_BODYPART_SUMMARY]: 'تزكية القلب من خلال تطهير وتنوير الجوارح السبعة',
   [TKeys.PURIFICATION_BODYPART_INTRODUCTION]:
-    'تطرق بإذن الله تعالى في هذا الجزء الأول إلى تزكية الجوارح السبعة التي تكون مصحوبة بذكر محمدي يسمى بذكر التوبة، وبمراقبات روحية ترقي المريد في مراقي التطهير، وتزيد من صفاء بصره وبصيرته، أذنه وسريرته، جوارحه وباطنه',
+    'نتطرق بإذن الله تعالى في هذا الجزء الأول إلى تزكية الجوارح السبعة التي تكون مصحوبة بذكر محمدي يسمى بذكر التوبة، وبمراقبات روحية ترقي المريد في مراقي التطهير، وتزيد من صفاء بصره وبصيرته، أذنه وسريرته، جوارحه وباطنه',
 
   [TKeys.PURIFICATION_SOUL_TITLE]: 'تزكية النفس',
   [TKeys.PURIFICATION_BODY_PARTS_EYE]: 'العين',
@@ -96,6 +96,8 @@ export const arabic: Translations = {
   [TKeys.PURIFICATION_BODYPART_ENLIGHTENMENT_PHASE]: 'مرحلة تنوير {part}',
   [TKeys.PURIFICATION_BODYPART_DISCIPLINARY_SYSTEM]: 'النظام التأديـبي',
   [TKeys.PURIFICATION_BODYPART_POSITIVE_USAGE]: 'قواعد الاستخدام الإيجابي',
+  [TKeys.PURIFICATION_BODYPART_ALERT]: 'يَجِبُ إِنْهَاءُ مَرْحَلَةِ التَّنْوِيرِ أَوَّلاً !',
+
   [TKeys.PURIFICATION_BODY_PARTS_EYE_CLEANING_RULE_1]: 'حفظهم من النظر بشهوة للجنس الآخر',
   [TKeys.PURIFICATION_BODY_PARTS_EYE_CLEANING_RULE_2]:
     'حفظهم من النظر للصور المحرمة في المجلات أو الفيديوهات على شبكة الإنترنيت أو التلفاز',
@@ -463,7 +465,7 @@ export const arabic: Translations = {
   [TKeys.SUNNAHS_WORSHIP_7_ACTIONAL_RULE_2]:
     'أن يغتنم الأحوال الشريفة، كحالة السجود، ونزول الغيث، وإقامة الصلاة وحالة رقة القلب',
   [TKeys.SUNNAHS_WORSHIP_7_ACTIONAL_RULE_3]: 'استقبال القبلة، ورفع اليدين، ويمسح بهما وجهه في آخره',
-  [TKeys.SUNNAHS_WORSHIP_7_ACTIONAL_RULE_4]: 'خفض الصوت بين ال، المخافتة والجهر',
+  [TKeys.SUNNAHS_WORSHIP_7_ACTIONAL_RULE_4]: 'خفض الصوت بين المخافتة والجهر',
   [TKeys.SUNNAHS_WORSHIP_7_ACTIONAL_RULE_5]: 'أن لا يتكلف السجع',
 
   // Sunnah worship 8
@@ -484,7 +486,7 @@ export const arabic: Translations = {
   // Sunnah worship 10
   [TKeys.SUNNAHS_WORSHIP_10_TITLE]: 'سنة صلاة الحاجة',
   [TKeys.SUNNAHS_WORSHIP_10_VERBAL_RULE_1]:
-    'لا إله إلا الله الحكيم الكريم سبحان الله رب العرش العظيم الحمد العالمين رب العالمين أسألك موجبات رحمتك وعزائم مغفرتك والغنيمة من كل بر والسلامة من كل إثم لا تدع لي ذنبا إلا غفرته ولا هما إلا فرجته، ولا حاجة لك فيها رضا إلا قضيتها يا أرحم الراحمين اللهم إني أسألك وأتوجه إليك بنبيك محمد نبي الرحمة صلى الله عليه وسلم، يا محمد إني توجهت بك إلى ربي في حاجتي هذه (وتسمها) لتقصى لي. اللهم فشفعه في',
+    'لا إله إلا الله الحكيم الكريم، سبحان الله رب العرش العظيم. الحمد العالمين رب العالمين، أسألك موجبات رحمتك وعزائم مغفرتك والغنيمة من كل بر والسلامة من كل إثم. لا تدع لي ذنبا إلا غفرته ولا هما إلا فرجته، ولا حاجة لك فيها رضا إلا قضيتها يا أرحم الراحمين.\nاللهم إني أسألك وأتوجه إليك بنبيك محمد نبي الرحمة ﷺ، يا محمد إني توجهت بك إلى ربي في حاجتي هذه (وتسميها) لتقضى لي، اللهم فشفعه في. (الترمذي 35573)',
 
   // Sunnah worship 11
   [TKeys.SUNNAHS_WORSHIP_11_TITLE]: 'سنن صلاة التهجد',

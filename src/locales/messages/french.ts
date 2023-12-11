@@ -90,6 +90,7 @@ export const french: Translations = {
   [TKeys.PURIFICATION_BODYPART_ENLIGHTENMENT_PHASE]: "Étape d'illumination concernant {part}",
   [TKeys.PURIFICATION_BODYPART_DISCIPLINARY_SYSTEM]: 'Système disciplinaire',
   [TKeys.PURIFICATION_BODYPART_POSITIVE_USAGE]: "Règles d'utilisation positive",
+  [TKeys.PURIFICATION_BODYPART_ALERT]: "L'étape de nettoyage doit être terminée en premier !",
 
   [TKeys.PURIFICATION_BODY_PARTS_EYE_CLEANING_RULE_1]: 'to translate',
   [TKeys.PURIFICATION_BODY_PARTS_EYE_CLEANING_RULE_2]: 'to translate',

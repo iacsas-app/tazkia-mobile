@@ -38,11 +38,15 @@ type Props = {
 function PressableItem({ inProgress, ...props }: Props) {
   const { formatMessage } = useMessage();
   const completed = props.percentage === 100;
-  const middleWidth = useMemo(() => SCREEN_WIDTH - 30 - props.stepTitleWidth, []);
+  const middleWidth = useMemo(() => SCREEN_WIDTH - 50 - props.stepTitleWidth, []);
+  const speed = 200;
+  const id = props.index + 1;
 
   return (
     <Animated.View
-      entering={FadeInUp.delay(100 * props.index + 1)}
+      entering={FadeInUp.delay(speed * id)
+        .duration(300)
+        .mass(2)}
       style={{ marginBottom: 7 }}
       onTouchEnd={() => props.onPress(props.index + 1)}
     >
@@ -50,7 +54,7 @@ function PressableItem({ inProgress, ...props }: Props) {
         style={{
           ...styles.part,
           flexBasis: props.flexBasis,
-          backgroundColor: inProgress ? (completed ? '#8de0b6' : '#dbf6e8') : 'white',
+          backgroundColor: inProgress ? (completed ? '#8de0b6' : '#bbe7d0') : 'white',
         }}
       >
         <Avatar.Text
@@ -71,7 +75,7 @@ function PressableItem({ inProgress, ...props }: Props) {
         <VStack
           style={{
             ...GlobalStyles.center,
-            width: middleWidth - (inProgress ? 67 : 54),
+            width: middleWidth - (inProgress ? 60 : 50),
             backgroundColor: 'transparent',
           }}
         >
@@ -95,7 +99,7 @@ function PressableItem({ inProgress, ...props }: Props) {
               </Animated.Text>
             )}
           </VStack>
-          <View style={{ paddingTop: 2 }}>
+          <View style={{ paddingTop: 4 }}>
             <SegmentedProgress progress={props.progress} />
           </View>
         </VStack>
@@ -134,7 +138,6 @@ const styles = StyleSheet.create({
   partSubTitle: { fontWeight: '700', color: '#708090', marginTop: -3 },
   progress: { color: 'green', fontWeight: '700', fontSize: 11 },
   part: {
-    minHeight: 50,
     elevation: 6,
     borderRadius: 45,
     width: SCREEN_WIDTH - 8,
@@ -144,6 +147,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     textAlign: 'center',
     paddingHorizontal: 10,
+    paddingVertical: 8,
   },
 });
 

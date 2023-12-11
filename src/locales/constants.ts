@@ -73,6 +73,7 @@ export enum TKeys {
   PURIFICATION_BODYPART_ENLIGHTENMENT_PHASE = 'purification.bodypart.enlightenment.phase',
   PURIFICATION_BODYPART_DISCIPLINARY_SYSTEM = 'cleaning.bodypart.disciplinary-system',
   PURIFICATION_BODYPART_POSITIVE_USAGE = 'enlightenment.bodypart.disciplinary-system',
+  PURIFICATION_BODYPART_ALERT = 'purification.bodypart.alert',
 
   // Eye rules
   PURIFICATION_BODY_PARTS_EYE_CLEANING_RULE_1 = 'purification.body-parts.eye.cleaning.rule-1',

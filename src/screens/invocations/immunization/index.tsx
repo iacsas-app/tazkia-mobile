@@ -13,8 +13,8 @@ export default function ImmunizationInvocationsScreen() {
   const ref = useRef<SimpleDialogRef>(null);
   const data: InvocationRepeat[] = useMemo(() => immunizationData[period], []);
 
-  function handleSelect(key?: TKeys, detailsId?: number) {
-    ref.current?.open(key, detailsId);
+  function handleSelect(key: TKeys, detailsId?: number) {
+    ref.current?.open(key, undefined, detailsId);
   }
 
   return (

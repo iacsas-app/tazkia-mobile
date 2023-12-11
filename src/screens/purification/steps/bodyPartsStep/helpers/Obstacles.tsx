@@ -17,11 +17,8 @@ import { purificationStyles } from '../../../common/Style';
 export default function Obstacles() {
   const { arabic } = useApplication();
   const { formatMessage } = useMessage();
-  const fontSize = Font.size(arabic ? 15 : 13);
 
   const fontStyle: StyleProp<TextStyle> = {
-    fontSize,
-    fontWeight: arabic ? '600' : 'normal',
     textAlign: 'justify',
   };
 
@@ -30,7 +27,7 @@ export default function Obstacles() {
       <VStack style={GlobalStyles.center}>
         <Text
           variant="bodyMedium"
-          style={{ ...purificationStyles.title, fontSize: Font.size(arabic ? 17 : 15), color: 'seagreen' }}
+          style={{ ...purificationStyles.title, fontSize: Font.size(arabic ? 15 : 12), color: 'seagreen' }}
         >
           {formatMessage(TKeys.PURIFICATION_OBSTACLES)}
         </Text>
@@ -51,9 +48,8 @@ export default function Obstacles() {
           <HStack spacing={15} style={{ ...GlobalStyles.centerAlign }}>
             <Icon name="doctor" size={30} color="teal" />
             <Text
-              variant="titleSmall"
+              variant="bodyLarge"
               style={{
-                fontSize: Font.size(arabic ? 16 : 14),
                 fontWeight: '800',
                 width: SCREEN_WIDTH - 90,
                 color: 'teal',
@@ -71,10 +67,10 @@ export default function Obstacles() {
                 <Avatar.Text
                   label={formatMessage(TKeys.A)}
                   size={22}
-                  style={{ backgroundColor: 'teal' }}
+                  style={{ backgroundColor: 'teal', opacity: 0.7 }}
                   labelStyle={{ fontWeight: '900', color: 'white' }}
                 />
-                <Text variant="bodyMedium" style={{ fontSize, fontWeight: '700', color: 'teal' }}>
+                <Text variant="bodyMedium" style={{ fontWeight: '700', color: '#000000' }}>
                   {formatMessage(`purification.bodypart.obstacles.how-to-handle.face.${part}.title`)}
                 </Text>
               </HStack>

@@ -25,9 +25,8 @@ interface Props {
   total: number;
   item: InvocationRepeat;
   viewableItems: Animated.SharedValue<ViewToken[]>;
-  onSelect(key?: TKeys, detailsId?: number): void;
 }
-function Immunization({ index, item, total, viewableItems, ...props }: Props) {
+function Immunization({ index, item, total, viewableItems }: Props) {
   const [count, setCount] = useState(0);
   const { formatMessage } = useMessage();
   const offset = useSharedValue(0);

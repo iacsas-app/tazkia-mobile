@@ -1,3 +1,4 @@
+import { useKeepAwake } from 'expo-keep-awake';
 import { useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { FAB, Modal, Portal } from 'react-native-paper';
@@ -13,6 +14,7 @@ type Props = {
 };
 
 export default function ReaderDialog(props: Props) {
+  useKeepAwake(); // This screen will never sleep!
   const [visible, setVisible] = useState(false);
   const { formatMessage } = useMessage();
 

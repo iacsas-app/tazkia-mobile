@@ -9,6 +9,7 @@ import { TKeys } from '../../locales/constants';
 
 type Props = {
   onStart(): void;
+  disabled?: boolean;
 };
 export default function Start(props: Props) {
   const { formatMessage } = useMessage();
@@ -23,6 +24,7 @@ export default function Start(props: Props) {
         uppercase={false}
         style={{ height: 30, paddingEnd: 5 }}
         labelStyle={{ ...styles.startButtonLabel, fontSize: Font.size(arabic ? 13 : 11) }}
+        disabled={props.disabled}
         onTouchStart={props.onStart}
       >
         {formatMessage(TKeys.BUTTON_START)}

@@ -1,5 +1,4 @@
 import { memo } from 'react';
-import { Font } from '../constants/Font';
 import { useApplication } from '../hooks/use-application';
 import { useMessage } from '../hooks/use-message';
 import { TKeys } from '../locales/constants';
@@ -12,8 +11,6 @@ function Basmalah() {
     <Text
       variant="bodySmall"
       style={{
-        paddingVertical: 1,
-        fontSize: Font.size(arabic ? 14 : 12),
         fontWeight: '900',
         textAlign: 'justify',
       }}

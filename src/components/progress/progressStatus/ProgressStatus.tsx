@@ -13,8 +13,10 @@ interface Props {
   count: number;
   maxDays: number;
   completed: boolean;
+  radius?: number;
+  progressValueFontSize?: number;
 }
-export function ProgressStatus({ last, count, maxDays, completed }: Props) {
+export function ProgressStatus({ last, count, maxDays, completed, radius, progressValueFontSize }: Props) {
   const { arabic } = useApplication();
   if (!last) {
     return <></>;
@@ -26,19 +28,19 @@ export function ProgressStatus({ last, count, maxDays, completed }: Props) {
       {!completed && <RepeatCount count={count} />}
       <View>
         {completed ? (
-          <Icon name="check-bold" size={30} color="seagreen" />
+          <Icon name="check-bold" size={radius ?? 30} color="seagreen" />
         ) : (
           <CircularProgress
             value={progressPercentage(last.day - failed, maxDays)}
             maxValue={100}
             duration={600}
-            radius={23}
+            radius={radius ?? 23}
             valueSuffix={arabic ? '' : '%'}
             valuePrefix={arabic ? '%' : ''}
             inActiveStrokeColor={'#2ecc71'}
             valuePrefixStyle={{ marginRight: -2 }}
             inActiveStrokeOpacity={0.2}
-            progressValueStyle={styles.progress}
+            progressValueStyle={{ ...styles.progress, fontSize: progressValueFontSize ?? 13 }}
           />
         )}
       </View>
@@ -47,5 +49,5 @@ export function ProgressStatus({ last, count, maxDays, completed }: Props) {
 }
 
 const styles = StyleSheet.create({
-  progress: { color: 'green', fontWeight: '700', fontSize: 13 },
+  progress: { color: 'green', fontWeight: '600' },
 });

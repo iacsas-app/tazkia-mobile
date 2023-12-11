@@ -34,13 +34,13 @@ export default function InvocationsScreen() {
               {formatMessage(TKeys.INVOCATION_STEP_2_RULE_2_DESC)}
             </Text>
             <VStack spacing={10}>
-              <Text variant="bodySmall" style={styles.croyance}>
+              <Text variant="bodyMedium" style={styles.croyance}>
                 {formatMessage(TKeys.INVOCATION_STEP_2_RULE_2_CROYANCE_1)}
               </Text>
-              <Text variant="bodySmall" style={styles.croyance}>
+              <Text variant="bodyMedium" style={styles.croyance}>
                 {formatMessage(TKeys.INVOCATION_STEP_2_RULE_2_CROYANCE_2)}
               </Text>
-              <Text variant="bodySmall" style={styles.croyance}>
+              <Text variant="bodyMedium" style={styles.croyance}>
                 {formatMessage(TKeys.INVOCATION_STEP_2_RULE_2_CROYANCE_3)}
               </Text>
             </VStack>
@@ -66,5 +66,5 @@ const styles = StyleSheet.create({
   root: { backgroundColor: Color.backgroundColor, flex: 1 },
   title: { ...purificationStyles.title, color: 'seagreen' },
   body: { fontWeight: '900', textAlign: 'justify', color: 'seagreen' },
-  croyance: { textAlign: 'justify', fontWeight: '700', color: '#ff6347' },
+  croyance: { textAlign: 'justify', color: '#00773c' },
 });

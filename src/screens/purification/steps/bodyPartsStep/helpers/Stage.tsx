@@ -1,6 +1,6 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import { StyleSheet, View } from 'react-native';
-import { Button, Divider, TouchableRipple } from 'react-native-paper';
+import { Button, Divider } from 'react-native-paper';
 import Text from '../../../../../components/Text';
 
 import { useEffect, useState } from 'react';
@@ -14,15 +14,17 @@ import { Color } from '../../../../../constants/Color';
 import { Font } from '../../../../../constants/Font';
 import { SCREEN_WIDTH } from '../../../../../constants/Screen';
 import ProgressLine from '../../../../../domains/common/ProgressLine';
-import BodyPart, { BodyPartType, PurificationStage } from '../../../../../domains/purification/BodyPart';
+import { BodyPartType, PurificationStage } from '../../../../../domains/purification/BodyPart';
 import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';
 import useProgress from '../../../../../hooks/use-progress';
 import usePurification from '../../../../../hooks/use-purification';
 import { TKeys } from '../../../../../locales/constants';
-import { PURIFICATION_MAX_DAYS } from '../../../../../services/Helpers';
+import { useSnackbar } from '../../../../../providers/SnackbarProvider';
+import { PURIFICATION_MAX_DAYS, isCompleted } from '../../../../../services/Helpers';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
 import StatusAndEvaluation from '../../../common/StatusAndEvaluation';
+import { findStage } from '../common/Helper';
 
 type Props = {
   part: BodyPartType;
@@ -36,34 +38,27 @@ type Props = {
 };
 export default function Stage({ part, stage, ...props }: Props) {
   const { formatMessage } = useMessage();
-  const { locale } = useApplication();
+  const { displaySnackbar } = useSnackbar();
   const [open, setOpen] = useState(false);
+  const { locale } = useApplication();
   const { findBodyPart } = usePurification();
-  const current: BodyPart | undefined = findBodyPart(part);
-  const progress = findStage();
+
+  const current = findBodyPart(part);
+  const progress = findStage(current, stage);
   const hasProgress = progress !== undefined;
   const progressProps = useProgress(progress, PURIFICATION_MAX_DAYS);
   const cleaning = stage === 'cleaning';
-  const align = progressProps.completed ? 'center' : 'space-between';
   const iconName = cleaning ? 'allergy' : 'lightbulb-on';
   const iconColor = cleaning ? '#4b0082' : '#32cd32';
-  const bgColor = open
-    ? Color.active
-    : hasProgress
-    ? progressProps.completed
-      ? Color.completed
-      : Color.progress
-    : Color.noProgress;
-
-  function findStage(): ProgressLine[] | undefined {
-    if (!current) {
-      return undefined;
-    }
-    return current[stage];
-  }
+  const color = hasProgress ? 'seagreen' : '#4169e1';
 
   function handleStart() {
-    props.onStart(stage);
+    const canStart = cleaning || (current && isCompleted(current.cleaning, PURIFICATION_MAX_DAYS));
+    if (canStart) {
+      props.onStart(stage);
+    } else {
+      displaySnackbar(formatMessage(TKeys.PURIFICATION_BODYPART_ALERT), 'warning');
+    }
   }
 
   function handleRestart() {
@@ -72,7 +67,9 @@ export default function Stage({ part, stage, ...props }: Props) {
 
   function handleTouch() {
     if (hasProgress) {
-      props.onOpen(stage);
+      if (!open) {
+        props.onOpen(stage);
+      }
     } else {
       props.onShowRules(stage);
     }
@@ -87,81 +84,91 @@ export default function Stage({ part, stage, ...props }: Props) {
   }
 
   useEffect(() => {
-    setOpen(stage === props.opened);
+    const toOpen = stage === props.opened;
+    if (toOpen !== open) {
+      setOpen(toOpen);
+    }
   }, [props.opened]);
 
   return (
-    <TouchableRipple
+    <View
       style={{
         ...styles.container,
         elevation: open ? 0.5 : 5,
-        backgroundColor: bgColor,
+        backgroundColor: open
+          ? Color.active
+          : hasProgress
+          ? progressProps.completed
+            ? Color.completed
+            : Color.progress
+          : Color.noProgress,
       }}
-      disabled={open}
-      onPress={handleTouch}
+      onTouchStart={handleTouch}
     >
-      <View>
-        <HStack style={styles.header}>
-          <HStack spacing={10} style={GlobalStyles.center}>
-            <Icon name={iconName} size={22} color={hasProgress ? 'seagreen' : '#4169e1'} />
-            <HStack style={styles.stageTitle} spacing={10}>
-              <Text
-                variant="bodyLarge"
-                style={{
-                  fontSize: Font.size((open ? 18 : 16) - (locale === 'in' ? 3 : 0)),
-                  color: open ? '#2e8b57' : hasProgress ? 'seagreen' : '#4169e1',
-                }}
-              >
-                {formatMessage(`purification.bodypart.${stage}`)}
-              </Text>
-              {!open && <Icon name="unfold-more-horizontal" size={20} color={hasProgress ? 'green' : 'blue'} />}
-            </HStack>
+      <HStack style={styles.header}>
+        <HStack spacing={10} style={GlobalStyles.center}>
+          <Icon name={iconName} size={22} color={color} />
+          <HStack style={styles.stageTitle} spacing={10}>
+            <Text
+              variant="bodyMedium"
+              style={{
+                fontSize: Font.size((open ? 18 : 16) - (locale === 'in' ? 3 : 0)),
+                color: open ? '#2e8b57' : color,
+                textShadowRadius: 3,
+              }}
+            >
+              {formatMessage(`purification.bodypart.${stage}`)}
+            </Text>
+            {!open && <Icon name="unfold-more-horizontal" size={20} color={hasProgress ? 'green' : 'blue'} />}
           </HStack>
-          <Animated.View entering={SlideInLeft.duration(10).springify()}>
-            {!hasProgress ? (
-              <Start onStart={handleStart} />
-            ) : (
-              <HStack style={GlobalStyles.center}>
-                {progressProps.completed && <Restart onClick={handleRestart} />}
-                <ProgressStatus
-                  last={progressProps.lastDay}
-                  count={progressProps.countProgress}
-                  maxDays={PURIFICATION_MAX_DAYS}
-                  completed={progressProps.completed}
-                />
-              </HStack>
-            )}
-          </Animated.View>
         </HStack>
-        {open && (
-          <Animated.View entering={FadeInDown.springify()} style={styles.footer}>
-            <VStack style={GlobalStyles.center}>
-              <Button
-                mode="elevated"
-                icon={() => <Icon name={iconName} size={20} color={iconColor} />}
-                uppercase={false}
-                textColor={iconColor}
-                labelStyle={styles.systemLabel}
-                style={styles.system}
-                compact={true}
-                onPress={() => props.onShowRules(stage)}
-              >
-                {formatMessage(`${stage}.bodypart.disciplinary-system`)}
-              </Button>
-              <Divider style={styles.divider} />
-              <StatusAndEvaluation
-                {...progressProps}
-                progress={progress}
-                align={align}
+        <Animated.View entering={SlideInLeft.duration(10).mass(1).springify()}>
+          {!hasProgress ? (
+            <Start
+              onStart={handleStart}
+              disabled={!(cleaning || (current && isCompleted(current.cleaning, PURIFICATION_MAX_DAYS)))}
+            />
+          ) : (
+            <HStack style={GlobalStyles.center}>
+              {progressProps.completed && <Restart onClick={handleRestart} />}
+              <ProgressStatus
+                last={progressProps.lastDay}
+                count={progressProps.countProgress}
                 maxDays={PURIFICATION_MAX_DAYS}
-                formatAttempt={formatAttempt}
-                onEvaluate={handleEvaluateShow}
+                completed={progressProps.completed}
               />
-            </VStack>
-          </Animated.View>
-        )}
-      </View>
-    </TouchableRipple>
+            </HStack>
+          )}
+        </Animated.View>
+      </HStack>
+      {open && (
+        <Animated.View entering={FadeInDown.springify()} style={styles.footer}>
+          <VStack style={GlobalStyles.center}>
+            <Button
+              mode="elevated"
+              icon={() => <Icon name={iconName} size={20} color={iconColor} />}
+              uppercase={false}
+              textColor={iconColor}
+              labelStyle={styles.systemLabel}
+              style={styles.system}
+              compact={true}
+              onPress={() => props.onShowRules(stage)}
+            >
+              {formatMessage(`${stage}.bodypart.disciplinary-system`)}
+            </Button>
+            <Divider style={styles.divider} />
+            <StatusAndEvaluation
+              {...progressProps}
+              progress={progress}
+              align={progressProps.completed ? 'center' : 'space-between'}
+              maxDays={PURIFICATION_MAX_DAYS}
+              formatAttempt={formatAttempt}
+              onEvaluate={handleEvaluateShow}
+            />
+          </VStack>
+        </Animated.View>
+      )}
+    </View>
   );
 }
 

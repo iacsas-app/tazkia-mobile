@@ -6,6 +6,7 @@ import Soul, { SoulPart, SoulPartLevel } from '../domains/purification/Soul';
 import { useStoreActions, useStoreState } from '../stores/hooks';
 
 export interface IPurification {
+  purification: Purification | undefined;
   createBodyPart(part: BodyPartType, stage: PurificationStage): void;
   findBodyPart(part: BodyPartType): BodyPart | undefined;
   evaluateBodyPart(part: BodyPartType, stage: PurificationStage, errors: number[]): void;
@@ -99,6 +100,7 @@ export default function usePurification(): IPurification {
   }
 
   return {
+    purification,
     hasProgress,
     findBodyPart,
     findMind,

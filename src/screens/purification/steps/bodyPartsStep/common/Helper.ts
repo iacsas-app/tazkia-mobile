@@ -1,12 +1,13 @@
 import { ImageSourcePropType } from 'react-native';
-import BodyPart, { BodyPartType } from '../../../../../domains/purification/BodyPart';
+import ProgressLine from '../../../../../domains/common/ProgressLine';
+import BodyPart, { BodyPartType, PurificationStage } from '../../../../../domains/purification/BodyPart';
 import { PURIFICATION_MAX_DAYS, isCompleted } from '../../../../../services/Helpers';
 
 export function isFullyCompleted(part: BodyPart) {
   return isCompleted(part.cleaning, PURIFICATION_MAX_DAYS) && isCompleted(part.enlightenment, PURIFICATION_MAX_DAYS);
 }
 
-export function findPartProps(type: BodyPartType | undefined): ImageSourcePropType | null {
+export function findPartImageSource(type: BodyPartType | undefined): ImageSourcePropType | null {
   if (!type) {
     return null;
   }
@@ -14,18 +15,11 @@ export function findPartProps(type: BodyPartType | undefined): ImageSourcePropTy
   return result ? result.imageSource : null;
 }
 
-export function mapByIndex<T>(items: T[]): Map<number, T[]> {
-  const result = new Map<number, T[]>();
-  items.forEach((part: T, index: number) => {
-    const key = index % 2;
-    let entry = result.get(key + 1);
-    if (!entry) {
-      entry = [];
-    }
-    entry.push(part);
-    result.set(key + 1, entry);
-  });
-  return result;
+export function findStage(value: BodyPart | undefined, stage: PurificationStage): ProgressLine[] | undefined {
+  if (!value) {
+    return undefined;
+  }
+  return value[stage];
 }
 
 export type PartItem = {

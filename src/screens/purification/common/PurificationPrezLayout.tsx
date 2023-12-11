@@ -19,11 +19,11 @@ export default function PurificationPrezLayout(props: Props) {
   const { arabic } = useApplication();
 
   return (
-    <VStack spacing={25}>
+    <VStack spacing={5}>
       <VStack spacing={2}>
         <Text
           variant="bodyMedium"
-          style={{ ...purificationStyles.title, fontSize: Font.size(arabic ? 17 : 15), color: 'seagreen' }}
+          style={{ ...purificationStyles.title, fontSize: Font.size(arabic ? 16 : 14), color: 'seagreen' }}
         >
           {formatMessage(props.summary)}
         </Text>
@@ -31,9 +31,7 @@ export default function PurificationPrezLayout(props: Props) {
         <Text
           variant="bodyMedium"
           style={{
-            paddingTop: 15,
-            fontSize: Font.size(arabic ? 15 : 13),
-            fontWeight: arabic ? '600' : 'normal',
+            paddingTop: 10,
             textAlign: 'justify',
           }}
         >

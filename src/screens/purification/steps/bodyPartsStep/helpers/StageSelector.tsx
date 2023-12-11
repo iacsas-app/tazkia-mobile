@@ -1,13 +1,13 @@
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { StyleSheet } from 'react-native';
-import Animated, { FadeIn, FadeInUp, FadeOutDown, SlideInLeft } from 'react-native-reanimated';
+import Animated, { FadeIn, FadeInUp, FadeOutDown } from 'react-native-reanimated';
 import ConfirmRestartDialog, { ConfirmRestartDialogRef } from '../../../../../components/dialogs/ConfirmRestartDialog';
 import VStack from '../../../../../components/stack/VStack';
 import { SCREEN_WIDTH } from '../../../../../constants/Screen';
 import { BodyPartType, PurificationStage } from '../../../../../domains/purification/BodyPart';
 import { useMessage } from '../../../../../hooks/use-message';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
-import { findPartProps } from '../common/Helper';
+import { findPartImageSource } from '../common/Helper';
 import Stage from './Stage';
 import RulesDialog, { RulesDialogRef } from './rules/RulesDialog';
 
@@ -22,11 +22,11 @@ export default function StageSelector({ part, ...props }: Props) {
   const rulesDialogRef = useRef<RulesDialogRef>(null);
   const restartRef = useRef<ConfirmRestartDialogRef>(null);
   const { formatMessage } = useMessage();
-  const [opened, setOpened] = useState<PurificationStage>();
-  const source = findPartProps(part);
+  const [openedStage, setOpenedStage] = useState<PurificationStage>();
+  const imageSource = findPartImageSource(part);
 
   function handleOpen(stage: PurificationStage) {
-    setOpened(stage);
+    setOpenedStage(stage);
   }
 
   function handleShowRules(stage: PurificationStage) {
@@ -46,15 +46,19 @@ export default function StageSelector({ part, ...props }: Props) {
     restartRef.current?.open();
   }
 
-  function handleEvaluate(errors: number[]) {
-    if (opened) {
-      props.onEvaluate(opened, errors);
-    }
-  }
+  const handleEvaluate = useCallback(
+    (errors: number[]) => {
+      if (openedStage) {
+        props.onEvaluate(openedStage, errors);
+      }
+    },
+    [openedStage],
+  );
 
   function handleConfirm(confirm: boolean) {
     if (confirm && stageRef.current) {
       props.onRestart(stageRef.current);
+      setOpenedStage(undefined);
     }
     restartRef.current?.close();
   }
@@ -64,18 +68,18 @@ export default function StageSelector({ part, ...props }: Props) {
   }
 
   return (
-    <Animated.View entering={FadeInUp.delay(400).duration(50).springify()} style={styles.container}>
+    <Animated.View entering={FadeInUp.delay(100).duration(50).springify()} style={styles.container}>
       <VStack style={styles.header} spacing={5}>
-        {source && (
+        {imageSource && (
           <Animated.Image
-            source={source}
+            source={imageSource}
             entering={FadeIn.delay(500).duration(100)}
             exiting={FadeOutDown}
             style={styles.image}
           />
         )}
         <Animated.Text
-          entering={SlideInLeft.delay(200).duration(200).springify()}
+          entering={FadeInUp.delay(300).duration(200).mass(1).springify()}
           exiting={FadeOutDown.duration(10)}
           style={styles.partName}
         >
@@ -88,7 +92,7 @@ export default function StageSelector({ part, ...props }: Props) {
             key={index}
             part={part}
             stage={stage as any}
-            opened={opened}
+            opened={openedStage}
             onStart={props.onStart}
             onOpen={handleOpen}
             onShowRules={handleShowRules}

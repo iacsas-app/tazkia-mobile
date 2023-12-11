@@ -1,4 +1,5 @@
 import Animated from 'react-native-reanimated';
+import GlobalStyles from '../../styles/GlobalStyles';
 import Text from '../Text';
 
 type Props = {
@@ -12,6 +13,7 @@ export default function SegmentedItem({ label, roundedStart, roundedEnd }: Props
   return (
     <Animated.View
       style={{
+        ...GlobalStyles.center,
         borderTopEndRadius: rEnd,
         borderBottomEndRadius: rEnd,
         borderTopStartRadius: rStart,
@@ -22,10 +24,12 @@ export default function SegmentedItem({ label, roundedStart, roundedEnd }: Props
         borderColor: 'green',
         elevation: 1,
         opacity: 0.9,
-        height: 15,
       }}
     >
-      <Text variant="labelSmall" style={{ paddingHorizontal: 2, color: '#075907', fontSize: 9 }}>
+      <Text
+        variant="labelSmall"
+        style={{ ...GlobalStyles.center, paddingHorizontal: 3, color: '#075907', fontSize: 9 }}
+      >
         {label}
       </Text>
     </Animated.View>

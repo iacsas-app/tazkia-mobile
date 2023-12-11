@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
   },
   sheet: {
     ...GlobalStyles.center,
-    backgroundColor: 'white',
+    backgroundColor: '#eef5f1f7',
     width: '100%',
     position: 'absolute',
     bottom: -OVERDRAG * 6.5,
