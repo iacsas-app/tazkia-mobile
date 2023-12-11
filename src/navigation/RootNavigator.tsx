@@ -23,8 +23,6 @@ const RootNavigator = () => {
 
   const insets = useSafeAreaInsets();
   const [index, setIndex] = React.useState(0);
-  const [sceneAnimation, setSceneAnimation] =
-    useState<React.ComponentProps<typeof BottomNavigation>['sceneAnimationType']>();
 
   const [routes] = useState<RoutesState>([
     {
@@ -69,8 +67,8 @@ const RootNavigator = () => {
           purification: PurificationStack,
           invocations: InvocationsStack,
         })}
-        sceneAnimationEnabled={sceneAnimation !== undefined}
-        sceneAnimationType={sceneAnimation}
+        sceneAnimationEnabled={true}
+        sceneAnimationType={'shifting'}
         sceneAnimationEasing={Easing.ease}
       />
       <SettingsDialog ref={ref} />

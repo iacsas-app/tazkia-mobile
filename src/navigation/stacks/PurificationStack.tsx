@@ -16,13 +16,13 @@ export default function PurificationStack() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Home"
+        initialRouteName="Purification"
         screenOptions={{
           headerMode: 'float',
           headerTitleStyle: { fontSize: Font.size(14) },
         }}
       >
-        <Stack.Screen name="Home" component={PurificationScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Purification" component={PurificationScreen} options={{ headerShown: false }} />
         <Stack.Group screenOptions={{ presentation: 'card' }}>
           <Stack.Screen
             name="BodyParts"

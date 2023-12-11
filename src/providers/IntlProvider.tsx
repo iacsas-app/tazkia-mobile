@@ -1,12 +1,11 @@
 import { useStoreRehydrated } from 'easy-peasy';
-import { PropsWithChildren, useEffect } from 'react';
+import { PropsWithChildren, useEffect, useMemo } from 'react';
 import { RawIntlProvider, createIntl, createIntlCache } from 'react-intl';
-import { ActivityIndicator, MD2Colors } from 'react-native-paper';
-import CenteredView from '../components/CenteredView';
 import { useApplication } from '../hooks/use-application';
-import { LOCALE_KEY } from '../locales/types';
+import { localesTranslation } from '../locales';
+import { LOCALE_KEY, SupportedLocale } from '../locales/types';
 import FirstVisitScreen from '../screens/FirstVisitScreen';
-import { FIRST_VISIT_DATE } from '../services/Helpers';
+import { FIRST_VISIT_DATE, deviceLanguage } from '../services/Helpers';
 import { useStoreActions, useStoreState } from '../stores/hooks';
 import { storageEngine } from '../stores/storage-engine';
 
@@ -21,22 +20,36 @@ export default function IntlProvider({ children }: PropsWithChildren<unknown>) {
   const firstVisitDate = useStoreState((state) => state.global.firstVisitDate);
   const update = useStoreActions((actions) => actions.intl.update);
   const setFirstVisitDate = useStoreActions((actions) => actions.global.setFirstVisitDate);
+  const languageKeys = useMemo(() => Object.keys(localesTranslation) as SupportedLocale[], []);
 
   useEffect(() => {
     if (!locale) {
-      storageEngine.getItem(LOCALE_KEY).then((lang) => update(lang ? lang : defaultLang));
+      try {
+        storageEngine.getItem(LOCALE_KEY).then((lang) => {
+          let target = lang;
+          if (!target) {
+            const systemLanguage = deviceLanguage();
+            const isSupported = languageKeys.find((item) => item === systemLanguage) !== undefined;
+            target = isSupported ? systemLanguage : defaultLang;
+          }
+          update(target);
+        });
+      } catch (e) {
+        // ignore errors and use the default language
+        update(defaultLang);
+      }
     }
-    if (firstVisitDate === undefined) {
-      storageEngine.getItem(FIRST_VISIT_DATE).then((date) => setFirstVisitDate(date));
+    if (!firstVisitDate) {
+      try {
+        storageEngine.getItem(FIRST_VISIT_DATE).then((date) => setFirstVisitDate(date));
+      } catch (e) {
+        // ignore errors
+      }
     }
-  }, [locale, firstVisitDate]);
+  }, [firstVisitDate, locale]);
 
   if (firstVisitDate === undefined || !locale) {
-    return (
-      <CenteredView>
-        <ActivityIndicator animating={true} size={100} color={MD2Colors.green400} />
-      </CenteredView>
-    );
+    return null;
   }
 
   const cache = createIntlCache();

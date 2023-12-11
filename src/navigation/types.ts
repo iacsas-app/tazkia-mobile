@@ -10,7 +10,7 @@ export type TabParamList = {
 };
 
 export type PresentationParamList = {
-  Home: undefined;
+  Presentation: undefined;
   Center: undefined;
   Cheikh: undefined;
   Approach: undefined;
@@ -18,7 +18,7 @@ export type PresentationParamList = {
 };
 
 export type PurificationParamList = {
-  Home: undefined;
+  Purification: undefined;
   BodyParts: undefined;
   Mind: undefined;
   Soul: undefined;
@@ -34,12 +34,12 @@ export type InvocationsParamList = {
 
 // Navigation props
 export type PresentationStackNavigationProp = CompositeNavigationProp<
-  NativeStackNavigationProp<PresentationParamList, 'Home'>,
+  NativeStackNavigationProp<PresentationParamList, 'Presentation'>,
   BottomTabNavigationProp<TabParamList>
 >;
 
 export type PurificationStackNavigationProp = CompositeNavigationProp<
-  NativeStackNavigationProp<PurificationParamList, 'Home'>,
+  NativeStackNavigationProp<PurificationParamList, 'Purification'>,
   BottomTabNavigationProp<TabParamList>
 >;
 

@@ -19,13 +19,13 @@ export default function PresentationStack() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Home"
+        initialRouteName="Presentation"
         screenOptions={{
           headerMode: 'float',
           headerTitleStyle: { fontSize: Font.size(13) },
         }}
       >
-        <Stack.Screen name="Home" component={PresentationScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Presentation" component={PresentationScreen} options={{ headerShown: false }} />
         <Stack.Group screenOptions={{ presentation: 'card' }}>
           <Stack.Screen
             name="Center"
