@@ -58,9 +58,9 @@ export default function FirstVisitScreen() {
 
   return (
     <ScreenLayout>
-      <VStack spacing={20}>
-        <VStack spacing={15} style={GlobalStyles.center}>
-          <Text variant="headlineMedium" style={{ fontWeight: '900' }}>
+      <VStack spacing={25} style={{ paddingHorizontal: 15 }}>
+        <VStack spacing={35} style={GlobalStyles.center}>
+          <Text variant="headlineMedium" style={{ fontWeight: '900', textAlign: 'center' }}>
             {formatMessage(TKeys.WELCOME)}
           </Text>
           {isSupported ? (
