@@ -21,14 +21,14 @@ export default function ProgressInfos(props: Props) {
     <VStack>
       <ProgressStatusInfo
         label={formatMessage(TKeys.PROGRESS_START_DATE)}
-        value={intl.formatDate(props.lastDay.startDate)}
+        value={format(props.lastDay.startDate)}
         icon="calendar"
         color="#000080"
       />
       {props.endDate && (
         <ProgressStatusInfo
           label={formatMessage(TKeys.PROGRESS_END_DATE)}
-          value={intl.formatDate(props.endDate)}
+          value={format(props.endDate)}
           icon="calendar-check"
           color="#2e8b57"
         />
@@ -52,4 +52,8 @@ export default function ProgressInfos(props: Props) {
       )}
     </VStack>
   );
+}
+
+function format(date: number): string {
+  return new Date(date).toLocaleDateString('fr-FR');
 }

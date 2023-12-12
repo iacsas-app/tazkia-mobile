@@ -18,7 +18,13 @@ export default function SunnahRuleTypeItem({ index, summary, count, color }: Pro
   const fade = arabic ? FadeInRight : FadeInLeft;
 
   return (
-    <Animated.View entering={fade.delay(100 * index).duration(100 * index)} style={{ paddingHorizontal: 7 }}>
+    <Animated.View
+      entering={fade
+        .delay(100 * index)
+        .duration(100)
+        .mass(2)}
+      style={{ paddingHorizontal: 7 }}
+    >
       <HStack spacing={5} style={{ ...GlobalStyles.center, paddingHorizontal: 5 }}>
         {count > 1 && (
           <Avatar.Text
