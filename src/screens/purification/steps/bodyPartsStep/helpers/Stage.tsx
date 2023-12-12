@@ -20,6 +20,7 @@ import { useMessage } from '../../../../../hooks/use-message';
 import useProgress from '../../../../../hooks/use-progress';
 import usePurification from '../../../../../hooks/use-purification';
 import { TKeys } from '../../../../../locales/constants';
+import { arabic } from '../../../../../locales/messages/arabic';
 import { useSnackbar } from '../../../../../providers/SnackbarProvider';
 import { PURIFICATION_MAX_DAYS, isCompleted } from '../../../../../services/Helpers';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
@@ -50,7 +51,6 @@ export default function Stage({ part, stage, ...props }: Props) {
   const cleaning = stage === 'cleaning';
   const iconName = cleaning ? 'allergy' : 'lightbulb-on';
   const iconColor = cleaning ? '#4b0082' : '#32cd32';
-  const color = hasProgress ? 'seagreen' : '#4169e1';
 
   function handleStart() {
     const canStart = cleaning || (current && isCompleted(current.cleaning, PURIFICATION_MAX_DAYS));
@@ -107,18 +107,19 @@ export default function Stage({ part, stage, ...props }: Props) {
     >
       <HStack style={styles.header}>
         <HStack spacing={10} style={GlobalStyles.center}>
-          <Icon name={iconName} size={22} color={color} />
+          <Icon name={iconName} size={22} color="teal" />
           <HStack style={styles.stageTitle} spacing={10}>
             <Text
               variant="bodyMedium"
               style={{
-                fontSize: Font.size((open ? 18 : 16) - (locale === 'in' ? 3 : 0)),
-                color: open ? '#2e8b57' : color,
+                fontSize: Font.size((open ? 18 : 16) - (locale === 'id' ? 3 : 0)),
+                color: 'teal',
+                fontWeight: arabic ? '700' : 'normal',
               }}
             >
               {formatMessage(`purification.bodypart.${stage}`)}
             </Text>
-            {!open && <Icon name="unfold-more-horizontal" size={20} color={hasProgress ? 'green' : 'blue'} />}
+            {!open && <Icon name="unfold-more-horizontal" size={20} color="teal" />}
           </HStack>
         </HStack>
         <Animated.View entering={SlideInLeft.duration(10).mass(1).springify()}>
@@ -136,8 +137,9 @@ export default function Stage({ part, stage, ...props }: Props) {
                 maxDays={PURIFICATION_MAX_DAYS}
                 completed={progressProps.completed}
                 activeStrokeWidth={10}
-                valueMarginLeft={-1}
+                valueMarginLeft={2}
                 valueMarginRight={-1}
+                valuePrefixSize={10}
               />
             </HStack>
           )}

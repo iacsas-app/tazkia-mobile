@@ -1,6 +1,5 @@
 import McIcon from '@expo/vector-icons/MaterialCommunityIcons';
 import { StyleSheet } from 'react-native';
-import { Font } from '../../../constants/Font';
 import Text from '../../Text';
 import HStack from '../../stack/HStack';
 
@@ -28,5 +27,5 @@ export default function ProgressStatusInfo(props: Props) {
 
 const styles = StyleSheet.create({
   center: { alignItems: 'center' },
-  label: { fontWeight: '900', fontSize: Font.size(10), color: 'black' },
+  label: { fontWeight: '800', color: 'black' },
 });

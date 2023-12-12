@@ -18,6 +18,8 @@ import { useApplication } from '../../../../hooks/use-application';
 import { useMessage } from '../../../../hooks/use-message';
 import useSunnahs from '../../../../hooks/use-sunnahs';
 import useWindow from '../../../../hooks/use-window';
+import { TKeys } from '../../../../locales/constants';
+import { useSnackbar } from '../../../../providers/SnackbarProvider';
 import { SUNNAHS_MAX_DAYS, progressPercentage2 } from '../../../../services/Helpers';
 import GlobalStyles from '../../../../styles/GlobalStyles';
 import { sunnahsImages } from './Helper';
@@ -33,6 +35,7 @@ export default function SunnahStageContainer({ stage, rules }: Props) {
   const { paddingHorizontal } = useWindow();
   const { formatMessage } = useMessage();
   const [id, setId] = useState<number>();
+  const { displaySnackbar } = useSnackbar();
   const { find, create, evaluate, restart, globalPercentage } = useSunnahs();
 
   const current = id ? find(stage, id) : undefined;
@@ -62,6 +65,7 @@ export default function SunnahStageContainer({ stage, rules }: Props) {
     if (id) {
       create(stage, id);
       close();
+      displaySnackbar(formatMessage(TKeys.MESSAGE_ADDED_SUCCESSFULLY), 'success');
     }
   }
 
@@ -80,6 +84,7 @@ export default function SunnahStageContainer({ stage, rules }: Props) {
   function handleEvaluate(checked: boolean) {
     if (id) {
       evaluate(stage, id, checked);
+      displaySnackbar(formatMessage(TKeys.MESSAGE_EVALUATED_SUCCESSFULLY), 'success');
     }
   }
 

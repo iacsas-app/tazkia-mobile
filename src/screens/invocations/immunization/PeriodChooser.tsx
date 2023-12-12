@@ -20,8 +20,8 @@ export default function PeriodChooser(props: Props) {
   const { formatMessage } = useMessage();
   const periods = useMemo(
     () => [
-      { name: 'morning', image: require('./../../../../assets/img/invocations/morning.png') },
-      { name: 'evening', image: require('./../../../../assets/img/invocations/evening.png') },
+      { name: 'morning', image: require('./../../../../assets/img/invocations/morning.jpg') },
+      { name: 'evening', image: require('./../../../../assets/img/invocations/evening.jpg') },
     ],
     [],
   );

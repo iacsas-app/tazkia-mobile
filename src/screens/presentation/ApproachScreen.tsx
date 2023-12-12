@@ -10,7 +10,7 @@ import PresentationLayout from './common/PresentationLayout';
 export default function ApproachScreen() {
   return (
     <PresentationLayout
-      source={require('./../../../assets/img/presentation/manhaj.jpg')}
+      source={require('./../../../assets/img/presentation/manhaj2.jpg')}
       title={TKeys.PRESENTATION_APPROACH_TITLE}
       description={TKeys.PRESENTATION_APPROACH}
     >
@@ -20,5 +20,5 @@ export default function ApproachScreen() {
 }
 
 const styles = StyleSheet.create({
-  manhaj: { width: SCREEN_WIDTH, height: SCREEN_HEIGHT - 260, marginBottom: 10 },
+  manhaj: { width: SCREEN_WIDTH - 500, height: SCREEN_HEIGHT - 260, marginBottom: 10 },
 });

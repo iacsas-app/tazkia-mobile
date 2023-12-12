@@ -19,7 +19,7 @@ export const langFlags: Record<SupportedLocale, AvatarImageSource> = {
   ar: require('./../../../../../assets/img/flags/arabic-flag.png'),
   fr: require('./../../../../../assets/img/flags/french-flag.png'),
   en: require('./../../../../../assets/img/flags/english-flag.png'),
-  in: require('./../../../../../assets/img/flags/indonesian-flag.png'),
+  id: require('./../../../../../assets/img/flags/indonesian-flag.png'),
 };
 
 interface Props {

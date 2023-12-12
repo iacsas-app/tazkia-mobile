@@ -95,7 +95,7 @@ export default function InvocationsScreen() {
             style={styles.part}
             onTouchStart={() => handlePress(item.route)}
           >
-            {item.image && <Avatar.Image source={item.image} size={70} style={styles.image} />}
+            {item.image && <Avatar.Image source={item.image} size={95} style={styles.image} />}
             <View style={styles.summary}>
               <Text
                 variant="bodyMedium"
@@ -122,9 +122,8 @@ const styles = StyleSheet.create({
   part: {
     backgroundColor: Color.partDefaultBgColor,
     width: SCREEN_WIDTH - 10,
-    flexBasis: 95,
     elevation: 6,
-    borderRadius: 45,
+    borderRadius: 100,
     paddingVertical: 10,
     justifyContent: 'center',
     alignContent: 'center',
@@ -132,7 +131,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
   },
-  image: { backgroundColor: 'whitesmoke', position: 'absolute', left: 6 },
+  image: { backgroundColor: 'white', position: 'absolute', left: 4 },
   summary: {
     ...GlobalStyles.center,
     left: 28,

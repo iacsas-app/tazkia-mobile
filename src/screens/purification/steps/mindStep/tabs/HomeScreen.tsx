@@ -10,6 +10,7 @@ import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';
 import usePurification from '../../../../../hooks/use-purification';
 import { TKeys } from '../../../../../locales/constants';
+import { useSnackbar } from '../../../../../providers/SnackbarProvider';
 import { PURIFICATION_MAX_DAYS, progressPercentage2 } from '../../../../../services/Helpers';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
 
@@ -20,6 +21,7 @@ export default function HomeScreen() {
   const { arabic } = useApplication();
   const { formatMessage } = useMessage();
   const [level, setLevel] = useState<MindLevel>();
+  const { displaySnackbar } = useSnackbar();
   const { createMind, findMind, evaluateMind, restartMind } = usePurification();
 
   const current = level ? findMind(level) : undefined;
@@ -33,6 +35,7 @@ export default function HomeScreen() {
     if (level) {
       createMind(level);
       close();
+      displaySnackbar(formatMessage(TKeys.MESSAGE_ADDED_SUCCESSFULLY), 'success');
     }
   }
 
@@ -51,6 +54,7 @@ export default function HomeScreen() {
   function handleEvaluate(checked: boolean) {
     if (level) {
       evaluateMind(level, checked);
+      displaySnackbar(formatMessage(TKeys.MESSAGE_EVALUATED_SUCCESSFULLY), 'success');
     }
   }
 

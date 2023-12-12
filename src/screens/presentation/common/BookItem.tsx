@@ -37,7 +37,7 @@ export const FlatBook: React.FC<Props> = React.memo(({ book, viewableItems, tota
         </Text>
         <HStack style={GlobalStyles.spaceBetween}>
           <Image source={book.image} style={styles.image} />
-          <VStack style={{ width: '65%', paddingEnd: 5 }}>
+          <VStack style={{ width: '68%', paddingEnd: 5 }}>
             <Text variant="bodyMedium" style={styles.summary}>
               {book.summary}
             </Text>
@@ -64,8 +64,9 @@ const styles = StyleSheet.create({
     width: SCREEN_WIDTH - 10,
   },
   title: { fontSize: Font.size(14), fontWeight: '900' },
+
   image: {
-    width: '35%',
+    width: 110,
     height: 160,
   },
   summary: {

@@ -9,6 +9,7 @@ import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';
 import usePurification from '../../../../../hooks/use-purification';
 import { TKeys } from '../../../../../locales/constants';
+import { useSnackbar } from '../../../../../providers/SnackbarProvider';
 import { PURIFICATION_MAX_DAYS, progressPercentage2 } from '../../../../../services/Helpers';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
 import LevelSelector from '../helpers/LevelSelector';
@@ -19,6 +20,7 @@ export default function HomeScreen() {
   const { arabic } = useApplication();
   const [part, setPart] = useState<SoulPart>();
   const { formatMessage } = useMessage();
+  const { displaySnackbar } = useSnackbar();
   const { createSoul, findSoul, evaluateSoul, restartSoul } = usePurification();
 
   const parts: string[] = useMemo(() => Object.keys(soulRules), []);
@@ -28,6 +30,7 @@ export default function HomeScreen() {
     if (part) {
       createSoul(part, level);
       close();
+      displaySnackbar(formatMessage(TKeys.MESSAGE_ADDED_SUCCESSFULLY), 'success');
     }
   }
 
@@ -45,6 +48,7 @@ export default function HomeScreen() {
 
   const handleEvaluate = useCallback((part: SoulPart, level: SoulPartLevel, checked: boolean) => {
     evaluateSoul(part, level, checked);
+    displaySnackbar(formatMessage(TKeys.MESSAGE_EVALUATED_SUCCESSFULLY), 'success');
   }, []);
 
   function close() {
@@ -89,7 +93,7 @@ export default function HomeScreen() {
                   stepTitle={idx.toString()}
                   partTitleSize={arabic ? 14 : 12}
                   stepTitleSize={12}
-                  stepTitleWidth={30}
+                  stepTitleWidth={27}
                   summaryKey={`purification.soul.${soulPart}.title`}
                   subSummaryKey={hasSubtitle ? `purification.soul.${soulPart}.sub.title` : undefined}
                   inProgress={hasProgress}

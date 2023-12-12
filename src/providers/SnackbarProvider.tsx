@@ -3,6 +3,8 @@ import { Dispatch, PropsWithChildren, ReactElement, createContext, useContext, u
 import { Snackbar } from 'react-native-paper';
 import Text from '../components/Text';
 import HStack from '../components/stack/HStack';
+import { useApplication } from '../hooks/use-application';
+import GlobalStyles from '../styles/GlobalStyles';
 
 export type SnackbarVariant = 'info' | 'success' | 'warning' | 'error';
 
@@ -83,6 +85,7 @@ function iconName(variant: SnackbarVariant) {
 
 export default function SnackbarProvider({ children }: PropsWithChildren<unknown>): ReactElement {
   const [state, dispatch] = useReducer(reducer, { ...defaultState });
+  const { arabic } = useApplication();
 
   function onDismiss() {
     dispatch({ type: SnackbarActionKeys.CLOSE });
@@ -97,10 +100,14 @@ export default function SnackbarProvider({ children }: PropsWithChildren<unknown
           style={{ backgroundColor: backgroundColor(state.variant), borderRadius: 20 }}
           elevation={5}
           onDismiss={onDismiss}
-          duration={2500}
+          duration={3000}
+          onTouchStart={onDismiss}
         >
-          <HStack style={{ alignContent: 'center', justifyContent: 'space-between' }}>
-            <Text variant="bodyMedium" style={{ color: 'white' }}>
+          <HStack style={GlobalStyles.spaceBetween}>
+            <Text
+              variant={`body${arabic ? 'Large' : 'Small'}`}
+              style={{ color: 'white', fontWeight: arabic ? '800' : 'normal' }}
+            >
               {state.content}
             </Text>
             <Icon name={iconName(state.variant)} size={25} color="white" />

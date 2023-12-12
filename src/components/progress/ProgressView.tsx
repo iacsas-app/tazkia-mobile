@@ -2,6 +2,7 @@ import { ReactNode, useRef } from 'react';
 import { PrimitiveType } from 'react-intl';
 import { StyleSheet, View } from 'react-native';
 import Animated, { FadeInUp } from 'react-native-reanimated';
+import { Color } from '../../constants/Color';
 import { SCREEN_WIDTH } from '../../constants/Screen';
 import ProgressLine from '../../domains/common/ProgressLine';
 import useProgress from '../../hooks/use-progress';
@@ -54,7 +55,7 @@ export default function ProgressView(props: Props) {
       />
       <View
         style={{
-          backgroundColor: props.progress ? '#dbf6e8' : '#d8f0ff',
+          backgroundColor: props.progress ? '#dbf6e8' : Color.noProgress,
           alignItems: 'center',
           width: SCREEN_WIDTH,
           paddingBottom: 10,

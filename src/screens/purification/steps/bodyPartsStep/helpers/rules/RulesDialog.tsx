@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     fontSize: Font.size(14),
     fontWeight: '700',
   },
-  labelBtn: { fontSize: 18, fontWeight: '900', color: 'seagreen' },
+  labelBtn: { fontSize: 15, fontWeight: '900', color: 'seagreen' },
   btn: { paddingHorizontal: 15 },
 });
 

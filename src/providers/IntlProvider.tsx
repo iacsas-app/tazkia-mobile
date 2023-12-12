@@ -4,8 +4,7 @@ import { RawIntlProvider, createIntl, createIntlCache } from 'react-intl';
 import { useApplication } from '../hooks/use-application';
 import { localesTranslation } from '../locales';
 import { LOCALE_KEY, SupportedLocale } from '../locales/types';
-import FirstVisitScreen from '../screens/FirstVisitScreen';
-import { FIRST_VISIT_DATE, deviceLanguage } from '../services/Helpers';
+import { deviceLanguage } from '../services/Helpers';
 import { useStoreActions, useStoreState } from '../stores/hooks';
 import { storageEngine } from '../stores/storage-engine';
 
@@ -17,9 +16,7 @@ function WaitForStateRehydration({ children }: PropsWithChildren<unknown>) {
 export default function IntlProvider({ children }: PropsWithChildren<unknown>) {
   const { locale, defaultLang } = useApplication();
   const messages = useStoreState((state) => state.intl.messages);
-  const firstVisitDate = useStoreState((state) => state.global.firstVisitDate);
   const update = useStoreActions((actions) => actions.intl.update);
-  const setFirstVisitDate = useStoreActions((actions) => actions.global.setFirstVisitDate);
   const languageKeys = useMemo(() => Object.keys(localesTranslation) as SupportedLocale[], []);
 
   useEffect(() => {
@@ -35,20 +32,12 @@ export default function IntlProvider({ children }: PropsWithChildren<unknown>) {
           update(target);
         });
       } catch (e) {
-        // ignore errors and use the default language
         update(defaultLang);
       }
     }
-    if (!firstVisitDate) {
-      try {
-        storageEngine.getItem(FIRST_VISIT_DATE).then((date) => setFirstVisitDate(date));
-      } catch (e) {
-        // ignore errors
-      }
-    }
-  }, [firstVisitDate, locale]);
+  }, [locale]);
 
-  if (firstVisitDate === undefined || !locale) {
+  if (!locale) {
     return null;
   }
 
@@ -57,7 +46,7 @@ export default function IntlProvider({ children }: PropsWithChildren<unknown>) {
 
   return (
     <WaitForStateRehydration>
-      <RawIntlProvider value={intl}>{firstVisitDate === null ? <FirstVisitScreen /> : children}</RawIntlProvider>
+      <RawIntlProvider value={intl}>{children}</RawIntlProvider>
     </WaitForStateRehydration>
   );
 }

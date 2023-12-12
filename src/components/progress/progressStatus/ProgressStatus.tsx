@@ -16,8 +16,10 @@ interface Props {
   radius?: number;
   progressValueFontSize?: number;
   activeStrokeWidth?: number;
+  valuePrefixSize?: number;
   valueMarginRight?: number;
   valueMarginLeft?: number;
+  hideRepeat?: boolean;
 }
 export function ProgressStatus({
   last,
@@ -29,6 +31,8 @@ export function ProgressStatus({
   activeStrokeWidth,
   valueMarginRight,
   valueMarginLeft,
+  valuePrefixSize,
+  hideRepeat,
 }: Props) {
   const { arabic } = useApplication();
   if (!last) {
@@ -38,7 +42,7 @@ export function ProgressStatus({
 
   return (
     <HStack spacing={3} style={GlobalStyles.center}>
-      {!completed && <RepeatCount count={count} />}
+      {!hideRepeat && !completed && <RepeatCount count={count} />}
       <View>
         {completed ? (
           <Icon name="check-bold" size={radius ?? 30} color="seagreen" />
@@ -56,7 +60,7 @@ export function ProgressStatus({
             valuePrefixStyle={{
               marginRight: valueMarginRight ?? -5,
               marginLeft: valueMarginLeft ?? 4,
-              fontSize: 7,
+              fontSize: valuePrefixSize ?? 7,
               marginTop: -2,
             }}
             valueSuffixStyle={{ marginLeft: valueMarginRight ?? -5, marginRight: valueMarginLeft ?? 4 }}

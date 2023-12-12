@@ -1,7 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
-import { ImageSourcePropType, StyleProp, StyleSheet, View } from 'react-native';
-import { TouchableRipple } from 'react-native-paper';
-import Animated, { FadeIn, FadeInLeft, FadeInRight, FadeInUp, FadeOut } from 'react-native-reanimated';
+import { Image, ImageSourcePropType, StyleProp, StyleSheet, View } from 'react-native';
+import Animated, { FadeIn, FadeInLeft, FadeInUp, FadeOut } from 'react-native-reanimated';
 import { Color } from '../constants/Color';
 import { Font } from '../constants/Font';
 import { useApplication } from '../hooks/use-application';
@@ -36,39 +35,37 @@ export default function PressableStep({ index, item, nameTextSize, descriptionTe
   }
 
   return (
-    <Animated.View entering={FadeInUp.delay(200 * (index * 2))} style={{ ...props.style, backgroundColor }}>
-      <TouchableRipple onPress={handlePress}>
-        <View style={{ ...styles.container, gap: item.name ? 1 : 8 }}>
-          {item.imageSource && (
-            <Animated.Image
-              entering={FadeInRight.duration(400 * (index * 2))
-                .delay(300)
-                .springify()}
-              source={item.imageSource}
-              style={styles.img}
-            />
-          )}
-          {item.name && (
-            <Animated.Text
-              entering={FadeIn}
-              exiting={FadeOut}
-              style={{ fontSize: Font.size(nameTextSize ?? arabic ? 14 : 13), textAlign: 'center' }}
-            >
-              {formatMessage(item.name)}
-            </Animated.Text>
-          )}
+    <Animated.View
+      entering={FadeInUp.delay(200 * (index * 1)).mass(1)}
+      exiting={FadeOut}
+      style={{ ...props.style, backgroundColor }}
+      onTouchStart={handlePress}
+    >
+      <View style={{ ...styles.container, gap: item.name ? 1 : 8 }}>
+        {item.imageSource && <Image source={item.imageSource} style={styles.img} />}
+        {item.name && (
           <Animated.Text
-            entering={FadeInLeft.delay(400 + index * 60).duration(600)}
-            style={{
-              fontWeight: 'bold',
-              fontSize: Font.size(descriptionTextSize ?? arabic ? 14 : 13),
-              textAlign: 'center',
-            }}
+            entering={FadeIn.delay(250)
+              .duration(100 * index)
+              .mass(2)}
+            exiting={FadeOut}
+            style={{ fontSize: Font.size(nameTextSize ?? arabic ? 14 : 13), textAlign: 'center' }}
           >
-            {formatMessage(item.description)}
+            {formatMessage(item.name)}
           </Animated.Text>
-        </View>
-      </TouchableRipple>
+        )}
+        <Animated.Text
+          entering={FadeInLeft.delay(400 + index * 60).duration(600)}
+          exiting={FadeOut}
+          style={{
+            fontWeight: 'bold',
+            fontSize: Font.size(descriptionTextSize ?? arabic ? 14 : 13),
+            textAlign: 'center',
+          }}
+        >
+          {formatMessage(item.description)}
+        </Animated.Text>
+      </View>
     </Animated.View>
   );
 }

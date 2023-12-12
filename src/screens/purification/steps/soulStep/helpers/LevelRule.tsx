@@ -88,17 +88,13 @@ export default function LevelRule({ part, index, levelKey, ...props }: Props) {
       <View>
         <HStack style={styles.header}>
           <HStack spacing={10}>
-            <Icon
-              name={`unfold-${open ? 'less' : 'more'}-horizontal`}
-              size={22}
-              color={current ? 'green' : '#4169e1'}
-            />
+            <Icon name={`unfold-${open ? 'less' : 'more'}-horizontal`} size={22} color="teal" />
             <Text
               variant="bodyLarge"
               style={{
                 ...styles.levelTitle,
                 fontSize: Font.size(open ? 16 : 14),
-                color: current ? 'green' : '#4169e1',
+                color: 'teal',
               }}
             >
               {formatMessage(TKeys.LEVEL, { value: index })}

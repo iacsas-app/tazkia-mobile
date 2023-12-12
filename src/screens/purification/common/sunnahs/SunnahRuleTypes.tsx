@@ -19,7 +19,7 @@ export default function SunnahRuleTypes({ type, items, showType, hasProgress }: 
     return <></>;
   }
 
-  const color = hasProgress ? 'green' : 'blue';
+  const color = hasProgress ? 'green' : 'teal';
 
   return (
     <VStack spacing={5}>

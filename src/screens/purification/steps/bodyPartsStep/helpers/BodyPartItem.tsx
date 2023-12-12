@@ -46,6 +46,7 @@ export default function BodyPartItem({ id, part, imageSource, ...props }: BodyPa
         radius={14}
         progressValueFontSize={8}
         activeStrokeWidth={3}
+        hideRepeat
       />
     );
   };
@@ -73,8 +74,8 @@ export default function BodyPartItem({ id, part, imageSource, ...props }: BodyPa
         label={id.toString()}
       />
       <Text
-        variant="bodyLarge"
-        style={{ ...styles.partName, color: completed ? 'white' : 'black', fontSize: arabic ? 18 : 15 }}
+        variant="bodyMedium"
+        style={{ ...styles.partName, color: completed ? 'white' : 'black', fontSize: arabic ? 16 : 13 }}
       >
         {formatMessage(`purification.body-parts.${part}`)}
       </Text>

@@ -6,7 +6,7 @@ import { MessageKeyValue, SupportedLocale } from './types';
 
 export const defaultLanguage: SupportedLocale = 'ar';
 
-export const locales: MessageKeyValue = { ar: arabic, en: english, fr: french, in: indonesian };
+export const locales: MessageKeyValue = { ar: arabic, en: english, fr: french, id: indonesian };
 
 interface LanguageKey {
   key: string;
@@ -17,5 +17,5 @@ export const localesTranslation: Record<SupportedLocale, LanguageKey> = {
   ar: { key: 'arabic', name: 'العربية' },
   fr: { key: 'french', name: 'Français' },
   en: { key: 'english', name: 'English' },
-  in: { key: 'indonesian', name: 'Bahasa Indonesia' },
+  id: { key: 'indonesian', name: 'Bahasa Indonesia' },
 };

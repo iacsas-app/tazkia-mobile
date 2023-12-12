@@ -18,12 +18,12 @@ export default function PresentationScreen() {
       {
         description: TKeys.PRESENTATION_CHEIKH_TITLE,
         route: 'Cheikh',
-        imageSource: require('./../../../assets/img/presentation/cheikh.png'),
+        imageSource: require('./../../../assets/img/presentation/cheikh.jpg'),
       },
       {
         description: TKeys.PRESENTATION_APPROACH_TITLE,
         route: 'Approach',
-        imageSource: require('./../../../assets/img/presentation/manhaj.jpg'),
+        imageSource: require('./../../../assets/img/presentation/manhaj1.jpg'),
       },
       {
         description: TKeys.PRESENTATION_BOOKS_TITLE,
@@ -46,10 +46,9 @@ export default function PresentationScreen() {
 const styles = StyleSheet.create({
   container: { ...GlobalStyles.container, backgroundColor: Color.backgroundColor },
   part: {
+    width: SCREEN_WIDTH - 50,
     paddingVertical: 10,
-    backgroundColor: Color.partDefaultBgColor,
     borderRadius: 25,
     elevation: 6,
-    width: SCREEN_WIDTH - 70,
   },
 });

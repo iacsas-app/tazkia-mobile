@@ -20,7 +20,7 @@ export default function Start(props: Props) {
       <Button
         mode="elevated"
         compact
-        icon={() => <Icon name="clock-plus" size={15} color="#4169e1" />}
+        icon={() => <Icon name="clock-plus" size={15} color="teal" />}
         uppercase={false}
         style={{ height: 30, paddingEnd: 5 }}
         labelStyle={{ ...styles.startButtonLabel, fontSize: Font.size(arabic ? 13 : 11) }}
@@ -34,5 +34,5 @@ export default function Start(props: Props) {
 }
 
 const styles = StyleSheet.create({
-  startButtonLabel: { fontWeight: '900', color: '#4169e1', marginTop: 3 },
+  startButtonLabel: { fontWeight: '900', color: 'teal', marginTop: 3 },
 });

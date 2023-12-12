@@ -28,7 +28,7 @@ export default function Obstacles() {
         <Avatar.Image
           source={require('./../../../../../../assets/img/obstacles.jpg')}
           size={130}
-          style={{ opacity: 0.9 }}
+          style={{ opacity: 0.5, backgroundColor: 'transparent' }}
         />
       </VStack>
       <VStack spacing={15}>

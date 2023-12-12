@@ -4,7 +4,10 @@ import HStack from '../../../../../components/stack/HStack';
 import VStack from '../../../../../components/stack/VStack';
 import { Color } from '../../../../../constants/Color';
 import { BodyPartType, BodyPartsOrder, PurificationStage } from '../../../../../domains/purification/BodyPart';
+import { useMessage } from '../../../../../hooks/use-message';
 import usePurification from '../../../../../hooks/use-purification';
+import { TKeys } from '../../../../../locales/constants';
+import { useSnackbar } from '../../../../../providers/SnackbarProvider';
 import { groupBy } from '../../../../../services/Helpers';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
 import { PartItem, bodyParts } from '../common/Helper';
@@ -13,7 +16,9 @@ import StageSelector from '../helpers/StageSelector';
 
 export default function HomeScreen() {
   const ref = useRef<BottomSheetRef>(null);
+  const { formatMessage } = useMessage();
   const [selected, setSelected] = useState<BodyPartType>();
+  const { displaySnackbar } = useSnackbar();
   const { createBodyPart, evaluateBodyPart, restartBodyPart } = usePurification();
   const partsByLine = useMemo(() => groupBy(bodyParts, 'line'), []);
 
@@ -27,6 +32,7 @@ export default function HomeScreen() {
       createBodyPart(selected, stage);
       setSelected(undefined);
       ref.current?.close();
+      displaySnackbar(formatMessage(TKeys.MESSAGE_ADDED_SUCCESSFULLY), 'success');
     }
   }
 
@@ -34,6 +40,7 @@ export default function HomeScreen() {
     (stage: PurificationStage, errors: number[]) => {
       if (selected) {
         evaluateBodyPart(selected, stage, errors);
+        displaySnackbar(formatMessage(TKeys.MESSAGE_EVALUATED_SUCCESSFULLY), 'success');
       }
     },
     [selected],

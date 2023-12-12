@@ -46,7 +46,7 @@ export default function StatusAndEvaluation(props: Props) {
         >
           <Text
             variant="titleSmall"
-            style={{ fontWeight: '500', fontSize: Font.size(arabic ? 13 : 11), color: 'seagreen' }}
+            style={{ fontWeight: '500', fontSize: Font.size(arabic ? 15 : 11), color: 'seagreen' }}
           >
             {formatMessage(TKeys.PROGRESS_START_DAILY_EVALUATION)}
           </Text>

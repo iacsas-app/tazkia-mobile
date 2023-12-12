@@ -26,23 +26,13 @@
       },
       "package": "com.iacsas.manhajnabawi"
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
     "extra": {
       "eas": {
         "projectId": "58ee58ea-6a0c-438d-92b6-529eae2c6942"
       }
     },
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
-    "plugins": [
-      "expo-router"
-    
-    ],
+    "platforms": ["ios","android"],
+    "plugins": [ "expo-router"],
     "runtimeVersion": {
       "policy": "appVersion"
     },

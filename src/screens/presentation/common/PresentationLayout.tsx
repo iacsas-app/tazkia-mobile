@@ -7,6 +7,7 @@ import { Font } from '../../../constants/Font';
 import { useApplication } from '../../../hooks/use-application';
 import { useMessage } from '../../../hooks/use-message';
 import { TKeys } from '../../../locales/constants';
+import GlobalStyles from '../../../styles/GlobalStyles';
 import BasePresentationLayout from './BasePresentationLayout';
 
 interface Props extends PropsWithChildren {
@@ -20,9 +21,9 @@ export default function PresentationLayout(props: Props) {
 
   return (
     <BasePresentationLayout>
-      <VStack spacing={20}>
+      <VStack spacing={20} style={GlobalStyles.center}>
         {props.source && (
-          <View>
+          <View style={{ marginTop: -15 }}>
             <ImageLayout source={props.source} />
           </View>
         )}

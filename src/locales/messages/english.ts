@@ -953,7 +953,7 @@ export const english: Translations = {
   [TKeys.TIMES_COUNTS]: '{times} times',
   [TKeys.TIMES_COUNT_PLURAL]: '{times} times',
 
-  [TKeys.MESSAGE_ADDED_SUCCESSFULLY]: 'The addition was completed successfully',
+  [TKeys.MESSAGE_ADDED_SUCCESSFULLY]: 'Added successfully',
   [TKeys.MESSAGE_EVALUATED_SUCCESSFULLY]: 'Your progress has been successfully updated',
   [TKeys.DURATION]: '{value} minutes',
   [TKeys.DURATION2]: '{value} minutes',

@@ -1,7 +1,7 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import { useEffect, useMemo, useState } from 'react';
 import { View } from 'react-native';
-import { Button } from 'react-native-paper';
+import { Avatar, Button } from 'react-native-paper';
 import Text from '../components/Text';
 import LanguageSelector from '../components/header/settings/language/LanguageSelector';
 import { langFlags } from '../components/header/settings/language/LanguageSetting';
@@ -60,7 +60,8 @@ export default function FirstVisitScreen() {
     <ScreenLayout>
       <VStack spacing={25} style={{ paddingHorizontal: 15 }}>
         <VStack spacing={35} style={GlobalStyles.center}>
-          <Text variant="headlineMedium" style={{ fontWeight: '900', textAlign: 'center' }}>
+          <Avatar.Image source={require('./../../assets/img/presentation/manhaj1.jpg')} size={200} />
+          <Text variant="headlineSmall" style={{ fontWeight: '900', textAlign: 'center' }}>
             {formatMessage(TKeys.WELCOME)}
           </Text>
           {isSupported ? (

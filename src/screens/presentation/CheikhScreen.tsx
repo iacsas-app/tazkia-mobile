@@ -7,7 +7,7 @@ import PresentationLayout from './common/PresentationLayout';
 export default function CheikhScreen() {
   return (
     <PresentationLayout
-      source={require('./../../../assets/img/presentation/cheikh.png')}
+      source={require('./../../../assets/img/presentation/cheikh.jpg')}
       title={TKeys.PRESENTATION_CHEIKH_TITLE}
       description={TKeys.PRESENTATION_CHEIKH}
     />

@@ -966,7 +966,7 @@ export const french: Translations = {
   [TKeys.TIMES_COUNTS]: '{times} fois',
   [TKeys.TIMES_COUNT_PLURAL]: '{times} fois',
 
-  [TKeys.MESSAGE_ADDED_SUCCESSFULLY]: "L'ajout a été effectué avec succès",
+  [TKeys.MESSAGE_ADDED_SUCCESSFULLY]: 'Ajouté avec succès',
   [TKeys.MESSAGE_EVALUATED_SUCCESSFULLY]: 'Votre progression a été mise à jour avec succès',
   [TKeys.DURATION]: '{value} minutes',
   [TKeys.DURATION2]: '{value} minutes',
