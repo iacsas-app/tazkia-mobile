@@ -58,8 +58,8 @@ export default function FirstVisitScreen() {
 
   return (
     <ScreenLayout>
-      <VStack spacing={25} style={{ paddingHorizontal: 15 }}>
-        <VStack spacing={35} style={GlobalStyles.center}>
+      <VStack spacing={20} style={{ paddingHorizontal: 15 }}>
+        <VStack spacing={25} style={GlobalStyles.center}>
           <Avatar.Image source={require('./../../assets/img/presentation/manhaj1.jpg')} size={200} />
           <Text variant="headlineSmall" style={{ fontWeight: '900', textAlign: 'center' }}>
             {formatMessage(TKeys.WELCOME)}
