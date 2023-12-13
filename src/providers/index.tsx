@@ -1,7 +1,6 @@
 import { PropsWithChildren } from 'react';
 import { DefaultTheme, PaperProvider } from 'react-native-paper';
 import IntlProvider from './IntlProvider';
-import MainProvider from './MainProvider';
 import SnackbarProvider from './SnackbarProvider';
 import StoreProvider from './StoreProvider';
 
@@ -17,9 +16,7 @@ export default function Providers({ children }: PropsWithChildren<unknown>) {
     <StoreProvider>
       <IntlProvider>
         <PaperProvider theme={theme}>
-          <MainProvider>
-            <SnackbarProvider>{children}</SnackbarProvider>
-          </MainProvider>
+          <SnackbarProvider>{children}</SnackbarProvider>
         </PaperProvider>
       </IntlProvider>
     </StoreProvider>
