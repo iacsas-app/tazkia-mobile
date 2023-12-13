@@ -35,7 +35,7 @@ export default function LanguageSelector({ flags, color, all, onChange }: Langua
         )}
         ItemSeparatorComponent={Divider}
         alwaysBounceVertical={false}
-        style={{ backgroundColor: 'transparent', marginLeft: 35, maxHeight: 200 }}
+        style={{ backgroundColor: 'transparent', marginLeft: 35, maxHeight: 275 }}
       />
     </Animated.View>
   );

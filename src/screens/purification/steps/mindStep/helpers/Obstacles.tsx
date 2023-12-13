@@ -7,16 +7,13 @@ import { Avatar } from 'react-native-paper';
 import Text from '../../../../../components/Text';
 import HStack from '../../../../../components/stack/HStack';
 import VStack from '../../../../../components/stack/VStack';
-import { Font } from '../../../../../constants/Font';
 import { SCREEN_WIDTH } from '../../../../../constants/Screen';
-import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';
 import { TKeys } from '../../../../../locales/constants';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
 import { purificationStyles } from '../../../common/Style';
 
 export default function Obstacles() {
-  const { arabic } = useApplication();
   const { formatMessage } = useMessage();
 
   const items = useMemo(
@@ -48,7 +45,7 @@ export default function Obstacles() {
       <VStack style={GlobalStyles.center}>
         <Text
           variant="bodyMedium"
-          style={{ ...purificationStyles.title, fontSize: Font.size(arabic ? 15 : 12), color: 'seagreen' }}
+          style={{ ...purificationStyles.title, paddingTop: 0, marginTop: 0, color: 'seagreen' }}
         >
           {formatMessage(TKeys.PURIFICATION_OBSTACLES)}
         </Text>

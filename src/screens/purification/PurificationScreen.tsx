@@ -43,9 +43,9 @@ export default function PurificationScreen() {
 
   return (
     <>
-      <VStack style={styles.container} spacing={20}>
-        <VStack style={GlobalStyles.center} spacing={10}>
-          <HStack style={GlobalStyles.center} spacing={5}>
+      <VStack style={styles.container} spacing={23}>
+        <VStack style={GlobalStyles.center} spacing={5}>
+          <HStack style={GlobalStyles.center} spacing={2}>
             <Animated.Text
               entering={FadeInRight.delay(200).duration(500).mass(2)}
               exiting={FadeOut}
@@ -66,7 +66,7 @@ export default function PurificationScreen() {
             {formatMessage(TKeys.SOURAT_A3LA)}
           </Animated.Text>
         </VStack>
-        <VStack spacing={15}>
+        <VStack spacing={20}>
           {parts.map((item: Part, index: number) => (
             <PressableStep
               key={index}
@@ -85,7 +85,7 @@ export default function PurificationScreen() {
           {
             icon: 'gift',
             label: formatMessage(TKeys.DEDICATION),
-            size: 'medium',
+            size: 'small',
             labelStyle: styles.action,
             onPress: () => handleAction(TKeys.DEDICATION),
           },
@@ -93,27 +93,29 @@ export default function PurificationScreen() {
             icon: 'script-text',
             label: formatMessage(TKeys.GENERAL_PRESENTATION_TITLE),
             labelStyle: styles.action,
-            size: 'medium',
+            size: 'small',
             onPress: () => handleAction(TKeys.GENERAL_PRESENTATION_TITLE),
           },
           {
             icon: 'timeline-clock',
             label: formatMessage(TKeys.INVOCATION_NIVEAU_TITLE),
             labelStyle: styles.action,
-            size: 'medium',
+            size: 'small',
             onPress: () => handleAction(TKeys.INVOCATION_NIVEAU_TITLE),
           },
           {
             icon: 'seal-variant',
             label: formatMessage(TKeys.CONCLUSION),
             labelStyle: styles.action,
-            size: 'medium',
+            size: 'small',
             onPress: () => handleAction(TKeys.CONCLUSION),
           },
         ]}
         onStateChange={({ open }) => setOpen(open)}
         visible={true}
         variant="primary"
+        fabStyle={{ ...GlobalStyles.center, width: 45, aspectRatio: 1 }}
+        style={{ right: -5, bottom: -5, position: 'absolute' }}
       />
       <SimpleDialog ref={ref} />
     </>
@@ -130,11 +132,11 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     textShadowRadius: 2,
     color: 'black',
-    fontSize: Font.size(20),
+    fontSize: Font.size(18),
   },
   part: {
-    width: SCREEN_WIDTH - 100,
-    paddingVertical: 10,
+    width: SCREEN_WIDTH - 150,
+    paddingVertical: 5,
     borderRadius: 25,
     elevation: 6,
   },
@@ -144,7 +146,8 @@ const styles = StyleSheet.create({
     fontSize: Font.size(14),
     color: 'teal',
     backgroundColor: '#66cdaa21',
-    padding: 15,
+    paddingHorizontal: 15,
+    paddingVertical: 5,
     borderRadius: 20,
     opacity: 0.8,
   },

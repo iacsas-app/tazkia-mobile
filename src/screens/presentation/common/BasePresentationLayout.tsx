@@ -7,15 +7,11 @@ import GlobalStyles from '../../../styles/GlobalStyles';
 export default function BasePresentationLayout({ children }: PropsWithChildren) {
   return (
     <ScrollViewLayout style={styles.root}>
-      <View style={styles.container}>{children}</View>
+      <View style={GlobalStyles.container}>{children}</View>
     </ScrollViewLayout>
   );
 }
 
 const styles = StyleSheet.create({
   root: { backgroundColor: Color.backgroundColor },
-  container: {
-    ...GlobalStyles.container,
-    paddingHorizontal: 8,
-  },
 });

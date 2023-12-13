@@ -15,16 +15,21 @@ export interface Application {
   isDarkMode: boolean;
   isSystemLanguageSupported: boolean;
   systemLanguage: string;
+  isPurification: boolean;
   setLocale(value: SupportedLocale | undefined): void;
   setFirstVisitDate(date: number | null): void;
+  setIsPurification(clicked: boolean): void;
 }
 
 export function useApplication(): Application {
   const locale = useStoreState((state) => state.intl.locale);
   const purification = useStoreState((state) => state.purification.item);
   const sunnahs = useStoreState((state) => state.sunnahs.item);
+  const isPurification = useStoreState((state) => state.global.isPurification);
+
   const setLocale = useStoreActions((actions) => actions.intl.update);
   const setFirstVisitDate = useStoreActions((actions) => actions.global.setFirstVisitDate);
+  const setIsPurification = useStoreActions((actions) => actions.global.setIsPurification);
   const isDarkMode = useColorScheme() === 'dark';
   const languageKeys = useMemo(() => Object.keys(localesTranslation) as SupportedLocale[], []);
   const systemLanguage = useMemo(() => deviceLanguage(), []);
@@ -54,6 +59,8 @@ export function useApplication(): Application {
     isSystemLanguageSupported: isLangSupported,
     defaultLang,
     setFirstVisitDate,
+    isPurification,
     setLocale: handleLocaleChange,
+    setIsPurification,
   };
 }

@@ -19,7 +19,7 @@ export default function PurificationPrezLayout(props: Props) {
   const { arabic } = useApplication();
 
   return (
-    <VStack spacing={5}>
+    <VStack>
       <VStack spacing={2}>
         <Text
           variant="bodyMedium"

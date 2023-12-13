@@ -20,5 +20,5 @@ export default function ApproachScreen() {
 }
 
 const styles = StyleSheet.create({
-  manhaj: { width: SCREEN_WIDTH - 500, height: SCREEN_HEIGHT - 260, marginBottom: 10 },
+  manhaj: { width: SCREEN_WIDTH, height: SCREEN_HEIGHT - 260, marginTop: 10 },
 });

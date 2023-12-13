@@ -2,7 +2,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
-import { useWindowDimensions } from 'react-native';
+import { SCREEN_WIDTH } from '../../constants/Screen';
 import { useMessage } from '../../hooks/use-message';
 import { TKeys } from '../../locales/constants';
 import InvocationsScreen from '../../screens/invocations/InvocationsScreen';
@@ -15,7 +15,6 @@ import { InvocationsParamList } from '../types';
 
 export default function InvocationsStack() {
   const { formatMessage } = useMessage();
-  const { width } = useWindowDimensions();
   const Stack = createStackNavigator<InvocationsParamList>();
 
   function immunizationInvocationsTitle(period: ImmunizationPeriod) {
@@ -30,7 +29,7 @@ export default function InvocationsStack() {
         screenOptions={{
           headerShown: true,
           headerMode: 'float',
-          headerTitleStyle: { fontSize: 14, width: width - 10 },
+          headerTitleStyle: { fontSize: 14, width: SCREEN_WIDTH - 10 },
         }}
       >
         <Stack.Screen name="Invocations" component={InvocationsScreen} options={{ headerShown: false }} />
