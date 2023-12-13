@@ -58,6 +58,8 @@ export const english: Translations = {
   [TKeys.BOOK_DESC_18]: '',
 
   // PURIFICATION
+  [TKeys.PURIFICATION_TITLE]: '',
+  [TKeys.PURIFICATION_TITLE_SUB]: '',
   [TKeys.PURIFICATION_OBSTACLES]: '',
   [TKeys.PURIFICATION_BODYPART_INTRODUCTION]:
     'In this first stage, God Almighty willing, we will discuss the purification of the seven body parts that are accompanied by the Muhammadian invocations, called the invocations of repentance, and spiritual observations that advance the aspirant in the purification stages, and increase the purity of his sight and insight, his ear and his clairvoyance, his body parts and his inner being, and they come in the following order:',
@@ -965,4 +967,6 @@ export const english: Translations = {
   [TKeys.GENERAL_PRESENTATION_TITLE]: 'General presentation',
   [TKeys.INITIATION_TITLE]: 'Initiation',
   [TKeys.CONCLUSION]: 'Conclusion',
+  [TKeys.DEDICATION]: 'Dedication',
+  [TKeys.SOURAT_A3LA]: '',
 };

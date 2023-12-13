@@ -52,6 +52,11 @@ export enum TKeys {
   BOOK_TITLE_18 = 'book.title.18',
   BOOK_DESC_18 = 'book.desc.18',
 
+  PURIFICATION_TITLE = 'purification.title',
+  PURIFICATION_TITLE_SUB = 'purification.title.sub',
+  PURIFICATION_DEDICATION = 'purification.dedication',
+  PURIFICATION_PRESENTATION = 'purification.presentation',
+  PURIFICATION_CONCLUSION = 'purification.conclusion',
   PURIFICATION_OBSTACLES = 'purification.obstacles',
 
   PURIFICATION_BODYPART_CLEANING = 'purification.bodypart.cleaning',
@@ -929,4 +934,6 @@ export enum TKeys {
   GENERAL_PRESENTATION_TITLE = 'general.presentation.title',
   INITIATION_TITLE = 'initiation.title',
   CONCLUSION = 'conclusion',
+  DEDICATION = 'dedication',
+  SOURAT_A3LA = 'sourat.a3la',
 }

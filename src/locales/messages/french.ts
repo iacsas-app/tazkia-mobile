@@ -68,6 +68,8 @@ export const french: Translations = {
   [TKeys.BOOK_DESC_18]: '',
 
   // PURIFICATION
+  [TKeys.PURIFICATION_TITLE]: '',
+  [TKeys.PURIFICATION_TITLE_SUB]: '',
   [TKeys.PURIFICATION_OBSTACLES]: '',
   [TKeys.PURIFICATION_BODYPART_INTRODUCTION]:
     "Dans cette première partie, si Dieu Tout-Puissant le veut, nous discuterons de la purification des sept membres qui sont accompagnés d'invocations Mohammadiennes (Dikr Muhammadi), appelé invocations du repentir, et des observations spirituelles qui font progresser l'aspirant dans les étapes de purification et augmentent la pureté de sa vue et sa perspicacité, son oreille et sa clairvoyance, ses membres et son être intérieur, et ils viennent dans l'ordre suivant :",
@@ -978,4 +980,6 @@ export const french: Translations = {
   [TKeys.GENERAL_PRESENTATION_TITLE]: 'Présentation générale',
   [TKeys.INITIATION_TITLE]: 'Initiation',
   [TKeys.CONCLUSION]: 'Conclusion',
+  [TKeys.DEDICATION]: 'Dédicace',
+  [TKeys.SOURAT_A3LA]: '',
 };

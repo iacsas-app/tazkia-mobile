@@ -58,7 +58,7 @@ export default function PressableStep({ index, item, nameTextSize, descriptionTe
           entering={FadeInLeft.delay(400 + index * 60).duration(600)}
           exiting={FadeOut}
           style={{
-            fontWeight: 'bold',
+            fontWeight: '900',
             fontSize: Font.size(descriptionTextSize ?? arabic ? 14 : 13),
             textAlign: 'center',
           }}

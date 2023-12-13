@@ -13,12 +13,12 @@ import Text from '../Text';
 import VStack from '../stack/VStack';
 
 export type SimpleDialogRef = {
-  open(key: TKeys, titleKey?: TKeys, detailsKey?: number): void;
+  open(keys: TKeys | TKeys[], titleKey?: TKeys, detailsKey?: number): void;
   close(): void;
 };
 
 type State = {
-  key: TKeys;
+  keys: TKeys | TKeys[];
   titleKey?: TKeys;
   detailsKey?: number;
 };
@@ -31,8 +31,8 @@ const SimpleDialog = forwardRef<SimpleDialogRef>((_, ref) => {
     ref,
     () => {
       return {
-        open(key: TKeys, titleKey?: TKeys, detailsKey?: number) {
-          setState({ key, titleKey, detailsKey });
+        open(keys: TKeys | TKeys[], titleKey?: TKeys, detailsKey?: number) {
+          setState({ keys, titleKey, detailsKey });
         },
         close() {
           handleClose();
@@ -50,7 +50,8 @@ const SimpleDialog = forwardRef<SimpleDialogRef>((_, ref) => {
     return <></>;
   }
 
-  const { key, titleKey, detailsKey } = state;
+  const { titleKey, keys, detailsKey } = state;
+  const contentKeys = keys ? (Array.isArray(keys) ? keys : [keys]) : [];
 
   return (
     <Portal>
@@ -63,8 +64,14 @@ const SimpleDialog = forwardRef<SimpleDialogRef>((_, ref) => {
                   {formatMessage(titleKey)}
                 </Animated.Text>
               )}
-              <Animated.View entering={FadeInDown.duration(50).springify()} style={styles.body}>
-                <Text style={styles.contentText}>{formatMessage(key)}</Text>
+              <Animated.View entering={FadeInDown.duration(50).springify()}>
+                <VStack style={GlobalStyles.center}>
+                  {contentKeys.map((key) => (
+                    <Text variant="bodySmall" key={key} style={styles.contentText}>
+                      {formatMessage(key)}
+                    </Text>
+                  ))}
+                </VStack>
               </Animated.View>
             </VStack>
           </ScrollView>

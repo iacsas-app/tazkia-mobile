@@ -76,6 +76,8 @@ export const indonesian: Translations = {
     ' Kitab ini atas idzin Allah akan menjadi petunjuk jalan, penutup bagi para hamba, penyala rindu, penghalus rasa, dan pintu masuk menuju Hadirat mutlak Allah Swt dengan sirr kunci dan idzin yang jelas bagi para salik yang ingin memasuki hadirat Sang Kekasih, dan bagi setiap orang yang ingin maju dalam tingkat kedekatan dan ihsan. \nTajalli ini dari sholawat hakikat, kami persembahkan kepada setiap orang yang mencari jalan, yang berjalan menuju hadrat tahqiq, yang mengikuti segala sesuatu yang disunnahkan dengan penuh kehati-hatian, semua itu adalah sholawat dari hati Ahmadi, yang terlimpahkan atas tajalli dzat Muhammadi dalam bentuk sirr yang bersinar di hati para syekh kami yang terhormat, terhubung dengan setiap orang yang membaca sholawat ini atau mencicipi aroma baik ini, atau cahaya pemahaman ini, mengakar di hatinya, dan ittishal (hubungan) ini berlanjut dari hati ke hati. hati sampai murid tersebut fana dari wujudnya dan memasuki hadrah tahqiq Allah Swt.',
 
   // PURIFICATION
+  [TKeys.PURIFICATION_TITLE]: '',
+  [TKeys.PURIFICATION_TITLE_SUB]: '',
   [TKeys.PURIFICATION_OBSTACLES]: 'Beberapa kendala yang mungkin dihadapi murid pada tahap ini',
   [TKeys.PURIFICATION_BODYPART_INTRODUCTION]:
     'Pada bagian pertama ini insya Allah kita akan membahas tentang bersuci tujuh anggota badan yang diiringi dengan zikir kepada Muhammad yang disebut zikir taubat, dan zikir ruhani yang memajukan calon dalam tahap bersuci, serta meningkatkan kesucian. penglihatan dan wawasannya, pendengarannya dan batinnya, anggota badannya dan batinnya, dan urutannya adalah sebagai berikut:',
@@ -1095,4 +1097,6 @@ export const indonesian: Translations = {
   [TKeys.GENERAL_PRESENTATION_TITLE]: 'Presentasi umum',
   [TKeys.INITIATION_TITLE]: 'Inisiasi',
   [TKeys.CONCLUSION]: 'Kesimpulan',
+  [TKeys.DEDICATION]: 'Dedikasi',
+  [TKeys.SOURAT_A3LA]: '',
 };
