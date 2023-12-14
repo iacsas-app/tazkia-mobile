@@ -1,13 +1,9 @@
 import { useStoreRehydrated } from 'easy-peasy';
-import React, { PropsWithChildren, useEffect, useMemo } from 'react';
+import React, { PropsWithChildren } from 'react';
 import { RawIntlProvider, createIntl, createIntlCache } from 'react-intl';
-import { useApplication } from '../hooks/use-application';
-import { localesTranslation } from '../locales';
-import { LOCALE_KEY, SupportedLocale } from '../locales/types';
+import { locales } from '../locales';
 import FirstVisitScreen from '../screens/FirstVisitScreen';
-import { FIRST_VISIT_DATE } from '../services/Helpers';
-import { useStoreActions, useStoreState } from '../stores/hooks';
-import { storageEngine } from '../stores/storage-engine';
+import { useGlobal } from './AppProvider';
 
 function WaitForStateRehydration({ children }: PropsWithChildren<unknown>) {
   const isRehydrated = useStoreRehydrated();
@@ -15,32 +11,18 @@ function WaitForStateRehydration({ children }: PropsWithChildren<unknown>) {
 }
 
 export default function IntlProvider({ children }: PropsWithChildren<unknown>) {
-  const { locale, defaultLang } = useApplication();
-  const messages = useStoreState((state) => state.intl.messages);
-  const update = useStoreActions((actions) => actions.intl.update);
-  const languageKeys = useMemo(() => Object.keys(localesTranslation) as SupportedLocale[], []);
-  const firstVisitDate = useStoreState((state) => state.global.firstVisitDate);
-  const setFirstVisitDate = useStoreActions((actions) => actions.global.setFirstVisitDate);
+  const { locale, firstVisitDate: firstVisit } = useGlobal();
 
-  useEffect(() => {
-    if (!locale) {
-      storageEngine.getItem(LOCALE_KEY).then((lang) => update(lang ? lang : defaultLang));
-    }
-    if (firstVisitDate === undefined) {
-      storageEngine.getItem(FIRST_VISIT_DATE).then((date) => setFirstVisitDate(date));
-    }
-  }, [locale, firstVisitDate]);
-
-  if (firstVisitDate === undefined || !locale) {
-    return null;
+  if (!locale) {
+    return <></>;
   }
 
   const cache = createIntlCache();
-  const intl = createIntl({ locale, messages: messages as any }, cache);
+  const intl = createIntl({ locale, messages: locales[locale] }, cache);
 
   return (
     <WaitForStateRehydration>
-      <RawIntlProvider value={intl}>{firstVisitDate === null ? <FirstVisitScreen /> : children}</RawIntlProvider>
+      <RawIntlProvider value={intl}>{firstVisit === null ? <FirstVisitScreen /> : children}</RawIntlProvider>
     </WaitForStateRehydration>
   );
 }

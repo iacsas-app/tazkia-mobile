@@ -27,7 +27,7 @@ export default function LanguageOption({ value, icon, color, onChange }: Languag
       <HStack spacing={12} style={GlobalStyles.centerAlign}>
         <Avatar.Image source={icon} size={25} />
         <VStack>
-          <Text variant="bodyLarge" style={{ fontWeight: 'bold', color }}>
+          <Text variant="bodyMedium" style={{ fontWeight: 'bold', color }}>
             {language.name}
           </Text>
           <Text variant="bodySmall" style={{ color }}>

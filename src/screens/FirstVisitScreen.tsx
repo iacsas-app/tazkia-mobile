@@ -8,22 +8,21 @@ import { langFlags } from '../components/header/settings/language/LanguageSettin
 import ScreenLayout from '../components/layout/ScreenLayout';
 import HStack from '../components/stack/HStack';
 import VStack from '../components/stack/VStack';
-import { useApplication } from '../hooks/use-application';
 import { useMessage } from '../hooks/use-message';
 import { localesTranslation } from '../locales';
 import { TKeys } from '../locales/constants';
-import { FIRST_VISIT_DATE } from '../services/Helpers';
-import { storageEngine } from '../stores/storage-engine';
+import { useGlobal } from '../providers/AppProvider';
 import GlobalStyles from '../styles/GlobalStyles';
 
 export default function FirstVisitScreen() {
-  const { locale, isSystemLanguageSupported, setLocale } = useApplication();
-  const { setFirstVisitDate } = useApplication();
+  const { locale, isSystemLanguageSupported, setLocale, setFirstVisitDate } = useGlobal();
   const { formatMessage } = useMessage();
   const [chooseLanguage, setChooseLanguage] = useState<boolean>(!isSystemLanguageSupported);
 
   function handlePressYes() {
-    setLocale(locale);
+    if (locale) {
+      setLocale(locale);
+    }
     init();
   }
 
@@ -36,9 +35,7 @@ export default function FirstVisitScreen() {
   }
 
   function init() {
-    const date = Date.now();
-    storageEngine.setItem(FIRST_VISIT_DATE, date);
-    setFirstVisitDate(date);
+    setFirstVisitDate(Date.now());
   }
 
   if (!locale || chooseLanguage === undefined) {

@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     fontSize: Font.size(18),
   },
   part: {
-    width: SCREEN_WIDTH - 150,
+    width: SCREEN_WIDTH - 130,
     paddingVertical: 5,
     borderRadius: 25,
     elevation: 6,
@@ -147,9 +147,10 @@ const styles = StyleSheet.create({
     color: 'teal',
     backgroundColor: '#66cdaa21',
     paddingHorizontal: 15,
-    paddingVertical: 5,
+    paddingBottom: 5,
+    paddingTop: 10,
     borderRadius: 20,
     opacity: 0.8,
   },
-  action: { fontSize: 20, fontWeight: '900', textShadowRadius: 8 },
+  action: { fontSize: 20, fontWeight: '900', textShadowRadius: 5 },
 });

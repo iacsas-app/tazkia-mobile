@@ -1,16 +1,13 @@
 import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 import PressableStep, { Part } from '../../components/PressableStep';
-import Text from '../../components/Text';
 import VStack from '../../components/stack/VStack';
 import { Color } from '../../constants/Color';
 import { SCREEN_WIDTH } from '../../constants/Screen';
-import { useApplication } from '../../hooks/use-application';
 import { TKeys } from '../../locales/constants';
 import GlobalStyles from '../../styles/GlobalStyles';
 
 export default function PresentationScreen() {
-  const { locale } = useApplication();
   const parts: Part[] = useMemo(
     () => [
       {
@@ -42,7 +39,6 @@ export default function PresentationScreen() {
       {parts.map((item: Part, index: number) => (
         <PressableStep key={index} item={item} index={index} style={styles.part} />
       ))}
-      <Text variant="headlineLarge">locale: {locale}</Text>
     </VStack>
   );
 }
