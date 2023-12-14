@@ -700,6 +700,7 @@ export const indonesian: Translations = {
   [TKeys.INVOCATIONS_IMMUNIZATION_EVENING_40]: '',
 
   // Invocations Faydo rahmani
+  [TKeys.INVOCATIONS_FAYDO_INTRODUCTION]: '',
   [TKeys.INVOCATIONS_FAYDO_CHAPTER_1_TITLE]: '',
   [TKeys.INVOCATIONS_FAYDO_CHAPTER_1_SUMMARY]: '',
   [TKeys.INVOCATIONS_FAYDO_CHAPTER_2_TITLE]: '',

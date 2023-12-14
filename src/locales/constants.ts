@@ -546,6 +546,7 @@ export enum TKeys {
   INVOCATIONS_IMMUNIZATION_EVENING_40 = 'invocations.immunization.evening.40',
 
   // Invocations Faydo rahmani
+  INVOCATIONS_FAYDO_INTRODUCTION = 'invocations.faydo.introduction',
   INVOCATIONS_FAYDO_CHAPTER_1_TITLE = 'invocations.faydo.chapter.1.title',
   INVOCATIONS_FAYDO_CHAPTER_1_SUMMARY = 'invocations.faydo.chapter.1.summary',
   INVOCATIONS_FAYDO_CHAPTER_2_TITLE = 'invocations.faydo.chapter.2.title',

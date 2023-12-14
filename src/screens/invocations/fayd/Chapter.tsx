@@ -1,9 +1,7 @@
 import { memo } from 'react';
 import { StyleSheet, View, ViewToken } from 'react-native';
-import { Avatar } from 'react-native-paper';
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import Text from '../../../components/Text';
-import HStack from '../../../components/stack/HStack';
 import VStack from '../../../components/stack/VStack';
 import { Color } from '../../../constants/Color';
 import { SCREEN_WIDTH } from '../../../constants/Screen';
@@ -15,8 +13,9 @@ interface Props {
   chapter: number;
   total: number;
   viewableItems: Animated.SharedValue<ViewToken[]>;
+  onIntro(): void;
 }
-function Chapter({ chapter, total, viewableItems }: Props) {
+function Chapter({ chapter, total, viewableItems, ...props }: Props) {
   const { formatMessage } = useMessage();
 
   const baseKey = `invocations.faydo`;
@@ -37,7 +36,11 @@ function Chapter({ chapter, total, viewableItems }: Props) {
     };
   }, []);
 
-  function handlePress() {}
+  function handlePress() {
+    if (first) {
+      props.onIntro();
+    }
+  }
 
   return (
     <Animated.View
@@ -53,19 +56,16 @@ function Chapter({ chapter, total, viewableItems }: Props) {
       onTouchEnd={handlePress}
     >
       <View style={styles.container}>
-        <HStack style={GlobalStyles.center}>
-          {!first && <Avatar.Text label={chapter.toString()} size={25} style={styles.id} color="white" />}
-          <VStack style={GlobalStyles.center}>
-            <Text variant="titleSmall" style={{ ...styles.summary, color: first ? 'white' : 'black' }}>
-              {formatMessage(titleKey)}
+        <VStack style={GlobalStyles.center} spacing={8}>
+          <Text variant="titleSmall" style={{ ...styles.title, color: first ? 'white' : 'black' }}>
+            {formatMessage(titleKey)}
+          </Text>
+          {!first && (
+            <Text variant="labelSmall" style={styles.summary}>
+              {formatMessage(summaryKey)}
             </Text>
-            {!first && (
-              <Text variant="labelSmall" style={styles.subSummary}>
-                {formatMessage(summaryKey)}
-              </Text>
-            )}
-          </VStack>
-        </HStack>
+          )}
+        </VStack>
       </View>
     </Animated.View>
   );
@@ -79,30 +79,10 @@ const styles = StyleSheet.create({
     elevation: 10,
     borderRadius: 25,
   },
-  container: { width: SCREEN_WIDTH - 32 },
-  summary: { fontSize: 16, textAlign: 'justify', fontWeight: '700' },
-  subSummary: {
-    maxWidth: SCREEN_WIDTH - 130,
-    justifyContent: 'center',
-    textAlign: 'center',
-    fontWeight: '600',
-  },
+  container: { width: SCREEN_WIDTH - 5 },
+  title: { fontSize: 16, textAlign: 'center', fontWeight: '900' },
+  summary: { fontSize: 13, textAlign: 'justify', fontWeight: '500', paddingHorizontal: 25 },
   id: { elevation: 2, backgroundColor: '#3db371', position: 'absolute', left: 5 },
-  when: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'justify',
-    padding: 0,
-    marginTop: 4,
-    backgroundColor: '#66cdaa21',
-    borderRadius: 20,
-    paddingHorizontal: 15,
-    paddingVertical: 3,
-    fontSize: 9,
-    color: 'teal',
-    fontWeight: '600',
-    marginHorizontal: 40,
-  },
 });
 
 export default memo(Chapter);

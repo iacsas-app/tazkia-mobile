@@ -1,20 +1,21 @@
-import React from 'react';
+import React, { useCallback, useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
-import Text from '../../../components/Text';
+import SimpleDialog, { SimpleDialogRef } from '../../../components/dialogs/SimpleDialog';
 import { Color } from '../../../constants/Color';
-import { useMessage } from '../../../hooks/use-message';
-import GlobalStyles from '../../../styles/GlobalStyles';
+import { TKeys } from '../../../locales/constants';
 import Chapters from './Chapters';
 
 export default function OverflowInvocationsScreen() {
-  const { formatMessage } = useMessage();
+  const ref = useRef<SimpleDialogRef>(null);
+
+  const handleIntro = useCallback(() => {
+    ref.current?.open(TKeys.INVOCATIONS_FAYDO_INTRODUCTION, TKeys.GENERAL_PRESENTATION_TITLE);
+  }, []);
 
   return (
     <View style={styles.container}>
-      <Text variant="bodyMedium" style={GlobalStyles.fixedHeader}>
-        {formatMessage(`invocations.ahzabs.section.1`)}
-      </Text>
-      <Chapters />
+      <Chapters onIntro={handleIntro} />
+      <SimpleDialog ref={ref} />
     </View>
   );
 }
