@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Manhaj Nabawi :: منهج نبوي",
-    "slug": "tazkia",
+    "name": "Manhaj Nabawi|منهج نبوي",
+    "slug": "manhaj-nabawi",
     "version": "1.0.0",
     "scheme": "manhaj-nabawi-app",
     "orientation": "portrait",
@@ -28,7 +28,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "58ee58ea-6a0c-438d-92b6-529eae2c6942"
+        "projectId": "cca9d80e-5828-4dd6-b37f-79284f6d4bbf"
       }
     },
     "platforms": ["ios","android"],
@@ -37,7 +37,7 @@
       "policy": "appVersion"
     },
     "updates": {
-      "url": "https://u.expo.dev/58ee58ea-6a0c-438d-92b6-529eae2c6942"
+      "url": "https://u.expo.dev/cca9d80e-5828-4dd6-b37f-79284f6d4bbf"
     }
   }
 }
