@@ -4,7 +4,7 @@ import { PrimitiveType } from 'react-intl';
 import { StyleSheet, View } from 'react-native';
 import CircularProgress from 'react-native-circular-progress-indicator';
 import { Avatar } from 'react-native-paper';
-import Animated, { FadeInDown, FadeInLeft, FadeInUp } from 'react-native-reanimated';
+import Animated, { FadeInDown, FadeInLeft } from 'react-native-reanimated';
 import { Color } from '../../constants/Color';
 import { Font } from '../../constants/Font';
 import { SCREEN_WIDTH } from '../../constants/Screen';
@@ -39,14 +39,14 @@ function PressableItem({ inProgress, ...props }: Props) {
   const { formatMessage } = useMessage();
   const completed = props.percentage === 100;
   const middleWidth = useMemo(() => SCREEN_WIDTH - 50 - props.stepTitleWidth, []);
-  const speed = 200;
+  const speed = 150;
   const id = props.index + 1;
 
   return (
     <Animated.View
-      entering={FadeInUp.delay(speed * id)
-        .duration(300)
-        .mass(2)}
+      entering={FadeInDown.delay(speed * (id / 2))
+        .duration(400)
+        .mass(1)}
       style={{ marginBottom: 7 }}
       onTouchEnd={() => props.onPress(props.index + 1)}
     >

@@ -35,7 +35,7 @@ export default function PresentationScreen() {
   );
 
   return (
-    <VStack style={styles.container} spacing={18}>
+    <VStack style={styles.container} spacing={15}>
       {parts.map((item: Part, index: number) => (
         <PressableStep key={index} item={item} index={index} style={styles.part} />
       ))}

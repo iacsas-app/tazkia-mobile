@@ -53,7 +53,7 @@ export default function LevelSelector({ part, ...props }: Props) {
         <VStack style={GlobalStyles.center}>
           <Text
             variant="titleSmall"
-            style={{ fontWeight: '900', fontSize: Font.size(arabic ? 18 : 15), textAlign: 'center' }}
+            style={{ fontWeight: '900', fontSize: Font.size(arabic ? 18 : 15), textAlign: 'center', color: 'teal' }}
           >
             {formatMessage(`purification.soul.${part}.title`)}
           </Text>

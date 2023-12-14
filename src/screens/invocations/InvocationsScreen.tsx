@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import React, { ReactNode, useMemo, useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Avatar } from 'react-native-paper';
-import Animated, { FadeInUp } from 'react-native-reanimated';
+import Animated, { FadeInDown } from 'react-native-reanimated';
 import Text from '../../components/Text';
 import BottomSheet, { BottomSheetRef } from '../../components/bottomSheet/BottomSheet';
 import SimpleDialog, { SimpleDialogRef } from '../../components/dialogs/SimpleDialog';
@@ -91,7 +91,9 @@ export default function InvocationsScreen() {
         {parts.map((item, index: number) => (
           <Animated.View
             key={index}
-            entering={FadeInUp.delay(100 * (index * 2))}
+            entering={FadeInDown.delay(150 * (index * 1))
+              .duration(700)
+              .mass(1)}
             style={styles.part}
             onTouchStart={() => handlePress(item.route)}
           >

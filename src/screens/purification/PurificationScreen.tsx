@@ -52,17 +52,17 @@ export default function PurificationScreen() {
               style={styles.title}
             >
               {formatMessage(TKeys.PURIFICATION_TITLE)}
-              {': '}
+              {' : '}
             </Animated.Text>
             <Animated.Text
-              entering={FadeInLeft.delay(600).duration(500).mass(29)}
+              entering={FadeInLeft.delay(300).duration(500).mass(29)}
               exiting={FadeOut}
               style={styles.title}
             >
               {formatMessage(TKeys.PURIFICATION_TITLE_SUB)}
             </Animated.Text>
           </HStack>
-          <Animated.Text entering={FadeInUp.delay(700).duration(500).mass(20)} exiting={FadeOut} style={styles.sourat}>
+          <Animated.Text entering={FadeInUp.delay(700).duration(700).mass(1)} exiting={FadeOut} style={styles.sourat}>
             {formatMessage(TKeys.SOURAT_A3LA)}
           </Animated.Text>
         </VStack>
@@ -126,7 +126,6 @@ const styles = StyleSheet.create({
   container: {
     ...GlobalStyles.container,
     backgroundColor: Color.backgroundColor,
-    paddingHorizontal: 15,
   },
   title: {
     fontWeight: '800',
@@ -143,12 +142,11 @@ const styles = StyleSheet.create({
   sourat: {
     fontWeight: '600',
     textAlign: 'center',
-    fontSize: Font.size(14),
+    fontSize: Font.size(10),
     color: 'teal',
-    backgroundColor: '#66cdaa21',
+    backgroundColor: '#66cdaa0d',
     paddingHorizontal: 15,
-    paddingBottom: 5,
-    paddingTop: 10,
+    paddingVertical: 10,
     borderRadius: 20,
     opacity: 0.8,
   },
