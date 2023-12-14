@@ -1,10 +1,8 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { Easing, Image, StyleSheet } from 'react-native';
 import { Appbar, BottomNavigation } from 'react-native-paper';
-import { useSharedValue } from 'react-native-reanimated';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
 import SettingsDialog, { SettingsDialogRef } from '../components/dialogs/SettingsDialog';
-import { useApplication } from '../hooks/use-application';
 import { useMessage } from '../hooks/use-message';
 import { TKeys } from '../locales/constants';
 import GlobalStyles from '../styles/GlobalStyles';
@@ -19,11 +17,9 @@ type RoutesState = Array<{
 }>;
 
 const RootNavigator = () => {
-  const height = useSharedValue(0);
-  const { isPurification } = useApplication();
   const { formatMessage } = useMessage();
   const ref = useRef<SettingsDialogRef>(null);
-  //const headerStyle = useAnimatedStyle(() => ({ height: height.value }));
+
   const openSettingDialog = useCallback(() => ref.current?.open(), []);
 
   const insets = useSafeAreaInsets();
@@ -47,13 +43,9 @@ const RootNavigator = () => {
     },
   ]);
 
-  /*useEffect(() => {
-    height.value = withTiming(isPurification ? 0 : 50);
-  }, [isPurification]);*/
-
   return (
     <SafeAreaProvider>
-      <Appbar.Header elevated style={[styles.header]}>
+      <Appbar.Header elevated style={styles.header}>
         <Appbar.Header style={styles.logoContainer}>
           <Image source={require('./../../assets/icon.png')} style={styles.logo} />
         </Appbar.Header>
@@ -86,7 +78,7 @@ const RootNavigator = () => {
 };
 
 const styles = StyleSheet.create({
-  header: { height: 50 },
+  header: { height: 45 },
   logoContainer: { backgroundColor: 'transparent', height: 45 },
   logo: {
     width: 45,
