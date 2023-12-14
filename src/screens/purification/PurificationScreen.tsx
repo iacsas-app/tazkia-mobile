@@ -1,10 +1,9 @@
 import { lowerFirst } from 'lodash';
 import { useMemo, useRef, useState } from 'react';
 import { StyleSheet } from 'react-native';
-import { FAB } from 'react-native-paper';
 import Animated, { FadeInLeft, FadeInRight, FadeInUp, FadeOut } from 'react-native-reanimated';
 import PressableStep, { Part } from '../../components/PressableStep';
-import SimpleDialog, { SimpleDialogRef } from '../../components/dialogs/SimpleDialog';
+import { SimpleDialogRef } from '../../components/dialogs/SimpleDialog';
 import HStack from '../../components/stack/HStack';
 import VStack from '../../components/stack/VStack';
 import { Color } from '../../constants/Color';
@@ -78,46 +77,6 @@ export default function PurificationScreen() {
           ))}
         </VStack>
       </VStack>
-      <FAB.Group
-        open={open}
-        icon={open ? 'window-close' : 'view-list'}
-        actions={[
-          {
-            icon: 'gift',
-            label: formatMessage(TKeys.DEDICATION),
-            size: 'small',
-            labelStyle: styles.action,
-            onPress: () => handleAction(TKeys.DEDICATION),
-          },
-          {
-            icon: 'script-text',
-            label: formatMessage(TKeys.GENERAL_PRESENTATION_TITLE),
-            labelStyle: styles.action,
-            size: 'small',
-            onPress: () => handleAction(TKeys.GENERAL_PRESENTATION_TITLE),
-          },
-          {
-            icon: 'timeline-clock',
-            label: formatMessage(TKeys.INVOCATION_NIVEAU_TITLE),
-            labelStyle: styles.action,
-            size: 'small',
-            onPress: () => handleAction(TKeys.INVOCATION_NIVEAU_TITLE),
-          },
-          {
-            icon: 'seal-variant',
-            label: formatMessage(TKeys.CONCLUSION),
-            labelStyle: styles.action,
-            size: 'small',
-            onPress: () => handleAction(TKeys.CONCLUSION),
-          },
-        ]}
-        onStateChange={({ open }) => setOpen(open)}
-        visible={true}
-        variant="primary"
-        fabStyle={{ ...GlobalStyles.center, width: 45, aspectRatio: 1 }}
-        style={{ right: -5, bottom: -5, position: 'absolute' }}
-      />
-      <SimpleDialog ref={ref} />
     </>
   );
 }
