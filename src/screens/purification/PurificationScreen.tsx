@@ -15,7 +15,7 @@ import { useMessage } from '../../hooks/use-message';
 import usePurification from '../../hooks/use-purification';
 import { TKeys } from '../../locales/constants';
 import GlobalStyles from '../../styles/GlobalStyles';
-import { purificationStages } from './common/Helper';
+import { actions, purificationStages } from './common/Helper';
 
 export default function PurificationScreen() {
   const ref = useRef<SimpleDialogRef>(null);
@@ -23,10 +23,10 @@ export default function PurificationScreen() {
   const [open, setOpen] = useState<boolean>(false);
   const { hasProgress } = usePurification();
   const parts: Part[] = useMemo(() => purificationStages, []);
-  const actions: Record<string, TKeys | TKeys[]> = useMemo(() => actions, []);
+  const actionKeys: Record<string, TKeys | TKeys[]> = useMemo(() => actions, []);
 
   function handleAction(key: TKeys) {
-    ref.current?.open(actions[key], key);
+    ref.current?.open(actionKeys[key], key);
   }
 
   return (

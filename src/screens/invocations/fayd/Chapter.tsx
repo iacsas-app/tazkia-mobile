@@ -57,11 +57,11 @@ function Chapter({ chapter, total, viewableItems, ...props }: Props) {
     >
       <View style={styles.container}>
         <VStack style={GlobalStyles.center} spacing={8}>
-          <Text variant="titleSmall" style={{ ...styles.title, color: first ? 'white' : 'black' }}>
+          <Text variant="titleLarge" style={{ ...styles.title, color: first ? 'white' : 'black' }}>
             {formatMessage(titleKey)}
           </Text>
           {!first && (
-            <Text variant="labelSmall" style={styles.summary}>
+            <Text variant="bodyMedium" style={styles.summary}>
               {formatMessage(summaryKey)}
             </Text>
           )}
