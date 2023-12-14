@@ -1,6 +1,5 @@
 import { useMemo, useState } from 'react';
 import { View } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Avatar } from 'react-native-paper';
 import { AvatarImageSource } from 'react-native-paper/lib/typescript/components/Avatar/AvatarImage';
 import { useApplication } from '../../../../hooks/use-application';
@@ -12,8 +11,6 @@ import GlobalStyles from '../../../../styles/GlobalStyles';
 import Text from '../../../Text';
 import HStack from '../../../stack/HStack';
 import VStack from '../../../stack/VStack';
-import { SettingsStyles } from '../SettingsStyles';
-import LanguageSelector from './LanguageSelector';
 
 export const langFlags: Record<SupportedLocale, AvatarImageSource> = {
   ar: require('./../../../../../assets/img/flags/arabic-flag.png'),
@@ -42,20 +39,17 @@ export default function LanguageSetting({ open, onClick }: Props) {
 
   return (
     <View>
-      <TouchableOpacity onPress={handlePress} style={SettingsStyles.surface}>
-        <HStack spacing={17} style={GlobalStyles.centerAlign}>
-          <Avatar.Image source={languageFlags[lang]} size={30} />
-          <VStack>
-            <Text variant="titleMedium" style={{ fontWeight: '700', color: 'black' }}>
-              {formatMessage(TKeys.SETTINGS_LANGUAGE)}
-            </Text>
-            <Text variant="titleSmall" style={{ color: 'black' }}>
-              {formatMessage(`language.${languageKey.key}`)}
-            </Text>
-          </VStack>
-        </HStack>
-      </TouchableOpacity>
-      {show && <LanguageSelector flags={languageFlags} color="black" onChange={onClick} />}
+      <HStack spacing={17} style={GlobalStyles.centerAlign}>
+        <Avatar.Image source={languageFlags[lang]} size={30} />
+        <VStack>
+          <Text variant="titleMedium" style={{ fontWeight: '700', color: 'black' }}>
+            {formatMessage(TKeys.SETTINGS_LANGUAGE)}
+          </Text>
+          <Text variant="titleSmall" style={{ color: 'black' }}>
+            {formatMessage(`language.${languageKey.key}`)}
+          </Text>
+        </VStack>
+      </HStack>
     </View>
   );
 }

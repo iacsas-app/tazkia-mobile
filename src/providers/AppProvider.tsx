@@ -35,12 +35,14 @@ function reducer(state: GlobalState, action: GlobalAction): GlobalState {
   switch (action.type) {
     case GlobalActionKeys.SET_LOCALE: {
       let locale = action.payload;
-      if (!locale) {
+      /*if (!locale) {
         const isLangSupported = languageKeys.find((item) => item === systemLanguage) !== undefined;
         locale = isLangSupported ? (systemLanguage as SupportedLocale) : defaultLanguage;
+      }*/
+      if (!locale) {
+        locale = defaultLanguage;
       }
       storageEngine.setItem(LOCALE_KEY, locale);
-      reloadIfNecessary(locale);
       return { ...state, locale };
     }
     case GlobalActionKeys.SET_FIST_VISIT_DATE: {
@@ -83,6 +85,7 @@ export function useGlobal() {
 
   function setLocale(payload: SupportedLocale) {
     dispatch({ type: GlobalActionKeys.SET_LOCALE, payload });
+    reloadIfNecessary(payload);
   }
   function setFirstVisitDate(payload: number | null) {
     dispatch({ type: GlobalActionKeys.SET_FIST_VISIT_DATE, payload });
@@ -107,12 +110,19 @@ export default function AppProvider({ children }: PropsWithChildren<unknown>): R
       try {
         storageEngine.getItem(LOCALE_KEY).then((lang) => {
           dispatch({ type: GlobalActionKeys.SET_LOCALE, payload: lang });
+          reloadIfNecessary(lang);
         });
       } catch (e) {}
     }
   }, []);
 
   useEffect(() => {
+    reloadIfNecessary('ar');
+  }, []);
+
+  console.log(state);
+
+  /*useEffect(() => {
     if (state.firstVisitDate === undefined) {
       try {
         storageEngine
@@ -120,9 +130,9 @@ export default function AppProvider({ children }: PropsWithChildren<unknown>): R
           .then((date) => dispatch({ type: GlobalActionKeys.SET_FIST_VISIT_DATE, payload: date }));
       } catch (e) {}
     }
-  }, []);
+  }, []);*/
 
-  if (!state.locale || state.firstVisitDate === undefined) {
+  if (!state.locale) {
     return <></>;
   }
 
