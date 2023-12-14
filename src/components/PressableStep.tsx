@@ -37,7 +37,7 @@ export default function PressableStep({ index, item, nameTextSize, descriptionTe
   return (
     <Animated.View
       entering={FadeInDown.delay(150 * (index * 1))
-        .duration(600)
+        .duration(400)
         .mass(1)}
       exiting={FadeOut}
       style={{ ...props.style, backgroundColor }}

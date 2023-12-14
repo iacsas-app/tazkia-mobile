@@ -92,7 +92,7 @@ export default function InvocationsScreen() {
           <Animated.View
             key={index}
             entering={FadeInDown.delay(150 * (index * 1))
-              .duration(700)
+              .duration(400)
               .mass(1)}
             style={styles.part}
             onTouchStart={() => handlePress(item.route)}

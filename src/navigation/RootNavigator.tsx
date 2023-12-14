@@ -47,7 +47,7 @@ const RootNavigator = () => {
     <SafeAreaProvider>
       <Appbar.Header elevated style={styles.header}>
         <Appbar.Header style={styles.logoContainer}>
-          <Image source={require('./../../assets/icon.png')} style={styles.logo} />
+          <Image source={require('./../../assets/logo.png')} style={styles.logo} />
         </Appbar.Header>
         <Appbar.Content
           title={formatMessage(TKeys.APPLICATION_TITLE_PRIMARY)}
