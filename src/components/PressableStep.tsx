@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { Image, ImageSourcePropType, StyleProp, StyleSheet, View } from 'react-native';
-import Animated, { FadeIn, FadeInDown, FadeInLeft, FadeOut } from 'react-native-reanimated';
+import Animated, { FadeIn, FadeInDown, FadeInLeft } from 'react-native-reanimated';
 import { Color } from '../constants/Color';
 import { Font } from '../constants/Font';
 import { useApplication } from '../hooks/use-application';
@@ -39,7 +39,6 @@ export default function PressableStep({ index, item, nameTextSize, descriptionTe
       entering={FadeInDown.delay(150 * (index * 1))
         .duration(400)
         .mass(1)}
-      exiting={FadeOut}
       style={{ ...props.style, backgroundColor }}
       onTouchStart={handlePress}
     >
@@ -50,7 +49,6 @@ export default function PressableStep({ index, item, nameTextSize, descriptionTe
             entering={FadeIn.delay(250)
               .duration(100 * index)
               .mass(2)}
-            exiting={FadeOut}
             style={{ fontSize: Font.size(nameTextSize ?? arabic ? 14 : 13), textAlign: 'center' }}
           >
             {formatMessage(item.name)}
@@ -58,7 +56,6 @@ export default function PressableStep({ index, item, nameTextSize, descriptionTe
         )}
         <Animated.Text
           entering={FadeInLeft.delay(400 + index * 60).duration(600)}
-          exiting={FadeOut}
           style={{
             fontWeight: '700',
             fontSize: Font.size(descriptionTextSize ?? arabic ? 14 : 13),

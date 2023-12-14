@@ -9,6 +9,7 @@ export default function SoulScreen() {
   const { hasProgress } = usePurification();
   return (
     <TabNavigator
+      name="soul"
       hasProgress={hasProgress('soul')}
       presentationComponent={PresentationScreen}
       purificationComponent={HomeScreen}

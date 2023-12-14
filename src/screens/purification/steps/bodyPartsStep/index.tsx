@@ -9,6 +9,7 @@ export default function BodyPartsScreen() {
   const { hasProgress } = usePurification();
   return (
     <TabNavigator
+      name="bodyParts"
       hasProgress={hasProgress('bodyParts')}
       presentationComponent={PresentationScreen}
       purificationComponent={HomeScreen}

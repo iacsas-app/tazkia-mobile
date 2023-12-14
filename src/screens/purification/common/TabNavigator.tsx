@@ -9,10 +9,10 @@ export type TabParams = {
   Methodology: undefined;
   Invocation: undefined;
   Sunnahs: undefined;
-  Obstacles: undefined;
 };
 
 type Props = {
+  name: string;
   hasProgress: boolean;
   presentationComponent: any;
   purificationComponent: any;
@@ -26,6 +26,7 @@ export default function TabNavigator(props: Props) {
 
   return (
     <Tab.Navigator
+      id={props.name}
       initialRouteName={props.hasProgress ? 'Methodology' : 'Presentation'}
       screenOptions={{
         tabBarLabelStyle: { fontSize: Font.size(arabic ? 15 : 9), fontWeight: '800', textTransform: 'none' },

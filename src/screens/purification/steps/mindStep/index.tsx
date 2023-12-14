@@ -9,6 +9,7 @@ export default function MindScreen() {
   const { hasProgress } = usePurification();
   return (
     <TabNavigator
+      name="mind"
       hasProgress={hasProgress('mind')}
       presentationComponent={PresentationScreen}
       purificationComponent={HomeScreen}
