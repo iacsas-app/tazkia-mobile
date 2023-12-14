@@ -19,11 +19,10 @@ type RoutesState = Array<{
 const RootNavigator = () => {
   const { formatMessage } = useMessage();
   const ref = useRef<SettingsDialogRef>(null);
+  const insets = useSafeAreaInsets();
+  const [index, setIndex] = useState(0);
 
   const openSettingDialog = useCallback(() => ref.current?.open(), []);
-
-  const insets = useSafeAreaInsets();
-  const [index, setIndex] = React.useState(0);
 
   const [routes] = useState<RoutesState>([
     {

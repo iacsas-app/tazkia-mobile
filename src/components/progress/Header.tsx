@@ -3,8 +3,8 @@ import { StyleSheet } from 'react-native';
 import { Font } from '../../constants/Font';
 import { SCREEN_WIDTH } from '../../constants/Screen';
 import ProgressLine from '../../domains/common/ProgressLine';
-import { useApplication } from '../../hooks/use-application';
 import { useMessage } from '../../hooks/use-message';
+import { useGlobal } from '../../providers/AppProvider';
 import GlobalStyles from '../../styles/GlobalStyles';
 import Text from '../Text';
 import HStack from '../stack/HStack';
@@ -25,7 +25,7 @@ type Props = {
 };
 export default function Header({ hasProgress, ...props }: Props) {
   const { formatMessage } = useMessage();
-  const { arabic } = useApplication();
+  const { arabic } = useGlobal();
   return (
     <HStack
       style={{

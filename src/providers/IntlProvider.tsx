@@ -2,6 +2,7 @@ import { useStoreRehydrated } from 'easy-peasy';
 import React, { PropsWithChildren } from 'react';
 import { RawIntlProvider, createIntl, createIntlCache } from 'react-intl';
 import { locales } from '../locales';
+import FirstVisitScreen from '../screens/FirstVisitScreen';
 import { useGlobal } from './AppProvider';
 
 function WaitForStateRehydration({ children }: PropsWithChildren<unknown>) {
@@ -10,7 +11,7 @@ function WaitForStateRehydration({ children }: PropsWithChildren<unknown>) {
 }
 
 export default function IntlProvider({ children }: PropsWithChildren<unknown>) {
-  const { locale } = useGlobal();
+  const { locale, firstVisitDate } = useGlobal();
 
   if (!locale) {
     return <></>;
@@ -21,7 +22,7 @@ export default function IntlProvider({ children }: PropsWithChildren<unknown>) {
 
   return (
     <WaitForStateRehydration>
-      <RawIntlProvider value={intl}>{children}</RawIntlProvider>
+      <RawIntlProvider value={intl}>{firstVisitDate === null ? <FirstVisitScreen /> : children}</RawIntlProvider>
     </WaitForStateRehydration>
   );
 }

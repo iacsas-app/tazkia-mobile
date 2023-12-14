@@ -15,12 +15,12 @@ import { Font } from '../../../../../constants/Font';
 import { SCREEN_WIDTH } from '../../../../../constants/Screen';
 import ProgressLine from '../../../../../domains/common/ProgressLine';
 import { BodyPartType, PurificationStage } from '../../../../../domains/purification/BodyPart';
-import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';
 import useProgress from '../../../../../hooks/use-progress';
 import usePurification from '../../../../../hooks/use-purification';
 import { TKeys } from '../../../../../locales/constants';
 import { arabic } from '../../../../../locales/messages/arabic';
+import { useGlobal } from '../../../../../providers/AppProvider';
 import { useSnackbar } from '../../../../../providers/SnackbarProvider';
 import { PURIFICATION_MAX_DAYS, isCompleted } from '../../../../../services/Helpers';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
@@ -41,7 +41,7 @@ export default function Stage({ part, stage, ...props }: Props) {
   const { formatMessage } = useMessage();
   const { displaySnackbar } = useSnackbar();
   const [open, setOpen] = useState(false);
-  const { locale } = useApplication();
+  const { locale } = useGlobal();
   const { findBodyPart } = usePurification();
 
   const current = findBodyPart(part);

@@ -23,23 +23,21 @@ export default function PurificationStack() {
         }}
       >
         <Stack.Screen name="Purification" component={PurificationScreen} options={{ headerShown: false }} />
-        <Stack.Group screenOptions={{ presentation: 'card' }}>
-          <Stack.Screen
-            name="BodyParts"
-            component={BodyPartsScreen}
-            options={{ title: formatMessage(TKeys.PURIFICATION_BODYPART_TITLE) }}
-          />
-          <Stack.Screen
-            name="Mind"
-            component={MindScreen}
-            options={{ title: formatMessage(TKeys.PURIFICATION_MIND_TITLE) }}
-          />
-          <Stack.Screen
-            name="Soul"
-            component={SoulScreen}
-            options={{ title: formatMessage(TKeys.PURIFICATION_SOUL_TITLE) }}
-          />
-        </Stack.Group>
+        <Stack.Screen
+          name="BodyParts"
+          component={BodyPartsScreen}
+          options={{ title: formatMessage(TKeys.PURIFICATION_BODYPART_TITLE) }}
+        />
+        <Stack.Screen
+          name="Mind"
+          component={MindScreen}
+          options={{ title: formatMessage(TKeys.PURIFICATION_MIND_TITLE) }}
+        />
+        <Stack.Screen
+          name="Soul"
+          component={SoulScreen}
+          options={{ title: formatMessage(TKeys.PURIFICATION_SOUL_TITLE) }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

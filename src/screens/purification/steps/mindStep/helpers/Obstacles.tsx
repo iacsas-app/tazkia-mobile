@@ -79,22 +79,22 @@ export default function Obstacles() {
                 labelStyle={{ fontWeight: '900', color: 'white' }}
               />
 
-              <Text variant="bodyMedium" style={{ fontWeight: '900', color: 'teal' }}>
+              <Text variant="bodySmall" style={{ fontWeight: '900', color: 'teal' }}>
                 {formatMessage(item.title)}
               </Text>
             </HStack>
-            <Text variant="bodyMedium" style={fontStyle}>
+            <Text variant="bodySmall" style={fontStyle}>
               {formatMessage(item.summary)}
             </Text>
             {item.handle && (
               <VStack spacing={10}>
                 <HStack spacing={15} style={GlobalStyles.centerAlign}>
                   <Icon name="doctor" size={25} color="black" />
-                  <Text variant="bodyMedium" style={{ fontWeight: '700', color: 'black' }}>
+                  <Text variant="bodySmall" style={{ fontWeight: '700', color: 'black' }}>
                     {formatMessage(TKeys.PURIFICATION_MIND_OBSTACLES_HOW_TO_HANDLE)}
                   </Text>
                 </HStack>
-                <Text variant="bodyMedium" style={fontStyle}>
+                <Text variant="bodySmall" style={fontStyle}>
                   {formatMessage(item.handle)}
                 </Text>
               </VStack>

@@ -23,19 +23,7 @@ export default function PurificationScreen() {
   const [open, setOpen] = useState<boolean>(false);
   const { hasProgress } = usePurification();
   const parts: Part[] = useMemo(() => purificationStages, []);
-  const actions: Record<string, TKeys | TKeys[]> = useMemo(
-    () => ({
-      [TKeys.DEDICATION]: TKeys.PURIFICATION_DEDICATION,
-      [TKeys.GENERAL_PRESENTATION_TITLE]: TKeys.PURIFICATION_PRESENTATION,
-      [TKeys.INVOCATION_NIVEAU_TITLE]: [
-        TKeys.INVOCATION_NIVEAU_1,
-        TKeys.INVOCATION_NIVEAU_2,
-        TKeys.INVOCATION_NIVEAU_3,
-      ],
-      [TKeys.CONCLUSION]: TKeys.PURIFICATION_CONCLUSION,
-    }),
-    [],
-  );
+  const actions: Record<string, TKeys | TKeys[]> = useMemo(() => actions, []);
 
   function handleAction(key: TKeys) {
     ref.current?.open(actions[key], key);
@@ -44,7 +32,7 @@ export default function PurificationScreen() {
   return (
     <>
       <VStack style={styles.container} spacing={23}>
-        <VStack style={GlobalStyles.center} spacing={5}>
+        <VStack style={styles.top} spacing={5}>
           <HStack style={GlobalStyles.center} spacing={2}>
             <Animated.Text
               entering={FadeInRight.delay(200).duration(500).mass(2)}
@@ -115,7 +103,7 @@ export default function PurificationScreen() {
         visible={true}
         variant="primary"
         fabStyle={{ ...GlobalStyles.center, width: 45, aspectRatio: 1 }}
-        style={{ right: -5, bottom: -5, position: 'absolute' }}
+        style={styles.fab}
       />
       <SimpleDialog ref={ref} />
     </>
@@ -126,6 +114,10 @@ const styles = StyleSheet.create({
   container: {
     ...GlobalStyles.container,
     backgroundColor: Color.backgroundColor,
+  },
+  top: {
+    ...GlobalStyles.center,
+    marginTop: -40,
   },
   title: {
     fontWeight: '800',
@@ -150,5 +142,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     opacity: 0.8,
   },
+  fab: { right: -5, bottom: -5, position: 'absolute' },
   action: { fontSize: 20, fontWeight: '900', textShadowRadius: 5 },
 });

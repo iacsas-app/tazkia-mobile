@@ -1,8 +1,8 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { Font } from '../../../constants/Font';
-import { useApplication } from '../../../hooks/use-application';
 import { useMessage } from '../../../hooks/use-message';
 import { TKeys } from '../../../locales/constants';
+import { useGlobal } from '../../../providers/AppProvider';
 
 export type TabParams = {
   Presentation: undefined;
@@ -21,7 +21,7 @@ type Props = {
 };
 export default function TabNavigator(props: Props) {
   const { formatMessage } = useMessage();
-  const { arabic } = useApplication();
+  const { arabic } = useGlobal();
   const Tab = createMaterialTopTabNavigator<TabParams>();
 
   return (

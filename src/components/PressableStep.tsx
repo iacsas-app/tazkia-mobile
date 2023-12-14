@@ -3,9 +3,9 @@ import { Image, ImageSourcePropType, StyleProp, StyleSheet, View } from 'react-n
 import Animated, { FadeIn, FadeInDown, FadeInLeft } from 'react-native-reanimated';
 import { Color } from '../constants/Color';
 import { Font } from '../constants/Font';
-import { useApplication } from '../hooks/use-application';
 import { useMessage } from '../hooks/use-message';
 import { InvocationsParamList, PresentationParamList, PurificationParamList } from '../navigation/types';
+import { useGlobal } from '../providers/AppProvider';
 import GlobalStyles from '../styles/GlobalStyles';
 
 export interface Part {
@@ -25,7 +25,7 @@ interface Props {
 }
 export default function PressableStep({ index, item, nameTextSize, descriptionTextSize, ...props }: Props) {
   const { formatMessage } = useMessage();
-  const { arabic } = useApplication();
+  const { arabic } = useGlobal();
   const navigation = useNavigation<any>();
 
   const backgroundColor = props.hasProgress === true ? Color.partProgressBgColor : Color.partDefaultBgColor;
@@ -36,7 +36,7 @@ export default function PressableStep({ index, item, nameTextSize, descriptionTe
 
   return (
     <Animated.View
-      entering={FadeInDown.delay(150 * (index * 1))
+      entering={FadeInDown.delay(100 * (index * 1))
         .duration(400)
         .mass(1)}
       style={{ ...props.style, backgroundColor }}

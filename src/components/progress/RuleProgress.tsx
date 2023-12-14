@@ -5,10 +5,10 @@ import { Divider } from 'react-native-paper';
 import Animated, { FadeIn, FadeInUp, FadeOutUp, SlideOutDown, SlideOutUp } from 'react-native-reanimated';
 import { Font } from '../../constants/Font';
 import ProgressLine from '../../domains/common/ProgressLine';
-import { useApplication } from '../../hooks/use-application';
 import { useMessage } from '../../hooks/use-message';
 import { ProgressProps } from '../../hooks/use-progress';
 import { TKeys } from '../../locales/constants';
+import { useGlobal } from '../../providers/AppProvider';
 import StatusAndEvaluation from '../../screens/purification/common/StatusAndEvaluation';
 import YesNoButtons from './YesNoButtons';
 
@@ -24,7 +24,7 @@ type Props = ProgressProps & {
 export default function RuleProgress({ progress, ...props }: Props) {
   const { formatMessage } = useMessage();
   const [showEvalute, setShowEvalute] = useState(false);
-  const { arabic } = useApplication();
+  const { arabic } = useGlobal();
 
   function handleEvaluateShow() {
     setShowEvalute(true);

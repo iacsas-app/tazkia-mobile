@@ -14,11 +14,11 @@ import { Font } from '../../../../constants/Font';
 import { SCREEN_WIDTH } from '../../../../constants/Screen';
 import { SunnahType } from '../../../../domains/sunnahs/Sunnah';
 import { SunnahStage } from '../../../../domains/sunnahs/Sunnahs';
-import { useApplication } from '../../../../hooks/use-application';
 import { useMessage } from '../../../../hooks/use-message';
 import useSunnahs from '../../../../hooks/use-sunnahs';
 import useWindow from '../../../../hooks/use-window';
 import { TKeys } from '../../../../locales/constants';
+import { useGlobal } from '../../../../providers/AppProvider';
 import { useSnackbar } from '../../../../providers/SnackbarProvider';
 import { SUNNAHS_MAX_DAYS, progressPercentage2 } from '../../../../services/Helpers';
 import GlobalStyles from '../../../../styles/GlobalStyles';
@@ -31,7 +31,7 @@ interface Props {
 }
 export default function SunnahStageContainer({ stage, rules }: Props) {
   const ref = useRef<BottomSheetRef>(null);
-  const { arabic } = useApplication();
+  const { arabic } = useGlobal();
   const { paddingHorizontal } = useWindow();
   const { formatMessage } = useMessage();
   const [id, setId] = useState<number>();
@@ -131,7 +131,7 @@ export default function SunnahStageContainer({ stage, rules }: Props) {
         />
       </HStack>
       <ScrollView contentInsetAdjustmentBehavior="automatic" contentContainerStyle={styles.scroll}>
-        <Text variant="bodyMedium" style={{ ...styles.introduction, paddingHorizontal }}>
+        <Text variant="bodySmall" style={{ ...styles.introduction, paddingHorizontal }}>
           {formatMessage(`sunnahs.${stage}.introduction`)}
         </Text>
         <VStack style={GlobalStyles.container}>

@@ -26,28 +26,26 @@ export default function PresentationStack() {
         }}
       >
         <Stack.Screen name="Presentation" component={PresentationScreen} options={{ headerShown: false }} />
-        <Stack.Group screenOptions={{ presentation: 'card' }}>
-          <Stack.Screen
-            name="Center"
-            component={CenterScreen}
-            options={{ title: formatMessage(TKeys.PRESENTATION_CENTER_TITLE) }}
-          />
-          <Stack.Screen
-            name="Approach"
-            options={{ title: formatMessage(TKeys.PRESENTATION_APPROACH_TITLE) }}
-            component={ApproachScreen}
-          />
-          <Stack.Screen
-            name="Cheikh"
-            options={{ title: formatMessage(TKeys.PRESENTATION_CHEIKH_TITLE) }}
-            component={CheikhScreen}
-          />
-          <Stack.Screen
-            name="Books"
-            options={{ title: formatMessage(TKeys.PRESENTATION_BOOKS_TITLE) }}
-            component={BooksScreen}
-          />
-        </Stack.Group>
+        <Stack.Screen
+          name="Center"
+          component={CenterScreen}
+          options={{ title: formatMessage(TKeys.PRESENTATION_CENTER_TITLE) }}
+        />
+        <Stack.Screen
+          name="Approach"
+          options={{ title: formatMessage(TKeys.PRESENTATION_APPROACH_TITLE) }}
+          component={ApproachScreen}
+        />
+        <Stack.Screen
+          name="Cheikh"
+          options={{ title: formatMessage(TKeys.PRESENTATION_CHEIKH_TITLE) }}
+          component={CheikhScreen}
+        />
+        <Stack.Screen
+          name="Books"
+          options={{ title: formatMessage(TKeys.PRESENTATION_BOOKS_TITLE) }}
+          component={BooksScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

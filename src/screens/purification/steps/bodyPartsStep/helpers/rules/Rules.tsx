@@ -4,8 +4,8 @@ import { useMemo, useRef } from 'react';
 import { ScrollView } from 'react-native';
 import Animated, { FadeInLeft, FadeInRight } from 'react-native-reanimated';
 import VStack from '../../../../../../components/stack/VStack';
-import { useApplication } from '../../../../../../hooks/use-application';
 import { useMessage } from '../../../../../../hooks/use-message';
+import { useGlobal } from '../../../../../../providers/AppProvider';
 import { rules } from '../../common/data';
 import Rule from './Rule';
 import { ShowingMode } from './RulesDialog';
@@ -19,7 +19,7 @@ type Props = {
 export default function Rules({ mode, part, step, ...props }: Props) {
   const ref = useRef<number[]>([]);
   const { formatMessage } = useMessage();
-  const { arabic } = useApplication();
+  const { arabic } = useGlobal();
   const items: string[] = useMemo(() => rules[part][step], []);
   const size = items.length;
   const fade = arabic ? FadeInRight : FadeInLeft;

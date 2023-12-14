@@ -4,7 +4,7 @@ import Text from '../../../../components/Text';
 import HStack from '../../../../components/stack/HStack';
 import { Font } from '../../../../constants/Font';
 import { SCREEN_WIDTH } from '../../../../constants/Screen';
-import { useApplication } from '../../../../hooks/use-application';
+import { useGlobal } from '../../../../providers/AppProvider';
 import GlobalStyles from '../../../../styles/GlobalStyles';
 
 interface Props {
@@ -14,7 +14,7 @@ interface Props {
   color: string;
 }
 export default function SunnahRuleTypeItem({ index, summary, count, color }: Props) {
-  const { arabic } = useApplication();
+  const { arabic } = useGlobal();
   const fade = arabic ? FadeInRight : FadeInLeft;
 
   return (

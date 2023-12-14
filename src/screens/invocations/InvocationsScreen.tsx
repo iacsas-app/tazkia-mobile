@@ -10,9 +10,9 @@ import VStack from '../../components/stack/VStack';
 import { Color } from '../../constants/Color';
 import { Font } from '../../constants/Font';
 import { SCREEN_WIDTH } from '../../constants/Screen';
-import { useApplication } from '../../hooks/use-application';
 import { useMessage } from '../../hooks/use-message';
 import { TKeys } from '../../locales/constants';
+import { useGlobal } from '../../providers/AppProvider';
 import GlobalStyles from '../../styles/GlobalStyles';
 import SectionChooser from './ahzabs/SectionChooser';
 import PeriodChooser from './immunization/PeriodChooser';
@@ -22,7 +22,7 @@ export default function InvocationsScreen() {
   const ref = useRef<BottomSheetRef>(null);
   const dialogRef = useRef<SimpleDialogRef>(null);
   const { formatMessage } = useMessage();
-  const { arabic } = useApplication();
+  const { arabic } = useGlobal();
   const navigation = useNavigation<any>();
   const [content, setContent] = useState<ReactNode>();
 

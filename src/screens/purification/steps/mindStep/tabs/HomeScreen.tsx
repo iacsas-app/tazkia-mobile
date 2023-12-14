@@ -6,10 +6,10 @@ import PressableItem from '../../../../../components/progressItem/PressableItem'
 import VStack from '../../../../../components/stack/VStack';
 import { Color } from '../../../../../constants/Color';
 import { MindLevel } from '../../../../../domains/purification/Mind';
-import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';
 import usePurification from '../../../../../hooks/use-purification';
 import { TKeys } from '../../../../../locales/constants';
+import { useGlobal } from '../../../../../providers/AppProvider';
 import { useSnackbar } from '../../../../../providers/SnackbarProvider';
 import { PURIFICATION_MAX_DAYS, progressPercentage2 } from '../../../../../services/Helpers';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
@@ -18,7 +18,7 @@ const levels: MindLevel[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 export default function HomeScreen() {
   const ref = useRef<BottomSheetRef>(null);
-  const { arabic } = useApplication();
+  const { arabic } = useGlobal();
   const { formatMessage } = useMessage();
   const [level, setLevel] = useState<MindLevel>();
   const { displaySnackbar } = useSnackbar();

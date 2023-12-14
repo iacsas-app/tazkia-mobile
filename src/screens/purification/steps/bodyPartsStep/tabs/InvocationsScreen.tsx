@@ -23,33 +23,33 @@ export default function InvocationsScreen() {
       <List.AccordionGroup>
         <InvocationAccordion id={1} titleKey={TKeys.INVOCATION_STEP_1_RULE_1_SUMMARY} duration={15}>
           <VStack spacing={10}>
-            <Text variant="bodyMedium" style={styles.body}>
+            <Text variant="bodySmall" style={styles.body}>
               {formatMessage(TKeys.INVOCATION_STEP_1_RULE_1_BODY)}
             </Text>
-            <Text variant="bodyMedium" style={GlobalStyles.justify}>
+            <Text variant="bodySmall" style={GlobalStyles.justify}>
               {formatMessage(TKeys.INVOCATION_STEP_1_RULE_1_DESC)}
             </Text>
             <VStack spacing={15}>
-              <Text variant="bodyMedium" style={styles.croyance}>
+              <Text variant="bodySmall" style={styles.croyance}>
                 {formatMessage(TKeys.INVOCATION_STEP_1_RULE_1_CROYANCE_1)}
               </Text>
-              <Text variant="bodyMedium" style={styles.croyance}>
+              <Text variant="bodySmall" style={styles.croyance}>
                 {formatMessage(TKeys.INVOCATION_STEP_1_RULE_1_CROYANCE_2)}
               </Text>
-              <Text variant="bodyMedium" style={styles.croyance}>
+              <Text variant="bodySmall" style={styles.croyance}>
                 {formatMessage(TKeys.INVOCATION_STEP_1_RULE_1_CROYANCE_3)}
               </Text>
             </VStack>
           </VStack>
         </InvocationAccordion>
         <InvocationAccordion id={2} titleKey={TKeys.INVOCATION_STEP_1_RULE_2} duration={15}>
-          <Text variant="bodyMedium" style={GlobalStyles.justify}>
+          <Text variant="bodySmall" style={GlobalStyles.justify}>
             {formatMessage(TKeys.INVOCATION_STEP_1_RULE_2_DESC)}
           </Text>
         </InvocationAccordion>
         <InvocationAccordion id={3} titleKey={TKeys.INVOCATION_STEP_1_RULE_3} duration={10}>
           <VStack spacing={20} style={GlobalStyles.center}>
-            <Text variant="bodyMedium" style={GlobalStyles.justify}>
+            <Text variant="bodySmall" style={GlobalStyles.justify}>
               {formatMessage(TKeys.INVOCATION_STEP_1_RULE_3_DESC)}
             </Text>
             <Observation />

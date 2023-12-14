@@ -5,10 +5,10 @@ import PressableItem from '../../../../../components/progressItem/PressableItem'
 import VStack from '../../../../../components/stack/VStack';
 import { Color } from '../../../../../constants/Color';
 import Soul, { SoulPart, SoulPartLevel } from '../../../../../domains/purification/Soul';
-import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';
 import usePurification from '../../../../../hooks/use-purification';
 import { TKeys } from '../../../../../locales/constants';
+import { useGlobal } from '../../../../../providers/AppProvider';
 import { useSnackbar } from '../../../../../providers/SnackbarProvider';
 import { PURIFICATION_MAX_DAYS, progressPercentage2 } from '../../../../../services/Helpers';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
@@ -17,7 +17,7 @@ import { hasSubTitle, soulRules } from '../helpers/data';
 
 export default function HomeScreen() {
   const ref = useRef<BottomSheetRef>(null);
-  const { arabic } = useApplication();
+  const { arabic } = useGlobal();
   const [part, setPart] = useState<SoulPart>();
   const { formatMessage } = useMessage();
   const { displaySnackbar } = useSnackbar();

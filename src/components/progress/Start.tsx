@@ -3,9 +3,9 @@ import { StyleSheet } from 'react-native';
 import { Button } from 'react-native-paper';
 import Animated, { SlideInDown } from 'react-native-reanimated';
 import { Font } from '../../constants/Font';
-import { useApplication } from '../../hooks/use-application';
 import { useMessage } from '../../hooks/use-message';
 import { TKeys } from '../../locales/constants';
+import { useGlobal } from '../../providers/AppProvider';
 
 type Props = {
   onStart(): void;
@@ -13,7 +13,7 @@ type Props = {
 };
 export default function Start(props: Props) {
   const { formatMessage } = useMessage();
-  const { arabic } = useApplication();
+  const { arabic } = useGlobal();
 
   return (
     <Animated.View entering={SlideInDown.duration(10).springify()}>

@@ -2,9 +2,9 @@ import { useMemo } from 'react';
 import { Divider } from 'react-native-paper';
 import { AvatarImageSource } from 'react-native-paper/lib/typescript/components/Avatar/AvatarImage';
 import Animated, { FadeInUp, SlideOutDown } from 'react-native-reanimated';
-import { useApplication } from '../../../../hooks/use-application';
 import { localesTranslation } from '../../../../locales';
 import { SupportedLocale } from '../../../../locales/types';
+import { useGlobal } from '../../../../providers/AppProvider';
 import LanguageOption from './LanguageOption';
 
 interface LanguageSelectorProps {
@@ -15,7 +15,7 @@ interface LanguageSelectorProps {
 }
 
 export default function LanguageSelector({ flags, color, all, onChange }: LanguageSelectorProps) {
-  const { locale, setLocale } = useApplication();
+  const { locale, setLocale } = useGlobal();
   const languageKeys = useMemo(() => Object.keys(localesTranslation) as SupportedLocale[], []);
   const keys = all ? languageKeys : languageKeys.filter((item) => locale !== item);
 

@@ -21,38 +21,38 @@ export default function InvocationsScreen() {
       </Text>
       <List.AccordionGroup>
         <InvocationAccordion id={1} titleKey={TKeys.INVOCATION_STEP_2_RULE_1} duration={5}>
-          <Text variant="bodyMedium" style={GlobalStyles.justify}>
+          <Text variant="bodySmall" style={GlobalStyles.justify}>
             {formatMessage(TKeys.INVOCATION_STEP_2_RULE_1_DESC)}
           </Text>
         </InvocationAccordion>
         <InvocationAccordion id={2} titleKey={TKeys.INVOCATION_STEP_2_RULE_2} duration={30}>
           <VStack spacing={10}>
-            <Text variant="bodyMedium" style={styles.body}>
+            <Text variant="bodySmall" style={styles.body}>
               {formatMessage(TKeys.INVOCATION_STEP_2_RULE_2_BODY)}
             </Text>
-            <Text variant="bodyMedium" style={GlobalStyles.justify}>
+            <Text variant="bodySmall" style={GlobalStyles.justify}>
               {formatMessage(TKeys.INVOCATION_STEP_2_RULE_2_DESC)}
             </Text>
             <VStack spacing={10}>
-              <Text variant="bodyMedium" style={styles.croyance}>
+              <Text variant="bodySmall" style={styles.croyance}>
                 {formatMessage(TKeys.INVOCATION_STEP_2_RULE_2_CROYANCE_1)}
               </Text>
-              <Text variant="bodyMedium" style={styles.croyance}>
+              <Text variant="bodySmall" style={styles.croyance}>
                 {formatMessage(TKeys.INVOCATION_STEP_2_RULE_2_CROYANCE_2)}
               </Text>
-              <Text variant="bodyMedium" style={styles.croyance}>
+              <Text variant="bodySmall" style={styles.croyance}>
                 {formatMessage(TKeys.INVOCATION_STEP_2_RULE_2_CROYANCE_3)}
               </Text>
             </VStack>
           </VStack>
         </InvocationAccordion>
         <InvocationAccordion id={3} titleKey={TKeys.INVOCATION_STEP_2_RULE_3} duration={20}>
-          <Text variant="bodyMedium" style={GlobalStyles.justify}>
+          <Text variant="bodySmall" style={GlobalStyles.justify}>
             {formatMessage(TKeys.INVOCATION_STEP_2_RULE_3_DESC)}
           </Text>
         </InvocationAccordion>
         <InvocationAccordion id={4} titleKey={TKeys.INVOCATION_STEP_2_RULE_4} duration={15}>
-          <Text variant="bodyMedium" style={GlobalStyles.justify}>
+          <Text variant="bodySmall" style={GlobalStyles.justify}>
             {formatMessage(TKeys.INVOCATION_STEP_2_RULE_4_DESC)}
           </Text>
         </InvocationAccordion>

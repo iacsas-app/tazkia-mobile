@@ -5,16 +5,16 @@ import Text from '../../../../../components/Text';
 import ScrollViewLayout from '../../../../../components/layout/ScrollViewLayout';
 import VStack from '../../../../../components/stack/VStack';
 import { Color } from '../../../../../constants/Color';
-import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';
 import { TKeys } from '../../../../../locales/constants';
+import { useGlobal } from '../../../../../providers/AppProvider';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
 import InvocationAccordion from '../../../common/InvocationAccordion';
 import { purificationStyles } from '../../../common/Style';
 
 export default function InvocationsScreen() {
   const { formatMessage } = useMessage();
-  const { arabic } = useApplication();
+  const { arabic } = useGlobal();
 
   return (
     <ScrollViewLayout style={styles.root}>
@@ -24,7 +24,7 @@ export default function InvocationsScreen() {
       <List.AccordionGroup>
         <InvocationAccordion id={1} titleKey={TKeys.INVOCATION_STEP_3_RULE_1} duration={30}>
           <VStack spacing={10}>
-            <Text variant="bodyMedium" style={styles.body}>
+            <Text variant="bodySmall" style={styles.body}>
               {formatMessage(TKeys.INVOCATION_STEP_3_RULE_1_BODY)}
             </Text>
             <Text variant="bodySmall" style={{ ...GlobalStyles.justify, color: 'black' }}>
@@ -45,7 +45,7 @@ export default function InvocationsScreen() {
       </List.AccordionGroup>
       <InvocationGoodManners />
       <VStack style={styles.importance}>
-        <Text variant="bodyMedium" style={styles.title}>
+        <Text variant="bodySmall" style={styles.title}>
           {formatMessage(TKeys.INVOCATION_STEP_3_IMPORTANCE_TITLE)}
         </Text>
         <Text variant="bodySmall" style={GlobalStyles.justify}>

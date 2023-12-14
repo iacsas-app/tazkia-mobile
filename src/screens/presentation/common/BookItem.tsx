@@ -53,7 +53,7 @@ export const FlatBook: React.FC<Props> = React.memo(({ book, viewableItems, tota
 
 const styles = StyleSheet.create({
   row: {
-    elevation: 2,
+    elevation: 1,
     borderRadius: 10,
     backgroundColor: 'white',
     marginVertical: 7,
@@ -64,7 +64,6 @@ const styles = StyleSheet.create({
     width: SCREEN_WIDTH - 10,
   },
   title: { fontSize: Font.size(14), fontWeight: '900' },
-
   image: {
     width: 110,
     height: 160,

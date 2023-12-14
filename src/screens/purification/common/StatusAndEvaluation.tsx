@@ -6,10 +6,10 @@ import ProgressInfos from '../../../components/progress/progressStatus/ProgressI
 import HStack from '../../../components/stack/HStack';
 import { Font } from '../../../constants/Font';
 import ProgressLine from '../../../domains/common/ProgressLine';
-import { useApplication } from '../../../hooks/use-application';
 import { useMessage } from '../../../hooks/use-message';
 import { ProgressProps } from '../../../hooks/use-progress';
 import { TKeys } from '../../../locales/constants';
+import { useGlobal } from '../../../providers/AppProvider';
 
 type Props = ProgressProps & {
   align: 'center' | 'space-between';
@@ -20,7 +20,7 @@ type Props = ProgressProps & {
 };
 export default function StatusAndEvaluation(props: Props) {
   const { formatMessage } = useMessage();
-  const { arabic } = useApplication();
+  const { arabic } = useGlobal();
 
   return (
     <HStack style={{ ...styles.progress, alignContent: props.align, justifyContent: props.align }}>

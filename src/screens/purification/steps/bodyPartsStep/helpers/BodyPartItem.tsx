@@ -7,11 +7,11 @@ import { ProgressStatus } from '../../../../../components/progress/progressStatu
 import { Font } from '../../../../../constants/Font';
 import { SCREEN_WIDTH } from '../../../../../constants/Screen';
 import BodyPart, { BodyPartType, PurificationStage } from '../../../../../domains/purification/BodyPart';
-import { useApplication } from '../../../../../hooks/use-application';
 import { useMessage } from '../../../../../hooks/use-message';
 import useProgress from '../../../../../hooks/use-progress';
 import usePurification from '../../../../../hooks/use-purification';
 import { TKeys } from '../../../../../locales/constants';
+import { useGlobal } from '../../../../../providers/AppProvider';
 import { PURIFICATION_MAX_DAYS } from '../../../../../services/Helpers';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
 import { findStage, isFullyCompleted } from '../common/Helper';
@@ -25,7 +25,7 @@ interface BodyPartItemProps {
 }
 export default function BodyPartItem({ id, part, imageSource, ...props }: BodyPartItemProps) {
   const { formatMessage } = useMessage();
-  const { arabic } = useApplication();
+  const { arabic } = useGlobal();
   const { purification, findBodyPart } = usePurification();
 
   const [current, setCurrent] = useState<BodyPart | undefined>(findBodyPart(part));

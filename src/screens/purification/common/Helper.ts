@@ -21,3 +21,10 @@ export const purificationStages: Part[] = [
     imageSource: require('./../../../../assets/img/purification/step3.jpg'),
   },
 ];
+
+export const actions = {
+  [TKeys.DEDICATION]: TKeys.PURIFICATION_DEDICATION,
+  [TKeys.GENERAL_PRESENTATION_TITLE]: TKeys.PURIFICATION_PRESENTATION,
+  [TKeys.INVOCATION_NIVEAU_TITLE]: [TKeys.INVOCATION_NIVEAU_1, TKeys.INVOCATION_NIVEAU_2, TKeys.INVOCATION_NIVEAU_3],
+  [TKeys.CONCLUSION]: TKeys.PURIFICATION_CONCLUSION,
+};

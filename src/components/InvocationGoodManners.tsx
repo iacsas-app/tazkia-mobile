@@ -4,9 +4,9 @@ import { Avatar } from 'react-native-paper';
 import Animated, { FadeInLeft, FadeInRight } from 'react-native-reanimated';
 import { Font } from '../constants/Font';
 import { SCREEN_WIDTH } from '../constants/Screen';
-import { useApplication } from '../hooks/use-application';
 import { useMessage } from '../hooks/use-message';
 import { TKeys } from '../locales/constants';
+import { useGlobal } from '../providers/AppProvider';
 import GlobalStyles from '../styles/GlobalStyles';
 import Text from './Text';
 import HStack from './stack/HStack';
@@ -14,7 +14,7 @@ import VStack from './stack/VStack';
 
 function InvocationGoodManners() {
   const { formatMessage } = useMessage();
-  const { arabic } = useApplication();
+  const { arabic } = useGlobal();
   const fade = arabic ? FadeInRight : FadeInLeft;
 
   return (
