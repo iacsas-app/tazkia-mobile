@@ -21,7 +21,7 @@ type Props = {
   progress: ProgressLine[] | undefined;
   maxDays: number;
   questionMultiple?: boolean;
-  onStart(): void;
+  onStart?(): void;
   onRestart(): void;
   onEvaluate(checked: boolean): void;
 };
@@ -70,7 +70,7 @@ export default function ProgressView(props: Props) {
           questionMultiple={props.questionMultiple}
           onEvaluate={props.onEvaluate}
         />
-        {!props.progress && (
+        {!props.progress && props.onStart && (
           <View style={{ paddingBottom: 25 }}>
             <Start onStart={props.onStart} />
           </View>

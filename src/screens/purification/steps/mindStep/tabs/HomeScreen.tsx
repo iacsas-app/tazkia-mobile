@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
-import { SafeAreaView, ScrollView } from 'react-native';
+import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
+import { FAB } from 'react-native-paper';
 import BottomSheet, { BottomSheetRef } from '../../../../../components/bottomSheet/BottomSheet';
 import ProgressView from '../../../../../components/progress/ProgressView';
 import PressableItem from '../../../../../components/progressItem/PressableItem';
@@ -32,11 +33,9 @@ export default function HomeScreen() {
   }
 
   function handleStart() {
-    if (level) {
-      createMind(level);
-      close();
-      displaySnackbar(formatMessage(TKeys.MESSAGE_ADDED_SUCCESSFULLY), 'success');
-    }
+    createMind(1);
+    close();
+    displaySnackbar(formatMessage(TKeys.MESSAGE_ADDED_SUCCESSFULLY), 'success');
   }
 
   function handleRestart() {
@@ -53,6 +52,7 @@ export default function HomeScreen() {
 
   function handleEvaluate(checked: boolean) {
     if (level) {
+      close();
       evaluateMind(level, checked);
       displaySnackbar(formatMessage(TKeys.MESSAGE_EVALUATED_SUCCESSFULLY), 'success');
     }
@@ -70,14 +70,13 @@ export default function HomeScreen() {
           summaryKey={`purification.mind.description.level-${level}`}
           progress={current?.progress}
           maxDays={PURIFICATION_MAX_DAYS}
-          onStart={handleStart}
           onRestart={handleRestart}
           onEvaluate={handleEvaluate}
         />
       }
     >
       <SafeAreaView>
-        <ScrollView contentContainerStyle={{ ...GlobalStyles.center, paddingVertical: 15 }}>
+        <ScrollView contentContainerStyle={styles.container}>
           <VStack>
             {levels.map((level, index) => {
               const mind = findMind(level);
@@ -101,7 +100,30 @@ export default function HomeScreen() {
             })}
           </VStack>
         </ScrollView>
+        <FAB
+          icon="clock-start"
+          label={formatMessage(TKeys.BUTTON_START)}
+          style={styles.readFab}
+          mode="elevated"
+          size="medium"
+          color="black"
+          visible={!findMind(1)}
+          onPress={handleStart}
+        />
       </SafeAreaView>
     </BottomSheet>
   );
 }
+
+const styles = StyleSheet.create({
+  container: { ...GlobalStyles.center, paddingTop: 15, paddingBottom: 65 },
+  readFab: {
+    ...GlobalStyles.circle,
+    alignSelf: 'center',
+    position: 'absolute',
+    bottom: 1,
+    margin: 5,
+    opacity: 1,
+    backgroundColor: 'powderblue',
+  },
+});
