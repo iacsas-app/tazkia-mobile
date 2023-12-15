@@ -19,6 +19,7 @@ export interface IPurification {
   findMind(level: MindLevel): Mind | undefined;
   evaluateMind(level: MindLevel, checked: boolean): void;
   restartMind(level: MindLevel): void;
+  lastMindLevel(): Mind | undefined;
   hasProgress(type: PurificationType): boolean;
 }
 export default function usePurification(): IPurification {
@@ -33,6 +34,7 @@ export default function usePurification(): IPurification {
   const findBodyPart = useStoreState((actions) => actions.purification.findBodyPart);
   const findSoul = useStoreState((actions) => actions.purification.findSoul);
   const findMind = useStoreState((state) => state.purification.findByMind);
+  const lastMindLevel = useStoreState((state) => state.purification.lastMindLevel);
 
   function createBodyPart(part: BodyPartType, stage: PurificationStage): void {
     const progress: Purification = getProgress();
@@ -114,5 +116,6 @@ export default function usePurification(): IPurification {
     restartBodyPart: (part, stage) => restartBodyPart([part, stage]),
     restartSoul: (part, level) => restartSoul([part, level]),
     restartMind,
+    lastMindLevel,
   };
 }

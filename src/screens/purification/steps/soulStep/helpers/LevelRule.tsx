@@ -18,7 +18,9 @@ import { useMessage } from '../../../../../hooks/use-message';
 import useProgress from '../../../../../hooks/use-progress';
 import usePurification from '../../../../../hooks/use-purification';
 import { TKeys } from '../../../../../locales/constants';
-import { PURIFICATION_MAX_DAYS } from '../../../../../services/Helpers';
+import { useSnackbar } from '../../../../../providers/SnackbarProvider';
+import { PURIFICATION_MAX_DAYS, isCompleted } from '../../../../../services/Helpers';
+import { soulRules } from './data';
 
 type Props = {
   part: SoulPart;
@@ -35,6 +37,7 @@ export default function LevelRule({ part, index, levelKey, ...props }: Props) {
   const { formatMessage } = useMessage();
   const [open, setOpen] = useState(false);
   const { findSoul } = usePurification();
+  const { displaySnackbar } = useSnackbar();
   const current = findSoul(part, index as any);
   const progress = findSoulLevel();
   const progressProps = useProgress(progress, PURIFICATION_MAX_DAYS);
@@ -47,6 +50,21 @@ export default function LevelRule({ part, index, levelKey, ...props }: Props) {
   }
 
   function handleStart() {
+    // Check if we can start start this level
+    const value = findSoul(part);
+    if (value) {
+      const lastLevel = value.partProgress.at(value.partProgress.length - 1);
+      if (lastLevel) {
+        if (!isCompleted(lastLevel.progress, PURIFICATION_MAX_DAYS)) {
+          displaySnackbar(formatMessage(TKeys.PURIFICATION_RULE_1, { level: lastLevel.level }), 'warning');
+          return;
+        }
+        if (lastLevel.level !== index - 1 && lastLevel.level != soulRules[part].length) {
+          displaySnackbar(formatMessage(TKeys.PURIFICATION_RULE_2, { level: lastLevel.level + 1 }), 'warning');
+          return;
+        }
+      }
+    }
     props.onSelect(index);
   }
 
@@ -111,6 +129,8 @@ export default function LevelRule({ part, index, levelKey, ...props }: Props) {
                   count={progressProps.countProgress}
                   maxDays={PURIFICATION_MAX_DAYS}
                   completed={progressProps.completed}
+                  valueMarginRight={-2}
+                  valueMarginLeft={-4}
                 />
               </HStack>
             )}

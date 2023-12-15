@@ -74,6 +74,9 @@ export const french: Translations = {
   [TKeys.PURIFICATION_DEDICATION]: '',
   [TKeys.PURIFICATION_PRESENTATION]: '',
   [TKeys.PURIFICATION_CONCLUSION]: '',
+  [TKeys.PURIFICATION_RULE_1]: "Vous devez d'abord terminer le niveau {niveau} !",
+  [TKeys.PURIFICATION_RULE_2]: 'Vous devez continuer avec le niveau {level}',
+
   [TKeys.PURIFICATION_BODYPART_INTRODUCTION]:
     "Dans cette première partie, si Dieu Tout-Puissant le veut, nous discuterons de la purification des sept membres qui sont accompagnés d'invocations Mohammadiennes (Dikr Muhammadi), appelé invocations du repentir, et des observations spirituelles qui font progresser l'aspirant dans les étapes de purification et augmentent la pureté de sa vue et sa perspicacité, son oreille et sa clairvoyance, ses membres et son être intérieur, et ils viennent dans l'ordre suivant :",
   [TKeys.PURIFICATION_BODYPART_TITLE]: 'Purification des sens',

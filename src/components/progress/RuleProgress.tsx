@@ -31,8 +31,8 @@ export default function RuleProgress({ progress, ...props }: Props) {
   }
 
   const handleEvaluate = useCallback((checked: boolean) => {
-    props.onEvaluate(checked);
     setShowEvalute(false);
+    props.onEvaluate(checked);
   }, []);
 
   function formatAttempt(line: ProgressLine) {

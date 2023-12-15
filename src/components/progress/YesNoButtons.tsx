@@ -28,7 +28,7 @@ const YesNoButtons = memo(function YesNoButtons(props: Props) {
           icon={() => <Icon name="thumb-up-outline" size={15} color="seagreen" />}
           compact
           dark
-          onPress={() => props.onEvaluate(true)}
+          onTouchStart={() => props.onEvaluate(true)}
         >
           <Text variant="titleMedium" style={{ fontWeight: '900', color: 'seagreen' }}>
             {formatMessage(TKeys.BUTTON_YES)}

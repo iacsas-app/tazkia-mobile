@@ -48,6 +48,7 @@ export default function HomeScreen() {
 
   const handleEvaluate = useCallback((part: SoulPart, level: SoulPartLevel, checked: boolean) => {
     evaluateSoul(part, level, checked);
+    close();
     displaySnackbar(formatMessage(TKeys.MESSAGE_EVALUATED_SUCCESSFULLY), 'success');
   }, []);
 
@@ -92,7 +93,7 @@ export default function HomeScreen() {
                   index={idx}
                   stepTitle={idx.toString()}
                   partTitleSize={arabic ? 14 : 12}
-                  stepTitleSize={12}
+                  stepTitleSize={14}
                   stepTitleWidth={27}
                   summaryKey={`purification.soul.${soulPart}.title`}
                   subSummaryKey={hasSubtitle ? `purification.soul.${soulPart}.sub.title` : undefined}
@@ -100,7 +101,7 @@ export default function HomeScreen() {
                   percentage={getSum(soul) / size}
                   progress={getProgress(soul)}
                   arabic={arabic}
-                  circularProgressRadius={21}
+                  circularProgressRadius={18}
                   subSummarySize={11}
                   onPress={() => handlePress(idx as any)}
                 />

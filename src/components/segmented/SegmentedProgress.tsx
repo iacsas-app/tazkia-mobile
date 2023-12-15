@@ -9,6 +9,7 @@ export default function SegmentedProgress({ progress }: Props) {
   if (!progress) {
     return <></>;
   }
+  progress = progress.sort();
   const size = progress.length;
 
   return (

@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react';
 import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
-import { FAB } from 'react-native-paper';
 import BottomSheet, { BottomSheetRef } from '../../../../../components/bottomSheet/BottomSheet';
 import ProgressView from '../../../../../components/progress/ProgressView';
 import PressableItem from '../../../../../components/progressItem/PressableItem';
@@ -12,7 +11,7 @@ import usePurification from '../../../../../hooks/use-purification';
 import { TKeys } from '../../../../../locales/constants';
 import { useGlobal } from '../../../../../providers/AppProvider';
 import { useSnackbar } from '../../../../../providers/SnackbarProvider';
-import { PURIFICATION_MAX_DAYS, progressPercentage2 } from '../../../../../services/Helpers';
+import { PURIFICATION_MAX_DAYS, isCompleted, progressPercentage2 } from '../../../../../services/Helpers';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
 
 const levels: MindLevel[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -23,7 +22,7 @@ export default function HomeScreen() {
   const { formatMessage } = useMessage();
   const [level, setLevel] = useState<MindLevel>();
   const { displaySnackbar } = useSnackbar();
-  const { createMind, findMind, evaluateMind, restartMind } = usePurification();
+  const { createMind, findMind, evaluateMind, restartMind, lastMindLevel } = usePurification();
 
   const current = level ? findMind(level) : undefined;
 
@@ -33,9 +32,23 @@ export default function HomeScreen() {
   }
 
   function handleStart() {
-    createMind(1);
-    close();
-    displaySnackbar(formatMessage(TKeys.MESSAGE_ADDED_SUCCESSFULLY), 'success');
+    if (level) {
+      const last = lastMindLevel();
+      if (last) {
+        if (!isCompleted(last.progress, PURIFICATION_MAX_DAYS)) {
+          displaySnackbar(formatMessage(TKeys.PURIFICATION_RULE_1, { level: last.level }), 'warning');
+          return;
+        }
+        if (level - 1 !== last.level) {
+          displaySnackbar(formatMessage(TKeys.PURIFICATION_RULE_2, { level: last.level + 1 }), 'warning');
+          return;
+        }
+      }
+
+      createMind(level);
+      close();
+      displaySnackbar(formatMessage(TKeys.MESSAGE_ADDED_SUCCESSFULLY), 'success');
+    }
   }
 
   function handleRestart() {
@@ -45,17 +58,17 @@ export default function HomeScreen() {
     }
   }
 
+  function handleEvaluate(checked: boolean) {
+    if (level) {
+      evaluateMind(level, checked);
+      close();
+      displaySnackbar(formatMessage(TKeys.MESSAGE_EVALUATED_SUCCESSFULLY), 'success');
+    }
+  }
+
   function close() {
     setLevel(undefined);
     ref.current?.close();
-  }
-
-  function handleEvaluate(checked: boolean) {
-    if (level) {
-      close();
-      evaluateMind(level, checked);
-      displaySnackbar(formatMessage(TKeys.MESSAGE_EVALUATED_SUCCESSFULLY), 'success');
-    }
   }
 
   return (
@@ -70,6 +83,7 @@ export default function HomeScreen() {
           summaryKey={`purification.mind.description.level-${level}`}
           progress={current?.progress}
           maxDays={PURIFICATION_MAX_DAYS}
+          onStart={handleStart}
           onRestart={handleRestart}
           onEvaluate={handleEvaluate}
         />
@@ -100,16 +114,6 @@ export default function HomeScreen() {
             })}
           </VStack>
         </ScrollView>
-        <FAB
-          icon="clock-start"
-          label={formatMessage(TKeys.BUTTON_START)}
-          style={styles.readFab}
-          mode="elevated"
-          size="medium"
-          color="black"
-          visible={!findMind(1)}
-          onPress={handleStart}
-        />
       </SafeAreaView>
     </BottomSheet>
   );
@@ -117,13 +121,4 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   container: { ...GlobalStyles.center, paddingTop: 15, paddingBottom: 65 },
-  readFab: {
-    ...GlobalStyles.circle,
-    alignSelf: 'center',
-    position: 'absolute',
-    bottom: 1,
-    margin: 5,
-    opacity: 1,
-    backgroundColor: 'powderblue',
-  },
 });

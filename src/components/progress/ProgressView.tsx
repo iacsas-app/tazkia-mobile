@@ -1,7 +1,7 @@
 import { ReactNode, useRef } from 'react';
 import { PrimitiveType } from 'react-intl';
 import { StyleSheet, View } from 'react-native';
-import Animated, { FadeInUp } from 'react-native-reanimated';
+import Animated, { FadeInUp, FadeOutDown } from 'react-native-reanimated';
 import { Color } from '../../constants/Color';
 import { SCREEN_WIDTH } from '../../constants/Screen';
 import ProgressLine from '../../domains/common/ProgressLine';
@@ -12,7 +12,7 @@ import Header from './Header';
 import RuleProgress from './RuleProgress';
 import Start from './Start';
 
-type Props = {
+type ProgressViewProps = {
   titleKey: string;
   titleKeyParams?: Record<string, PrimitiveType>;
   subTitleKey?: string;
@@ -21,11 +21,12 @@ type Props = {
   progress: ProgressLine[] | undefined;
   maxDays: number;
   questionMultiple?: boolean;
-  onStart?(): void;
+  onStart(): void;
   onRestart(): void;
   onEvaluate(checked: boolean): void;
 };
-export default function ProgressView(props: Props) {
+
+export default function ProgressView(props: ProgressViewProps) {
   const ref = useRef<ConfirmRestartDialogRef>(null);
   const progressProps = useProgress(props.progress, props.maxDays);
 
@@ -41,7 +42,11 @@ export default function ProgressView(props: Props) {
   }
 
   return (
-    <Animated.View entering={FadeInUp.delay(400).duration(50).springify()} style={styles.container}>
+    <Animated.View
+      entering={FadeInUp.delay(100).duration(100).springify()}
+      exiting={FadeOutDown}
+      style={styles.container}
+    >
       <Header
         titleKey={props.titleKey}
         titleKeyParams={props.titleKeyParams}

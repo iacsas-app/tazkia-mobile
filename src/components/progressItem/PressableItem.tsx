@@ -1,5 +1,4 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
-import { useMemo } from 'react';
 import { PrimitiveType } from 'react-intl';
 import { StyleSheet, View } from 'react-native';
 import CircularProgress from 'react-native-circular-progress-indicator';
@@ -38,7 +37,6 @@ type Props = {
 function PressableItem({ inProgress, ...props }: Props) {
   const { formatMessage } = useMessage();
   const completed = props.percentage === 100;
-  const middleWidth = useMemo(() => SCREEN_WIDTH - 50 - props.stepTitleWidth, []);
   const speed = 150;
   const id = props.index + 1;
 
@@ -75,8 +73,7 @@ function PressableItem({ inProgress, ...props }: Props) {
         <VStack
           style={{
             ...GlobalStyles.center,
-            width: middleWidth - (inProgress ? 60 : 50),
-            backgroundColor: 'transparent',
+            flex: 4,
           }}
         >
           <VStack spacing={2} center>
@@ -150,7 +147,8 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'space-between',
     textAlign: 'center',
-    paddingHorizontal: 10,
+    paddingStart: 5,
+    paddingEnd: 7,
     paddingVertical: 8,
   },
 });

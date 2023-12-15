@@ -58,6 +58,8 @@ export enum TKeys {
   PURIFICATION_PRESENTATION = 'purification.presentation',
   PURIFICATION_CONCLUSION = 'purification.conclusion',
   PURIFICATION_OBSTACLES = 'purification.obstacles',
+  PURIFICATION_RULE_1 = 'purification.rule.1',
+  PURIFICATION_RULE_2 = 'purification.rule.2',
 
   PURIFICATION_BODYPART_CLEANING = 'purification.bodypart.cleaning',
   PURIFICATION_BODYPART_ENLIGHTENMENT = 'purification.bodypart.enlightenment',

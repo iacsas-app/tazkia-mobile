@@ -84,6 +84,7 @@ export default function SunnahStageContainer({ stage, rules }: Props) {
   function handleEvaluate(checked: boolean) {
     if (id) {
       evaluate(stage, id, checked);
+      close();
       displaySnackbar(formatMessage(TKeys.MESSAGE_EVALUATED_SUCCESSFULLY), 'success');
     }
   }
