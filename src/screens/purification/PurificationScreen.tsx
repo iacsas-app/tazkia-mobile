@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     fontSize: Font.size(18),
   },
   part: {
-    width: SCREEN_WIDTH - 130,
+    width: SCREEN_WIDTH - 110,
     paddingVertical: 5,
     borderRadius: 25,
     elevation: 6,
