@@ -1,10 +1,8 @@
-import { memo } from 'react';
-import { StyleSheet, View, ViewToken } from 'react-native';
-import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated';
+import { memo, useState } from 'react';
+import { StyleSheet, ViewToken } from 'react-native';
+import Animated, { FadeInUp, FadeOutDown, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import Text from '../../../components/Text';
-import VStack from '../../../components/stack/VStack';
 import { Color } from '../../../constants/Color';
-import { SCREEN_WIDTH } from '../../../constants/Screen';
 import { useMessage } from '../../../hooks/use-message';
 import { TKeys } from '../../../locales/constants';
 import GlobalStyles from '../../../styles/GlobalStyles';
@@ -17,6 +15,7 @@ interface Props {
 }
 function Chapter({ chapter, total, viewableItems, ...props }: Props) {
   const { formatMessage } = useMessage();
+  const [isOpen, setOpen] = useState(false);
 
   const baseKey = `invocations.faydo`;
   const chapterBase = `${baseKey}.chapter.${chapter}`;
@@ -39,6 +38,8 @@ function Chapter({ chapter, total, viewableItems, ...props }: Props) {
   function handlePress() {
     if (first) {
       props.onIntro();
+    } else {
+      setOpen(!isOpen);
     }
   }
 
@@ -50,23 +51,31 @@ function Chapter({ chapter, total, viewableItems, ...props }: Props) {
         {
           backgroundColor: first ? Color.flatItemNoneBgColor : Color.partDefaultBgColor,
           marginTop: first ? 20 : 3,
-          marginBottom: last ? 60 : first ? 10 : 2,
+          marginBottom: last ? 20 : first ? 10 : 2,
         },
       ]}
       onTouchEnd={handlePress}
     >
-      <View style={styles.container}>
-        <VStack style={GlobalStyles.center} spacing={8}>
-          <Text variant="titleLarge" style={{ ...styles.title, color: first ? 'white' : 'black' }}>
-            {formatMessage(titleKey)}
-          </Text>
-          {!first && (
-            <Text variant="bodyMedium" style={styles.summary}>
-              {formatMessage(summaryKey)}
-            </Text>
-          )}
-        </VStack>
-      </View>
+      <Text
+        variant="titleLarge"
+        style={{
+          ...styles.title,
+          ...styles.box,
+          color: first ? 'white' : isOpen ? 'teal' : 'black',
+          fontSize: isOpen ? 18 : 16,
+        }}
+      >
+        {formatMessage(titleKey)}
+      </Text>
+      {!first && isOpen && (
+        <Animated.Text
+          entering={FadeInUp.duration(200).mass(1)}
+          exiting={FadeOutDown.duration(200).mass(1)}
+          style={{ ...styles.box, ...styles.summary }}
+        >
+          {formatMessage(summaryKey)}
+        </Animated.Text>
+      )}
     </Animated.View>
   );
 }
@@ -78,10 +87,11 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     elevation: 10,
     borderRadius: 25,
+    gap: 15,
   },
-  container: { width: SCREEN_WIDTH - 5 },
-  title: { fontSize: 16, textAlign: 'center', fontWeight: '900' },
-  summary: { fontSize: 13, textAlign: 'justify', fontWeight: '500', paddingHorizontal: 25 },
+  box: { paddingHorizontal: 15, marginHorizontal: 10 },
+  title: { textAlign: 'center', fontWeight: '900' },
+  summary: { fontSize: 15, textAlign: 'justify', fontWeight: '500', paddingBottom: 15 },
   id: { elevation: 2, backgroundColor: '#3db371', position: 'absolute', left: 5 },
 });
 

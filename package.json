@@ -1,6 +1,5 @@
 {
   "name": "manhaj-nabawi",
-  "description": "How to follow the prophetic approach of our Master Muhammad, may God bless him and grant him peace",
   "version": "1.0.0",
   "main": "App.tsx",
   "scripts": {
@@ -38,6 +37,7 @@
     "react-native-redash": "^18.1.1",
     "react-native-safe-area-context": "4.6.3",
     "react-native-screens": "~3.22.0",
+    "react-native-svg": "^14.1.0",
     "react-native-tab-view": "^3.5.2"
   },
   "devDependencies": {
