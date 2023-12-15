@@ -121,8 +121,6 @@ export default function AppProvider({ children }: PropsWithChildren<unknown>): R
     }
   }, []);
 
-  console.log(state);
-
   if (!state.locale || state.firstVisitDate === undefined) {
     return <></>;
   }
