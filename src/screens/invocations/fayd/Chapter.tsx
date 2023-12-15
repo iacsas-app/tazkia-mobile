@@ -1,7 +1,9 @@
 import { memo, useState } from 'react';
 import { StyleSheet, ViewToken } from 'react-native';
+import { Avatar } from 'react-native-paper';
 import Animated, { FadeInUp, FadeOutDown, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import Text from '../../../components/Text';
+import HStack from '../../../components/stack/HStack';
 import { Color } from '../../../constants/Color';
 import { useMessage } from '../../../hooks/use-message';
 import { TKeys } from '../../../locales/constants';
@@ -49,27 +51,31 @@ function Chapter({ chapter, total, viewableItems, ...props }: Props) {
         animatedStyle,
         styles.row,
         {
-          backgroundColor: first ? Color.flatItemNoneBgColor : Color.partDefaultBgColor,
+          backgroundColor: first ? Color.flatItemNoneBgColor : isOpen ? Color.progress : Color.partDefaultBgColor,
           marginTop: first ? 20 : 3,
           marginBottom: last ? 20 : first ? 10 : 2,
         },
       ]}
       onTouchEnd={handlePress}
     >
-      <Text
-        variant="titleLarge"
-        style={{
-          ...styles.title,
-          ...styles.box,
-          color: first ? 'white' : isOpen ? 'teal' : 'black',
-          fontSize: isOpen ? 18 : 16,
-        }}
-      >
-        {formatMessage(titleKey)}
-      </Text>
+      <HStack style={{ ...GlobalStyles.center, paddingHorizontal: 5 }}>
+        {!first && <Avatar.Text label={chapter.toString()} size={30} style={styles.id} color="white" />}
+        <Text
+          variant="titleLarge"
+          style={{
+            ...styles.title,
+            ...styles.box,
+            color: first ? 'white' : isOpen ? '#3db371' : 'black',
+            fontSize: isOpen ? 18 : 16,
+            flex: 10,
+          }}
+        >
+          {formatMessage(titleKey)}
+        </Text>
+      </HStack>
       {!first && isOpen && (
         <Animated.Text
-          entering={FadeInUp.duration(200).mass(1)}
+          entering={FadeInUp.duration(400).mass(1)}
           exiting={FadeOutDown.duration(200).mass(1)}
           style={{ ...styles.box, ...styles.summary }}
         >
@@ -92,7 +98,7 @@ const styles = StyleSheet.create({
   box: { paddingHorizontal: 15, marginHorizontal: 10 },
   title: { textAlign: 'center', fontWeight: '900' },
   summary: { fontSize: 15, textAlign: 'justify', fontWeight: '500', paddingBottom: 15 },
-  id: { elevation: 2, backgroundColor: '#3db371', position: 'absolute', left: 5 },
+  id: { elevation: 2, backgroundColor: '#3db371', flex: 1.2 },
 });
 
 export default memo(Chapter);
