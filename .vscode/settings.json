@@ -16,6 +16,6 @@
   "window.zoomLevel": 1,
   "diffEditor.hideUnchangedRegions.enabled": true,
   "editor.codeActionsOnSave": {
-    "source.organizeImports": true
+    "source.organizeImports": "explicit"
   }
 }
