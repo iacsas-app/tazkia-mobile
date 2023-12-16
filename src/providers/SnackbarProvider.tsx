@@ -3,6 +3,7 @@ import { Dispatch, PropsWithChildren, ReactElement, createContext, useContext, u
 import { Snackbar } from 'react-native-paper';
 import Text from '../components/Text';
 import HStack from '../components/stack/HStack';
+import { SCREEN_WIDTH } from '../constants/Screen';
 import GlobalStyles from '../styles/GlobalStyles';
 import { useGlobal } from './AppProvider';
 
@@ -97,20 +98,20 @@ export default function SnackbarProvider({ children }: PropsWithChildren<unknown
         {children}
         <Snackbar
           visible={state.visible}
-          style={{ backgroundColor: backgroundColor(state.variant), borderRadius: 20 }}
+          style={{ backgroundColor: backgroundColor(state.variant), borderRadius: 15 }}
           elevation={5}
           onDismiss={onDismiss}
           duration={3000}
           onTouchStart={onDismiss}
         >
-          <HStack style={GlobalStyles.spaceBetween}>
+          <HStack style={{ ...GlobalStyles.spaceBetween, paddingHorizontal: 5 }}>
             <Text
               variant={`body${arabic ? 'Large' : 'Small'}`}
-              style={{ color: 'white', fontWeight: arabic ? '800' : 'normal' }}
+              style={{ color: 'white', fontWeight: '900', width: SCREEN_WIDTH - 70 }}
             >
               {state.content}
             </Text>
-            <Icon name={iconName(state.variant)} size={25} color="white" />
+            <Icon name={iconName(state.variant)} size={25} color="white" style={{ fontWeight: '900' }} />
           </HStack>
         </Snackbar>
       </DispatchContext.Provider>

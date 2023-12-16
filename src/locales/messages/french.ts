@@ -1060,6 +1060,7 @@ export const french: Translations = {
   [TKeys.BUTTON_YES]: 'Oui',
   [TKeys.BUTTON_NO]: 'Non',
   [TKeys.BUTTON_CLOSE]: 'Fermer',
+  [TKeys.BUTTON_CANCEL]: 'Annuler',
   [TKeys.BUTTON_START]: 'Commencer',
   [TKeys.BUTTON_RESTART]: 'Recommencer',
   [TKeys.BUTTON_SAVE]: 'Enregistrer',

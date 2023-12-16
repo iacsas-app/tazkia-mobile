@@ -40,6 +40,7 @@ export default function HomeScreen() {
     (stage: PurificationStage, errors: number[]) => {
       if (selected) {
         evaluateBodyPart(selected, stage, errors);
+        ref.current?.close();
         displaySnackbar(formatMessage(TKeys.MESSAGE_EVALUATED_SUCCESSFULLY), 'success');
       }
     },

@@ -1178,6 +1178,7 @@ export const indonesian: Translations = {
   [TKeys.BUTTON_YES]: 'Ya',
   [TKeys.BUTTON_NO]: 'Tidak',
   [TKeys.BUTTON_CLOSE]: 'Menutup',
+  [TKeys.BUTTON_CANCEL]: 'Membatalkan',
   [TKeys.BUTTON_START]: 'Awal',
   [TKeys.BUTTON_RESTART]: 'Ulang',
   [TKeys.BUTTON_SAVE]: 'Menyimpan',

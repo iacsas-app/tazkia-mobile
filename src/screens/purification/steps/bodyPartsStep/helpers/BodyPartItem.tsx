@@ -4,6 +4,7 @@ import { Avatar } from 'react-native-paper';
 import Animated, { FadeInDown, SlideInUp, SlideOutDown } from 'react-native-reanimated';
 import Text from '../../../../../components/Text';
 import { ProgressStatus } from '../../../../../components/progress/progressStatus/ProgressStatus';
+import { Color } from '../../../../../constants/Color';
 import { Font } from '../../../../../constants/Font';
 import { SCREEN_WIDTH } from '../../../../../constants/Screen';
 import BodyPart, { BodyPartType, PurificationStage } from '../../../../../domains/purification/BodyPart';
@@ -56,14 +57,14 @@ export default function BodyPartItem({ id, part, imageSource, ...props }: BodyPa
   }, [props.selected, purification]);
 
   const labelVariant = `label${arabic ? 'Large' : 'Small'}`;
-  const stageStyle = { ...styles.text, fontSize: arabic ? 12 : 7, paddingHorizontal: arabic ? 2 : 0 };
+  const stageStyle = { color: 'black', fontSize: arabic ? 12 : 7, paddingHorizontal: arabic ? 2 : 0 };
   const space = arabic ? 15 : 1;
 
   return (
     <Animated.View
       entering={FadeInDown.delay(fadeSpeed).duration(fadeSpeed).mass(1).springify()}
       style={{ ...styles.container, backgroundColor }}
-      onTouchEnd={() => props.onPress(part)}
+      onTouchStart={() => props.onPress(part)}
     >
       <Avatar.Image size={60} style={styles.typeAvatar} source={imageSource} />
       <Avatar.Text
@@ -75,7 +76,11 @@ export default function BodyPartItem({ id, part, imageSource, ...props }: BodyPa
       />
       <Text
         variant="bodyMedium"
-        style={{ ...styles.partName, color: completed ? 'white' : 'black', fontSize: arabic ? 16 : 13 }}
+        style={{
+          ...styles.partName,
+          color: completed ? Color.flatItemNoneBgColor : 'black',
+          fontSize: arabic ? 16 : 13,
+        }}
       >
         {formatMessage(`purification.body-parts.${part}`)}
       </Text>

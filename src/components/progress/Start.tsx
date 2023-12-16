@@ -16,14 +16,13 @@ export default function Start(props: Props) {
   const { arabic } = useGlobal();
 
   return (
-    <Animated.View entering={SlideInDown.duration(10).springify()}>
+    <Animated.View entering={SlideInDown.duration(30)}>
       <Button
         mode="elevated"
-        compact
-        icon={() => <Icon name="clock-plus" size={15} color="teal" />}
+        icon={() => <Icon name="clock-plus" size={17} color="teal" />}
         uppercase={false}
-        style={{ height: 30, paddingEnd: 5 }}
-        labelStyle={{ ...styles.startButtonLabel, fontSize: Font.size(arabic ? 13 : 11) }}
+        style={styles.btn}
+        labelStyle={{ ...styles.startButtonLabel, fontSize: Font.size(arabic ? 15 : 11) }}
         disabled={props.disabled}
         onTouchStart={props.onStart}
       >
@@ -34,5 +33,6 @@ export default function Start(props: Props) {
 }
 
 const styles = StyleSheet.create({
-  startButtonLabel: { fontWeight: '900', color: 'teal', marginTop: 3 },
+  startButtonLabel: { fontWeight: '900', color: 'teal', marginTop: 6 },
+  btn: { paddingVertical: 4 },
 });

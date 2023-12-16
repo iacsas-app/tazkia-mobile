@@ -69,14 +69,9 @@ export default function StageSelector({ part, ...props }: Props) {
 
   return (
     <Animated.View entering={FadeInUp.delay(100).duration(50).springify()} style={styles.container}>
-      <VStack style={styles.header} spacing={5}>
+      <VStack style={styles.header} spacing={2}>
         {imageSource && (
-          <Animated.Image
-            source={imageSource}
-            entering={FadeIn.delay(500).duration(100)}
-            exiting={FadeOutDown}
-            style={styles.image}
-          />
+          <Animated.Image source={imageSource} entering={FadeIn} exiting={FadeOutDown} style={styles.image} />
         )}
         <Animated.Text
           entering={FadeInUp.delay(300).duration(200).mass(1).springify()}
@@ -114,12 +109,12 @@ const styles = StyleSheet.create({
     paddingBottom: 30,
   },
   header: {
-    paddingVertical: 10,
+    paddingVertical: 5,
   },
   image: {
     ...GlobalStyles.circle,
-    width: 100,
-    height: 100,
+    width: 90,
+    height: 90,
   },
-  partName: { ...GlobalStyles.center, fontWeight: '900', fontSize: 25 },
+  partName: { ...GlobalStyles.center, fontWeight: '900', fontSize: 20 },
 });

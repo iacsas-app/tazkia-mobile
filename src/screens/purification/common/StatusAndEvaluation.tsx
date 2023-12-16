@@ -63,5 +63,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'stretch',
   },
-  evalBtn: { elevation: 8 },
+  evalBtn: { elevation: 8, paddingVertical: 4 },
 });
