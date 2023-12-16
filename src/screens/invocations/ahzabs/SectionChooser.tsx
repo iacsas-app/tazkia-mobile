@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Avatar } from 'react-native-paper';
-import Animated, { FadeInUp, SlideInDown } from 'react-native-reanimated';
+import Animated, { FadeInUp, FadeOut, SlideInDown } from 'react-native-reanimated';
 import Text from '../../../components/Text';
 import HStack from '../../../components/stack/HStack';
 import VStack from '../../../components/stack/VStack';
@@ -21,7 +21,7 @@ export default function SectionChooser({ onSelect }: Props) {
   return (
     <VStack style={styles.container} spacing={10}>
       <VStack spacing={5} style={styles.header}>
-        <Animated.Text entering={FadeInUp.delay(700).duration(500).mass(15)} style={styles.bookTitle}>
+        <Animated.Text entering={FadeInUp.delay(700).duration(500).mass(15)} exiting={FadeOut} style={styles.bookTitle}>
           {formatMessage(TKeys.INVOCATION_AHZABS_TITLE)}
         </Animated.Text>
         {[TKeys.GENERAL_INTRODUCTION_TITLE, TKeys.CONCLUSION].map((item, index) => (
@@ -37,8 +37,8 @@ export default function SectionChooser({ onSelect }: Props) {
           key={section}
           entering={SlideInDown.delay(50 * section)
             .duration(200 * section)
-            .mass(1)
-            .springify()}
+            .mass(2)}
+          exiting={FadeOut}
           style={styles.pressable}
           onTouchEnd={() => onSelect(section)}
         >

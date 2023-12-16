@@ -547,6 +547,52 @@ export enum TKeys {
   INVOCATIONS_IMMUNIZATION_EVENING_27 = 'invocations.immunization.evening.27',
   INVOCATIONS_IMMUNIZATION_EVENING_40 = 'invocations.immunization.evening.40',
 
+  // Invocations Jawahir
+  INVOCATIONS_JEWELS_INTRODUCTION = 'invocations.jewels.introduction',
+  INVOCATIONS_JEWELS_CONCLUSION = 'invocations.jewels.conclusion',
+  // Monday
+  INVOCATIONS_JEWELS_DAY_1_TITLE = 'invocations.jewels.day.1.title',
+  INVOCATIONS_JEWELS_DAY_1_PART_1_TITLE = 'invocations.jewels.day.1.part.1.title',
+  INVOCATIONS_JEWELS_DAY_1_PART_1_SUMMARY = 'invocations.jewels.day.1.part.1.summary',
+  INVOCATIONS_JEWELS_DAY_1_PART_2_TITLE = 'invocations.jewels.day.1.part.2.title',
+  INVOCATIONS_JEWELS_DAY_1_PART_2_SUMMARY = 'invocations.jewels.day.1.part.2.summary',
+  // Tuesday
+  INVOCATIONS_JEWELS_DAY_2_TITLE = 'invocations.jewels.day.2.title',
+  INVOCATIONS_JEWELS_DAY_2_PART_1_TITLE = 'invocations.jewels.day.2.part.1.title',
+  INVOCATIONS_JEWELS_DAY_2_PART_1_SUMMARY = 'invocations.jewels.day.2.part.1.summary',
+  INVOCATIONS_JEWELS_DAY_2_PART_2_TITLE = 'invocations.jewels.day.2.part.2.title',
+  INVOCATIONS_JEWELS_DAY_2_PART_2_SUMMARY = 'invocations.jewels.day.2.part.2.summary',
+  // Wednesday
+  INVOCATIONS_JEWELS_DAY_3_TITLE = 'invocations.jewels.day.3.title',
+  INVOCATIONS_JEWELS_DAY_3_PART_1_TITLE = 'invocations.jewels.day.3.part.1.title',
+  INVOCATIONS_JEWELS_DAY_3_PART_1_SUMMARY = 'invocations.jewels.day.3.part.1.summary',
+  // Thursday
+  INVOCATIONS_JEWELS_DAY_4_TITLE = 'invocations.jewels.day.4.title',
+  INVOCATIONS_JEWELS_DAY_4_PART_1_TITLE = 'invocations.jewels.day.4.part.1.title',
+  INVOCATIONS_JEWELS_DAY_4_PART_1_SUMMARY = 'invocations.jewels.day.4.part.1.summary',
+  INVOCATIONS_JEWELS_DAY_4_PART_2_TITLE = 'invocations.jewels.day.4.part.2.title',
+  INVOCATIONS_JEWELS_DAY_4_PART_2_SUMMARY = 'invocations.jewels.day.4.part.2.summary',
+  // Friday
+  INVOCATIONS_JEWELS_DAY_5_TITLE = 'invocations.jewels.day.5.title',
+  INVOCATIONS_JEWELS_DAY_5_PART_1_TITLE = 'invocations.jewels.day.5.part.1.title',
+  INVOCATIONS_JEWELS_DAY_5_PART_1_SUMMARY = 'invocations.jewels.day.5.part.1.summary',
+  INVOCATIONS_JEWELS_DAY_5_PART_2_TITLE = 'invocations.jewels.day.5.part.2.title',
+  INVOCATIONS_JEWELS_DAY_5_PART_2_SUMMARY = 'invocations.jewels.day.5.part.2.summary',
+  // Saturday
+  INVOCATIONS_JEWELS_DAY_6_TITLE = 'invocations.jewels.day.6.title',
+  INVOCATIONS_JEWELS_DAY_6_PART_1_TITLE = 'invocations.jewels.day.6.part.1.title',
+  INVOCATIONS_JEWELS_DAY_6_PART_1_SUMMARY = 'invocations.jewels.day.6.part.1.summary',
+  INVOCATIONS_JEWELS_DAY_6_PART_2_TITLE = 'invocations.jewels.day.6.part.2.title',
+  INVOCATIONS_JEWELS_DAY_6_PART_2_SUMMARY = 'invocations.jewels.day.6.part.2.summary',
+  // Sunday
+  INVOCATIONS_JEWELS_DAY_7_TITLE = 'invocations.jewels.day.7.title',
+  INVOCATIONS_JEWELS_DAY_7_PART_1_TITLE = 'invocations.jewels.day.7.part.1.title',
+  INVOCATIONS_JEWELS_DAY_7_PART_1_SUMMARY = 'invocations.jewels.day.7.part.1.summary',
+  INVOCATIONS_JEWELS_DAY_7_PART_2_TITLE = 'invocations.jewels.day.7.part.2.title',
+  INVOCATIONS_JEWELS_DAY_7_PART_2_SUMMARY = 'invocations.jewels.day.7.part.2.summary',
+  INVOCATIONS_JEWELS_DAY_7_PART_3_TITLE = 'invocations.jewels.day.7.part.3.title',
+  INVOCATIONS_JEWELS_DAY_7_PART_3_SUMMARY = 'invocations.jewels.day.7.part.3.summary',
+
   // Invocations Faydo rahmani
   INVOCATIONS_FAYDO_INTRODUCTION = 'invocations.faydo.introduction',
   INVOCATIONS_FAYDO_CHAPTER_1_TITLE = 'invocations.faydo.chapter.1.title',
@@ -971,6 +1017,14 @@ export enum TKeys {
   LEVEL = 'level',
   MORNING = 'morning',
   EVENING = 'evening',
+  DAY_1 = 'day.1',
+  DAY_2 = 'day.2',
+  DAY_3 = 'day.3',
+  DAY_4 = 'day.4',
+  DAY_5 = 'day.5',
+  DAY_6 = 'day.6',
+  DAY_7 = 'day.7',
+
   A = 'a',
   B = 'b',
 

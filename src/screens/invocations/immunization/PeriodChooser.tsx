@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Avatar } from 'react-native-paper';
-import Animated, { FadeInDown, FadeInUp, SlideInDown } from 'react-native-reanimated';
+import Animated, { FadeInDown, FadeInUp, FadeOut, SlideInDown } from 'react-native-reanimated';
 import Text from '../../../components/Text';
 import VStack from '../../../components/stack/VStack';
 import { Color } from '../../../constants/Color';
@@ -28,14 +28,15 @@ export default function PeriodChooser(props: Props) {
 
   return (
     <View style={GlobalStyles.center}>
-      <Animated.View entering={FadeInUp.delay(300).duration(500).mass(25)}>
+      <Animated.View entering={FadeInUp.delay(300).duration(500).mass(25)} exiting={FadeOut}>
         <Text variant="titleLarge" style={[styles.topTitle, styles.bookTitle]}>
           {formatMessage(TKeys.INVOCATION_IMMUNIZATION_TITLE)}
         </Text>
       </Animated.View>
       <VStack spacing={1} style={GlobalStyles.center}>
         <Animated.View
-          entering={FadeInDown.delay(500).duration(500).mass(20)}
+          entering={FadeInUp.delay(300).duration(400).mass(20)}
+          exiting={FadeOut}
           style={styles.introduction}
           onTouchEnd={props.onMetaSelect}
         >
@@ -43,7 +44,7 @@ export default function PeriodChooser(props: Props) {
             {formatMessage(TKeys.GENERAL_PRESENTATION_TITLE)}
           </Text>
         </Animated.View>
-        <Animated.View entering={FadeInUp.delay(700).duration(500).mass(25)}>
+        <Animated.View entering={FadeInDown.delay(300).duration(400).mass(25)} exiting={FadeOut}>
           <Text variant="titleLarge" style={[styles.topTitle, styles.initiation]}>
             {formatMessage(TKeys.INITIATION_TITLE)}
           </Text>
@@ -57,8 +58,8 @@ export default function PeriodChooser(props: Props) {
             key={name}
             entering={SlideInDown.delay(100 * (index + 1))
               .duration(300 * (index + 1))
-              .mass(1)
-              .springify()}
+              .mass(2)}
+            exiting={FadeOut}
             style={styles.pressable}
             onTouchEnd={() => props.onSelect(name as ImmunizationPeriod)}
           >
