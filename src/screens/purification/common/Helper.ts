@@ -1,5 +1,13 @@
-import { Part } from '../../../components/PressableStep';
+import { ImageSourcePropType } from 'react-native';
 import { TKeys } from '../../../locales/constants';
+import { PurificationParamList } from '../../../navigation/types';
+
+export interface Part {
+  name: string;
+  route: keyof PurificationParamList;
+  description: string;
+  imageSource: ImageSourcePropType;
+}
 
 export const purificationStages: Part[] = [
   {

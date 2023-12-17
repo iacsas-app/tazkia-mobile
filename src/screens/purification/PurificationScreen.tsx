@@ -3,19 +3,18 @@ import { useMemo, useRef, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { FAB } from 'react-native-paper';
 import Animated, { FadeInLeft, FadeInRight, FadeInUp, FadeOut } from 'react-native-reanimated';
-import PressableStep, { Part } from '../../components/PressableStep';
 import SimpleDialog, { SimpleDialogRef } from '../../components/dialogs/SimpleDialog';
 import HStack from '../../components/stack/HStack';
 import VStack from '../../components/stack/VStack';
 import { Color } from '../../constants/Color';
 import { Font } from '../../constants/Font';
-import { SCREEN_WIDTH } from '../../constants/Screen';
 import { PurificationType } from '../../domains/purification/Purification';
 import { useMessage } from '../../hooks/use-message';
 import usePurification from '../../hooks/use-purification';
 import { TKeys } from '../../locales/constants';
 import GlobalStyles from '../../styles/GlobalStyles';
-import { actions, purificationStages } from './common/Helper';
+import { Part, actions, purificationStages } from './common/Helper';
+import PressableProgress from './common/PressableProgress';
 
 export default function PurificationScreen() {
   const ref = useRef<SimpleDialogRef>(null);
@@ -56,12 +55,11 @@ export default function PurificationScreen() {
         </VStack>
         <VStack spacing={20}>
           {parts.map((item: Part, index: number) => (
-            <PressableStep
+            <PressableProgress
               key={index}
               item={item}
               index={index}
               hasProgress={hasProgress(lowerFirst(item.route) as PurificationType)}
-              style={styles.part}
             />
           ))}
         </VStack>
@@ -124,12 +122,6 @@ const styles = StyleSheet.create({
     textShadowRadius: 2,
     color: 'black',
     fontSize: Font.size(18),
-  },
-  part: {
-    width: SCREEN_WIDTH - 110,
-    paddingVertical: 5,
-    borderRadius: 25,
-    elevation: 6,
   },
   sourat: {
     fontWeight: '700',

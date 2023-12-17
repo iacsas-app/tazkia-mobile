@@ -57,6 +57,17 @@ export function isCompleted(progress: ProgressLine[] | undefined, maxDays: numbe
   return last ? last.day === maxDays && last.errors.length === 0 && last.evaluated === true : false;
 }
 
+export function mergeArray<T>(array1: T[] | undefined, array2?: T[]): T[] {
+  let result: T[] = [];
+  if (array1) {
+    result = result.concat(array1);
+  }
+  if (array2) {
+    result = result.concat(array2);
+  }
+  return result;
+}
+
 export function deviceLanguage(): string {
   const systemLanguage =
     Platform.OS === 'ios'

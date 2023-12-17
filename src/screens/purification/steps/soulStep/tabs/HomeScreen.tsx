@@ -4,7 +4,7 @@ import BottomSheet, { BottomSheetRef } from '../../../../../components/bottomShe
 import PressableItem from '../../../../../components/progressItem/PressableItem';
 import VStack from '../../../../../components/stack/VStack';
 import { Color } from '../../../../../constants/Color';
-import Soul, { SoulPart, SoulPartLevel } from '../../../../../domains/purification/Soul';
+import Soul, { SoulPart, SoulPartLevel, hasSubTitle, soulRules } from '../../../../../domains/purification/Soul';
 import { useMessage } from '../../../../../hooks/use-message';
 import usePurification from '../../../../../hooks/use-purification';
 import { TKeys } from '../../../../../locales/constants';
@@ -13,7 +13,6 @@ import { useSnackbar } from '../../../../../providers/SnackbarProvider';
 import { PURIFICATION_MAX_DAYS, progressPercentage2 } from '../../../../../services/Helpers';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
 import LevelSelector from '../helpers/LevelSelector';
-import { hasSubTitle, soulRules } from '../helpers/data';
 
 export default function HomeScreen() {
   const ref = useRef<BottomSheetRef>(null);
@@ -85,7 +84,7 @@ export default function HomeScreen() {
               const soul = findSoul(soulPart as any);
               const hasProgress = soul !== undefined;
               const idx = index + 1;
-              const size = soul ? levels[soul.part - 1] : 0;
+              const size = levels[index];
 
               return (
                 <PressableItem

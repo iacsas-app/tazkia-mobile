@@ -1,11 +1,11 @@
 import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
-import PressableStep, { Part } from '../../components/PressableStep';
 import VStack from '../../components/stack/VStack';
 import { Color } from '../../constants/Color';
 import { SCREEN_WIDTH } from '../../constants/Screen';
 import { TKeys } from '../../locales/constants';
 import GlobalStyles from '../../styles/GlobalStyles';
+import Pressable, { Part } from './common/Pressable';
 
 export default function PresentationScreen() {
   const parts: Part[] = useMemo(
@@ -37,7 +37,7 @@ export default function PresentationScreen() {
   return (
     <VStack style={styles.container} spacing={15}>
       {parts.map((item: Part, index: number) => (
-        <PressableStep key={index} item={item} index={index} style={styles.part} />
+        <Pressable key={index} item={item} index={index} style={styles.part} />
       ))}
     </VStack>
   );

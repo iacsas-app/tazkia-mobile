@@ -3,7 +3,7 @@ import { PrimitiveType } from 'react-intl';
 import { StyleSheet, View } from 'react-native';
 import CircularProgress from 'react-native-circular-progress-indicator';
 import { Avatar } from 'react-native-paper';
-import Animated, { FadeInDown, FadeInLeft } from 'react-native-reanimated';
+import Animated, { FadeInDown, FadeInLeft, FadeOut } from 'react-native-reanimated';
 import { Color } from '../../constants/Color';
 import { Font } from '../../constants/Font';
 import { SCREEN_WIDTH } from '../../constants/Screen';
@@ -43,8 +43,9 @@ function PressableItem({ inProgress, ...props }: Props) {
   return (
     <Animated.View
       entering={FadeInDown.delay(speed * (id / 2))
-        .duration(400)
-        .mass(1)}
+        .duration(300)
+        .mass(21)}
+      exiting={FadeOut}
       style={{ marginBottom: 7 }}
       onTouchEnd={() => props.onPress(props.index + 1)}
     >
@@ -88,12 +89,9 @@ function PressableItem({ inProgress, ...props }: Props) {
               {formatMessage(props.summaryKey, props.summaryKeyProps)}
             </Text>
             {props.subSummaryKey && (
-              <Animated.Text
-                entering={FadeInDown.delay(270 * props.index + 1)}
-                style={{ ...styles.partSubTitle, fontSize: Font.size(props.subSummarySize ?? 10) }}
-              >
+              <Text style={{ ...styles.partSubTitle, fontSize: Font.size(props.subSummarySize ?? 10) }}>
                 {formatMessage(props.subSummaryKey, props.subSummaryProps)}
-              </Animated.Text>
+              </Text>
             )}
           </VStack>
           <View style={{ paddingTop: 4 }}>
@@ -103,7 +101,10 @@ function PressableItem({ inProgress, ...props }: Props) {
         <HStack style={GlobalStyles.center}>
           <View style={{ width: (props.circularProgressRadius ?? 0) * 2 }}>
             {inProgress && (
-              <Animated.View entering={FadeInLeft.delay(400).duration(300).springify().stiffness(300)}>
+              <Animated.View
+                entering={FadeInLeft.delay(400).duration(300).springify().stiffness(300)}
+                exiting={FadeOut}
+              >
                 {completed ? (
                   <Icon name="check-all" size={25} color="seagreen" style={{ marginRight: 8 }} />
                 ) : (

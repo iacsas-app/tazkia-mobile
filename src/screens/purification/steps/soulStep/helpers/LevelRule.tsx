@@ -13,14 +13,13 @@ import { Color } from '../../../../../constants/Color';
 import { Font } from '../../../../../constants/Font';
 import { SCREEN_WIDTH } from '../../../../../constants/Screen';
 import ProgressLine from '../../../../../domains/common/ProgressLine';
-import { SoulPart } from '../../../../../domains/purification/Soul';
+import { SoulPart, soulRules } from '../../../../../domains/purification/Soul';
 import { useMessage } from '../../../../../hooks/use-message';
 import useProgress from '../../../../../hooks/use-progress';
 import usePurification from '../../../../../hooks/use-purification';
 import { TKeys } from '../../../../../locales/constants';
 import { useSnackbar } from '../../../../../providers/SnackbarProvider';
 import { PURIFICATION_MAX_DAYS, isCompleted } from '../../../../../services/Helpers';
-import { soulRules } from './data';
 
 type Props = {
   part: SoulPart;
@@ -123,7 +122,6 @@ export default function LevelRule({ part, index, levelKey, ...props }: Props) {
               <Start onStart={handleStart} />
             ) : (
               <HStack>
-                {progressProps.completed && <Restart onClick={props.onRestart} />}
                 <ProgressStatus
                   last={progressProps.lastDay}
                   count={progressProps.countProgress}
@@ -132,6 +130,7 @@ export default function LevelRule({ part, index, levelKey, ...props }: Props) {
                   valueMarginRight={-2}
                   valueMarginLeft={-4}
                 />
+                {progressProps.completed && <Restart onClick={props.onRestart} />}
               </HStack>
             )}
           </Animated.View>

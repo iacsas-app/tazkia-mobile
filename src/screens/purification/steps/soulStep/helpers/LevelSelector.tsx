@@ -6,12 +6,11 @@ import ConfirmRestartDialog, { ConfirmRestartDialogRef } from '../../../../../co
 import HStack from '../../../../../components/stack/HStack';
 import VStack from '../../../../../components/stack/VStack';
 import { Font } from '../../../../../constants/Font';
-import { SoulPart, SoulPartLevel } from '../../../../../domains/purification/Soul';
+import { SoulPart, SoulPartLevel, hasSubTitle, soulRules } from '../../../../../domains/purification/Soul';
 import { useMessage } from '../../../../../hooks/use-message';
 import { arabic } from '../../../../../locales/messages/arabic';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
 import LevelRule from './LevelRule';
-import { hasSubTitle, soulRules } from './data';
 
 interface Props {
   part: SoulPart | undefined;

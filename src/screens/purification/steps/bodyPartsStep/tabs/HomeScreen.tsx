@@ -3,14 +3,19 @@ import BottomSheet, { BottomSheetRef } from '../../../../../components/bottomShe
 import HStack from '../../../../../components/stack/HStack';
 import VStack from '../../../../../components/stack/VStack';
 import { Color } from '../../../../../constants/Color';
-import { BodyPartType, BodyPartsOrder, PurificationStage } from '../../../../../domains/purification/BodyPart';
+import {
+  BodyPartType,
+  BodyPartsOrder,
+  PartItem,
+  PurificationStage,
+  bodyParts,
+} from '../../../../../domains/purification/BodyPart';
 import { useMessage } from '../../../../../hooks/use-message';
 import usePurification from '../../../../../hooks/use-purification';
 import { TKeys } from '../../../../../locales/constants';
 import { useSnackbar } from '../../../../../providers/SnackbarProvider';
 import { groupBy } from '../../../../../services/Helpers';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
-import { PartItem, bodyParts } from '../common/Helper';
 import BodyPartItem from '../helpers/BodyPartItem';
 import StageSelector from '../helpers/StageSelector';
 
