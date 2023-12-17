@@ -25,7 +25,7 @@ export default function PressableProgress({ index, item, hasProgress }: Props) {
   const { formatMessage } = useMessage();
   const { arabic } = useGlobal();
   const [progress, setProgress] = useState<number>();
-  const { globalPercentage } = usePurification();
+  const { purification, globalPercentage } = usePurification();
   const type = useMemo(() => lowerFirst(item.route) as PurificationType, []);
   const navigation = useNavigation<any>();
 
@@ -36,7 +36,7 @@ export default function PressableProgress({ index, item, hasProgress }: Props) {
   useEffect(() => {
     const value = globalPercentage(type);
     setProgress(hasProgress ? value : undefined);
-  }, [hasProgress]);
+  }, [hasProgress, purification]);
 
   return (
     <Animated.View
