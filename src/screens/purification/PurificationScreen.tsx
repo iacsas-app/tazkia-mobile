@@ -1,6 +1,6 @@
 import { lowerFirst } from 'lodash';
 import { useMemo, useRef, useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { Linking, StyleSheet } from 'react-native';
 import { FAB } from 'react-native-paper';
 import Animated, { FadeInLeft, FadeInRight, FadeInUp, FadeOut } from 'react-native-reanimated';
 import SimpleDialog, { SimpleDialogRef } from '../../components/dialogs/SimpleDialog';
@@ -12,6 +12,7 @@ import { PurificationType } from '../../domains/purification/Purification';
 import { useMessage } from '../../hooks/use-message';
 import usePurification from '../../hooks/use-purification';
 import { TKeys } from '../../locales/constants';
+import { PURIFICATION_MAX_DAYS, progressPercentage2 } from '../../services/Helpers';
 import GlobalStyles from '../../styles/GlobalStyles';
 import { Part, actions, purificationStages } from './common/Helper';
 import PressableProgress from './common/PressableProgress';
@@ -20,12 +21,50 @@ export default function PurificationScreen() {
   const ref = useRef<SimpleDialogRef>(null);
   const { formatMessage } = useMessage();
   const [open, setOpen] = useState<boolean>(false);
-  const { hasProgress } = usePurification();
+  const { purification, hasProgress } = usePurification();
   const parts: Part[] = useMemo(() => purificationStages, []);
   const actionKeys: Record<string, TKeys | TKeys[]> = useMemo(() => actions, []);
 
   function handleAction(key: TKeys) {
     ref.current?.open(actionKeys[key], key);
+  }
+
+  function handeSendReport() {
+    let report = '';
+    if (purification) {
+      report = `*My mensual report :* \n\n\n`;
+      const bodyParts = purification.bodyParts;
+      if (bodyParts.length > 0) {
+        report = `${report}*> ${formatMessage(TKeys.PURIFICATION_BODYPART_TITLE)} :*\n\n`;
+        bodyParts.forEach((part, index) => {
+          report = `${report}*${index + 1}. ${formatMessage(`purification.body-parts.${part.name}`)} :*\n`;
+          if (part.cleaning) {
+            report = `${report}- _${formatMessage(`purification.bodypart.cleaning`)}_ : ${progressPercentage2(
+              part.cleaning,
+              PURIFICATION_MAX_DAYS,
+            )} %\n`;
+          }
+          if (part.enlightenment) {
+            report = `${report}- _${formatMessage(`purification.bodypart.enlightenment`)}_ : ${progressPercentage2(
+              part.enlightenment,
+              PURIFICATION_MAX_DAYS,
+            )} %\n`;
+          }
+          report = `${report}\n`;
+        });
+      }
+      const minds = purification.mind;
+      if (minds.length > 0) {
+        report = `\n\n${report}*> ${formatMessage(TKeys.PURIFICATION_MIND_TITLE)} :*\n\n`;
+        minds.forEach((mind, index) => {
+          report = `${report}*${index + 1}. ${formatMessage(TKeys.LEVEL, {
+            value: mind.level,
+          })} :* ${progressPercentage2(mind.progress, PURIFICATION_MAX_DAYS)} %\n`;
+        });
+      }
+    }
+
+    Linking.openURL(`whatsapp://send?text=${encodeURIComponent(report)}&phone=+33610680003`);
   }
 
   return (
@@ -95,6 +134,13 @@ export default function PurificationScreen() {
             labelStyle: styles.action,
             size: 'small',
             onPress: () => handleAction(TKeys.CONCLUSION),
+          },
+          {
+            icon: 'seal-variant',
+            label: 'Send report to Cheikh',
+            labelStyle: styles.action,
+            size: 'small',
+            onPress: handeSendReport,
           },
         ]}
         onStateChange={({ open }) => setOpen(open)}
