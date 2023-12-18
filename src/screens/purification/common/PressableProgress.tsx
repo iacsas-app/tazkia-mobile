@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     ...GlobalStyles.circle,
   },
   part: {
-    width: SCREEN_WIDTH - 110,
+    width: SCREEN_WIDTH - 120,
     paddingVertical: 5,
     borderRadius: 25,
     elevation: 6,

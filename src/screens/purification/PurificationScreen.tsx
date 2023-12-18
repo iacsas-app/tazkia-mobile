@@ -56,15 +56,15 @@ export default function PurificationScreen() {
       const minds = purification.mind;
       if (minds.length > 0) {
         report = `\n\n${report}*> ${formatMessage(TKeys.PURIFICATION_MIND_TITLE)} :*\n\n`;
-        minds.forEach((mind, index) => {
-          report = `${report}*${index + 1}. ${formatMessage(TKeys.LEVEL, {
+        minds.forEach((mind) => {
+          report = `${report}*- ${formatMessage(TKeys.LEVEL, {
             value: mind.level,
           })} :* ${progressPercentage2(mind.progress, PURIFICATION_MAX_DAYS)} %\n`;
         });
       }
     }
-
-    Linking.openURL(`whatsapp://send?text=${encodeURIComponent(report)}&phone=+33610680003`);
+    //33610680003
+    Linking.openURL(`whatsapp://send?text=${encodeURIComponent(report)}&phone=+212655269623`);
   }
 
   return (
@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
   },
   top: {
     ...GlobalStyles.center,
-    marginTop: -40,
+    marginTop: -20,
   },
   title: {
     fontWeight: '800',

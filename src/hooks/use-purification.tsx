@@ -1,9 +1,10 @@
+import { useMemo } from 'react';
 import ProgressLine from '../domains/common/ProgressLine';
 import BodyPart, { BodyPartType, BodyPartsOrder, PurificationStage, bodyParts } from '../domains/purification/BodyPart';
 import Mind, { MindLevel, mindLevels } from '../domains/purification/Mind';
 import Purification, { PurificationType } from '../domains/purification/Purification';
 import Soul, { SoulPart, SoulPartLevel, soulRules } from '../domains/purification/Soul';
-import { PURIFICATION_MAX_DAYS, mergeArray, progressPercentage2 } from '../services/Helpers';
+import { PURIFICATION_MAX_DAYS, progressPercentage2 } from '../services/Helpers';
 import { useStoreActions, useStoreState } from '../stores/hooks';
 
 export interface IPurification {
@@ -37,6 +38,8 @@ export default function usePurification(): IPurification {
   const findSoul = useStoreState((actions) => actions.purification.findSoul);
   const findMind = useStoreState((state) => state.purification.findByMind);
   const lastMindLevel = useStoreState((state) => state.purification.lastMindLevel);
+  const bodyPartsSize = useMemo(() => bodyParts.length, []);
+  const mindLevelsSize = useMemo(() => mindLevels.length, []);
 
   function createBodyPart(part: BodyPartType, stage: PurificationStage): void {
     const progress: Purification = getProgress();
@@ -120,12 +123,13 @@ export default function usePurification(): IPurification {
     }
     const value = purification.bodyParts
       .map(({ cleaning, enlightenment }) => {
-        let list: ProgressLine[] = mergeArray(cleaning, enlightenment);
-        const sum = progressPercentage2(list, PURIFICATION_MAX_DAYS);
-        return sum / list.length;
+        const sum =
+          progressPercentage2(cleaning, PURIFICATION_MAX_DAYS) +
+          progressPercentage2(enlightenment, PURIFICATION_MAX_DAYS);
+        return sum / 2;
       })
-      .reduce((accumulator, currentValue) => (accumulator + currentValue) / 2, 0);
-    return value / bodyParts.length;
+      .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    return value / bodyPartsSize;
   }
 
   function mindGlobalPercentage(): number | undefined {
@@ -135,11 +139,10 @@ export default function usePurification(): IPurification {
     const value = purification.mind
       .map((level) => {
         let list: ProgressLine[] = level.progress;
-        const sum = progressPercentage2(list, PURIFICATION_MAX_DAYS);
-        return sum / list.length;
+        return progressPercentage2(list, PURIFICATION_MAX_DAYS) / list.length;
       })
       .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-    return value / mindLevels.length;
+    return value / mindLevelsSize;
   }
 
   function soulGlobalPercentage(): number | undefined {
