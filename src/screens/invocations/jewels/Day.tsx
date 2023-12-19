@@ -51,7 +51,7 @@ function Day({ day, partNumbers }: Props) {
       onTouchEnd={handlePress}
     >
       <HStack style={{ ...GlobalStyles.center, paddingHorizontal: 5 }}>
-        {!first && !last && <Avatar.Text label={day.toString()} size={20} style={styles.id} color="white" />}
+        {!first && !last && <Avatar.Text label={day.toString()} size={22} style={styles.id} color="white" />}
         <HStack style={{ ...styles.container, paddingVertical: first || last ? 1 : 4 }}>
           {!first && !last && (
             <Animated.Text
@@ -61,7 +61,7 @@ function Day({ day, partNumbers }: Props) {
                 ...styles.title,
                 color: first || last ? 'white' : isOpen ? '#3db371' : 'black',
                 fontSize: isOpen ? 17 : 16,
-                flex: 10,
+                flex: 5,
               }}
             >
               {formatMessage(`day.${day}`)}
@@ -94,7 +94,7 @@ function Day({ day, partNumbers }: Props) {
           >
             {Array.from({ length: partNumbers }, (_, i) => i + 1).map((part) => (
               <VStack key={`${day}_${part}`} spacing={5} style={styles.box}>
-                <Text variant="bodyLarge" style={styles.title}>
+                <Text variant="bodyLarge" style={styles.partTitle}>
                   {formatMessage(`${baseKey}.day.${day}.part.${part}.title`)}
                 </Text>
                 <Text variant="bodyMedium" style={styles.summary}>
@@ -123,10 +123,25 @@ const styles = StyleSheet.create({
   },
   main: { ...GlobalStyles.center, flexDirection: 'column', gap: 10, paddingVertical: 15 },
   box: { ...GlobalStyles.center, paddingHorizontal: 15, marginHorizontal: 10 },
-  title: { fontSize: 18, textAlign: 'center', fontWeight: '900', color: 'teal' },
+  title: {
+    fontSize: 18,
+    textAlign: 'center',
+    fontWeight: '900',
+    color: 'teal',
+  },
+  partTitle: {
+    backgroundColor: '#66cdaa21',
+    paddingVertical: 15,
+    paddingHorizontal: 25,
+    borderRadius: 20,
+    fontSize: 18,
+    textAlign: 'center',
+    fontWeight: '900',
+    color: 'teal',
+  },
   summary: { ...GlobalStyles.justify, fontSize: 15, fontWeight: '700', paddingVertical: 10 },
   body: { ...GlobalStyles.justify, fontSize: 15, fontWeight: '500' },
-  id: { elevation: 2, backgroundColor: '#3db371', flex: 1.1 },
+  id: { elevation: 2, backgroundColor: '#3db371', flex: 1.2, marginStart: 2 },
   container: { ...GlobalStyles.center, flex: 15, marginHorizontal: 10 },
   divider: { width: SCREEN_WIDTH - 100, height: 1, marginVertical: 10 },
 });
