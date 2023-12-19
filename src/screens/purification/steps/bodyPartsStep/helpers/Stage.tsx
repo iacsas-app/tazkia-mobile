@@ -119,9 +119,10 @@ export default function Stage({ part, stage, ...props }: Props) {
               variant="bodySmall"
               style={{
                 paddingTop: 4,
-                fontSize: Font.size((showDetails ? 15 : 14) + (arabic ? 3 : 0) - (locale === 'id' ? 3 : 0)),
+                fontSize: Font.size((showDetails ? 13 : 12) + (arabic ? 3 : 0) - (locale === 'id' ? 4 : 0)),
                 color: Color.flatItemNoneBgColor,
                 fontWeight: showDetails ? (arabic ? '700' : 'normal') : '800',
+                flex: 12,
               }}
             >
               {formatMessage(`purification.bodypart.${stage}`)}
@@ -210,7 +211,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     fontWeight: '900',
-    width: SCREEN_WIDTH - 200,
+    width: SCREEN_WIDTH - 150,
     paddingTop: 2,
   },
   footer: { paddingVertical: 2 },

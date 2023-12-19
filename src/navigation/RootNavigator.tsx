@@ -21,7 +21,6 @@ const RootNavigator = () => {
   const ref = useRef<SettingsDialogRef>(null);
   const insets = useSafeAreaInsets();
   const [index, setIndex] = useState(0);
-
   const openSettingDialog = useCallback(() => ref.current?.open(), []);
 
   const [routes] = useState<RoutesState>([
@@ -45,15 +44,13 @@ const RootNavigator = () => {
   return (
     <SafeAreaProvider>
       <Appbar.Header elevated style={styles.header}>
-        <Appbar.Header style={styles.logoContainer}>
-          <Image source={require('./../../assets/logo.png')} style={styles.logo} />
-        </Appbar.Header>
+        <Image source={require('./../../assets/logo.png')} style={styles.logo} />
         <Appbar.Content
           title={formatMessage(TKeys.APPLICATION_TITLE_PRIMARY)}
           titleStyle={styles.headerContentTitle}
           style={styles.headerContent}
         />
-        <Appbar.Action icon="dots-vertical" style={styles.headerAction} size={25} onPressIn={openSettingDialog} />
+        <Appbar.Action icon="dots-vertical" style={styles.headerAction} size={32} onPressIn={openSettingDialog} />
       </Appbar.Header>
       <BottomNavigation
         safeAreaInsets={{ bottom: insets.bottom }}
@@ -78,9 +75,8 @@ const RootNavigator = () => {
 
 const styles = StyleSheet.create({
   header: { height: 45 },
-  logoContainer: { backgroundColor: 'transparent', height: 45 },
   logo: {
-    width: 45,
+    width: 50,
     resizeMode: 'contain',
     marginStart: 3,
     aspectRatio: 1,

@@ -45,7 +45,7 @@ export function ProgressStatus({
       {!hideRepeat && !completed && <RepeatCount count={count} />}
       <View>
         {completed ? (
-          <Icon name="check-bold" size={radius ?? 30} color="seagreen" />
+          <Icon name="check-bold" size={radius ?? 25} color="seagreen" />
         ) : (
           <CircularProgress
             value={progressPercentage(last.day - failed, maxDays)}

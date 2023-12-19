@@ -6,10 +6,9 @@ import Providers from './src/providers';
 export default function App() {
   return (
     <Providers>
-      <StatusBar animated={true} hidden={true} />
+      <StatusBar animated={true} hidden={true} backgroundColor="transparent" />
       <RootNavigator />
     </Providers>
   );
 }
-
 registerRootComponent(App);
