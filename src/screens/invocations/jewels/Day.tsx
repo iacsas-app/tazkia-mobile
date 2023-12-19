@@ -1,6 +1,6 @@
 import { memo, useState } from 'react';
 import { StyleSheet } from 'react-native';
-import { Avatar } from 'react-native-paper';
+import { Avatar, Divider } from 'react-native-paper';
 import Animated, {
   FadeInDown,
   FadeInLeft,
@@ -13,6 +13,7 @@ import Text from '../../../components/Text';
 import HStack from '../../../components/stack/HStack';
 import VStack from '../../../components/stack/VStack';
 import { Color } from '../../../constants/Color';
+import { SCREEN_WIDTH } from '../../../constants/Screen';
 import { useMessage } from '../../../hooks/use-message';
 import { TKeys } from '../../../locales/constants';
 import GlobalStyles from '../../../styles/GlobalStyles';
@@ -28,7 +29,7 @@ function Day({ day, partNumbers }: Props) {
   const baseKey = `invocations.jewels`;
   const first = day === 0;
   const last = day === 8;
-  const titleKey = first ? TKeys.GENERAL_PRESENTATION_TITLE : last ? TKeys.CONCLUSION : `day.${day}.title`;
+  const titleKey = first ? TKeys.GENERAL_PRESENTATION_TITLE : last ? TKeys.CONCLUSION : `${baseKey}.day.${day}.title`;
   const summaryKey = first ? `${baseKey}.introduction` : last ? TKeys.INVOCATIONS_JEWELS_CONCLUSION : '';
   const fade = first ? FadeInDown : last ? FadeInUp : FadeInLeft;
 
@@ -50,8 +51,8 @@ function Day({ day, partNumbers }: Props) {
       onTouchEnd={handlePress}
     >
       <HStack style={{ ...GlobalStyles.center, paddingHorizontal: 5 }}>
-        {!first && !last && <Avatar.Text label={day.toString()} size={25} style={styles.id} color="white" />}
-        <HStack style={{ ...styles.container, paddingVertical: first || last ? 1 : 4 }} spacing={1}>
+        {!first && !last && <Avatar.Text label={day.toString()} size={20} style={styles.id} color="white" />}
+        <HStack style={{ ...styles.container, paddingVertical: first || last ? 1 : 4 }}>
           {!first && !last && (
             <Animated.Text
               entering={FadeInRight.delay(300).duration(400).mass(13)}
@@ -59,7 +60,7 @@ function Day({ day, partNumbers }: Props) {
               style={{
                 ...styles.title,
                 color: first || last ? 'white' : isOpen ? '#3db371' : 'black',
-                fontSize: isOpen ? 18 : 16,
+                fontSize: isOpen ? 17 : 16,
                 flex: 10,
               }}
             >
@@ -72,7 +73,7 @@ function Day({ day, partNumbers }: Props) {
             style={{
               ...styles.title,
               color: first || last ? 'white' : isOpen ? '#3db371' : 'teal',
-              fontSize: isOpen ? 18 : 16,
+              fontSize: isOpen ? 17 : 16,
               flex: 15,
             }}
           >
@@ -82,27 +83,27 @@ function Day({ day, partNumbers }: Props) {
       </HStack>
       {isOpen &&
         (first || last ? (
-          <Animated.Text
-            entering={FadeInUp.duration(400).mass(1)}
-            exiting={FadeOutDown.duration(200).mass(1)}
-            style={{ ...styles.box, ...styles.summary }}
-          >
+          <Animated.Text entering={FadeInUp.duration(400).mass(1)} exiting={FadeOutDown.mass(1)} style={styles.body}>
             {formatMessage(summaryKey)}
           </Animated.Text>
         ) : (
           <Animated.View
             entering={FadeInUp.duration(400).mass(1)}
             exiting={FadeOutDown.duration(200).mass(1)}
-            style={{ ...GlobalStyles.center, flexDirection: 'column', gap: 20 }}
+            style={styles.main}
           >
             {Array.from({ length: partNumbers }, (_, i) => i + 1).map((part) => (
-              <VStack key={`${day}_${part}`} spacing={5} style={GlobalStyles.center}>
-                <Text variant="bodyLarge" style={{ fontWeight: '700' }}>
-                  {formatMessage(`day.${day}.part.${part}.title`)}
+              <VStack key={`${day}_${part}`} spacing={5} style={styles.box}>
+                <Text variant="bodyLarge" style={styles.title}>
+                  {formatMessage(`${baseKey}.day.${day}.part.${part}.title`)}
                 </Text>
-                <Text key={part} variant="bodyMedium" style={{ ...GlobalStyles.justify }}>
-                  {formatMessage(`day.${day}.part.${part}.summary`)}
+                <Text variant="bodyMedium" style={styles.summary}>
+                  {formatMessage(`${baseKey}.day.${day}.part.${part}.summary`)}
                 </Text>
+                <Text variant="bodyMedium" style={styles.body}>
+                  {formatMessage(`${baseKey}.day.${day}.part.${part}.body`)}
+                </Text>
+                {part !== partNumbers && <Divider style={styles.divider} />}
               </VStack>
             ))}
           </Animated.View>
@@ -120,11 +121,14 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     gap: 15,
   },
-  box: {},
-  title: { textAlign: 'center', fontWeight: '900' },
-  summary: { fontSize: 15, textAlign: 'justify', fontWeight: '500', paddingBottom: 15 },
-  id: { elevation: 2, backgroundColor: '#3db371', flex: 1.2 },
-  container: { ...GlobalStyles.center, flex: 12, paddingHorizontal: 15, marginHorizontal: 10 },
+  main: { ...GlobalStyles.center, flexDirection: 'column', gap: 10, paddingVertical: 15 },
+  box: { ...GlobalStyles.center, paddingHorizontal: 15, marginHorizontal: 10 },
+  title: { fontSize: 18, textAlign: 'center', fontWeight: '900', color: 'teal' },
+  summary: { ...GlobalStyles.justify, fontSize: 15, fontWeight: '700', paddingVertical: 10 },
+  body: { ...GlobalStyles.justify, fontSize: 15, fontWeight: '500' },
+  id: { elevation: 2, backgroundColor: '#3db371', flex: 1.1 },
+  container: { ...GlobalStyles.center, flex: 15, marginHorizontal: 10 },
+  divider: { width: SCREEN_WIDTH - 100, height: 1, marginVertical: 10 },
 });
 
 export default memo(Day);

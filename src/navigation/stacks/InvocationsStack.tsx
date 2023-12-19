@@ -7,7 +7,7 @@ import { useMessage } from '../../hooks/use-message';
 import { TKeys } from '../../locales/constants';
 import InvocationsScreen from '../../screens/invocations/InvocationsScreen';
 import AhzabsInvocationsScreen from '../../screens/invocations/ahzabs';
-import OverflowInvocationsScreen from '../../screens/invocations/fayd';
+import OverflowInvocationsScreen from '../../screens/invocations/faydo';
 import ImmunizationInvocationsScreen from '../../screens/invocations/immunization';
 import { ImmunizationPeriod } from '../../screens/invocations/immunization/data';
 import JewelsInvocationsScreen from '../../screens/invocations/jewels';
