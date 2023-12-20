@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Easing, Image, StyleSheet } from 'react-native';
 import { Appbar, BottomNavigation } from 'react-native-paper';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -23,7 +23,7 @@ const RootNavigator = () => {
   const ref = useRef<SettingsDialogRef>(null);
   const insets = useSafeAreaInsets();
   const [index, setIndex] = useState(0);
-  const openSettingDialog = useCallback(() => ref.current?.open(), []);
+  //const openSettingDialog = useCallback(() => ref.current?.open(), []);
 
   const [routes] = useState<RoutesState>([
     {
@@ -52,7 +52,7 @@ const RootNavigator = () => {
           titleStyle={arabic ? styles.headerContentTitleAr : styles.headerContentTitle}
           style={styles.headerContent}
         />
-        <Appbar.Action icon="dots-vertical" style={styles.headerAction} size={32} onPressIn={openSettingDialog} />
+        {/** <Appbar.Action icon="dots-vertical" style={styles.headerAction} size={32} onPressIn={openSettingDialog} /> */}
       </Appbar.Header>
       <BottomNavigation
         safeAreaInsets={{ bottom: insets.bottom }}

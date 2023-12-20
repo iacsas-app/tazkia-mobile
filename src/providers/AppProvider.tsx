@@ -104,14 +104,15 @@ export default function AppProvider({ children }: PropsWithChildren<unknown>): R
   useEffect(() => {
     if (!state.locale) {
       try {
-        storageEngine.getItem(LOCALE_KEY).then((lang) => {
+        /*storageEngine.getItem(LOCALE_KEY).then((lang) => {
           dispatch({ type: GlobalActionKeys.SET_LOCALE, payload: lang });
-        });
+        });*/
+        dispatch({ type: GlobalActionKeys.SET_LOCALE, payload: defaultLanguage });
       } catch (e) {}
     }
   }, []);
 
-  useEffect(() => {
+  /*useEffect(() => {
     if (state.firstVisitDate === undefined) {
       try {
         storageEngine
@@ -122,6 +123,10 @@ export default function AppProvider({ children }: PropsWithChildren<unknown>): R
   }, []);
 
   if (!state.locale || state.firstVisitDate === undefined) {
+    return <></>;
+  }*/
+
+  if (!state.locale) {
     return <></>;
   }
 

@@ -1,5 +1,5 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
-import { StyleSheet, useWindowDimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Avatar } from 'react-native-paper';
 import { useMessage } from '../../../hooks/use-message';
@@ -14,7 +14,6 @@ type Props = {
 };
 export function ResetSetting(props: Props) {
   const { formatMessage } = useMessage();
-  const { width } = useWindowDimensions();
   const resetPurification = useStoreActions((state) => state.purification.reset);
   const resetSunnahs = useStoreActions((state) => state.sunnahs.reset);
 
