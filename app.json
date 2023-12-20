@@ -3,7 +3,7 @@
     "name": "Manhaj Nabawi|منهج نبوي",
     "slug": "manhaj-nabawi",
     "version": "1.0.0",
-    "scheme": "manhaj-nabawi-app",
+    "scheme": "manhaj-nabawi",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
@@ -17,18 +17,18 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.iacsas.manhajnabawi"
+      "bundleIdentifier": "com.iacsas.manhaj"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#e4f1ea"
       },
-      "package": "com.iacsas.manhajnabawi"
+      "package": "com.iacsas.manhaj"
     },
     "extra": {
       "eas": {
-        "projectId": "cca9d80e-5828-4dd6-b37f-79284f6d4bbf"
+        "projectId": "5747c038-a916-4908-af57-c433fcae6460"
       }
     },
     "platforms": ["ios","android"],
