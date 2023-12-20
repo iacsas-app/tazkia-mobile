@@ -59,7 +59,7 @@ function Day({ day, partNumbers }: Props) {
               exiting={FadeOutLeft.duration(200).mass(1)}
               style={{
                 ...styles.title,
-                color: first || last ? 'white' : isOpen ? '#3db371' : 'black',
+                color: first || last ? 'white' : 'black',
                 fontSize: isOpen ? 17 : 16,
                 flex: 5,
               }}
@@ -72,7 +72,7 @@ function Day({ day, partNumbers }: Props) {
             exiting={FadeOutLeft.duration(200).mass(1)}
             style={{
               ...styles.title,
-              color: first || last ? 'white' : isOpen ? '#3db371' : 'teal',
+              color: first || last ? 'white' : 'teal',
               fontSize: isOpen ? 17 : 16,
               flex: 15,
             }}
@@ -94,7 +94,7 @@ function Day({ day, partNumbers }: Props) {
           >
             {Array.from({ length: partNumbers }, (_, i) => i + 1).map((part) => (
               <VStack key={`${day}_${part}`} spacing={5} style={styles.box}>
-                <Text variant="bodyLarge" style={styles.partTitle}>
+                <Text variant="bodyMedium" style={styles.partTitle}>
                   {formatMessage(`${baseKey}.day.${day}.part.${part}.title`)}
                 </Text>
                 <Text variant="bodyMedium" style={styles.summary}>

@@ -63,14 +63,13 @@ export default function PurificationScreen() {
         });
       }
     }
-    //33610680003
-    Linking.openURL(`whatsapp://send?text=${encodeURIComponent(report)}&phone=+212655269623`);
+    Linking.openURL(`whatsapp://send?text=${encodeURIComponent(report)}&phone=+33610680003`);
   }
 
   return (
     <>
-      <VStack style={styles.container} spacing={23}>
-        <VStack style={styles.top} spacing={5}>
+      <VStack style={styles.container} spacing={15}>
+        <VStack style={styles.top} spacing={2}>
           <HStack style={GlobalStyles.center} spacing={2}>
             <Animated.Text
               entering={FadeInRight.delay(200).duration(500).mass(2)}
@@ -92,7 +91,7 @@ export default function PurificationScreen() {
             {formatMessage(TKeys.SOURAT_A3LA)}
           </Animated.Text>
         </VStack>
-        <VStack spacing={20}>
+        <VStack spacing={17}>
           {parts.map((item: Part, index: number) => (
             <PressableProgress
               key={index}
@@ -135,13 +134,6 @@ export default function PurificationScreen() {
             size: 'small',
             onPress: () => handleAction(TKeys.CONCLUSION),
           },
-          {
-            icon: 'seal-variant',
-            label: 'Send report to Cheikh',
-            labelStyle: styles.action,
-            size: 'small',
-            onPress: handeSendReport,
-          },
         ]}
         onStateChange={({ open }) => setOpen(open)}
         visible={true}
@@ -164,21 +156,22 @@ const styles = StyleSheet.create({
     marginTop: -20,
   },
   title: {
-    fontWeight: '800',
     textShadowRadius: 2,
     color: 'black',
-    fontSize: Font.size(18),
+    fontSize: Font.size(16),
+    fontFamily: 'Cairo',
   },
   sourat: {
-    fontWeight: '700',
     textAlign: 'center',
     fontSize: Font.size(12),
+    fontFamily: 'AmiriQuran',
     color: 'seagreen',
     backgroundColor: '#66cdaa0d',
     paddingHorizontal: 15,
     paddingVertical: 10,
     borderRadius: 20,
     opacity: 0.9,
+    lineHeight: 19,
   },
   fab: { right: -5, bottom: -5, position: 'absolute' },
   action: { fontSize: 20, fontWeight: '900', textShadowRadius: 5 },

@@ -5,6 +5,7 @@ import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-cont
 import SettingsDialog, { SettingsDialogRef } from '../components/dialogs/SettingsDialog';
 import { useMessage } from '../hooks/use-message';
 import { TKeys } from '../locales/constants';
+import { useGlobal } from '../providers/AppProvider';
 import GlobalStyles from '../styles/GlobalStyles';
 import InvocationsStack from './stacks/InvocationsStack';
 import PresentationStack from './stacks/PresentationStack';
@@ -17,6 +18,7 @@ type RoutesState = Array<{
 }>;
 
 const RootNavigator = () => {
+  const { arabic } = useGlobal();
   const { formatMessage } = useMessage();
   const ref = useRef<SettingsDialogRef>(null);
   const insets = useSafeAreaInsets();
@@ -47,7 +49,7 @@ const RootNavigator = () => {
         <Image source={require('./../../assets/logo.png')} style={styles.logo} />
         <Appbar.Content
           title={formatMessage(TKeys.APPLICATION_TITLE_PRIMARY)}
-          titleStyle={styles.headerContentTitle}
+          titleStyle={arabic ? styles.headerContentTitleAr : styles.headerContentTitle}
           style={styles.headerContent}
         />
         <Appbar.Action icon="dots-vertical" style={styles.headerAction} size={32} onPressIn={openSettingDialog} />
@@ -81,8 +83,15 @@ const styles = StyleSheet.create({
     marginStart: 3,
     aspectRatio: 1,
   },
-  headerContentTitle: {
+  headerContentTitleAr: {
     fontSize: 17,
+    verticalAlign: 'middle',
+    fontFamily: 'Cairo',
+    color: 'seagreen',
+    height: '100%',
+  },
+  headerContentTitle: {
+    fontSize: 16,
     fontWeight: '900',
     verticalAlign: 'middle',
     color: 'seagreen',
