@@ -156,10 +156,9 @@ const styles = StyleSheet.create({
     marginTop: -20,
   },
   title: {
-    textShadowRadius: 2,
     color: 'black',
-    fontSize: Font.size(14),
-    fontFamily: 'Cairo',
+    fontSize: Font.size(17),
+    fontFamily: 'ReemKufiFun',
   },
   sourat: {
     textAlign: 'center',
