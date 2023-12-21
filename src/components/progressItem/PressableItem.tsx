@@ -136,7 +136,7 @@ function PressableItem({ inProgress, ...props }: Props) {
 
 const styles = StyleSheet.create({
   partNumber: { elevation: 1 },
-  partTitle: { fontWeight: '700', textAlign: 'center', paddingTop: 2 },
+  partTitle: { fontFamily: 'Cairo', textAlign: 'center', paddingTop: 2 },
   partSubTitle: { fontWeight: '700', color: '#708090', marginTop: -3 },
   progress: { color: 'green', fontWeight: '700', fontSize: 10 },
   part: {

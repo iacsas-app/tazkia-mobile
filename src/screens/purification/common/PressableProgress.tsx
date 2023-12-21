@@ -74,7 +74,7 @@ export default function PressableProgress({ index, item, hasProgress }: Props) {
         <Animated.Text
           entering={FadeIn}
           exiting={FadeOut}
-          style={{ fontSize: Font.size(arabic ? 12 : 11), textAlign: 'center' }}
+          style={{ fontSize: Font.size(arabic ? 9 : 11), textAlign: 'center', fontFamily: 'Cairo', color: 'teal' }}
         >
           {formatMessage(item.name)}
         </Animated.Text>
@@ -82,8 +82,8 @@ export default function PressableProgress({ index, item, hasProgress }: Props) {
           entering={FadeInLeft.delay(400).duration(600).mass(1)}
           exiting={FadeOut}
           style={{
-            fontWeight: '900',
-            fontSize: Font.size(arabic ? 14 : 13),
+            fontFamily: 'ReemKufiFun',
+            fontSize: Font.size(arabic ? 15 : 13),
             textAlign: 'center',
           }}
         >

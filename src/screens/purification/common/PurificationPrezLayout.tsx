@@ -30,7 +30,7 @@ export default function PurificationPrezLayout(props: Props) {
         <VStack spacing={2}>
           <Text
             variant="bodyMedium"
-            style={{ ...purificationStyles.title, fontSize: Font.size(arabic ? 16 : 14), color: 'seagreen' }}
+            style={{ ...purificationStyles.title, fontSize: Font.size(arabic ? 18 : 14), color: 'seagreen' }}
           >
             {formatMessage(props.summary)}
           </Text>

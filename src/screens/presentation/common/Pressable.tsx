@@ -46,7 +46,7 @@ export default function Pressable({ index, item, nameTextSize, descriptionTextSi
           entering={FadeInLeft.delay(400).duration(600).mass(1)}
           exiting={FadeOut}
           style={{
-            fontWeight: '700',
+            fontFamily: 'ReemKufiFun',
             fontSize: Font.size(descriptionTextSize ?? arabic ? 14 : 13),
             textAlign: 'center',
           }}

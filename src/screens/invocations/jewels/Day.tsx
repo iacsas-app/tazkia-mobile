@@ -13,6 +13,7 @@ import Text from '../../../components/Text';
 import HStack from '../../../components/stack/HStack';
 import VStack from '../../../components/stack/VStack';
 import { Color } from '../../../constants/Color';
+import { Font } from '../../../constants/Font';
 import { SCREEN_WIDTH } from '../../../constants/Screen';
 import { useMessage } from '../../../hooks/use-message';
 import { TKeys } from '../../../locales/constants';
@@ -44,8 +45,8 @@ function Day({ day, partNumbers }: Props) {
         {
           backgroundColor:
             first || last ? Color.flatItemNoneBgColor : isOpen ? Color.progress : Color.partDefaultBgColor,
-          marginTop: first || last ? 15 : 4,
-          marginBottom: last ? 20 : first ? 15 : 4,
+          marginTop: first || last ? 8 : 3,
+          marginBottom: first || last ? 8 : 3,
         },
       ]}
       onTouchEnd={handlePress}
@@ -60,7 +61,7 @@ function Day({ day, partNumbers }: Props) {
               style={{
                 ...styles.title,
                 color: first || last ? 'white' : 'black',
-                fontSize: isOpen ? 17 : 16,
+                fontSize: Font.size(18),
                 flex: 5,
               }}
             >
@@ -73,7 +74,7 @@ function Day({ day, partNumbers }: Props) {
             style={{
               ...styles.title,
               color: first || last ? 'white' : 'teal',
-              fontSize: isOpen ? 17 : 16,
+              fontSize: Font.size(isOpen ? 17 : 16),
               flex: 15,
             }}
           >
@@ -93,7 +94,7 @@ function Day({ day, partNumbers }: Props) {
             style={styles.main}
           >
             {Array.from({ length: partNumbers }, (_, i) => i + 1).map((part) => (
-              <VStack key={`${day}_${part}`} spacing={5} style={styles.box}>
+              <VStack key={`${day}_${part}`} spacing={25} style={styles.box}>
                 <Text variant="bodyMedium" style={styles.partTitle}>
                   {formatMessage(`${baseKey}.day.${day}.part.${part}.title`)}
                 </Text>
@@ -122,25 +123,28 @@ const styles = StyleSheet.create({
     gap: 15,
   },
   main: { ...GlobalStyles.center, flexDirection: 'column', gap: 10, paddingVertical: 15 },
-  box: { ...GlobalStyles.center, paddingHorizontal: 15, marginHorizontal: 10 },
+  box: { ...GlobalStyles.center, paddingHorizontal: 10, marginHorizontal: 10 },
   title: {
-    fontSize: 18,
     textAlign: 'center',
-    fontWeight: '900',
     color: 'teal',
+    fontFamily: 'ReemKufiFun',
   },
   partTitle: {
     backgroundColor: '#66cdaa21',
     paddingVertical: 15,
     paddingHorizontal: 25,
     borderRadius: 20,
-    fontSize: 18,
+    fontSize: Font.size(20),
     textAlign: 'center',
-    fontWeight: '900',
+    fontFamily: 'ReemKufiFun',
     color: 'teal',
   },
-  summary: { ...GlobalStyles.justify, fontSize: 15, fontWeight: '700', paddingVertical: 10 },
-  body: { ...GlobalStyles.justify, fontSize: 15, fontWeight: '500' },
+  summary: {
+    ...GlobalStyles.justify,
+    fontSize: Font.size(16),
+    fontFamily: 'Cairo',
+  },
+  body: { ...GlobalStyles.justify, fontSize: Font.size(18), fontFamily: 'AmiriQuran', lineHeight: 30 },
   id: { elevation: 2, backgroundColor: '#3db371', flex: 1.2, marginStart: 2 },
   container: { ...GlobalStyles.center, flex: 15, marginHorizontal: 10 },
   divider: { width: SCREEN_WIDTH - 100, height: 1, marginVertical: 10 },

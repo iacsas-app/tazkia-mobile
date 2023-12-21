@@ -100,8 +100,9 @@ const styles = StyleSheet.create({
   summary: {
     ...GlobalStyles.center,
     textAlign: 'justify',
-    fontSize: 22,
-    fontWeight: '600',
+    fontSize: Font.size(20),
+    fontFamily: 'AmiriQuran',
+    lineHeight: 32,
     marginHorizontal: 20,
     paddingTop: 5,
   },

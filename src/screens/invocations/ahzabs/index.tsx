@@ -20,7 +20,7 @@ export default function AhzabsInvocationsScreen() {
 
   return (
     <View style={styles.container}>
-      <Text variant="bodyMedium" style={GlobalStyles.fixedHeader}>
+      <Text variant="bodyMedium" style={styles.header}>
         {formatMessage(`invocations.ahzabs.section.${section}`)}
       </Text>
       <Chapters section={section} onSelect={handleSelect} />
@@ -31,4 +31,5 @@ export default function AhzabsInvocationsScreen() {
 
 const styles = StyleSheet.create({
   container: { backgroundColor: Color.backgroundColor },
+  header: { ...GlobalStyles.fixedHeader, fontFamily: 'AmiriQuran', fontSize: 17, lineHeight: 30 },
 });

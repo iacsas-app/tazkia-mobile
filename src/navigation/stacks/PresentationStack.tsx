@@ -22,7 +22,7 @@ export default function PresentationStack() {
         initialRouteName="Presentation"
         screenOptions={{
           headerMode: 'float',
-          headerTitleStyle: { fontSize: Font.size(13) },
+          headerTitleStyle: { fontSize: Font.size(14), fontFamily: 'ReemKufiFun' },
         }}
       >
         <Stack.Screen name="Presentation" component={PresentationScreen} options={{ headerShown: false }} />

@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { Color } from '../constants/Color';
+import { Font } from '../constants/Font';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../constants/Screen';
 
 const GlobalStyles = StyleSheet.create({
@@ -20,8 +21,8 @@ const GlobalStyles = StyleSheet.create({
   centerAlign: { alignItems: 'center' },
   description: {
     marginTop: 15,
-    fontSize: 15,
-    fontWeight: '900',
+    fontSize: Font.size(18),
+    lineHeight: 35,
     alignSelf: 'center',
   },
   spaceBetween: {
@@ -38,14 +39,18 @@ const GlobalStyles = StyleSheet.create({
     backgroundColor: Color.flatItemNoneBgColor,
     opacity: 0.6,
   },
-  defaultDialog: { maxHeight: 0.8 * SCREEN_HEIGHT, width: SCREEN_WIDTH - 30, marginLeft: 15, backgroundColor: 'white' },
+  defaultDialog: {
+    marginLeft: 0,
+    maxHeight: SCREEN_HEIGHT,
+    width: SCREEN_WIDTH,
+    backgroundColor: 'white',
+  },
   justify: { textAlign: 'justify' },
   fixedHeader: {
     padding: 10,
     backgroundColor: '#fffafa',
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
-    fontWeight: '700',
     elevation: 10,
     justifyContent: 'center',
     alignItems: 'center',

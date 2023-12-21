@@ -37,8 +37,8 @@ export default function Header({ hasProgress, ...props }: Props) {
         <Text
           variant="bodyLarge"
           style={{
-            fontWeight: '900',
-            fontSize: Font.size(arabic ? 18 : 16),
+            fontFamily: 'Cairo',
+            fontSize: Font.size(16),
             textAlign: hasProgress ? 'auto' : 'center',
             maxWidth: SCREEN_WIDTH - (hasProgress ? 150 : 0),
             color: 'teal',
@@ -52,6 +52,8 @@ export default function Header({ hasProgress, ...props }: Props) {
             style={{
               textAlign: hasProgress ? 'auto' : 'center',
               fontSize: Font.size(arabic ? 14 : 12),
+              fontFamily: 'AmiriQuran',
+              lineHeight: 25,
             }}
           >
             {formatMessage(props.subTitleKey)}

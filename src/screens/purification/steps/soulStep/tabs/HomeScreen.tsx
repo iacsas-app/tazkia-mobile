@@ -91,7 +91,7 @@ export default function HomeScreen() {
                   key={idx}
                   index={idx}
                   stepTitle={idx.toString()}
-                  partTitleSize={arabic ? 14 : 12}
+                  partTitleSize={12}
                   stepTitleSize={14}
                   stepTitleWidth={27}
                   summaryKey={`purification.soul.${soulPart}.title`}

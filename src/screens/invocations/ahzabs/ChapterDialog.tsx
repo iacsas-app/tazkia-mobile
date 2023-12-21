@@ -102,18 +102,18 @@ const ChapterDialog = forwardRef<ChapterDialogRef>((_, ref) => {
               </VStack>
             )}
             <VStack style={{ paddingBottom: 50, ...GlobalStyles.center }} spacing={15}>
-              <Text variant="bodySmall" style={styles.contentText}>
+              <Text variant="bodyLarge" style={styles.contentText}>
                 {formatMessage(contentKey)}
               </Text>
               {repeat > 0 && (
                 <VStack spacing={5} style={{ ...GlobalStyles.center }}>
                   <Text
-                    variant="bodyMedium"
+                    variant="bodyLarge"
                     style={{
-                      fontSize: Font.size(16),
+                      fontSize: Font.size(18),
+                      fontFamily: 'ReemKufiFun',
                       textAlign: 'justify',
                       textAlignVertical: 'center',
-                      fontWeight: '900',
                     }}
                   >
                     {formatMessage(`${sectionKey}.chapter.${chapter}.repeat`)}
@@ -153,9 +153,9 @@ const styles = StyleSheet.create({
     paddingTop: 5,
   },
   chapterTitle: {
-    fontSize: Font.size(16),
-    fontWeight: '700',
-    paddingTop: 5,
+    fontSize: Font.size(17),
+    fontFamily: 'ReemKufiFun',
+    paddingTop: 6,
   },
   id: { elevation: 2, backgroundColor: '#3db371' },
   meta: {
@@ -167,15 +167,16 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     paddingHorizontal: 15,
   },
-  chapterMetaTitle: { paddingHorizontal: 10, fontWeight: '900', fontSize: Font.size(13) },
+  chapterMetaTitle: { paddingHorizontal: 10, fontWeight: '900', fontSize: Font.size(15) },
   chapterMetaContent: {
     color: 'teal',
     fontWeight: '700',
     paddingHorizontal: 10,
+    fontSize: Font.size(15),
   },
   tag: {
     ...GlobalStyles.circle,
-    fontSize: Font.size(12),
+    fontSize: Font.size(14),
     paddingHorizontal: 20,
     opacity: 0.6,
     alignSelf: 'center',
@@ -189,10 +190,11 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 25,
   },
   contentText: {
-    fontSize: Font.size(15),
+    fontSize: Font.size(18),
+    fontFamily: 'AmiriQuran',
     textAlign: 'justify',
     textAlignVertical: 'center',
-    lineHeight: 22,
+    lineHeight: 35,
     paddingHorizontal: 20,
     paddingVertical: 10,
   },

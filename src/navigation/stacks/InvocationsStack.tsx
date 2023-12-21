@@ -29,7 +29,7 @@ export default function InvocationsStack() {
         screenOptions={{
           headerShown: true,
           headerMode: 'float',
-          headerTitleStyle: { fontSize: 12, width: SCREEN_WIDTH - 10 },
+          headerTitleStyle: { fontSize: 12, width: SCREEN_WIDTH - 10, fontFamily: 'ReemKufiFun' },
         }}
       >
         <Stack.Screen name="Invocations" component={InvocationsScreen} options={{ headerShown: false }} />

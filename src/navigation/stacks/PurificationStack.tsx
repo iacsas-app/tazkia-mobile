@@ -19,7 +19,7 @@ export default function PurificationStack() {
         initialRouteName="Purification"
         screenOptions={{
           headerMode: 'float',
-          headerTitleStyle: { fontSize: Font.size(14) },
+          headerTitleStyle: { fontSize: Font.size(14), fontFamily: 'ReemKufiFun' },
         }}
       >
         <Stack.Screen name="Purification" component={PurificationScreen} options={{ headerShown: false }} />

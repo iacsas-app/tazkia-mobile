@@ -33,10 +33,10 @@ export default function PresentationLayout(props: Props) {
           exiting={FadeOutDown}
           style={GlobalStyles.center}
         >
-          <Text variant="bodyLarge" style={{ fontSize: Font.size(arabic ? 16 : 14), fontWeight: '800' }}>
+          <Text variant="bodyLarge" style={{ fontSize: Font.size(arabic ? 18 : 14), fontFamily: 'Cairo' }}>
             {formatMessage(props.title)}
           </Text>
-          <Text variant="bodyMedium" style={{ ...styles.description, fontSize: Font.size(arabic ? 15 : 14) }}>
+          <Text variant="bodyMedium" style={{ ...styles.description, fontSize: Font.size(arabic ? 16 : 14) }}>
             {formatMessage(props.description)}
           </Text>
         </Animated.View>
@@ -53,7 +53,8 @@ const styles = StyleSheet.create({
   },
   description: {
     marginTop: 22,
-    fontWeight: '500',
+    fontFamily: 'AmiriQuran',
+    lineHeight: 25,
     textAlign: 'justify',
   },
   children: { marginTop: 15 },

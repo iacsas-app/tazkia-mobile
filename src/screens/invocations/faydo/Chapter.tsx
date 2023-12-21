@@ -5,6 +5,7 @@ import Animated, { FadeInUp, FadeOutDown, useAnimatedStyle, withTiming } from 'r
 import Text from '../../../components/Text';
 import HStack from '../../../components/stack/HStack';
 import { Color } from '../../../constants/Color';
+import { Font } from '../../../constants/Font';
 import { useMessage } from '../../../hooks/use-message';
 import { TKeys } from '../../../locales/constants';
 import GlobalStyles from '../../../styles/GlobalStyles';
@@ -96,8 +97,14 @@ const styles = StyleSheet.create({
     gap: 15,
   },
   box: { paddingHorizontal: 15, marginHorizontal: 10 },
-  title: { textAlign: 'center', fontWeight: '900' },
-  summary: { fontSize: 15, textAlign: 'justify', fontWeight: '500', paddingBottom: 15 },
+  title: { textAlign: 'center', fontFamily: 'ReemKufiFun' },
+  summary: {
+    textAlign: 'justify',
+    fontSize: Font.size(18),
+    fontFamily: 'AmiriQuran',
+    paddingBottom: 10,
+    lineHeight: 30,
+  },
   id: { elevation: 2, backgroundColor: '#3db371', flex: 1.2 },
 });
 

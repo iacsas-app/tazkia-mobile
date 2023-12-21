@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 30,
   },
-  bookTitle: { fontSize: Font.size(19), marginBottom: 15 },
+  bookTitle: { fontSize: Font.size(20), marginBottom: 15, fontFamily: 'AmiriQuran' },
   introduction: {
     ...GlobalStyles.circle,
     backgroundColor: 'teal',
@@ -123,12 +123,11 @@ const styles = StyleSheet.create({
     height: 70,
   },
   titleTop: { ...GlobalStyles.center, marginLeft: 25 },
-  title: { fontWeight: '900', fontSize: Font.size(16), paddingTop: 5 },
-  subTitle: { fontWeight: '600', fontSize: Font.size(12) },
+  title: { fontFamily: 'ReemKufiFun', fontSize: Font.size(16), paddingTop: 5 },
+  subTitle: { fontFamily: 'AmiriQuran', fontSize: Font.size(12), lineHeight: 20 },
   image: { position: 'absolute', left: 6 },
   topTitle: {
     ...GlobalStyles.center,
-    fontWeight: '900',
     paddingTop: 5,
     textShadowRadius: 8,
     color: 'teal',

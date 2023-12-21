@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
   title: {
     textShadowRadius: 2,
     color: 'black',
-    fontSize: Font.size(16),
+    fontSize: Font.size(14),
     fontFamily: 'Cairo',
   },
   sourat: {
@@ -174,5 +174,5 @@ const styles = StyleSheet.create({
     lineHeight: 19,
   },
   fab: { right: -5, bottom: -5, position: 'absolute' },
-  action: { fontSize: 20, fontWeight: '900', textShadowRadius: 5 },
+  action: { fontSize: 20, fontFamily: 'ReemKufiFun', textShadowRadius: 5 },
 });

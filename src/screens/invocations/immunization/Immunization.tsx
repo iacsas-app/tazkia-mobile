@@ -71,8 +71,6 @@ function Immunization({ index, item, total, viewableItems }: Props) {
           variant="titleLarge"
           style={{
             ...styles.summary,
-            fontWeight: last ? '900' : '500',
-            fontSize: Font.size(16),
             color: last ? Color.idProgressColor : 'black',
           }}
         >
@@ -117,7 +115,7 @@ const styles = StyleSheet.create({
   },
   introduction: { textAlign: 'justify', fontWeight: '600', marginTop: 10, paddingBottom: 5 },
   container: { width: SCREEN_WIDTH - 80 },
-  summary: { textAlign: 'justify' },
+  summary: { textAlign: 'justify', fontFamily: 'AmiriQuran', lineHeight: 40, fontSize: Font.size(18) },
   tag: {
     ...GlobalStyles.circle,
     fontSize: Font.size(12),

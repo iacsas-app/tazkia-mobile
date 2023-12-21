@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
     width: '80%',
   },
   summaryLabel: {
-    fontWeight: '700',
+    fontFamily: 'ReemKufiFun',
     flexBasis: 90,
     marginBottom: -6,
     textAlign: 'center',

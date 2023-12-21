@@ -47,7 +47,7 @@ export default function RuleProgress({ progress, ...props }: Props) {
         <Animated.Text
           entering={FadeIn.delay(400).duration(800).springify()}
           exiting={SlideOutUp}
-          style={{ ...styles.question, fontSize: Font.size(arabic ? 18 : 16) }}
+          style={{ ...styles.question, fontSize: Font.size(arabic ? 15 : 16) }}
         >
           {formatMessage(`progress.evaluation.question${props.questionMultiple ? 's' : ''}`)}
         </Animated.Text>
@@ -86,6 +86,6 @@ export default function RuleProgress({ progress, ...props }: Props) {
 }
 
 const styles = StyleSheet.create({
-  levelSummary: { fontSize: Font.size(12), textAlign: 'justify', paddingHorizontal: 5 },
-  question: { fontWeight: '900', textAlign: 'justify', alignSelf: 'center', marginBottom: 10 },
+  levelSummary: { fontSize: Font.size(14), textAlign: 'justify', paddingHorizontal: 5 },
+  question: { fontFamily: 'Cairo', textAlign: 'justify', alignSelf: 'center', marginBottom: 10 },
 });

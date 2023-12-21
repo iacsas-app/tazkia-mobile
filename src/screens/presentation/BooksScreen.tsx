@@ -22,7 +22,7 @@ export default function BooksScreen() {
 
   return (
     <View>
-      <Text variant="bodySmall" style={GlobalStyles.fixedHeader}>
+      <Text variant="bodySmall" style={{ ...GlobalStyles.fixedHeader, fontWeight: '700' }}>
         {formatMessage(TKeys.PRESENTATION_BOOKS)}
       </Text>
       <Animated.FlatList

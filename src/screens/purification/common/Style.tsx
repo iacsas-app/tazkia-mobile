@@ -7,5 +7,6 @@ export const purificationStyles = StyleSheet.create({
     marginBottom: 20,
     paddingTop: 5,
     textAlign: 'center',
+    fontFamily: 'AmiriQuran',
   },
 });

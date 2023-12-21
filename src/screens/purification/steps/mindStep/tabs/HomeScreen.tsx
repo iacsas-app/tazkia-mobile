@@ -100,7 +100,7 @@ export default function HomeScreen() {
                   stepTitle={formatMessage(TKeys.LEVEL, { value: level })}
                   stepTitleSize={9}
                   stepTitleWidth={55}
-                  partTitleSize={arabic ? 13 : 10}
+                  partTitleSize={arabic ? 12 : 10}
                   summaryKey={`purification.mind.summary.level-${level}`}
                   inProgress={mind !== undefined}
                   percentage={percentage}

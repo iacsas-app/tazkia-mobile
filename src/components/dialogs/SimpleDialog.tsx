@@ -98,8 +98,8 @@ const styles = StyleSheet.create({
   },
   title: {
     ...GlobalStyles.center,
-    fontWeight: '900',
-    fontSize: Font.size(20),
+    fontFamily: 'ReemKufiFun',
+    fontSize: Font.size(22),
     width: SCREEN_WIDTH - 90,
     paddingTop: 5,
     color: Color.flatItemNoneBgColor,
@@ -121,6 +121,7 @@ const styles = StyleSheet.create({
     textAlign: 'justify',
     textAlignVertical: 'center',
     textShadowRadius: 1,
+    fontFamily: 'AmiriQuran',
     lineHeight: 22,
     paddingHorizontal: 20,
     paddingVertical: 10,

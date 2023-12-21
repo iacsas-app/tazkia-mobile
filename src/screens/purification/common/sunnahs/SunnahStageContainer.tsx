@@ -146,7 +146,7 @@ export default function SunnahStageContainer({ stage, rules }: Props) {
                 index={idx}
                 stepTitle={idx.toString()}
                 stepTitleSize={Font.size(12)}
-                partTitleSize={Font.size(arabic ? 14 : 12)}
+                partTitleSize={Font.size(12)}
                 stepTitleWidth={30}
                 summaryKey={`sunnahs.${stage}.${idx}.title`}
                 inProgress={current !== undefined}
@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
     top: 0,
   },
   summary: {
-    fontWeight: '900',
+    fontFamily: 'ReemKufiFun',
     textAlign: 'center',
     width: SCREEN_WIDTH - 180,
   },

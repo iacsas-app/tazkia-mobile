@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     width: SCREEN_WIDTH - 10,
   },
-  title: { fontSize: Font.size(14), fontWeight: '900' },
+  title: { fontSize: Font.size(14), fontFamily: 'ReemKufiFun' },
   image: {
     width: 110,
     height: 160,

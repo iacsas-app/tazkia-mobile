@@ -50,8 +50,8 @@ function Chapter({ section, chapter, total, viewableItems, metaData, onSelect }:
         styles.row,
         {
           backgroundColor: first ? Color.flatItemNoneBgColor : Color.partDefaultBgColor,
-          marginTop: first ? 20 : 3,
-          marginBottom: last ? 60 : first ? 10 : 2,
+          marginTop: first ? 20 : 5,
+          marginBottom: last ? 60 : first ? 10 : 5,
         },
       ]}
       onTouchEnd={handlePress}
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
   },
   container: { width: SCREEN_WIDTH - 32 },
-  summary: { fontSize: 16, textAlign: 'justify', fontWeight: '700' },
+  summary: { fontSize: 16, textAlign: 'justify', fontFamily: 'ReemKufiFun' },
   subSummary: {
     maxWidth: SCREEN_WIDTH - 130,
     justifyContent: 'center',
