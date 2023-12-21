@@ -139,14 +139,16 @@ const styles = StyleSheet.create({
     ...GlobalStyles.center,
     width: SCREEN_WIDTH - 90,
     color: 'seagreen',
-    fontWeight: '900',
+    fontFamily: 'ReemKufiFun',
+    lineHeight: 25,
     fontSize: Font.size(16),
   },
   smallPadding: {
     paddingHorizontal: 0,
   },
   system: {
-    fontWeight: '900',
+    fontFamily: 'AmiriQuran',
+    lineHeight: 22,
     marginHorizontal: 5,
   },
   labelBtn: { fontSize: 15, fontWeight: '900', color: 'seagreen' },

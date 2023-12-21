@@ -128,6 +128,13 @@ export default function PurificationScreen() {
             onPress: () => handleAction(TKeys.INVOCATION_NIVEAU_TITLE),
           },
           {
+            icon: 'tag-arrow-down',
+            label: formatMessage(TKeys.SUNNAHS_DESCRIPTION),
+            labelStyle: styles.action,
+            size: 'small',
+            onPress: () => handleAction(TKeys.SUNNAHS_DESCRIPTION),
+          },
+          {
             icon: 'seal-variant',
             label: formatMessage(TKeys.CONCLUSION),
             labelStyle: styles.action,
@@ -173,5 +180,5 @@ const styles = StyleSheet.create({
     lineHeight: 19,
   },
   fab: { right: -5, bottom: -5, position: 'absolute' },
-  action: { fontSize: 20, fontFamily: 'ReemKufiFun', textShadowRadius: 5 },
+  action: { fontSize: 20, fontFamily: 'ReemKufiFun', textShadowRadius: 5, lineHeight: 25 },
 });

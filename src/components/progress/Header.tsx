@@ -51,7 +51,7 @@ export default function Header({ hasProgress, ...props }: Props) {
             variant="bodySmall"
             style={{
               textAlign: hasProgress ? 'auto' : 'center',
-              fontSize: Font.size(arabic ? 14 : 12),
+              fontSize: Font.size(arabic ? 16 : 12),
               fontFamily: 'AmiriQuran',
               lineHeight: 25,
             }}

@@ -65,7 +65,7 @@ const SimpleDialog = forwardRef<SimpleDialogRef>((_, ref) => {
                 </Animated.Text>
               )}
               <Animated.View entering={FadeInDown.duration(50).springify()}>
-                <VStack style={GlobalStyles.center}>
+                <VStack>
                   {contentKeys.map((key) => (
                     <Text variant="bodySmall" key={key} style={styles.contentText}>
                       {formatMessage(key)}
@@ -91,8 +91,8 @@ const SimpleDialog = forwardRef<SimpleDialogRef>((_, ref) => {
 
 const styles = StyleSheet.create({
   dialog: {
-    maxHeight: 1 * SCREEN_HEIGHT,
-    width: SCREEN_WIDTH - 40,
+    height: SCREEN_HEIGHT,
+    width: SCREEN_WIDTH,
     marginLeft: 20,
     backgroundColor: 'white',
   },
@@ -117,12 +117,12 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 25,
   },
   contentText: {
-    fontSize: Font.size(16),
+    fontSize: Font.size(18),
     textAlign: 'justify',
     textAlignVertical: 'center',
     textShadowRadius: 1,
     fontFamily: 'AmiriQuran',
-    lineHeight: 22,
+    lineHeight: 30,
     paddingHorizontal: 20,
     paddingVertical: 10,
   },

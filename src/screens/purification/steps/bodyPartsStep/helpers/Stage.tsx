@@ -118,10 +118,11 @@ export default function Stage({ part, stage, ...props }: Props) {
             <Text
               variant="bodySmall"
               style={{
-                paddingTop: 4,
+                paddingTop: 2,
                 fontSize: Font.size((showDetails ? 13 : 12) + (arabic ? 3 : 0) - (locale === 'id' ? 4 : 0)),
                 color: Color.flatItemNoneBgColor,
-                fontWeight: showDetails ? (arabic ? '700' : 'normal') : '800',
+                fontFamily: 'Cairo',
+                lineHeight: 20,
                 flex: 12,
               }}
             >

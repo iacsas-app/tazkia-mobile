@@ -116,5 +116,5 @@ const styles = StyleSheet.create({
     width: 90,
     height: 90,
   },
-  partName: { ...GlobalStyles.center, fontWeight: '900', fontSize: 20 },
+  partName: { ...GlobalStyles.center, fontFamily: 'ReemKufiFun', lineHeight: 30, fontSize: 20 },
 });

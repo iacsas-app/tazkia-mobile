@@ -372,21 +372,26 @@ export const indonesian: Translations = {
   [TKeys.PURIFICATION_SOUL_7_LEVEL_3]:
     'Tidak menghubungkan semua perkara hidupmu yang sekarang dengan masa yang akan datang, sebaiknya kamu bergantung pada sirr wujud dan menjalankan tugasmu di dunia, dengan menyampaikan risalah yang akan diberikan kepada mu melalui tugas atau apapun itu, kemudian menghubungkan diri dengan Allah dan mencapai makrifat- Nya. Dengan tafakkur seperti ini yang terus menerus dengan akal juga keinginan yang datang dari hati maka dirinya akan mengendalikan rasa takut ini dan menjadi stabil kemudian ia hidup dg tenang tidak menderita kecemasan dan insomnia yang terus-menerus',
 
-  [TKeys.SUNNAHS_DESCRIPTION]: '',
-  [TKeys.SUNNAHS_TYPE_VERBAL]: '',
-  [TKeys.SUNNAHS_TYPE_ACTIONAL]: '',
-  [TKeys.SUNNAHS_INTRODUTION]: '',
-  [TKeys.SUNNAHS_INTRODUTION_RULE_1]: '',
-  [TKeys.SUNNAHS_INTRODUTION_RULE_2]: '',
-  [TKeys.SUNNAHS_INTRODUTION_RULE_3]: '',
-  [TKeys.SUNNAHS_INTRODUTION_RULE_4]: '',
+  [TKeys.SUNNAHS_DESCRIPTION]: 'Menanamkan Sunah Nabi',
+  [TKeys.SUNNAHS_TYPE_VERBAL]: 'Secara Ucapan',
+  [TKeys.SUNNAHS_TYPE_ACTIONAL]: 'Secara Perbuatan',
+  [TKeys.SUNNAHS_INTRODUTION]:
+    "Murid memulai dengan sunnah kebiasaan dengan awal tazkiyah anggota tubuh disebut juga tazkiyah hati, kemudian dilanjutkan ke sunnah ibadah dengan awal tazkiyah akal, dan sunnah hakikat dan mi'roj dengan awal tazkiyah nafsu, sebagaimana seharusnya ia telah menguasai seperangkat sunah adat sebelum melanjutkan ke tahap tazkiyah akal, sebagaimana seharusnya telah ditanamkan dalam dirinya banyak sunnah ibadah sebelum dimulainya tazkiyah nafsu yang sesuai dengan sunnah sayr dan hakikat",
+  [TKeys.SUNNAHS_INTRODUTION_RULE_1]:
+    'Dianjurkan untuk menerapkan sunnah setiap setengah bulan agar konsisten, dan ini lebih baik daripada banyak sunnah tanpa penguasaan atau rasa penghadiran sunnah tersebut.',
+  [TKeys.SUNNAHS_INTRODUTION_RULE_2]: 'Sunnah akan diulangi jika calon melakukan tiga kesalahan dalam lima belas hari.',
+  [TKeys.SUNNAHS_INTRODUTION_RULE_3]:
+    'Jika seorang calon telah menetapkan beberapa sunnah terlebih dahulu beberapa sunnah, maka ia mengulanginya dari awal, karena ini lebih baik baginya dan lebih bermanfaat dan berkah.',
+  [TKeys.SUNNAHS_INTRODUTION_RULE_4]:
+    'Bahkan anak-anak manhaj pun bisa berkomitmen untuk menanamkan beberapa sunah, terutama sunnah kebiasaan.',
 
   [TKeys.SUNNAHS_HABITS_TITLE]: 'Sunnah-sunnah kebiasaan',
   [TKeys.SUNNAHS_WORSHIP_TITLE]: 'Sunnah sunnah ibadah',
   [TKeys.SUNNAHS_TRUTHS_TITLE]: "Sunnah sayr, hakikat dan mi'roj",
 
   // Habits sunnahs
-  [TKeys.SUNNAHS_HABITS_INTRODUCTION]: '',
+  [TKeys.SUNNAHS_HABITS_INTRODUCTION]:
+    'Ini adalah beberapa Sunnah yang biasa diikuti oleh Nabi Muhammad SAW sebagai kebiasaan, dan penerapannya adalah membangkitkan Sunnah Nabi yang mencerahkan hati murid dan membantunya berhasil melewati tahap tazkiyah pertama ini. Dibolehkan bersandar dengan sunnah lainnya yang telah ditetapkan pengamalannya dari Rasulullah saw.',
 
   // Sunnah habit 1
   [TKeys.SUNNAHS_HABITS_1_TITLE]: '',
@@ -709,38 +714,58 @@ export const indonesian: Translations = {
   [TKeys.INVOCATIONS_JEWELS_DAY_1_TITLE]: '',
   [TKeys.INVOCATIONS_JEWELS_DAY_1_PART_1_TITLE]: '',
   [TKeys.INVOCATIONS_JEWELS_DAY_1_PART_1_SUMMARY]: '',
+  [TKeys.INVOCATIONS_JEWELS_DAY_1_PART_1_BODY]: '',
   [TKeys.INVOCATIONS_JEWELS_DAY_1_PART_2_TITLE]: '',
   [TKeys.INVOCATIONS_JEWELS_DAY_1_PART_2_SUMMARY]: '',
+  [TKeys.INVOCATIONS_JEWELS_DAY_1_PART_2_BODY]: '',
+
   [TKeys.INVOCATIONS_JEWELS_DAY_2_TITLE]: '',
   [TKeys.INVOCATIONS_JEWELS_DAY_2_PART_1_TITLE]: '',
   [TKeys.INVOCATIONS_JEWELS_DAY_2_PART_1_SUMMARY]: '',
+  [TKeys.INVOCATIONS_JEWELS_DAY_2_PART_1_BODY]: '',
   [TKeys.INVOCATIONS_JEWELS_DAY_2_PART_2_TITLE]: '',
   [TKeys.INVOCATIONS_JEWELS_DAY_2_PART_2_SUMMARY]: '',
+  [TKeys.INVOCATIONS_JEWELS_DAY_2_PART_2_BODY]: '',
+
   [TKeys.INVOCATIONS_JEWELS_DAY_3_TITLE]: '',
   [TKeys.INVOCATIONS_JEWELS_DAY_3_PART_1_TITLE]: '',
   [TKeys.INVOCATIONS_JEWELS_DAY_3_PART_1_SUMMARY]: '',
+  [TKeys.INVOCATIONS_JEWELS_DAY_3_PART_1_BODY]: '',
+
   [TKeys.INVOCATIONS_JEWELS_DAY_4_TITLE]: '',
   [TKeys.INVOCATIONS_JEWELS_DAY_4_PART_1_TITLE]: '',
   [TKeys.INVOCATIONS_JEWELS_DAY_4_PART_1_SUMMARY]: '',
+  [TKeys.INVOCATIONS_JEWELS_DAY_4_PART_1_BODY]: '',
   [TKeys.INVOCATIONS_JEWELS_DAY_4_PART_2_TITLE]: '',
   [TKeys.INVOCATIONS_JEWELS_DAY_4_PART_2_SUMMARY]: '',
+  [TKeys.INVOCATIONS_JEWELS_DAY_4_PART_2_BODY]: '',
+
   [TKeys.INVOCATIONS_JEWELS_DAY_5_TITLE]: '',
   [TKeys.INVOCATIONS_JEWELS_DAY_5_PART_1_TITLE]: '',
   [TKeys.INVOCATIONS_JEWELS_DAY_5_PART_1_SUMMARY]: '',
+  [TKeys.INVOCATIONS_JEWELS_DAY_5_PART_1_BODY]: '',
   [TKeys.INVOCATIONS_JEWELS_DAY_5_PART_2_TITLE]: '',
   [TKeys.INVOCATIONS_JEWELS_DAY_5_PART_2_SUMMARY]: '',
+  [TKeys.INVOCATIONS_JEWELS_DAY_5_PART_2_BODY]: '',
+
   [TKeys.INVOCATIONS_JEWELS_DAY_6_TITLE]: '',
   [TKeys.INVOCATIONS_JEWELS_DAY_6_PART_1_TITLE]: '',
   [TKeys.INVOCATIONS_JEWELS_DAY_6_PART_1_SUMMARY]: '',
+  [TKeys.INVOCATIONS_JEWELS_DAY_6_PART_1_BODY]: '',
   [TKeys.INVOCATIONS_JEWELS_DAY_6_PART_2_TITLE]: '',
   [TKeys.INVOCATIONS_JEWELS_DAY_6_PART_2_SUMMARY]: '',
+  [TKeys.INVOCATIONS_JEWELS_DAY_6_PART_2_BODY]: '',
+
   [TKeys.INVOCATIONS_JEWELS_DAY_7_TITLE]: '',
   [TKeys.INVOCATIONS_JEWELS_DAY_7_PART_1_TITLE]: '',
   [TKeys.INVOCATIONS_JEWELS_DAY_7_PART_1_SUMMARY]: '',
+  [TKeys.INVOCATIONS_JEWELS_DAY_7_PART_1_BODY]: '',
   [TKeys.INVOCATIONS_JEWELS_DAY_7_PART_2_TITLE]: '',
   [TKeys.INVOCATIONS_JEWELS_DAY_7_PART_2_SUMMARY]: '',
+  [TKeys.INVOCATIONS_JEWELS_DAY_7_PART_2_BODY]: '',
   [TKeys.INVOCATIONS_JEWELS_DAY_7_PART_3_TITLE]: '',
   [TKeys.INVOCATIONS_JEWELS_DAY_7_PART_3_SUMMARY]: '',
+  [TKeys.INVOCATIONS_JEWELS_DAY_7_PART_3_BODY]: '',
 
   // Invocations Faydo rahmani
   [TKeys.INVOCATIONS_FAYDO_INTRODUCTION]: '',

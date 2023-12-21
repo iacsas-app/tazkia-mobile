@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     elevation: 6,
   },
   id: { fontWeight: 'bold' },
-  partName: { fontWeight: 'bold', marginTop: 3 },
+  partName: { fontFamily: 'ReemKufiFun', marginTop: 3, lineHeight: 30 },
   typeAvatar: { marginTop: -18 },
   idAvatar: { marginTop: -8, backgroundColor: 'red' },
   stage: {
