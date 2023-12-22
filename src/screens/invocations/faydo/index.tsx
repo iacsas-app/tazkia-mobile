@@ -1,3 +1,4 @@
+import { useKeepAwake } from 'expo-keep-awake';
 import React, { useCallback, useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
 import SimpleDialog, { SimpleDialogRef } from '../../../components/dialogs/SimpleDialog';
@@ -6,6 +7,7 @@ import { TKeys } from '../../../locales/constants';
 import Chapters from './Chapters';
 
 export default function OverflowInvocationsScreen() {
+  useKeepAwake(); // This screen will never sleep!
   const ref = useRef<SimpleDialogRef>(null);
 
   const handleIntro = useCallback(() => {

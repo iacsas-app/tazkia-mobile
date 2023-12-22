@@ -1,9 +1,11 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { SafeAreaView, ScrollView } from 'react-native';
 import BottomSheet, { BottomSheetRef } from '../../../../../components/bottomSheet/BottomSheet';
+import ProgressDialog, { ProgressDialogRef } from '../../../../../components/dialogs/ProgressDialog';
 import PressableItem from '../../../../../components/progressItem/PressableItem';
 import VStack from '../../../../../components/stack/VStack';
 import { Color } from '../../../../../constants/Color';
+import ProgressLine from '../../../../../domains/common/ProgressLine';
 import Soul, { SoulPart, SoulPartLevel, hasSubTitle, soulRules } from '../../../../../domains/purification/Soul';
 import { useMessage } from '../../../../../hooks/use-message';
 import usePurification from '../../../../../hooks/use-purification';
@@ -16,6 +18,8 @@ import LevelSelector from '../helpers/LevelSelector';
 
 export default function HomeScreen() {
   const ref = useRef<BottomSheetRef>(null);
+  const progressDialogRef = useRef<ProgressDialogRef>(null);
+
   const { arabic } = useGlobal();
   const [part, setPart] = useState<SoulPart>();
   const { formatMessage } = useMessage();
@@ -51,6 +55,24 @@ export default function HomeScreen() {
     displaySnackbar(formatMessage(TKeys.MESSAGE_EVALUATED_SUCCESSFULLY), 'success');
   }, []);
 
+  const handleHistory = useCallback(
+    (progress: ProgressLine[], level: SoulPartLevel) => {
+      if (part) {
+        const subtitle = hasSubTitle.some((v) => v === part);
+        const title = formatMessage(`purification.soul.${part}.title`);
+
+        progressDialogRef.current?.open(
+          title,
+          subtitle ? formatMessage(`purification.soul.${part}.sub.title`) : undefined,
+          formatMessage(TKeys.LEVEL, { value: level }),
+          progress,
+          PURIFICATION_MAX_DAYS,
+        );
+      }
+    },
+    [part],
+  );
+
   function close() {
     setPart(undefined);
     ref.current?.close();
@@ -73,7 +95,13 @@ export default function HomeScreen() {
       ref={ref}
       style={{ backgroundColor: Color.backgroundColor }}
       content={
-        <LevelSelector part={part} onStart={handleStart} onRestart={handleRestart} onEvaluate={handleEvaluate} />
+        <LevelSelector
+          part={part}
+          onStart={handleStart}
+          onRestart={handleRestart}
+          onEvaluate={handleEvaluate}
+          onHistory={handleHistory}
+        />
       }
     >
       <SafeAreaView>
@@ -109,6 +137,7 @@ export default function HomeScreen() {
           </VStack>
         </ScrollView>
       </SafeAreaView>
+      <ProgressDialog ref={progressDialogRef} />
     </BottomSheet>
   );
 }

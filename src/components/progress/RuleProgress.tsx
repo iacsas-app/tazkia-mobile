@@ -7,7 +7,6 @@ import { Font } from '../../constants/Font';
 import ProgressLine from '../../domains/common/ProgressLine';
 import { useMessage } from '../../hooks/use-message';
 import { ProgressProps } from '../../hooks/use-progress';
-import { TKeys } from '../../locales/constants';
 import { useGlobal } from '../../providers/AppProvider';
 import StatusAndEvaluation from '../../screens/purification/common/StatusAndEvaluation';
 import YesNoButtons from './YesNoButtons';
@@ -20,6 +19,7 @@ type Props = ProgressProps & {
   maxDays: number;
   questionMultiple?: boolean;
   onEvaluate(checked: boolean): void;
+  onHistory(): void;
 };
 export default function RuleProgress({ progress, ...props }: Props) {
   const { formatMessage } = useMessage();
@@ -34,10 +34,6 @@ export default function RuleProgress({ progress, ...props }: Props) {
     setShowEvalute(false);
     props.onEvaluate(checked);
   }, []);
-
-  function formatAttempt(line: ProgressLine) {
-    return formatMessage(TKeys.PROGRESS_FAILED_ATTEMPTS_RULE_SIMPLE, { day: line.day });
-  }
 
   const align = props.completed ? 'center' : 'space-between';
 
@@ -68,7 +64,7 @@ export default function RuleProgress({ progress, ...props }: Props) {
         <Animated.View
           entering={FadeInUp.delay(400).duration(800).springify()}
           exiting={SlideOutDown.delay(10).damping(100)}
-          style={{ paddingTop: 15, minWidth: '100%' }}
+          style={{ paddingTop: 15, minWidth: '105%' }}
         >
           <Divider style={{ height: 1 }} />
           <StatusAndEvaluation
@@ -76,8 +72,8 @@ export default function RuleProgress({ progress, ...props }: Props) {
             progress={progress}
             align={align}
             maxDays={props.maxDays}
-            formatAttempt={formatAttempt}
             onEvaluate={handleEvaluateShow}
+            onHistory={props.onHistory}
           />
         </Animated.View>
       )}

@@ -25,6 +25,7 @@ import { useGlobal } from '../../../../../providers/AppProvider';
 import { useSnackbar } from '../../../../../providers/SnackbarProvider';
 import { PURIFICATION_MAX_DAYS, isCompleted } from '../../../../../services/Helpers';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
+import GridButton from '../../../common/GridButton';
 import { findStage } from '../common/Helper';
 
 type Props = {
@@ -36,6 +37,7 @@ type Props = {
   onShowRules(stage: PurificationStage): void;
   onRestart(stage: PurificationStage): void;
   onEvaluate(stage: PurificationStage): void;
+  onHistory(progress: ProgressLine[]): void;
 };
 export default function Stage({ part, stage, ...props }: Props) {
   const { formatMessage } = useMessage();
@@ -83,8 +85,10 @@ export default function Stage({ part, stage, ...props }: Props) {
     }
   }
 
-  function formatAttempt(line: ProgressLine) {
-    return formatMessage(TKeys.PROGRESS_FAILED_ATTEMPTS_RULE_SIMPLE, { day: line.day });
+  function handleHistory() {
+    if (progress) {
+      props.onHistory(progress);
+    }
   }
 
   useEffect(() => {
@@ -158,34 +162,38 @@ export default function Stage({ part, stage, ...props }: Props) {
         <Animated.View entering={FadeInDown.springify()} style={styles.footer}>
           <VStack style={GlobalStyles.center} spacing={5}>
             {hasProgress && (
-              <Button
-                mode={progressProps.completed ? 'text' : 'elevated'}
-                icon={() => (
-                  <Icon name={progressProps.completed ? 'view-list' : 'check-circle'} size={20} color={iconColor} />
-                )}
-                uppercase={false}
-                style={styles.btn}
-                labelStyle={{ ...styles.btnLabel, color: iconColor }}
-                onTouchStart={handleClick}
-              >
-                {formatMessage(
-                  progressProps.completed
-                    ? `${stage}.bodypart.disciplinary-system`
-                    : TKeys.PROGRESS_START_DAILY_EVALUATION,
-                )}
-              </Button>
+              <HStack spacing={25}>
+                <Button
+                  mode={progressProps.completed ? 'text' : 'elevated'}
+                  icon={() => (
+                    <Icon name={progressProps.completed ? 'view-list' : 'check-circle'} size={20} color={iconColor} />
+                  )}
+                  uppercase={false}
+                  style={styles.btn}
+                  labelStyle={{ ...styles.btnLabel, color: iconColor }}
+                  onTouchStart={handleClick}
+                >
+                  {formatMessage(
+                    progressProps.completed
+                      ? `${stage}.bodypart.disciplinary-system`
+                      : TKeys.PROGRESS_START_DAILY_EVALUATION,
+                  )}
+                </Button>
+              </HStack>
             )}
             <Divider style={styles.divider} />
             {progressProps.lastDay && (
-              <ProgressInfos
-                progress={progress}
-                lastDay={progressProps.lastDay}
-                countDays={progressProps.countDays}
-                endDate={progressProps.endDate}
-                failed={progressProps.failed}
-                maxDays={PURIFICATION_MAX_DAYS}
-                formatAttempt={formatAttempt}
-              />
+              <HStack style={GlobalStyles.center} spacing={15}>
+                <GridButton onShow={handleHistory} />
+                <ProgressInfos
+                  progress={progress}
+                  lastDay={progressProps.lastDay}
+                  countDays={progressProps.countDays}
+                  endDate={progressProps.endDate}
+                  failed={progressProps.failed}
+                  maxDays={PURIFICATION_MAX_DAYS}
+                />
+              </HStack>
             )}
           </VStack>
         </Animated.View>
@@ -212,7 +220,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     fontWeight: '900',
-    width: SCREEN_WIDTH - 150,
+    width: SCREEN_WIDTH - 160,
     paddingTop: 2,
   },
   footer: { paddingVertical: 2 },

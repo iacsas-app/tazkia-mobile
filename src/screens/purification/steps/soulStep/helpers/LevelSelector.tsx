@@ -6,6 +6,7 @@ import ConfirmRestartDialog, { ConfirmRestartDialogRef } from '../../../../../co
 import HStack from '../../../../../components/stack/HStack';
 import VStack from '../../../../../components/stack/VStack';
 import { Font } from '../../../../../constants/Font';
+import ProgressLine from '../../../../../domains/common/ProgressLine';
 import { SoulPart, SoulPartLevel, hasSubTitle, soulRules } from '../../../../../domains/purification/Soul';
 import { useMessage } from '../../../../../hooks/use-message';
 import { arabic } from '../../../../../locales/messages/arabic';
@@ -17,6 +18,7 @@ interface Props {
   onStart(level: number): void;
   onEvaluate(part: SoulPart, level: number, checked: boolean): void;
   onRestart(level: SoulPartLevel): void;
+  onHistory(progress: ProgressLine[], level: SoulPartLevel): void;
 }
 export default function LevelSelector({ part, ...props }: Props) {
   const ref = useRef<ConfirmRestartDialogRef>(null);
@@ -75,6 +77,7 @@ export default function LevelSelector({ part, ...props }: Props) {
             onTouch={handleTouch}
             onRestart={() => handleRestart(index + 1)}
             onEvaluate={props.onEvaluate}
+            onHistory={props.onHistory}
           />
         ))}
       </VStack>

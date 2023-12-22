@@ -1,10 +1,12 @@
-import React, { useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 import BottomSheet, { BottomSheetRef } from '../../../../../components/bottomSheet/BottomSheet';
+import ProgressDialog, { ProgressDialogRef } from '../../../../../components/dialogs/ProgressDialog';
 import ProgressView from '../../../../../components/progress/ProgressView';
 import PressableItem from '../../../../../components/progressItem/PressableItem';
 import VStack from '../../../../../components/stack/VStack';
 import { Color } from '../../../../../constants/Color';
+import ProgressLine from '../../../../../domains/common/ProgressLine';
 import { MindLevel, mindLevels } from '../../../../../domains/purification/Mind';
 import { useMessage } from '../../../../../hooks/use-message';
 import usePurification from '../../../../../hooks/use-purification';
@@ -16,6 +18,8 @@ import GlobalStyles from '../../../../../styles/GlobalStyles';
 
 export default function HomeScreen() {
   const ref = useRef<BottomSheetRef>(null);
+  const progressDialogRef = useRef<ProgressDialogRef>(null);
+
   const { arabic } = useGlobal();
   const { formatMessage } = useMessage();
   const [level, setLevel] = useState<MindLevel>();
@@ -64,6 +68,21 @@ export default function HomeScreen() {
     }
   }
 
+  const handleHistory = useCallback(
+    (progress: ProgressLine[]) => {
+      if (level) {
+        progressDialogRef.current?.open(
+          formatMessage(TKeys.LEVEL, { value: level }),
+          undefined,
+          formatMessage(`purification.mind.summary.level-${level}`),
+          progress,
+          PURIFICATION_MAX_DAYS,
+        );
+      }
+    },
+    [level],
+  );
+
   function close() {
     setLevel(undefined);
     ref.current?.close();
@@ -84,6 +103,7 @@ export default function HomeScreen() {
           onStart={handleStart}
           onRestart={handleRestart}
           onEvaluate={handleEvaluate}
+          onHistory={handleHistory}
         />
       }
     >
@@ -113,6 +133,7 @@ export default function HomeScreen() {
           </VStack>
         </ScrollView>
       </SafeAreaView>
+      <ProgressDialog ref={progressDialogRef} />
     </BottomSheet>
   );
 }

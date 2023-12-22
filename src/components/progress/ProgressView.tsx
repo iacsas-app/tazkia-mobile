@@ -24,6 +24,7 @@ type ProgressViewProps = {
   onStart(): void;
   onRestart(): void;
   onEvaluate(checked: boolean): void;
+  onHistory(progress: ProgressLine[]): void;
 };
 
 export default function ProgressView(props: ProgressViewProps) {
@@ -39,6 +40,12 @@ export default function ProgressView(props: ProgressViewProps) {
       props.onRestart();
     }
     ref.current?.close();
+  }
+
+  function handleHistory() {
+    if (props.progress) {
+      props.onHistory(props.progress);
+    }
   }
 
   return (
@@ -74,6 +81,7 @@ export default function ProgressView(props: ProgressViewProps) {
           maxDays={props.maxDays}
           questionMultiple={props.questionMultiple}
           onEvaluate={props.onEvaluate}
+          onHistory={handleHistory}
         />
         {!props.progress && props.onStart && (
           <View style={{ paddingBottom: 25 }}>

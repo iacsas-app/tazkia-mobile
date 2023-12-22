@@ -1,6 +1,5 @@
-import { BodyPartType } from '../../../../../domains/purification/BodyPart';
+import { BodyPartType, PurificationStage } from '../../../../../domains/purification/BodyPart';
 import { TKeys } from '../../../../../locales/constants';
-import { PurificationStage } from '../tabs/HomeScreen';
 
 export const rules: Record<BodyPartType, Record<PurificationStage, string[]>> = {
   eye: {

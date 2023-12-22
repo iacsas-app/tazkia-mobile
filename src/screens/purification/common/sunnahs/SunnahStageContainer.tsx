@@ -1,10 +1,11 @@
-import { useMemo, useRef, useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import CircularProgress from 'react-native-circular-progress-indicator';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Avatar } from 'react-native-paper';
 import Text from '../../../../components/Text';
 import BottomSheet, { BottomSheetRef } from '../../../../components/bottomSheet/BottomSheet';
+import ProgressDialog, { ProgressDialogRef } from '../../../../components/dialogs/ProgressDialog';
 import ProgressView from '../../../../components/progress/ProgressView';
 import PressableItem from '../../../../components/progressItem/PressableItem';
 import HStack from '../../../../components/stack/HStack';
@@ -12,6 +13,7 @@ import VStack from '../../../../components/stack/VStack';
 import { Color } from '../../../../constants/Color';
 import { Font } from '../../../../constants/Font';
 import { SCREEN_WIDTH } from '../../../../constants/Screen';
+import ProgressLine from '../../../../domains/common/ProgressLine';
 import { SunnahType } from '../../../../domains/sunnahs/Sunnah';
 import { SunnahStage } from '../../../../domains/sunnahs/Sunnahs';
 import { useMessage } from '../../../../hooks/use-message';
@@ -31,6 +33,7 @@ interface Props {
 }
 export default function SunnahStageContainer({ stage, rules }: Props) {
   const ref = useRef<BottomSheetRef>(null);
+  const progressDialogRef = useRef<ProgressDialogRef>(null);
   const { arabic } = useGlobal();
   const { paddingHorizontal } = useWindow();
   const { formatMessage } = useMessage();
@@ -89,6 +92,21 @@ export default function SunnahStageContainer({ stage, rules }: Props) {
     }
   }
 
+  const handleHistory = useCallback(
+    (progress: ProgressLine[]) => {
+      if (id) {
+        progressDialogRef.current?.open(
+          formatMessage(`sunnahs.${stage}.${id}.title`),
+          undefined,
+          undefined,
+          progress,
+          SUNNAHS_MAX_DAYS,
+        );
+      }
+    },
+    [id],
+  );
+
   return (
     <BottomSheet
       ref={ref}
@@ -104,6 +122,7 @@ export default function SunnahStageContainer({ stage, rules }: Props) {
           onStart={handleStart}
           onRestart={handleRestart}
           onEvaluate={handleEvaluate}
+          onHistory={handleHistory}
         />
       }
     >
@@ -160,6 +179,7 @@ export default function SunnahStageContainer({ stage, rules }: Props) {
           })}
         </VStack>
       </ScrollView>
+      <ProgressDialog ref={progressDialogRef} />
     </BottomSheet>
   );
 }

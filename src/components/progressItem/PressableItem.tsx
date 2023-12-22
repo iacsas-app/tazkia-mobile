@@ -77,7 +77,7 @@ function PressableItem({ inProgress, ...props }: Props) {
             flex: 4,
           }}
         >
-          <VStack spacing={2} center>
+          <VStack spacing={0} center>
             <Text
               variant="bodySmall"
               style={{

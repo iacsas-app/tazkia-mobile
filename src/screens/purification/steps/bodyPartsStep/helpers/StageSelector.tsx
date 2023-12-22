@@ -2,10 +2,13 @@ import { useCallback, useRef, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import Animated, { FadeIn, FadeInUp, FadeOutDown } from 'react-native-reanimated';
 import ConfirmRestartDialog, { ConfirmRestartDialogRef } from '../../../../../components/dialogs/ConfirmRestartDialog';
+import ProgressDialog, { ProgressDialogRef } from '../../../../../components/dialogs/ProgressDialog';
 import VStack from '../../../../../components/stack/VStack';
 import { SCREEN_WIDTH } from '../../../../../constants/Screen';
+import ProgressLine from '../../../../../domains/common/ProgressLine';
 import { BodyPartType, PurificationStage } from '../../../../../domains/purification/BodyPart';
 import { useMessage } from '../../../../../hooks/use-message';
+import { PURIFICATION_MAX_DAYS } from '../../../../../services/Helpers';
 import GlobalStyles from '../../../../../styles/GlobalStyles';
 import { findPartImageSource } from '../common/Helper';
 import Stage from './Stage';
@@ -21,6 +24,7 @@ export default function StageSelector({ part, ...props }: Props) {
   const stageRef = useRef<PurificationStage>();
   const rulesDialogRef = useRef<RulesDialogRef>(null);
   const restartRef = useRef<ConfirmRestartDialogRef>(null);
+  const progressDialogRef = useRef<ProgressDialogRef>(null);
   const { formatMessage } = useMessage();
   const [openedStage, setOpenedStage] = useState<PurificationStage>();
   const imageSource = findPartImageSource(part);
@@ -63,6 +67,21 @@ export default function StageSelector({ part, ...props }: Props) {
     restartRef.current?.close();
   }
 
+  const handleHistory = useCallback(
+    (progress: ProgressLine[]) => {
+      if (openedStage && part) {
+        progressDialogRef.current?.open(
+          formatMessage(`purification.body-parts.${part}`),
+          undefined,
+          formatMessage(`purification.bodypart.${openedStage}`),
+          progress,
+          PURIFICATION_MAX_DAYS,
+        );
+      }
+    },
+    [openedStage],
+  );
+
   if (!part) {
     return <></>;
   }
@@ -93,11 +112,13 @@ export default function StageSelector({ part, ...props }: Props) {
             onShowRules={handleShowRules}
             onRestart={handleRestart}
             onEvaluate={handleShowEvaluate}
+            onHistory={handleHistory}
           />
         ))}
       </VStack>
       <RulesDialog ref={rulesDialogRef} onEvaluate={handleEvaluate} />
       <ConfirmRestartDialog ref={restartRef} onConfirm={handleConfirm} />
+      <ProgressDialog ref={progressDialogRef} />
     </Animated.View>
   );
 }

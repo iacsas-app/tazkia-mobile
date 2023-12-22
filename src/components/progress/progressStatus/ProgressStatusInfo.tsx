@@ -27,5 +27,5 @@ export default function ProgressStatusInfo(props: Props) {
 
 const styles = StyleSheet.create({
   center: { alignItems: 'center' },
-  label: { fontWeight: '800', color: 'black' },
+  label: { fontFamily: 'Cairo', color: 'black', fontSize: 10 },
 });

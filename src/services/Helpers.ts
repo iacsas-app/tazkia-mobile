@@ -1,3 +1,4 @@
+import * as ScreenOrientation from 'expo-screen-orientation';
 import * as ExpoUpdates from 'expo-updates';
 import { I18nManager, NativeModules, Platform } from 'react-native';
 import ProgressLine from '../domains/common/ProgressLine';
@@ -86,4 +87,18 @@ export async function reloadIfNecessary(lang: SupportedLocale) {
   if ((isArabic && !I18nManager.isRTL) || (!isArabic && I18nManager.isRTL)) {
     await ExpoUpdates.reloadAsync();
   }
+}
+
+export function formatDate(date: number): string {
+  return new Date(date).toLocaleDateString('fr-FR');
+}
+
+export function switchScreenOrientation() {
+  ScreenOrientation.getOrientationLockAsync().then((orientation) => {
+    const newOrientation =
+      orientation === ScreenOrientation.OrientationLock.LANDSCAPE
+        ? ScreenOrientation.OrientationLock.PORTRAIT
+        : ScreenOrientation.OrientationLock.LANDSCAPE;
+    ScreenOrientation.lockAsync(newOrientation);
+  });
 }

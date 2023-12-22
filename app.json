@@ -17,6 +17,7 @@
     ],
     "ios": {
       "supportsTablet": true,
+      "requireFullScreen": true,
       "bundleIdentifier": "com.iacsas.manhajnabawi"
     },
     "android": {
@@ -38,6 +39,12 @@
         {
           "icon": "./assets/adaptive-icon.png",
           "color": "#ffffff"
+        }
+      ],
+      [
+        "expo-screen-orientation",
+        {
+          "initialOrientation": "DEFAULT"
         }
       ]
     ],

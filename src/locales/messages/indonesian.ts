@@ -1230,8 +1230,6 @@ export const indonesian: Translations = {
   [TKeys.PROGRESS_SUCCESSFUL_DAYS]: 'Hari-hari sukses',
   [TKeys.PROGRESS_TOTAL_DAYS]: 'Jumlah hari',
   [TKeys.PROGRESS_FAILED_ATTEMPTS]: 'Upaya yang gagal',
-  [TKeys.PROGRESS_FAILED_ATTEMPTS_RULE]: 'Pelanggaran aturan {rules} pada hari {day}',
-  [TKeys.PROGRESS_FAILED_ATTEMPTS_RULE_SIMPLE]: 'Aturan tersebut dilanggar pada hari {day}',
   [TKeys.PROGRESS_START_DAILY_EVALUATION]: 'Evaluasi hari saya',
   [TKeys.PROGRESS_EVALUATION_MESSAGE]: 'Pilih aturan yang dilanggar',
   [TKeys.PROGRESS_EVALUATION_QUESTION]: 'Apakah aturan berikut dipatuhi sepanjang hari ?',
