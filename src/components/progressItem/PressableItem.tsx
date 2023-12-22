@@ -53,7 +53,7 @@ function PressableItem({ inProgress, ...props }: Props) {
         style={{
           ...styles.part,
           flexBasis: props.flexBasis,
-          backgroundColor: inProgress ? (completed ? '#8de0b6' : '#bbe7d0') : 'white',
+          backgroundColor: inProgress ? (completed ? '#8de0b6' : '#ccf3df') : 'white',
         }}
       >
         <Avatar.Text

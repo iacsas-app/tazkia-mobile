@@ -7,7 +7,7 @@ import HStack from '../../../components/stack/HStack';
 import VStack from '../../../components/stack/VStack';
 import { Color } from '../../../constants/Color';
 import { Font } from '../../../constants/Font';
-import { SCREEN_WIDTH } from '../../../constants/Screen';
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../../../constants/Screen';
 import { useMessage } from '../../../hooks/use-message';
 import { TKeys } from '../../../locales/constants';
 import GlobalStyles from '../../../styles/GlobalStyles';
@@ -63,7 +63,7 @@ const ChapterDialog = forwardRef<ChapterDialogRef>((_, ref) => {
 
   return (
     <Portal>
-      <Dialog onDismiss={handleClose} visible={state !== undefined} style={GlobalStyles.defaultDialog}>
+      <Dialog onDismiss={handleClose} visible={state !== undefined} style={styles.dialog}>
         <Dialog.Title style={{ paddingTop: 5 }}>
           <VStack style={GlobalStyles.center} spacing={5}>
             <Text variant="bodyLarge" style={{ ...styles.sectionTitle, color: 'seagreen' }}>
@@ -145,6 +145,11 @@ const ChapterDialog = forwardRef<ChapterDialogRef>((_, ref) => {
 });
 
 const styles = StyleSheet.create({
+  dialog: {
+    ...GlobalStyles.defaultDialog,
+    borderRadius: 0,
+    height: SCREEN_HEIGHT,
+  },
   sectionTitle: {
     ...GlobalStyles.center,
     fontWeight: '900',

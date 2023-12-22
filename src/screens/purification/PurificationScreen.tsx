@@ -87,7 +87,7 @@ export default function PurificationScreen() {
               {formatMessage(TKeys.PURIFICATION_TITLE_SUB)}
             </Animated.Text>
           </HStack>
-          <Animated.Text entering={FadeInUp.delay(700).duration(700).mass(1)} exiting={FadeOut} style={styles.sourat}>
+          <Animated.Text entering={FadeInUp.delay(500).duration(700).mass(1)} exiting={FadeOut} style={styles.sourat}>
             {formatMessage(TKeys.SOURAT_A3LA)}
           </Animated.Text>
         </VStack>

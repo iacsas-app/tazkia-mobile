@@ -1,8 +1,9 @@
+import Icon from '@expo/vector-icons/Octicons';
 import { useNavigation } from '@react-navigation/native';
 import React, { ReactNode, forwardRef, useImperativeHandle, useLayoutEffect, useMemo, useState } from 'react';
 import { Pressable, StyleProp, StyleSheet, ViewStyle } from 'react-native';
 import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
-import { IconButton } from 'react-native-paper';
+
 import Animated, {
   FadeIn,
   FadeOut,
@@ -97,13 +98,7 @@ const BottomSheet = forwardRef<BottomSheetRef, BottomSheetProps>(function Bottom
               entering={SlideInDown.springify().damping(15)}
               exiting={SlideOutDown}
             >
-              <IconButton
-                icon="arrow-down-bold"
-                mode="contained-tonal"
-                size={15}
-                style={{ marginTop: -17 }}
-                onPress={toggleSheet}
-              />
+              <Icon name="horizontal-rule" size={45} onPress={toggleSheet} style={{ height: 40, marginTop: -12 }} />
               {props.content}
             </Animated.View>
           </GestureDetector>

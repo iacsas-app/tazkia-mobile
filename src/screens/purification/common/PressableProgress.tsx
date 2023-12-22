@@ -46,7 +46,7 @@ export default function PressableProgress({ index, item, hasProgress }: Props) {
       exiting={FadeOut}
       style={{
         ...styles.part,
-        backgroundColor: progress !== undefined ? Color.partProgressBgColor : Color.partDefaultBgColor,
+        backgroundColor: progress !== undefined ? '#ccf3df' : Color.partDefaultBgColor,
       }}
       onTouchStart={handlePress}
     >

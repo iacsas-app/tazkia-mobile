@@ -100,9 +100,8 @@ export default function LevelRule({ part, index, levelKey, ...props }: Props) {
       onPress={handleTouch}
       style={{
         ...styles.container,
-        paddingTop: showDetails ? 0.5 : 5,
-        borderBottomLeftRadius: current ? 30 : open ? 15 : radius(),
-        borderBottomRightRadius: current ? 30 : open ? 15 : radius(),
+        borderBottomLeftRadius: current ? 30 : showDetails ? 15 : radius(),
+        borderBottomRightRadius: current ? 30 : showDetails ? 15 : radius(),
         borderTopLeftRadius: radius(),
         borderTopRightRadius: radius(),
         backgroundColor: showDetails
@@ -117,12 +116,13 @@ export default function LevelRule({ part, index, levelKey, ...props }: Props) {
       <View style={{ padding: 0, margin: 0 }}>
         <HStack style={styles.header}>
           <HStack spacing={10}>
-            {!showDetails && <Icon name={`unfold-${open ? 'less' : 'more'}-horizontal`} size={22} color="teal" />}
+            {!showDetails && <Icon name="unfold-more-horizontal" size={22} color="teal" />}
             <Text
               variant="bodyLarge"
               style={{
                 ...styles.levelTitle,
-                fontSize: Font.size(open ? 16 : 14),
+                fontSize: Font.size(showDetails ? 16 : 14),
+                paddingEnd: showDetails ? 14 : 0,
               }}
             >
               {formatMessage(TKeys.LEVEL, { value: index })}

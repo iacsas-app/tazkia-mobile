@@ -31,5 +31,5 @@ export default function AhzabsInvocationsScreen() {
 
 const styles = StyleSheet.create({
   container: { backgroundColor: Color.backgroundColor },
-  header: { ...GlobalStyles.fixedHeader, fontFamily: 'AmiriQuran', fontSize: 17, lineHeight: 30 },
+  header: { ...GlobalStyles.fixedHeader, fontFamily: 'AmiriQuran', fontSize: 15, lineHeight: 30 },
 });

@@ -1416,6 +1416,8 @@ export const arabic: Translations = {
   [TKeys.PROGRESS_SUCCESSFUL_DAYS]: 'الأيام الناجحة',
   [TKeys.PROGRESS_TOTAL_DAYS]: 'إجمالي الأيام',
   [TKeys.PROGRESS_FAILED_ATTEMPTS]: 'المحاولات الفاشلة',
+  [TKeys.PROGRESS_FAILED_ATTEMPTS_RULES]: 'خرق القواعد ({value})',
+  [TKeys.PROGRESS_FAILED_ATTEMPTS_RULE]: 'خرق القاعدة {value}',
   [TKeys.PROGRESS_START_DAILY_EVALUATION]: 'تَقْيِيِمُ يَوْمِي',
   [TKeys.PROGRESS_EVALUATION_MESSAGE]: 'اختر القواعد التي تم خرقها',
   [TKeys.PROGRESS_EVALUATION_QUESTION]: 'هل تم احترام القاعدة التالية ؟',

@@ -1,7 +1,7 @@
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import { forwardRef, useImperativeHandle, useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
-import { Dialog, FAB, Portal } from 'react-native-paper';
+import { Dialog, FAB, IconButton, Portal, Tooltip } from 'react-native-paper';
 import { Color } from '../../constants/Color';
 import { Font } from '../../constants/Font';
 import { SCREEN_HEIGHT } from '../../constants/Screen';
@@ -61,6 +61,10 @@ const ProgressDialog = forwardRef<ProgressDialogRef>((_, ref) => {
   function handleClose() {
     setState(undefined);
     switchScreenOrientation();
+  }
+
+  function handlePress() {
+    console.log('press');
   }
 
   if (!state) {
@@ -125,15 +129,27 @@ const ProgressDialog = forwardRef<ProgressDialogRef>((_, ref) => {
                     backgroundColor: 'white',
                   }}
                 >
-                  <Text style={{ fontSize: 9 }}>
-                    {line.day - i >= 0 ? (
-                      <Icon name="check-circle" size={15} color="green" />
-                    ) : line.errors.length > 0 && line.day - i === -1 ? (
-                      <Icon name="close-circle" size={15} color="red" />
-                    ) : (
-                      ''
-                    )}
-                  </Text>
+                  {line.day - i >= 0 ? (
+                    <Icon name="check-circle" size={20} color="green" />
+                  ) : line.errors.length > 0 && line.day - i === -1 ? (
+                    <Tooltip
+                      title={formatMessage(`progress.failed-attempts.rule${line.errors.length === 1 ? '' : 's'}`, {
+                        value: line.errors.sort().toString(),
+                      })}
+                      enterTouchDelay={0}
+                    >
+                      <IconButton
+                        icon="close-circle"
+                        selected
+                        iconColor="red"
+                        size={20}
+                        onPress={() => {}}
+                        style={{ padding: 0, margin: 0, height: 22, width: 22 }}
+                      />
+                    </Tooltip>
+                  ) : (
+                    ''
+                  )}
                 </View>
               ))}
             </View>

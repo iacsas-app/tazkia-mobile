@@ -1077,6 +1077,8 @@ export enum TKeys {
   PROGRESS_SUCCESSFUL_DAYS = 'progress.successful-days',
   PROGRESS_TOTAL_DAYS = 'progress.total-days',
   PROGRESS_FAILED_ATTEMPTS = 'progress.failed-attempts',
+  PROGRESS_FAILED_ATTEMPTS_RULE = 'progress.failed-attempts.rule',
+  PROGRESS_FAILED_ATTEMPTS_RULES = 'progress.failed-attempts.rules',
   PROGRESS_START_DAILY_EVALUATION = 'progress.start-daily-evaluation',
   PROGRESS_EVALUATION_MESSAGE = 'progress.daily-evaluation.message',
   PROGRESS_EVALUATION_QUESTION = 'progress.evaluation.question',

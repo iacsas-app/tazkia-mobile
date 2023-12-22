@@ -183,8 +183,7 @@ export default function Stage({ part, stage, ...props }: Props) {
             )}
             <Divider style={styles.divider} />
             {progressProps.lastDay && (
-              <HStack style={GlobalStyles.center} spacing={15}>
-                <GridButton onShow={handleHistory} />
+              <HStack style={GlobalStyles.center} spacing={20}>
                 <ProgressInfos
                   progress={progress}
                   lastDay={progressProps.lastDay}
@@ -193,6 +192,7 @@ export default function Stage({ part, stage, ...props }: Props) {
                   failed={progressProps.failed}
                   maxDays={PURIFICATION_MAX_DAYS}
                 />
+                <GridButton onShow={handleHistory} />
               </HStack>
             )}
           </VStack>
