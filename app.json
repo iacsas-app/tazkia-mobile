@@ -18,14 +18,14 @@
     "ios": {
       "supportsTablet": true,
       "requireFullScreen": true,
-      "bundleIdentifier": "com.iacsas.manhajnabawi"
+      "bundleIdentifier": "com.iacsas.manhaj"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#e4f1ea"
       },
-      "package": "com.iacsas.manhajnabawi"
+      "package": "com.iacsas.manhaj"
     },
     "extra": {
       "eas": {
