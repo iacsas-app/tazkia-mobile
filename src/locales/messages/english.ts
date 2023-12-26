@@ -56,6 +56,16 @@ export const english: Translations = {
   [TKeys.BOOK_DESC_17]: '',
   [TKeys.BOOK_TITLE_18]: '',
   [TKeys.BOOK_DESC_18]: '',
+  [TKeys.BOOK_TITLE_19]: '',
+  [TKeys.BOOK_DESC_19]: '',
+  [TKeys.BOOK_TITLE_20]: '',
+  [TKeys.BOOK_DESC_20]: '',
+  [TKeys.BOOK_TITLE_21]: '',
+  [TKeys.BOOK_DESC_21]: '',
+  [TKeys.BOOK_TITLE_22]: '',
+  [TKeys.BOOK_DESC_22]: '',
+
+  [TKeys.BUTTON_LINK]: 'more',
 
   // PURIFICATION
   [TKeys.PURIFICATION_TITLE]: '',

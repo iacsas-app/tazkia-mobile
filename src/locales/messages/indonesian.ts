@@ -74,6 +74,15 @@ export const indonesian: Translations = {
   [TKeys.BOOK_TITLE_18]: 'Penerang Hakikat dan Cahaya serta Menyingkap Tabir-tabir dalam sholawat atas Nabi mukhtar',
   [TKeys.BOOK_DESC_18]:
     ' Kitab ini atas idzin Allah akan menjadi petunjuk jalan, penutup bagi para hamba, penyala rindu, penghalus rasa, dan pintu masuk menuju Hadirat mutlak Allah Swt dengan sirr kunci dan idzin yang jelas bagi para salik yang ingin memasuki hadirat Sang Kekasih, dan bagi setiap orang yang ingin maju dalam tingkat kedekatan dan ihsan. \nTajalli ini dari sholawat hakikat, kami persembahkan kepada setiap orang yang mencari jalan, yang berjalan menuju hadrat tahqiq, yang mengikuti segala sesuatu yang disunnahkan dengan penuh kehati-hatian, semua itu adalah sholawat dari hati Ahmadi, yang terlimpahkan atas tajalli dzat Muhammadi dalam bentuk sirr yang bersinar di hati para syekh kami yang terhormat, terhubung dengan setiap orang yang membaca sholawat ini atau mencicipi aroma baik ini, atau cahaya pemahaman ini, mengakar di hatinya, dan ittishal (hubungan) ini berlanjut dari hati ke hati. hati sampai murid tersebut fana dari wujudnya dan memasuki hadrah tahqiq Allah Swt.',
+  [TKeys.BOOK_TITLE_19]: '',
+  [TKeys.BOOK_DESC_19]: '',
+  [TKeys.BOOK_TITLE_20]: '',
+  [TKeys.BOOK_DESC_20]: '',
+  [TKeys.BOOK_TITLE_21]: '',
+  [TKeys.BOOK_DESC_21]: '',
+  [TKeys.BOOK_TITLE_22]: '',
+  [TKeys.BOOK_DESC_22]: '',
+  [TKeys.BUTTON_LINK]: 'more',
 
   // PURIFICATION
   [TKeys.PURIFICATION_TITLE]: '',
