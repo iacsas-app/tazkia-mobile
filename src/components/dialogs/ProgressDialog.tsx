@@ -8,7 +8,7 @@ import { SCREEN_HEIGHT } from '../../constants/Screen';
 import ProgressLine from '../../domains/common/ProgressLine';
 import { useMessage } from '../../hooks/use-message';
 import { TKeys } from '../../locales/constants';
-import { formatDate, switchScreenOrientation } from '../../services/Helpers';
+import { formatDate, lines, switchScreenOrientation } from '../../services/Helpers';
 import GlobalStyles from '../../styles/GlobalStyles';
 import Text from '../Text';
 import HStack from '../stack/HStack';
@@ -49,6 +49,7 @@ const ProgressDialog = forwardRef<ProgressDialogRef>((_, ref) => {
           maxDays: number,
         ) {
           setState({ primaryTitle, secondaryTitle, subTitle, progress, maxDays });
+          lines(progress[0]);
         },
         close() {
           handleClose();
@@ -61,10 +62,6 @@ const ProgressDialog = forwardRef<ProgressDialogRef>((_, ref) => {
   function handleClose() {
     setState(undefined);
     switchScreenOrientation();
-  }
-
-  function handlePress() {
-    console.log('press');
   }
 
   if (!state) {
@@ -109,51 +106,57 @@ const ProgressDialog = forwardRef<ProgressDialogRef>((_, ref) => {
           </View>
         </VStack>
         <ScrollView style={{ maxHeight: 0.7 * SCREEN_HEIGHT }}>
-          {progress.map((line, index) => (
-            <View key={index} style={{ flex: 1, flexDirection: 'row' }}>
-              <View
-                style={{
-                  ...styles.cellValue,
-                  flex: 3,
-                  backgroundColor: Color.active,
-                }}
-              >
-                <Text style={{ fontSize: 9 }}>{formatDate(line.startDate)}</Text>
-              </View>
-              {Array.from({ length: maxDays }, (_, i) => i + 1).map((i) => (
+          {progress.map((line, index) => {
+            const result = lines(line);
+            return (
+              <View key={index} style={{ flex: 1, flexDirection: 'row' }}>
                 <View
-                  key={`${index}_${i}`}
                   style={{
                     ...styles.cellValue,
-                    flex: 1,
-                    backgroundColor: 'white',
+                    flex: 3,
+                    backgroundColor: Color.active,
                   }}
                 >
-                  {line.day - i >= 0 ? (
-                    <Icon name="check-circle" size={20} color="green" />
-                  ) : line.errors.length > 0 && line.day - i === -1 ? (
-                    <Tooltip
-                      title={formatMessage(`progress.failed-attempts.rule${line.errors.length === 1 ? '' : 's'}`, {
-                        value: line.errors.sort().toString(),
-                      })}
-                      enterTouchDelay={0}
-                    >
-                      <IconButton
-                        icon="close-circle"
-                        selected
-                        iconColor="red"
-                        size={20}
-                        onPress={() => {}}
-                        style={{ padding: 0, margin: 0, height: 22, width: 22 }}
-                      />
-                    </Tooltip>
-                  ) : (
-                    ''
-                  )}
+                  <Text style={{ fontSize: 9 }}>{formatDate(line.startDate)}</Text>
                 </View>
-              ))}
-            </View>
-          ))}
+                {Array.from({ length: maxDays }, (_, i) => i + 1).map((i) => {
+                  const v = result[i];
+                  return (
+                    <View
+                      key={`${index}_${i}`}
+                      style={{
+                        ...styles.cellValue,
+                        flex: 1,
+                        backgroundColor: 'white',
+                      }}
+                    >
+                      {v === true ? (
+                        <Icon name="check-circle" size={20} color="green" />
+                      ) : v === false ? (
+                        <Tooltip
+                          title={formatMessage(`progress.failed-attempts.rule${line.errors.length === 1 ? '' : 's'}`, {
+                            value: line.errors.sort().toString(),
+                          })}
+                          enterTouchDelay={0}
+                        >
+                          <IconButton
+                            icon="close-circle"
+                            selected
+                            iconColor="red"
+                            size={20}
+                            onPress={() => {}}
+                            style={{ padding: 0, margin: 0, height: 22, width: 22 }}
+                          />
+                        </Tooltip>
+                      ) : (
+                        ''
+                      )}
+                    </View>
+                  );
+                })}
+              </View>
+            );
+          })}
         </ScrollView>
         <FAB icon="close" style={styles.fabClose} mode="elevated" size="small" onPress={handleClose} color="white" />
       </Dialog>

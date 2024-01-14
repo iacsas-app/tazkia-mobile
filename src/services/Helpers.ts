@@ -102,3 +102,8 @@ export function switchScreenOrientation() {
     ScreenOrientation.lockAsync(newOrientation);
   });
 }
+
+export function lines({ day, errors, ..._ }: ProgressLine) {
+  const noError = errors.length === 0;
+  return Array.from({ length: day + 1 }, (_, i) => (noError ? true : i === day ? false : true));
+}
