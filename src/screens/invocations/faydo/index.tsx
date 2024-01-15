@@ -10,13 +10,13 @@ export default function OverflowInvocationsScreen() {
   useKeepAwake(); // This screen will never sleep!
   const ref = useRef<SimpleDialogRef>(null);
 
-  const handleIntro = useCallback(() => {
-    ref.current?.open(TKeys.INVOCATIONS_FAYDO_INTRODUCTION, TKeys.GENERAL_PRESENTATION_TITLE);
+  const handleClick = useCallback((titleKey: TKeys, summaryKey: TKeys) => {
+    ref.current?.open(summaryKey, titleKey);
   }, []);
 
   return (
     <View style={styles.container}>
-      <Chapters onIntro={handleIntro} />
+      <Chapters onClick={handleClick} />
       <SimpleDialog ref={ref} />
     </View>
   );

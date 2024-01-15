@@ -7,6 +7,7 @@ import { useMessage } from '../../hooks/use-message';
 import { TKeys } from '../../locales/constants';
 import InvocationsScreen from '../../screens/invocations/InvocationsScreen';
 import AhzabsInvocationsScreen from '../../screens/invocations/ahzabs';
+import AhzabsInvocationsSectionScreen from '../../screens/invocations/ahzabs/AhzabsSectionScreen';
 import OverflowInvocationsScreen from '../../screens/invocations/faydo';
 import ImmunizationInvocationsScreen from '../../screens/invocations/immunization';
 import { ImmunizationPeriod } from '../../screens/invocations/immunization/data';
@@ -51,6 +52,11 @@ export default function InvocationsStack() {
         <Stack.Screen
           name="Ahzabs"
           component={AhzabsInvocationsScreen}
+          options={{ title: formatMessage(TKeys.INVOCATION_AHZABS_TITLE) }}
+        />
+        <Stack.Screen
+          name="AhzabsSection"
+          component={AhzabsInvocationsSectionScreen}
           options={{ title: formatMessage(TKeys.INVOCATION_AHZABS_TITLE) }}
         />
       </Stack.Navigator>

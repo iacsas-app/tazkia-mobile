@@ -2,10 +2,11 @@ import { memo, useMemo } from 'react';
 import { ViewToken } from 'react-native';
 import Animated, { useSharedValue } from 'react-native-reanimated';
 import { Color } from '../../../constants/Color';
+import { TKeys } from '../../../locales/constants';
 import Chapter from './Chapter';
 
 type Props = {
-  onIntro(): void;
+  onClick(titleKey: TKeys, summaryKey: TKeys): void;
 };
 function Chapters(props: Props) {
   const size = 43;

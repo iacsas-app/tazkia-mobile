@@ -29,7 +29,8 @@ export type InvocationsParamList = {
   Immunization: { period: ImmunizationPeriod };
   Jewels: undefined;
   Overflow: undefined;
-  Ahzabs: { section: number };
+  Ahzabs: undefined;
+  AhzabsSection: { section: number };
 };
 
 // Navigation props
@@ -45,4 +46,4 @@ export type PurificationStackNavigationProp = CompositeNavigationProp<
 
 // Route props
 export type ImmunizationScreenRouteProp = RouteProp<InvocationsParamList, 'Immunization'>;
-export type AhzabsScreenRouteProp = RouteProp<InvocationsParamList, 'Ahzabs'>;
+export type AhzabsSectionScreenRouteProp = RouteProp<InvocationsParamList, 'AhzabsSection'>;

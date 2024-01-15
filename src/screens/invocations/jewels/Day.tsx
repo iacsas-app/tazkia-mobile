@@ -22,8 +22,9 @@ import GlobalStyles from '../../../styles/GlobalStyles';
 interface Props {
   day: number;
   partNumbers: number;
+  onInfo(title: TKeys, summary: TKeys): void;
 }
-function Day({ day, partNumbers }: Props) {
+function Day({ day, partNumbers, onInfo }: Props) {
   const { formatMessage } = useMessage();
   const [isOpen, setOpen] = useState(false);
 
@@ -35,7 +36,11 @@ function Day({ day, partNumbers }: Props) {
   const fade = first ? FadeInDown : last ? FadeInUp : FadeInLeft;
 
   function handlePress() {
-    setOpen(!isOpen);
+    if (first || last) {
+      onInfo(titleKey as TKeys, summaryKey as TKeys);
+    } else {
+      setOpen(!isOpen);
+    }
   }
 
   return (
@@ -82,33 +87,28 @@ function Day({ day, partNumbers }: Props) {
           </Animated.Text>
         </HStack>
       </HStack>
-      {isOpen &&
-        (first || last ? (
-          <Animated.Text entering={FadeInUp.duration(400).mass(1)} exiting={FadeOutDown.mass(1)} style={styles.body}>
-            {formatMessage(summaryKey)}
-          </Animated.Text>
-        ) : (
-          <Animated.View
-            entering={FadeInUp.duration(400).mass(1)}
-            exiting={FadeOutDown.duration(200).mass(1)}
-            style={styles.main}
-          >
-            {Array.from({ length: partNumbers }, (_, i) => i + 1).map((part) => (
-              <VStack key={`${day}_${part}`} spacing={25} style={styles.box}>
-                <Text variant="bodyMedium" style={styles.partTitle}>
-                  {formatMessage(`${baseKey}.day.${day}.part.${part}.title`)}
-                </Text>
-                <Text variant="bodyMedium" style={styles.summary}>
-                  {formatMessage(`${baseKey}.day.${day}.part.${part}.summary`)}
-                </Text>
-                <Text variant="bodyMedium" style={styles.body}>
-                  {formatMessage(`${baseKey}.day.${day}.part.${part}.body`)}
-                </Text>
-                {part !== partNumbers && <Divider style={styles.divider} />}
-              </VStack>
-            ))}
-          </Animated.View>
-        ))}
+      {isOpen && (
+        <Animated.View
+          entering={FadeInUp.duration(400).mass(1)}
+          exiting={FadeOutDown.duration(200).mass(1)}
+          style={styles.main}
+        >
+          {Array.from({ length: partNumbers }, (_, i) => i + 1).map((part) => (
+            <VStack key={`${day}_${part}`} spacing={25} style={styles.box}>
+              <Text variant="bodyMedium" style={styles.partTitle}>
+                {formatMessage(`${baseKey}.day.${day}.part.${part}.title`)}
+              </Text>
+              <Text variant="bodyMedium" style={styles.summary}>
+                {formatMessage(`${baseKey}.day.${day}.part.${part}.summary`)}
+              </Text>
+              <Text variant="bodyMedium" style={styles.body}>
+                {formatMessage(`${baseKey}.day.${day}.part.${part}.body`)}
+              </Text>
+              {part !== partNumbers && <Divider style={styles.divider} />}
+            </VStack>
+          ))}
+        </Animated.View>
+      )}
     </Animated.View>
   );
 }

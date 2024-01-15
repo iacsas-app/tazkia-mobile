@@ -14,7 +14,6 @@ import { useMessage } from '../../hooks/use-message';
 import { TKeys } from '../../locales/constants';
 import { useGlobal } from '../../providers/AppProvider';
 import GlobalStyles from '../../styles/GlobalStyles';
-import SectionChooser from './ahzabs/SectionChooser';
 import PeriodChooser from './immunization/PeriodChooser';
 import { ImmunizationPeriod } from './immunization/data';
 
@@ -60,9 +59,6 @@ export default function InvocationsScreen() {
     if (route === 'Immunization') {
       setContent(<PeriodChooser onSelect={handlePeriodSelect} onMetaSelect={handleIntroductionClick} />);
       ref.current?.open();
-    } else if (route === 'Ahzabs') {
-      setContent(<SectionChooser onSelect={handleSectionSelect} />);
-      ref.current?.open();
     } else {
       navigation.navigate(route);
     }
@@ -71,18 +67,6 @@ export default function InvocationsScreen() {
   function handlePeriodSelect(period: ImmunizationPeriod) {
     navigation.navigate('Immunization', { period });
     ref.current?.close();
-  }
-
-  function handleSectionSelect(section: number) {
-    if (section < 0) {
-      const intro = section === -1;
-      const key = `invocations.ahzabs.${intro ? 'introduction' : 'conclusion'}`;
-      const titleKey = intro ? TKeys.GENERAL_INTRODUCTION_TITLE : TKeys.CONCLUSION;
-      dialogRef.current?.open(key as TKeys, titleKey);
-    } else {
-      navigation.navigate('Ahzabs', { section });
-      ref.current?.close();
-    }
   }
 
   return (

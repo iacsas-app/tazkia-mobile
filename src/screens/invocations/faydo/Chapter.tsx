@@ -1,7 +1,7 @@
-import { memo, useState } from 'react';
+import { memo } from 'react';
 import { StyleSheet, ViewToken } from 'react-native';
 import { Avatar } from 'react-native-paper';
-import Animated, { FadeInUp, FadeOutDown, useAnimatedStyle, withTiming } from 'react-native-reanimated';
+import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import Text from '../../../components/Text';
 import HStack from '../../../components/stack/HStack';
 import { Color } from '../../../constants/Color';
@@ -14,18 +14,16 @@ interface Props {
   chapter: number;
   total: number;
   viewableItems: Animated.SharedValue<ViewToken[]>;
-  onIntro(): void;
+  onClick(titleKey: TKeys, summaryKey: TKeys): void;
 }
 function Chapter({ chapter, total, viewableItems, ...props }: Props) {
   const { formatMessage } = useMessage();
-  const [isOpen, setOpen] = useState(false);
 
   const baseKey = `invocations.faydo`;
   const chapterBase = `${baseKey}.chapter.${chapter}`;
   const first = chapter === 0;
   const last = chapter === total;
   const titleKey = first ? TKeys.GENERAL_PRESENTATION_TITLE : `${chapterBase}.title`;
-  const summaryKey = first ? `${baseKey}.introduction` : `${chapterBase}.summary`;
 
   const animatedStyle = useAnimatedStyle(() => {
     const isVisible = Boolean(
@@ -39,11 +37,8 @@ function Chapter({ chapter, total, viewableItems, ...props }: Props) {
   }, []);
 
   function handlePress() {
-    if (first) {
-      props.onIntro();
-    } else {
-      setOpen(!isOpen);
-    }
+    const summaryKey = first ? `${baseKey}.introduction` : `${chapterBase}.summary`;
+    props.onClick(titleKey as TKeys, summaryKey as TKeys);
   }
 
   return (
@@ -52,7 +47,7 @@ function Chapter({ chapter, total, viewableItems, ...props }: Props) {
         animatedStyle,
         styles.row,
         {
-          backgroundColor: first ? Color.flatItemNoneBgColor : isOpen ? Color.progress : Color.partDefaultBgColor,
+          backgroundColor: first ? Color.flatItemNoneBgColor : Color.partDefaultBgColor,
           marginTop: first ? 20 : 3,
           marginBottom: last ? 20 : first ? 10 : 2,
         },
@@ -66,23 +61,14 @@ function Chapter({ chapter, total, viewableItems, ...props }: Props) {
           style={{
             ...styles.title,
             ...styles.box,
-            color: first ? 'white' : isOpen ? '#3db371' : 'black',
-            fontSize: isOpen ? 18 : 16,
+            color: first ? 'white' : 'black',
+            fontSize: Font.size(16),
             flex: 10,
           }}
         >
           {formatMessage(titleKey)}
         </Text>
       </HStack>
-      {!first && isOpen && (
-        <Animated.Text
-          entering={FadeInUp.duration(400).mass(1)}
-          exiting={FadeOutDown.duration(200).mass(1)}
-          style={{ ...styles.box, ...styles.summary }}
-        >
-          {formatMessage(summaryKey)}
-        </Animated.Text>
-      )}
     </Animated.View>
   );
 }
