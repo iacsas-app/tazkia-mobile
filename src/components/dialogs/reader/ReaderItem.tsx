@@ -50,12 +50,20 @@ export default function ReaderItem({ index, total, value, ...props }: ReaderItem
 
   return (
     <Animated.View
-      entering={SlideInUp.duration(100).springify()}
-      exiting={SlideOutDown.duration(100)}
+      entering={SlideInUp.delay(10).duration(1).springify().mass(1)}
+      exiting={SlideOutDown.mass(1)}
       style={{ ...styles.touchable, backgroundColor: last ? Color.partProgressBgColor : Color.partDefaultBgColor }}
       onTouchStart={handlePress}
     >
-      <Text variant="titleMedium" style={{ ...styles.summary, color: last ? Color.idProgressColor : 'black' }}>
+      <Text
+        variant="titleMedium"
+        style={{
+          ...styles.summary,
+          color: last ? Color.idProgressColor : 'black',
+          lineHeight: index < 39 ? 44 : 32,
+          fontSize: Font.size(index < 39 ? 20 : 18),
+        }}
+      >
         {formatMessage(value.key)}
       </Text>
       {!last && (
@@ -89,7 +97,7 @@ const styles = StyleSheet.create({
   touchable: {
     flex: 1,
     flexDirection: 'column',
-    marginHorizontal: 15,
+    marginHorizontal: 10,
     marginVertical: 10,
     elevation: 8,
     borderRadius: 20,
@@ -100,10 +108,8 @@ const styles = StyleSheet.create({
   summary: {
     ...GlobalStyles.center,
     textAlign: 'justify',
-    fontSize: Font.size(20),
     fontFamily: 'AmiriQuran',
-    lineHeight: 32,
-    marginHorizontal: 20,
+    marginHorizontal: 10,
     paddingTop: 5,
   },
   tag: {
