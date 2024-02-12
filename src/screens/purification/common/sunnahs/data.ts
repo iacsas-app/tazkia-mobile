@@ -57,7 +57,7 @@ export const worshipRules: Record<number, Record<SunnahType, string[]>> = {
   },
   5: {
     verbal: [TKeys.SUNNAHS_WORSHIP_5_VERBAL_RULE_1],
-    actional: [TKeys.SUNNAHS_WORSHIP_5_ACTIONAL_RULE_1],
+    actional: [],
   },
   6: { verbal: [TKeys.SUNNAHS_WORSHIP_6_VERBAL_RULE_1], actional: [] },
   7: {

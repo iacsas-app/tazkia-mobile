@@ -151,7 +151,7 @@ export const arabic: Translations = {
   [TKeys.PURIFICATION_BODY_PARTS_TONGUE_CLEANING_RULE_3]: 'الكذب',
   [TKeys.PURIFICATION_BODY_PARTS_TONGUE_CLEANING_RULE_4]: 'النميمة',
   [TKeys.PURIFICATION_BODY_PARTS_TONGUE_CLEANING_RULE_5]: 'اللغو',
-  [TKeys.PURIFICATION_BODY_PARTS_TONGUE_CLEANING_RULE_6]: 'شهادةالزور',
+  [TKeys.PURIFICATION_BODY_PARTS_TONGUE_CLEANING_RULE_6]: 'شهادة الزور',
   [TKeys.PURIFICATION_BODY_PARTS_TONGUE_CLEANING_RULE_7]: 'الجدال والمراء',
   [TKeys.PURIFICATION_BODY_PARTS_TONGUE_CLEANING_RULE_8]: 'التفوه بكلمات من السحر الأسود للإتيان بأعمال خارقة',
   [TKeys.PURIFICATION_BODY_PARTS_TONGUE_CLEANING_RULE_9]: 'غناء أو تلاوة كلمات شاعرية أو جنسية أو فاحشة',
@@ -421,7 +421,7 @@ export const arabic: Translations = {
   // Sunnah habit 11
   [TKeys.SUNNAHS_HABITS_11_TITLE]: 'سنن الدخول إلى السوق',
   [TKeys.SUNNAHS_HABITS_11_VERBAL_RULE_1]:
-    'لا إله إلا الله وحده لا شريك له، له الملك وله الحمد يحيي ويميت، وهو حي لا يموت، بيده الخير، وهوعلى كل شئ قدير',
+    'لا إله إلا الله وحده لا شريك له، له الملك وله الحمد يحيي ويميت، وهو حي لا يموت، بيده الخير، وهو على كل شئ قدير',
   // Sunnah habit 12
   [TKeys.SUNNAHS_HABITS_12_TITLE]: 'السنن عند استصعاب الأمر',
   [TKeys.SUNNAHS_HABITS_12_VERBAL_RULE_1]: 'اللهم لا سهل إلا ما جعلته سهلا، وأنت تجعل الحزن إذا شئت سهلا',

@@ -359,7 +359,6 @@ export enum TKeys {
 
   SUNNAHS_WORSHIP_5_TITLE = 'sunnahs.worship.5.title',
   SUNNAHS_WORSHIP_5_VERBAL_RULE_1 = 'sunnahs.worship.5.verbal.rule1',
-  SUNNAHS_WORSHIP_5_ACTIONAL_RULE_1 = 'sunnahs.worship.5.actional.rule1',
 
   SUNNAHS_WORSHIP_6_TITLE = 'sunnahs.worship.6.title',
   SUNNAHS_WORSHIP_6_VERBAL_RULE_1 = 'sunnahs.worship.6.verbal.rule1',
