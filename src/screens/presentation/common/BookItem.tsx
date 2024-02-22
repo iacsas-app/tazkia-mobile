@@ -89,6 +89,8 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: 'darkseagreen',
     padding: 5,
+    marginVertical: 10,
+    marginHorizontal: 15,
     borderRadius: 10,
     alignItems: 'center',
   },
