@@ -42,6 +42,11 @@ export default function InvocationsScreen() {
             {formatMessage(TKeys.INVOCATION_STEP_3_RULE_3_DESC)}
           </Text>
         </InvocationAccordion>
+        <InvocationAccordion id={4} titleKey={TKeys.INVOCATION_STEP_3_RULE_4} duration={15}>
+          <Text variant="bodySmall" style={GlobalStyles.justify}>
+            {formatMessage(TKeys.INVOCATION_STEP_3_RULE_4_DESC)}
+          </Text>
+        </InvocationAccordion>
       </List.AccordionGroup>
       <InvocationGoodManners />
       <VStack style={styles.importance}>
