@@ -66,6 +66,14 @@ export const french: Translations = {
   [TKeys.BOOK_DESC_17]: '',
   [TKeys.BOOK_TITLE_18]: '',
   [TKeys.BOOK_DESC_18]: '',
+  [TKeys.BOOK_TITLE_19]: '',
+  [TKeys.BOOK_DESC_19]: '',
+  [TKeys.BOOK_TITLE_20]: '',
+  [TKeys.BOOK_DESC_20]: '',
+  [TKeys.BOOK_TITLE_21]: '',
+  [TKeys.BOOK_DESC_21]: '',
+  [TKeys.BOOK_TITLE_22]: '',
+  [TKeys.BOOK_DESC_22]: '',
 
   // PURIFICATION
   [TKeys.PURIFICATION_TITLE]: '',
@@ -1116,6 +1124,7 @@ export const french: Translations = {
   [TKeys.BUTTON_DISAGREE]: 'Je désapprouve',
   [TKeys.BUTTON_CLEANING]: 'Nettoyage',
   [TKeys.BUTTON_ENLIGHTENMENT]: 'Illumination',
+  [TKeys.BUTTON_LINK]: '',
 
   // LANGUAGES
   [TKeys.LANGUAGE_ARABIC]: 'Arabe',

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, StyleSheet, ViewToken } from 'react-native';
+import { Image, Linking, StyleSheet, TouchableOpacity, ViewToken } from 'react-native';
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import Text from '../../../components/Text';
 import HStack from '../../../components/stack/HStack';
@@ -7,6 +7,8 @@ import VStack from '../../../components/stack/VStack';
 import { Font } from '../../../constants/Font';
 import { SCREEN_WIDTH } from '../../../constants/Screen';
 import { Book } from '../../../domains/presentation/Book';
+import { useMessage } from '../../../hooks/use-message';
+import { TKeys } from '../../../locales/constants';
 import GlobalStyles from '../../../styles/GlobalStyles';
 
 type Props = {
@@ -16,6 +18,7 @@ type Props = {
 };
 
 export const FlatBook: React.FC<Props> = React.memo(({ book, viewableItems, total }) => {
+  const { formatMessage } = useMessage();
   const rowStyle = useAnimatedStyle(() => {
     const isVisible = Boolean(
       viewableItems.value.filter((item) => item.isViewable).find((viewableItem) => viewableItem.item.id === book.id),
@@ -26,6 +29,12 @@ export const FlatBook: React.FC<Props> = React.memo(({ book, viewableItems, tota
       transform: [{ scale: withTiming(isVisible ? 1 : 0.6) }],
     };
   }, []);
+
+  const handleOpenLink = () => {
+    if (book.link) {
+      Linking.openURL(book.link);
+    }
+  };
 
   return (
     <Animated.View
@@ -41,9 +50,11 @@ export const FlatBook: React.FC<Props> = React.memo(({ book, viewableItems, tota
             <Text variant="bodyMedium" style={styles.summary}>
               {book.summary}
             </Text>
-            <Text variant="bodyMedium" style={styles.link}>
-              {book.link}
-            </Text>
+            <TouchableOpacity onPress={handleOpenLink} style={styles.button}>
+              <Text variant="bodyMedium" style={styles.link}>
+                {formatMessage(TKeys.BUTTON_LINK)}
+              </Text>
+            </TouchableOpacity>
           </VStack>
         </HStack>
       </VStack>
@@ -74,5 +85,11 @@ const styles = StyleSheet.create({
   },
   link: {
     fontSize: Font.size(14),
+  },
+  button: {
+    backgroundColor: 'darkseagreen',
+    padding: 5,
+    borderRadius: 10,
+    alignItems: 'center',
   },
 });

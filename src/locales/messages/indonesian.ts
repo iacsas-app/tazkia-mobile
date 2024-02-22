@@ -1239,6 +1239,7 @@ export const indonesian: Translations = {
   [TKeys.BUTTON_DISAGREE]: 'Saya tidak setuju',
   [TKeys.BUTTON_CLEANING]: 'Pembersihan',
   [TKeys.BUTTON_ENLIGHTENMENT]: 'Pencerahan',
+  [TKeys.BUTTON_LINK]: '',
 
   // LANGUAGES
   [TKeys.LANGUAGE_ARABIC]: 'Arab',

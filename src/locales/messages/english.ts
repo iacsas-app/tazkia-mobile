@@ -56,6 +56,14 @@ export const english: Translations = {
   [TKeys.BOOK_DESC_17]: '',
   [TKeys.BOOK_TITLE_18]: '',
   [TKeys.BOOK_DESC_18]: '',
+  [TKeys.BOOK_TITLE_19]: '',
+  [TKeys.BOOK_DESC_19]: '',
+  [TKeys.BOOK_TITLE_20]: '',
+  [TKeys.BOOK_DESC_20]: '',
+  [TKeys.BOOK_TITLE_21]: '',
+  [TKeys.BOOK_DESC_21]: '',
+  [TKeys.BOOK_TITLE_22]: '',
+  [TKeys.BOOK_DESC_22]: '',
 
   // PURIFICATION
   [TKeys.PURIFICATION_TITLE]: '',
@@ -1103,6 +1111,7 @@ export const english: Translations = {
   [TKeys.BUTTON_DISAGREE]: 'Disagree',
   [TKeys.BUTTON_CLEANING]: 'Cleaning',
   [TKeys.BUTTON_ENLIGHTENMENT]: 'Enlightenment',
+  [TKeys.BUTTON_LINK]: '',
 
   // LANGUAGES
   [TKeys.LANGUAGE_ARABIC]: 'Arabic',
