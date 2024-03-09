@@ -109,7 +109,7 @@ export const booksList: Book[] = [
   },
   {
     id: 16,
-    image: require('./../../../../assets/img/presentation/books/chamaîl.png'),
+    image: require('./../../../../assets/img/presentation/books/chamail.png'),
     title: TKeys.BOOK_TITLE_16,
     summary: TKeys.BOOK_DESC_16,
     link: '',
