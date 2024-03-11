@@ -66,7 +66,7 @@ export default function BodyPartItem({ id, part, imageSource, ...props }: BodyPa
       style={{ ...styles.container, backgroundColor }}
       onTouchStart={() => props.onPress(part)}
     >
-      <Avatar.Image size={60} style={styles.typeAvatar} source={imageSource} />
+      <Avatar.Image size={50} style={styles.typeAvatar} source={imageSource} />
       <Avatar.Text
         size={25}
         style={{ ...styles.idAvatar, backgroundColor: completed ? '#dffcef' : inProgress ? 'white' : '#c5f5c5' }}
