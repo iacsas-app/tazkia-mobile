@@ -196,10 +196,9 @@ const styles = StyleSheet.create({
   },
   contentText: {
     fontSize: Font.size(18),
-    fontFamily: 'AmiriQuran',
     textAlign: 'justify',
     textAlignVertical: 'center',
-    lineHeight: 35,
+    lineHeight: 30,
     paddingHorizontal: 20,
     paddingVertical: 10,
   },

@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     fontSize: Font.size(16),
     fontFamily: 'Cairo',
   },
-  body: { ...GlobalStyles.justify, fontSize: Font.size(18), fontFamily: 'AmiriQuran', lineHeight: 30 },
+  body: { ...GlobalStyles.justify, fontSize: Font.size(18), lineHeight: 26 },
   id: { elevation: 2, backgroundColor: '#3db371', flex: 1.2, marginStart: 2 },
   container: { ...GlobalStyles.center, flex: 15, marginHorizontal: 10 },
   divider: { width: SCREEN_WIDTH - 100, height: 1, marginVertical: 10 },

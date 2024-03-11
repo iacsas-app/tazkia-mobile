@@ -1431,12 +1431,12 @@ export const arabic: Translations = {
 
   // MENUS
   [TKeys.MENU_SETTINGS]: 'إعدادات',
-  [TKeys.MENU_HOME]: 'إِسْتِقْبَال',
+  [TKeys.MENU_HOME]: 'الإِسْتِقْبَال',
   [TKeys.MENU_PRESENTATION]: 'تَقْدِيم',
-  [TKeys.MENU_PURIFICATION]: 'تَزْكِيَة',
+  [TKeys.MENU_PURIFICATION]: 'التَزْكِيَة',
   [TKeys.MENU_METHODOLOGY]: 'مَنْهَجِيَّة',
   [TKeys.MENU_SUNNAHS]: 'سُنَن',
-  [TKeys.MENU_INVOCATIONS]: 'أَذْكَار',
+  [TKeys.MENU_INVOCATIONS]: 'الأَذْكَار',
   [TKeys.MENU_INVOCATION]: 'ذِكْر',
   [TKeys.SETTINGS_LANGUAGE]: 'لغة التطبيق',
   [TKeys.SETTINGS_LANGUAGE_DEFAULT]: 'هل تريد الاستمرار باللغة {lang} ؟',

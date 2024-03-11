@@ -53,7 +53,6 @@ const styles = StyleSheet.create({
   },
   description: {
     marginTop: 22,
-    fontFamily: 'AmiriQuran',
     lineHeight: 25,
     textAlign: 'justify',
   },

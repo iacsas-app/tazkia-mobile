@@ -4,7 +4,7 @@ import { Button, Divider } from 'react-native-paper';
 import Text from '../../../../../components/Text';
 
 import { useEffect, useState } from 'react';
-import Animated, { FadeInDown, SlideInLeft } from 'react-native-reanimated';
+import Animated, { FadeInDown } from 'react-native-reanimated';
 import Restart from '../../../../../components/progress/Restart';
 import Start from '../../../../../components/progress/Start';
 import ProgressInfos from '../../../../../components/progress/progressStatus/ProgressInfos';
@@ -135,7 +135,7 @@ export default function Stage({ part, stage, ...props }: Props) {
             {!showDetails && <Icon name="unfold-more-horizontal" size={20} color="black" />}
           </HStack>
         </HStack>
-        <Animated.View entering={SlideInLeft.duration(10).mass(1).springify()}>
+        <View>
           {!hasProgress ? (
             <Start
               onStart={handleStart}
@@ -156,7 +156,7 @@ export default function Stage({ part, stage, ...props }: Props) {
               {progressProps.completed && <Restart onClick={handleRestart} />}
             </HStack>
           )}
-        </Animated.View>
+        </View>
       </HStack>
       {showDetails && (
         <Animated.View entering={FadeInDown.springify()} style={styles.footer}>

@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   },
   headerContent: { ...GlobalStyles.center, paddingEnd: 60 },
   headerAction: { right: 0, position: 'absolute' },
-  bottomNav: { height: 67 },
+  bottomNav: { height: 80 },
 });
 
 export default RootNavigator;

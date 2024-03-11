@@ -87,7 +87,6 @@ const styles = StyleSheet.create({
   summary: {
     textAlign: 'justify',
     fontSize: Font.size(18),
-    fontFamily: 'AmiriQuran',
     paddingBottom: 10,
     lineHeight: 30,
   },

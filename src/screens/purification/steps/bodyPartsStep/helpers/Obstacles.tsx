@@ -44,7 +44,7 @@ export default function Obstacles() {
           <HStack spacing={15} style={{ ...GlobalStyles.centerAlign }}>
             <Icon name="doctor" size={30} color="teal" />
             <Text
-              variant="bodySmall"
+              variant="bodyMedium"
               style={{
                 fontWeight: '800',
                 width: SCREEN_WIDTH - 90,
@@ -54,7 +54,7 @@ export default function Obstacles() {
               {formatMessage(TKeys.PURIFICATION_BODYPART_OBSTACLES_HOW_TO_HANDLE_TITLE)}
             </Text>
           </HStack>
-          <Text variant="bodySmall" style={{ ...GlobalStyles.justify, marginTop: 5 }}>
+          <Text variant="bodyMedium" style={{ ...GlobalStyles.justify, marginTop: 5 }}>
             {formatMessage(TKeys.PURIFICATION_BODYPART_OBSTACLES_HOW_TO_HANDLE_SUMMARY)}
           </Text>
           {[TKeys.A, TKeys.B].map((part) => (
@@ -66,11 +66,11 @@ export default function Obstacles() {
                   style={{ backgroundColor: 'teal', opacity: 0.7 }}
                   labelStyle={{ fontWeight: '900', color: 'white' }}
                 />
-                <Text variant="bodySmall" style={{ fontWeight: '700', color: '#000000' }}>
+                <Text variant="bodyMedium" style={{ fontWeight: '700', color: '#000000' }}>
                   {formatMessage(`purification.bodypart.obstacles.how-to-handle.face.${part}.title`)}
                 </Text>
               </HStack>
-              <Text variant="bodySmall" style={GlobalStyles.justify}>
+              <Text variant="bodyMedium" style={GlobalStyles.justify}>
                 {formatMessage(`purification.bodypart.obstacles.how-to-handle.face.${part}.summary`)}
               </Text>
             </VStack>

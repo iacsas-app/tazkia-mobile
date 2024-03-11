@@ -60,7 +60,7 @@ export default function ReaderItem({ index, total, value, ...props }: ReaderItem
         style={{
           ...styles.summary,
           color: last ? Color.idProgressColor : 'black',
-          lineHeight: index < 39 ? 44 : 32,
+          lineHeight: 30,
           fontSize: Font.size(index < 39 ? 20 : 18),
         }}
       >
@@ -108,7 +108,6 @@ const styles = StyleSheet.create({
   summary: {
     ...GlobalStyles.center,
     textAlign: 'justify',
-    fontFamily: 'AmiriQuran',
     marginHorizontal: 10,
     paddingTop: 5,
   },
